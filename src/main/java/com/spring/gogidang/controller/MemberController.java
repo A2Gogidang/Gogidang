@@ -51,7 +51,7 @@ public class MemberController {
 		model.addAttribute("store_list", store_list);
 		model.addAttribute("review_list", review_list);
 		
-		return "member/main";
+		return "main";
 	}
 	
 	@RequestMapping("/loginForm.me") 

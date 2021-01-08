@@ -7,15 +7,14 @@
    <!-- Namespace탭에서1234 mybatis-spring체크해서 추가할것 -->
    
 <!-- Root Context: defines shared resources visible to all other web components -->
-   <bean id="dataSource"
+<!--    <bean id="dataSource"
    class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
    <property name="driverClass" value="oracle.jdbc.OracleDriver"/>
    <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
    <property name="username" value="system"/>
    <property name="password" value="oracle"/>
-   </bean>
-   
-   <!--  
+   </bean> -->
+
    <bean id="dataSource"
    class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
    <property name="driverClass" value="oracle.jdbc.OracleDriver"/>
@@ -23,7 +22,7 @@
    <property name="username" value="scott"/>
    <property name="password" value="123456"/>
    </bean>
-   -->
+
 
  
    <!-- sqlSession 객체 생성 -->
