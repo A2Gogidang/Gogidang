@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+<mapper namespace="com.spring.mapper.ReviewMapper">
+
+	<insert id="reviewWrite" parameterType="ReviewVO">
+		INSERT INTO review VALUES (#{review_num}, #{u_id},#{s_num},#{title},#{nickname},#{content},#{star},#{photo1},#{photo2},#{photo3},#{re_date},#{hit})
+	</insert>
+	
+	<select id="reviewListUid" parameterType="ReviewVO" resultType="ReviewVO">
+		select * from review where s_num=(select s.s_num from member m, shop_reg s where m.u_id = s.u_id and s.u_id=#{u_id})
+	</select>
+	
+	<select id="reviewListSnum" parameterType="ReviewVO" resultType="ReviewVO">
+		select * from review where s_num=#{s_num}
+	</select>
+	
+	<select id="getReviewList" resultType="ReviewVO">
+		select * from review
+	</select>
+	
+	<select id="reviewInfo" parameterType="ReviewVO" resultType="ReviewVO">
+		select * from review where review_num=#{review_num}
+	</select>
+	
+	<update id="reviewModify" parameterType="ReviewVO">
+	   	UPDATE review SET content=#{content} WHERE review_num=#{review_num}
+	</update>
+	
+	<!-- seungwoo code start -->
+	<select id="getReviews" parameterType="String" resultType="ReviewVO">
+	select * from
+	shop_reg rg,review r where rg.s_num=r.s_num and r.u_id=#{u_id}
+	</select>
+	
+</mapper>

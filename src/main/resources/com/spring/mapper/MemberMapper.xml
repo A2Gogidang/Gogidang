@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+<mapper namespace="com.spring.mapper.MemberMapper">
+
+	<insert id="insertMember" parameterType="MemberVO" >
+	      INSERT INTO member 
+	      VALUES (#{u_id}
+				 ,#{u_pw}
+				 ,#{u_name}
+				 ,#{u_nick}
+				 ,#{u_birth}
+				 ,#{u_addr}
+				 ,#{u_email}
+				 ,#{u_phone}
+				 ,#{seller_key})
+ 	</insert> 
+	
+ 	<select id="selectMember" parameterType="MemberVO" resultType="MemberVO">
+	      SELECT * 
+	      FROM member 
+	      where u_id=#{u_id}
+     	<if test="u_pw != null"> <!-- dynamic query -->
+    	  AND u_pw=#{u_pw}
+  	 	</if>
+ 	</select>    
+    
+ 	<update id="updateMember" parameterType="MemberVO" >
+	 	  UPDATE member 
+	 	  SET u_pw=#{u_pw,jdbcType=VARCHAR}
+	 	 	 ,u_nick=#{u_nick,jdbcType=VARCHAR}
+	 	  	 ,u_addr=#{u_addr,jdbcType=VARCHAR}
+	 	  	 ,u_email=#{u_email,jdbcType=VARCHAR}
+	 	  	 ,u_phone=#{u_phone,jdbcType=VARCHAR}
+	 	  where u_id=#{u_id,jdbcType=VARCHAR}
+ 	</update> 
+	
+</mapper>

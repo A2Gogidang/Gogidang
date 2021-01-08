@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+ <mapper namespace="com.spring.mapper.QnaMapper">
+ 
+	 <select id="getListCount" resultType="int">
+	 	SELECT count(*) FROM qna
+	 </select>
+ 
+ 	<select id="getQnaList" parameterType="HashMap" resultType="QnaVO">	
+	<![CDATA[
+	SELECT * 
+	FROM (SELECT rownum rnum,qna_num,u_id,title,content,re_date,qna_password,re_ref,re_lev,re_seq 
+	FROM (SELECT * FROM qna ORDER BY re_ref desc, re_seq asc)) 
+	WHERE rnum>=#{startrow} AND rnum<=#{endrow}
+	 ]]>
+	</select>
+	
+	<insert id="qnaInsert" parameterType="QnaVO">
+		<selectKey keyProperty="qna_num" order="BEFORE" resultType="int">
+			SELECT nvl(max(qna_num), 0)+1 FROM qna
+		</selectKey>
+		INSERT INTO qna VALUES (#{qna_num}, #{u_id}, #{title}, #{content},sysdate,#{qna_password}, #{qna_num}, #{re_lev}, #{re_seq})
+	</insert>
+	
+	<select id="getDetail" parameterType="int" resultType="QnaVO">
+ 		SELECT * FROM qna WHERE qna_num=#{qna_num}
+ 	</select>
+ 	
+ 	<update id="qnaModify" parameterType="QnaVO">
+		UPDATE qna SET title=#{title}, content=#{content} WHERE qna_num=#{qna_num}
+	</update>
+	
+	<delete id="qnaDelete" parameterType="int">
+		DELETE FROM qna WHERE qna_num=#{qna_num}
+	</delete>
+	
+	<select id="isBoardWriter" parameterType="HashMap" resultType="int">
+		SELECT count(*) FROM qna WHERE qna_num=#{qna_num} and u_id=#{u_id}
+	</select>
+	
+		<insert id="qnaReplyupdate" parameterType="qnaVO">
+		UPDATE qna SET re_seq = re_seq+1 WHERE re_ref = #{re_ref} and re_seq > #{re_seq}
+	</insert>
+	
+	<insert id="qnaReply" parameterType="qnaVO">
+		<selectKey keyProperty="qna_num" order="BEFORE" resultType="int">
+			SELECT nvl(max(qna_num), 0)+1 FROM qna
+		</selectKey>
+		INSERT INTO qna(qna_num,u_id,title,content,re_date,qna_password,re_ref,re_lev,re_seq) 
+		VALUES (#{qna_num}, #{u_id}, #{title}, #{content},sysdate ,#{qna_password}, #{re_ref}, #{re_lev}, #{re_seq})
+	</insert>
+	
+ 
+ </mapper>

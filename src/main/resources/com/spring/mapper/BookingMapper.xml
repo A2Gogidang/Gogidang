@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.spring.mapper.BookingMapper">
+   
+	<select id="getBookingList" parameterType="String" resultType="BookingVO">
+		select shop_reg.s_name,booking.time,booking.head_count,booking.booking_state
+	   	from booking,shop_reg
+	   	where booking.s_num = shop_reg.s_num and booking.u_id=#{u_id}
+	</select>
+	
+	<insert id="insertBooking" parameterType="BookingVO">
+	 	<selectKey keyProperty="booking_num" order="BEFORE" resultType="int">
+			select nvl(max(booking_num), 0)+1 from Booking
+	 	</selectKey>
+		insert into Booking values (#{booking_num},#{u_id},#{s_num},#{time},#{head_count},#{table_charge},#{pay_price},#{pay_code},#{booking_state})
+	</insert>
+   
+	<delete id="cancelBooking" parameterType="int">
+		delete from booking where booking_num=#{booking_num}
+	</delete>
+
+	<select id="customerBooking" parameterType="HashMap" resultType="int">
+		select count(*) from booking where booking_num=#{booking_num} and u_id=#{u_id}
+	</select>
+
+</mapper>
