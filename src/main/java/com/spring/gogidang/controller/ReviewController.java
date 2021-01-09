@@ -25,19 +25,19 @@ public class ReviewController {
 	public String reviewWriteForm(StoreVO storeVO, Model model) {
 		StoreVO vo = storeService.storeInfo(storeVO);
 		model.addAttribute("storeVO", vo);
-		return "review/reviewWrite";
+		return "review/review_write";
 	}
 	
 	@RequestMapping(value = "/reviewListForm.re")
 	public String reviewListForm() {
-		return "review/reviewList";
+		return "review/review_list";
 	}
 	
 	@RequestMapping(value = "/reviewWrite.re")
 	public String reviewwrite(ReviewVO reviewVO) {
 		int res = reviewService.reviewWrite(reviewVO);
 		
-		return "review/reviewList";
+		return "review/review_list";
 	}
 	
 	@RequestMapping(value = "/reviewListUid.re")
@@ -46,7 +46,7 @@ public class ReviewController {
 		reviewList = reviewService.reviewListUid(reviewVO);
 		model.addAttribute("reviewList", reviewList);
 		
-		return "review/reviewList";
+		return "mypage/member_review";
 	}
 
 	@RequestMapping(value = "/reviewListSnum.re")
@@ -55,7 +55,7 @@ public class ReviewController {
 		reviewList = reviewService.reviewListSnum(reviewVO);
 		model.addAttribute("reviewList", reviewList);
 		
-		return "review/reviewList";
+		return "review/review_list";
 	}
 
 	@RequestMapping(value = "/getReviewList.re")
@@ -72,7 +72,7 @@ public class ReviewController {
 		ReviewVO vo = reviewService.reviewInfo(reviewVO);
 		model.addAttribute("reviewVO", vo);
 		
-		return "review/reviewInfo";
+		return "review/review_info";
 	}
 	
 	@RequestMapping("/reviewModifyForm.re")
@@ -90,13 +90,13 @@ public class ReviewController {
 		return "redirect:/reviewInfo.re?review_num="+reviewVO.getReview_num();
 	}
 	
-	@RequestMapping("/myreviewlist.re")
+	@RequestMapping("/reviewList.re")
 	public String getReview(MemberVO memberVO,Model model) throws Exception{
 		String id = memberVO.getU_id();
 		ArrayList<ReviewVO>review_list = reviewService.getReview(id);
 		model.addAttribute("review_list",review_list);
 		
-		return "mypage/myreview_list";
+		return "mypage/member_review";
 	}
 	
 }

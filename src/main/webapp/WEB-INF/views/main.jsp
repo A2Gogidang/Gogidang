@@ -16,8 +16,7 @@
 <title>회원관리 시스템 메인 페이지</title>
 </head>
 <body>
-<a href="./loginForm.me">로그인</a>
-<a href="./joinForm.me">회원가입</a>
+<a href="./memberInfo.me?u_id=<%=u_id%>">마이페이지</a>
 <h3><%=u_id %> 로 로그인하셨습니다.</h3>
 
 	<%
@@ -58,7 +57,7 @@
 					%>
 					<tr align=center>
 						<td colspan=2>
-							<a href="eventinfo.ev?event_num=<%=vo.getEvent_num()%>"><%=vo.getThumbnail() %>
+							<a href="eventInfo.ev?event_num=<%=vo.getEvent_num()%>"><%=vo.getThumbnail() %>
 						</td>
 					</tr>
 					<%
@@ -104,7 +103,7 @@
 				</td>
 				</tr>
 			</table>
-			<a href="./eventpage.ev">이벤트 페이지</a>
+			<a href="./eventPage.ev">이벤트 페이지</a>
 		</center>
 </p>
 </body>

@@ -21,6 +21,7 @@ import com.spring.gogidang.service.*;
  * loginForm.me
  * joinForm.me
  * updateForm.me
+ * memberInfo.me
  * 
  * login.me
  * joinProcess.me
@@ -75,6 +76,15 @@ public class MemberController {
 		mov.setViewName("mypage/updateForm");
 		
 		return mov;
+	}
+	
+	@RequestMapping("/memberInfo.me")
+	public String memberInfo(MemberVO memberVO, Model model) throws Exception {
+		MemberVO vo = memberService.selectMember(memberVO);
+		model.addAttribute("memberVO", vo);
+		
+		
+		return "mypage/member_info";
 	}
 	
 	@RequestMapping("/login.me") 

@@ -16,7 +16,7 @@
 		<tr align=center><td>메인사진 : </td><td>${eventVO.getThumbnail()}</td></tr>
 		<tr align=center><td>글내용 : </td><td>${eventVO.getContent()}</td></tr>
 		<tr align=center><td>이벤트 등록일 : </td><td>${eventVO.getRe_date()}</td></tr>
-		<td colspan=2><a href="eventpage.ev">이벤트 페이지로 돌아가기</a>
+		<td colspan=2><a href="eventPage.ev">이벤트 페이지로 돌아가기</a>
 	</table>
 </body>
 </html>

@@ -4,7 +4,8 @@
 <%@ page import="javax.naming.*" %>
 <%@ page import="com.spring.gogidang.domain.*" %>
 <%
-	String id = (String) session.getAttribute("id");
+	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
+	String id = mvo.getU_id();
 	MemberVO memberVO=(MemberVO)request.getAttribute("memberVO");
 %>
 <html>
@@ -39,10 +40,10 @@
 <div class="navigation">
 	<table border="1">
 	<tr>
-	<td><a href="./memberinfo.me?u_id=<%=memberVO.getU_id()%>">내정보</a></td>
-	<td><a href="./bookinglist.bo?u_id=<%=memberVO.getU_id()%>">내예약확인</a></td>
-	<td><a href="./likestorelist.li?u_id=<%=memberVO.getU_id()%>">찜목록</a></td>
-	<td><a href="./myreviewlist.re?u_id=<%=memberVO.getU_id()%>">내가 작성한 후기</a></td>
+	<td><a href="./memberInfo.me?u_id=<%=memberVO.getU_id()%>">내정보</a></td>
+	<td><a href="./bookingList.bo?u_id=<%=memberVO.getU_id()%>">내예약확인</a></td>
+	<td><a href="./likeStoreList.li?u_id=<%=memberVO.getU_id()%>">찜목록</a></td>
+	<td><a href="./reviewList.re?u_id=<%=memberVO.getU_id()%>">내가 작성한 후기</a></td>
 	</tr>
 	</table>
 </div>
