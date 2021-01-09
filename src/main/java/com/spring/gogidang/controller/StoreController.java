@@ -20,35 +20,19 @@ public class StoreController {
 	
 	@Autowired
 	private StoreService storeService;
+	
 	@Autowired
 	private MenuService menuService;
-	
-	/*
-	 * -form-
-	 * 가게등록
-	 */
-	
-	/*
-	 * -기능-
-	 * 가게 등록 + 수정
-	 * 전체 가게 리스트
-	 * 승인대기중인 가게 리스트
-	 * 승인대기중인 가게 승인
-	 * 승인대기중인 가게 거절
-	 * 가게 상세 보기
-	 */
-	
-	
 	
 	/*
 	 * 전체 가게 리스트
 	 */
 	@RequestMapping(value = "/storeList.st")
 	public String getShopList(Model model) {
-		ArrayList<StoreVO> shopList = storeService.getStoreList();
-		model.addAttribute("shopList", shopList);
+		ArrayList<StoreVO> storeList = storeService.getStoreList();
+		model.addAttribute("storeList", storeList);
 		
-		return "store/storeList";
+		return "store/store_list";
 	}
 	
 	/*
@@ -59,7 +43,7 @@ public class StoreController {
 		ArrayList<StoreVO> storeList = storeService.getStoreList();
 		model.addAttribute("storeList", storeList);
 		
-		return "store/storeWait";
+		return "store/store_wait";
 	}
 	
 	/*
@@ -74,7 +58,7 @@ public class StoreController {
 		model.addAttribute("menuList",menuList);
 		
 		
-		return "store/store_Info";
+		return "store/store_info";
 	}
 	
 	/*
@@ -95,17 +79,6 @@ public class StoreController {
 		storeService.refuseStore(storeVO);
 		
 		return "redirect:storeList.st";
-	}
-	
-	// 가게 등록 form
-	@RequestMapping("/storeRegForm.st")
-	public String registrationForm(StoreVO storeVO, HttpSession session) throws Exception {
-		
-		storeVO.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
-		StoreVO vo = storeService.selectStore(storeVO);
-
-		session.setAttribute("StoreVO",vo);
-		return "store/store_registrationForm";
 	}
 	
 	// 가게 등록 + 수정
