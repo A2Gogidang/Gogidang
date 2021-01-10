@@ -5,7 +5,8 @@
 <mapper namespace="com.spring.mapper.ReviewMapper">
 
 	<insert id="reviewWrite" parameterType="ReviewVO">
-		INSERT INTO review VALUES (#{review_num}, #{u_id},#{s_num},#{title},#{nickname},#{content},#{star},#{photo1},#{photo2},#{photo3},#{re_date},#{hit})
+		INSERT INTO review (review_num, u_id, s_num, title, nickname, content, star, photo1, photo2, photo3) 
+		VALUES (seq_board.nextval, #{u_id}, #{s_num}, #{title}, #{nickname}, #{content}, #{star}, #{photo1}, #{photo2}, #{photo3})
 	</insert>
 	
 	<select id="reviewListUid" parameterType="ReviewVO" resultType="ReviewVO">
