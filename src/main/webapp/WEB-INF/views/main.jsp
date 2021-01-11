@@ -1,6 +1,8 @@
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%
 	
 	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
@@ -85,8 +87,18 @@
 				
 				</table>
 				<h3>리뷰 닉네임,사진,등록날짜,별점</h3>
-				<a href="./getReviewList.re">리뷰전체보기</a>
+				<a href="./getReivewPagingList.re">리뷰전체보기</a>
 				<table border=1 width=300>
+				<c:forEach items="${review_list }" var="review_list">
+					<tr>
+						<td><c:out value="${review_list.title }" /></td>
+						<td><c:out value="${review_list.nickname }" /></td>
+						<td><c:out value="${review_list.star }" /></td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${review_list.re_date }" /></td>
+					</tr>
+				</c:forEach>
+				</table>
+<%-- 				<table border=1 width=300>
 					<%
 						for (int i=0; i<3; i++)
 							{
@@ -102,7 +114,7 @@
 					<%
 							} 
 					%>
-			</table>
+			</table> --%>
 			<a href="./eventPage.ev">이벤트 페이지</a>
 		</center>
 </p>

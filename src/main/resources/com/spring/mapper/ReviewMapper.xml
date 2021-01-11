@@ -4,10 +4,12 @@
 	 
 <mapper namespace="com.spring.mapper.ReviewMapper">
 
-	<insert id="reviewWrite" parameterType="ReviewVO">
+<!-- 	<insert id="reviewWrite" parameterType="ReviewVO">
 		INSERT INTO review (review_num, u_id, s_num, title, nickname, content, star, photo1, photo2, photo3, hit) 
-		VALUES (#{review_num}, #{u_id}, #{s_num}, #{title}, #{nickname}, #{content}, #{star}, #{photo1}, #{photo2}, #{photo3}, #{hit})
-	</insert>
+		VALUES (seq_review.nextval, #{u_id}, #{s_num}, #{title}, #{nickname}, #{content}, #{star}, #{photo1}, #{photo2}, #{photo3}, #{hit})
+	</insert> -->
+	
+
 	
 	<select id="reviewListUid" parameterType="ReviewVO" resultType="ReviewVO">
 		select * from review where s_num=(select s.s_num from member m, shop_reg s where m.u_id = s.u_id and s.u_id=#{u_id})
@@ -18,21 +20,58 @@
 	</select>
 	
 	<select id="getReviewList" resultType="ReviewVO">
-		select * from review
+		select /*+INDEX_DESC (review pk_review) */ * from review
 	</select>
 	
 	<select id="reviewInfo" parameterType="ReviewVO" resultType="ReviewVO">
-		select * from review where review_num=#{review_num}
+		select s.s_name, r.u_id, r.nickname, r.title, r.content, r.star, r.photo1, r.re_date 
+		from review r, shop_reg s 
+		where r.s_num=s.s_num 
+		and r.review_num=#{review_num} 
+		and s.s_num=#{s_num}
 	</select>
 	
 	<update id="reviewModify" parameterType="ReviewVO">
 	   	UPDATE review SET content=#{content} WHERE review_num=#{review_num}
 	</update>
 	
-	<!-- seungwoo code start -->
-	<select id="getReviews" parameterType="String" resultType="ReviewVO">
-	select * from
-	shop_reg rg,review r where rg.s_num=r.s_num and r.u_id=#{u_id}
+	<!-- restart -->
+	<select id="getListWithPaging" resultType="ReviewVO">
+		<![CDATA[
+		select review_num, title, star, re_date
+		from
+			( 	select /*+ INDEX_DESC(review pk_review) */ 
+					rownum rn, review_num, title, star, re_date
+				from review
+				where rownum <= #{pageNum} * #{amount} )
+		where rn > (#{pageNum}-1) * #{amount}
+		]]>
 	</select>
 	
+	<insert id="reviewReg" parameterType="ReviewVO">
+		<selectKey keyProperty="review_num" order="BEFORE" resultType="int">
+			select seq_review.nextval from dual
+		</selectKey>
+		
+		INSERT INTO review (review_num, u_id, s_num, title, nickname, content, star, photo1, photo2, photo3, hit) 
+		VALUES (#{review_num}, #{u_id}, #{s_num}, #{title}, #{nickname}, #{content}, #{star}, #{photo1}, #{photo2}, #{photo3}, #{hit})
+	</insert>
+	
+	<update id="update">
+		update review
+		set content = #{content}
+		where review_num=#{review_num}
+	</update>
+	
+	<delete id="delete">
+		delete from review where review_num=#{review_num}
+	</delete>
+	
+	<select id="read" resultType="ReviewVO">
+		select * from review where review_num=#{review_num}
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from review where review_num > 0
+	</select>
 </mapper>
