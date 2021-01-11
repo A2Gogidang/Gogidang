@@ -67,11 +67,11 @@
 				
 			</table>
 			<h3>가게 메인사진</h3>
+			<a href="#">가게전체보기</a>
 			<table border=1 width=300>
 				
 					<%
-						for (int i=0; i<store_list.size(); i++)
-							{
+						for (int i=0; i<3; i++) {
 							StoreVO vo1 = (StoreVO)store_list.get(i);
 					%>
 					<tr align=center>
@@ -80,28 +80,28 @@
 						</td>
 					</tr>	
 					<%
-							} 
+							}
 					%>
 				
 				</table>
 				<h3>리뷰 닉네임,사진,등록날짜,별점</h3>
+				<a href="./getReviewList.re">리뷰전체보기</a>
 				<table border=1 width=300>
-				<tr align=center>
-				<td colspan=2>
 					<%
-						for (int i=0; i<review_list.size(); i++)
+						for (int i=0; i<3; i++)
 							{
 							ReviewVO vo2 = (ReviewVO)review_list.get(i);
 					%>
-						<%=vo2.getNickname() %>
-						<%=vo2.getPhoto1() %>
-						<%=vo2.getRe_date() %>
-						<%=vo2.getStar()%>
+					<tr>
+						<td><a href="./reviewInfo.re?review_num=<%=vo2.getReview_num() %>"><%=vo2.getTitle() %></a></td>
+						<td><%=vo2.getNickname() %></td>
+						<td><%=vo2.getPhoto1() %></td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd" value="<%=vo2.getRe_date() %>" /><%=vo2.getRe_date() %></td>
+						<td><%=vo2.getStar()%></td>
+					</tr>
 					<%
 							} 
 					%>
-				</td>
-				</tr>
 			</table>
 			<a href="./eventPage.ev">이벤트 페이지</a>
 		</center>
