@@ -1,23 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*" %>
-<%@ page import="javax.sql.*" %>
-<%@ page import="javax.naming.*" %>  
 <%@ page import="com.spring.gogidang.domain.*" %>
-
 <%@ page import="java.util.*" %>
-<!DOCTYPE html>
 <%
 	ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>)request.getAttribute("menuList");
 	ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>)request.getAttribute("reviewList");
 	
 %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
 </head>
 <body>
+	<a href="./reviewWriteForm.re?s_num=${storeVO.getS_num() }">가게 리뷰작성</a>
 	<table border="1" align=center>
 	<tr>
 		<td rowspan=5>${storeVO.getThumbnail()}</td>

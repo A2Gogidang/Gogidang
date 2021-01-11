@@ -1,5 +1,7 @@
 package com.spring.gogidang.domain;
 
+import java.util.Date;
+
 public class ReviewVO {
 	private int review_num;
 	private String u_id;
@@ -11,7 +13,7 @@ public class ReviewVO {
 	private String photo1;
 	private String photo2;
 	private String photo3;
-	private String re_date;
+	private Date re_date;
 	private int hit;
 	private String s_name;
 	
@@ -75,10 +77,10 @@ public class ReviewVO {
 	public void setPhoto3(String photo3) {
 		this.photo3 = photo3;
 	}
-	public String getRe_date() {
+	public Date getRe_date() {
 		return re_date;
 	}
-	public void setRe_date(String re_date) {
+	public void setRe_date(Date re_date) {
 		this.re_date = re_date;
 	}
 	public int getHit() {

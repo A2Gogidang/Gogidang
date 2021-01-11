@@ -63,10 +63,9 @@ public class StoreController {
 		model.addAttribute("storeVO", vo);
 		model.addAttribute("menuList",menuList);
 		model.addAttribute("reviewList",reviewList);
-		System.out.println(reviewList.size());
 		
 		
-		return "store/store_Info";
+		return "store/store_info";
 	}
 	
 	/*

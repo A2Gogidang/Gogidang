@@ -25,19 +25,20 @@ public class ReviewController {
 	public String reviewWriteForm(StoreVO storeVO, Model model) {
 		StoreVO vo = storeService.storeInfo(storeVO);
 		model.addAttribute("storeVO", vo);
-		return "review/review_write";
+		return "review/review_write_form";
 	}
 	
 	@RequestMapping(value = "/reviewListForm.re")
 	public String reviewListForm() {
+		
 		return "review/review_list";
 	}
 	
 	@RequestMapping(value = "/reviewWrite.re")
-	public String reviewwrite(ReviewVO reviewVO) {
+	public String reviewWrite(ReviewVO reviewVO) {
 		int res = reviewService.reviewWrite(reviewVO);
 		
-		return "review/review_list";
+		return "redirect:/getReviewList.re";
 	}
 	
 	@RequestMapping(value = "/reviewListUid.re")
@@ -73,21 +74,6 @@ public class ReviewController {
 		model.addAttribute("reviewVO", vo);
 		
 		return "review/review_info";
-	}
-	
-	@RequestMapping("/reviewModifyForm.re")
-	public String getModifyForm(ReviewVO reviewVO,Model model) {
-		ReviewVO review =reviewService.reviewInfo(reviewVO);
-		model.addAttribute("review",review);
-	  
-		return "reviewModify";
-	}
-	   
-	@RequestMapping("/reviewModify.re")
-	public String reviewModify(ReviewVO reviewVO) throws Exception{
-		int res = reviewService.reviewModify(reviewVO);
-	      
-		return "redirect:/reviewInfo.re?review_num="+reviewVO.getReview_num();
 	}
 	
 	@RequestMapping("/reviewList.re")
