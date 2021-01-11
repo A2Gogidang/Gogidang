@@ -12,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.gogidang.domain.*;
+
 import com.spring.gogidang.service.*;
+
 
 
 @Controller
@@ -23,6 +25,9 @@ public class StoreController {
 	
 	@Autowired
 	private MenuService menuService;
+	
+	@Autowired
+	private ReviewService reviewService;
 	
 	/*
 	 * 전체 가게 리스트
@@ -53,12 +58,15 @@ public class StoreController {
 	public String shopInfo(StoreVO storeVO, Model model) {
 		StoreVO vo = storeService.storeInfo(storeVO);
 		ArrayList<MenuVO> menuList = menuService.getMenuList();
+		ArrayList<ReviewVO> reviewList = reviewService.getReviewList();
 		
 		model.addAttribute("storeVO", vo);
 		model.addAttribute("menuList",menuList);
+		model.addAttribute("reviewList",reviewList);
+		System.out.println(reviewList.size());
 		
 		
-		return "store/store_info";
+		return "store/store_Info";
 	}
 	
 	/*
