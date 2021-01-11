@@ -1,98 +1,119 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*"%>
+<%@ page import="java.sql.*" %>
 <%@ page import="javax.sql.*" %>
-<%@ page import="javax.naming.*" %>
-<%@ page import="java.util.*" %>
-<%@ page import = "com.spring.gogidang.domain.*" %>
+<%@ page import="javax.naming.*" %>  
+<%@ page import="com.spring.gogidang.domain.*" %>
 
-<%
-	MemberVO memberVO = (MemberVO) session.getAttribute("MemberVO");
-	String id = memberVO.getU_id();
-	StoreVO vo = (StoreVO) request.getAttribute("storeVO");
-%>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
+<%
+	ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>)request.getAttribute("menuList");
+	ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>)request.getAttribute("reviewList");
+	
+%>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>가게정보</title>
+<meta charset="utf-8">
+<title>Insert title here</title>
 </head>
 <body>
-	<h1><%=id %></h1>
-        <form name="store_info" method="post">
-            <table border=1>
-                <tr>
-                    <td colspan="2" align=center>
-                        <b><font size=5>가게 정보</font></b>
-                    </td>
-                </tr>
-				<tr>
-                    <td>사업자등록번호 : </td>
-                    <td><%=vo.getS_num() %></td>
-                </tr>
-                <tr>
-                    <td>아이디 : </td>
-                    <td><%=vo.getU_id() %></td>
-                </tr>
-                <tr>
-                    <td>메인사진 : </td>
-                    <td><%=vo.getThumbnail() %></td>
-                </tr>
-                <tr>
-                    <td>가게이름 : </td>
-                    <td><%=vo.getS_name() %></td>
-                </tr>
-                <tr>
-                    <td>가게주소 : </td>
-                    <td><%=vo.getS_addr() %></td>
-                </tr>
-                <tr>
-                    <td>가게전화번호 : </td>
-                    <td><%=vo.getS_phone() %></td>
-                </tr>
-                <tr>
-                    <td>사업자등록증 : </td>
-                    <td><%=vo.getS_img() %></td>
-                </tr>
-                <tr>
-                    <td>가게운영시간 : </td>
-                    <td><%=vo.getS_hour() %></td>
-                </tr>
-                <tr>
-                    <td>배달가능여부 : </td>
-                    <td><%=vo.getDelibery() %></td>
-                </tr>
-                <tr>
-                    <td>가게등록승인여부 : </td>
-                    <td><%=vo.getConfirm() %></td>
-                </tr>
-                <%
-                	if(vo.getConfirm() == 1) {
-           		%>
-                <tr>
-                    <td colspan="2" align=center>
-                        <a href="./reviewWriteForm.re?s_num=<%=vo.getS_num()%>">해당가게리뷰작성</a>&nbsp;&nbsp;
-                        <a href="./reviewListSnum.re?s_num=<%=vo.getS_num()%>">해당가게리뷰보기</a>
-                    </td>
-                </tr>           			
-           		<%
-                	} else {
-            	%>
-         		<tr>
-					<td colspan="2" align=center>
-						<a href="confirmStore.st?s_num=<%=vo.getS_num() %>">승인</a>
-						<a href="refuseStore.st?s_num=<%=vo.getS_num() %>">거절</a>
-					</td>
-				</tr>
-            	<%
-                	}
-                %>
-                <tr>
-                    <td colspan="2" align=center>
-                        <a href="./storeList.st">가게리스트보기</a>&nbsp;&nbsp;
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </body>
+	<table border="1" align=center>
+	<tr>
+		<td rowspan=5>${storeVO.getThumbnail()}</td>
+		<td>${storeVO.getS_addr()}</td>
+	</tr>
+	<tr>
+		<td>${storeVO.getS_phone()}</td>
+	</tr>
+	<tr>
+		<td>${storeVO.getS_hour()}</td>
+	</tr>
+	<tr>
+		<td>${storeVO.getDelibery()}</td>
+	</tr>
+	</table>
+	
+	 <table align=center>
+		<tr>
+			<%
+				for(int i=0; i<menu_List.size(); i++)
+				{
+					MenuVO vo =(MenuVO)menu_List.get(i);
+				
+			%>
+			<tr>
+			<td><%=vo.getImg() %></td>
+			<td><%=vo.getMenu_name() %></td>
+			<td><%=vo.getGram() %></td>
+			<td><%=vo.getGrade() %></td>
+			<td><%=vo.getPrice() %></td>
+			<td>
+			</tr>
+			<%} %>
+		</tr>
+		
+		<tr>
+			<table border=1 align=center>
+			<tr>
+			<%
+				for(int i=0; i<review_List.size(); i++)
+				{
+					ReviewVO vo1 =(ReviewVO)review_List.get(i);
+				
+			%>
+			<td><%=vo1.getPhoto1() %></td>
+			<td><%=vo1.getStar() %></td>
+			<td><%=vo1.getTitle() %>
+			<%} %>
+			</tr>
+			</table>
+		</tr>
+	</table>
+	
+	<div id="map" style="width:100%;height:350px;"></div>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=241b4077cebf45bee1ed06d47263650b&libraries=services"></script>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+function addr(){
+var addr=document.getElementById('${storeVO.getS_addr()}').value;
+
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch(addr, function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});   
+}
+</script>
+</body>
 </html>
