@@ -23,10 +23,6 @@
                         <b><font size=3><%=storeVO.getS_name() %>가게 후기등록 페이지</font></b>
                     </td>
                 </tr>
-				<tr>
-                    <td>리뷰번호 : </td>
-                    <td><input type="text" name="review_num"></td>
-                </tr>
                 <tr>
                     <td>작성자 아이디 : </td>
                     <td><input type="hidden" name="u_id" value="<%=id %>"/><%=id %></td>
