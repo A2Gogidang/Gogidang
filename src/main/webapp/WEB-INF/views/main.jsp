@@ -4,7 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%
-	
 	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
 	String u_id = mvo.getU_id();
 	int seller_key = mvo.getSeller_key();
@@ -12,6 +11,7 @@
 	ArrayList<EventVO> event_list =(ArrayList<EventVO>) request.getAttribute("event_list");
 	ArrayList<StoreVO> store_list =(ArrayList<StoreVO>) request.getAttribute("store_list");
 	ArrayList<ReviewVO> review_list =(ArrayList<ReviewVO>) request.getAttribute("review_list");
+	
 %>
 <html>
 <head>
@@ -71,7 +71,10 @@
 			<table border=1 width=300>
 				
 					<%
-						for (int i=0; i<3; i++) {
+						for (int i=0; i<store_list.size(); i++) {
+							if(i <= 3){
+								break;
+							}
 							StoreVO vo1 = (StoreVO)store_list.get(i);
 					%>
 					<tr align=center>
