@@ -1,21 +1,20 @@
 package com.spring.gogidang.domain;
 
-import java.util.Date;
+import java.sql.Date;
 
-public class ReviewVO {
-	
+public class SRReviewVO {
+
 	private int review_num;
 	private String u_id;
 	private String s_num;
 	private String title;
-	private String nickname;
 	private String content;
 	private int star;
 	private String photo1;
-	private String photo2;
-	private String photo3;
+	private Date review_date;
+	private String re_content;
 	private Date re_date;
-	private String s_name;
+	
 	
 	public int getReview_num() {
 		return review_num;
@@ -41,12 +40,6 @@ public class ReviewVO {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getNickname() {
-		return nickname;
-	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
 	public String getContent() {
 		return content;
 	}
@@ -65,17 +58,17 @@ public class ReviewVO {
 	public void setPhoto1(String photo1) {
 		this.photo1 = photo1;
 	}
-	public String getPhoto2() {
-		return photo2;
+	public Date getReview_date() {
+		return review_date;
 	}
-	public void setPhoto2(String photo2) {
-		this.photo2 = photo2;
+	public void setReview_date(Date review_date) {
+		this.review_date = review_date;
 	}
-	public String getPhoto3() {
-		return photo3;
+	public String getRe_content() {
+		return re_content;
 	}
-	public void setPhoto3(String photo3) {
-		this.photo3 = photo3;
+	public void setRe_content(String re_content) {
+		this.re_content = re_content;
 	}
 	public Date getRe_date() {
 		return re_date;
@@ -83,10 +76,9 @@ public class ReviewVO {
 	public void setRe_date(Date re_date) {
 		this.re_date = re_date;
 	}
-	public String getS_name() {
-		return s_name;
-	}
-	public void setS_name(String s_name) {
-		this.s_name = s_name;
-	}
+	
+	
+	
+	
+	
 }

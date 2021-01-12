@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+<mapper namespace="com.spring.mapper.StoreReviewMapper">
+
+<select id="srReviewSelect" parameterType="SRReviewVO">
+	SELECT 	*		  
+ 	  FROM  review r
+      	   ,sub_review s 
+	 where  r.s_num = s.s_num(+) 
+	   and  r.review_num = s.review_num(+)
+	   and  r.s_num = '11111111'
+	 ORDER BY r.review_num;
+
+</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
