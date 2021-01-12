@@ -4,7 +4,7 @@
 <title>회원관리 시스템 회원가입 페이지</title>
 </head>
 <body>
-<form name="joinform" action="./joinprocess.me" method="post">
+<form name="joinform" action="./joinProcess.me" method="post">
 <center>
 <table border=1>
 	<tr>
