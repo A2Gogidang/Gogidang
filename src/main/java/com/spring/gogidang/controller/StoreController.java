@@ -214,4 +214,28 @@ public class StoreController {
 		return null;
 	}
 	//soobin end
+	
+	//dohyeong start
+	@RequestMapping("/storelist_ajax.li")
+	  
+	  @ResponseBody 
+	  public List<StoreVO> getStoreListAjax( @RequestParam(value="s_addr[]", required =false) String[] s_addr) { 
+	  
+		  for(String no : s_addr) {
+			  System.out.println("컨트롤러"); 
+			  System.out.println("s_addr" + no);  
+			  
+		  }
+	 
+	  
+	  Map<String, String[]> map = new HashMap<String, String[]>();
+	  map.put("s_addr", s_addr);
+	  
+	  List<StoreVO> list = storeService.getStoreListAjax(s_addr);
+	  System.out.println("list" + list);
+	  
+	  return list; 
+	  
+	  }
+	//dogyeong end
 }
