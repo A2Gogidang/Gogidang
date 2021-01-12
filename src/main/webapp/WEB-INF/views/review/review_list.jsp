@@ -85,7 +85,7 @@
 					<%=vo.getStar() %>
 				</td>
 				<td>
-					<%=vo.getRe_date() %>
+					<%=vo.getReview_date() %>
 				</td>
 			</tr>
 		<%

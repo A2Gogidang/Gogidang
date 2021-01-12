@@ -42,7 +42,7 @@
 	%>
 	<tr align=center>
 	<td>
-	<%=review.getRe_date()%>
+	<%=review.getReview_date()%>
 	</td>
 	<td>
 	<%=review.getS_name()%>
