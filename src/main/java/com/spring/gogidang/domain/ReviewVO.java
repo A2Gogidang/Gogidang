@@ -14,7 +14,6 @@ public class ReviewVO {
 	private String photo2;
 	private String photo3;
 	private Date re_date;
-	private int hit;
 	private String s_name;
 	
 	public int getReview_num() {
@@ -82,12 +81,6 @@ public class ReviewVO {
 	}
 	public void setRe_date(Date re_date) {
 		this.re_date = re_date;
-	}
-	public int getHit() {
-		return hit;
-	}
-	public void setHit(int hit) {
-		this.hit = hit;
 	}
 	public String getS_name() {
 		return s_name;

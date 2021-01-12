@@ -85,7 +85,7 @@
 				
 				</table>
 				<h3>리뷰 닉네임,사진,등록날짜,별점</h3>
-				<a href="./getReivewPagingList.re">리뷰전체보기</a>
+				<a href="./reviewList.re">리뷰전체보기</a>
 				<table border=1 width=300>
 				<c:forEach items="${review_list }" var="review_list">
 					<tr>
