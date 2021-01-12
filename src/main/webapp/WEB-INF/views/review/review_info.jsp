@@ -4,16 +4,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import = "com.spring.gogidang.domain.*" %>
+<%@include file="../includes/header.jsp"%>
+
 <%
 	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
         <form name="review_info" action="./shop_reg.st" method="post">
             <table border=1>
                 <tr>
@@ -56,5 +52,5 @@
                 </tr>
             </table>
         </form>
-    </body>
-</html>
+        
+<%@include file="../includes/footer.jsp"%>

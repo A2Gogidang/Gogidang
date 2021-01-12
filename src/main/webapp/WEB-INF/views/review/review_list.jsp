@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import = "com.spring.gogidang.domain.*" %>
+<%@include file="../includes/header.jsp"%>
 
 <%
 	MemberVO memberVO = (MemberVO) session.getAttribute("MemberVO");
@@ -12,35 +12,26 @@
 	List<ReviewVO> review_list = (List<ReviewVO>) request.getAttribute("list");
 	PageDTO  pageMaker = (PageDTO) request.getAttribute("pageMaker");
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>가게리뷰리스트</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
+<script type="text/javascript">
+
+$(document).ready(function() {
+	var result = '<c:out value="${result}"/>';
+	checkModal(result);
+	history.replaceState({},null,null);
+	function checkModal(result) {
 		
-		$(document).ready(function() {
-			var result = '<c:out value="${result}"/>';
-			checkModal(result);
-			history.replaceState({},null,null);
-			function checkModal(result) {
-				
-				if (result === '' || history.state) {
-					return;
-				}
-		
-				if (parseInt(result) > 0) {
-					$(".modal-body").html( "게시글 " + parseInt(result) + " 번이 등록되었습니다.");
-				}
-				$("#myModal").modal("show");
-			}
-		});
-	</script>
-</head>
-<body>
+		if (result === '' || history.state) {
+			return;
+		}
+
+		if (parseInt(result) > 0) {
+			$(".modal-body").html( "게시글 " + parseInt(result) + " 번이 등록되었습니다.");
+		}
+		$("#myModal").modal("show");
+	}
+});
+</script>
+
 	<h1><%=id %></h1>
 	<center>
 		<table border=1 width=500>
@@ -138,7 +129,5 @@
 				<!-- /.modal-dialog -->
 			</div>
 			<!-- /.modal -->
-
-	
-</body>
-</html>
+			
+<%@include file="../includes/footer.jsp"%>
