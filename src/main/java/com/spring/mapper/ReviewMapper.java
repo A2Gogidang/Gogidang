@@ -1,6 +1,5 @@
 package com.spring.mapper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.spring.gogidang.domain.Criteria;
