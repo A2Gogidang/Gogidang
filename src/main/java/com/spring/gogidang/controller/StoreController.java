@@ -2,7 +2,11 @@ package com.spring.gogidang.controller;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.gogidang.domain.MemberVO;
 import com.spring.gogidang.domain.MenuVO;
@@ -35,18 +41,19 @@ public class StoreController {
 	private ReviewService reviewService;
 	
 	/*
-	 * 전체 가게 리스트
+	 * �쟾泥� 媛�寃� 由ъ뒪�듃
 	 */
 	@RequestMapping(value = "/storeList.st")
 	public String getShopList(Model model) {
 		ArrayList<StoreVO> storeList = storeService.getStoreList();
 		model.addAttribute("storeList", storeList);
 		
+		System.out.println("스토어 리스트 in");
 		return "store/store_list";
 	}
 	
 	/*
-	 * 승인대기중인 가게 리스트 보기
+	 * �듅�씤��湲곗쨷�씤 媛�寃� 由ъ뒪�듃 蹂닿린
 	 */
 	@RequestMapping(value = "/storeWait.st")
 	public String getStoreWait(Model model) {
@@ -57,7 +64,7 @@ public class StoreController {
 	}
 	
 	/*
-	 * 가게 상세 정보 보기
+	 * 媛�寃� �긽�꽭 �젙蹂� 蹂닿린
 	 */
 	@RequestMapping(value = "/storeInfo.st")
 	public String shopInfo(Criteria cri, StoreVO storeVO, Model model) {
@@ -74,7 +81,7 @@ public class StoreController {
 	}
 	
 	/*
-	 * 승인대기중인 가게 승인
+	 * �듅�씤��湲곗쨷�씤 媛�寃� �듅�씤
 	 */
 	@RequestMapping(value = "/confirmStore.st")
 	public String confirmStore(StoreVO storeVO) {
@@ -84,7 +91,7 @@ public class StoreController {
 	}
 	
 	/*
-	 * 승인대기중인 가게 거절
+	 * �듅�씤��湲곗쨷�씤 媛�寃� 嫄곗젅
 	 */
 	@RequestMapping(value = "/refuseStore.st")
 	public String refuseStore(StoreVO storeVO) {
@@ -93,19 +100,19 @@ public class StoreController {
 		return "redirect:storeList.st";
 	}
 	
-	// 가게 등록 + 수정
+	// 媛�寃� �벑濡� + �닔�젙
 	@RequestMapping("/storeProcess.st")
 	public String storeProcess(StoreVO store , HttpSession session, HttpServletResponse response)throws Exception {
-		//추가할내용 insert에서 세션을 다뤄야함 기억해두기 
-		//insert 할때 가게 등록 저장되기전 가게승인 컬럼에 0(미승인)을 여기서 줘야함
+		//異붽��븷�궡�슜 insert�뿉�꽌 �꽭�뀡�쓣 �떎琉꾩빞�븿 湲곗뼲�빐�몢湲� 
+		//insert �븷�븣 媛�寃� �벑濡� ���옣�릺湲곗쟾 媛�寃뚯듅�씤 而щ읆�뿉 0(誘몄듅�씤)�쓣 �뿬湲곗꽌 以섏빞�븿
 		
 		StoreVO vo1 = storeService.selectStore(store);
 		
-		// 가게등록이 안되어있을경우
+		// 媛�寃뚮벑濡앹씠 �븞�릺�뼱�엳�쓣寃쎌슦
 		if ( vo1 == null || vo1.getS_num() == null || vo1.getS_num() == "") {
 			
 			store.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
-			store.setConfirm(0); //처음 등록할때 미승인 상태로 띄워야하기때문에 insert전 데이터 넣어줌
+			store.setConfirm(0); //泥섏쓬 �벑濡앺븷�븣 誘몄듅�씤 �긽�깭濡� �쓣�썙�빞�븯湲곕븣臾몄뿉 insert�쟾 �뜲�씠�꽣 �꽔�뼱以�
 			int res = storeService.insertStore(store);
 			
 			response.setCharacterEncoding("utf-8");
@@ -115,13 +122,13 @@ public class StoreController {
 			if (res==1) {
 				
 				session.setAttribute("StoreVO",store);
-				writer.write("<script>alert('가게등록 성공!!'); location.href='./storeRegForm.st';</script>");
+				writer.write("<script>alert('媛�寃뚮벑濡� �꽦怨�!!'); location.href='./storeRegForm.st';</script>");
 			}
 			else {
-				writer.write("<script>alert('가게등록 실패!!'); location.href='./storeRegForm.st';</script>");
+				writer.write("<script>alert('媛�寃뚮벑濡� �떎�뙣!!'); location.href='./storeRegForm.st';</script>");
 			}
 			
-		}else { // 가게등록이 되어있을 경우
+		}else { // 媛�寃뚮벑濡앹씠 �릺�뼱�엳�쓣 寃쎌슦
 			
 			store.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
 			
@@ -132,14 +139,14 @@ public class StoreController {
 			PrintWriter writer = response.getWriter();
 			
 			if(res != 0) {
-				//업데이트 후 수정된 정보를 다시 가지고와서 세션 저장해주는것
+				//�뾽�뜲�씠�듃 �썑 �닔�젙�맂 �젙蹂대�� �떎�떆 媛�吏�怨좎��꽌 �꽭�뀡 ���옣�빐二쇰뒗寃�
 				StoreVO vo2 = storeService.selectStore(store);
 				session.setAttribute("StoreVO",vo2);
-				writer.write("<script>alert('수정 성공!!!');" +"location.href = './storeRegForm.st';</script>");
+				writer.write("<script>alert('�닔�젙 �꽦怨�!!!');" +"location.href = './storeRegForm.st';</script>");
 				
 			}else {
 
-				writer.write("<script>alert('수정 실패!!!');" +"location.href = './storeRegForm.st';</script>");
+				writer.write("<script>alert('�닔�젙 �떎�뙣!!!');" +"location.href = './storeRegForm.st';</script>");
 			}
 			
 		}
@@ -171,10 +178,10 @@ public class StoreController {
 		
 		StoreVO vo = storeService.selectStore(storeVO);
 		
-		//사업자 번호 대신 가입승인 컬럼 가지고 비교해야됨 나중에 수정하기
+		//�궗�뾽�옄 踰덊샇 ���떊 媛��엯�듅�씤 而щ읆 媛�吏�怨� 鍮꾧탳�빐�빞�맖 �굹以묒뿉 �닔�젙�븯湲�
 		if( vo == null || vo.getS_num() == "" || vo.getConfirm() == 0) {
 						
-			writer.write("<script>alert('가게정보 등록 먼저 하세요!!!!');" +"location.href = './storeRegForm.st';</script>");
+			writer.write("<script>alert('媛�寃뚯젙蹂� �벑濡� 癒쇱� �븯�꽭�슂!!!!');" +"location.href = './storeRegForm.st';</script>");
 			
 		}else {
 
@@ -204,13 +211,38 @@ public class StoreController {
 		
 		if (res==1) {
 			
-			writer.write("<script>alert('메뉴등록 성공!!'); location.href='./menuRegForm.st';</script>");
+			writer.write("<script>alert('硫붾돱�벑濡� �꽦怨�!!'); location.href='./menuRegForm.st';</script>");
 		}
 		else {
-			writer.write("<script>alert('가게등록 실패!!'); location.href='./menuRegForm.st';</script>");
+			writer.write("<script>alert('媛�寃뚮벑濡� �떎�뙣!!'); location.href='./menuRegForm.st';</script>");
 		}
 	
 		return null;
 	}
 	//soobin end
+	
+	
+	//dohyeong start
+	@RequestMapping("/storelist_ajax.li")
+	  
+	  @ResponseBody 
+	  public List<StoreVO> getStoreListAjax( @RequestParam(value="s_addr[]", required =false) String[] s_addr) { 
+	  
+		  for(String no : s_addr) {
+			  System.out.println("컨트롤러"); 
+			  System.out.println("s_addr" + no);  
+			  
+		  }
+	 
+	  
+	  Map<String, String[]> map = new HashMap<String, String[]>();
+	  map.put("s_addr", s_addr);
+	  
+	  List<StoreVO> list = storeService.getStoreListAjax(s_addr);
+	  System.out.println("list" + list);
+	  
+	  return list; 
+	  
+	  }
+	//dogyeong end
 }
