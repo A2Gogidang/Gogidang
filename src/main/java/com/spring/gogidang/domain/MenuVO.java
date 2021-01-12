@@ -8,6 +8,9 @@ public class MenuVO {
 	private String img;
 	private String grade;
 	private String gram;
+	private String u_id;
+	private String s_num;
+	
 	public int getMenu_num() {
 		return menu_num;
 	}
@@ -50,6 +53,23 @@ public class MenuVO {
 	public void setGram(String gram) {
 		this.gram = gram;
 	}
+	public String getU_id() {
+		return u_id;
+	}
+	public void setU_id(String u_id) {
+		this.u_id = u_id;
+	}
+	public String getS_num() {
+		return s_num;
+	}
+	public void setS_num(String s_num) {
+		this.s_num = s_num;
+	}
+	
+	
+	
+	
+	
 	
 	
 }

@@ -67,25 +67,6 @@ public class MemberController {
 		return "member/joinForm";
 	}
 	
-	@RequestMapping("/updateForm.me")
-	public ModelAndView updateForm(MemberVO memberVO) throws Exception{
-		MemberVO result = memberService.selectMember(memberVO);
-	
-		ModelAndView mov= new ModelAndView();
-		mov.addObject("result", result);
-		mov.setViewName("mypage/updateForm");
-		
-		return mov;
-	}
-	
-	@RequestMapping("/memberInfo.me")
-	public String memberInfo(MemberVO memberVO, Model model) throws Exception {
-		MemberVO vo = memberService.selectMember(memberVO);
-		model.addAttribute("memberVO", vo);
-		
-		
-		return "mypage/member_info";
-	}
 	
 	@RequestMapping("/login.me") 
 	public String userCheck(MemberVO memberVO, HttpSession session, HttpServletResponse response) throws Exception { 
@@ -146,6 +127,14 @@ public class MemberController {
 		}
 		return null;
    }
+	
+	//soobin start
+	@RequestMapping("/updateForm.me")
+	public String updateForm(MemberVO memberVO) throws Exception{
+		
+		return "member/updateForm";
+	}
+	//soobin end
 }
 
 
