@@ -12,16 +12,14 @@ public class StoreVO {
 	private int delibery;
 	private int confirm;
 	
-	/* menu column*
-	 * private int menu_num; 
+	/* menu column*/
+	private int menu_num; 
 	private int meat;
 	private String menu_name;
 	private String price;
 	private String img;
 	private int grade;
 	private int gram;
-	*/
-	
 	public String getS_num() {
 		return s_num;
 	}
@@ -82,4 +80,48 @@ public class StoreVO {
 	public void setConfirm(int confirm) {
 		this.confirm = confirm;
 	}
+	public int getMenu_num() {
+		return menu_num;
+	}
+	public void setMenu_num(int menu_num) {
+		this.menu_num = menu_num;
+	}
+	public int getMeat() {
+		return meat;
+	}
+	public void setMeat(int meat) {
+		this.meat = meat;
+	}
+	public String getMenu_name() {
+		return menu_name;
+	}
+	public void setMenu_name(String menu_name) {
+		this.menu_name = menu_name;
+	}
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
+	public int getGram() {
+		return gram;
+	}
+	public void setGram(int gram) {
+		this.gram = gram;
+	}
+	
+	
 }

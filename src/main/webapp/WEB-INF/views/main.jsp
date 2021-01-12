@@ -66,12 +66,13 @@
 				
 				
 			</table>
+			
 			<h3>가게 메인사진</h3>
-			<a href="#">가게전체보기</a>
+			<a href="./storeList.st">가게전체보기</a>
 			<table border=1 width=300>
 				
 					<%
-						for (int i=0; i<3; i++) {
+						for (int i=0; i<store_list.size(); i++) {
 							StoreVO vo1 = (StoreVO)store_list.get(i);
 					%>
 					<tr align=center>
