@@ -6,7 +6,6 @@
 <%@ page import = "com.spring.gogidang.domain.*" %>
 <%
 	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
-	ReviewVO rvo = (ReviewVO) request.getAttribute("reviewVO");
 %>
 <!DOCTYPE html>
 <html>
@@ -19,36 +18,36 @@
             <table border=1>
                 <tr>
                     <td colspan="2" align=center>
-                        <b><font size=5>${reviewVO.title }</font></b>
+                        <b><font size=5>${review.title }</font></b>
                     </td>
                 </tr>
 				<tr>
                     <td>가게명 : </td>
-                    <td>${reviewVO.s_name }</td>
+                    <td>${review.s_name }</td>
                 </tr>
                 <tr>
                     <td>작성자 아이디 : </td>
-                    <td>${reviewVO.u_id }</td>
+                    <td>${review.u_id }</td>
                 </tr>
                 <tr>
                     <td>작성자 닉네임 : </td>
-                    <td>${reviewVO.nickname }</td>
+                    <td>${review.nickname }</td>
                 </tr>
                 <tr>
                     <td>별점 : </td>
-                    <td>${reviewVO.star }</td>
+                    <td>${review.star }</td>
                 </tr>
                 <tr>
                     <td>내용 : </td>
-                    <td>${reviewVO.content }</td>
+                    <td>${review.content }</td>
                 </tr>
                 <tr>
                     <td>리뷰사진 : </td>
-                    <td>${reviewVO.photo1 }</td>
+                    <td>${review.photo1 }</td>
                 </tr>
                 <tr>
                     <td>리뷰등록일 : </td>
-                    <td><fmt:formatDate pattern="yyyy-MM-dd" value="${reviewVO.re_date }" /></td>
+                    <td><fmt:formatDate pattern="yyyy-MM-dd" value="${review.re_date }" /></td>
                 </tr>
                 <tr>
                     <td colspan="2" align=center>

@@ -3,10 +3,9 @@
 <%@ page import = "com.spring.gogidang.domain.*" %>
 
 <%
-	MemberVO memberVO = (MemberVO) session.getAttribute("MemberVO");
-	String id = memberVO.getU_id();
-	String nick = memberVO.getU_nick();
-	StoreVO storeVO = (StoreVO) request.getAttribute("storeVO");
+	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
+	StoreVO svo = (StoreVO) request.getAttribute("svo");
+	ReviewVO rvo = (ReviewVO) request.getAttribute("rvo");
 %>
 <!DOCTYPE html>
 <html>
@@ -15,29 +14,21 @@
 <title>리뷰작성</title>
 </head>
 <body>
-	<h1><%=id %></h1>
-	<form name="review_form" action="./reviewWrite.re" method="post">
+	<h1><%=mvo.getU_id() %></h1>
+	<form name="review_form" action="./reviewReg.re" method="post">
             <table border=1>
                 <tr>
                     <td colspan="2" align=center>
-                        <b><font size=3><%=storeVO.getS_name() %>가게 후기등록 페이지</font></b>
+                        <b><font size=3><%=svo.getS_name() %>가게 후기등록 페이지</font></b>
+                        <input type="hidden" name="s_name" value="<%=svo.getS_name() %>">
+                        <input type="hidden" name="u_id" value="<%=mvo.getU_id() %>">
+                    	<input type="hidden" name="s_num" value="<%=svo.getS_num() %>">
+                    	<input type="hidden" name="nickname" value="<%=mvo.getU_nick()%>">
                     </td>
-                </tr>
-                <tr>
-                    <td>작성자 아이디 : </td>
-                    <td><input type="hidden" name="u_id" value="<%=id %>"/><%=id %></td>
-                </tr>
-                <tr>
-                    <td>사업자등록번호 : </td>
-                    <td><input type="hidden" name="s_num" value="<%=storeVO.getS_num() %>"><%=storeVO.getS_num() %></td>
                 </tr>
                 <tr>
                     <td>리뷰제목 : </td>
                     <td><input type="text" name="title"></td>
-                </tr>
-                <tr>
-                    <td>소비자닉네임 : </td>
-                    <td><input type="hidden" name="nickname" value="<%=nick %>"><%=nick %></td>
                 </tr>
                 <tr>
                     <td>리뷰내용 : </td>
@@ -64,10 +55,6 @@
                 <tr>
                     <td>리뷰사진3 : </td>
                     <td><input type="text" name="photo3"></td>
-                </tr>
-                <tr>
-                    <td>리뷰조회수 : </td>
-                    <td><input type="text" name="hit"></td>
                 </tr>
                 <tr>
                     <td colspan="2" align=center>

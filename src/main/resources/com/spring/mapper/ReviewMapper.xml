@@ -4,44 +4,12 @@
 	 
 <mapper namespace="com.spring.mapper.ReviewMapper">
 
-<!-- 	<insert id="reviewWrite" parameterType="ReviewVO">
-		INSERT INTO review (review_num, u_id, s_num, title, nickname, content, star, photo1, photo2, photo3, hit) 
-		VALUES (seq_review.nextval, #{u_id}, #{s_num}, #{title}, #{nickname}, #{content}, #{star}, #{photo1}, #{photo2}, #{photo3}, #{hit})
-	</insert> -->
-	
-
-	
-	<select id="reviewListUid" parameterType="ReviewVO" resultType="ReviewVO">
-		select * from review where s_num=(select s.s_num from member m, shop_reg s where m.u_id = s.u_id and s.u_id=#{u_id})
-	</select>
-	
-	<select id="reviewListSnum" parameterType="ReviewVO" resultType="ReviewVO">
-		select * from review where s_num=#{s_num}
-	</select>
-	
-	<select id="getReviewList" resultType="ReviewVO">
-		select /*+INDEX_DESC (review pk_review) */ * from review
-	</select>
-	
-	<select id="reviewInfo" parameterType="ReviewVO" resultType="ReviewVO">
-		select s.s_name, r.u_id, r.nickname, r.title, r.content, r.star, r.photo1, r.re_date 
-		from review r, shop_reg s 
-		where r.s_num=s.s_num 
-		and r.review_num=#{review_num} 
-		and s.s_num=#{s_num}
-	</select>
-	
-	<update id="reviewModify" parameterType="ReviewVO">
-	   	UPDATE review SET content=#{content} WHERE review_num=#{review_num}
-	</update>
-	
-	<!-- restart -->
 	<select id="getListWithPaging" resultType="ReviewVO">
 		<![CDATA[
-		select review_num, title, star, re_date
+		select review_num, title, nickname, s_name, star, re_date
 		from
 			( 	select /*+ INDEX_DESC(review pk_review) */ 
-					rownum rn, review_num, title, star, re_date
+					rownum rn, review_num, title, nickname, s_name, star, re_date
 				from review
 				where rownum <= #{pageNum} * #{amount} )
 		where rn > (#{pageNum}-1) * #{amount}
@@ -53,8 +21,8 @@
 			select seq_review.nextval from dual
 		</selectKey>
 		
-		INSERT INTO review (review_num, u_id, s_num, title, nickname, content, star, photo1, photo2, photo3, hit) 
-		VALUES (#{review_num}, #{u_id}, #{s_num}, #{title}, #{nickname}, #{content}, #{star}, #{photo1}, #{photo2}, #{photo3}, #{hit})
+		INSERT INTO review (review_num, u_id, nickname, s_num, s_name, title, content, star, photo1, photo2, photo3) 
+		VALUES (#{review_num}, #{u_id}, #{nickname}, #{s_num}, #{s_name}, #{title}, #{content}, #{star}, #{photo1}, #{photo2}, #{photo3})
 	</insert>
 	
 	<update id="update">

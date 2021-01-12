@@ -2,6 +2,7 @@ package com.spring.gogidang.controller;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -44,10 +45,10 @@ public class MemberController {
 	private ReviewService reviewService;
 
 	@RequestMapping("/main.me") 
-	public String mainPage(Model model) throws Exception { 
+	public String mainPage(Criteria cri, Model model) throws Exception { 
 		ArrayList<EventVO> event_list = eventService.getEventList();
 		ArrayList<StoreVO> store_list = storeService.getStoreList();
-		ArrayList<ReviewVO> review_list = reviewService.getReviewList();
+		List<ReviewVO> review_list = reviewService.getList(cri);
 		model.addAttribute("event_list", event_list);
 		model.addAttribute("store_list", store_list);
 		model.addAttribute("review_list", review_list);

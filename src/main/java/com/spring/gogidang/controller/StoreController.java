@@ -2,6 +2,7 @@ package com.spring.gogidang.controller;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -55,10 +56,10 @@ public class StoreController {
 	 * 가게 상세 정보 보기
 	 */
 	@RequestMapping(value = "/storeInfo.st")
-	public String shopInfo(StoreVO storeVO, Model model) {
+	public String shopInfo(Criteria cri, StoreVO storeVO, Model model) {
 		StoreVO vo = storeService.storeInfo(storeVO);
 		ArrayList<MenuVO> menuList = menuService.getMenuList();
-		ArrayList<ReviewVO> reviewList = reviewService.getReviewList();
+		List<ReviewVO> reviewList = reviewService.getList(cri);
 		
 		model.addAttribute("storeVO", vo);
 		model.addAttribute("menuList",menuList);

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -8,7 +9,7 @@
 <%
 	MemberVO memberVO = (MemberVO) session.getAttribute("MemberVO");
 	String id = memberVO.getU_id();
-	ArrayList<ReviewVO> reviewList = (ArrayList<ReviewVO>) request.getAttribute("reviewList");
+	List<ReviewVO> review_list = (List<ReviewVO>) request.getAttribute("list");
 	PageDTO  pageMaker = (PageDTO) request.getAttribute("pageMaker");
 %>
 <!DOCTYPE html>
@@ -42,56 +43,58 @@
 <body>
 	<h1><%=id %></h1>
 	<center>
-		<table border=1 width=300>
+		<table border=1 width=500>
 			<tr align=center>
-				<td colspan=4>가게 후기 리스트</td>
+				<td colspan=6>가게 후기 리스트</td>
 			</tr>
-		<%
-			if (reviewList.size() == 0) {
-		%>
-			<h3>아직 등록된 후기가 없습니다.</h3>
-		<%
-			}
-		%>
-			<tr>
-				<td>num</td>
-				<td>title</td>
-				<td>star</td>
-				<td >reg_date</td>
+			<tr align="center">
+				<td>번호</td>
+				<td>제목</td>
+				<td>작성자</td>
+				<td>가게명</td>
+				<td>별점</td>
+				<td >등록일</td>
 			</tr>
-			<c:forEach items="${reviewList }" var="reviewList">
+<%-- 			<c:forEach items="${review_list }" var="review_list">
 				<tr>
-					<td><c:out value="${reviewList.review_num }" /></td>
+					<td><c:out value="${review_list.title }" /></td>
 					<td><a href='reviewInfo.re?review_num=<c:out value="${reviewList.review_num }" />&s_num=<c:out value="${reviewList.s_num }" />'><c:out value="${reviewList.title }" /></a></td>
 					<td><c:out value="${reviewList.star }" /></td>
 					<td ><fmt:formatDate pattern="yyyy-MM-dd" value="${reviewList.re_date }" /></td>
 				</tr>
-			</c:forEach>
-<%-- 		<%
-			for (int i=0; i<reviewList.size(); i++)
+			</c:forEach> --%>
+ 		<%
+			for (int i=0; i<review_list.size(); i++)
 			{
-				ReviewVO vo = (ReviewVO)reviewList.get(i);
+				ReviewVO vo = (ReviewVO)review_list.get(i);
 		%>
 			<tr align=center>
 				<td>
-					<%=i+1 %>
+					<%=vo.getReview_num() %>
 				</td>
 				<td>
-					<a href="reviewInfo.re?review_num=<%=vo.getReview_num()%>"><%=vo.getTitle() %> - <%=vo.getS_num() %></a>
+					<a href="reviewInfo.re?review_num=<%=vo.getReview_num()%>"><%=vo.getTitle() %></a>
+				</td>
+				<td>
+					<%=vo.getNickname() %>
+				</td>
+				<td>
+					<%=vo.getS_name() %>
+				</td>
+				<td>
+					<%=vo.getStar() %>
+				</td>
+				<td>
+					<%=vo.getRe_date() %>
 				</td>
 			</tr>
 		<%
 			} 
-		%> --%>
-			<tr align=center>
-				<td colspan=4>
-					<a href="#">해당가게리뷰작성</a>
-				</td>
-			</tr>
+		%>
 			<tr align=center height=20>
 				<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
 					<%if(pageMaker.isPrev()){ %>
-					<a href="./boardlist.bo?page=pageMaker.getCri().getPageNum()-1">[이전]</a>&nbsp;
+					<a href="./reviewList.re?pageNum=pageMaker.getCri().getPageNum()-1">[이전]</a>&nbsp;
 					<%}else{ %>
 					[이전]&nbsp;
 					<%} %>
@@ -100,13 +103,13 @@
 						if(a==pageMaker.getCri().getPageNum()){%>
 						[<%=a %>]
 						<%}else{ %>
-						<a href="./boardlist.bo?page=<%=a %>">[<%=a %>]</a>
+						<a href="./reviewList.re?pageNum=<%=a %>">[<%=a %>]</a>
 						&nbsp;
 						<%} %>
 					<%} %>
 					
 					<%if(pageMaker.isNext()){ %>
-					<a href="./boardlist.bo?page=<%=pageMaker.getCri().getPageNum()+1 %>">[다음]</a>
+					<a href="./reviewList.re?pageNum=<%=pageMaker.getCri().getPageNum()+1 %>&amount=10">[다음]</a>
 					<%}else{ %>
 					[다음]
 					<%} %>
