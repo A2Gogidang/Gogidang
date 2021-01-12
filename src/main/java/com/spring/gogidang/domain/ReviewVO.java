@@ -14,7 +14,7 @@ public class ReviewVO {
 	private String photo1;
 	private String photo2;
 	private String photo3;
-	private Date re_date;
+	private Date review_date;
 	private String s_name;
 	
 	public int getReview_num() {
@@ -77,16 +77,16 @@ public class ReviewVO {
 	public void setPhoto3(String photo3) {
 		this.photo3 = photo3;
 	}
-	public Date getRe_date() {
-		return re_date;
-	}
-	public void setRe_date(Date re_date) {
-		this.re_date = re_date;
-	}
 	public String getS_name() {
 		return s_name;
 	}
 	public void setS_name(String s_name) {
 		this.s_name = s_name;
+	}
+	public Date getReview_date() {
+		return review_date;
+	}
+	public void setReview_date(Date review_date) {
+		this.review_date = review_date;
 	}
 }
