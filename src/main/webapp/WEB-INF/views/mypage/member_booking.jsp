@@ -16,6 +16,7 @@
 </head>
 <body>
 	<center>
+	<h1><a href="./main.me">메인페이지</a></h1>
 	<div>
 	<table border="1">
 		<tr>

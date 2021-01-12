@@ -4,7 +4,7 @@
 <%@ page import="javax.sql.*"%>
 <%@ page import="javax.naming.*"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.spring.gogidang.domain.*" %>
+<%@ page import="com.spring.gogidang.domain.*"%>
 <%
 	StoreVO vo = (StoreVO)session.getAttribute("StoreVO");
 	MemberVO memberVO = (MemberVO)session.getAttribute("MemberVO");	
@@ -18,13 +18,19 @@
 </head>
 <body>
 <header><%=memberVO.getU_nick() %>님 </header>
-<h1><a href="./main.me">메인페이지</a></h1>
-<h2><a href="./sellerupdateform.me">내정보</a></h2>
-<h2><a href="./menuRegForm.st">메뉴 정보</a></h2>
-<h2><a href="./storeRegForm.st">문의 관리</a></h2>
-<h2><a href="./storeRegForm.st">리뷰 관리</a></h2>
+
 <form name="storeform" action="./storeprocess.me" method="post">
 <center>
+<h1><a href="./main.me">메인페이지</a></h1>
+	<table border="1">
+	<tr>
+	<td><a href="./updateForm.me">내정보</a></td>
+	<td><a href="./storeRegForm.st">가게 정보</a></td>
+	<td><a href="./menuRegForm.st">메뉴 정보</a></td>
+	<td><a href="./storeNoticeList.no">문의 관리</a></td>
+	<td><a href="./storeRegForm.st">리뷰 관리</a></td>
+	</tr>
+	</table><br><br>
 <table border=1>
 	<tr>
 		<td colspan="2" align=center>

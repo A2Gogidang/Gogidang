@@ -11,9 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.spring.gogidang.domain.*;
-
-import com.spring.gogidang.service.*;
+import com.spring.gogidang.domain.MemberVO;
+import com.spring.gogidang.domain.MenuVO;
+import com.spring.gogidang.domain.ReviewVO;
+import com.spring.gogidang.domain.StoreVO;
+import com.spring.gogidang.service.MenuService;
+import com.spring.gogidang.service.ReviewService;
+import com.spring.gogidang.service.StoreService;
 
 
 
@@ -142,5 +146,70 @@ public class StoreController {
 		return null;
 		
 	}
+	//soobin start
+	
+	@RequestMapping("/storeRegForm.st")
+	public String registrationForm(StoreVO storeVO, HttpSession session) throws Exception {
+		
+		storeVO.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
+		StoreVO vo = storeService.selectStore(storeVO);
 
+		session.setAttribute("StoreVO",vo);
+		return "sellerpage/store_reg_form";
+	}
+	
+	@RequestMapping("/menuRegForm.st")
+	public String menuRegForm(MenuVO menuVO, HttpSession session, HttpServletResponse response ,Model model) throws Exception {
+
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter writer = response.getWriter();
+		
+		StoreVO storeVO = new StoreVO();
+		storeVO.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
+		
+		StoreVO vo = storeService.selectStore(storeVO);
+		
+		//사업자 번호 대신 가입승인 컬럼 가지고 비교해야됨 나중에 수정하기
+		if( vo == null || vo.getS_num() == "" || vo.getConfirm() == 0) {
+						
+			writer.write("<script>alert('가게정보 등록 먼저 하세요!!!!');" +"location.href = './storeRegForm.st';</script>");
+			
+		}else {
+
+			menuVO.setS_num(vo.getS_num());			
+			ArrayList<MenuVO> menuSelectList = menuService.selectMenu(menuVO);
+			
+			model.addAttribute("menuSelectList",menuSelectList);
+			model.addAttribute("StoreVO",vo);
+			
+			return "sellerpage/menu_reg_form";
+		}
+		 return null;
+	}
+	
+	@RequestMapping("/menuProcess.st")
+	public String menuProcess(MenuVO menuVO, HttpSession session , HttpServletResponse response) throws Exception {
+		
+		int i = 0;
+		System.out.println(menuVO.getS_num());	
+		menuVO.setMenu_num(i++);
+		
+		int res = menuService.insertMenu(menuVO);
+		
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter writer = response.getWriter();
+		
+		if (res==1) {
+			
+			writer.write("<script>alert('메뉴등록 성공!!'); location.href='./menuRegForm.st';</script>");
+		}
+		else {
+			writer.write("<script>alert('가게등록 실패!!'); location.href='./menuRegForm.st';</script>");
+		}
+	
+		return null;
+	}
+	//soobin end
 }
