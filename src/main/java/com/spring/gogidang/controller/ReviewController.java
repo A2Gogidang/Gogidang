@@ -65,4 +65,9 @@ public class ReviewController {
 		
 		return "redirect:/review/review_list";
 	}
+	
+	@RequestMapping("/reviewInfo.re")
+	public void reviewInfo(@RequestParam("review_num") int review_num, Model model) {
+		model.addAttribute("review", reviewService.getReview(review_num));
+	}
 }
