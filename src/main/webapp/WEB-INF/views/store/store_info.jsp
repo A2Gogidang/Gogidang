@@ -3,9 +3,9 @@
 <%@ page import="com.spring.gogidang.domain.*" %>
 <%@ page import="java.util.*" %>
 <%
+	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
 	ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>)request.getAttribute("menuList");
 	ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>)request.getAttribute("reviewList");
-	
 %>
 <!DOCTYPE html>
 <html>
@@ -14,7 +14,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="./reviewWriteForm.re?s_num=${storeVO.getS_num() }">가게 리뷰작성</a>
+	<a href="./reveiw_reg.re?s_num=${storeVO.getS_num() }">가게 리뷰작성</a>
 	<table border="1" align=center>
 	<tr>
 		<td rowspan=5>${storeVO.getThumbnail()}</td>

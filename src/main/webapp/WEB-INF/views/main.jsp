@@ -66,12 +66,14 @@
 				
 				
 			</table>
+			
 			<h3>가게 메인사진</h3>
-			<a href="#">가게전체보기</a>
+			<a href="./storeList.st">가게전체보기</a>
 			<table border=1 width=300>
 				
 					<%
 						for (int i=0; i<store_list.size(); i++) {
+            
 							if(i <= 3){
 								break;
 							}
@@ -88,7 +90,7 @@
 				
 				</table>
 				<h3>리뷰 닉네임,사진,등록날짜,별점</h3>
-				<a href="./getReivewPagingList.re">리뷰전체보기</a>
+				<a href="./reviewList.re">리뷰전체보기</a>
 				<table border=1 width=300>
 				<c:forEach items="${review_list }" var="review_list">
 					<tr>

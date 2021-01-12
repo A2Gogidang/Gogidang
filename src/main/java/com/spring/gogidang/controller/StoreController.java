@@ -2,6 +2,9 @@ package com.spring.gogidang.controller;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.MemberVO;
 import com.spring.gogidang.domain.MenuVO;
 import com.spring.gogidang.domain.ReviewVO;
@@ -59,10 +65,10 @@ public class StoreController {
 	 * 가게 상세 정보 보기
 	 */
 	@RequestMapping(value = "/storeInfo.st")
-	public String shopInfo(StoreVO storeVO, Model model) {
+	public String shopInfo(Criteria cri, StoreVO storeVO, Model model) {
 		StoreVO vo = storeService.storeInfo(storeVO);
 		ArrayList<MenuVO> menuList = menuService.getMenuList();
-		ArrayList<ReviewVO> reviewList = reviewService.getReviewList();
+		List<ReviewVO> reviewList = reviewService.getList(cri);
 		
 		model.addAttribute("storeVO", vo);
 		model.addAttribute("menuList",menuList);
@@ -212,4 +218,28 @@ public class StoreController {
 		return null;
 	}
 	//soobin end
+	
+	//dohyeong start
+	@RequestMapping("/storelist_ajax.li")
+	  
+	  @ResponseBody 
+	  public List<StoreVO> getStoreListAjax( @RequestParam(value="s_addr[]", required =false) String[] s_addr) { 
+	  
+		  for(String no : s_addr) {
+			  System.out.println("컨트롤러"); 
+			  System.out.println("s_addr" + no);  
+			  
+		  }
+	 
+	  
+	  Map<String, String[]> map = new HashMap<String, String[]>();
+	  map.put("s_addr", s_addr);
+	  
+	  List<StoreVO> list = storeService.getStoreListAjax(s_addr);
+	  System.out.println("list" + list);
+	  
+	  return list; 
+	  
+	  }
+	//dogyeong end
 }
