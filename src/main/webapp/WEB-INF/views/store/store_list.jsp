@@ -2,11 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import = "com.spring.gogidang.domain.*" %>
+<%@ page import="java.util.ArrayList"%>
 
 
 <%
-	MemberVO memberVO = (MemberVO) session.getAttribute("MemberVO");
-	String id = memberVO.getU_id();
+	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
+	String id = mvo.getU_id();
+	int seller_key = mvo.getSeller_key();
+	
 	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
 %>
 <!DOCTYPE html>
@@ -92,7 +95,7 @@
                 <div class="col1"></div>
                 <!--메인페이지 이미지 1400*380-->
                 <div class="header__logo">
-                    <a href="./index.html"><img src="${pageContext.request.contextPath}/resources/img/mainlogo.png" alt=""></a>
+                    <a href="./index.html"><img src="resources/img/mainlogo.png" alt=""></a>
                 </div>
                 <div class="col1"></div>
             </div>
