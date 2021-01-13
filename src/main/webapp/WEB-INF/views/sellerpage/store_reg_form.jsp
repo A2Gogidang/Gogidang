@@ -20,6 +20,7 @@
 <header><%=memberVO.getU_nick() %>님 </header>
 
 <form name="storeform" action="./storeProcess.st" method="post">
+<input type="hidden" name = "u_id" value=<%=memberVO.getU_id() %>>
 <center>
 <h1><a href="./main.me">메인페이지</a></h1>
 	<table border="1">
@@ -28,7 +29,7 @@
 	<td><a href="./storeRegForm.st">가게 정보</a></td>
 	<td><a href="./menuRegForm.st">메뉴 정보</a></td>
 	<td><a href="./storeNoticeList.no">문의 관리</a></td>
-	<td><a href="./storeRegForm.st">리뷰 관리</a></td>
+	<td><a href="./storereviewList.bo">리뷰 관리</a></td>
 	</tr>
 	</table><br><br>
 <table border=1>

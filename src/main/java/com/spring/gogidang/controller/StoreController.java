@@ -43,7 +43,7 @@ public class StoreController {
 	 * 전체 가게 리스트
 	 */
 	@RequestMapping(value = "/storeList.st")
-	public String getShopList(Model model) {
+	public String getStoreList(Model model) {
 		ArrayList<StoreVO> storeList = storeService.getStoreList();
 		model.addAttribute("storeList", storeList);
 		
@@ -112,6 +112,8 @@ public class StoreController {
 			
 			System.out.println(((MemberVO)session.getAttribute("MemberVO")).getU_id());
 			store.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
+			System.out.println(store.toString());
+
 			store.setConfirm(0); //처음 등록할때 미승인 상태로 띄워야하기때문에 insert전 데이터 넣어줌
 			int res = storeService.insertStore(store);
 			
@@ -185,7 +187,8 @@ public class StoreController {
 		}else {
 			
 			menuVO.setS_num(vo.getS_num());			
-			ArrayList<MenuVO> menuSelectList = menuService.selectMenu(menuVO);
+			ArrayList<MenuVO> menuSelectList  = new ArrayList<MenuVO>();
+			menuSelectList = menuService.selectMenu(menuVO);
 			
 			model.addAttribute("menuSelectList",menuSelectList);
 			model.addAttribute("StoreVO",vo);

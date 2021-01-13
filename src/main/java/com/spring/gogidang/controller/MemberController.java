@@ -81,6 +81,14 @@ public class MemberController {
 		if ( vo != null && vo.getU_id() != null ) {
 			
 			session.setAttribute("MemberVO",vo);
+			
+			if(vo.getSeller_key() == 1 ) {
+				
+				StoreVO storevo = new StoreVO();
+				storevo.setU_id(vo.getU_id());
+				StoreVO vo1 = storeService.selectStore(storevo);
+				session.setAttribute("StoreVO", vo1);
+			}
 			writer.write("<script>alert('로그인 성공!');location.href='./main.me';</script>");
 		}else {
 			writer.write("<script>alert('로그인 실패!');location.href='./loginForm.me';</script>");

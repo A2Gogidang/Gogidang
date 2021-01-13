@@ -30,7 +30,7 @@
 	<td><a href="./storeRegForm.st">가게 정보</a></td>
 	<td><a href="./menuRegForm.st">메뉴 정보</a></td>
 	<td><a href="./storeNoticeList.no">문의 관리</a></td>
-	<td><a href="./storeRegForm.st">리뷰 관리</a></td>
+	<td><a href="./storereviewList.bo">리뷰 관리</a></td>
 	</tr>
 	</table><br><br>
 <table border=1>
@@ -71,9 +71,7 @@
 </center>
 </form>
 
-<%if ( menuList == null || menuList.size() < 0 || menuList.get(0).getS_num() == null || menuList.get(0).getS_num() == "" ){ %>
-<h1>상품을 추가해주세요.</h1>
-<%}else{ %>
+<%if ( menuList != null || menuList.size() > 0 ){ %>
 <%for(int i = 0; i < menuList.size(); i++){ 
 	
 	MenuVO menuVO = (MenuVO)menuList.get(i);
@@ -108,6 +106,8 @@
 	</tr>
 </table>
 <%} %>
+<%}else{ %>
+<h1>상품을 추가해주세요.</h1>
 <%} %>
 </body>
 </html>

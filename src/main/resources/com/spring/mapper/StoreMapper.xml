@@ -36,15 +36,16 @@
 	<!-- soobin start -->
 	<insert id="insertStore" parameterType="StoreVO" >
       	INSERT INTO shop_reg 
-     	VALUES ( #{s_num, jdbcType=VARCHAR}
-			 	,#{u_id, jdbcType=VARCHAR}
-				,#{thumbnail, jdbcType=VARCHAR}
-			 	,#{s_name, jdbcType=VARCHAR}
-				,#{s_addr, jdbcType=VARCHAR}
-			 	,#{s_phone, jdbcType=VARCHAR}
-			 	,#{s_img, jdbcType=VARCHAR}
-			 	,#{s_hour, jdbcType=VARCHAR}
-			 	,#{delibery, jdbcType=INTEGER}
+     	VALUES ( #{s_num}
+			 	,#{u_id}
+				,#{thumbnail}
+			 	,#{s_name}
+				,#{s_addr}
+			 	,#{s_phone}
+			 	,#{s_img}
+			 	,#{s_hour}
+			 	,#{delibery}
+			 	,#{confirm}
 			 	)
 	</insert>	 
 	 
@@ -56,12 +57,12 @@
 	
 	<update id="updateStore" parameterType="StoreVO" >
  	  	UPDATE shop_reg 
- 	  	SET  s_name=#{s_name,jdbcType=VARCHAR}
- 	 	 	,s_addr=#{s_addr,jdbcType=VARCHAR}
- 	  	 	,s_phone=#{s_phone,jdbcType=VARCHAR}
- 	  	 	,s_hour =#{s_hour ,jdbcType=VARCHAR}
- 	  	 	,delibery=#{delibery,jdbcType=VARCHAR}
- 	  	where u_id=#{u_id,jdbcType=VARCHAR}
+ 	  	SET  s_name=#{s_name}
+ 	 	 	,s_addr=#{s_addr}
+ 	  	 	,s_phone=#{s_phone}
+ 	  	 	,s_hour=#{s_hour}
+ 	  	 	,delibery=#{delibery}
+ 	  	where u_id=#{u_id}
  	</update>
  	
 <!-- dohyeong start -->

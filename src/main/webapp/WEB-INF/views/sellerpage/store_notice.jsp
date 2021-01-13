@@ -27,7 +27,7 @@
 	<td><a href="./storeRegForm.st">가게 정보</a></td>
 	<td><a href="./menuRegForm.st">메뉴 정보</a></td>
 	<td><a href="./storeNoticeList.no">문의 관리</a></td>
-	<td><a href="./storeRegForm.st">리뷰 관리</a></td>
+	<td><a href="./storereviewList.bo">리뷰 관리</a></td>
 	</tr>
 	</table><br><br>
 <table border=1>

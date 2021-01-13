@@ -22,7 +22,7 @@
 <h2><a href="./sellerupdateform.me">내정보</a></h2>
 <h2><a href="./storeRegForm.st">가게 정보</a></h2>
 <h2><a href="./menuRegForm.st">메뉴 정보</a></h2>
-<h2><a href="./storeRegForm.st">리뷰 관리</a></h2>
+<h2><a href="./storereviewList.bo">리뷰 관리</a></h2>
 <body>
 <header><%=memberVO.getU_nick() %>님 </header>
 <form name="reply_regForm" action="./replyNoticeInsert.no" method="post">
@@ -49,11 +49,11 @@
 	</tr>		
 	<tr>
 		<th colspan="2">답변내용 : </th> 
-		<td colspan="2"><input name="re_content" type="text" /><%=srNoticevo.getRe_content() %></td>
+		<td colspan="2"><input name="re_content" type="text" /></td>
 	</tr>
 	<tr>
 		<th colspan="2">답변날짜 : </th> 		
-		<td colspan="2"><input name="re_date" type="text" /><%=srNoticevo.getRe_date() %></td>
+		<td colspan="2"><input name="re_date" type="text" /></td>
 	</tr>
 	<tr>
 		<td><a href="javascript:reply_regForm.submit()">등록</a></td>
@@ -62,5 +62,6 @@
 	</tbody>
 </table>
 </center>
+</form>
 </body>
 </html>
