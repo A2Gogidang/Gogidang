@@ -5,6 +5,7 @@ import java.sql.Date;
 public class SRReviewVO {
 
 	private int review_num;
+	private int comment_num;
 	private String u_id;
 	private String s_num;
 	private String title;
@@ -15,12 +16,17 @@ public class SRReviewVO {
 	private String re_content;
 	private Date re_date;
 	
-	
 	public int getReview_num() {
 		return review_num;
 	}
 	public void setReview_num(int review_num) {
 		this.review_num = review_num;
+	}
+	public int getComment_num() {
+		return comment_num;
+	}
+	public void setComment_num(int comment_num) {
+		this.comment_num = comment_num;
 	}
 	public String getU_id() {
 		return u_id;
@@ -76,6 +82,8 @@ public class SRReviewVO {
 	public void setRe_date(Date re_date) {
 		this.re_date = re_date;
 	}
+	
+	
 	
 	
 	

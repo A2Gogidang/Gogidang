@@ -26,7 +26,9 @@ public class StoreNoticeController {
 	public String storeNoticeList(Model model , HttpSession session)throws Exception {
 		//storeVO session말고 sql로 조회해서 가지고오기 다른곳도 전부 확인하기 
 		SRNoticeVO srNoticeVO = new SRNoticeVO();		
-		srNoticeVO.setS_num(((StoreVO)session.getAttribute("StoreVO")).getS_num());		
+		System.out.println(session.getAttribute("StoreVO").toString());
+		srNoticeVO.setS_num(((StoreVO)session.getAttribute("StoreVO")).getS_num());
+		
 		ArrayList<SRNoticeVO> srNoticeList = storeNoiceService.srNoticeSelect(srNoticeVO);	
 
 		model.addAttribute("srNoticeList", srNoticeList);
