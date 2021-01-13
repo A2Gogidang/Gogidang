@@ -43,7 +43,7 @@
                 </tr>
                 <tr>
                     <td>리뷰등록일 : </td>
-                    <td><fmt:formatDate pattern="yyyy-MM-dd" value="${review.re_date }" /></td>
+                    <td><fmt:formatDate pattern="yyyy-MM-dd" value="${review.review_date }" /></td>
                 </tr>
                 <tr>
                     <td colspan="2" align=center>
@@ -53,4 +53,4 @@
             </table>
         </form>
         
-<%@include file="../includes/footer.jsp"%>
+<%@ include file="../includes/footer.jsp" %>

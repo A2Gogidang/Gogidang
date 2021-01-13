@@ -19,7 +19,7 @@
 <body>
 <header><%=memberVO.getU_nick() %>님 </header>
 
-<form name="storeform" action="./storeprocess.me" method="post">
+<form name="storeform" action="./storeProcess.st" method="post">
 <center>
 <h1><a href="./main.me">메인페이지</a></h1>
 	<table border="1">

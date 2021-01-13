@@ -24,7 +24,16 @@ public class StoreServiceImpl implements StoreService {
 		
 		return storeList;
 	}
-
+	
+	@Override
+	public ArrayList<StoreVO> getList() {
+		StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
+		ArrayList<StoreVO> storeList = new ArrayList<StoreVO>();
+		storeList = storeMapper.getList();
+		
+		return storeList; 
+	}
+	 
 	@Override
 	public int confirmStore(StoreVO storeVO) {
 		StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
