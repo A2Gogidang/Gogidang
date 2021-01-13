@@ -6,10 +6,10 @@
 
 	<select id="getListWithPaging" resultType="ReviewVO">
 		<![CDATA[
-		select review_num, title, nickname, s_name, star, re_date
+		select review_num, title, nickname, s_name, star, review_date
 		from
 			( 	select /*+ INDEX_DESC(review pk_review) */ 
-					rownum rn, review_num, title, nickname, s_name, star, re_date
+					rownum rn, review_num, title, nickname, s_name, star, review_date
 				from review
 				where rownum <= #{pageNum} * #{amount} )
 		where rn > (#{pageNum}-1) * #{amount}
