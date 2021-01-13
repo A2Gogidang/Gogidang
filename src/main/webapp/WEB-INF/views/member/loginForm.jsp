@@ -10,7 +10,7 @@
      <!-- Loding font -->
      <link href="https://fonts.googleapis.com/css?family=Montserrat:300,700" rel="stylesheet">
 
-    <link rel="stylesheet" href="resources/css/Loginstyles.css">
+    <link rel="stylesheet" href="resources/css/loginstyle.css">
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
@@ -45,7 +45,7 @@
     <link rel="stylesheet" href="resources/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="resources/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="resources/css/LoginDtail.css" type="text/css">
+    <link rel="stylesheet" href="resources/css/loginDetail.css" type="text/css">
   </head>
   <body>
  <!-- 3.Header Section Begin -->
