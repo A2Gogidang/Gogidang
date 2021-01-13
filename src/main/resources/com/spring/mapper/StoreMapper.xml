@@ -4,11 +4,18 @@
 	 
 <mapper namespace="com.spring.mapper.StoreMapper">
 
+	<insert id="storeReg" parameterType="StoreVO">
+		insert into shop_reg values (#{s_num}, #{u_id}, #{thumbnail},  #{s_name}, #{s_addr}, #{s_phone}, #{s_img}, #{s_hour}, #{delibery},  #{confirm})
+	</insert>
 	
-	<!-- <select id="getStoreList" resultType="StoreVO">
-		select * from shop_reg
-	</select>
-	 -->
+ 	<select id="getList" resultType="StoreVO">
+ 		select * from shop_reg
+ 			<where>
+ 				<if test="confirm != 1">
+ 					confirm=0
+ 				</if>
+ 			</where>
+ 	</select>
 	 
 	<update id="confirmStore" parameterType="StoreVO">
 		UPDATE shop_reg SET confirm=1 WHERE s_num=#{s_num}
@@ -57,7 +64,6 @@
  	  	 	,delibery=#{delibery}
  	  	where u_id=#{u_id}
  	</update>
- 	
  	
 <!-- dohyeong start -->
 	<select id="getStoreList"  resultType="StoreVO">

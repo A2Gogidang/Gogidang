@@ -55,7 +55,7 @@ public class StoreController {
 	 */
 	@RequestMapping(value = "/storeWait.st")
 	public String getStoreWait(Model model) {
-		ArrayList<StoreVO> storeList = storeService.getStoreList();
+		ArrayList<StoreVO> storeList = storeService.getList();
 		model.addAttribute("storeList", storeList);
 		
 		return "store/store_wait";
@@ -98,6 +98,7 @@ public class StoreController {
 		return "redirect:storeList.st";
 	}
 	
+	//soobin start
 	// 가게 등록 + 수정
 	@RequestMapping("/storeProcess.st")
 	public String storeProcess(StoreVO store , HttpSession session, HttpServletResponse response)throws Exception {
@@ -109,7 +110,10 @@ public class StoreController {
 		// 가게등록이 안되어있을경우
 		if ( vo1 == null || vo1.getS_num() == null || vo1.getS_num() == "") {
 			
+			System.out.println(((MemberVO)session.getAttribute("MemberVO")).getU_id());
+			store.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
 			System.out.println(store.toString());
+
 			store.setConfirm(0); //처음 등록할때 미승인 상태로 띄워야하기때문에 insert전 데이터 넣어줌
 			int res = storeService.insertStore(store);
 			
@@ -152,7 +156,6 @@ public class StoreController {
 		return null;
 		
 	}
-	//soobin start
 	
 	@RequestMapping("/storeRegForm.st")
 	public String registrationForm(StoreVO storeVO, HttpSession session) throws Exception {
@@ -182,7 +185,7 @@ public class StoreController {
 			writer.write("<script>alert('가게정보 등록 먼저 하세요!!!!');" +"location.href = './storeRegForm.st';</script>");
 			
 		}else {
-
+			
 			menuVO.setS_num(vo.getS_num());			
 			ArrayList<MenuVO> menuSelectList  = new ArrayList<MenuVO>();
 			menuSelectList = menuService.selectMenu(menuVO);

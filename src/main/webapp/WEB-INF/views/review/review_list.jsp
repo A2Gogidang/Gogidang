@@ -3,6 +3,7 @@
 <%@ page import="java.util.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <%@ page import = "com.spring.gogidang.domain.*" %>
 <%@include file="../includes/header.jsp"%>
 
@@ -12,27 +13,26 @@
 	List<ReviewVO> review_list = (List<ReviewVO>) request.getAttribute("list");
 	PageDTO  pageMaker = (PageDTO) request.getAttribute("pageMaker");
 %>
-<script type="text/javascript">
-
-$(document).ready(function() {
-	var result = '<c:out value="${result}"/>';
-	checkModal(result);
-	history.replaceState({},null,null);
-	function checkModal(result) {
-		
-		if (result === '' || history.state) {
-			return;
+<!-- <script type="text/javascript">
+	$(document).ready(function() {
+		var result = '<c:out value="${result}"/>';
+		checkModal(result);
+		history.replaceState({},null,null);
+		function checkModal(result) {
+			
+			if (result === '' || history.state) {
+				return;
+			}
+	
+			if (parseInt(result) > 0) {
+				$(".modal-body").html( "게시글 " + parseInt(result) + " 번이 등록되었습니다.");
+			}
+			$("#myModal").modal("show");
 		}
+	});
+</script> -->
 
-		if (parseInt(result) > 0) {
-			$(".modal-body").html( "게시글 " + parseInt(result) + " 번이 등록되었습니다.");
-		}
-		$("#myModal").modal("show");
-	}
-});
-</script>
-
-	<h1><%=id %></h1>
+	<h3><%=id %></h3>
 	<center>
 		<table border=1 width=500>
 			<tr align=center>
@@ -108,8 +108,7 @@ $(document).ready(function() {
 			</tr>
 		</table>
 		
-		
-			<!-- Modal  추가 -->
+<!-- 		
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -124,10 +123,9 @@ $(document).ready(function() {
 							<button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
 						</div>
 					</div>
-					<!-- /.modal-content -->
+					/.modal-content
 				</div>
-				<!-- /.modal-dialog -->
+				/.modal-dialog
 			</div>
-			<!-- /.modal -->
-			
+-->
 <%@include file="../includes/footer.jsp"%>

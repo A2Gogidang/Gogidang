@@ -14,7 +14,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="./reveiw_reg.re?s_num=${storeVO.getS_num() }">가게 리뷰작성</a>
+	<a href="./review_reg.re?s_num=${storeVO.getS_num() }">가게 리뷰작성</a>
 	<table border="1" align=center>
 	<tr>
 		<td rowspan=5>${storeVO.getThumbnail()}</td>
@@ -53,15 +53,20 @@
 		<tr>
 			<table border=1 align=center>
 			<tr>
+				<td>사진</td>
+				<td>별점</td>
+				<td>제목</td>
+			</tr>
 			<%
 				for(int i=0; i<review_List.size(); i++)
 				{
 					ReviewVO vo1 =(ReviewVO)review_List.get(i);
 				
 			%>
-			<td><%=vo1.getPhoto1() %></td>
-			<td><%=vo1.getStar() %></td>
-			<td><%=vo1.getTitle() %>
+			<tr>
+				<td><a href="reviewInfo.re?review_num=<%=vo1.getReview_num()%>"><%=vo1.getPhoto1() %></a></td>
+				<td><%=vo1.getStar() %></td>
+				<td><a href="reviewInfo.re?review_num=<%=vo1.getReview_num()%>"><%=vo1.getTitle() %></a></td>
 			<%} %>
 			</tr>
 			</table>

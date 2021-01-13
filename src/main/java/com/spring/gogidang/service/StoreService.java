@@ -6,7 +6,10 @@ import java.util.List;
 import com.spring.gogidang.domain.StoreVO;
 
 public interface StoreService {
+	
+	public ArrayList<StoreVO> getList();
 	public ArrayList<StoreVO> getStoreList();
+	
 	public int confirmStore(StoreVO storeVO);
 	public int refuseStore(StoreVO storeVO);
 	public StoreVO storeInfo(StoreVO storeVO);

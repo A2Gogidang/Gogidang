@@ -47,7 +47,7 @@ public class MemberController {
 	@RequestMapping("/main.me") 
 	public String mainPage(Criteria cri, Model model) throws Exception { 
 		ArrayList<EventVO> event_list = eventService.getEventList();
-		ArrayList<StoreVO> store_list = storeService.getStoreList();
+		ArrayList<StoreVO> store_list = storeService.getList();
 		List<ReviewVO> review_list = reviewService.getList(cri);
 		model.addAttribute("event_list", event_list);
 		model.addAttribute("store_list", store_list);

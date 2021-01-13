@@ -7,7 +7,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -38,14 +40,13 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/reviewReg.re")
-	public String reviewReg(ReviewVO review, RedirectAttributes rttr) {
+	public String reviewReg(ReviewVO review) {
 		
 		reviewService.reviewReg(review);
-		rttr.addFlashAttribute("result", review.getReview_num());
 		return "redirect:/reviewList.re";
 	}
 	
-	@RequestMapping("/reveiw_reg.re")
+	@RequestMapping("/review_reg.re")
 	public String review_reg(StoreVO store, Model model, HttpSession session) {
 		
 		StoreVO svo = storeService.storeInfo(store);
