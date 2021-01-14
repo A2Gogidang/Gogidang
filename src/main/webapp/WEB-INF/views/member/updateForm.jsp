@@ -25,7 +25,7 @@
 	<td><a href="./updateForm.me">내정보</a></td>
 	<td><a href="./bookingList.bo?u_id=<%=vo.getU_id()%>">내예약확인</a></td>
 	<td><a href="./likeStoreList.li?u_id=<%=vo.getU_id()%>">찜목록</a></td>
-	<td><a href="./reviewList.re?u_id=<%=vo.getU_id()%>">내가 작성한 후기</a></td>
+	<td><a href="./reviewUidList.re?u_id=<%=vo.getU_id()%>">내가 작성한 후기</a></td>
 	</tr>
 	</table><br><br>
 <%}else{ %>

@@ -2,6 +2,7 @@ package com.spring.gogidang.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,26 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<ReviewVO> getList(Criteria cri) {
 		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
 		return reviewMapper.getListWithPaging(cri);
+	}
+	
+	@Override
+	public List<ReviewVO> getUidList(Criteria cri, String u_id) {
+		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
+		
+		int pageNum = cri.getPageNum();
+		int amount = cri.getAmount();
+		
+		return reviewMapper.getUidListWithPaging(pageNum, amount, u_id);
+	}
+	
+	@Override
+	public List<ReviewVO> getSnumList(Criteria cri, String s_num) {
+		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
+		
+		int pageNum = cri.getPageNum();
+		int amount = cri.getAmount();
+		
+		return reviewMapper.getSnumListWithPaging(pageNum, amount, s_num);
 	}
 
 	@Override
