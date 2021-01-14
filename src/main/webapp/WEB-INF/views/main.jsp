@@ -70,7 +70,6 @@
 			<h3>가게 메인사진</h3>
 			<a href="./storeList.st">가게전체보기</a>
 			<table border=1 width=300>
-				
 					<%
 						for (int i=0; i<store_list.size(); i++) {
 							

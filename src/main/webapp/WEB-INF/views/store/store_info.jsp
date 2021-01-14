@@ -45,7 +45,6 @@
 			<td><%=vo.getGram() %></td>
 			<td><%=vo.getGrade() %></td>
 			<td><%=vo.getPrice() %></td>
-			<td>
 			</tr>
 			<%} %>
 		</tr>
@@ -53,6 +52,7 @@
 		<tr>
 			<table border=1 align=center>
 			<tr>
+				<td>번호</td>
 				<td>사진</td>
 				<td>별점</td>
 				<td>제목</td>
@@ -64,6 +64,7 @@
 				
 			%>
 			<tr>
+				<td><%= i+1 %></td>
 				<td><a href="reviewInfo.re?review_num=<%=vo1.getReview_num()%>"><%=vo1.getPhoto1() %></a></td>
 				<td><%=vo1.getStar() %></td>
 				<td><a href="reviewInfo.re?review_num=<%=vo1.getReview_num()%>"><%=vo1.getTitle() %></a></td>

@@ -11,6 +11,7 @@
 	MemberVO memberVO = (MemberVO) session.getAttribute("MemberVO");
 	String id = memberVO.getU_id();
 	List<ReviewVO> review_list = (List<ReviewVO>) request.getAttribute("list");
+	List<ReviewVO> reviewUidList = (List<ReviewVO>) request.getAttribute("reviewUidList");
 	PageDTO  pageMaker = (PageDTO) request.getAttribute("pageMaker");
 %>
 <!-- <script type="text/javascript">
