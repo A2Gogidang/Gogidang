@@ -6,14 +6,13 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%
-	MemberVO memberVO = (MemberVO)session.getAttribute("MemberVO");	
-	SRReviewVO srReviewvo = (SRReviewVO)request.getAttribute("srReviewvo");
+	MemberVO vo = (MemberVO)session.getAttribute("MemberVO");
 
-	
 %>
+<!DOCTYPE html>
 <html>
 <head>
- <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="description" content="Ogani Template">
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -57,7 +56,7 @@
     <link rel="stylesheet" href="resources/css/style.css" type="text/css">
 </head>
 <body>
- <!-- 3.Header Section Begin -->
+  <!-- 3.Header Section Begin -->
     <header class="header">
         <div class="header__top">
             <div class="container">
@@ -67,7 +66,7 @@
                         <div class="header__top__right">                      
                             <!--로그인후 모드-->
                             <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"><%=memberVO.getU_nick() %></i> </a>
+                                <a href="#"><i class="fa fa-user"><%=vo.getU_nick() %></i> </a>
                                 <aa>님 !</aa>
                             </div>
                           
@@ -165,6 +164,22 @@
         </section>
     메인 사진 사용 끝-->
     <!--네비게이션바 사용 시작-->
+    <%if(vo.getSeller_key() == 0 ){ %>
+	   <section class="hero">
+        <div class="container">
+            <div class="hero__item__box2"></div>
+                    <div class="EventNav">
+                        <ul>
+                            <li><a href="./updateList.me">내정보</a></li>
+                            <li><a href="./bookingList.bo?u_id=<%=vo.getU_id()%>">내예약확인</a>
+                            <li><a href="./likeStoreList.li?u_id=<%=vo.getU_id()%>">찜목록</a></li>
+                            <li><a href="./reviewList.re?u_id=<%=vo.getU_id()%>">내가 작성한 후기</a></li>
+                        </ul>
+                    </div>   
+            </div>   
+        </div>
+    </section>
+<%}else{ %>
     <section class="hero">
         <div class="container">
             <div class="hero__item__box2"></div>
@@ -180,61 +195,52 @@
             </div>   
         </div>
     </section>
+<%} %>
     <!--네비게이션바 사용 끝-->
     <!-- Hero Section End -->
-<form name="reply_regForm" action="./replyReviewInsert.bo" method="post">
-<input type="hidden" name = "review_num" value=<%=srReviewvo.getReview_num() %>>
-<input type="hidden" name = "s_num" value=<%=srReviewvo.getS_num() %>>
-<input type="hidden" name = "comment_num" value=<%=srReviewvo.getComment_num()+1 %>>
-<center>
-<h1><a href="./main.me">메인페이지</a></h1>
-	<table border="1">
-	<tr>
-	<td><a href="./updateList.me">내정보</a></td>
-	<td><a href="./storeRegForm.st">가게 정보</a></td>
-	<td><a href="./menuRegForm.st">메뉴 정보</a></td>
-	<td><a href="./storeNoticeList.no">문의 관리</a></td>
-	<td><a href="./storereviewList.bo">리뷰 관리</a></td>
-	</tr>
-	</table><br><br>
-<table border=1>
-	<thead>		
-	<tr><th colspan="6">리뷰 게시판</th></tr>
-	<tr>
-		<th>글제목</th>
-		<th>작성자</th>
-		<th>글내용 </th>
-		<th>리뷰사진</th>
-		<th>등록일자</th>
-		<th>별점</th>
-	</tr>
-	</thead>
-	<tbody>
-	<tr>
-		<td><span name="title" type="text" /><%=srReviewvo.getTitle() %></td>
-		<td><span name="u_id" type="text" /><%=srReviewvo.getU_id() %></td>
-		<td><span name="content" type="text" /><%=srReviewvo.getContent() %></td>
-		<td><span name="photo1" type="text" /><%=srReviewvo.getPhoto1() %></td>
-		<td><span name="review_date" type="text" /><%=srReviewvo.getReview_date() %></td>
-		<td><span name="star" type="text" /><%=srReviewvo.getStar() %></td>
-	</tr>		
-	<tr>
-		<th colspan="2">답변내용 : </th> 
-		<td colspan="4"><input name="re_content" type="text" /></td>
-	</tr>
-	<tr>
-		<th colspan="3">답변날짜 : </th> 		
-		<td colspan="3"><input name="re_date" type="text" /></td>
-	</tr>
-	<tr>
-		<td colspan="3"><a href="javascript:reply_regForm.submit()">등록</a></td>
-		<td colspan="3"><a href="javascript:reply_regForm.reset()">다시 입력</a></td>
-	</tr>
-	</tbody>
-</table>
-</center>
-</form>
-	 <!-- Footer Section Begin -->
+		<center>
+			<table border=1 width=400>
+				<tr>회원 정보 수정</tr>
+				<tr>
+					<td>아이디 :</td>
+					<td><%=vo.getU_id()%></td>
+					<!-- id는 수정사항에 포함되지 않기 때문에 hidden으로 설정 -->
+				</tr>
+				<tr>
+					<td>비밀번호 :</td>
+					<td><span type="password" name="u_pw" value="<%=vo.getU_pw()%>" /></td>
+				</tr>
+				<tr>
+					<td>이름 :</td>
+					<td><%=vo.getU_name()%></td>
+				</tr>
+				<tr>
+					<td>닉네임 :</td>
+					<td><%=vo.getU_nick()%></td>
+					
+				</tr>
+				<tr>
+					<td>생년월일 :</td>
+					<td><%=vo.getU_birth()%></td>
+				</tr>
+				<tr>
+					<td>주소 :</td>
+					<td><%=vo.getU_addr()%></td>
+				</tr>	
+				<tr>
+					<td>이메일 주소 :</td>
+					<td><%=vo.getU_email()%></td>
+				</tr>
+				<tr>
+					<td>핸드폰 번호 :</td>
+					<td><%=vo.getU_phone()%></td>
+				</tr>
+				<tr align=center>
+					<td colspan=2><a href="./updateForm.me">수정</a></td>
+				</tr>
+			</table>
+		</center>
+		 <!-- Footer Section Begin -->
     
     <footer class="footer spad">
         <div class="container">
@@ -324,6 +330,5 @@
     <script src="resources/js/mixitup.min.js"></script>
     <script src="resources/js/owl.carousel.min.js"></script>
     <script src="resources/js/main.js"></script>
-
 </body>
 </html>

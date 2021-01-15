@@ -29,7 +29,7 @@
 	}else if (seller_key == 1) {	
 	%>
 	<h3>판매자입니다.</h3>
-	<h2><a href="./updateForm.me">판매자 마이페이지</a></h2>
+	<h2><a href="./updateList.me">판매자 마이페이지</a></h2>
 	<% 
 	}else if (u_id.equals("admin")) {
 	%>
@@ -97,7 +97,7 @@
 						<td><c:out value="${review_list.title }" /></td>
 						<td><c:out value="${review_list.nickname }" /></td>
 						<td><c:out value="${review_list.star }" /></td>
-						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${review_list.re_date }" /></td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${review_list.review_date }" /></td>
 					</tr>
 				</c:forEach>
 				</table>

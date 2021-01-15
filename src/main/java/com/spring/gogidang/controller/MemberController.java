@@ -143,6 +143,13 @@ public class MemberController {
 		
 		return "member/updateForm";
 	}
+	
+	@RequestMapping("/updateList.me")
+	public String updateList() throws Exception{
+		
+		return "member/updateList";
+	}
+	
 	//soobin end
 }
 
