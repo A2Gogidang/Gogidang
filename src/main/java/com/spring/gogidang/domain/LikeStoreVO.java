@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 public class LikeStoreVO {
 	private int like_num;
 	private int s_num;
-	
 	private String u_id;
 	public String s_name;
 	public String thumbnail;

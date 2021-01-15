@@ -24,6 +24,7 @@ public class ReviewVO {
 	private String photo3;
 	private Date review_date;
 	private String s_name;
-	
+
 	private List<ReviewAttachVO> attachList;
+
 }
