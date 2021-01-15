@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.MemberVO;
 import com.spring.gogidang.domain.MenuVO;
+import com.spring.gogidang.domain.PageDTO;
 import com.spring.gogidang.domain.ReviewVO;
 import com.spring.gogidang.domain.StoreVO;
 import com.spring.gogidang.service.MenuService;
@@ -39,48 +40,41 @@ public class StoreController {
 	@Autowired
 	private ReviewService reviewService;
 
-	/*
-	 * 전체 가게 리스트
-	 */
-	@RequestMapping(value = "/storeList.st")
-	public String getStoreList(Model model) {
-		ArrayList<StoreVO> storeList = storeService.getStoreList();
+	// taehyun
+	// all store list
+	@RequestMapping(value="/getList.st")
+	public String getList(Model model) {
+		ArrayList<StoreVO> storeList = storeService.getList();
 		model.addAttribute("storeList", storeList);
 
 		return "store/store_list";
 	}
 
-	/*
-	 * 승인대기중인 가게 리스트 보기
-	 */
+	// wait store list
 	@RequestMapping(value = "/storeWait.st")
 	public String getStoreWait(Model model) {
-		ArrayList<StoreVO> storeList = storeService.getStoreList();
+		ArrayList<StoreVO> storeList = storeService.getWaitList();
 		model.addAttribute("storeList", storeList);
 
 		return "store/store_wait";
 	}
 
-	/*
-	 * 가게 상세 정보 보기
-	 */
+	// store info
 	@RequestMapping(value = "/storeInfo.st")
-	public String shopInfo(Criteria cri, StoreVO storeVO, Model model) {
-		StoreVO vo = storeService.storeInfo(storeVO);
-		ArrayList<MenuVO> menuList = menuService.getMenuList();
-		List<ReviewVO> reviewList = reviewService.getList(cri);
-
-		model.addAttribute("storeVO", vo);
-		model.addAttribute("menuList",menuList);
-		model.addAttribute("reviewList",reviewList);
-
-
+	public String storeInfo(Criteria cri, StoreVO storeVO, Model model) {
+				
+		int total = reviewService.getTotal(cri);
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		
+		model.addAttribute("storeVO", storeService.storeInfo(storeVO));
+		model.addAttribute("menuList", menuService.getMenuList());
+		model.addAttribute("reviewList", reviewService.getSnumList(cri, storeVO.getS_num()));
+		
+		
 		return "store/store_info";
 	}
-
-	/*
-	 * 승인대기중인 가게 승인
-	 */
+	
+	// confirm store (0 -> 1)
 	@RequestMapping(value = "/confirmStore.st")
 	public String confirmStore(StoreVO storeVO) {
 		storeService.confirmStore(storeVO);
@@ -88,16 +82,16 @@ public class StoreController {
 		return "redirect:storeList.st";
 	}
 
-	/*
-	 * 승인대기중인 가게 거절
-	 */
+	// refuse store (delete)
 	@RequestMapping(value = "/refuseStore.st")
 	public String refuseStore(StoreVO storeVO) {
 		storeService.refuseStore(storeVO);
 
 		return "redirect:storeList.st";
 	}
-
+	// taehyun end
+	
+	//soobin start
 	// 가게 등록 + 수정
 	@RequestMapping("/storeInsert.st")
 	public String storeInsert(StoreVO store , HttpSession session, HttpServletResponse response)throws Exception {
@@ -126,7 +120,6 @@ public class StoreController {
 		return null;
 
 	}
-	//soobin start
 
 	@RequestMapping("/storeUpdate.st")
 	public String storeUpdate(StoreVO store , HttpSession session, HttpServletResponse response)throws Exception {
@@ -190,7 +183,7 @@ public class StoreController {
 			writer.write("<script>alert('가게정보 등록 먼저 하세요!!!!');" +"location.href = './storeRegForm.st';</script>");
 
 		}else {
-
+			
 			menuVO.setS_num(vo.getS_num());			
 			ArrayList<MenuVO> menuSelectList  = new ArrayList<MenuVO>();
 			menuSelectList = menuService.selectMenu(menuVO);
@@ -228,27 +221,31 @@ public class StoreController {
 	}
 	//soobin end
 
-	//dohyeong start
-	@RequestMapping("/storelist_ajax.li")
-
-	@ResponseBody 
-	public List<StoreVO> getStoreListAjax( @RequestParam(value="s_addr[]", required =false) String[] s_addr) { 
-
-		for(String no : s_addr) {
-			System.out.println("컨트롤러"); 
-			System.out.println("s_addr" + no);  
-
-		}
-
-
-		Map<String, String[]> map = new HashMap<String, String[]>();
-		map.put("s_addr", s_addr);
-
-		List<StoreVO> list = storeService.getStoreListAjax(s_addr);
-		System.out.println("list" + list);
-
-		return list; 
-
+	
+	// dohyeong start
+	@RequestMapping(value = "/storeList.st")
+	public String getStoreList(Model model) {
+		ArrayList<StoreVO> storeList = storeService.getStoreList();
+		model.addAttribute("storeList", storeList);
+		
+		return "store/store_list";
 	}
-	//dogyeong end
+	
+	@RequestMapping("/storelist_ajax.li")
+	  @ResponseBody 
+	  public List<StoreVO> getStoreListAjax( @RequestParam(value="s_addr[]", required =false) String[] s_addr) { 
+		  for(String no : s_addr) {
+			  System.out.println("컨트롤러"); 
+			  System.out.println("s_addr" + no);  
+		  }
+	  
+	  Map<String, String[]> map = new HashMap<String, String[]>();
+	  map.put("s_addr", s_addr);
+	  
+	  List<StoreVO> list = storeService.getStoreListAjax(s_addr);
+	  System.out.println("list" + list);
+	  
+	  return list; 
+	  }
+	// dogyeong end
 }

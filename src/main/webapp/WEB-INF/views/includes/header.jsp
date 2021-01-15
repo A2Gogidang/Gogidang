@@ -11,10 +11,14 @@
 	<title>가게 전체보기</title>
 	<link rel="shortcut icon" href="cut-pig.jpg"> 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    
+    <!-- taehyun modal -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!--sidebar action and hamburger icon action START START-->
     <!--sidebar action and hamburger icon action START START -->
     <style>
         input[id="menuicon"] {display:none;}
@@ -33,7 +37,6 @@
 
    	</style>
 	<!--sidebar action and hamburger icon action END END -->
-	<!--sidebar action and hamburger icon action END END -->
  
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -48,7 +51,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/storelist.css" type="text/css">
-
 
 
 </head>
@@ -84,7 +86,7 @@
                 <div class="col1"></div>
                 <!--메인페이지 이미지 1400*380-->
                 <div class="header__logo">
-                    <a href="./index.html"><img src="resources/img/mainlogo.png" alt=""></a>
+                    <a href="./main.me"><img src="resources/img/mainlogo.png" alt=""></a>
                 </div>
                 <div class="col1"></div>
             </div>

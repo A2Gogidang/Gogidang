@@ -3,12 +3,14 @@
 	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	 
 <mapper namespace="com.spring.mapper.StoreMapper">
-
-	
-	<!-- <select id="getStoreList" resultType="StoreVO">
-		select * from shop_reg
-	</select>
-	 -->
+	<!-- taehyun start -->
+ 	<select id="getList" resultType="StoreVO">
+ 		select * from shop_reg where confirm=1
+ 	</select>
+ 	
+ 	<select id="getWaitList" resultType="StoreVO">
+ 		select * from shop_reg where confirm=0
+ 	</select>
 	 
 	<update id="confirmStore" parameterType="StoreVO">
 		UPDATE shop_reg SET confirm=1 WHERE s_num=#{s_num}
@@ -25,6 +27,7 @@
 	<select id="checkStore" parameterType="StoreVO" resultType="int">
 		SELECT count(*) FROM shop_reg WHERE u_id=#{u_id}
 	</select>
+	<!-- taehyun End -->
 
 	<!-- soobin start -->
 	<insert id="insertStore" parameterType="StoreVO" >
@@ -57,9 +60,9 @@
  	  	 	,delibery=#{delibery}
  	  	where u_id=#{u_id}
  	</update>
+ 	<!-- soobin end -->
  	
- 	
-<!-- dohyeong start -->
+	<!-- dohyeong start -->
 	<select id="getStoreList"  resultType="StoreVO">
 		select distinct * from menu_reg mr inner join shop_reg sr on mr.s_num=sr.s_num
  	</select>
@@ -71,7 +74,6 @@
 			#{item}
 		</foreach>
 	</select>
-	
-<!-- dohyeong end -->
+	<!-- dohyeong end -->
 
 </mapper>

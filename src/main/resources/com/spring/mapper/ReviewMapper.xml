@@ -4,6 +4,7 @@
 	 
 <mapper namespace="com.spring.mapper.ReviewMapper">
 
+	<!-- taehyun start -->
 	<select id="getListWithPaging" resultType="ReviewVO">
 		<![CDATA[
 		select review_num, title, nickname, s_name, star, review_date
@@ -11,18 +12,42 @@
 			( 	select /*+ INDEX_DESC(review pk_review) */ 
 					rownum rn, review_num, title, nickname, s_name, star, review_date
 				from review
-				where rownum <= #{pageNum} * #{amount} )
+				where rownum <= #{pageNum} * #{amount}  )
+		where rn > (#{pageNum}-1) * #{amount}
+		]]>
+	</select>
+	
+	<select id="getUidListWithPaging" resultType="ReviewVO">
+		<![CDATA[
+		select review_num, title, nickname, s_name, star, review_date
+		from
+			( 	select /*+ INDEX_DESC(review pk_review) */ 
+					rownum rn, review_num, title, nickname, s_name, star, review_date
+				from (	select * 
+						from review 
+						where u_id = #{u_id} )
+				where rownum <= #{pageNum} * #{amount}  )
+		where rn > (#{pageNum}-1) * #{amount}
+		]]>
+	</select>
+	
+	<select id="getSnumListWithPaging" resultType="ReviewVO">
+		<![CDATA[
+		select review_num, title, nickname, s_name, star, review_date
+		from
+			( 	select /*+ INDEX_DESC(review pk_review) */ 
+					rownum rn, review_num, title, nickname, s_name, star, review_date
+				from (	select * 
+						from review 
+						where s_num = #{s_num} )
+				where rownum <= #{pageNum} * #{amount}  )
 		where rn > (#{pageNum}-1) * #{amount}
 		]]>
 	</select>
 	
 	<insert id="reviewReg" parameterType="ReviewVO">
-		<selectKey keyProperty="review_num" order="BEFORE" resultType="int">
-			select seq_review.nextval from dual
-		</selectKey>
-		
 		INSERT INTO review (review_num, u_id, nickname, s_num, s_name, title, content, star, photo1, photo2, photo3) 
-		VALUES (#{review_num}, #{u_id}, #{nickname}, #{s_num}, #{s_name}, #{title}, #{content}, #{star}, #{photo1}, #{photo2}, #{photo3})
+		VALUES (seq_review.nextval, #{u_id}, #{nickname}, #{s_num}, #{s_name}, #{title}, #{content}, #{star}, #{photo1}, #{photo2}, #{photo3})
 	</insert>
 	
 	<update id="update">
@@ -42,4 +67,5 @@
 	<select id="getTotalCount" resultType="int">
 		select count(*) from review where review_num > 0
 	</select>
+	<!-- taehyun end -->
 </mapper>

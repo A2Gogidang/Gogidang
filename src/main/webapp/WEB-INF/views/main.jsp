@@ -19,7 +19,6 @@
 </head>
 <body>	
 <header><h3><%=u_id %> 로 로그인하셨습니다.</h3></header>
-	<!-- soobin start -->
 	<%
 	if (mvo.getU_id() == "" || mvo.getU_id() == null) {	
 	%>
@@ -33,19 +32,20 @@
 	<% 
 	}else if (u_id.equals("admin")) {
 	%>
-	<h3>관리자입니다.</h3>
-	<a href="./storeList.st">전체 가게 리스트 보기</a>
-	<br>
-	<a href="./storeWait.st">승인 대기 중인 가게 리스트 확인</a>
+		<h3>관리자입니다.</h3>
+		<a href="./storeList.st">전체 가게 리스트 보기</a>
+		<br>
+		<a href="./storeWait.st">승인 대기 중인 가게 리스트 확인</a>
 	<%
-	} else {
-	%>				
+		}
+	%>
+	<% 
+	} else{
+	%>			
 	<a href="./updateForm.me">마이페이지</a>
 	<%
 	}
-
 	%>
-	<!-- soobin end -->
 <center>
 	<h3>이벤트 메인사진</h3>
 			<table border=1 width=300>
@@ -70,13 +70,9 @@
 			<h3>가게 메인사진</h3>
 			<a href="./storeList.st">가게전체보기</a>
 			<table border=1 width=300>
-				
 					<%
 						for (int i=0; i<store_list.size(); i++) {
-            
-							if(i <= 3){
-								break;
-							}
+							
 							StoreVO vo1 = (StoreVO)store_list.get(i);
 					%>
 					<tr align=center>

@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="description" content="Ogani Template">
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -55,7 +55,6 @@
     <link rel="stylesheet" href="resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="resources/css/style.css" type="text/css">
 </head>
-
 <body>
   <!-- 3.Header Section Begin -->
     <header class="header">
@@ -199,8 +198,6 @@
 <%} %>
     <!--네비게이션바 사용 끝-->
     <!-- Hero Section End -->
-<center>
-	<form name="updateform" action="./updateProcess.me" method="post">
 		<center>
 			<table border=1 width=400>
 				<tr>회원 정보 수정</tr>
@@ -211,7 +208,7 @@
 				</tr>
 				<tr>
 					<td>비밀번호 :</td>
-					<td><input type="password" name="u_pw" value="<%=vo.getU_pw()%>" /></td>
+					<td><span type="password" name="u_pw" value="<%=vo.getU_pw()%>" /></td>
 				</tr>
 				<tr>
 					<td>이름 :</td>
@@ -219,7 +216,7 @@
 				</tr>
 				<tr>
 					<td>닉네임 :</td>
-					<td><input type="text" name="u_nick" value="<%=vo.getU_nick()%>"/></td>
+					<td><%=vo.getU_nick()%></td>
 					
 				</tr>
 				<tr>
@@ -228,26 +225,22 @@
 				</tr>
 				<tr>
 					<td>주소 :</td>
-					<td><input type="text" name="u_addr" value="<%=vo.getU_addr()%>"/></td>
+					<td><%=vo.getU_addr()%></td>
 				</tr>	
 				<tr>
 					<td>이메일 주소 :</td>
-					<td><input type="text" name="u_email" size=30 value="<%=vo.getU_email()%>"></td>
+					<td><%=vo.getU_email()%></td>
 				</tr>
 				<tr>
 					<td>핸드폰 번호 :</td>
-					<td><input type="text" name="u_phone" value="<%=vo.getU_phone()%>"></td>
+					<td><%=vo.getU_phone()%></td>
 				</tr>
 				<tr align=center>
-					<td colspan=2>
-					<a href="javascript:updateform.submit()">수정</a>&nbsp;&nbsp;&nbsp;
-					<a href="javascript:updateform.reset()">다시작성</a>
-					</td>
+					<td colspan=2><a href="./updateForm.me">수정</a></td>
 				</tr>
 			</table>
 		</center>
-	</form>
-	 <!-- Footer Section Begin -->
+		 <!-- Footer Section Begin -->
     
     <footer class="footer spad">
         <div class="container">
