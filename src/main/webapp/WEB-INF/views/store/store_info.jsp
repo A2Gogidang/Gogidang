@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.sql.*" %>
@@ -9,7 +8,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 
-	
+   
   <!-- Bootstrap Core CSS -->
     <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -27,27 +26,20 @@
 
     <!-- Custom Fonts -->
     <link href="resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	
-	
-	
+   
+   
+   
 
 <%
-	MemberVO membervo = (MemberVO)session.getAttribute("MemberVO");
-	String u_id=(String)membervo.getU_id();
-	%>
+   MemberVO membervo = (MemberVO)session.getAttribute("MemberVO");
+   String u_id=(String)membervo.getU_id();
+   %>
 
-=======
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="com.spring.gogidang.domain.*" %>
-<%@ page import="java.util.*" %>
->>>>>>> e2f76e0d6d11d780b99ca425c362b062a150b092
 <%
-	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
-	ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>)request.getAttribute("menuList");
-	ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>)request.getAttribute("reviewList");
+   ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>)request.getAttribute("menuList");
+   ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>)request.getAttribute("reviewList");
+   
 %>
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -55,71 +47,61 @@
 
 </head>
 <body>
-<<<<<<< HEAD
 
-=======
-	<a href="./review_reg.re?s_num=${storeVO.getS_num() }">가게 리뷰작성</a>
->>>>>>> e2f76e0d6d11d780b99ca425c362b062a150b092
-	<table border="1" align=center>
-	<tr>
-		<td rowspan=5>${storeVO.getThumbnail()}</td>
-		<td>${storeVO.getS_addr()}</td>
-	</tr>
-	<tr>
-		<td>${storeVO.getS_phone()}</td>
-	</tr>
-	<tr>
-		<td>${storeVO.getS_hour()}</td>
-	</tr>
-	<tr>
-		<td>${storeVO.getDelibery()}</td>
-	</tr>
-	</table>
-	
-	 <table align=center>
-		<tr>
-			<%
-				for(int i=0; i<menu_List.size(); i++)
-				{
-					MenuVO vo =(MenuVO)menu_List.get(i);
-				
-			%>
-			<tr>
-			<td><%=vo.getImg() %></td>
-			<td><%=vo.getMenu_name() %></td>
-			<td><%=vo.getGram() %></td>
-			<td><%=vo.getGrade() %></td>
-			<td><%=vo.getPrice() %></td>
-			</tr>
-			<%} %>
-		</tr>
-		
-		<tr>
-			<table border=1 align=center>
-			<tr>
-				<td>번호</td>
-				<td>사진</td>
-				<td>별점</td>
-				<td>제목</td>
-			</tr>
-			<%
-				for(int i=0; i<review_List.size(); i++)
-				{
-					ReviewVO vo1 =(ReviewVO)review_List.get(i);
-				
-			%>
-			<tr>
-				<td><%= i+1 %></td>
-				<td><a href="reviewInfo.re?review_num=<%=vo1.getReview_num()%>"><%=vo1.getPhoto1() %></a></td>
-				<td><%=vo1.getStar() %></td>
-				<td><a href="reviewInfo.re?review_num=<%=vo1.getReview_num()%>"><%=vo1.getTitle() %></a></td>
-			<%} %>
-			</tr>
-			</table>
-		</tr>
-	</table>
-	
-	<div id="map" style="width:800px;height:400px;"></div>
+   <table border="1" align=center>
+   <tr>
+      <td rowspan=5>${storeVO.getThumbnail()}</td>
+      <td>${storeVO.getS_addr()}</td>
+   </tr>
+   <tr>
+      <td>${storeVO.getS_phone()}</td>
+   </tr>
+   <tr>
+      <td>${storeVO.getS_hour()}</td>
+   </tr>
+   <tr>
+      <td>${storeVO.getDelibery()}</td>
+   </tr>
+   </table>
+   
+    <table align=center>
+      <tr>
+         <%
+            for(int i=0; i<menu_List.size(); i++)
+            {
+               MenuVO vo =(MenuVO)menu_List.get(i);
+            
+         %>
+         <tr>
+         <td><%=vo.getImg() %></td>
+         <td><%=vo.getMenu_name() %></td>
+         <td><%=vo.getGram() %></td>
+         <td><%=vo.getGrade() %></td>
+         <td><%=vo.getPrice() %></td>
+         <td>
+         </tr>
+         <%} %>
+      </tr>
+      
+      <tr>
+         <table border=1 align=center>
+         <tr>
+         <%
+            for(int i=0; i<review_List.size(); i++)
+            {
+               ReviewVO vo1 =(ReviewVO)review_List.get(i);
+            
+         %>
+         <td><%=vo1.getPhoto1() %></td>
+         <td><%=vo1.getStar() %></td>
+         <td><%=vo1.getTitle() %>
+         <%} %>
+         </tr>
+         </table>
+      </tr>
+   </table>
+   
+   <div id="map" style="width:800px;height:400px;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=241b4077cebf45bee1ed06d47263650b&libraries=services"></script>
 <script>
@@ -171,7 +153,7 @@ geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
         <i class="fa fa-comments fa-fw"></i> Reply
       </div> -->  
       
-	  <div class="panel-heading">
+     <div class="panel-heading">
        <i class="fa fa-comments fa-fw"></i> 가게문의
         <button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>가게 문의 등록</button>
       </div>   
@@ -181,17 +163,17 @@ geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
       <div class="panel-body">        
       
         <ul class="chat">
-			<!-- start reply -->
-			<li class="left clearfix" data-rno='1'>
-				<div>
-					<div class="header">
-						<strong class="primary-font">user00</strong>
-						<small class="pull-right text-muted">2018-01-01 13:13</small>
-					</div>
-					<p>Good job!</p>
-				</div>
-			</li>
-			<!-- end reply -->
+         <!-- start reply -->
+         <li class="left clearfix" data-rno='1'>
+            <div>
+               <div class="header">
+                  <strong class="primary-font">user00</strong>
+                  <small class="pull-right text-muted">2018-01-01 13:13</small>
+               </div>
+               <p>Good job!</p>
+            </div>
+         </li>
+         <!-- end reply -->
         </ul>
         <!-- ./ end ul -->
       </div>
@@ -240,90 +222,90 @@ geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
 
 <script>
 $(document).ready(function (){
-	var s_numValue = '<c:out value="${storeVO.getS_num()}"/>';
-	var replyUL = $(".chat");
-		
-		showList(1);
-		
-		function showList(page) {
-			qnaService.getList({s_num:s_numValue}, function(list){
-				
-				var str="";
-				if(list == null || list.length == 0) {
-					replyUL.html("");
-				}
-				for (var i=0,len = list.length || 0; i < len; i++) {
-					str +="<li class='left clearfix' data-rno='"+list[i].qs_num+"'>";
-					str +="		<div><div class='header'><strong class='primary-font'>"+list[i].u_id+"</strong>";
-					str +="			<small class='pull-right text-muted'>"+qnaService.displayTime(list[i].qna_date)+"</small></div>";
-					str +="				<p>"+list[i].content+"</p></div></li>"
-				}
-					replyUL.html(str);
-			})
-		}
-		
-		var modal = $(".modal");
-		var modalInputContent = modal.find("input[name='content']");
-		var modalInputU_id = modal.find("input[name='u_id']");
-		var modalInputQna_date = modal.find("input[name='qna_date']");
-		
-		var modalModBtn = $("#modalModBtn");
-		var modalRemoveBtn = $("#modalRemoveBtn");
-		var modalRegisterBtn = $("#modalRegisterBtn");
-		
-		$("#addReplyBtn").on("click", function(e){
-			modal.find("input").val("");
-			modalInputQna_date.closest("div").hide();
-			modal.find("button[id !='modalCloseBtn']").hide();
-			
-			modalRegisterBtn.show();
-			
-			$(".modal").modal("show");
-		});
-	
-		
-});	
-	
+   var s_numValue = '<c:out value="${storeVO.getS_num()}"/>';
+   var replyUL = $(".chat");
+      
+      showList(1);
+      
+      function showList(page) {
+         qnaService.getList({s_num:s_numValue}, function(list){
+            
+            var str="";
+            if(list == null || list.length == 0) {
+               replyUL.html("");
+            }
+            for (var i=0,len = list.length || 0; i < len; i++) {
+               str +="<li class='left clearfix' data-rno='"+list[i].qs_num+"'>";
+               str +="      <div><div class='header'><strong class='primary-font'>"+list[i].u_id+"</strong>";
+               str +="         <small class='pull-right text-muted'>"+qnaService.displayTime(list[i].qna_date)+"</small></div>";
+               str +="            <p>"+list[i].content+"</p></div></li>"
+            }
+               replyUL.html(str);
+         })
+      }
+      
+      var modal = $(".modal");
+      var modalInputContent = modal.find("input[name='content']");
+      var modalInputU_id = modal.find("input[name='u_id']");
+      var modalInputQna_date = modal.find("input[name='qna_date']");
+      
+      var modalModBtn = $("#modalModBtn");
+      var modalRemoveBtn = $("#modalRemoveBtn");
+      var modalRegisterBtn = $("#modalRegisterBtn");
+      
+      $("#addReplyBtn").on("click", function(e){
+         modal.find("input").val("");
+         modalInputQna_date.closest("div").hide();
+         modal.find("button[id !='modalCloseBtn']").hide();
+         
+         modalRegisterBtn.show();
+         
+         $(".modal").modal("show");
+      });
+   
+      
+});   
+   
 
 /* var s_numValue = '<c:out value="${storeVO.getS_num()}"/>';
  qnaService.add(
-		{s_num:s_numValue,u_id:"user01" ,title:"하위1",content:"하위12"} 
-	,
-	function(result) {
-		alert("RESULT: "+result);
-	}
+      {s_num:s_numValue,u_id:"user01" ,title:"하위1",content:"하위12"} 
+   ,
+   function(result) {
+      alert("RESULT: "+result);
+   }
 );   */
 
-/* 	qnaService.getList({s_num:s_numValue}, function(list){
-			
-		for(var i =0, len=list.length||0; i<len; i++) {
-			console.log(list[i]);
-		}
-	}); */
-/*    	qnaService.remove(22,function(count){
-		console.log(count);
-		
-		if(count === "success") {
-			alert("REMOVED");
-		}
-	}, function(err) {
-		alert("ERROR...");
-	});  */ 
-	
-/*     	qnaService.update({
-		qs_num : 1,
-		s_num : s_numValue,
-		title : "하이용",
-		content : "히이"
-	}, function(result) {
-		alert("수정 완료");
-	
-	});  */
-	
-/* 	qnaService.get(1, function(data){
-		alert("되나요");
-	}); */
-	
+/*    qnaService.getList({s_num:s_numValue}, function(list){
+         
+      for(var i =0, len=list.length||0; i<len; i++) {
+         console.log(list[i]);
+      }
+   }); */
+/*       qnaService.remove(22,function(count){
+      console.log(count);
+      
+      if(count === "success") {
+         alert("REMOVED");
+      }
+   }, function(err) {
+      alert("ERROR...");
+   });  */ 
+   
+/*        qnaService.update({
+      qs_num : 1,
+      s_num : s_numValue,
+      title : "하이용",
+      content : "히이"
+   }, function(result) {
+      alert("수정 완료");
+   
+   });  */
+   
+/*    qnaService.get(1, function(data){
+      alert("되나요");
+   }); */
+   
 </script>
 
 
