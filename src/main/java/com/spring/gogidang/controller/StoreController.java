@@ -55,7 +55,7 @@ public class StoreController {
 	public String getStoreWait(Model model) {
 		ArrayList<StoreVO> storeList = storeService.getWaitList();
 		model.addAttribute("storeList", storeList);
-
+		
 		return "store/store_wait";
 	}
 

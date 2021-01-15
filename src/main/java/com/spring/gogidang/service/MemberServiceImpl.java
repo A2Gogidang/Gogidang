@@ -38,4 +38,10 @@ public class MemberServiceImpl implements MemberService {
 		return res;
 	}
 
+	@Override
+	public int checkId(String u_id) {
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		return memberMapper.checkId(u_id);
+	}
+
 }
