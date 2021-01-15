@@ -34,7 +34,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public List<ReviewVO> getSnumList(Criteria cri, String s_num) {
+	public List<ReviewVO> getSnumList(Criteria cri, int s_num) {
 		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
 		
 		int pageNum = cri.getPageNum();
