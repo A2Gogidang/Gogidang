@@ -20,6 +20,7 @@
 <body>	
 <header><h3><%=u_id %> 로 로그인하셨습니다.</h3></header>
 	<%
+	
 	if (mvo.getU_id() == "" || mvo.getU_id() == null) {	
 	%>
 	<h2><a href="./loginForm.me">로그인</a></h2>
