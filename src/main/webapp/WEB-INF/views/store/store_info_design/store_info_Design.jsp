@@ -36,6 +36,17 @@
         <link rel="stylesheet" href="resources/css/DetailStore.css" type="text/css">
         <link rel="stylesheet" href="resources/css/style.css" type="text/css">
 
+
+	<script>
+    jQuery(document).ready(function($) {
+
+    	$(".scroll").click(function(event){            
+    	        event.preventDefault();
+    	        $('html,body').animate({scrollTop:$(this.hash).offset().top}, 900); //속도조절 900으로 맞춤
+    	});
+    	});
+    	//부드러운 스크롤링 jquery
+	</script>
     </head>
     <body>
             <!-- 3.Header Section Begin -->
@@ -157,9 +168,10 @@
             <div class="hero__item__box2"></div>
                     <div class="EventNav">
                         <ul>
-                            <li><a href="#">추천리뷰</a></li>
-                            <li><a href="#">위치</a>
-                            <li><a href="#">문의</a></li>
+                             <li><a href="#">가격정보</a>
+                            <li><a href="#BestReview" class="scroll">추천리뷰</a></li>
+                            <li><a href="#locationNav_s" class="scroll">가게위치</a></li>
+                            <li><a href="#Qna_s" class="scroll">문의</a></li>
                         </ul>
                     </div>   
             </div>   
@@ -212,6 +224,7 @@
         </div>
     </div>
     <section class="page-section BestReview" id="BestReview">
+    <br>
         <div class="container">
             <!-- Portfolio Section Heading-->
             <h2 class="page-section-heading" style="margin-top: 100px;display: flex; justify-content: center;">추천리뷰</h2>
@@ -221,7 +234,7 @@
             </div>
             <!-- Portfolio Grid Items-->
             <div class="row justify-content-center" style="margin-top: 50px;">
-                <!-- Portfolio Item 1-->
+                <!-- Item 1-->
                 <div class="col-md-6 col-lg-4 mb-5">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal1">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
@@ -230,7 +243,7 @@
                         <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview1.png" alt="" />
                     </div>
                 </div>
-                <!-- Portfolio Item 2-->
+                <!-- Item 2-->
                 <div class="col-md-6 col-lg-4 mb-5">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal2">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
@@ -239,7 +252,7 @@
                         <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview2.png" alt="" />
                     </div>
                 </div>
-                <!-- Portfolio Item 3-->
+                <!-- Item 3-->
                 <div class="col-md-6 col-lg-4 mb-5">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal3">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
@@ -248,7 +261,7 @@
                         <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview3.png" alt="" />
                     </div>
                 </div>
-                <!-- Portfolio Item 4-->
+                <!-- Item 4-->
                 <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal4">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
@@ -257,7 +270,7 @@
                         <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview4.png" alt="" />
                     </div>
                 </div>
-                <!-- Portfolio Item 5-->
+                <!-- Item 5-->
                 <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal5">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
@@ -266,7 +279,7 @@
                         <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview5.png" alt="" />
                     </div>
                 </div>
-                <!-- Portfolio Item 6-->
+                <!-- Item 6-->
                 <div class="col-md-6 col-lg-4">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal6">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
@@ -281,6 +294,8 @@
 <div class="locationNav"style="margin-bottom: 20px; margin-top: 100px; display: flex; justify-content: center; align-items: center; ">
     <h2 class="page-section-heading">위치</h2>
 </div>
+<section id="locationNav_s">
+<br>
 <div class="location">
     <img src="resources/img/DetailStoreImg/Location/location.png">
     <img src="resources/img/DetailStoreImg/Location/loc1.png">
@@ -304,7 +319,10 @@
     <p>B66 점포번호를 확인해주세요</p>
     <p>정육 백화점이 보입니다.</p>
 </div>
+</section>
 <h2 class="page-section-heading" style="margin-top: 100px;display: flex; justify-content: center;">문의</h2>
+<section id="Qna_s">
+<br>
 <div class="CsCenterCon">
     <button class="CsInsert_btn" style="background-color: #016301;">가게문의 작성</button>
         <a href="#"><div class="CsMainText1">
@@ -343,7 +361,7 @@
         </div>
     </div>
         </div>
-    </div>
+   	</section>
     <div class="btnTotal">
         <button type="button" class="btn btn-primary btn-lg btn-block" style="background-color:#016301;font-size: 15px;">전체보기</button>
         <div class="EventNav">
@@ -354,6 +372,7 @@
             </ul>
         </div>   
 </div>
+<a style="display:scroll;position:fixed;bottom:10px;right:5px;" href="#" title=”top">TOP</a> 
       
     
   <!-- Footer Section Begin -->
