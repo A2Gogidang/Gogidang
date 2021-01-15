@@ -13,7 +13,7 @@ public class ReviewVO {
 	
 	private int review_num;
 	private String u_id;
-	private String s_num;
+	private int s_num;
 	private String title;
 	private String nickname;
 	private String content;
