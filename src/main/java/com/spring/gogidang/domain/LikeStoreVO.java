@@ -1,8 +1,19 @@
 package com.spring.gogidang.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class LikeStoreVO {
 	private int like_num;
 	private int s_num;
+<<<<<<< HEAD
+=======
+	
+>>>>>>> e2f76e0d6d11d780b99ca425c362b062a150b092
 	private String u_id;
 	public String s_name;
 	public String thumbnail;
@@ -10,6 +21,7 @@ public class LikeStoreVO {
 	public String s_phone;
 	public String s_hour;
 	
+<<<<<<< HEAD
 	public int getLike_num() {
 		return like_num;
 	}
@@ -58,4 +70,6 @@ public class LikeStoreVO {
 	public void setS_hour(String s_hour) {
 		this.s_hour = s_hour;
 	}
+=======
+>>>>>>> e2f76e0d6d11d780b99ca425c362b062a150b092
 }

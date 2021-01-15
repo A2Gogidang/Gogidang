@@ -2,6 +2,7 @@ package com.spring.gogidang.controller;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -44,10 +45,10 @@ public class MemberController {
 	private ReviewService reviewService;
 
 	@RequestMapping("/main.me") 
-	public String mainPage(Model model) throws Exception { 
+	public String mainPage(Criteria cri, Model model) throws Exception { 
 		ArrayList<EventVO> event_list = eventService.getEventList();
-		ArrayList<StoreVO> store_list = storeService.getStoreList();
-		ArrayList<ReviewVO> review_list = reviewService.getReviewList();
+		ArrayList<StoreVO> store_list = storeService.getList();
+		List<ReviewVO> review_list = reviewService.getList(cri);
 		model.addAttribute("event_list", event_list);
 		model.addAttribute("store_list", store_list);
 		model.addAttribute("review_list", review_list);
@@ -67,25 +68,6 @@ public class MemberController {
 		return "member/joinForm";
 	}
 	
-	@RequestMapping("/updateForm.me")
-	public ModelAndView updateForm(MemberVO memberVO) throws Exception{
-		MemberVO result = memberService.selectMember(memberVO);
-	
-		ModelAndView mov= new ModelAndView();
-		mov.addObject("result", result);
-		mov.setViewName("mypage/updateForm");
-		
-		return mov;
-	}
-	
-	@RequestMapping("/memberInfo.me")
-	public String memberInfo(MemberVO memberVO, Model model) throws Exception {
-		MemberVO vo = memberService.selectMember(memberVO);
-		model.addAttribute("memberVO", vo);
-		
-		
-		return "mypage/member_info";
-	}
 	
 	@RequestMapping("/login.me") 
 	public String userCheck(MemberVO memberVO, HttpSession session, HttpServletResponse response) throws Exception { 
@@ -99,6 +81,14 @@ public class MemberController {
 		if ( vo != null && vo.getU_id() != null ) {
 			
 			session.setAttribute("MemberVO",vo);
+			
+			if(vo.getSeller_key() == 1 ) {
+				
+				StoreVO storevo = new StoreVO();
+				storevo.setU_id(vo.getU_id());
+				StoreVO vo1 = storeService.selectStore(storevo);
+				session.setAttribute("StoreVO", vo1);
+			}
 			writer.write("<script>alert('로그인 성공!');location.href='./main.me';</script>");
 		}else {
 			writer.write("<script>alert('로그인 실패!');location.href='./loginForm.me';</script>");
@@ -146,6 +136,21 @@ public class MemberController {
 		}
 		return null;
    }
+	
+	//soobin start
+	@RequestMapping("/updateForm.me")
+	public String updateForm(MemberVO memberVO) throws Exception{
+		
+		return "member/updateForm";
+	}
+	
+	@RequestMapping("/updateList.me")
+	public String updateList() throws Exception{
+		
+		return "member/updateList";
+	}
+	
+	//soobin end
 }
 
 

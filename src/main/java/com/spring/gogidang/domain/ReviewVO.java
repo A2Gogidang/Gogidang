@@ -1,6 +1,16 @@
 package com.spring.gogidang.domain;
 
+import java.util.Date;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ReviewVO {
+	
 	private int review_num;
 	private String u_id;
 	private int s_num;
@@ -11,10 +21,10 @@ public class ReviewVO {
 	private String photo1;
 	private String photo2;
 	private String photo3;
-	private String re_date;
-	private int hit;
+	private Date review_date;
 	private String s_name;
 	
+<<<<<<< HEAD
 	public int getReview_num() {
 		return review_num;
 	}
@@ -96,4 +106,6 @@ public class ReviewVO {
 	
 	
 
+=======
+>>>>>>> e2f76e0d6d11d780b99ca425c362b062a150b092
 }

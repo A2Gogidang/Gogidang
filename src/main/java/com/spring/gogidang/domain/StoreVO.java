@@ -1,5 +1,12 @@
 package com.spring.gogidang.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class StoreVO {
 	private int s_num;
 	private String u_id;
@@ -12,16 +19,15 @@ public class StoreVO {
 	private int delibery;
 	private int confirm;
 	
-	/* menu column*
-	 * private int menu_num; 
+	/* menu column*/
+	private int menu_num; 
 	private int meat;
 	private String menu_name;
 	private String price;
 	private String img;
 	private int grade;
-	private int gram;
-	*/
 	
+<<<<<<< HEAD
 	public int getS_num() {
 		return s_num;
 	}
@@ -82,4 +88,6 @@ public class StoreVO {
 	public void setConfirm(int confirm) {
 		this.confirm = confirm;
 	}
+=======
+>>>>>>> e2f76e0d6d11d780b99ca425c362b062a150b092
 }

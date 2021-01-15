@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.sql.*" %>
@@ -35,11 +36,18 @@
 	String u_id=(String)membervo.getU_id();
 	%>
 
+=======
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="com.spring.gogidang.domain.*" %>
+<%@ page import="java.util.*" %>
+>>>>>>> e2f76e0d6d11d780b99ca425c362b062a150b092
 <%
+	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
 	ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>)request.getAttribute("menuList");
 	ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>)request.getAttribute("reviewList");
-	
 %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -47,7 +55,11 @@
 
 </head>
 <body>
+<<<<<<< HEAD
 
+=======
+	<a href="./review_reg.re?s_num=${storeVO.getS_num() }">가게 리뷰작성</a>
+>>>>>>> e2f76e0d6d11d780b99ca425c362b062a150b092
 	<table border="1" align=center>
 	<tr>
 		<td rowspan=5>${storeVO.getThumbnail()}</td>
@@ -78,7 +90,6 @@
 			<td><%=vo.getGram() %></td>
 			<td><%=vo.getGrade() %></td>
 			<td><%=vo.getPrice() %></td>
-			<td>
 			</tr>
 			<%} %>
 		</tr>
@@ -86,15 +97,22 @@
 		<tr>
 			<table border=1 align=center>
 			<tr>
+				<td>번호</td>
+				<td>사진</td>
+				<td>별점</td>
+				<td>제목</td>
+			</tr>
 			<%
 				for(int i=0; i<review_List.size(); i++)
 				{
 					ReviewVO vo1 =(ReviewVO)review_List.get(i);
 				
 			%>
-			<td><%=vo1.getPhoto1() %></td>
-			<td><%=vo1.getStar() %></td>
-			<td><%=vo1.getTitle() %>
+			<tr>
+				<td><%= i+1 %></td>
+				<td><a href="reviewInfo.re?review_num=<%=vo1.getReview_num()%>"><%=vo1.getPhoto1() %></a></td>
+				<td><%=vo1.getStar() %></td>
+				<td><a href="reviewInfo.re?review_num=<%=vo1.getReview_num()%>"><%=vo1.getTitle() %></a></td>
 			<%} %>
 			</tr>
 			</table>

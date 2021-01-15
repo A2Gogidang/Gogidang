@@ -2,6 +2,13 @@ package com.spring.gogidang.domain;
 
 import java.sql.Date;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class BookingVO {
 	private String booking_num;
 	private String u_id;
@@ -15,6 +22,7 @@ public class BookingVO {
 	private Date b_date;
 	private String s_name;
 	
+<<<<<<< HEAD
 	public String getBooking_num() {
 		return booking_num;
 	}
@@ -83,4 +91,6 @@ public class BookingVO {
 	}
 	
 	
+=======
+>>>>>>> e2f76e0d6d11d780b99ca425c362b062a150b092
 }
