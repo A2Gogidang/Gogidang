@@ -47,6 +47,7 @@ public class StoreController {
 		ArrayList<StoreVO> storeList = storeService.getStoreList();
 		model.addAttribute("storeList", storeList);
 		
+		System.out.println("스토어 리스트 in");
 		return "store/store_list";
 	}
 	
