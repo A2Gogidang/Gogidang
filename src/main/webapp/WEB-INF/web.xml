@@ -35,6 +35,7 @@
 		<url-pattern>*.qn</url-pattern>
 		<url-pattern>*.re</url-pattern>
 		<url-pattern>*.st</url-pattern>
+		<url-pattern>*.qs</url-pattern>
 	</servlet-mapping>
 	
 	<welcome-file-list>

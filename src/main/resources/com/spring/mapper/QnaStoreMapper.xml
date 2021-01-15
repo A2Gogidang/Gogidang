@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+<mapper namespace="com.spring.mapper.QnaStoreMapper">
+	
+	<insert id="insert">
+		insert into qna_store (qs_num,u_id,s_num,title,content)
+		values (seq_qna_store.nextval, #{u_id},#{s_num},#{title},#{content})
+	</insert>
+	
+	<select id="read" resultType="QnaStoreVO">
+		select * from qna_store where qs_num = #{qs_num}
+	</select>
+	
+	<delete id="delete">
+		delete from qna_store where qs_num = #{qs_num}
+	</delete>
+	
+	<update id="update">
+		update qna_store set title=#{title},content = #{content},qna_updatedate = sysdate where qs_num = #{qs_num}
+	</update>
+	
+ 	<select id="getListWithS_num" resultType="QnaStoreVO">
+		select qs_num,u_id,s_num,title,content,qna_date,qna_updatedate
+		from qna_store
+		where s_num = #{s_num}
+		order by qs_num asc
+	</select>  
+
+</mapper>
