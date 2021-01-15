@@ -20,6 +20,7 @@ public class StoreVO {
 	private String img;
 	private int grade;
 	private int gram;
+	
 	public String getS_num() {
 		return s_num;
 	}
@@ -121,6 +122,12 @@ public class StoreVO {
 	}
 	public void setGram(int gram) {
 		this.gram = gram;
+	}
+	@Override
+	public String toString() {
+		return "StoreVO [s_num=" + s_num + ", u_id=" + u_id + ", thumbnail=" + thumbnail + ", s_name=" + s_name
+				+ ", s_addr=" + s_addr + ", s_phone=" + s_phone + ", s_img=" + s_img + ", s_hour=" + s_hour
+				+ ", delibery=" + delibery + ", confirm=" + confirm + "]";
 	}
 	
 	

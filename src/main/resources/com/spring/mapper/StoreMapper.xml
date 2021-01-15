@@ -3,14 +3,14 @@
 	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	 
 <mapper namespace="com.spring.mapper.StoreMapper">
-	<insert id="storeReg" parameterType="StoreVO">
-		insert into shop_reg values (#{s_num}, #{u_id}, #{thumbnail},  #{s_name}, #{s_addr}, #{s_phone}, #{s_img}, #{s_hour}, #{delibery},  #{confirm})
-	</insert>
-	
-	<!-- <select id="getStoreList" resultType="StoreVO">
-		select * from shop_reg
-	</select>
-	 -->
+	<!-- taehyun start -->
+ 	<select id="getList" resultType="StoreVO">
+ 		select * from shop_reg where confirm=1
+ 	</select>
+ 	
+ 	<select id="getWaitList" resultType="StoreVO">
+ 		select * from shop_reg where confirm=0
+ 	</select>
 	 
 	<update id="confirmStore" parameterType="StoreVO">
 		UPDATE shop_reg SET confirm=1 WHERE s_num=#{s_num}
@@ -27,20 +27,21 @@
 	<select id="checkStore" parameterType="StoreVO" resultType="int">
 		SELECT count(*) FROM shop_reg WHERE u_id=#{u_id}
 	</select>
+	<!-- taehyun End -->
 
 	<!-- soobin start -->
 	<insert id="insertStore" parameterType="StoreVO" >
       	INSERT INTO shop_reg 
-     	VALUES ( #{s_num,jdbcType=VARCHAR}
-			 	,#{u_id,jdbcType=VARCHAR}
-				,#{thumbnail,jdbcType=VARCHAR}
-			 	,#{s_name,jdbcType=VARCHAR}
-				,#{s_addr,jdbcType=VARCHAR}
-			 	,#{s_phone,jdbcType=VARCHAR}
-			 	,#{s_img,jdbcType=VARCHAR}
-			 	,#{s_hour,jdbcType=VARCHAR}
-			 	,#{delibery,jdbcType=INTEGER}
-			 	,#{confirm,jdbcType=INTEGER}
+     	VALUES ( #{s_num}
+			 	,#{u_id}
+				,#{thumbnail}
+			 	,#{s_name}
+				,#{s_addr}
+			 	,#{s_phone}
+			 	,#{s_img}
+			 	,#{s_hour}
+			 	,#{delibery}
+			 	,#{confirm}
 			 	)
 	</insert>	 
 	 
@@ -52,16 +53,16 @@
 	
 	<update id="updateStore" parameterType="StoreVO" >
  	  	UPDATE shop_reg 
- 	  	SET  s_name=#{s_name,jdbcType=VARCHAR}
- 	 	 	,s_addr=#{s_addr,jdbcType=VARCHAR}
- 	  	 	,s_phone=#{s_phone,jdbcType=VARCHAR}
- 	  	 	,s_hour =#{s_hour ,jdbcType=VARCHAR}
- 	  	 	,delibery=#{delibery,jdbcType=VARCHAR}
- 	  	where u_id=#{u_id,jdbcType=VARCHAR}
+ 	  	SET  s_name=#{s_name}
+ 	 	 	,s_addr=#{s_addr}
+ 	  	 	,s_phone=#{s_phone}
+ 	  	 	,s_hour=#{s_hour}
+ 	  	 	,delibery=#{delibery}
+ 	  	where u_id=#{u_id}
  	</update>
+ 	<!-- soobin end -->
  	
- 	
-<!-- dohyeong start -->
+	<!-- dohyeong start -->
 	<select id="getStoreList"  resultType="StoreVO">
 		select distinct * from menu_reg mr inner join shop_reg sr on mr.s_num=sr.s_num
  	</select>
@@ -73,7 +74,6 @@
 			#{item}
 		</foreach>
 	</select>
-	
-<!-- dohyeong end -->
+	<!-- dohyeong end -->
 
 </mapper>

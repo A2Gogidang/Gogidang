@@ -47,7 +47,7 @@ public class MemberController {
 	@RequestMapping("/main.me") 
 	public String mainPage(Criteria cri, Model model) throws Exception { 
 		ArrayList<EventVO> event_list = eventService.getEventList();
-		ArrayList<StoreVO> store_list = storeService.getStoreList();
+		ArrayList<StoreVO> store_list = storeService.getList();
 		List<ReviewVO> review_list = reviewService.getList(cri);
 		model.addAttribute("event_list", event_list);
 		model.addAttribute("store_list", store_list);
@@ -81,6 +81,14 @@ public class MemberController {
 		if ( vo != null && vo.getU_id() != null ) {
 			
 			session.setAttribute("MemberVO",vo);
+			
+			if(vo.getSeller_key() == 1 ) {
+				
+				StoreVO storevo = new StoreVO();
+				storevo.setU_id(vo.getU_id());
+				StoreVO vo1 = storeService.selectStore(storevo);
+				session.setAttribute("StoreVO", vo1);
+			}
 			writer.write("<script>alert('로그인 성공!');location.href='./main.me';</script>");
 		}else {
 			writer.write("<script>alert('로그인 실패!');location.href='./loginForm.me';</script>");
@@ -135,6 +143,13 @@ public class MemberController {
 		
 		return "member/updateForm";
 	}
+	
+	@RequestMapping("/updateList.me")
+	public String updateList() throws Exception{
+		
+		return "member/updateList";
+	}
+	
 	//soobin end
 }
 
