@@ -198,7 +198,8 @@
 	</tr>
 	<tr>
 	<td>사업자등록번호  : </td>
-	<%if( vo == null || vo.getS_num() == 0){ %>
+
+	<%if( vo == null || vo.getS_num() == 0 ){ %>
 	<td><input type="text" name="s_num" /></td>
 	<%}else{ %>
 	<td><span type="text" name="s_num"  value="<%=vo.getS_num() %>"/><%=vo.getS_num() %></td>
@@ -251,9 +252,18 @@
 	</tr>
 	<tr>
 		<td colspan="2" align=center>
+<<<<<<< HEAD
 	<%if( vo == null || vo.getS_num() == 0){ %>
+=======
+<<<<<<< HEAD
+	<%if( vo == null || vo.getS_num() == 0 ){ %>
+			<a href="javascript:storeform.submit()">저장</a>&nbsp;&nbsp;
+=======
+	<%if( vo == null || vo.getS_num() == null || vo.getS_num() == ""){ %>
+>>>>>>> c6ad1a86f7ad9d9293ea93d7ea9ea8fd75c6c28b
 			<a href="javascript:storeform.submit()">저장</a>
 			<a href="javascript:storeform.reset()">다시작성</a>
+>>>>>>> e2f76e0d6d11d780b99ca425c362b062a150b092
 	<%}else{ %>
 			<a href="./storeUpdateForm.st">수정</a>
 	<%}%>
