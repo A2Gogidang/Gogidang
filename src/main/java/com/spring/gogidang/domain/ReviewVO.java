@@ -1,6 +1,7 @@
 package com.spring.gogidang.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,4 +25,5 @@ public class ReviewVO {
 	private Date review_date;
 	private String s_name;
 	
+	private List<ReviewAttachVO> attachList;
 }

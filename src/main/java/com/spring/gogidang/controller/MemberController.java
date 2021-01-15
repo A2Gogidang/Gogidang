@@ -8,9 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.gogidang.domain.*;
@@ -151,6 +157,14 @@ public class MemberController {
 	}
 	
 	//soobin end
+
+	@RequestMapping(value = "/checkId.li", method = RequestMethod.POST)
+	public @ResponseBody int checkId(String u_id) {
+		System.out.println("con" + u_id);
+		int res = memberService.checkId(u_id);
+		System.out.println(res);
+		return res;
+	}
 }
 
 
