@@ -4,17 +4,17 @@
 <%@ page import = "com.spring.gogidang.domain.*" %>
 <%@ page import="java.util.ArrayList"%>
 
-
-<%
-	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
+<!-- MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
 	String id = mvo.getU_id();
-	int seller_key = mvo.getSeller_key();
+	int seller_key = mvo.getSeller_key(); -->
+<%
+	
 	
 	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
 %>
 <!DOCTYPE html>
 <html>
-
+<head>
 	<meta charset="utf-8">
 	<meta name="description" content="Ogani Template">
     <meta name="keywords" content="Ogani, unica, creative, html">

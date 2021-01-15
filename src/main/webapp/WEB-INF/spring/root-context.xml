@@ -23,6 +23,7 @@
    <property name="username" value="scott"/>
    <property name="password" value="123456"/>
    </bean>  
+
  
    <!-- sqlSession 객체 생성 -->
    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
