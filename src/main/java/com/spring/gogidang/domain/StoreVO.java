@@ -1,7 +1,7 @@
 package com.spring.gogidang.domain;
 
 public class StoreVO {
-	private String s_num;
+	private int s_num;
 	private String u_id;
 	private String thumbnail;
 	private String s_name;
@@ -22,10 +22,10 @@ public class StoreVO {
 	private int gram;
 	*/
 	
-	public String getS_num() {
+	public int getS_num() {
 		return s_num;
 	}
-	public void setS_num(String s_num) {
+	public void setS_num(int s_num) {
 		this.s_num = s_num;
 	}
 	public String getU_id() {

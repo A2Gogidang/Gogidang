@@ -66,7 +66,7 @@ public class StoreController {
 		System.out.println(reviewList.size());
 		
 		
-		return "store/store_Info";
+		return "store/store_info";
 	}
 	
 	/*
@@ -98,7 +98,7 @@ public class StoreController {
 		StoreVO vo1 = storeService.selectStore(store);
 		
 		// 가게등록이 안되어있을경우
-		if ( vo1 == null || vo1.getS_num() == null || vo1.getS_num() == "") {
+		if ( vo1 == null || vo1.getS_num() == 0 ) {
 			
 			store.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
 			store.setConfirm(0); //처음 등록할때 미승인 상태로 띄워야하기때문에 insert전 데이터 넣어줌

@@ -3,10 +3,7 @@
 	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	 
 <mapper namespace="com.spring.mapper.StoreMapper">
-	<insert id="storeReg" parameterType="StoreVO">
-		insert into shop_reg values (#{s_num}, #{u_id}, #{thumbnail},  #{s_name}, #{s_addr}, #{s_phone}, #{s_img}, #{s_hour}, #{delibery},  #{confirm})
-	</insert>
-	
+
 	<select id="getStoreList" resultType="StoreVO">
 		select * from shop_reg
 	</select>
@@ -30,7 +27,7 @@
 	<!-- soobin start -->
 	<insert id="insertStore" parameterType="StoreVO" >
       	INSERT INTO shop_reg 
-     	VALUES ( #{s_num,jdbcType=VARCHAR}
+     	VALUES ( #{s_num,jdbcType=INTEGER}
 			 	,#{u_id,jdbcType=VARCHAR}
 				,#{thumbnail,jdbcType=VARCHAR}
 			 	,#{s_name,jdbcType=VARCHAR}

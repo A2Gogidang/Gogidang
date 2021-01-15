@@ -5,7 +5,7 @@ import java.sql.Date;
 public class BookingVO {
 	private String booking_num;
 	private String u_id;
-	private String s_num;
+	private int s_num;
 	private String time;
 	private int head_count;
 	private int table_charge;
@@ -27,10 +27,10 @@ public class BookingVO {
 	public void setU_id(String u_id) {
 		this.u_id = u_id;
 	}
-	public String getS_num() {
+	public int getS_num() {
 		return s_num;
 	}
-	public void setS_num(String s_num) {
+	public void setS_num(int s_num) {
 		this.s_num = s_num;
 	}
 	public String getTime() {

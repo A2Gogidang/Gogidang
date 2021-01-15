@@ -2,7 +2,7 @@ package com.spring.gogidang.domain;
 
 public class LikeStoreVO {
 	private int like_num;
-	private String s_num;
+	private int s_num;
 	private String u_id;
 	public String s_name;
 	public String thumbnail;
@@ -16,10 +16,10 @@ public class LikeStoreVO {
 	public void setLike_num(int like_num) {
 		this.like_num = like_num;
 	}
-	public String getS_num() {
+	public int getS_num() {
 		return s_num;
 	}
-	public void setS_num(String s_num) {
+	public void setS_num(int s_num) {
 		this.s_num = s_num;
 	}
 	public String getU_id() {
