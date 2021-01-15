@@ -14,15 +14,7 @@
    <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
    <property name="username" value="gogidang"/>
    <property name="password" value="gogidang"/>
-   </bean> -->
-   
-<!--     <bean id="dataSource"
-   class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-   <property name="driverClass" value="oracle.jdbc.OracleDriver"/>
-   <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-   <property name="username" value="system"/>
-   <property name="password" value="oracle"/>
-   </bean> -->
+   </bean>-->
 
  	<bean id="dataSource"
    class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
@@ -30,7 +22,7 @@
    <property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
    <property name="username" value="scott"/>
    <property name="password" value="123456"/>
-   </bean>
+   </bean>  
 
 
  
