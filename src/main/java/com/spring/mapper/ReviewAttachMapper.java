@@ -6,7 +6,8 @@ import com.spring.gogidang.domain.ReviewAttachVO;
 
 public interface ReviewAttachMapper {
 	
-	public void inert(ReviewAttachVO vo);
+	public void insert(ReviewAttachVO vo);
+	public void update(ReviewAttachVO vo);
 	public void delete(String uuid);
-	public List<ReviewAttachVO> findByNum(int review_num);
+	public ReviewAttachVO findByNum(int review_num);
 }

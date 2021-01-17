@@ -31,6 +31,9 @@ public class ReviewController {
 	@Autowired
 	private StoreService storeService;
 	
+	@Autowired
+	private ReviewAttachService reviewAttachService;
+	
 	@GetMapping("/reviewList.re")
 	public String reviewList(Criteria cri, Model model) {
 		
@@ -60,13 +63,22 @@ public class ReviewController {
 		return "redirect:/reviewList.re";
 	}
 	
+	@RequestMapping("/review_photo_reg.re")
+	public String review_photo_reg(StoreVO store, Model model) {
+		StoreVO svo = storeService.storeInfo(store);
+		
+		model.addAttribute("svo", svo);
+		return "review/review_reg_ajax";
+		
+	}
+	
 	@RequestMapping("/review_reg.re")
 	public String review_reg(StoreVO store, Model model, HttpSession session) {
 		
 		StoreVO svo = storeService.storeInfo(store);
 		
 		model.addAttribute("svo", svo);
-		return "review/review_reg";
+		return "review/review_reg_ajax";
 	}
 	
 	@RequestMapping("/reviewModify.re")
@@ -98,6 +110,7 @@ public class ReviewController {
 	@RequestMapping("/reviewInfo.re")
 	public String reviewInfo(@RequestParam("review_num") int review_num, Model model) {
 		model.addAttribute("review", reviewService.getReview(review_num));
+		model.addAttribute("img", reviewAttachService.getImg(review_num));
 		
 		return "/review/review_info";
 	}
