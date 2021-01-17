@@ -19,7 +19,7 @@
                     </td>
                 </tr>
                 <tr>
-                	<td><img src="/Users/taehyun/Documents/Spring_Source/Gogidang/src/main/webapp/resources/upload/<%=ravo.getUploadPath() %>/<%=ravo.getUuid() %>_<%=ravo.getFileName() %>">
+                	<td><img src="resources/img/<%=ravo.getUploadPath() %>/<%=ravo.getUuid() %>_<%=ravo.getFileName() %>" width="100px" height="100px">
                 </tr>
 				<tr>
                     <td>가게명 : </td>

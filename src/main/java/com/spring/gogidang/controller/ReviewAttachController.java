@@ -54,7 +54,7 @@ public class ReviewAttachController {
 	public ReviewAttachVO uploadAjaxPost(MultipartFile[] uploadFile) {
 		
 		ReviewAttachVO attachDTO = new ReviewAttachVO();
-		String uploadFolder = "/Users/taehyun/Documents/Spring_Source/Gogidang/src/main/webapp/resources/upload";
+		String uploadFolder = "/Users/taehyun/Documents/Spring_Source/Gogidang/src/main/webapp/resources/img";
 		
 		String uploadFolderPath = getFolder();
 		// make folder --------
