@@ -50,6 +50,9 @@
 
    <table border="1" align=center>
    <tr>
+ 		<td><button onclick="location.href='./review_reg.re?s_num=${storeVO.getS_num() }'">리뷰작성</button></td>
+   </tr>
+   <tr>
       <td rowspan=5>${storeVO.getThumbnail()}</td>
       <td>${storeVO.getS_addr()}</td>
    </tr>
@@ -92,7 +95,6 @@
                ReviewVO vo1 =(ReviewVO)review_List.get(i);
             
          %>
-         <td><%=vo1.getPhoto1() %></td>
          <td><%=vo1.getStar() %></td>
          <td><%=vo1.getTitle() %>
          <%} %>
