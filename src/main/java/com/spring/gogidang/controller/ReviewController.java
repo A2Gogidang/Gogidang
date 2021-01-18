@@ -1,20 +1,25 @@
 package com.spring.gogidang.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.gogidang.domain.*;
 import com.spring.gogidang.service.*;
+
+import lombok.extern.slf4j.Slf4j;
 
 
 @Controller
@@ -26,7 +31,10 @@ public class ReviewController {
 	@Autowired
 	private StoreService storeService;
 	
-	@RequestMapping("/reviewList.re")
+	@Autowired
+	private ReviewAttachService reviewAttachService;
+	
+	@GetMapping("/reviewList.re")
 	public String reviewList(Criteria cri, Model model) {
 		
 		model.addAttribute("list", reviewService.getList(cri));
@@ -37,21 +45,40 @@ public class ReviewController {
 		return "review/review_list";
 	}
 	
+	@RequestMapping("/reviewUidList.re")
+	public String reveiwUidList(ReviewVO review,  Criteria cri, HttpSession session, Model model) {
+		
+		model.addAttribute("reviewUidList", reviewService.getUidList(cri, review.getU_id()));
+		
+		int total = reviewService.getTotal(cri);
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		
+		return "mypage/member_review";
+	}
+
 	@RequestMapping("/reviewReg.re")
-	public String reviewReg(ReviewVO review, RedirectAttributes rttr) {
+	public String reviewReg(ReviewVO review) {
 		
 		reviewService.reviewReg(review);
-		rttr.addFlashAttribute("result", review.getReview_num());
 		return "redirect:/reviewList.re";
 	}
 	
-	@RequestMapping("/reveiw_reg.re")
+	@RequestMapping("/review_photo_reg.re")
+	public String review_photo_reg(StoreVO store, Model model) {
+		StoreVO svo = storeService.storeInfo(store);
+		
+		model.addAttribute("svo", svo);
+		return "review/review_reg_ajax";
+		
+	}
+	
+	@RequestMapping("/review_reg.re")
 	public String review_reg(StoreVO store, Model model, HttpSession session) {
 		
 		StoreVO svo = storeService.storeInfo(store);
 		
 		model.addAttribute("svo", svo);
-		return "review/review_reg";
+		return "review/review_reg_ajax";
 	}
 	
 	@RequestMapping("/reviewModify.re")
@@ -83,6 +110,7 @@ public class ReviewController {
 	@RequestMapping("/reviewInfo.re")
 	public String reviewInfo(@RequestParam("review_num") int review_num, Model model) {
 		model.addAttribute("review", reviewService.getReview(review_num));
+		model.addAttribute("img", reviewAttachService.getImg(review_num));
 		
 		return "/review/review_info";
 	}

@@ -9,12 +9,16 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.GsonFactoryBean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.EventVO;
@@ -57,7 +61,7 @@ public class MemberController {
 	@RequestMapping("/main.me") 
 	public String mainPage(Criteria cri, Model model, HttpSession seesion) throws Exception { 
 		ArrayList<EventVO> event_list = eventService.getEventList();
-		ArrayList<StoreVO> store_list = storeService.getStoreList();
+		ArrayList<StoreVO> store_list = storeService.getList();
 		List<ReviewVO> review_list = reviewService.getList(cri);
 		model.addAttribute("event_list", event_list);
 		model.addAttribute("store_list", store_list);
@@ -89,10 +93,19 @@ public class MemberController {
 		PrintWriter writer = response.getWriter();
 		
 		if ( vo != null && vo.getU_id() != null ) {
+			
 			session.setAttribute("MemberVO",vo);
-			writer.write("<script>alert('濡쒓렇�씤 �꽦怨�!');location.href='./main.me';</script>");
+			
+			if(vo.getSeller_key() == 1 ) {
+				
+				StoreVO storevo = new StoreVO();
+				storevo.setU_id(vo.getU_id());
+				StoreVO vo1 = storeService.selectStore(storevo);
+				session.setAttribute("StoreVO", vo1);
+			}
+			writer.write("<script>alert('로그인 성공!');location.href='./main.me';</script>");
 		}else {
-			writer.write("<script>alert('濡쒓렇�씤 �떎�뙣!');location.href='./loginForm.me';</script>");
+			writer.write("<script>alert('로그인 실패!');location.href='./loginForm.me';</script>");
 		}
 		return null;
 	}
@@ -138,13 +151,20 @@ public class MemberController {
    }
 	
 	//soobin start
+  
 	@RequestMapping("/updateForm.me")
 	public String updateForm(MemberVO memberVO) throws Exception{
 		
 		return "member/updateForm";
 	}
-	//soobin end
 	
+	@RequestMapping("/updateList.me")
+	public String updateList() throws Exception{
+		
+		return "member/updateList";
+	}
+	
+	//soobin end
 	@RequestMapping(value = "/checkid.bo", method = RequestMethod.POST)
 	@ResponseBody
 	public  String idcheck(@RequestParam("u_id") String u_id) throws Exception{
@@ -159,7 +179,6 @@ public class MemberController {
 		System.out.println(str);
 		return str;
 	}
-
 }
 
 

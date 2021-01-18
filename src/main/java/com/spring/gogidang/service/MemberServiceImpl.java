@@ -39,7 +39,7 @@ public class MemberServiceImpl implements MemberService {
 		int res = memberMapper.updateMember(memberVO);
 		return res;
 	}
-	
+
 	@Override
 	public int checkid(String u_id) {
 		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
@@ -48,4 +48,5 @@ public class MemberServiceImpl implements MemberService {
 		
 		return res;
 	}
+
 }

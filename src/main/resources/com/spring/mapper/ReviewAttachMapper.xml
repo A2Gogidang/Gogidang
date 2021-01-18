@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+<mapper namespace="com.spring.mapper.ReviewAttachMapper">
+	
+	<insert id="insert">
+		insert into review_attach (uuid, uploadpath, filename, filetype, re_att_num)
+		values (#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, seq_re_att.nextval )
+	</insert>
+	
+	<update id="update">
+		update review_attach set review_num=#{review_num} where uuid=#{uuid}
+	</update>
+
+	<delete id="delete">
+		delete from review_attach where uuid = #{uuid}
+	</delete>
+
+	<select id="findByNum" resultType="ReviewAttachVO">
+		select * from review_attach where re_att_num = #{review_num}
+	</select>
+
+	<delete id="deleteAll">
+		delete review_attach where review_num = #{review_num}
+	</delete>
+
+	<select id="getOldFiles" resultType="ReviewAttachVO">
+		select * from review_attach where uploadpath = to_char(sysdate -1 ,'yyyy\mm\dd')
+	</select>
+</mapper>

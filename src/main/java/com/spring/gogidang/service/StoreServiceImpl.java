@@ -2,6 +2,7 @@ package com.spring.gogidang.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +17,26 @@ public class StoreServiceImpl implements StoreService {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	
+	// taehyun start
 	@Override
-	public ArrayList<StoreVO> getStoreList() {
+	public ArrayList<StoreVO> getList() {
 		StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
 		ArrayList<StoreVO> storeList = new ArrayList<StoreVO>();
-		storeList = storeMapper.getStoreList();
+		storeList = storeMapper.getList();
+		
+		return storeList; 
+	}
+	
+	@Override
+	public ArrayList<StoreVO> getWaitList() {
+		StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
+		ArrayList<StoreVO> storeList = new ArrayList<StoreVO>();
+		storeList = storeMapper.getWaitList();
 		
 		return storeList;
 	}
-
+	 
 	@Override
 	public int confirmStore(StoreVO storeVO) {
 		StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
@@ -57,7 +69,9 @@ public class StoreServiceImpl implements StoreService {
 		
 		return res;
 	}
-
+	// taehyun end
+	
+	// soobin start
 	@Override
 	   public int insertStore(StoreVO storeVO) {
 	      
@@ -85,17 +99,27 @@ public class StoreServiceImpl implements StoreService {
 	      System.out.println("res="+res);
 	      return res;
 	   }
+	// soobin end
 
 	//dohyeong start
 	@Override
-	public List<StoreVO> getStoreListAjax(String[] s_addr) {
+	public ArrayList<StoreVO> getStoreList() {
+		StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
+		ArrayList<StoreVO> storeList = new ArrayList<StoreVO>();
+		storeList = storeMapper.getStoreList();
+		
+		return storeList;
+	}
+	
+	@Override
+	public List<StoreVO> getStoreListAjax(Map<String, String[]> mapp) {
 
-		System.out.println("serviceimpl"+ s_addr);
+		
 		StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
 		
-		List<StoreVO> storelistAjax = storeMapper.getStoreListAjax(s_addr); 
+		List<StoreVO> storelistAjax = storeMapper.getStoreListAjax(mapp); 
 		
-		System.out.println("s_addr"+ s_addr);
+		
 		return storelistAjax;
 	}
 	//dohyeong end

@@ -8,6 +8,7 @@
 
 <%
 	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
+	ReviewAttachVO ravo = (ReviewAttachVO) request.getAttribute("img");
 %>
 
         <form name="review_info" action="./shop_reg.st" method="post">
@@ -16,6 +17,9 @@
                     <td colspan="2" align=center>
                         <b><font size=5>${review.title }</font></b>
                     </td>
+                </tr>
+                <tr>
+                	<td><img src="resources/img/<%=ravo.getUploadPath() %>/<%=ravo.getUuid() %>_<%=ravo.getFileName() %>" width="100px" height="100px">
                 </tr>
 				<tr>
                     <td>가게명 : </td>
@@ -38,12 +42,8 @@
                     <td>${review.content }</td>
                 </tr>
                 <tr>
-                    <td>리뷰사진 : </td>
-                    <td>${review.photo1 }</td>
-                </tr>
-                <tr>
                     <td>리뷰등록일 : </td>
-                    <td><fmt:formatDate pattern="yyyy-MM-dd" value="${review.re_date }" /></td>
+                    <td><fmt:formatDate pattern="yyyy-MM-dd" value="${review.review_date }" /></td>
                 </tr>
                 <tr>
                     <td colspan="2" align=center>
@@ -53,4 +53,4 @@
             </table>
         </form>
         
-<%@include file="../includes/footer.jsp"%>
+<%@ include file="../includes/footer.jsp" %>
