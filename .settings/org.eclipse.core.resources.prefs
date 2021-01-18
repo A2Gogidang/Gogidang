@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/spring/gogidang/controller/BookingController.java=UTF-8
+encoding//src/main/java/com/spring/gogidang/controller/MemberController.java=UTF-8
 encoding//src/main/java/com/spring/gogidang/controller/StoreController.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/includes/footer.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/includes/header.jsp=UTF-8

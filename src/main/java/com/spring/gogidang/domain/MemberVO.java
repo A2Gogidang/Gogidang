@@ -3,10 +3,12 @@ package com.spring.gogidang.domain;
 public class MemberVO {
 	private String u_id;
 	private String u_pw;
+	private String u_pw2;
 	private String u_name;
 	private String u_nick;
-	private String u_birth;
+	private int u_birth;
 	private String u_addr;
+	private String u_post;
 	private String u_email;
 	private String u_phone;
 	private int seller_key;
@@ -35,10 +37,10 @@ public class MemberVO {
 	public void setU_nick(String u_nick) {
 		this.u_nick = u_nick;
 	}
-	public String getU_birth() {
+	public int getU_birth() {
 		return u_birth;
 	}
-	public void setU_birth(String u_birth) {
+	public void setU_birth(int u_birth) {
 		this.u_birth = u_birth;
 	}
 	public String getU_addr() {
@@ -64,6 +66,18 @@ public class MemberVO {
 	}
 	public void setSeller_key(int seller_key) {
 		this.seller_key = seller_key;
+	}
+	public String getU_post() {
+		return u_post;
+	}
+	public void setU_post(String u_post) {
+		this.u_post = u_post;
+	}
+	public String getU_pw2() {
+		return u_pw2;
+	}
+	public void setU_pw2(String u_pw2) {
+		this.u_pw2 = u_pw2;
 	}
 	
 	
