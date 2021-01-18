@@ -26,6 +26,4 @@ public class ReviewVO {
 	private String review_img2;
 	private String review_img3;
 
-	private List<ReviewAttachVO> attachList;
-
 }

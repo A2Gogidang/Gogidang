@@ -48,13 +48,13 @@ public class StoreController {
 	/*
 	 * 전체 가게 리스트
 	 */
-	@RequestMapping(value = "/storeList.st")
-	public String getStoreList(Model model) {
-		ArrayList<StoreVO> storeList = storeService.getStoreList();
-		model.addAttribute("storeList", storeList);
-
-		return "store/store_list";
-	}
+	/*
+	 * @RequestMapping(value = "/storeList.st") public String getStoreList(Model
+	 * model) { ArrayList<StoreVO> storeList = storeService.getStoreList();
+	 * model.addAttribute("storeList", storeList);
+	 * 
+	 * return "store/store_list"; }
+	 */
 
 	/*
 	 * 승인대기중인 가게 리스트 보기

@@ -41,9 +41,6 @@ public class ReviewController {
 	@Autowired
 	private StoreService storeService;
 	
-	@Autowired
-	private ReviewAttachService reviewAttachService;
-	
 	@GetMapping("/reviewList.re")
 	public String reviewList(Criteria cri, Model model) {
 		
