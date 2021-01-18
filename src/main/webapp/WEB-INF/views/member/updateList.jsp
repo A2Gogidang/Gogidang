@@ -27,7 +27,7 @@
     </section>
 <%
 }else{ 
-	if(storevo == null || storevo.getConfirm() == 0 || storevo.getS_num() == null ){
+	if(storevo == null || storevo.getConfirm() == 0 || storevo.getS_num() == 0 ){
 %>
  <section class="hero">
         <div class="container">

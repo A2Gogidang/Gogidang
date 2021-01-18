@@ -67,7 +67,7 @@ function execDaumPostcode() {
     </section>
 <%
 }else{ 
-	if(storeVO == null || storeVO.getConfirm() == 0 || storeVO.getS_num() == null ){
+	if(storeVO == null || storeVO.getConfirm() == 0 || storeVO.getS_num() == 0 ){
 %>
  <section class="hero">
         <div class="container">
@@ -122,7 +122,7 @@ function execDaumPostcode() {
 	</tr>
 	<tr>
 	<td>사업자등록번호  : </td>
-	<%if( vo == null || vo.getS_num() == 0){ %>
+	<%if( storeVO == null || storeVO.getS_num() == 0){ %>
 
 	<td><input type="text" name="s_num" /></td>
 	<%}else{ %>
@@ -199,7 +199,7 @@ function execDaumPostcode() {
 	</tr>
 	<tr>
 		<td colspan="2" align=center>
-	<%if( vo == null || vo.getS_num() == 0){ %>
+	<%if( storeVO == null || storeVO.getS_num() == 0){ %>
 			<a href="javascript:storeform.submit()">저장</a>
 			<a href="javascript:storeform.reset()">다시작성</a>
 	<%}else{ %>
