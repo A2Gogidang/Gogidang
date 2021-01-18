@@ -2,10 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@include file="../includes/header.jsp"%>
 <%@ page import="java.util.*" %>
-<%@ page import = "com.spring.gogidang.domain.*" %>
 
 <%
-	MemberVO memberVO = (MemberVO) session.getAttribute("MemberVO");
 	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
 %>
 <!DOCTYPE html>

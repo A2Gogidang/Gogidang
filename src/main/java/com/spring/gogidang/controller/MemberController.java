@@ -165,6 +165,7 @@ public class MemberController {
 	}
 	
 	//soobin end
+  
 	@RequestMapping(value = "/checkid.bo", method = RequestMethod.POST)
 	@ResponseBody
 	public  String idcheck(@RequestParam("u_id") String u_id) throws Exception{
@@ -180,6 +181,3 @@ public class MemberController {
 		return str;
 	}
 }
-
-
-

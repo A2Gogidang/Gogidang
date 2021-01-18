@@ -13,4 +13,5 @@ public class Criteria {
 	public Criteria() {
 		this(1,10);
 	}
+	
 }
