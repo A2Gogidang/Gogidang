@@ -8,7 +8,6 @@
 
 <%
 	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
-	ReviewAttachVO ravo = (ReviewAttachVO) request.getAttribute("img");
 %>
 
         <form name="review_info" action="./shop_reg.st" method="post">
@@ -19,7 +18,7 @@
                     </td>
                 </tr>
                 <tr>
-                	<td><img src="resources/img/<%=ravo.getUploadPath() %>/<%=ravo.getUuid() %>_<%=ravo.getFileName() %>" width="100px" height="100px">
+                	<td><img src="resources/img/up/${review.review_img }" width="100px" height="100px">
                 </tr>
 				<tr>
                     <td>가게명 : </td>

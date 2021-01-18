@@ -46,8 +46,8 @@
 	</select>
 	
 	<insert id="reviewReg" parameterType="ReviewVO">
-		INSERT INTO review (review_num, u_id, nickname, s_num, s_name, title, content, star) 
-		VALUES (seq_review.nextval, #{u_id}, #{nickname}, #{s_num}, #{s_name}, #{title}, #{content}, #{star})
+		INSERT INTO review (review_num, u_id, nickname, s_num, s_name, title, content, star, review_img) 
+		VALUES (seq_review.nextval, #{u_id}, #{nickname}, #{s_num}, #{s_name}, #{title}, #{content}, #{star}, #{review_img})
 	</insert>
 	
 	<update id="update">

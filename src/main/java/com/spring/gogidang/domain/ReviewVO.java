@@ -21,6 +21,8 @@ public class ReviewVO {
 	private int star;
 	private Date review_date;
 	private String s_name;
+	
+	private String review_img;
 
 	private List<ReviewAttachVO> attachList;
 
