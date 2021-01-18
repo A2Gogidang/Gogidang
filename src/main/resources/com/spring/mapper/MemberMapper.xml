@@ -12,7 +12,7 @@
 				 ,#{u_nick}
 				 ,#{u_birth}
 				 ,#{u_addr}
-				 ,#{u_post}
+ 				 ,#{u_post}
 				 ,#{u_email}
 				 ,#{u_phone}
 				 ,#{seller_key})

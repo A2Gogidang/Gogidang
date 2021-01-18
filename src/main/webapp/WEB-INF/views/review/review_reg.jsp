@@ -25,8 +25,10 @@
 		제목 : <input type="text" name="title" /> <br><br>
 		내용 : <input type="text" name="content" /> <br><br>
 		별점 : <input type="text" name="star" /> <br><br>
-		파일 : <input type="file" name="file" multiple="multiple"> <br><br>
-		<input type="button" value="사진업로드" onclick="fnAction('./reviewReg.re')" />
+		파일1 : <input type="file" name="file" multiple="multiple"> <br><br>
+		파일2 : <input type="file" name="file" multiple="multiple"> <br><br>
+		파일3 : <input type="file" name="file" multiple="multiple"> <br><br>
+		<input type="button" value="사진업로드" onclick="fnAction('./reviewReg.re')" multiple />
 	</form>
 	
 	<script>
