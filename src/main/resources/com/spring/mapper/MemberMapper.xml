@@ -36,4 +36,9 @@
 	 	  where u_id=#{u_id,jdbcType=VARCHAR}
  	</update> 
 	
+	
+	<select id="checkid" resultType="int">
+      select count(*) from member where u_id=#{u_id}
+   </select>
+   
 </mapper>

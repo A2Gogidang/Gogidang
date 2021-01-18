@@ -11,12 +11,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.spring.gogidang.domain.*;
+import com.spring.gogidang.domain.MemberVO;
+import com.spring.gogidang.domain.ReplyNoticeVO;
+import com.spring.gogidang.domain.SRNoticeVO;
+import com.spring.gogidang.domain.StoreVO;
 import com.spring.gogidang.service.StoreNoticeService;
+import com.spring.gogidang.service.StoreService;
 
 @Controller
 public class StoreNoticeController {
-
 	
 	@Autowired
 	private StoreNoticeService storeNoiceService; 
@@ -25,25 +28,26 @@ public class StoreNoticeController {
 	@RequestMapping(value = "/storeNoticeList.no")
 	public String storeNoticeList(Model model , HttpSession session)throws Exception {
 		//storeVO session말고 sql로 조회해서 가지고오기 다른곳도 전부 확인하기 
-		SRNoticeVO srNoticeVO = new SRNoticeVO();		
-		System.out.println(session.getAttribute("StoreVO").toString());
-		srNoticeVO.setS_num(((StoreVO)session.getAttribute("StoreVO")).getS_num());
-		
-		ArrayList<SRNoticeVO> srNoticeList = storeNoiceService.srNoticeSelect(srNoticeVO);	
 
-		model.addAttribute("srNoticeList", srNoticeList);
 
-		return "sellerpage/store_notice";
+			SRNoticeVO srNoticeVO = new SRNoticeVO();		
+			srNoticeVO.setS_num(((StoreVO)session.getAttribute("StoreVO")).getS_num());
+			
+			ArrayList<SRNoticeVO> srNoticeList = storeNoiceService.srNoticeSelect(srNoticeVO);	
+
+			model.addAttribute("srNoticeList", srNoticeList);
+
+			return "sellerpage/store_notice";
 	}
 
 	@RequestMapping(value = "/replyNoticeInputForm.no")
 	public String replyNoticeInputForm(Model model, SRNoticeVO srNoticeVO , HttpSession session, HttpServletResponse response)throws Exception {
-			
+
 		srNoticeVO.setS_num(((StoreVO)session.getAttribute("StoreVO")).getS_num());		
 		SRNoticeVO srNoticevo = storeNoiceService.srNoticeList(srNoticeVO);
-		
+
 		model.addAttribute("srNoticevo", srNoticevo);
-		
+
 		return "sellerpage/store_reply_notice";
 	}
 
@@ -51,9 +55,9 @@ public class StoreNoticeController {
 	public String replyNoticeInsert(ReplyNoticeVO replyNoticeVO , HttpSession session, HttpServletResponse response)throws Exception {
 
 		replyNoticeVO.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());	
-		
+
 		int res = storeNoiceService.replyNoticeInsert(replyNoticeVO);
-				
+
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter writer = response.getWriter();
@@ -90,6 +94,6 @@ public class StoreNoticeController {
 		}
 		return null;
 	}
-	
-	
+
+
 }

@@ -19,7 +19,8 @@ public interface StoreMapper {
 	public int insertStore(StoreVO storeVO);
 	public StoreVO selectStore(StoreVO storeVO);
 	public int updateStore(StoreVO storeVO);
-	
+
+
 	// dohyeong
 	public ArrayList<StoreVO> getStoreList();
 	public List<StoreVO> getStoreListAjax(String[] s_addr);

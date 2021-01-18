@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ page import="com.spring.gogidang.domain.*"%>
+<%
+	MemberVO memberVO = (MemberVO)session.getAttribute("MemberVO");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,16 +67,16 @@
                     <div class="col-lg-6 col-md-6"> </div>
                     <div class="col-md-6">
                         <div class="header__top__right">
+                           <%if (memberVO == null ||memberVO.getU_nick() == null || memberVO.getU_nick() == ""){ %>
                            <div class="header__top__right__auth">
                                 <aa><a href="#">로그인 </a></aa>
                                 <aa><a href="#"> 회원가입 </a></aa>
                             </div>
-                            <!--로그인후 모드-->
-                            <!--<div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user">맛나식육</i> </a>
-                                <aa>사장님 !</aa>
-                            </div>
-                            -->
+                           <%}else{ %>
+                            <div class="header__top__right__auth">
+                                <a href="#"><i class="fa fa-user"><%=memberVO.getU_nick() %></i> </a>
+                                <aa>님 !</aa>
+                           <%} %>
                         </div>
                     </div>
                    
