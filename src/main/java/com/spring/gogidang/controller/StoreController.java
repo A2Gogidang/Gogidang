@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -231,21 +232,25 @@ public class StoreController {
 		return "store/store_list";
 	}
 	
-	@RequestMapping("/storelist_ajax.li")
-	  @ResponseBody 
-	  public List<StoreVO> getStoreListAjax( @RequestParam(value="s_addr[]", required =false) String[] s_addr) { 
+	@RequestMapping(value="/storelist_ajax.li", produces="application/json; charset=utf-8")
+	@ResponseBody 
+	 public List<StoreVO> getStoreListAjax( @RequestBody Map<String, String[]> map) { 
+		String[] s_addr = map.get("s_addr");
 		  for(String no : s_addr) {
-			  System.out.println("컨트롤러"); 
-			  System.out.println("s_addr" + no);  
+			  System.out.println("컨트롤러" + no);
 		  }
-	  
-	  Map<String, String[]> map = new HashMap<String, String[]>();
-	  map.put("s_addr", s_addr);
-	  
-	  List<StoreVO> list = storeService.getStoreListAjax(s_addr);
-	  System.out.println("list" + list);
-	  
-	  return list; 
+		  String[] meat = map.get("meat");
+		  for(String no : meat) {
+			  System.out.println("컨트롤러 " + no);
+		  }
+		  Map<String, String[]> mapp = new HashMap<String, String[]>();
+			mapp.put("s_addr",s_addr);
+			mapp.put("meat", meat);
+		  /*List<StoreVO> list = storeService.getStoreListAjax(s_addr, meat);
+		  System.out.println("list" + list);
+		 */
+		  List<StoreVO> list = storeService.getStoreListAjax(mapp);
+		  return list; 
 	  }
 	// dogyeong end
 }

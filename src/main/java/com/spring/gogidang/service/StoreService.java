@@ -2,6 +2,7 @@ package com.spring.gogidang.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.spring.gogidang.domain.StoreVO;
 
@@ -22,5 +23,5 @@ public interface StoreService {
 	
 	// dohyeong
 	public ArrayList<StoreVO> getStoreList();
-	public List<StoreVO> getStoreListAjax(String[] s_addr);
+	public List<StoreVO> getStoreListAjax(Map<String, String[]> mapp);
 }
