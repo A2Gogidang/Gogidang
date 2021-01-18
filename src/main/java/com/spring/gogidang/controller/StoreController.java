@@ -56,7 +56,7 @@ public class StoreController {
 	public String getStoreWait(Model model) {
 		ArrayList<StoreVO> storeList = storeService.getWaitList();
 		model.addAttribute("storeList", storeList);
-
+		
 		return "store/store_wait";
 	}
 
@@ -179,7 +179,7 @@ public class StoreController {
 		StoreVO vo = storeService.selectStore(storeVO);
 
 		//사업자 번호 대신 가입승인 컬럼 가지고 비교해야됨 나중에 수정하기
-		if( vo == null || vo.getS_num() == "" || vo.getConfirm() == 0) {
+		if( vo == null || vo.getS_num() == 0 || vo.getConfirm() == 0) {
 
 			writer.write("<script>alert('가게정보 등록 먼저 하세요!!!!');" +"location.href = './storeRegForm.st';</script>");
 
