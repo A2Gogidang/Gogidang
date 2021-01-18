@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.gogidang.domain.Criteria;
+import com.spring.gogidang.domain.QnaStorePageDTO;
 import com.spring.gogidang.domain.QnaStoreVO;
 import com.spring.mapper.QnaStoreMapper;
 
@@ -23,7 +25,10 @@ public class QnaStoreServiceImpl implements QnaStoreService {
 	@Override
 	public QnaStoreVO get(int qs_num) {
 		// TODO Auto-generated method stub
-		return mapper.read(qs_num);
+		//return mapper.read(qs_num);
+		QnaStoreVO vo = mapper.read(qs_num);
+		System.out.print("(vo.getContent()=" + vo.getContent());
+		return vo;
 	}
 
 	@Override
@@ -38,10 +43,19 @@ public class QnaStoreServiceImpl implements QnaStoreService {
 		return mapper.update(qna);
 	}
 
+	
+	/*
+	 * @Override public List<QnaStoreVO> getList(Criteria cri,int s_num) {
+	 * 
+	 * return mapper.getListWithPaging(cri,s_num); }
+	 */
+	 
+	
 	@Override
-	public List<QnaStoreVO> getList(int s_num) {
-		// TODO Auto-generated method stub
-		return mapper.getListWithS_num(s_num);
+	public QnaStorePageDTO getListPage(Criteria cri,int s_num) {
+		
+		return new QnaStorePageDTO(mapper.getCountByS_num(s_num),
+								   mapper.getListWithPaging(s_num, cri));
 	}
 
 }

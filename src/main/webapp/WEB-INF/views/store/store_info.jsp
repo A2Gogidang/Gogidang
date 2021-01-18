@@ -28,6 +28,8 @@
     <link href="resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
    
    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   
    
 
 <%
@@ -164,7 +166,7 @@ geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
       
         <ul class="chat">
          <!-- start reply -->
-         <li class="left clearfix" data-rno='1'>
+         <li class="left clearfix" data-qs_num='1'>
             <div>
                <div class="header">
                   <strong class="primary-font">user00</strong>
@@ -179,6 +181,10 @@ geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
       </div>
       <!-- /.panel .chat-panel -->
       
+      <div class="panel-footer">
+      
+      </div>
+      
       <!-- Modal -->
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel" aria-hidden="true">
@@ -191,12 +197,12 @@ geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
             </div>
             <div class="modal-body">
               <div class="form-group">
-                <label>content</label> 
-                <input class="form-control" name='content' value='New Reply!!!!'>
+                <label>제목</label> 
+                <input class="form-control" name='u_id' value='New Reply!!!!'>
               </div>      
               <div class="form-group">
-                <label>아이디</label> 
-                <input class="form-control" name='u_id' value='replyer'>
+                <label>내용</label> 
+                <input class="form-control" name='content' value='replyer'>
               </div>
               <div class="form-group">
                 <label>등록일</label> 
@@ -217,33 +223,57 @@ geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
       </div>
       <!-- /.modal -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="./resources/js/qnastore.js"></script>
+    <script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/resources/vendor/metisMenu/metisMenu.min.js"></script>
+    <!-- DataTables JavaScript -->
+    <script src="/resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="/resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="/resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/resources/dist/js/sb-admin-2.js"></script>
+
 
 <script>
 $(document).ready(function (){
    var s_numValue = '<c:out value="${storeVO.getS_num()}"/>';
    var replyUL = $(".chat");
       
-      showList(1);
+   showList(1);
       
       function showList(page) {
-         qnaService.getList({s_num:s_numValue}, function(list){
+    	  console.log("show List" +page);
+    	  qnaService.getList({s_num:s_numValue,page: page || 1}, function(qnastoreCnt,list){
+            console.log("qnastorCnt:"+ qnastoreCnt);
+            console.log("list:"+ list);
+            console.log(list);
             
+            if(page == -1) {
+            	pageNum = Math.ceil(qnastoreCnt/10.0);
+            	showList(pageNum);
+            	return;
+            }
+    		  
             var str="";
+            
             if(list == null || list.length == 0) {
-               replyUL.html("");
+            	return;
+               
             }
             for (var i=0,len = list.length || 0; i < len; i++) {
-               str +="<li class='left clearfix' data-rno='"+list[i].qs_num+"'>";
+               str +="<li class='left clearfix' data-qs_num='"+list[i].qs_num+"'>";
                str +="      <div><div class='header'><strong class='primary-font'>"+list[i].u_id+"</strong>";
                str +="         <small class='pull-right text-muted'>"+qnaService.displayTime(list[i].qna_date)+"</small></div>";
-               str +="            <p>"+list[i].content+"</p></div></li>"
+               str +="            <p>"+list[i].content+"</p></div></li>";
             }
                replyUL.html(str);
-         })
-      }
-      
+               
+               showqnastorePage(qnastoreCnt);
+         });//end function
+      } //end showList
+
       var modal = $(".modal");
       var modalInputContent = modal.find("input[name='content']");
       var modalInputU_id = modal.find("input[name='u_id']");
@@ -259,56 +289,133 @@ $(document).ready(function (){
          modal.find("button[id !='modalCloseBtn']").hide();
          
          modalRegisterBtn.show();
-         
+   
          $(".modal").modal("show");
-      });
-   
-      
-});   
-   
+     
+	});
+      var qnastore;
+      modalRegisterBtn.on("click",function(e){
+    	 
+  	  qnastore = {
+  			  content: modalInputContent.val(),
+  			  u_id: modalInputU_id.val(),
+  			  s_num: s_numValue
+  	  	};
+  	qnaService.add(qnastore, function(result) {
+  		  
+  		  alert("추가되었습니다"+result);
+  		  
+  		  modal.find("input").val("");
+  		  modal.modal("hide");
+  		  
+  		  //showList(1);
+  		  showList(-1);
+});
 
-/* var s_numValue = '<c:out value="${storeVO.getS_num()}"/>';
- qnaService.add(
-      {s_num:s_numValue,u_id:"user01" ,title:"하위1",content:"하위12"} 
-   ,
-   function(result) {
-      alert("RESULT: "+result);
-   }
-);   */
+  	});
+  	
+  	//댓글 조회 클릭 이벤트 처리
+  	$(".chat").on("click","li",function(e){
 
-/*    qnaService.getList({s_num:s_numValue}, function(list){
-         
-      for(var i =0, len=list.length||0; i<len; i++) {
-         console.log(list[i]);
-      }
-   }); */
-/*       qnaService.remove(22,function(count){
-      console.log(count);
-      
-      if(count === "success") {
-         alert("REMOVED");
-      }
-   }, function(err) {
-      alert("ERROR...");
-   });  */ 
-   
-/*        qnaService.update({
-      qs_num : 1,
-      s_num : s_numValue,
-      title : "하이용",
-      content : "히이"
-   }, function(result) {
-      alert("수정 완료");
-   
-   });  */
-   
-/*    qnaService.get(1, function(data){
-      alert("되나요");
-   }); */
-   
+  		var qs_num = $(this).data("qs_num");
+  		alert("qs_num=" + qs_num);
+  		
+  		qnaService.get(qs_num,function(res) {
+  			console.log(res);
+  			alert("qnastore.qs_num=" + res.qs_num);
+  			modalInputContent.val(res.content);
+  			modalInputU_id.val(res.u_id);
+  			modalInputQna_date.val(qnaService.displayTime(res.qna_date)).attr("readonly","readonly");
+  			modal.data("qs_num",res.qs_num);
+  			
+  			console.log(qs_num);
+  			
+  			modal.find("button[id !='modalCloseBtn']").hide();
+  			modalModBtn.show();
+  			modalRemoveBtn.show();
+  			
+  			$(".modal").modal("show");
+  		});
+  	});
+  	
+  	modalModBtn.on("click",function(e) {
+  		var content = {qs_num:modal.data("qs_num"), content:modalInputContent.val()};
+  		
+  		qnaService.update(content, function(result) {
+  			alert(result);
+  			modal.modal("hide");
+  			showList(pageNum);
+  		});
+  		
+  	});
+  	
+  	modalRemoveBtn.on("click",function(e) {
+  		var qs_num = modal.data("qs_num");
+  		
+  		qnaService.remove(qs_num, function(result) {
+  			alert(result);
+  			modal.modal("hide");
+  			showList(pageNum);
+  		});
+  	});
+  	
+  	var pageNum = 1;
+	var qnastorePageFooter = $(".panel-footer");
+	
+	function showqnastorePage(qnastoreCnt) { //페이징 처리
+		
+		var endNum = Math.ceil(pageNum / 10.0) * 10;
+		var startNum = endNum - 9;
+		
+		var prev = startNum != 1;
+		var next = false;
+		
+		if(endNum * 10 >= qnastoreCnt) {
+			endNum = Math.ceil(qnastoreCnt/10.0);
+		}
+		
+		if(endNum * 10 < qnastoreCnt) {
+			next = true;
+		}
+		
+		var str = "<ul class='pagination pull-right'>";
+		
+		if(prev) {
+			str += "<li class='page-item'><a class='page-link' href='"+(startNum -1)+"'>Previous</a></li>";
+		}
+		
+		for(var i = startNum ; i <=endNum; i++) {
+			
+			var active = pageNum == i? "active":"";
+			
+			str += "<li class='page-item "+active+" '><a class='page-link' href='"+i+"'>"+i+"</a></li>";
+		}
+		
+		if(next) {
+			str += "<li class='page-item'><a class='page-link' href='"+(endNum+1)+"'>Next</a></li>";
+		}
+		
+		str += "</ul></div>";
+		
+		qnastorePageFooter.html(str);
+	}
+	
+	qnastorePageFooter.on("click","li a", function(e){ //페이지 번호를 클릭했을때 새로운 댓글 가져옴
+		e.preventDefault();
+		
+		var targetPageNum = $(this).attr("href");
+		
+		console.log("targetPageNum:" + targetPageNum);
+		
+		pageNum = targetPageNum;
+		
+		showList(pageNum);
+	});
+  	
+});	
+  	
+
 </script>
-
-
 </body>
 
 
