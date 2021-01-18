@@ -97,6 +97,7 @@ public class ReviewController {
 	public String reviewReg(ReviewVO review, MultipartHttpServletRequest request) {
 		
 		List<MultipartFile> fileList = request.getFiles("file");
+		System.out.println(fileList.size());
 		
 		String uploadPath = "/Users/taehyun/Documents/Spring_Source/Gogidang/src/main/webapp/resources/img/up/";
 		
@@ -106,28 +107,45 @@ public class ReviewController {
 		ArrayList<String> orgfile_list = new ArrayList<String>();
 		ArrayList<String> storedfile_list = new ArrayList<String>();
 		ArrayList<Long> filesize_list = new ArrayList<Long>();
-
+		
+		review.setReview_img1("null");
+		review.setReview_img2("null");
+		review.setReview_img3("null");
+		
 		for(MultipartFile mf : fileList) {
-			 String originFileName = mf.getOriginalFilename(); //원본 파일 명
-			 long fileSize = mf.getSize(); //파일 사이즈
-			 
-			 System.out.println("originFileName : "+originFileName);
-			 System.out.println("fileSize : "+fileSize);
-			 String storedFileName = System.currentTimeMillis() + originFileName;
-			 System.out.println("storedFileName="+storedFileName);
-			 String safeFile = uploadPath + storedFileName;
-			 review.setReview_img(storedFileName);
-			 System.out.println(safeFile);
-			 try {
-			    if(mf.getSize() != 0) {
-			       mf.transferTo(new File(safeFile));
-			    }
-			 } catch (IOException e) {
-			    System.out.println("업로드 에러!!");
-			 }
-			 orgfile_list.add(originFileName);
-			 storedfile_list.add(storedFileName);
-			 filesize_list.add(fileSize);
+			if(mf.getSize() >= 1) {
+				String originFileName = mf.getOriginalFilename(); //원본 파일 명
+				long fileSize = mf.getSize(); //파일 사이즈
+				
+				System.out.println("originFileName : "+originFileName);
+				System.out.println("fileSize : "+fileSize);
+				String storedFileName = System.currentTimeMillis() + originFileName;
+				System.out.println("storedFileName="+storedFileName);
+				String safeFile = uploadPath + storedFileName;
+				
+				if(review.getReview_img1().toString().equals("null")) {
+					review.setReview_img1(storedFileName);
+					System.out.println("plus1");
+				} else if (review.getReview_img2().toString().equals("null")) {
+					review.setReview_img2(storedFileName);
+					System.out.println("plus2");
+				} else {
+					review.setReview_img3(storedFileName);
+					System.out.println("end");
+				}
+				
+				System.out.println(safeFile);
+				try {
+					if(mf.getSize() != 0) {
+						mf.transferTo(new File(safeFile));
+					}
+				} catch (IOException e) {
+					System.out.println("업로드 에러!!");
+				}
+				orgfile_list.add(originFileName);
+				storedfile_list.add(storedFileName);
+				filesize_list.add(fileSize);
+			} 
 		}
 		
 		reviewService.reviewReg(review);

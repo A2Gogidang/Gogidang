@@ -22,7 +22,9 @@ public class ReviewVO {
 	private Date review_date;
 	private String s_name;
 	
-	private String review_img;
+	private String review_img1;
+	private String review_img2;
+	private String review_img3;
 
 	private List<ReviewAttachVO> attachList;
 
