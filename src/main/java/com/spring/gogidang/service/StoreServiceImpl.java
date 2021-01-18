@@ -2,6 +2,7 @@ package com.spring.gogidang.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,14 +113,14 @@ public class StoreServiceImpl implements StoreService {
 	}
 	
 	@Override
-	public List<StoreVO> getStoreListAjax(String[] s_addr) {
+	public List<StoreVO> getStoreListAjax(Map<String, String[]> mapp) {
 
-		System.out.println("serviceimpl"+ s_addr);
+		
 		StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
 		
-		List<StoreVO> storelistAjax = storeMapper.getStoreListAjax(s_addr); 
+		List<StoreVO> storelistAjax = storeMapper.getStoreListAjax(mapp); 
 		
-		System.out.println("s_addr"+ s_addr);
+		
 		return storelistAjax;
 	}
 	//dohyeong end

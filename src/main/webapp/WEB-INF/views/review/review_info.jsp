@@ -8,6 +8,7 @@
 
 <%
 	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
+	ReviewVO rvo = (ReviewVO) request.getAttribute("review");
 %>
 
         <form name="review_info" action="./shop_reg.st" method="post">
@@ -16,6 +17,26 @@
                     <td colspan="2" align=center>
                         <b><font size=5>${review.title }</font></b>
                     </td>
+                </tr>
+                <tr>
+                <%
+                	if(!(rvo.getReview_img1().toString().equals("null"))) {
+                %>	
+                	<td><img src="resources/img/up/<%=rvo.getReview_img1() %>" width="100px" height="100px"/></td>
+                <%
+                	}
+                
+                	if (!(rvo.getReview_img2().toString().equals("null"))) {
+               	%>
+               		<td><img src="resources/img/up/<%=rvo.getReview_img2() %>" width="100px" height="100px" /></td>
+               	<%
+                	} 
+                	if (!(rvo.getReview_img3().toString().equals("null"))) {
+                %>
+                	<td><img src="resources/img/up/<%=rvo.getReview_img3() %>" width="100px" height="100px"/> </td>
+                <%
+                	}
+                %>
                 </tr>
 				<tr>
                     <td>가게명 : </td>
@@ -36,10 +57,6 @@
                 <tr>
                     <td>내용 : </td>
                     <td>${review.content }</td>
-                </tr>
-                <tr>
-                    <td>리뷰사진 : </td>
-                    <td>${review.photo1 }</td>
                 </tr>
                 <tr>
                     <td>리뷰등록일 : </td>

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "com.spring.gogidang.domain.*" %>
-
 <%
 	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
 	StoreVO svo = (StoreVO) request.getAttribute("svo");
@@ -12,61 +11,32 @@
 <head>
 <meta charset="UTF-8">
 <title>리뷰작성</title>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous">
+</script>
 </head>
 <body>
-	<h1><%=mvo.getU_id() %></h1>
-	<form name="review_form" action="./reviewReg.re" method="post">
-            <table border=1>
-                <tr>
-                    <td colspan="2" align=center>
-                        <b><font size=3><%=svo.getS_name() %>가게 후기등록 페이지</font></b>
-                        <input type="hidden" name="s_name" value="<%=svo.getS_name() %>">
-                        <input type="hidden" name="u_id" value="<%=mvo.getU_id() %>">
-                    	<input type="hidden" name="s_num" value="<%=svo.getS_num() %>">
-                    	<input type="hidden" name="nickname" value="<%=mvo.getU_nick()%>">
-                    </td>
-                </tr>
-                <tr>
-                    <td>리뷰제목 : </td>
-                    <td><input type="text" name="title"></td>
-                </tr>
-                <tr>
-                    <td>리뷰내용 : </td>
-                    <td><input type="text" name="content"></td>
-                </tr>
-                <tr>
-                    <td>별점 : </td>
-                    <td>
-						<input type="radio" name="star" value="1"/>1점
-						<input type="radio" name="star" value="2"/>2점
-						<input type="radio" name="star" value="3"/>3점
-						<input type="radio" name="star" value="4"/>4점
-						<input type="radio" name="star" value="5"/>5점
-					</td>
-                </tr>
-                <tr>
-                    <td>리뷰사진1 : </td>
-                    <td><input type="text" name="photo1"></td>
-                </tr>
-                <tr>
-                    <td>리뷰사진2 : </td>
-                    <td><input type="text" name="photo2"></td>
-                </tr>
-                <tr>
-                    <td>리뷰사진3 : </td>
-                    <td><input type="text" name="photo3"></td>
-                </tr>
-                <tr>
-                    <td colspan="2" align=center>
-                        <a href="javascript:review_form.submit()">리뷰등록</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" align=center>
-                        <a href="./reviewList.re">리뷰리스트보기</a>
-                    </td>
-                </tr>
-            </table>
-        </form>
+	<form id="review_reg_form" action="./reviewReg.re" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="s_name" value="<%=svo.getS_name() %>">
+        <input type="hidden" name="u_id" value="<%=mvo.getU_id() %>">
+        <input type="hidden" name="s_num" value="<%=svo.getS_num() %>">
+        <input type="hidden" name="nickname" value="<%=mvo.getU_nick()%>">
+		제목 : <input type="text" name="title" /> <br><br>
+		내용 : <input type="text" name="content" /> <br><br>
+		별점 : <input type="text" name="star" /> <br><br>
+		파일1 : <input type="file" name="file" multiple="multiple"> <br><br>
+		파일2 : <input type="file" name="file" multiple="multiple"> <br><br>
+		파일3 : <input type="file" name="file" multiple="multiple"> <br><br>
+		<input type="button" value="사진업로드" onclick="fnAction('./reviewReg.re')" multiple />
+	</form>
+	
+	<script>
+		function fnAction(url) {
+			var frm = document.getElementById("review_reg_form");
+			frm.action = url;
+			frm.submit();
+		}
+	</script>
 </body>
 </html>

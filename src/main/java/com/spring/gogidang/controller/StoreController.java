@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,7 +63,7 @@ public class StoreController {
 	public String getStoreWait(Model model) {
 		ArrayList<StoreVO> storeList = storeService.getStoreList();
 		model.addAttribute("storeList", storeList);
-
+		
 		return "store/store_wait";
 	}
 
@@ -207,7 +208,7 @@ public class StoreController {
 		StoreVO vo = storeService.selectStore(storeVO);
 
 		//사업자 번호 대신 가입승인 컬럼 가지고 비교해야됨 나중에 수정하기
-		if( vo == null || vo.getS_num() == "" || vo.getConfirm() == 0) {
+		if( vo == null || vo.getS_num() == 0 || vo.getConfirm() == 0) {
 
 			writer.write("<script>alert('가게정보 등록 먼저 하세요!!!!');" +"location.href = './storeRegForm.st';</script>");
 
@@ -254,6 +255,7 @@ public class StoreController {
 
 	//soobin end
 
+/*
 	//dohyeong start
 	@RequestMapping("/storelist_ajax.li")
 
@@ -277,4 +279,36 @@ public class StoreController {
 
 	}
 	//dogyeong end
+*/
+	
+	// dohyeong start
+	@RequestMapping(value = "/storeList.st")
+	public String getStoreList(Model model) {
+		ArrayList<StoreVO> storeList = storeService.getStoreList();
+		model.addAttribute("storeList", storeList);
+		
+		return "store/store_list";
+	}
+	
+	@RequestMapping(value="/storelist_ajax.li", produces="application/json; charset=utf-8")
+	@ResponseBody 
+	 public List<StoreVO> getStoreListAjax( @RequestBody Map<String, String[]> map) { 
+		String[] s_addr = map.get("s_addr");
+		  for(String no : s_addr) {
+			  System.out.println("컨트롤러" + no);
+		  }
+		  String[] meat = map.get("meat");
+		  for(String no : meat) {
+			  System.out.println("컨트롤러 " + no);
+		  }
+		  Map<String, String[]> mapp = new HashMap<String, String[]>();
+			mapp.put("s_addr",s_addr);
+			mapp.put("meat", meat);
+		  /*List<StoreVO> list = storeService.getStoreListAjax(s_addr, meat);
+		  System.out.println("list" + list);
+		 */
+		  List<StoreVO> list = storeService.getStoreListAjax(mapp);
+		  return list; 
+	  }
+	// dogyeong end
 }

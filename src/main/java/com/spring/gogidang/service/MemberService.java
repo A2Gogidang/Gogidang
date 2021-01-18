@@ -1,5 +1,7 @@
 package com.spring.gogidang.service;
 
+import java.util.Map;
+
 import com.spring.gogidang.domain.MemberVO;
 
 public interface MemberService {
@@ -9,3 +11,4 @@ public interface MemberService {
 	public int updateMember(MemberVO memberVO);
 	public int checkid(String u_id);
 }
+
