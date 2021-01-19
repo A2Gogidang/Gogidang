@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.StoreVO;
 
 public interface StoreMapper {
@@ -15,6 +16,9 @@ public interface StoreMapper {
 	public int refuseStore(StoreVO storeVO);
 	public StoreVO storeInfo(StoreVO storeVO);
 	public int checkStore(StoreVO storeVO);
+	
+	public ArrayList<StoreVO> getWaitListWithPage(Criteria cri);
+	public int getTotalCount(Criteria cri);
 	
 	// soobin
 	public int insertStore(StoreVO storeVO);

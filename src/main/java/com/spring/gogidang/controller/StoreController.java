@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.MemberVO;
 import com.spring.gogidang.domain.MenuVO;
+import com.spring.gogidang.domain.PageDTO;
 import com.spring.gogidang.domain.ReviewVO;
 import com.spring.gogidang.domain.StoreVO;
 import com.spring.gogidang.service.MenuService;
@@ -64,8 +66,19 @@ public class StoreController {
 	@RequestMapping(value = "/storeWait.st")
 	public String getStoreWait(Model model) {
 		ArrayList<StoreVO> storeList = storeService.getWaitList();
-		System.out.println(storeList.size());
+		System.out.println("list size : " + storeList.size());
 		model.addAttribute("storeList", storeList);
+		
+		return "store/store_wait";
+	}
+	
+	@GetMapping("/storeWaitListWithPaging.st")
+	public String reviewList(Criteria cri, Model model) {
+		System.out.println("con" + storeService.getWaitListWithPage(cri).size());
+		model.addAttribute("list", storeService.getWaitListWithPage(cri));
+		
+		int total = storeService.getTotal(cri);
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		
 		return "store/store_wait";
 	}
