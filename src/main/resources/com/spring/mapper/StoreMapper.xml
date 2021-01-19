@@ -84,6 +84,7 @@
 		select mr.img , mr.meat , mr.price, sr.s_name, substr(sr.s_addr,1,2) s_addr from menu_reg mr inner join shop_reg sr on mr.s_num=sr.s_num 
  	</select>
  	
+ 	
 	<select id="getStoreListAjax" parameterType="java.util.HashMap" resultType="StoreVO">
 		select distinct img , meat , price, s_name, s_addr 
 	from	
