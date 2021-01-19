@@ -8,8 +8,8 @@
 <%@include file="../includes/header.jsp"%>
 
 <%
-	MemberVO memberVO = (MemberVO) session.getAttribute("MemberVO");
-	String id = memberVO.getU_id();
+	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
+	String id = mvo.getU_id();
 	List<ReviewVO> review_list = (List<ReviewVO>) request.getAttribute("list");
 	List<ReviewVO> reviewUidList = (List<ReviewVO>) request.getAttribute("reviewUidList");
 	PageDTO  pageMaker = (PageDTO) request.getAttribute("pageMaker");
