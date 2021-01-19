@@ -21,8 +21,7 @@
 				for (int i=0; i<storeList.size(); i++)
 					{
 						StoreVO vo = (StoreVO)storeList.get(i);
-						
-						if (vo.getConfirm() == 0) {
+
 			%>
 				<tr>
 					<td>
@@ -35,9 +34,6 @@
 				</tr>
 			<%
 					}
-			%>
-			<%
-				}
 			%>
 			</table>
 		</center>

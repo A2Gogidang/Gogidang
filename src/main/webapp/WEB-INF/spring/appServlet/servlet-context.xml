@@ -25,11 +25,11 @@
 		<beans:property name="maxUploadSize" value="10000000"></beans:property>
 	</beans:bean>
 	
-	<beans:bean class="java.lang.String" id="uploadPath">
+	<!-- <beans:bean class="java.lang.String" id="uploadPath">
 	<beans:constructor-arg
 		value="C:\Project\Spring_Source\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\A2gogidang\resources" />
 	</beans:bean>  
-	<resources mapping="/imgUpload/**" location="/resources/imgUpload" />
+	<resources mapping="/imgUpload/**" location="/resources/imgUpload" /> -->
 	
 	<context:component-scan base-package="com.spring.gogidang" />
 	
