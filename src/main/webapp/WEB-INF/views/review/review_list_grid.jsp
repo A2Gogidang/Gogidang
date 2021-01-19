@@ -16,13 +16,13 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="resources/js/newDetailStore.js"></script>
     <script src="resources/DetailStore/newDetailStore.css"></script>
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!--사이드바 및 햄버거 아이콘 액션 end-->
 
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-        
 
         <!-- Css Styles -->
         <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css">
@@ -32,19 +32,21 @@
         <link rel="stylesheet" href="resources/css/jquery-ui.min.css" type="text/css">
         <link rel="stylesheet" href="resources/css/owl.carousel.min.css" type="text/css">
         <link rel="stylesheet" href="resources/css/slicknav.min.css" type="text/css">
+        <link rel="stylesheet" href="resources/css/newDetailStore.css" type="text/css">
+        <link rel="stylesheet" href="resources/css/DetailStore.css" type="text/css">
         <link rel="stylesheet" href="resources/css/style.css" type="text/css">
 
-        <script>
-            jQuery(document).ready(function($) {
 
-$(".scroll").click(function(event){            
-        event.preventDefault();
-        $('html,body').animate({scrollTop:$(this.hash).offset().top}, 900);
-});
-});
-//부드러운 스크롤링 jquery
-            </script>
+	<script>
+    jQuery(document).ready(function($) {
 
+    	$(".scroll").click(function(event){            
+    	        event.preventDefault();
+    	        $('html,body').animate({scrollTop:$(this.hash).offset().top}, 900); //속도조절 900으로 맞춤
+    	});
+    	});
+    	//부드러운 스크롤링 jquery
+	</script>
     </head>
     <body>
             <!-- 3.Header Section Begin -->
@@ -160,92 +162,77 @@ $(".scroll").click(function(event){
         </section>
     메인 사진 사용 끝-->
 
-    <!--네비게이션바 사용 시작-->
-    <section class="hero">
-        <div class="container">
-            <div class="hero__item__box2"></div>
-                    <div class="EventNav">
-                        <ul>
-                    
-                            <li><a href="#">가격정보</a>
-                            <li><a href="#BestReview" class="scroll">추천리뷰</a></li>
-                            <li><a href="#locationNav_s" class="scroll">가게위치</a></li>
-                            <li><a href="#Qna_s" class="scroll">문의</a></li>
-                            
-                        </ul>
-                    </div>   
-            </div>   
-        </div>
-    </section>
-    <!--네비게이션바 사용 끝-->
+
     <section class="page-section BestReview" id="BestReview">
-        <br>
+    <br>
         <div class="container">
             <!-- Portfolio Section Heading-->
-            <div class="BoxSize" style="width: auto; justify-content: center;">
-            <h2 class="page-section-heading" style="margin-top: 30px;display: flex; justify-content: center; background-color: #338333; color: rgb(211, 255, 218); font-size: 30px;">추천리뷰</h2>
-        </div>
+            <h2 class="page-section-heading" style="margin-top: 100px;display: flex; justify-content: center;">추천리뷰</h2>
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+            </div>
             <!-- Portfolio Grid Items-->
             <div class="row justify-content-center" style="margin-top: 50px;">
-                <!-- Portfolio Item 1-->
+                <!-- Item 1-->
                 <div class="col-md-6 col-lg-4 mb-5">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal1">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="BestReview-item-caption-content text-center text-white"></div>
                         </div>
-                        <img class="img-fluid" src="resources/DetailStore/Review/추천리뷰1.png" alt="" />
+                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview1.png" alt="" />
                     </div>
                 </div>
-                <!-- Portfolio Item 2-->
+                <!-- Item 2-->
                 <div class="col-md-6 col-lg-4 mb-5">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal2">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="BestReview-item-caption-content text-center text-white"></div>
                         </div>
-                        <img class="img-fluid" src="resources/DetailStore/Review/추천리뷰2.png" alt="" />
+                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview2.png" alt="" />
                     </div>
                 </div>
-                <!-- Portfolio Item 3-->
+                <!-- Item 3-->
                 <div class="col-md-6 col-lg-4 mb-5">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal3">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="BestReview-item-caption-content text-center text-white"></div>
                         </div>
-                        <img class="img-fluid" src="resources/DetailStore/Review/추천리뷰3.png" alt="" />
+                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview3.png" alt="" />
                     </div>
                 </div>
-                <!-- Portfolio Item 4-->
+                <!-- Item 4-->
                 <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal4">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="BestReview-item-caption-content text-center text-white"></div>
                         </div>
-                        <img class="img-fluid" src="resources/DetailStore/Review/추천리뷰4.png" alt="" />
+                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview4.png" alt="" />
                     </div>
                 </div>
-                <!-- Portfolio Item 5-->
+                <!-- Item 5-->
                 <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal5">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="BestReview-item-caption-content text-center text-white"></div>
                         </div>
-                        <img class="img-fluid" src="resources/DetailStore/Review/추천리뷰5.png" alt="" />
+                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview5.png" alt="" />
                     </div>
                 </div>
-                <!-- Portfolio Item 6-->
+                <!-- Item 6-->
                 <div class="col-md-6 col-lg-4">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal6">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="BestReview-item-caption-content text-center text-white"></div>
                         </div>
-                        <img class="img-fluid" src="resources/DetailStore/Review/추천리뷰6.png" alt="" />
+                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview6.png" alt="" />
                     </div>
                 </div>
             </div>
         </div>
     </section>
 <a style="display:scroll;position:fixed;bottom:10px;right:5px;" href="#" title=”top">TOP</a> 
-
+      
+    
   <!-- Footer Section Begin -->
     
   <footer class="footer spad" style="margin-top: 30px;">
