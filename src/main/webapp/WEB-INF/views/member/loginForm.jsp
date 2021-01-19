@@ -58,8 +58,8 @@
                     <div class="col-md-6">
                         <div class="header__top__right">
                            <div class="header__top__right__auth">
-                                <aa><a href="#">로그인 </a></aa>
-                                <aa><a href="#"> 회원가입 </a></aa>
+                                <aa><a href="./loginForm.me">로그인 </a></aa>
+                                <aa><a href="./joinForm.me"> 회원가입 </a></aa>
                             </div>
                             <!--로그인후 모드-->
                             <!--<div class="header__top__right__auth">
@@ -220,7 +220,9 @@
                     <br>
                     <button type="submit" class="btn btn-lg btn-block btn-success">Sign in</button>
                     <br>
-                     <img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"width="222" onclick="loginFormWithKakao();" style="cursor: pointer;"/>
+                    <a id="custom-login-btn" href="javascript:loginWithKakao()"><img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"width="222"/></a>
+                    <p id="token-result"></p>
+                    <!--   <img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"width="222" onclick="loginFormWithKakao();" style="cursor: pointer;"/>-->
                   </form>
              <!-- End Loging form -->
 
@@ -318,7 +320,7 @@
   <script src="resources/js/owl.carousel.min.js"></script>
   <script src="resources/js/main.js"></script>
  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-   <script type="text/javascript">
+  <!-- <script type="text/javascript">
       
       // SDK 초기화
       Kakao.init('df2cc873afc51d2e537672630804318b');
@@ -354,8 +356,41 @@
     		    }
     		});
        }
+       
+       
       
-   </script>
+   </script>-->
+   
+<script type="text/javascript">
+	// SDK 초기화
+	Kakao.init('df2cc873afc51d2e537672630804318b');
+	
+  function loginWithKakao() {
+    Kakao.Auth.authorize({
+      redirectUri: 'http://localhost:8079/gogidang/main.me'
+    })
+  }
+  // 아래는 데모를 위한 UI 코드입니다.
+  displayToken()
+  function displayToken() {
+    const token = getCookie('authorize-access-token')
+    if(token) {
+      Kakao.Auth.setAccessToken(token)
+      Kakao.Auth.getStatusInfo(({ status }) => {
+        if(status === 'connected') {
+          document.getElementById('token-result').innerText = 'login success. token: ' + Kakao.Auth.getAccessToken()
+        } else {
+          Kakao.Auth.setAccessToken(null)
+        }
+      })
+    }
+  }
+  function getCookie(name) {
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
+</script>
 
   </body>
 </html>
