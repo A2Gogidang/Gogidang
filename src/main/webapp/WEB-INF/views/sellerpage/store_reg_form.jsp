@@ -224,14 +224,12 @@
 			<%}%>
 					
 				</td>
-			</tr>
-			<tr>
-				<td>
-					<img id="thumbnail" src="" />
-					<img id="s_img" src="" />
-				</td>
-			</tr>
+			</tr>	
 		</table>
+			<div class="select_img">
+				<img id="out_thumbnail" src="" />
+				<img id="out_s_img" src="" />
+			</div>
 	</center>
 </form>
 <script>
@@ -244,7 +242,7 @@
 	$("#thumbnail").change(function () {
 		var reader = new FileReader;
 		reader.onload = function(data) {
-			$("#thumbnail").attr("src", data.target.result).width(500);
+			$(".select_img>#out_thumbnail").attr("src", data.target.result).width(500);
 		}
 		reader.readAsDataURL(this.files[0]);
 	});
@@ -252,7 +250,7 @@
 	$("#s_img").change(function () {
 		var reader = new FileReader;
 		reader.onload = function(data) {
-			$("#s_img").attr("src", data.target.result).width(500);
+			$(".select_img>#out_s_img").attr("src", data.target.result).width(500);
 		}
 		reader.readAsDataURL(this.files[0]);
 	});

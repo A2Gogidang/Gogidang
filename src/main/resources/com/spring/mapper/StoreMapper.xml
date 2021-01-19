@@ -27,6 +27,23 @@
 	<select id="checkStore" parameterType="StoreVO" resultType="int">
 		SELECT count(*) FROM shop_reg WHERE u_id=#{u_id}
 	</select>
+	
+	<select id="getWaitListWithPage" resultType="StoreVO">
+		<![CDATA[
+		select s_name, thumbnail
+		from
+			( 	select rownum rn, s_name, thumbnail
+				from (	select *
+						from shop_reg
+						where confirm=0 )
+				where rownum <= #{pageNum} * #{amount}  )
+		where rn > (#{pageNum}-1) * #{amount}
+		]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from shop_reg
+	</select>
 	<!-- taehyun End -->
 
 	<!-- soobin start -->

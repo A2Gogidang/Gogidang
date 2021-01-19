@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.StoreVO;
 import com.spring.mapper.StoreMapper;
 
@@ -69,6 +70,21 @@ public class StoreServiceImpl implements StoreService {
 		
 		return res;
 	}
+	
+	@Override
+	public ArrayList<StoreVO> getWaitListWithPage(Criteria cri) {
+		StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
+		
+		return storeMapper.getWaitListWithPage(cri);
+	}
+
+	@Override
+	public int getTotal(Criteria cri) {
+		StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
+		System.out.println("impl" + storeMapper.getTotalCount(cri));
+		return storeMapper.getTotalCount(cri);
+	}
+
 	// taehyun end
 	
 	// soobin start
@@ -124,5 +140,6 @@ public class StoreServiceImpl implements StoreService {
 		return storelistAjax;
 	}
 	//dohyeong end
+
 
 }
