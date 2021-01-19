@@ -156,6 +156,25 @@
 		</dependency>
 		<!-- myBatis(추가) 끝 -->
 		
+		      <!-- 이메일 인증 관련정보 추가 시작 -->
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-context-support</artifactId>
+         <version>${org.springframework-version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
+      <dependency>
+         <groupId>com.sun.mail</groupId>
+         <artifactId>javax.mail</artifactId>
+         <version>1.6.2</version>
+      </dependency>
+      <dependency>
+         <groupId>javax.mail</groupId>
+         <artifactId>mail</artifactId>
+         <version>1.4</version>
+      </dependency>
+      <!-- 이메일 인증 관련정보 추가 끝 -->
+		
 		<!-- 컨넥션풀 설정 시작 -->
 		<!-- spring-jdbc -->
 		<dependency>
