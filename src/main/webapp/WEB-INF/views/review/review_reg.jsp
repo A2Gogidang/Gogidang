@@ -25,10 +25,18 @@
 		제목 : <input type="text" name="title" /> <br><br>
 		내용 : <input type="text" name="content" /> <br><br>
 		별점 : <input type="text" name="star" /> <br><br>
-		파일1 : <input type="file" name="file" multiple="multiple"> <br><br>
-		파일2 : <input type="file" name="file" multiple="multiple"> <br><br>
-		파일3 : <input type="file" name="file" multiple="multiple"> <br><br>
-		<input type="button" value="사진업로드" onclick="fnAction('./reviewReg.re')" multiple />
+		<div class="inputArea"></div>
+			<label for="review_img">이미지</label>
+			파일1 : <input id="review_img1" type="file" name="file" multiple="multiple"> <br><br>
+			파일2 : <input id="review_img2" type="file" name="file" multiple="multiple"> <br><br>
+			파일3 : <input id="review_img3" type="file" name="file" multiple="multiple"> <br><br>
+			<div class="select_img">
+				<img id="review_img1" src="" />
+				<img id="review_img2" src="" />
+				<img id="review_img3" src="" />
+			</div>
+		</div>
+		<input type="button" value="리뷰작성" onclick="fnAction('./reviewReg.re')" multiple />
 	</form>
 	
 	<script>
@@ -37,6 +45,30 @@
 			frm.action = url;
 			frm.submit();
 		}
+		
+		$("#review_img1").change(function () {
+			var reader = new FileReader;
+			reader.onload = function(data) {
+				$(".select_img>#review_img1").attr("src", data.target.result).width(500);
+			}
+			reader.readAsDataURL(this.files[0]);
+		});
+		
+		$("#review_img2").change(function () {
+			var reader = new FileReader;
+			reader.onload = function(data) {
+				$(".select_img>#review_img2").attr("src", data.target.result).width(500);
+			}
+			reader.readAsDataURL(this.files[0]);
+		});
+		
+		$("#review_img3").change(function () {
+			var reader = new FileReader;
+			reader.onload = function(data) {
+				$(".select_img>#review_img3").attr("src", data.target.result).width(500);
+			}
+			reader.readAsDataURL(this.files[0]);
+		});
 	</script>
 </body>
 </html>
