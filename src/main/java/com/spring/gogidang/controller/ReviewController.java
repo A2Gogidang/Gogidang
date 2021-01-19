@@ -49,7 +49,8 @@ public class ReviewController {
 		int total = reviewService.getTotal(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		
-		return "review/review_list";
+		return "review/review_list_grid";
+//		return "review/review_list";
 	}
 	
 	@RequestMapping("/reviewUidList.re")
