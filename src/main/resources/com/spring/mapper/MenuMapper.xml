@@ -19,7 +19,7 @@
 	<insert id="insertMenu" parameterType="MenuVO">
 		INSERT  
 		INTO menu_reg
-		values(#{menu_num,jdbcType=INTEGER}
+		values(seq_menu_reg.nextval,
 			  ,#{u_id,jdbcType=VARCHAR}
 			  ,#{s_num,jdbcType=VARCHAR}
 			  ,#{meat,jdbcType=INTEGER}

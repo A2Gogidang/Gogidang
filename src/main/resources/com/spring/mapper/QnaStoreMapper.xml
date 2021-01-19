@@ -5,8 +5,8 @@
 <mapper namespace="com.spring.mapper.QnaStoreMapper">
 	
 	<insert id="insert">
-		insert into qna_store (qs_num,u_id,s_num,title,content)
-		values (seq_qna_store.nextval, #{u_id},#{s_num},#{title},#{content})
+		insert into qna_store (qs_num,u_id,s_num,content)
+		values (seq_qna_store.nextval, #{u_id},#{s_num},#{content})
 	</insert>
 	
 	<select id="read" resultType="QnaStoreVO">
@@ -18,14 +18,37 @@
 	</delete>
 	
 	<update id="update">
-		update qna_store set title=#{title},content = #{content},qna_updatedate = sysdate where qs_num = #{qs_num}
+		update qna_store set content = #{content},qna_updatedate = sysdate where qs_num = #{qs_num}
 	</update>
 	
- 	<select id="getListWithS_num" resultType="QnaStoreVO">
-		select qs_num,u_id,s_num,title,content,qna_date,qna_updatedate
+<!--  	<select id="getListWithS_num" resultType="QnaStoreVO">
+		select *
 		from qna_store
 		where s_num = #{s_num}
 		order by qs_num asc
-	</select>  
+	</select>  --> 
+	
+	<select id="getListWithPaging" resultType="QnaStoreVO">
+
+  	<![CDATA[
+ 	select  qs_num, s_num, content, u_id, qna_date, qna_updateDate
+ 	from 
+   	(
+    	select /*+INDEX(qna_store idx_qnastore) */ 
+      	rownum rn,  qs_num, s_num, content, u_id, qna_date, qna_updateDate
+    from qna_store
+    where s_num =  #{s_num}
+    and qs_num > 0
+    and rownum <= #{cri.pageNum} * #{cri.amount}
+   	) where rn > (#{cri.pageNum} -1) * #{cri.amount}
+	]]>
+
+	</select>
+	
+	<select id="getCountByS_num" resultType="int">
+		<![CDATA[
+			select count(qs_num) from qna_store where s_num = #{s_num} 
+		]]>
+	</select>
 
 </mapper>

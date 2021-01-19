@@ -8,7 +8,7 @@
 
 <%
 	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
-	ReviewAttachVO ravo = (ReviewAttachVO) request.getAttribute("img");
+	ReviewVO rvo = (ReviewVO) request.getAttribute("review");
 %>
 
         <form name="review_info" action="./shop_reg.st" method="post">
@@ -19,7 +19,24 @@
                     </td>
                 </tr>
                 <tr>
-                	<td><img src="resources/img/<%=ravo.getUploadPath() %>/<%=ravo.getUuid() %>_<%=ravo.getFileName() %>" width="100px" height="100px">
+                <%
+                	if(!(rvo.getReview_img1().toString().equals("null"))) {
+                %>	
+                	<td><img src="resources/img/up/<%=rvo.getReview_img1() %>" width="100px" height="100px"/></td>
+                <%
+                	}
+                
+                	if (!(rvo.getReview_img2().toString().equals("null"))) {
+               	%>
+               		<td><img src="resources/img/up/<%=rvo.getReview_img2() %>" width="100px" height="100px" /></td>
+               	<%
+                	} 
+                	if (!(rvo.getReview_img3().toString().equals("null"))) {
+                %>
+                	<td><img src="resources/img/up/<%=rvo.getReview_img3() %>" width="100px" height="100px"/> </td>
+                <%
+                	}
+                %>
                 </tr>
 				<tr>
                     <td>가게명 : </td>

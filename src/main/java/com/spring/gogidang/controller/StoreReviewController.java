@@ -16,9 +16,11 @@ import com.spring.gogidang.domain.ReviewReplyVO;
 import com.spring.gogidang.domain.SRReviewVO;
 import com.spring.gogidang.domain.StoreVO;
 import com.spring.gogidang.service.StoreReviewService;
+import com.spring.gogidang.service.StoreService;
 
 @Controller
 public class StoreReviewController {
+	
 
 	@Autowired
 	private StoreReviewService storeReviewService;

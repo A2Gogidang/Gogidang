@@ -11,6 +11,7 @@ var qnaService = (function(){
 			success : function(result , status,xhr) {
 				
 				if(callback) {
+					callback(result);
 				}
 			},
 			error : function(xhr,status,er) {
@@ -24,11 +25,13 @@ var qnaService = (function(){
 	
 	function getList(param,callback,error) {
 		var s_num = param.s_num;
+		var page = param.page || 1;
 		
-		$.getJSON("/qnastore/"+s_num+".qs",
+		$.getJSON("/qnastore/pages/"+s_num+"/"+page+".qs",
 				function data(data){
 					if(callback) {
-						callback(data);
+						//callback(data); 댓글 목록만 가져 오는 경우
+						callback(data.qnastoreCnt, data.list); //댓글과 숫자 목록을 가져 오는경우
 				}
 		}).fail(function(xhr,status,err){
 			if(error) {
@@ -80,11 +83,15 @@ var qnaService = (function(){
 	
 	function get(qs_num,callback,error) {
 		
-		$.get("/qnastore/get/"+qs_num+".qs", function(result) {
+		$.getJSON("/qnastore/get/"+qs_num+".qs", function(result) {
 			
 			if(callback) {
+				//alert("result=" + result);
 				callback(result);
+				
 			}
+			else
+				alert("AAAAAA");
 			
 		}).fail(function(xhr, status, err) {
 			if(error) {

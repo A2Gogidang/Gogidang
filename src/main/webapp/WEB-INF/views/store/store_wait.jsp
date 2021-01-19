@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../includes/header.jsp"%>
 <%@ page import="java.util.*" %>
 <%@ page import = "com.spring.gogidang.domain.*" %>
+<%@include file="../includes/header.jsp"%>
 
 <%
-	MemberVO memberVO = (MemberVO) session.getAttribute("MemberVO");
-	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
+	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
+	String id = mvo.getU_id();
+	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("list");
+	PageDTO  pageMaker = (PageDTO) request.getAttribute("pageMaker");
 %>
 <!DOCTYPE html>
 <html>
@@ -20,11 +22,11 @@
 			<table border=1 width=300>
 				<tr align=center><td colspan=2>가게 대기 리스트</td></tr>
 			<%
-				for (int i=0; i<storeList.size(); i++)
-					{
-						StoreVO vo = (StoreVO)storeList.get(i);
-						
-						if (vo.getConfirm() == 0) {
+				if (storeList.size() > 0) {
+					for (int i=0; i<storeList.size(); i++)
+						{
+							StoreVO vo = (StoreVO)storeList.get(i);
+
 			%>
 				<tr>
 					<td>
@@ -37,10 +39,36 @@
 				</tr>
 			<%
 					}
+				} else {
 			%>
+				<h2>대기중인 가게가 없습니다.</h2>
 			<%
 				}
 			%>
+				<tr align=center height=20>
+					<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
+						<%if(pageMaker.isPrev()){ %>
+						<a href="./reviewList.re?pageNum=pageMaker.getCri().getPageNum()-1">[이전]</a>&nbsp;
+						<%}else{ %>
+						[이전]&nbsp;
+						<%} %>
+						
+						<%for(int a=pageMaker.getStartPage();a<=pageMaker.getEndPage();a++){
+							if(a==pageMaker.getCri().getPageNum()){%>
+							[<%=a %>]
+							<%}else{ %>
+							<a href="./reviewList.re?pageNum=<%=a %>">[<%=a %>]</a>
+							&nbsp;
+							<%} %>
+						<%} %>
+						
+						<%if(pageMaker.isNext()){ %>
+						<a href="./reviewList.re?pageNum=<%=pageMaker.getCri().getPageNum()+1 %>&amount=10">[다음]</a>
+						<%}else{ %>
+						[다음]
+						<%} %>
+					</td>
+				</tr>
 			</table>
 		</center>
 		

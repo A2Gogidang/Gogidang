@@ -11,3 +11,4 @@ public interface MemberService {
 	public int updateMember(MemberVO memberVO);
 	public int checkid(String u_id);
 }
+

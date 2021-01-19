@@ -1,8 +1,15 @@
 package com.spring.gogidang.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +21,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.gogidang.domain.*;
@@ -31,9 +41,6 @@ public class ReviewController {
 	@Autowired
 	private StoreService storeService;
 	
-	@Autowired
-	private ReviewAttachService reviewAttachService;
-	
 	@GetMapping("/reviewList.re")
 	public String reviewList(Criteria cri, Model model) {
 		
@@ -42,6 +49,7 @@ public class ReviewController {
 		int total = reviewService.getTotal(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		
+//		return "review/review_list_grid";
 		return "review/review_list";
 	}
 	
@@ -55,21 +63,93 @@ public class ReviewController {
 		
 		return "mypage/member_review";
 	}
-
-	@RequestMapping("/reviewReg.re")
-	public String reviewReg(ReviewVO review) {
+	
+	// file upload
+	private String getFolder() {
 		
-		reviewService.reviewReg(review);
-		return "redirect:/reviewList.re";
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date date = new Date();
+		
+		String str = sdf.format(date);
+		
+		return str.replace("-", File.separator);
 	}
 	
-	@RequestMapping("/review_photo_reg.re")
-	public String review_photo_reg(StoreVO store, Model model) {
-		StoreVO svo = storeService.storeInfo(store);
+	private boolean checkImageType(File file) {
+
+		try {
+			String contentType = Files.probeContentType(file.toPath());
+
+			return contentType.startsWith("image");
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
+	@RequestMapping("/reviewReg.re")
+	public String reviewReg(ReviewVO review, MultipartHttpServletRequest request) {
 		
-		model.addAttribute("svo", svo);
-		return "review/review_reg_ajax";
+		List<MultipartFile> fileList = request.getFiles("file");
+		System.out.println(fileList.size());
 		
+//		String uploadPath = "/Users/taehyun/Documents/Spring_Source/Gogidang/src/main/webapp/resources/img/up/";
+		String uploadPath = request.getServletContext().getRealPath("/resources/img/up/");
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("review/review_list");
+		
+		ArrayList<String> orgfile_list = new ArrayList<String>();
+		ArrayList<String> storedfile_list = new ArrayList<String>();
+		ArrayList<Long> filesize_list = new ArrayList<Long>();
+		
+		review.setReview_img1("null");
+		review.setReview_img2("null");
+		review.setReview_img3("null");
+		
+		for(MultipartFile mf : fileList) {
+			if(mf.getSize() >= 1) {
+				String originFileName = mf.getOriginalFilename(); //원본 파일 명
+				long fileSize = mf.getSize(); //파일 사이즈
+				
+				System.out.println("originFileName : "+originFileName);
+				System.out.println("fileSize : "+fileSize);
+				String storedFileName = System.currentTimeMillis() + originFileName;
+				System.out.println("storedFileName="+storedFileName);
+				String safeFile = uploadPath + storedFileName;
+				
+				if(review.getReview_img1().toString().equals("null")) {
+					review.setReview_img1(storedFileName);
+					System.out.println("plus1");
+				} else if (review.getReview_img2().toString().equals("null")) {
+					review.setReview_img2(storedFileName);
+					System.out.println("plus2");
+				} else {
+					review.setReview_img3(storedFileName);
+					System.out.println("end");
+				}
+				
+				System.out.println(safeFile);
+				try {
+					if(mf.getSize() != 0) {
+						mf.transferTo(new File(safeFile));
+					}
+				} catch (IOException e) {
+					System.out.println("업로드 에러!!");
+				}
+				orgfile_list.add(originFileName);
+				storedfile_list.add(storedFileName);
+				filesize_list.add(fileSize);
+			} 
+		}
+		
+		reviewService.reviewReg(review);
+		
+		return "redirect:main.me";
 	}
 	
 	@RequestMapping("/review_reg.re")
@@ -78,7 +158,8 @@ public class ReviewController {
 		StoreVO svo = storeService.storeInfo(store);
 		
 		model.addAttribute("svo", svo);
-		return "review/review_reg_ajax";
+//		return "review/review_reg_ajax";
+		return "review/review_reg";
 	}
 	
 	@RequestMapping("/reviewModify.re")
@@ -110,7 +191,6 @@ public class ReviewController {
 	@RequestMapping("/reviewInfo.re")
 	public String reviewInfo(@RequestParam("review_num") int review_num, Model model) {
 		model.addAttribute("review", reviewService.getReview(review_num));
-		model.addAttribute("img", reviewAttachService.getImg(review_num));
 		
 		return "/review/review_info";
 	}

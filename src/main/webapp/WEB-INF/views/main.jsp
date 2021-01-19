@@ -36,7 +36,7 @@
 				<h3>관리자입니다.</h3>
 				<a href="./storeList.st">전체 가게 리스트 보기</a>
 				<br>
-				<a href="./storeWait.st">승인 대기 중인 가게 리스트 확인</a>
+				<a href="./storeWaitListWithPaging.st">승인 대기 중인 가게 리스트 확인</a>
 		<%
 			}
 		%>
@@ -46,9 +46,9 @@
 		<h3>관리자입니다.</h3>
 		<a href="./storeList.st">전체 가게 리스트 보기</a>
 		<br>
-		<a href="./storeWait.st">승인 대기 중인 가게 리스트 확인</a>
 		<br>
 		<a href="./updateList.me?u_id=<%=mvo.getU_id()%>">내정보보러가기</a>
+		<a href="./storeWaitListWithPaging.st">승인 대기 중인 가게 리스트 확인</a>
 	<% 
 	}
 	%>			
