@@ -9,13 +9,13 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>고기당</title>
-    <link rel="shortcut icon" href="cut-pig.jpg"> 
+    <link rel="shortcut icon" href="resources/cut-pig.jpg"> 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="DetailStore/css/DetailStore.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="resources/js/newDetailStore.js"></script>
+    <script src="resources/DetailStore/newDetailStore.css"></script>
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
