@@ -202,17 +202,19 @@
                     <div class="form-group">
                       <input type="password" class="form-control" name="u_pw" placeholder="Password">
                     </div>
-                      <div class="form-check">
-
-                      <label class="switch">
-                      <input type="checkbox">
-                      <span class="slider round"></span>
-                    </label>
-                    
-                     <a href="javascript:loginForm.submit()"><label class="form-check-label" for="exampleCheck1">로그인</label></a>
-                      
-                     <a href="./joinForm.me"><label class="join-label">회원가입</label></a>
-
+                     <div class="form-check">
+                     	<div>
+		                    <label class="switch">
+		                      	<input type="checkbox">
+		                      	<span class="slider round"></span>
+		                   	</label>
+	                   	</div>
+	                    <div>
+                    	 	<a href="javascript:loginForm.submit()"><!-- <label class="form-check-label" for="exampleCheck1"></label> -->로그인</a>
+                      	</div>
+                      	<div>
+                     	 	<a href="./joinForm.me"><!--<label class="join-label"> </label>  -->회원가입</a>
+						</div>
                     </div>
                   
                     <br>
