@@ -37,16 +37,16 @@
         <link rel="stylesheet" href="resources/css/style.css" type="text/css">
 
 
-	<script>
+   <script>
     jQuery(document).ready(function($) {
 
-    	$(".scroll").click(function(event){            
-    	        event.preventDefault();
-    	        $('html,body').animate({scrollTop:$(this.hash).offset().top}, 900); //속도조절 900으로 맞춤
-    	});
-    	});
-    	//부드러운 스크롤링 jquery
-	</script>
+       $(".scroll").click(function(event){            
+               event.preventDefault();
+               $('html,body').animate({scrollTop:$(this.hash).offset().top}, 900); //속도조절 900으로 맞춤
+       });
+       });
+       //부드러운 스크롤링 jquery
+   </script>
     </head>
     <body>
             <!-- 3.Header Section Begin -->
