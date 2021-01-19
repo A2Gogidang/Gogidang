@@ -8,30 +8,12 @@
 <%@include file="../includes/header.jsp"%>
 
 <%
-	MemberVO memberVO = (MemberVO) session.getAttribute("MemberVO");
-	String id = memberVO.getU_id();
+	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
+	String id = mvo.getU_id();
 	List<ReviewVO> review_list = (List<ReviewVO>) request.getAttribute("list");
 	List<ReviewVO> reviewUidList = (List<ReviewVO>) request.getAttribute("reviewUidList");
 	PageDTO  pageMaker = (PageDTO) request.getAttribute("pageMaker");
 %>
-<!-- <script type="text/javascript">
-	$(document).ready(function() {
-		var result = '<c:out value="${result}"/>';
-		checkModal(result);
-		history.replaceState({},null,null);
-		function checkModal(result) {
-			
-			if (result === '' || history.state) {
-				return;
-			}
-	
-			if (parseInt(result) > 0) {
-				$(".modal-body").html( "게시글 " + parseInt(result) + " 번이 등록되었습니다.");
-			}
-			$("#myModal").modal("show");
-		}
-	});
-</script> -->
 
 	<h3><%=id %></h3>
 	<center>
@@ -47,14 +29,6 @@
 				<td>별점</td>
 				<td >등록일</td>
 			</tr>
-<%-- 			<c:forEach items="${review_list }" var="review_list">
-				<tr>
-					<td><c:out value="${review_list.title }" /></td>
-					<td><a href='reviewInfo.re?review_num=<c:out value="${reviewList.review_num }" />&s_num=<c:out value="${reviewList.s_num }" />'><c:out value="${reviewList.title }" /></a></td>
-					<td><c:out value="${reviewList.star }" /></td>
-					<td ><fmt:formatDate pattern="yyyy-MM-dd" value="${reviewList.re_date }" /></td>
-				</tr>
-			</c:forEach> --%>
  		<%
 			for (int i=0; i<review_list.size(); i++)
 			{
@@ -108,25 +82,5 @@
 				</td>
 			</tr>
 		</table>
-		
-<!-- 		
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-				aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							<h4 class="modal-title" id="myModalLabel">Modal title</h4>
-						</div>
-						<div class="modal-body">처리가 완료되었습니다.</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
-						</div>
-					</div>
-					/.modal-content
-				</div>
-				/.modal-dialog
-			</div>
--->
+
 <%@include file="../includes/footer.jsp"%>

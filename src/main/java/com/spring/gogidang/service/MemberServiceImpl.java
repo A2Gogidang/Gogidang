@@ -1,5 +1,7 @@
 package com.spring.gogidang.service;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,9 +41,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int checkId(String u_id) {
+	public int checkid(String u_id) {
 		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
-		return memberMapper.checkId(u_id);
+		
+		int res = memberMapper.checkid(u_id);
+		
+		return res;
 	}
 
 }

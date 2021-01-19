@@ -2,10 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@include file="../includes/header.jsp"%>
 <%@ page import="java.util.*" %>
-<%@ page import = "com.spring.gogidang.domain.*" %>
 
 <%
-	MemberVO memberVO = (MemberVO) session.getAttribute("MemberVO");
 	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
 %>
 <!DOCTYPE html>
@@ -23,8 +21,7 @@
 				for (int i=0; i<storeList.size(); i++)
 					{
 						StoreVO vo = (StoreVO)storeList.get(i);
-						
-						if (vo.getConfirm() == 0) {
+
 			%>
 				<tr>
 					<td>
@@ -37,9 +34,6 @@
 				</tr>
 			<%
 					}
-			%>
-			<%
-				}
 			%>
 			</table>
 		</center>

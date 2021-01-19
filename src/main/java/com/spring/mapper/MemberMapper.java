@@ -1,11 +1,14 @@
 package com.spring.mapper;
 
-import com.spring.gogidang.domain.*;
+import java.util.Map;
+
+import com.spring.gogidang.domain.MemberVO;
 
 public interface MemberMapper {
   
 	MemberVO selectMember(MemberVO member);
 	int insertMember(MemberVO member);
 	int updateMember(MemberVO member);
-	int checkId(String u_id);
+	int checkid(String u_id);
+
 }

@@ -219,6 +219,8 @@
                   
                     <br>
                     <button type="submit" class="btn btn-lg btn-block btn-success">Sign in</button>
+                    <br>
+                     <img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"width="222" onclick="loginFormWithKakao();" style="cursor: pointer;"/>
                   </form>
              <!-- End Loging form -->
 
@@ -315,8 +317,45 @@
   <script src="resources/js/mixitup.min.js"></script>
   <script src="resources/js/owl.carousel.min.js"></script>
   <script src="resources/js/main.js"></script>
+ <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+   <script type="text/javascript">
+      
+      // SDK 초기화
+      Kakao.init('df2cc873afc51d2e537672630804318b');
+      
+      function loginFormWithKakao() {
+         Kakao.Auth.loginForm({
+            success: function(authObj) {
+               showResult(JSON.stringify(authObj))
+               
+               getUserInfo();
+               
+            },
+            fail: function(err) {
+               showResult(JSON.stringify(err))
+            },
+          });
+       }
 
-
+       function showResult(result) {
+          alert(result);
+       }
+       
+       function getUserInfo() {
+    	   Kakao.API.request({
+    		    url: '/v2/user/me',
+    		    success: function(response) {
+    		        console.log(response);
+    		        alert( JSON.stringify(response) );
+    		  
+    		    },
+    		    fail: function(error) {
+    		        console.log(error);
+    		    }
+    		});
+       }
+      
+   </script>
 
   </body>
 </html>

@@ -12,6 +12,7 @@
 				 ,#{u_nick}
 				 ,#{u_birth}
 				 ,#{u_addr}
+ 				 ,#{u_post}
 				 ,#{u_email}
 				 ,#{u_phone}
 				 ,#{seller_key})
@@ -35,8 +36,8 @@
 	 	  	 ,u_phone=#{u_phone,jdbcType=VARCHAR}
 	 	  where u_id=#{u_id,jdbcType=VARCHAR}
  	</update> 
-	
-	<select id="checkId" parameterType="String" resultType="int">
-		SELECT count(*) FROM member WHERE u_id=#{u_id}
+
+	<select id="checkid" resultType="int">
+		select count(*) from member where u_id=#{u_id}
 	</select>
 </mapper>
