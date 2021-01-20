@@ -12,7 +12,10 @@
 				 ,#{u_nick}
 				 ,#{u_birth}
 				 ,#{u_addr}
+<<<<<<< HEAD
+=======
  				 ,#{u_post}
+>>>>>>> fb32f04527127b124e41cee81ccfe490cf9613a5
 				 ,#{u_email}
 				 ,#{u_phone}
 				 ,#{seller_key})

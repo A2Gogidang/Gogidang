@@ -1,9 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
-<%@ page import="com.spring.gogidang.domain.QnaVO" %>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import = "com.spring.gogidang.domain.*" %>
+<%@include file="../includes/header.jsp"%>
 <%
-	String u_id=null;
-	u_id=(String)session.getAttribute("u_id");
-	
 	QnaVO qna = (QnaVO)request.getAttribute("qna");
 %>
 
@@ -19,8 +21,10 @@
 	<tr align="center" valign="middle">
 		<td colspan="5">문의 게시판</td>
 	</tr>
-	
+
 	<tr>
+		
+	
 		<td style="font-family:돋음; font-size:12" height="16">
 			<div align="center">제 목&nbsp;&nbsp;</div>
 		</td>
@@ -48,24 +52,7 @@
 				</tr>
 
 			</table>
-	<tr>
-		<td style="font-family:돋음; font-size:12">
-	<div align="center">비밀번호</div>
-		<td>
-			<input readonly type="password" name="qna_password" cols="10" rows="15"  value="<%=qna.getQna_password() %>" />
-			
-		</td>
-		</td>
-	</tr>
-		<tr>
-		<td style="font-family:돋음;font-size:12">
-	<div align="center">비밀번호 확인</div>
-		<td>
-			<input type="password" name="qna_password1" cols="10" rows="15" />
-			
-		</td>
-		</td>
-	</tr>
+	
 
 	<tr bgcolor="cccccc">
 		<td colspan="2" style="height:1px;"></td>
@@ -74,7 +61,7 @@
 	<tr align="center" valign="middle">
 		<td colspan="5">
 			<font size=2>
-			 <%if(u_id!=null && u_id.equals("admin")){%>
+			 <%if(memberVO.getU_id()!=null && memberVO.getU_id().equals("admin")){%>
 				<a href="./qnareplyform.qn?qna_num=<%=qna.getQna_num() %>">
 				[답변]
 				</a>&nbsp;&nbsp;
@@ -82,19 +69,15 @@
 			<%}%>
 			
 			
-			<a onclick="return qnacheck()" href="./qnamodifyform.qn?qna_num=<%=qna.getQna_num() %>">
+			<a href="./qnamodifyform.qn?qna_num=<%=qna.getQna_num() %>">
 			[수정]
 			</a>&nbsp;&nbsp;
-			<a onclick="return qnacheck()" href="./qnadelete.qn?qna_num=<%=qna.getQna_num() %>"
-			>
-			[삭제]
-			</a>&nbsp;&nbsp;
-			<a href="./qnalist.qn">[목록]</a>&nbsp;&nbsp;
+			<a href="./qnaList.qn">[목록]</a>&nbsp;&nbsp;
 			</font>
 		</td>
 	</tr>
 </table>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 /* 	document.addEventListener('DOMContentLoaded', function(){
 		
 		
@@ -116,7 +99,7 @@
 			return true;
 		}
 	}
-</script>
+</script> -->
 
 </body>
 </html>

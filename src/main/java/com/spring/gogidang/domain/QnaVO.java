@@ -20,4 +20,6 @@ public class QnaVO {
 	private int re_ref;
 	private int re_lev;
 	private int re_seq;
+	
+	
 }
