@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="kr">
 
@@ -9,13 +7,14 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>고기당</title>
-    <link rel="shortcut icon" href="resources/cut-pig.jpg"> 
+    <link rel="shortcut icon" href="cut-pig.jpg"> 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="DetailStore/css/DetailStore.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="resources/js/newDetailStore.js"></script>
-    <script src="resources/DetailStore/newDetailStore.css"></script>
+    <script src="newDetailStore.js"></script>
+    
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
@@ -23,30 +22,35 @@
 
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+        
 
         <!-- Css Styles -->
-        <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/font-awesome.min.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/elegant-icons.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/nice-select.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/jquery-ui.min.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/owl.carousel.min.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/slicknav.min.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/newDetailStore.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/DetailStore.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/style.css" type="text/css">
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+        <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+        <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+        <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+        <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+        <link rel="stylesheet" href="/newDetailStore.css" type="text/css">
+        <link rel="stylesheet" href="css/style.css" type="text/css">
 
+        <script>
+            jQuery(document).ready(function($) {
 
-	<script>
-    jQuery(document).ready(function($) {
-
-    	$(".scroll").click(function(event){            
-    	        event.preventDefault();
-    	        $('html,body').animate({scrollTop:$(this.hash).offset().top}, 900); //속도조절 900으로 맞춤
-    	});
-    	});
-    	//부드러운 스크롤링 jquery
-	</script>
+$(".scroll").click(function(event){            
+        event.preventDefault();
+        $('html,body').animate({scrollTop:$(this.hash).offset().top}, 900);
+});
+});
+//부드러운 스크롤링 jquery
+            </script>
+<style>
+.page-link
+{
+    color: #338333;
+}
+</style>
     </head>
     <body>
             <!-- 3.Header Section Begin -->
@@ -80,7 +84,7 @@
                 <div class="col1"></div>
                 <!--메인페이지 이미지 1400*380-->
                 <div class="header__logo">
-                    <a href="indexmain.html"><img src="resources/img/mainlogo.png" alt=""></a>
+                    <a href="indexmain.html"><img src="img/mainlogo.png" alt=""></a>
                 </div>
                 <div class="col1"></div>
             </div>
@@ -168,10 +172,12 @@
             <div class="hero__item__box2"></div>
                     <div class="EventNav">
                         <ul>
-                             <li><a href="#">가격정보</a>
+                    
+                            <li><a href="#">가격정보</a></li>
                             <li><a href="#BestReview" class="scroll">추천리뷰</a></li>
                             <li><a href="#locationNav_s" class="scroll">가게위치</a></li>
                             <li><a href="#Qna_s" class="scroll">문의</a></li>
+                            
                         </ul>
                     </div>   
             </div>   
@@ -179,12 +185,13 @@
     </section>
     <!--네비게이션바 사용 끝-->
     <!-- Hero Section End -->
-    <div class="container" style="display: flex; align-items: center; justify-content: center;">
-        <div class="row" style="display: flex; align-items: center; justify-content: center;">    
+    <div class="container" style = "display: flex; align-items: center; justify-content: center;">
+        <div class="row" style = "display: flex; align-items: center; justify-content: center;>  
+          
             <div class="col-md-6 col-md-offset-3">
-                <div class="card">
+                <div class="card" style="margin-bottom: 70px;">
                     <div class="card-image">
-                        <img class="img-responsive" src="resources/img/DetailStoreImg/SellerImg/sellerpic.png">
+                        <img class="img-responsive" src="DetailStore/SellerImg/sellerpic.png">
                         
                     </div><!-- card image -->
                     
@@ -197,10 +204,10 @@
                     <div class="card-action"style="text-align: left;">
                         <div class="SellerInfo">
                             <ul class="SellerInfoDetail">
-                            <ul><a href="#"><img src="resources/img/DetailStoreImg/Icon/location.ico" width="30px" height="30px;">서울 특별시 성동구 마장동 정육백화점</a></ul>
-                            <ul><a href="#"><img src="resources/img/DetailStoreImg/Icon/time.ico" width="30px" height="30px;">10:00 ~ 21:00</a></ul>
-                            <ul><a href="#"><img src="resources/img/DetailStoreImg/Icon/call.ico" width="30px" height="30px;">010-0000-0000 &nbsp; 02-0000-0000</a></ul>
-                            <ul><a href="#"><img src="resources/img/DetailStoreImg/Icon/delivery.ico" width="30px" height="30px;">서울 특별시 성동구 마장동 정육백화점</a></ul>
+                            <ul><a href="#"><img src="DetailStore/Icon/location.ico" width="40px" height="40px;">&nbsp;&nbsp;서울 특별시 성동구 마장동 정육백화점</a></ul>
+                            <ul><a href="#"><img src="DetailStore/Icon/time.ico" width="40px" height="42px;">&nbsp;&nbsp;10:00 ~ 21:00</a></ul>
+                            <ul><a href="#"><img src="DetailStore/Icon/call.ico" width="40px" height="40px;">&nbsp;&nbsp;010-0000-0000 &nbsp; 02-0000-0000</a></ul>
+                            <ul><a href="#"><img src="DetailStore/Icon/delivery.ico" width="40px" height="40px;">&nbsp;&nbsp;서울 특별시 성동구 마장동 정육백화점</a></ul>
                            </ul>
                         </div>
                     </div><!-- card actions -->
@@ -212,7 +219,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <img src="resources/img/DetailStoreImg/SampleLocation.png" src="정육백화점" />
+                                    <img src="SampleLocation.png" src="정육백화점" />
                                 </div>
                             </div>
                         </div>
@@ -224,155 +231,270 @@
         </div>
     </div>
     <section class="page-section BestReview" id="BestReview">
-    <br>
+        <br>
         <div class="container">
             <!-- Portfolio Section Heading-->
-            <h2 class="page-section-heading" style="margin-top: 100px;display: flex; justify-content: center;">추천리뷰</h2>
-            <!-- Icon Divider-->
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-            </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title">
+                            <h2 style="margin-top: 30px;">추천 리뷰</h2>
+                        </div>
+                        </div>
+                    </div>
             <!-- Portfolio Grid Items-->
-            <div class="row justify-content-center" style="margin-top: 50px;">
-                <!-- Item 1-->
+            <div class="row justify-content-center" style="margin-top: 20px;">
+                <!-- Portfolio Item 1-->
                 <div class="col-md-6 col-lg-4 mb-5">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal1">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="BestReview-item-caption-content text-center text-white"></div>
                         </div>
-                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview1.png" alt="" />
+                        <img class="img-fluid" src="/DetailStore/Review/추천리뷰1.png" alt="" />
                     </div>
                 </div>
-                <!-- Item 2-->
+                <!-- Portfolio Item 2-->
                 <div class="col-md-6 col-lg-4 mb-5">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal2">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="BestReview-item-caption-content text-center text-white"></div>
                         </div>
-                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview2.png" alt="" />
+                        <img class="img-fluid" src="/DetailStore/Review/추천리뷰2.png" alt="" />
                     </div>
                 </div>
-                <!-- Item 3-->
+                <!-- Portfolio Item 3-->
                 <div class="col-md-6 col-lg-4 mb-5">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal3">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="BestReview-item-caption-content text-center text-white"></div>
                         </div>
-                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview3.png" alt="" />
+                        <img class="img-fluid" src="/DetailStore/Review/추천리뷰3.png" alt="" />
                     </div>
                 </div>
-                <!-- Item 4-->
+                <!-- Portfolio Item 4-->
                 <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal4">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="BestReview-item-caption-content text-center text-white"></div>
                         </div>
-                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview4.png" alt="" />
+                        <img class="img-fluid" src="/DetailStore/Review/추천리뷰4.png" alt="" />
                     </div>
                 </div>
-                <!-- Item 5-->
+                <!-- Portfolio Item 5-->
                 <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal5">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="BestReview-item-caption-content text-center text-white"></div>
                         </div>
-                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview5.png" alt="" />
+                        <img class="img-fluid" src="/DetailStore/Review/추천리뷰5.png" alt="" />
                     </div>
                 </div>
-                <!-- Item 6-->
-                <div class="col-md-6 col-lg-4">
-                    <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal6">
+                 <!-- Portfolio Item 3-->
+                 <div class="col-md-6 col-lg-4 mb-5">
+                    <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal3">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="BestReview-item-caption-content text-center text-white"></div>
                         </div>
-                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview6.png" alt="" />
+                        <img class="img-fluid" src="/DetailStore/Review/추천리뷰6.png" alt="" />
                     </div>
                 </div>
             </div>
         </div>
     </section>
-<div class="locationNav"style="margin-bottom: 20px; margin-top: 100px; display: flex; justify-content: center; align-items: center; ">
-    <h2 class="page-section-heading">위치</h2>
+    <br>
+    <section id="locationNav_s">
+        <br>
+        <div class="container">
+            <!-- Portfolio Section Heading-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2 style="margin-top: 30px;">가게 위치</h2>
+                    </div>
+                    </div>
+                </div>
 </div>
-<section id="locationNav_s">
-<br>
 <div class="location">
-    <img src="resources/img/DetailStoreImg/Location/location.png">
-    <img src="resources/img/DetailStoreImg/Location/loc1.png">
+    <img src="DetailStore/Location/location.png">
+    <img src="DetailStore/Location/loc1.png">
     <span class="locText"></span>
     <p>가락시장역2번 출구로 나오세요</p>
     <p>가락몰이 보입니다</p>
-    <img src="resources/img/DetailStoreImg/Location/loc2.png">
+    <img src="DetailStore/Location/loc2.png">
     <span class="locText"></span>
     <p>가락몰 쪽으로 주욱 가다보시면</p>
-    <img src="resources/img/DetailStoreImg/Location/loc3.png">
+    <img src="DetailStore/Location/loc3.png">
     <span class="locText"></span>
     <p>축산이 써져있는 문들이 보입니다</p>
-    <img src="resources/img/DetailStoreImg/Location/loc4.png">
+    <img src="DetailStore/Location/loc4.png">
     <span class="locText"></span>
     <p>축산 3이 써져있는 문을 열고 들어가주세요</p>
-    <img src="resources/img/DetailStoreImg/Location/loc5.png">
+    <img src="DetailStore/Location/loc5.png">
     <span class="locText"></span>
     <p>들어가시면 많은 축산 점포가 보입니다.</p>
-    <img src="resources/img/DetailStoreImg/Location/loc6.png">
+    <img src="DetailStore/Location/loc6.png">
     <span class="locText"></span>
     <p>B66 점포번호를 확인해주세요</p>
     <p>정육 백화점이 보입니다.</p>
 </div>
 </section>
-<h2 class="page-section-heading" style="margin-top: 100px;display: flex; justify-content: center;">문의</h2>
 <section id="Qna_s">
-<br>
-<div class="CsCenterCon">
-    <button class="CsInsert_btn" style="background-color: #016301;">가게문의 작성</button>
-        <a href="#"><div class="CsMainText1">
-        <div class="CsCenterText"><span>고기를 당일에 예약해서 가면 바로먹을수 있나요?</span>
-        </div>
-        <div class="CsInsertName">
-            <span>고*우</span>
-        </div>
-        <div class="CsInsertTime">
-            <span>2020.12.30</span>
-        </div>
-        <div class="CsUnReady">
-            <span>답변대기</span>
-    </div></div></a>
-<a href="#"><div class="CsMainText2">
-        <div class="CsCenterText"><span>테이블이 많이 준비되어있나요? 회식인원이 좀많아서요...</span></div>
-        <div class="CsInsertName">
-            <span>오*석</span>
-        </div>
-        <div class="CsInsertTime">
-            <span>2020.12.30</span>
-        </div>
-        <div class="CsReady">
-            <span>답변완료</span>
-        </div>
-        </div>
-    </a>
-    <div class="CsMainTextRe">
-        <div class="CsCenterText"><span>충분히 많습니다!! 언제든지 들러주세요~</span>
-        </div>
-        <div class="CsInsertNamead">
-            <span>정육백화점</span>
-        </div>
-        <div class="CsInsertTime">
-            <span>2020.12.30</span>
+    <br>
+    <div class="container">
+        <!-- Portfolio Section Heading-->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2 style="margin-top: 30px;">문의</h2>
+                </div>
+                </div>
+            </div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>
+							번호
+						</th>
+						<th>
+							제목
+						</th>
+						<th>
+							작성자
+						</th>
+						<th>
+							날짜
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					</a><tr>
+						<td>
+							1
+                        </td>
+                       
+						<td>
+                            <a href="#">
+							홈페이지에서 예약할수 있나요?
+                        </a>
+                        </td>
+						<td>
+							오*석
+						</td>
+						<td>
+							21/01/05
+						</td>
+                  
+                    </tr>
+                
+					<tr class="table table-striped">
+						<td>
+							2
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+					</tr>
+					<tr class="table table-striped">
+						<td>
+							3
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+					</tr>
+					<tr class="table table-striped">
+						<td>
+							4
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+					</tr>
+					<tr class="table table-striped">
+						<td>
+							5
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+					</tr>
+				</tbody>
+            </table> 
+            <div class="qna_insert" style="text-align: right;">
+			<a href="qna_insert.html"><button type="button" class="btn btn-lg btn-outline-secondary" a href = "qna_insert.html"style="background-color: #338333; color: white;">
+				글쓰기
+            </button>
+        </a>
         </div>
     </div>
+    </div>
+    <div class="container-fluid" >
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <class class="pagination-lg">
+                    <ul class="pagination" style="margin-bottom: 30px;">
+                        <li class="page-item">
+                            <a class="page-link" href="#">Previous</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">4</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">5</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">6</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">7</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">8</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">9</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">10</a>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-md-2">
+            </div>
         </div>
-   	</section>
-    <div class="btnTotal">
-        <button type="button" class="btn btn-primary btn-lg btn-block" style="background-color:#016301;font-size: 15px;">전체보기</button>
-        <div class="EventNav">
-            <ul style="margin-top: 30px;">
-                <li style="border: solid black; background-color: #016301; color: white;"><a href="#">추천리뷰</a></li>
-                <li style="border: solid black; background-color: #016301;  color: white;"><a href="#">위치</a>
-                <li style="border: solid black; background-color: #016301;  color: white;"><a href="#">문의</a></li>
-            </ul>
-        </div>   
-</div>
+    </div>
 <a style="display:scroll;position:fixed;bottom:10px;right:5px;" href="#" title=”top">TOP</a> 
+
+
       
     
   <!-- Footer Section Begin -->
@@ -384,7 +506,7 @@
                 <div class="footer__about">
                     <div class="footer__about__logo">
                         <!--logo크기 120*50-->
-                        <a href="./index.html"><img src="resources/img/bottom-logo-test1.jpg" alt=""></a>
+                        <a href="./index.html"><img src="img/bottom-logo-test1.jpg" alt=""></a>
                     </div>
                     <ul>
                         <li>법인명(상호) : 주식회사 고기당 </li>
@@ -457,14 +579,14 @@
 <!-- Footer Section End -->
 
 <!-- Js Plugins -->
-<script src="resources/js/jquery-3.3.1.min.js"></script>
-<script src="resources/js/bootstrap.min.js"></script>
-<script src="resources/js/jquery.nice-select.min.js"></script>
-<script src="resources/js/jquery-ui.min.js"></script>
-<script src="resources/js/jquery.slicknav.js"></script>
-<script src="resources/js/mixitup.min.js"></script>
-<script src="resources/js/owl.carousel.min.js"></script>
-<script src="resources/js/main.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.nice-select.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/jquery.slicknav.js"></script>
+<script src="js/mixitup.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/main.js"></script>
 
    
 </div>

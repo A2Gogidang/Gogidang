@@ -18,7 +18,7 @@
                         <ul>
                             <li><a href="./updateList.me">내정보</a></li>
                             <li><a href="./storeRegForm.st">가게 정보</a>
-                            <li><a href="./menuRegForm.st">메뉴 정보</a></li>
+                            <li><a href="./menuRegForm.mn">메뉴 정보</a></li>
                             <li><a href="./storeNoticeList.no">문의 관리</a></li>
                             <li><a href="./storereviewList.bo">리뷰 관리</a></li>
                         </ul>
@@ -33,16 +33,7 @@
 <input type="hidden" name = "s_num" value=<%=srReviewvo.getS_num() %>>
 <input type="hidden" name = "comment_num" value=<%=srReviewvo.getComment_num()+1 %>>
 <center>
-<h1><a href="./main.me">메인페이지</a></h1>
-	<table border="1">
-	<tr>
-	<td><a href="./updateList.me">내정보</a></td>
-	<td><a href="./storeRegForm.st">가게 정보</a></td>
-	<td><a href="./menuRegForm.st">메뉴 정보</a></td>
-	<td><a href="./storeNoticeList.no">문의 관리</a></td>
-	<td><a href="./storereviewList.bo">리뷰 관리</a></td>
-	</tr>
-	</table><br><br>
+
 <table border=1>
 	<thead>		
 	<tr><th colspan="6">리뷰 게시판</th></tr>

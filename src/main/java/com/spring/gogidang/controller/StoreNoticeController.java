@@ -53,14 +53,14 @@ public class StoreNoticeController {
 
 	@RequestMapping(value = "/replyNoticeInsert.no")
 	public String replyNoticeInsert(ReplyNoticeVO replyNoticeVO , HttpSession session, HttpServletResponse response)throws Exception {
-
-		replyNoticeVO.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());	
-
-		int res = storeNoiceService.replyNoticeInsert(replyNoticeVO);
-
+		
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter writer = response.getWriter();
+		
+		replyNoticeVO.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());	
+
+		int res = storeNoiceService.replyNoticeInsert(replyNoticeVO);
 
 		if (res != 0){
 
