@@ -21,10 +21,120 @@
             </div>   
         </div>
     </section>
+/* 
+<script type="text/javascript">
+    
+var str,i,ch ="";
+
+function check_input() {
+	
+	if(document.menuForm.price.value=="") {
+        alert("금액을 입력하세요!!!");
+        document.menuForm.price.focus();
+        return false;
+     } else {
+    	 str=document.menuForm.price.value;
+           for(i=0;i<str.length;i++) {
+              ch=str.substring(i,i+1);
+              if(!((ch>="0" && ch<="9")||(ch>="a" && ch<="z") ||(ch>="A" && ch<="z"))) {
+              alert("특수문자가 포함되어있습니다, 다시입력해주세요!!");
+              document.menuForm.price.focus();
+              return false;
+              }
+           }
+        }
+	
+	if(document.menuForm.gram.value=="") {
+        alert("금액을 입력하세요!!!");
+        document.menuForm.gram.focus();
+        return false;
+     }
+	
+	str = document.menuForm.menu_name.value;
+	var regExp = /,/gi;
+
+	var str2 = str.match(regExp);
+
+	if( str2.length > 0) {
+        alert("한가지 종류만 선택해 주세요!!!");
+        document.menuForm.menu_name.focus();
+        return false;
+     }
+	
+	
+     }
+    
+    
+</script>
+<form name="menuForm" action="./menuProcess.st" method="post">
+<input type="hidden" name = "s_num" value=<%=vo.getS_num() %>>
+<input type="hidden" name = "u_id" value=<%=vo.getU_id() %>>
+<center>
+<table border=1>
+	<tr>
+		<td colspan="2" align=center>
+			<b><font size=5>상품등록</font></b>
+		</td>
+	</tr>
+	<tr>
+		<td>상품이름 : </td>
+		<td><select name="menu_name"> 
+		<option value="">상품을 선택하세요</option>
+		<option value="안심">안심</option>
+	    <option value="등심">등심</option>
+	    <option value="채끝살">채끝살</option>
+	    <option value="살치살">살치살</option>
+	    <option value="항정살">항정살</option>
+	    <option value="목살">목살</option>
+	    <option value="사태">사태</option>
+		<td>기타<input name="menu_name" type="text" /></td>
+		</select></td>
+	</tr>
+	<tr>
+		<td>상품 사진 : </td> 
+		<td><input name="img" type="file" /></td>
+	</tr>
+	<tr>
+		<td>고기 종류 : </td>  
+		<td><select name="meat"> 
+		<option value="">종류를 선택하세요</option>
+		<option value="1">소</option>
+		<option value="0">돼지</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td>상품 금액 : </td> 
+		<td><input name="price" type="text" /></td>
+	</tr>
+	<tr>
+		<td>상품 그램 : </td> 
+		<td><input name="gram" type="text" /></td>
+	</tr>
+	<tr>
+		<td>상품 등급 : </td>  
+		<td><select name="grade"> 
+		<option value="">등급을 선택하세요</option>
+		<option value="0">일반</option>
+		<option value="1">1등급</option>
+		<option value="2">특등급</option>
+		</select></td>
+
+	</tr>
+	<tr>
+		<td><a href="javascript:menuForm.submit()">저장</a></td>
+		<td><a href="javascript:menuForm.reset()">다시 입력</a></td>
+	</tr>
+</table>
+</center>
+</form>
+*/
+
+
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous">
   </script>
+
 
 <form name="menuForm" id="menuForm" action="./menuProcess.mn" method="post" enctype="multipart/form-data">
 	<input type="hidden" name = "s_num" value=<%=vo.getS_num() %>>
@@ -79,6 +189,7 @@
 		</table>
 	</center>
 </form>
+             
   <script>
 		function fnAction(url1) {
 			alert(url1);
@@ -97,6 +208,7 @@
 		});
 	</script>
 	
+     
  <%if ( menuList != null || menuList.size() > 0 ){ %>
 	<%for(int i = 0; i < menuList.size(); i++){ 
 	
