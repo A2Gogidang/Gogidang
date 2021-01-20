@@ -41,13 +41,61 @@ function execDaumPostcode() {
               Addr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
           }
           // 우편번호와 주소 정보를 해당 필드에 넣는다.
-          document.getElementById('u_post').value = data.zonecode; //5자리 새우편번호 사용
-          document.getElementById('u_addr').value = Addr;
+          document.getElementById('s_post').value = data.zonecode; //5자리 새우편번호 사용
+          document.getElementById('s_addr').value = Addr;
           // 커서를 상세주소 필드로 이동한다.
-          document.getElementById('u_addr').focus();
+          document.getElementById('s_addr1').focus();
       }
   }).open();
 }
+
+	var str,i,ch ="";
+	
+	function check_input() {
+		
+		if(document.storeform.s_num.value=="") {
+	        alert("사업자 등록번호를 입력하세요!!!");
+	        document.storeform.s_num.focus();
+	        return false;
+	     } else {
+	        str=document.storeform.s_num.value;
+	        if(str.length<6 || str.length>12) {
+	           alert("사업자 등록번호를 확인하세요(9자리)!!!");
+	           document.storeform.s_num.focus();
+	           return false;
+	        } else{
+	           for(i=0;i<str.length;i++) {
+	              ch=str.substring(i,i+1);
+	              if(!((ch>="0" && ch<="9")||(ch>="a" && ch<="z") ||(ch>="A" && ch<="z"))) {
+	              alert("특수문자가 포함되어있습니다, 다시입력해주세요!!");
+	              document.storeform.s_num.focus();
+	              return false;
+	              }
+	           }
+	        }
+	     }
+		
+		if(document.storeform.s_name.value=="") {
+	        alert("가게 이름을 입력하세요!!!");
+	        document.storeform.s_name.focus();
+	        return false;
+	     }
+		
+		if(document.storeform.s_addr1.value=="") {
+	        alert( "상세 주소를 입력하세요!!!");
+	        document.storeform.s_addr1.focus();
+	        return false;
+	     }
+		
+		if(document.storeform.s_phone.value=="") {
+	        alert( "전화번호를 입력하세요!!!");
+	        document.storeform.s_phone.focus();
+	        return false;
+	     }
+		
+		
+		storeform.submit();	
+	}
 </script>
     <!--네비게이션바 사용 시작-->
     <%if(memberVO.getSeller_key() == 0 ){ %>
@@ -149,10 +197,10 @@ function execDaumPostcode() {
 	<td>가게주소  : </td>
 	<%if( storeVO == null|| storeVO.getS_addr() == null || storeVO.getS_addr() == ""){ %>
 	<tr><td>주소 : </td>
-      <td><input type="text" id="u_post" name="u_post" placeholder="우편번호">
+      <td><input type="text" id="s_post" name="s_post" placeholder="우편번호">
          <input type="button" onclick="execDaumPostcode()" value="우편번호찾기"><br>
-         <input type="text" id="u_addr" name="s_addr" placeholder="주소">
-         <input type="text" id="u_addr" name="s_addr" placeholder="상세주소"></td></tr>
+         <input type="text" id="s_addr" name="s_addr" placeholder="주소">
+         <input type="text" id="s_addr1" name="s_addr" placeholder="상세주소"></td></tr>
 	<%}else{ %>
 	<td><span type="text" name="s_addr" value="<%=storeVO.getS_addr() %>"/><%=storeVO.getS_addr() %></td>
 	<%} %>
@@ -183,10 +231,15 @@ function execDaumPostcode() {
    </select>
    <select name="s_hour">
    <option value="">마감시간</option>
-   <option value="12:00">12:00</option>
-   <option value="13:00">13:00</option>
-   <option value="14:00">14:00</option>
    <option value="15:00">15:00</option>
+   <option value="16:00">16:00</option>
+   <option value="17:00">17:00</option>
+   <option value="18:00">18:00</option>
+   <option value="19:00">19:00</option>
+   <option value="20:00">20:00</option>
+   <option value="21:00">21:00</option>
+   <option value="22:00">22:00</option>
+   <option value="23:00">23:00</option>
    </td>
 	<%}else{ %>
 	<td><span type="text" name="s_hour" size=30 value="<%=storeVO.getS_hour() %>"/><%=storeVO.getS_hour() %></td>
@@ -200,7 +253,7 @@ function execDaumPostcode() {
 	<tr>
 		<td colspan="2" align=center>
 	<%if( storeVO == null || storeVO.getS_num() == 0){ %>
-			<a href="javascript:storeform.submit()">저장</a>
+			<a href="#" onclick="check_input()">저장</a>
 			<a href="javascript:storeform.reset()">다시작성</a>
 	<%}else{ %>
 			<a href="./storeUpdateForm.st">수정</a>

@@ -124,7 +124,7 @@
           $('#u_id').blur(function(){
               $.ajax({
               type:"post",
-              url:"checkid.bo",
+              url:"checkid.me",
               data:{ "u_id":$('#u_id').val()},
               success:function(data){   //data : checkSignup에서 넘겨준 결과값
                      if($.trim(data)=="YES"){
