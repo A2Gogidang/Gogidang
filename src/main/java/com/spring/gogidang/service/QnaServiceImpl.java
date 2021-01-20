@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.QnaVO;
 import com.spring.mapper.QnaMapper;
 

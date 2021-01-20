@@ -3,7 +3,7 @@ package com.spring.mapper;
 import java.util.HashMap;
 import java.util.List;
 
-
+import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.QnaVO;
 
 
@@ -20,5 +20,6 @@ public interface QnaMapper {
 	public int isBoardWriter(HashMap<String, String> hashmap);
 	public int qnaReplyupdate(QnaVO qna);
 	public int qnaReply(QnaVO qna);
+	
 	
 }
