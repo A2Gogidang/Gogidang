@@ -21,7 +21,7 @@
 		INTO menu_reg
 		values(seq_menu_reg.nextval,
 			  ,#{u_id,jdbcType=VARCHAR}
-			  ,#{s_num,jdbcType=VARCHAR}
+			  ,#{s_num,jdbcType=INTEGER}
 			  ,#{meat,jdbcType=INTEGER}
 			  ,#{menu_name,jdbcType=VARCHAR}
 			  ,#{price,jdbcType=VARCHAR}

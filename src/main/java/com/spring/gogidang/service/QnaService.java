@@ -3,6 +3,9 @@ package com.spring.gogidang.service;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.crypto.Cipher;
+
+import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.QnaVO;
 
 
@@ -19,7 +22,4 @@ public interface QnaService {
 	public QnaVO qnaModifyForm(int qna_num);
 	public int qnaDelete(HashMap<String, String> hashmap);
 	public int qnaReply(QnaVO qna);
-	
-
-
 }

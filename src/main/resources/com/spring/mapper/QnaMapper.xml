@@ -12,7 +12,7 @@
  	<select id="getQnaList" parameterType="HashMap" resultType="QnaVO">	
 	<![CDATA[
 	SELECT * 
-	FROM (SELECT rownum rnum,qna_num,u_id,title,content,re_date,qna_password,re_ref,re_lev,re_seq 
+	FROM (SELECT rownum rnum,qna_num,u_id,title,content,re_date,re_ref,re_lev,re_seq 
 	FROM (SELECT * FROM qna ORDER BY re_ref desc, re_seq asc)) 
 	WHERE rnum>=#{startrow} AND rnum<=#{endrow}
 	 ]]>
@@ -22,7 +22,7 @@
 		<selectKey keyProperty="qna_num" order="BEFORE" resultType="int">
 			SELECT nvl(max(qna_num), 0)+1 FROM qna
 		</selectKey>
-		INSERT INTO qna VALUES (#{qna_num}, #{u_id}, #{title}, #{content},sysdate,#{qna_password}, #{qna_num}, #{re_lev}, #{re_seq})
+		INSERT INTO qna VALUES (#{qna_num}, #{u_id}, #{title}, #{content},sysdate,#{qna_num}, #{re_lev}, #{re_seq})
 	</insert>
 	
 	<select id="getDetail" parameterType="int" resultType="QnaVO">
@@ -49,8 +49,8 @@
 		<selectKey keyProperty="qna_num" order="BEFORE" resultType="int">
 			SELECT nvl(max(qna_num), 0)+1 FROM qna
 		</selectKey>
-		INSERT INTO qna(qna_num,u_id,title,content,re_date,qna_password,re_ref,re_lev,re_seq) 
-		VALUES (#{qna_num}, #{u_id}, #{title}, #{content},sysdate ,#{qna_password}, #{re_ref}, #{re_lev}, #{re_seq})
+		INSERT INTO qna(qna_num,u_id,title,content,re_date,re_ref,re_lev,re_seq) 
+		VALUES (#{qna_num}, #{u_id}, #{title}, #{content},sysdate , #{re_ref}, #{re_lev}, #{re_seq})
 	</insert>
 	
  

@@ -680,3 +680,39 @@
 </html>
 
 
+
+
+ <%-- <header><h6><%=u_id %> 로 로그인하셨습니다.</h6></header>
+	<%
+	if (mvo.getU_id() == "" || mvo.getU_id() == null) {	
+	%>
+	<h2><a href="./loginForm.me">로그인</a></h2>
+	<h2><a href="./joinForm.me">회원가입</a></h2>
+	<%
+	}else if (seller_key == 1) {	
+	%>
+		<h5>판매자입니다.</h5>
+		<h2><a href="./updateList.me">판매자 마이페이지</a></h2>
+		<%
+			if (u_id.equals("admin")) {
+		%>
+				<h3>관리자입니다.</h3>
+				<a href="./storeList.st">전체 가게 리스트 보기</a>
+				<br>
+				<a href="./storeWaitListWithPaging.st">승인 대기 중인 가게 리스트 확인</a>
+		<%
+			}
+		%>
+	<% 
+	}else {
+	%>
+		<h5>관리자입니다.</h5>
+		<a href="./storeList.st">전체 가게 리스트 보기</a>
+		<br>
+		<br>
+		<a href="./updateList.me?u_id=<%=mvo.getU_id()%>">내정보보러가기</a>
+		<a href="./storeWaitListWithPaging.st">승인 대기 중인 가게 리스트 확인</a>
+	<% 
+	}
+	%>			
+<center> --%>

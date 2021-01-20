@@ -169,7 +169,7 @@ public class MemberController {
 	
 	//soobin end
   
-	@RequestMapping(value = "/checkid.bo", method = RequestMethod.POST)
+	@RequestMapping(value = "/checkid.me", method = RequestMethod.POST)
 	@ResponseBody
 	public  String idcheck(@RequestParam("u_id") String u_id) throws Exception{
 		System.out.println("u_id=" + u_id);

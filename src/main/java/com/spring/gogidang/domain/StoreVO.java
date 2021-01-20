@@ -26,4 +26,7 @@ public class StoreVO {
 	private String price;
 	private String img;
 	private int grade;
+	
+	
+	
 }
