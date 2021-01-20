@@ -49,6 +49,7 @@ public class ReviewController {
 		int total = reviewService.getTotal(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		
+//		return "review/review_list_grid";
 		return "review/review_list";
 	}
 	
@@ -96,7 +97,8 @@ public class ReviewController {
 		List<MultipartFile> fileList = request.getFiles("file");
 		System.out.println(fileList.size());
 		
-		String uploadPath = "/Users/taehyun/Documents/Spring_Source/Gogidang/src/main/webapp/resources/img/up/";
+//		String uploadPath = "/Users/taehyun/Documents/Spring_Source/Gogidang/src/main/webapp/resources/img/up/";
+		String uploadPath = request.getServletContext().getRealPath("/resources/img/up/");
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("review/review_list");

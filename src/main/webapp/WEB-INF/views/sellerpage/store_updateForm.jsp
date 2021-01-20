@@ -17,7 +17,7 @@
                         <ul>
                             <li><a href="./updateList.me">내정보</a></li>
                             <li><a href="./storeRegForm.st">가게 정보</a>
-                            <li><a href="./menuRegForm.st">메뉴 정보</a></li>
+                            <li><a href="./menuRegForm.mn">메뉴 정보</a></li>
                             <li><a href="./storeNoticeList.no">문의 관리</a></li>
                             <li><a href="./storereviewList.bo">리뷰 관리</a></li>
                         </ul>

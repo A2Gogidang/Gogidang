@@ -7,7 +7,6 @@
    <!-- Namespace탭에서1234 mybatis-spring체크해서 추가할것 -->
    
 <!-- Root Context: defines shared resources visible to all other web components -->
-
 <!--  	<bean id="dataSource"
    class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
    <property name="driverClass" value="oracle.jdbc.OracleDriver"/>
@@ -23,7 +22,23 @@
    <property name="username" value="scott"/>
    <property name="password" value="123456"/>
    </bean>   
-
+    
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+      <property name="host" value="smtp.daum.net"/>
+      <property name="port" value="465"/>
+      <property name="username" value="kalgusals@daum.net"/>
+      <property name="password" value="tmd369!!!"/>
+      <property name="javaMailProperties">
+         <props>
+            <prop key="mail.smtp.auth">true</prop>
+            <prop key="mail.smtp.starttls.enable">true</prop>
+            <prop key="mail.smtps.ssl.checkserveridentity">true</prop>
+            <prop key="mail.smtps.ssl.trust">*</prop>
+            <prop key="mail.debug">true</prop>
+            <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+         </props>
+      </property>
+      </bean>
  
    <!-- sqlSession 객체 생성 -->
    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

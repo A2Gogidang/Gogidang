@@ -27,6 +27,23 @@
 	<select id="checkStore" parameterType="StoreVO" resultType="int">
 		SELECT count(*) FROM shop_reg WHERE u_id=#{u_id}
 	</select>
+	
+	<select id="getWaitListWithPage" resultType="StoreVO">
+		<![CDATA[
+		select s_name, thumbnail
+		from
+			( 	select rownum rn, s_name, thumbnail
+				from (	select *
+						from shop_reg
+						where confirm=0 )
+				where rownum <= #{pageNum} * #{amount}  )
+		where rn > (#{pageNum}-1) * #{amount}
+		]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from shop_reg
+	</select>
 	<!-- taehyun End -->
 
 	<!-- soobin start -->
@@ -66,6 +83,7 @@
 	<select id="getStoreList"  resultType="StoreVO">
 		select mr.img , mr.meat , mr.price, sr.s_name, substr(sr.s_addr,1,2) s_addr from menu_reg mr inner join shop_reg sr on mr.s_num=sr.s_num 
  	</select>
+ 	
  	
 	<select id="getStoreListAjax" parameterType="java.util.HashMap" resultType="StoreVO">
 		select distinct img , meat , price, s_name, s_addr 
