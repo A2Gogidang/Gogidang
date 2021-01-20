@@ -17,13 +17,13 @@
 
 <body>
 <!-- 게시판 수정 -->
-<form action="qnamodify.bo" method="post" name="modifyform">
+<form action="qnamodify.qn" method="post" name="modifyform">
 <input type="hidden" name="qna_num" value="<%=qna.getQna_num() %>">
 <input type="hidden" name="u_id" value="<%=u_id %>">
 
 <table cellpadding="0" cellspacing="0">
 	<tr align="center" valign="middle">
-		<td colspan="5">MVC 게시판</td>
+		<td colspan="5">qna 작성</td>
 	</tr>
 	<tr>
 		<td height="16" style="font-family:돋음; font-size:12">

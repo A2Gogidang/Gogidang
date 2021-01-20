@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
-<%@ page import="com.spring.gogidang.domain.QnaVO" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import = "com.spring.gogidang.domain.*" %>
+<%@include file="../includes/header.jsp"%>
 <%
 	String u_id=(String)session.getAttribute("u_id");
 	QnaVO qna=(QnaVO)request.getAttribute("qna"); 
@@ -22,7 +26,7 @@
 <input type="hidden" name="re_ref" value="<%=qna.getRe_ref() %>"> <!-- 원글의 글그룹번호 -->
 <input type="hidden" name="re_lev" value="<%=qna.getRe_lev() %>">
 <input type="hidden" name="re_seq" value="<%=qna.getRe_seq() %>">
-<input type="hidden" name="u_id" value="<%=u_id %>">
+<input type="hidden" name="u_id" value="<%=memberVO.getU_id() %>">
 
 <table cellpadding="0" cellspacing="0">
 	<tr align="center" valign="middle">
@@ -33,7 +37,7 @@
 			<div align="center">글쓴이</div>
 		</td>
 		<td>
-			<%=u_id %>
+			<%=memberVO.getU_id() %>
 		</td>
 	</tr>
 	<tr>
@@ -53,14 +57,7 @@
 			<textarea name="content" cols="67" rows="15"></textarea>
 		</td>
 	</tr>
-			<td style="font-family:돋음; font-size:12">
-	<div align="center">비밀번호</div>
-		<td>
-			<input type="password" name="qna_password" cols="10" rows="15" />
-			
-		</td>
-		</td>
-	</tr>
+	
 
 	<tr bgcolor="cccccc">
 		<td colspan="2" style="height:1px;">
