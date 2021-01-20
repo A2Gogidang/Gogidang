@@ -1,6 +1,6 @@
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%
@@ -136,7 +136,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>고기당</title>
-    <link rel="shortcut icon" href="resources/cut-pig.jpg"> 
+    <link rel="shortcut icon" href="cut-pig.jpg"> 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -157,6 +157,8 @@
         div[class="sidebar"] {width:300px;height:100%;background :  rgba(0, 100, 0,0.2);position:fixed;top:0;left:-300px;z-index:1;transition:all .35s;}
         input[id="menuicon"]:checked + label + div {left:0;}
 
+
+		
    </style>
     <!--사이드바 및 햄버거 아이콘 액션 end-->
 
@@ -173,11 +175,64 @@
     <link rel="stylesheet" href="resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="resources/css/style.css" type="text/css">
+	<!-- 제이쿼리 불러오기 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+ 
+<!-- Slick 불러오기 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+    
+<script>
+  		$(function(){
+			$('#slider-div').slick({
+				slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
+				infinite : true, 	//무한 반복 옵션	 
+				slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
+				slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+				speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+				arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+				dots : true, 		// 스크롤바 아래 점으로 페이지네이션 여부
+				autoplay : true,			// 자동 스크롤 사용 여부
+				autoplaySpeed : 10000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+				pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+				vertical : false,		// 세로 방향 슬라이드 옵션
+				prevArrow : "<button type='button' class='slick-prev'>Previous</button>",		// 이전 화살표 모양 설정
+				nextArrow : "<button type='button' class='slick-next'>Next</button>",		// 다음 화살표 모양 설정
+				dotsClass : "slick-dots", 	//아래 나오는 페이지네이션(점) css class 지정
+				draggable : true, 	//드래그 가능 여부 
+				
+				responsive: [ // 반응형 웹 구현 옵션
+					{  
+						breakpoint: 960, //화면 사이즈 960px
+						settings: {
+							//위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+							slidesToShow:3 
+						} 
+					},
+					{ 
+						breakpoint: 768, //화면 사이즈 768px
+						settings: {	
+							//위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+							slidesToShow:2 
+						} 
+					}
+				]
+
+			});
+  		})
+  		
+  		
+  		
+  		
+	</script>
+    
+    
+    
 </head>
-
-
-<body>
-    <!-- 3.Header Section Begin -->
+ <body>
+ 
+ <!-- 3.Header Section Begin -->
     <header class="header">
         <div class="header__top">
             <div class="container">
@@ -211,7 +266,7 @@
 	<% 
 	}else {
 	%>
-		<h5><%=u_id %>님 환영합니다!</h5>
+		<h6><%=u_id %>님 환영합니다!</h6>
 		<%-- <a href="./storeList.st">전체 가게 리스트 보기</a>
 		<br>
 		<br>
@@ -305,23 +360,7 @@
             </div>
         </div>
     </header>
-    <!-- Header Section End --> 
-
-    <!-- 4.Hero Section Begin -->
-    <!--메인 사진크기 1400*380-->
-    <!--메인 사진사용 시작
-        <section class="hero">
-            <div class="container">
-                        <div class="hero__item__box"> 
-                            
-                            <div class="hero__item set-bg" data-setbg="img/hero/top-banner-test3.jpg">
-                            </div>
-                        </div>
-                    
-            </div>
-        </section>
-    메인 사진 사용 끝-->
-
+ 
     <!--네비게이션바 사용 시작-->
     <section class="hero">
         <div class="container">
@@ -338,52 +377,88 @@
     </section>
     <!--네비게이션바 사용 끝-->
     <!-- Hero Section End -->
+	
+	<div class="section-title"  style="margin: top 0%;">
+                        <h2>진행중 이벤트</h2>
+                    </div>
+	  
+	
+	  
+	  <div class="container-fluid" style="display: flex; align-items: center; justify-content: center;">
 
-    <!-- Categories Section Begin -->
-    <section class="categories">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
+		<div class="col-md-10">
+			<div class="carousel slide" id="carousel-524864">
+				<ol class="carousel-indicators" style="display: flex; align-items: center; justify-content: center;">
+					<li data-slide-to="0" data-target="#carousel-524864" class="active">
+					</li>
+					<li data-slide-to="1" data-target="#carousel-524864">
+					</li>
+					<li data-slide-to="2" data-target="#carousel-524864">
+					</li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img class="d-block w-100" alt="Carousel Bootstrap First" src="resources/img/hero/top-banner-test3.jpg" />
+						<div class="carousel-caption">
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" alt="Carousel Bootstrap Second" src="resources/img/hero/top-banner-test3.jpg" />
+						<div class="carousel-caption">
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" alt="Carousel Bootstrap Third" src="resources/img/hero/top-banner-test3.jpg" />
+						<div class="carousel-caption">
+					</div>
+				</div>
+				 <a class="carousel-control-prev" href="#carousel-524864" data-slide="prev">
+				 <span class="carousel-control-prev-icon"></span>
+				  <span class="sr-only">Previous</span></a> 
+			 
+				  <a class="carousel-control-next" href="#carousel-524864" data-slide="next">
+				  <span class="carousel-control-next-icon"></span>
+				   <span class="sr-only">Next</span></a> 
+				  <!-- <a class="carousel-control left carousel-control-prev" href="#carousel-524864" data-slide="prev">
+                            <i class="fa fa-angle-left text-dark"></i>
+                        </a>
+                        <a class="carousel-control right carousel-control-next" href="#carousel-524864" data-slide="next">
+                            <i class="fa fa-angle-right text-dark"></i>
+                        </a> -->
+
+			</div>
+		</div>
+	</div>
+	</div> 
+	<div class="col-lg-12">
+                    <div class="section-title" style="margin-top: 30px;">
                         <h2>추천 가게</h2>
                     </div>
-                    <div class="featured__controls">
-                        <ul>
-                            <li data-filter="*">고기당이 자신있게 추천 합니다 !</li>
-                            <!--
-                            <li class="active" data-filter="*">고기당이 자신있게 추천 합니다 !</li>
-                            <li data-filter=".oranges">Oranges</li>
-                            <li data-filter=".fresh-meat">Fresh Meat</li>
-                            <li data-filter=".vegetables">Vegetables</li>
-                            <li data-filter=".fastfood">Fastfood</li>
-                            -->
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="categories__slider owl-carousel">
-                <!--추천가게 액션이미지 320*270으로 넣을것-->
-                <div class="col-lg-3">
+	<!-- stlye 은 slick 영역 확인용 -->
+	<div class="container">
+	<div class="categories">
+	  	<div id="slider-div">
+		      <div class="col-lg-">
                     <div class="categories__item set-bg" data-setbg="resources/img/categories/seller1.jpg">
                         <h5><a href="#">맛나식육식당</a></h5>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-">
                     <div class="categories__item set-bg" data-setbg="resources/img/categories/seller4.jpg">
                         <h5><a href="#">명성한우돼지</a></h5>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-">
                     <div class="categories__item set-bg" data-setbg="resources/img/categories/seller3.jpg">
                         <h5><a href="#">종우명가 식당</a></h5>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-">
                     <div class="categories__item set-bg" data-setbg="resources/img/categories/seller2.jpg">
                         <h5><a href="#">횡성길 한우</a></h5>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-">
                     <div class="categories__item set-bg" data-setbg="resources/img/categories/seller5.jpg">
                         <h5><a href="#">수빈정육</a></h5>
                     </div>
@@ -392,9 +467,8 @@
             <div class="row">
             </div>
         </div>
-    </section>
-    <!-- Categories Section End -->
-
+	  	</div>
+	</div>
     <!-- Featured Section Begin -->
     <section class="featured spad">
         <div class="container">
@@ -562,119 +636,8 @@
     </section>
     <!-- Featured Section End -->
 
-    <!-- Banner Begin -->
-    <div class="banner">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <!--이미지크기 570*270-->
-                    <div class="banner__pic">
-                        <img src="resources/img/banner/bottom-banner1.jpg" alt="">
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="banner__pic">
-                        <img src="resources/img/banner/bottom-banner1.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Banner End -->
-
-    <!-- Footer Section Begin -->
-    
-    <footer class="footer spad">
-        <div class="container">
-            <div class="row1">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer__about">
-                        <div class="footer__about__logo">
-                            <!--logo크기 120*50-->
-                            <a href="./index.html"><img src="resources/img/bottom-logo-test1.jpg" alt=""></a>
-                        </div>
-                        <ul>
-                            <li>법인명(상호) : 주식회사 고기당 </li>
-                            <li>사업자등록번호 000-00-0000</li>
-                            <li>통신판매업: 제2020-서울종로-00000                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             호 &nbsp; </li> &nbsp;
-                            <li>대표이사 : 정수빈</li>
-                            <li>개인정보 보호 책임자 : 임도형, 고종우</li>
-                            
-                        </ul>
-                    </div>
-                </div>
-                <div class="vertical-line">
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
-                </div>
-                <!--<div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                    <div class="footer__widget">
-                        <h6>Links</h6>
-                        <ul>
-                            <li>입점문의 : <a href="#">입점문의하기</a></li>
-                            <li><a href="#">About Our Shop</a></li>
-                            <li><a href="#">Secure Shopping</a></li>
-                            <li><a href="#">Delivery infomation</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Our Sitemap</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="#">Who We Are</a></li>
-                            <li><a href="#">Our Services</a></li>
-                            <li><a href="#">Projects</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Innovation</a></li>
-                            <li><a href="#">Testimonials</a></li>
-                        </ul>
-                    </div>
-                </div>
-                -->
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer__widget">
-                        <h6></h6>
-                        <h6>< 입점 문의 하기 ></h6>
-                        <h6>함께 하실 탁월한 사장님들을 기다립니다.</h6>
-                        <p><a href="#">>> 지금 바로 입점 신청하기 <<</a></p>
-                        <!--
-                        <form action="#">
-                            <input type="text" placeholder="Enter your mail">
-                            <button type="submit" class="site-btn">Subscribe</button>
-                        </form>
-                        -->
-                        <div class="footer__widget__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div> <!--row1 end-->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="footer__copyright">
-                        <div class="footer__copyright__text"><p>
-                        <!--<div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>-->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer> 
-<!-- Footer Section End -->
-
-    <!-- Js Plugins -->
-    <script src="resources/js/jquery-3.3.1.min.js"></script>
-    <script src="resources/js/bootstrap.min.js"></script>
-    <script src="resources/js/jquery.nice-select.min.js"></script>
-    <script src="resources/js/jquery-ui.min.js"></script>
-    <script src="resources/js/jquery.slicknav.js"></script>
-    <script src="resources/js/mixitup.min.js"></script>
-    <script src="resources/js/owl.carousel.min.js"></script>
-    <script src="resources/js/main.js"></script>
-
-
-
+ <%@include file="includes/footer.jsp"%>
+<script type="text/javascript" src="resources/js/slick.js"></script>
 </body>
 
 </html>
