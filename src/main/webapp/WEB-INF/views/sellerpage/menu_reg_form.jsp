@@ -2,28 +2,30 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@include file="../includes/header.jsp"%>
+
 <%
 	StoreVO vo = (StoreVO)request.getAttribute("StoreVO");
 	ArrayList<MenuVO> menuList = (ArrayList<MenuVO>)request.getAttribute("menuSelectList");
 %>
-    <section class="hero">
-        <div class="container">
-            <div class="hero__item__box2"></div>
-                    <div class="EventNav">
-                        <ul>
-                            <li><a href="./updateList.me">내정보</a></li>
-                            <li><a href="./storeRegForm.st">가게 정보</a>
-                            <li><a href="./menuRegForm.mn">메뉴 정보</a></li>
-                            <li><a href="./storeNoticeList.no">문의 관리</a></li>
-                            <li><a href="./storereviewList.bo">리뷰 관리</a></li>
-                        </ul>
-                    </div>   
-            </div>   
-        </div>
-    </section>
-/* 
-<script type="text/javascript">
+
+<section class="hero">
+    <div class="container">
+        <div class="hero__item__box2"></div>
+                <div class="EventNav">
+                    <ul>
+                        <li><a href="./updateList.me">내정보</a></li>
+                        <li><a href="./storeRegForm.st">가게 정보</a>
+                        <li><a href="./menuRegForm.mn">메뉴 정보</a></li>
+                        <li><a href="./storeNoticeList.no">문의 관리</a></li>
+                        <li><a href="./storereviewList.bo">리뷰 관리</a></li>
+                    </ul>
+                </div>   
+        </div>   
+    </div>
+</section>
     
+<script type="text/javascript">
+
 var str,i,ch ="";
 
 function check_input() {
@@ -62,79 +64,13 @@ function check_input() {
      }
 	
 	
-     }
-    
-    
+}  
 </script>
-<form name="menuForm" action="./menuProcess.st" method="post">
-<input type="hidden" name = "s_num" value=<%=vo.getS_num() %>>
-<input type="hidden" name = "u_id" value=<%=vo.getU_id() %>>
-<center>
-<table border=1>
-	<tr>
-		<td colspan="2" align=center>
-			<b><font size=5>상품등록</font></b>
-		</td>
-	</tr>
-	<tr>
-		<td>상품이름 : </td>
-		<td><select name="menu_name"> 
-		<option value="">상품을 선택하세요</option>
-		<option value="안심">안심</option>
-	    <option value="등심">등심</option>
-	    <option value="채끝살">채끝살</option>
-	    <option value="살치살">살치살</option>
-	    <option value="항정살">항정살</option>
-	    <option value="목살">목살</option>
-	    <option value="사태">사태</option>
-		<td>기타<input name="menu_name" type="text" /></td>
-		</select></td>
-	</tr>
-	<tr>
-		<td>상품 사진 : </td> 
-		<td><input name="img" type="file" /></td>
-	</tr>
-	<tr>
-		<td>고기 종류 : </td>  
-		<td><select name="meat"> 
-		<option value="">종류를 선택하세요</option>
-		<option value="1">소</option>
-		<option value="0">돼지</option>
-		</select></td>
-	</tr>
-	<tr>
-		<td>상품 금액 : </td> 
-		<td><input name="price" type="text" /></td>
-	</tr>
-	<tr>
-		<td>상품 그램 : </td> 
-		<td><input name="gram" type="text" /></td>
-	</tr>
-	<tr>
-		<td>상품 등급 : </td>  
-		<td><select name="grade"> 
-		<option value="">등급을 선택하세요</option>
-		<option value="0">일반</option>
-		<option value="1">1등급</option>
-		<option value="2">특등급</option>
-		</select></td>
 
-	</tr>
-	<tr>
-		<td><a href="javascript:menuForm.submit()">저장</a></td>
-		<td><a href="javascript:menuForm.reset()">다시 입력</a></td>
-	</tr>
-</table>
-</center>
-</form>
-*/
-
-
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous">
-  </script>
-
+</script>
 
 <form name="menuForm" id="menuForm" action="./menuProcess.mn" method="post" enctype="multipart/form-data">
 	<input type="hidden" name = "s_num" value=<%=vo.getS_num() %>>
@@ -148,8 +84,20 @@ function check_input() {
 			</tr>
 			
 			<tr>
-				<td>상품이름 : </td> 
-				<td><input name="menu_name" type="text" /></td>
+				<td>상품이름 : </td>
+				<td>
+					<select name="menu_name"> 
+						<option value="">상품을 선택하세요</option>
+						<option value="안심">안심</option>
+					    <option value="등심">등심</option>
+					    <option value="채끝살">채끝살</option>
+					    <option value="살치살">살치살</option>
+					    <option value="항정살">항정살</option>
+					    <option value="목살">목살</option>
+					    <option value="사태">사태</option>
+					</select>
+				</td>
+				<td>기타<input name="menu_name" type="text" /></td>
 			</tr>
 			
 			<tr>
@@ -162,7 +110,11 @@ function check_input() {
 			
 			<tr>
 				<td>고기 종류 : </td>  
-				<td><input name=" meat" type="text" /></td>
+				<td><select name="meat"> 
+				<option value="">종류를 선택하세요</option>
+				<option value="1">소</option>
+				<option value="0">돼지</option>
+				</select></td>
 			</tr>
 			
 			<tr>
@@ -176,8 +128,13 @@ function check_input() {
 			</tr>
 			
 			<tr>
-				<td>상품 등급 : </td> 
-				<td><input name="grade" type="text" /></td>
+				<td>상품 등급 : </td>  
+				<td><select name="grade"> 
+				<option value="">등급을 선택하세요</option>
+				<option value="0">일반</option>
+				<option value="1">1등급</option>
+				<option value="2">특등급</option>
+				</select></td>
 			</tr>
 			
 			<tr>
@@ -190,23 +147,23 @@ function check_input() {
 	</center>
 </form>
              
-  <script>
-		function fnAction(url1) {
-			alert(url1);
-			var frm = document.getElementById("menuForm"); 
-			frm.action = url1;
-			alert(frm.action); 
-			frm.submit();
+<script>
+	function fnAction(url1) {
+		alert(url1);
+		var frm = document.getElementById("menuForm"); 
+		frm.action = url1;
+		alert(frm.action); 
+		frm.submit();
+	}
+	
+	$("#menu_img1").change(function () {
+		var reader = new FileReader;
+		reader.onload = function(data) {
+			$("#menu_img2").attr("src", data.target.result).width(500);
 		}
-		
-		$("#menu_img1").change(function () {
-			var reader = new FileReader;
-			reader.onload = function(data) {
-				$("#menu_img2").attr("src", data.target.result).width(500);
-			}
-			reader.readAsDataURL(this.files[0]);
-		});
-	</script>
+		reader.readAsDataURL(this.files[0]);
+	});
+</script>
 	
      
  <%if ( menuList != null || menuList.size() > 0 ){ %>
