@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -42,8 +41,6 @@ public class StoreController {
 	@Autowired
 	private ReviewService reviewService;
 	
-	@Resource(name="uploadPath")
-	private String uploadPath;
 	
 	/*
 	 * 전체 가게 리스트
