@@ -42,7 +42,7 @@
 	          document.getElementById('s_post').value = data.zonecode; //5자리 새우편번호 사용
 	          document.getElementById('s_addr').value = Addr;
 	          // 커서를 상세주소 필드로 이동한다.
-	          document.getElementById('s_addr1').focus();
+	          document.getElementById('s_addr').focus();
 	      }
 	  }).open();
 	}
@@ -206,10 +206,10 @@
 			<%if( storeVO == null|| storeVO.getS_addr() == null || storeVO.getS_addr() == ""){ %>
 				<tr>
 					<td>주소 : </td>
-		      		<td><input type="text" id="u_post" name="u_post" placeholder="우편번호">
+		      		<td><input type="text" id="s_post" name="s_post" placeholder="우편번호">
 		         		<input type="button" onclick="execDaumPostcode()" value="우편번호찾기"><br>
-		         		<input type="text" id="u_addr" name="s_addr" placeholder="주소">
-		         		<input type="text" id="u_addr" name="s_addr" placeholder="상세주소">
+		         		<input type="text" id="s_addr" name="s_addr" placeholder="주소">
+		         		<input type="text" id="s_addr" name="s_addr" placeholder="상세주소">
 	         		</td>
          		</tr>
 			<%}else{ %>
@@ -270,8 +270,8 @@
 			
 	<tr>
 		<%if( storeVO == null || storeVO.getS_num() == 0){ %>
-				<!-- onclick 두개 -->
-				<input type="button" value="작성" onclick="fnAction('./storeInsert.st') check_input()" multiple />
+				<!-- onclick - check_input() 추가 -->
+				<input type="button" value="작성" onclick="fnAction('./storeInsert.st')" multiple />
 				<a href="javascript:storeform.reset()">다시작성</a>
 		<%}else{ %>
 				<a href="./storeUpdateForm.st">수정</a>
