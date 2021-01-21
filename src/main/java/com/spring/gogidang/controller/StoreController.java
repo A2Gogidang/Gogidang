@@ -89,7 +89,7 @@ public class StoreController {
 	public String shopInfo(Criteria cri, StoreVO storeVO, Model model) {
 		StoreVO vo = storeService.storeInfo(storeVO);
 		ArrayList<MenuVO> menuList = menuService.getMenuList();
-		List<ReviewVO> reviewList = reviewService.getList(cri);
+		List<ReviewVO> reviewList = reviewService.getList();
 
 		model.addAttribute("storeVO", vo);
 		model.addAttribute("menuList",menuList);

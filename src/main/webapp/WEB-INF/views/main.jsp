@@ -5,14 +5,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%
 	
-	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
+	MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
 	String u_id = mvo.getU_id();
 	int seller_key = mvo.getSeller_key();
 	
-	ArrayList<EventVO> event_list =(ArrayList<EventVO>) request.getAttribute("event_list");
-	ArrayList<StoreVO> store_list =(ArrayList<StoreVO>) request.getAttribute("store_list");
-	ArrayList<ReviewVO> review_list =(ArrayList<ReviewVO>) request.getAttribute("review_list");
-	
+	ArrayList<EventVO> event_list =(ArrayList<EventVO>) request.getAttribute("eventList");
+	ArrayList<StoreVO> store_list =(ArrayList<StoreVO>) request.getAttribute("storeList");
+	ArrayList<ReviewVO> review_list =(ArrayList<ReviewVO>) request.getAttribute("reviewList");
 %>
 <%-- <html>
 <head>
