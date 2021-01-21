@@ -5,13 +5,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%
 	
-	MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
+	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
 	String u_id = mvo.getU_id();
 	int seller_key = mvo.getSeller_key();
 	
-	ArrayList<EventVO> event_list =(ArrayList<EventVO>) request.getAttribute("eventList");
-	ArrayList<StoreVO> store_list =(ArrayList<StoreVO>) request.getAttribute("storeList");
-	ArrayList<ReviewVO> review_list =(ArrayList<ReviewVO>) request.getAttribute("reviewList");
+	ArrayList<EventVO> event_list =(ArrayList<EventVO>) request.getAttribute("event_list");
+	ArrayList<StoreVO> store_list =(ArrayList<StoreVO>) request.getAttribute("store_list");
+	ArrayList<ReviewVO> review_list =(ArrayList<ReviewVO>) request.getAttribute("review_list");
+	
 %>
 <%-- <html>
 <head>
@@ -42,7 +43,7 @@
 	<% 
 	}else {
 	%>
-		<h3>환영합니다.</h3>
+		<h3>관리자입니다.</h3>
 		<a href="./storeList.st">전체 가게 리스트 보기</a>
 		<br>
 		<br>
@@ -221,10 +222,10 @@
 			});
   		})
   		
-  		$(function(){
+  	<!-- 	$(function(){
   		$('.single-item').slick();
-  		})
-	</script>
+  		})-->
+	</script> 
     
     
     
