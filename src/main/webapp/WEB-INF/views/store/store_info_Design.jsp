@@ -1,159 +1,93 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="kr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Ogani Template">
-    <meta name="keywords" content="Ogani, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>고기당</title>
-    <link rel="shortcut icon" href="resources/cut-pig.jpg"> 
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+   <link rel="stylesheet" href="resources/css/newDetailStore.css" type="text/css">
+        <link rel="stylesheet" href="resources/css/DetailStore.css" type="text/css">
     <script src="resources/js/newDetailStore.js"></script>
     <script src="resources/DetailStore/newDetailStore.css"></script>
+<%@include file="../includes/header.jsp"%>
+<script>
+$(function(){
 
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    $('#show').on('click',function(){        
+        $('.card-reveal').slideToggle('slow');
+    });
+    
+    $('.card-reveal .close').on('click',function(){
+        $('.card-reveal').slideToggle('slow');
+    });
+    });
+jQuery(document).ready(function($) {
 
-    <!--사이드바 및 햄버거 아이콘 액션 end-->
-
-        <!-- Google Font -->
-        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
-        <!-- Css Styles -->
-        <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/font-awesome.min.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/elegant-icons.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/nice-select.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/jquery-ui.min.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/owl.carousel.min.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/slicknav.min.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/newDetailStore.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/DetailStore.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/style.css" type="text/css">
-
-
-	<script>
-    jQuery(document).ready(function($) {
-
-    	$(".scroll").click(function(event){            
-    	        event.preventDefault();
-    	        $('html,body').animate({scrollTop:$(this.hash).offset().top}, 900); //속도조절 900으로 맞춤
-    	});
-    	});
-    	//부드러운 스크롤링 jquery
-	</script>
-                </script>
-<style>
-.page-link
-{
-    color: #338333;
+	$(".scroll").click(function(event){            
+	        event.preventDefault();
+	        $('html,body').animate({scrollTop:$(this.hash).offset().top}, 900); //속도조절 900으로 맞춤
+	});
+	});
+	//부드러운 스크롤링 jquery</script>
+	<style type="text/css">
+	.lib-panel {
+    margin-bottom: 20Px;
 }
-</style>
-    </head>
-    <body>
-            <!-- 3.Header Section Begin -->
-    <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    
-                    <div class="col-lg-6 col-md-6"> </div>
-                    <div class="col-md-6">
-                        <div class="header__top__right">
-                           <div class="header__top__right__auth">
-                                <aa><a href="#">로그인 </a></aa>
-                                <aa><a href="#"> 회원가입 </a></aa>
-                            </div>
-                            <!--로그인후 모드-->
-                            <!--<div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user">맛나식육</i> </a>
-                                <aa>사장님 !</aa>
-                            </div>
-                            -->
-                        </div>
-                    </div>
-                   
-                </div>
-                
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col1"></div>
-                <!--메인페이지 이미지 1400*380-->
-                <div class="header__logo">
-                    <a href="indexmain.html"><img src="resources/img/mainlogo.png" alt=""></a>
-                </div>
-                <div class="col1"></div>
-            </div>
-        <div>
-        <div class="row">
-                <div class="col-menu">
-                </div>
-            </div>
-        </div>
-        <div class="hero__search"> <!--기존의 hero서치바를 head로 옮김-->
-            <div class="sidebar-icon"> 
-                <input type="checkbox" id="menuicon">
-                    <label for="menuicon">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </label>
-                    <div class="sidebar">
-                        <!--<div class="navibar">-->
-                            <div class="sidebar__item">
-                                <h4><ul><a href="#">&nbsp;</a></ul></h4>
-                            </div>
-                            <div class="sidebar__item">
-                            <!--style="color: black"-->
-                                <h4><ul><a href="#" >가게 검색</a></ul></h4>
-                            </div>
-                            <div class="sidebar__item">
-                                <h4><ul><a href="#">후기 검색</a></ul></h4>
-                            </div>
-                            <div class="sidebar__item">
-                                <h4><ul><a href="#">마이 페이지</a></ul></h4>
-                            </div>
-                            <div class="sidebar__item">
-                                <h4><ul><a href="#">예약 현황</a></ul></h4>
-                            </div>
-                            <!--사장님 모드-->
-                            <!--
-                            <div class="sidebar__item">
-                                <h4><ul><a href="#">예약 관리</a></ul></h4>
-                            </div>
-                            -->
-                            <!--사장님 모드 end-->
-                               <!-- 사장님 메뉴
-                                <ul><a href="#">가게 검색</a></ul>
-                                <ul><a href="#">후기 검색</a></ul>
-                                <ul><a href="#">마이 페이지</a></ul>
-                                <ul><a href="#">가게 승인관리</a></ul>
-                               -->
-                           
-                        <!--</div>-->
-                </div>
-            </div>   
-            <div class="hero__search__form">
-                <form action="#">
-                    <div class="hero__search__categories">
-                        지역
-                        <span class="arrow_carrot-down"></span>
-                    </div>
-                    <input type="text" placeholder="식당검색하기 GO" >
-                    <button type="submit" class="site-btn ">검색</button>
-                </form>
-            </div>
-        </div>
-    </header>
-    <!-- Header Section End --> 
+.lib-panel img {
+    width: 100%;
+    background-color: transparent;
+}
 
+.lib-panel .row,
+.lib-panel .col-md-6 {
+    padding: 0;
+    background-color: #FFFFFF;
+}
+
+
+.lib-panel .lib-row {
+    padding: 0 20px 0 20px;
+}
+
+.lib-panel .lib-row.lib-header {
+    background-color: #FFFFFF;
+    font-size: 20px;
+    padding: 10px 20px 0 20px;
+}
+
+.lib-panel .lib-row.lib-header .lib-header-seperator {
+    height: 2px;
+    width: 26px;
+    background-color: #d9d9d9;
+    margin: 7px 0 7px 0;
+}
+
+.lib-panel .lib-row.lib-desc {
+    position: relative;
+    height: 100%;
+    display: block;
+    font-size: 13px;
+}
+.lib-panel .lib-row.lib-desc a{
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+    left: 20px;
+}
+
+.row-margin-bottom {
+    margin-bottom: 20px;
+}
+
+.box-shadow {
+    -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.10);
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.10);
+}
+
+.no-padding {
+    padding: 0;
+}
+	
+	</style>
     <!-- 4.Hero Section Begin -->
     <!--메인 사진크기 1400*380-->
     <!--메인 사진사용 시작
@@ -177,6 +111,30 @@
             </div>   
         </div>
     </section>
+    
+    <div class="container"style="justify-content: center; align-items: center;">
+            <div class="col-md-10"></div>
+            <div class="col-md-10 no-padding lib-item" data-category="ui">
+                <div class="lib-panel">
+                    <div class="row box-shadow">
+                        <div class="col-md-10">
+                            <img class="lib-img" src="resources/DetailStore/SellerImg/sellerpic.png">
+                        </div>
+                        <div class="col-md-10">
+                            <div class="lib-row lib-header">
+                                Example library
+                                <div class="lib-header-seperator"></div>
+                            </div>
+                            <div class="lib-row lib-desc">
+                                Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+    
     <!--네비게이션바 사용 끝-->
     <!-- Hero Section End -->
       <div class="container" style="display: flex; align-items: center; justify-content: center;">
@@ -184,7 +142,7 @@
             <div class="col-md-12 col-md-offset-3"style="align-items: center; justify-content: center;">
                 <div class="card" style="margin-bottom: 70px;" >
                     <div class="card-image">
-                        <img class="img-responsive" src="resources/DetailStore/SellerImg/sellerpic.png">
+                        <img class="img-responsive" src="resources/DetailStore/SellerImg/sellerpic.png"style="display: flex; align-items: center; justify-content: center;">
                         
                     </div><!-- card image -->
                     
@@ -226,13 +184,51 @@
                         <ul style="size: 1370px;">
                     
                             <li><a href="#">가격정보</a></li>
-                            <li><a href="#BestReview" class="scroll">추천리뷰</a></li>
                             <li><a href="#locationNav_s" class="scroll">가게위치</a></li>
+                            <li><a href="#BestReview" class="scroll">추천리뷰</a></li>
                             <li><a href="#Qna_s" class="scroll">문의</a></li>
                             
                         </ul>
                     </div>   
-    <section class="page-section BestReview" id="BestReview">
+    <br>
+    <section id="locationNav_s">
+        <br>
+        <div class="container">
+            <!-- Portfolio Section Heading-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2 style="margin-top: 30px;">가게 위치</h2>
+                    </div>
+                    </div>
+                </div>
+</div>
+<div class="location"style="display: flex; flex-flow: column; justify-content: center; align-items: center;">
+    <img src="resources/DetailStore/Location/location.png">
+    <img src="resources/DetailStore/Location/loc1.png">
+    <span class="locText"></span>
+    <p>가락시장역2번 출구로 나오세요</p>
+    <p>가락몰이 보입니다</p>
+    <img src="resources/DetailStore/Location/loc2.png">
+    <span class="locText"></span>
+    <p>가락몰 쪽으로 주욱 가다보시면</p>
+    <img src="resources/DetailStore/Location/loc3.png">
+    <span class="locText"></span>
+    <p>축산이 써져있는 문들이 보입니다</p>
+    <img src="resources/DetailStore/Location/loc4.png">
+    <span class="locText"></span>
+    <p>축산 3이 써져있는 문을 열고 들어가주세요</p>
+    <img src="resources/DetailStore/Location/loc5.png">
+    <span class="locText"></span>
+    <p>들어가시면 많은 축산 점포가 보입니다.</p>
+    <img src="resources/DetailStore/Location/loc6.png">
+    <span class="locText"></span>
+    <p>B66 점포번호를 확인해주세요</p>
+    <p>정육 백화점이 보입니다.</p>
+</div>
+</section>
+
+  <section class="page-section BestReview" id="BestReview">
         <br>
         <div class="container">
             <!-- Portfolio Section Heading-->
@@ -243,6 +239,12 @@
                         </div>
                         </div>
                     </div>
+                     <div class="qna_insert"style=" display:block; text-align: right; "margin-right:30px;">
+			<a href="qna_insert.html"><button type="button" class="btn btn-lg btn-outline-secondary" a href = "qna_insert.html"style="background-color: #338333; color: white;">
+				<h5>글쓰기
+            </h5></button>
+        </a>
+        </div>
             <!-- Portfolio Grid Items-->
             <div class="row justify-content-center" style="margin-top: 20px;">
                 <!-- Portfolio Item 1-->
@@ -300,45 +302,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
+<!--         </div> -->
     </section>
-    <br>
-    <section id="locationNav_s">
-        <br>
-        <div class="container">
-            <!-- Portfolio Section Heading-->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2 style="margin-top: 30px;">가게 위치</h2>
-                    </div>
-                    </div>
-                </div>
-</div>
-<div class="location"style="display: flex; flex-flow: column; justify-content: center; align-items: center;">
-    <img src="resources/DetailStore/Location/location.png">
-    <img src="resources/DetailStore/Location/loc1.png">
-    <span class="locText"></span>
-    <p>가락시장역2번 출구로 나오세요</p>
-    <p>가락몰이 보입니다</p>
-    <img src="resources/DetailStore/Location/loc2.png">
-    <span class="locText"></span>
-    <p>가락몰 쪽으로 주욱 가다보시면</p>
-    <img src="resources/DetailStore/Location/loc3.png">
-    <span class="locText"></span>
-    <p>축산이 써져있는 문들이 보입니다</p>
-    <img src="resources/DetailStore/Location/loc4.png">
-    <span class="locText"></span>
-    <p>축산 3이 써져있는 문을 열고 들어가주세요</p>
-    <img src="resources/DetailStore/Location/loc5.png">
-    <span class="locText"></span>
-    <p>들어가시면 많은 축산 점포가 보입니다.</p>
-    <img src="resources/DetailStore/Location/loc6.png">
-    <span class="locText"></span>
-    <p>B66 점포번호를 확인해주세요</p>
-    <p>정육 백화점이 보입니다.</p>
-</div>
-</section>
+  
+
 <section id="Qna_s">
     <br>
     <div class="container">
