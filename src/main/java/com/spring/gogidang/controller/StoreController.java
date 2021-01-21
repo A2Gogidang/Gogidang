@@ -8,13 +8,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.MemberVO;
 import com.spring.gogidang.domain.MenuVO;
+import com.spring.gogidang.domain.PageDTO;
 import com.spring.gogidang.domain.ReviewVO;
 import com.spring.gogidang.domain.StoreVO;
 import com.spring.gogidang.service.MenuService;
@@ -64,8 +65,19 @@ public class StoreController {
 	@RequestMapping(value = "/storeWait.st")
 	public String getStoreWait(Model model) {
 		ArrayList<StoreVO> storeList = storeService.getWaitList();
-		System.out.println(storeList.size());
+		System.out.println("list size : " + storeList.size());
 		model.addAttribute("storeList", storeList);
+		
+		return "store/store_wait";
+	}
+	
+	@GetMapping("/storeWaitListWithPaging.st")
+	public String reviewList(Criteria cri, Model model) {
+		System.out.println("con" + storeService.getWaitListWithPage(cri).size());
+		model.addAttribute("list", storeService.getWaitListWithPage(cri));
+		
+		int total = storeService.getTotal(cri);
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		
 		return "store/store_wait";
 	}
@@ -245,8 +257,61 @@ public class StoreController {
 		session.setAttribute("StoreVO",vo);
 		return "sellerpage/store_reg_form";
 	}
-	
-	
+
+	@RequestMapping("/menuRegForm.st")
+	public String menuRegForm(MenuVO menuVO, HttpSession session, HttpServletResponse response ,Model model) throws Exception {
+
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter writer = response.getWriter();
+
+		StoreVO storeVO = new StoreVO();
+		storeVO.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
+
+		StoreVO vo = storeService.selectStore(storeVO);
+		
+		//사업자 번호 대신 가입승인 컬럼 가지고 비교해야됨 나중에 수정하기
+		if( vo == null || vo.getS_num() == 0 || vo.getConfirm() == 0) {
+			
+			writer.write("<script>alert('가게정보 등록 먼저 하세요!!!!');" +"location.href = './storeRegForm.st';</script>");
+
+		}else {
+			
+			menuVO.setS_num(vo.getS_num());			
+			ArrayList<MenuVO> menuSelectList  = new ArrayList<MenuVO>();
+			menuSelectList = menuService.selectMenu(menuVO);
+
+			model.addAttribute("menuSelectList",menuSelectList);
+			model.addAttribute("StoreVO",vo);
+
+			return "sellerpage/menu_reg_form";
+		}
+		return null;
+	}
+
+	@RequestMapping("/menuProcess.st")
+	public String menuProcess(MenuVO menuVO, HttpSession session , HttpServletResponse response) throws Exception {
+
+		int i = 0;
+		menuVO.setMenu_num(i++);
+
+		int res = menuService.insertMenu(menuVO);
+
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter writer = response.getWriter();
+
+		if (res==1) {
+
+			writer.write("<script>alert('메뉴등록 성공!!'); location.href='./menuRegForm.st';</script>");
+		}
+		else {
+			writer.write("<script>alert('가게등록 실패!!'); location.href='./menuRegForm.st';</script>");
+		}
+
+		return null;
+	}
+
 	//soobin end
 
 /*
@@ -305,4 +370,13 @@ public class StoreController {
 		  return list; 
 	  }
 	// dogyeong end
+	@RequestMapping(value = "/store_info_Design.st")
+	public String design1(Model model) {
+		return "store/store_info_design/store_info_Design"; 
+		}
+	@RequestMapping(value = "/store_info_Design2.st")
+	public String design2(Model model) {
+		return "store/store_info_design/store_info_Design2"; 
+	}
+
 }

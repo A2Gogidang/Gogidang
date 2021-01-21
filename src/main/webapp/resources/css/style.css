@@ -102,7 +102,6 @@ a:focus {
 	outline: none;
 	color: rgba(254, 150, 13, 0.5);
 }
-
 a {
     color: inherit;
     text-decoration: none;
@@ -547,6 +546,12 @@ a:link {
 	
   }
   .EventNav li {
+	padding: 20px;
+	font-size: 18px;
+	font-weight: bold;
+	color: rgba(0,88,0,0.7);
+  }
+    a.scroll {
 	padding: 20px;
 	font-size: 18px;
 	font-weight: bold;
@@ -2344,6 +2349,9 @@ label {
 }
 
 .blog__sidebar__item ul li a:hover {
+	color: rgba(0, 100, 0,0.8);
+}
+.scroll ul li a:hover {
 	color: rgba(0, 100, 0,0.8);
 }
 
