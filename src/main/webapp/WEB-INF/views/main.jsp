@@ -4,10 +4,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%
-	
 	MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
-	String u_id = mvo.getU_id();
-	int seller_key = mvo.getSeller_key();
+	String u_id = "";
+	int seller_key;
+	if(mvo != null) {
+		u_id = mvo.getU_id();
+		seller_key = mvo.getSeller_key();
+	} else {
+		u_id = "test";
+		seller_key = 0;
+	}
 	
 	ArrayList<EventVO> event_list =(ArrayList<EventVO>) request.getAttribute("eventList");
 	ArrayList<StoreVO> store_list =(ArrayList<StoreVO>) request.getAttribute("storeList");
@@ -243,7 +249,7 @@
                            <div class="header__top__right__auth">
 	<%String id = mvo.getU_id(); %>
 	<%
-	if (mvo.getU_id() == "" || mvo.getU_id() == null) {	
+	if (u_id == "" || u_id == null) {	
 	%>
 	<h2><a href="./loginForm.me">로그인</a></h2>
 	<h2><a href="./joinForm.me">회원가입</a></h2>
