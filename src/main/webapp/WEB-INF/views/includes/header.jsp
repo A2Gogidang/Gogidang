@@ -74,8 +74,7 @@
                             </div>
                            <%}else{ %>
                             <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"><%=memberVO.getU_nick() %></i> </a>
-                                <aa>님 !</aa>
+                                <a href="#"><i class="fa fa-user" style="margin-top: 10px;"><%=memberVO.getU_nick() %>님! 환영합니다!</i></a> <a href="#"><img class="cart" src="resources/img/storeinfo/cart1.ico" style ="width:30px;height:30px;"/></a>
                            <%} %>
                         </div>
                     </div>

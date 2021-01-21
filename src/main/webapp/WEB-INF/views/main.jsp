@@ -222,9 +222,9 @@
 			});
   		})
   		
-  		
-  		
-  		
+  		$(function(){
+  		$('.single-item').slick();
+  		})
 	</script>
     
     
@@ -242,7 +242,7 @@
                     <div class="col-md-6">
                         <div class="header__top__right">
                            <div class="header__top__right__auth">
-                               <header><h6><%=u_id %> 로 로그인하셨습니다.</h6></header>
+	<%String id = mvo.getU_id(); %>
 	<%
 	if (mvo.getU_id() == "" || mvo.getU_id() == null) {	
 	%>
@@ -266,7 +266,7 @@
 	<% 
 	}else {
 	%>
-		<h6><%=u_id %>님 환영합니다!</h6>
+		<h6><%=id %>님!</h6>
 		<%-- <a href="./storeList.st">전체 가게 리스트 보기</a>
 		<br>
 		<br>
@@ -381,12 +381,11 @@
 	<div class="section-title"  style="margin: top 0%;">
                         <h2>진행중 이벤트</h2>
                     </div>
-	  
-	
-	  
+	 
+
 	  <div class="container-fluid" style="display: flex; align-items: center; justify-content: center;">
 
-		<div class="col-md-10">
+		<div class="col-md-11" style="width:1370px;display: flex;align-items: center; justify-content: center;">
 			<div class="carousel slide" id="carousel-524864">
 				<ol class="carousel-indicators" style="display: flex; align-items: center; justify-content: center;">
 					<li data-slide-to="0" data-target="#carousel-524864" class="active">
@@ -430,8 +429,10 @@
 		</div>
 	</div>
 	</div> 
+	
 	<div class="col-lg-12">
-                    <div class="section-title" style="margin-top: 30px;">
+                    <div class="section-title" style="padding-top: 80px;padding-bottom: 40px;">
+                    
                         <h2>추천 가게</h2>
                     </div>
 	<!-- stlye 은 slick 영역 확인용 -->

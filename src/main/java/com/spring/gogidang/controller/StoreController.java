@@ -372,8 +372,9 @@ public class StoreController {
 	// dogyeong end
 	@RequestMapping(value = "/store_info_Design.st")
 	public String design1(Model model) {
-		return "store/store_info_design/store_info_Design"; 
-		}
+		return "store/store_info_Design"; 
+		
+	}
 	@RequestMapping(value = "/store_info_Design2.st")
 	public String design2(Model model) {
 		return "store/store_info_design/store_info_Design2"; 
