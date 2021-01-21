@@ -130,7 +130,7 @@ public class MemberController {
    @RequestMapping("/updateProcess.me")
    public String memberUpdate(MemberVO memberVO, HttpSession session , HttpServletResponse response) throws Exception {
       
-      memberVO.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
+      memberVO.setU_id(((MemberVO)session.getAttribute("memberVO")).getU_id());
   
       int res = memberService.updateMember(memberVO);
   
