@@ -447,11 +447,9 @@
             </div>
         </div>
     </section>
-    <!-- Featured Section End -->
+    <!— Featured Section End —>
 
  <%@include file="includes/footer.jsp"%>
 <script type="text/javascript" src="resources/js/slick.js"></script>
 </body>
 </html>
-
-

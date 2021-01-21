@@ -112,7 +112,7 @@ jQuery(document).ready(function($) {
         </div>
     </section>
     
-    <div class="container"style="justify-content: center; align-items: center;">
+    <div class="SellerInfo_Container"style="justify-content: center; align-items: center;">
             <div class="col-md-10"></div>
             <div class="col-md-10 no-padding lib-item" data-category="ui">
                 <div class="lib-panel">
