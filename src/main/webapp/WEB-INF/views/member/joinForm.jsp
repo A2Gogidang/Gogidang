@@ -230,7 +230,7 @@
          
          $.ajax({
             type:"post",
-            url : 'checkemail.bo',
+            url : 'checkemail.li',
             data:{
                u_email: u_email
             },
@@ -259,7 +259,7 @@
          
          $.ajax({
             type:"post",
-            url : 'checkAuthKey.bo',
+            url : 'checkAuthKey.li',
             data:{
                key: key
             },

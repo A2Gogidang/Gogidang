@@ -4,7 +4,10 @@
 	 
 <mapper namespace="com.spring.mapper.ReviewMapper">
 
-	<!-- taehyun start -->
+	<select id="getList" resultType="ReviewVO">
+		select * from review
+	</select>
+
 	<select id="getListWithPaging" resultType="ReviewVO">
 		<![CDATA[
 		select review_num, title, nickname, s_name, star, review_date
@@ -17,7 +20,7 @@
 		]]>
 	</select>
 	
-	<select id="getUidListWithPaging" resultType="ReviewVO">
+	<select id="getListByIdWithPaging" resultType="ReviewVO">
 		<![CDATA[
 		select review_num, title, nickname, s_name, star, review_date
 		from
@@ -31,7 +34,7 @@
 		]]>
 	</select>
 	
-	<select id="getSnumListWithPaging" resultType="ReviewVO">
+	<select id="getListBySnWithPaging" resultType="ReviewVO">
 		<![CDATA[
 		select review_num, title, nickname, s_name, star, review_date
 		from
@@ -45,7 +48,12 @@
 		]]>
 	</select>
 	
-	<insert id="reviewReg" parameterType="ReviewVO">
+	<select id="getReview" resultType="ReviewVO">
+		select * from review where review_num = #{review_num)
+	</select>
+
+	
+	<insert id="regReview" parameterType="ReviewVO">
 		INSERT INTO review (review_num, u_id, nickname, s_num, s_name, title, content, star, review_img1, review_img2, review_img3) 
 		VALUES (seq_review.nextval
 		, #{u_id}
@@ -59,8 +67,15 @@
     	, #{review_img2}
     	, #{review_img3})
 	</insert>
-	
-	<update id="update">
+		
+	<select id="getTotal" resultType="int">
+		select count(*) from review where review_num > 0
+	</select>
+
+</mapper>
+
+	<!--
+ 	<update id="update">
 		update review
 		set content = #{content}
 		where review_num=#{review_num}
@@ -68,14 +83,5 @@
 	
 	<delete id="delete">
 		delete from review where review_num=#{review_num}
-	</delete>
-	
-	<select id="read" resultType="ReviewVO">
-		select * from review where review_num=#{review_num}
-	</select>
-	
-	<select id="getTotalCount" resultType="int">
-		select count(*) from review where review_num > 0
-	</select>
-	<!-- taehyun end -->
-</mapper>
+	</delete> 
+	-->
