@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %>
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%
 	MemberVO memberVO = (MemberVO)session.getAttribute("MemberVO");
@@ -54,7 +54,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/storelist.css" type="text/css">
-
+	
 
 </head>
 <body>
