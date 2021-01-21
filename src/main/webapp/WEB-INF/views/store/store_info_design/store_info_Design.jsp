@@ -47,6 +47,13 @@
     	});
     	//부드러운 스크롤링 jquery
 	</script>
+                </script>
+<style>
+.page-link
+{
+    color: #338333;
+}
+</style>
     </head>
     <body>
             <!-- 3.Header Section Begin -->
@@ -166,25 +173,18 @@
     <section class="hero">
         <div class="container">
             <div class="hero__item__box2"></div>
-                    <div class="EventNav">
-                        <ul>
-                             <li><a href="#">가격정보</a>
-                            <li><a href="#BestReview" class="scroll">추천리뷰</a></li>
-                            <li><a href="#locationNav_s" class="scroll">가게위치</a></li>
-                            <li><a href="#Qna_s" class="scroll">문의</a></li>
-                        </ul>
-                    </div>   
+                  
             </div>   
         </div>
     </section>
     <!--네비게이션바 사용 끝-->
     <!-- Hero Section End -->
-    <div class="container" style="display: flex; align-items: center; justify-content: center;">
+      <div class="container" style="display: flex; align-items: center; justify-content: center;">
         <div class="row" style="display: flex; align-items: center; justify-content: center;">    
-            <div class="col-md-6 col-md-offset-3">
-                <div class="card">
+            <div class="col-md-12 col-md-offset-3"style="align-items: center; justify-content: center;">
+                <div class="card" style="margin-bottom: 70px;" >
                     <div class="card-image">
-                        <img class="img-responsive" src="resources/img/DetailStoreImg/SellerImg/sellerpic.png">
+                        <img class="img-responsive" src="resources/DetailStore/SellerImg/sellerpic.png">
                         
                     </div><!-- card image -->
                     
@@ -197,10 +197,10 @@
                     <div class="card-action"style="text-align: left;">
                         <div class="SellerInfo">
                             <ul class="SellerInfoDetail">
-                            <ul><a href="#"><img src="resources/img/DetailStoreImg/Icon/location.ico" width="30px" height="30px;">서울 특별시 성동구 마장동 정육백화점</a></ul>
-                            <ul><a href="#"><img src="resources/img/DetailStoreImg/Icon/time.ico" width="30px" height="30px;">10:00 ~ 21:00</a></ul>
-                            <ul><a href="#"><img src="resources/img/DetailStoreImg/Icon/call.ico" width="30px" height="30px;">010-0000-0000 &nbsp; 02-0000-0000</a></ul>
-                            <ul><a href="#"><img src="resources/img/DetailStoreImg/Icon/delivery.ico" width="30px" height="30px;">서울 특별시 성동구 마장동 정육백화점</a></ul>
+                            <ul><a href="#"><img src="resources/DetailStore/Icon/location.ico" width="40px" height="40px;">&nbsp;&nbsp;서울 특별시 성동구 마장동 정육백화점</a></ul>
+                            <ul><a href="#"><img src="resources/DetailStore/Icon/time.ico" width="40px" height="42px;">&nbsp;&nbsp;10:00 ~ 21:00</a></ul>
+                            <ul><a href="#"><img src="resources/DetailStore/Icon/call.ico" width="40px" height="40px;">&nbsp;&nbsp;010-0000-0000 &nbsp; 02-0000-0000</a></ul>
+                            <ul><a href="#"><img src="resources/DetailStore/Icon/delivery.ico" width="40px" height="40px;">&nbsp;&nbsp;서울 특별시 성동구 마장동 정육백화점</a></ul>
                            </ul>
                         </div>
                     </div><!-- card actions -->
@@ -212,7 +212,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <img src="resources/img/DetailStoreImg/SampleLocation.png" src="정육백화점" />
+                                    <img src="SampleLocation.png" src="정육백화점" />
                                 </div>
                             </div>
                         </div>
@@ -222,157 +222,285 @@
                 </div>
             </div>
         </div>
-    </div>
+          <div class="EventNav">
+                        <ul style="size: 1370px;">
+                    
+                            <li><a href="#">가격정보</a></li>
+                            <li><a href="#BestReview" class="scroll">추천리뷰</a></li>
+                            <li><a href="#locationNav_s" class="scroll">가게위치</a></li>
+                            <li><a href="#Qna_s" class="scroll">문의</a></li>
+                            
+                        </ul>
+                    </div>   
     <section class="page-section BestReview" id="BestReview">
-    <br>
+        <br>
         <div class="container">
             <!-- Portfolio Section Heading-->
-            <h2 class="page-section-heading" style="margin-top: 100px;display: flex; justify-content: center;">추천리뷰</h2>
-            <!-- Icon Divider-->
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-            </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title">
+                            <h2 style="margin-top: 30px;">추천 리뷰</h2>
+                        </div>
+                        </div>
+                    </div>
             <!-- Portfolio Grid Items-->
-            <div class="row justify-content-center" style="margin-top: 50px;">
-                <!-- Item 1-->
+            <div class="row justify-content-center" style="margin-top: 20px;">
+                <!-- Portfolio Item 1-->
                 <div class="col-md-6 col-lg-4 mb-5">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal1">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="BestReview-item-caption-content text-center text-white"></div>
                         </div>
-                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview1.png" alt="" />
+                        <img class="img-fluid" src="resources//DetailStore/Review/추천리뷰1.png" alt="" />
                     </div>
                 </div>
-                <!-- Item 2-->
+                <!-- Portfolio Item 2-->
                 <div class="col-md-6 col-lg-4 mb-5">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal2">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="BestReview-item-caption-content text-center text-white"></div>
                         </div>
-                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview2.png" alt="" />
+                        <img class="img-fluid" src="resources/DetailStore/Review/추천리뷰2.png" alt="" />
                     </div>
                 </div>
-                <!-- Item 3-->
+                <!-- Portfolio Item 3-->
                 <div class="col-md-6 col-lg-4 mb-5">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal3">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="BestReview-item-caption-content text-center text-white"></div>
                         </div>
-                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview3.png" alt="" />
+                        <img class="img-fluid" src="resources/DetailStore/Review/추천리뷰3.png" alt="" />
                     </div>
                 </div>
-                <!-- Item 4-->
+                <!-- Portfolio Item 4-->
                 <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal4">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="BestReview-item-caption-content text-center text-white"></div>
                         </div>
-                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview4.png" alt="" />
+                        <img class="img-fluid" src="resources/DetailStore/Review/추천리뷰4.png" alt="" />
                     </div>
                 </div>
-                <!-- Item 5-->
+                <!-- Portfolio Item 5-->
                 <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
                     <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal5">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="BestReview-item-caption-content text-center text-white"></div>
                         </div>
-                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview5.png" alt="" />
+                        <img class="img-fluid" src="resources/DetailStore/Review/추천리뷰5.png" alt="" />
                     </div>
                 </div>
-                <!-- Item 6-->
-                <div class="col-md-6 col-lg-4">
-                    <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal6">
+                 <!-- Portfolio Item 3-->
+                 <div class="col-md-6 col-lg-4 mb-5">
+                    <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal3">
                         <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="BestReview-item-caption-content text-center text-white"></div>
                         </div>
-                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview6.png" alt="" />
+                        <img class="img-fluid" src="resources/DetailStore/Review/추천리뷰6.png" alt="" />
                     </div>
                 </div>
             </div>
         </div>
     </section>
-<div class="locationNav"style="margin-bottom: 20px; margin-top: 100px; display: flex; justify-content: center; align-items: center; ">
-    <h2 class="page-section-heading">위치</h2>
+    <br>
+    <section id="locationNav_s">
+        <br>
+        <div class="container">
+            <!-- Portfolio Section Heading-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2 style="margin-top: 30px;">가게 위치</h2>
+                    </div>
+                    </div>
+                </div>
 </div>
-<section id="locationNav_s">
-<br>
-<div class="location">
-    <img src="resources/img/DetailStoreImg/Location/location.png">
-    <img src="resources/img/DetailStoreImg/Location/loc1.png">
+<div class="location"style="display: flex; flex-flow: column; justify-content: center; align-items: center;">
+    <img src="resources/DetailStore/Location/location.png">
+    <img src="resources/DetailStore/Location/loc1.png">
     <span class="locText"></span>
     <p>가락시장역2번 출구로 나오세요</p>
     <p>가락몰이 보입니다</p>
-    <img src="resources/img/DetailStoreImg/Location/loc2.png">
+    <img src="resources/DetailStore/Location/loc2.png">
     <span class="locText"></span>
     <p>가락몰 쪽으로 주욱 가다보시면</p>
-    <img src="resources/img/DetailStoreImg/Location/loc3.png">
+    <img src="resources/DetailStore/Location/loc3.png">
     <span class="locText"></span>
     <p>축산이 써져있는 문들이 보입니다</p>
-    <img src="resources/img/DetailStoreImg/Location/loc4.png">
+    <img src="resources/DetailStore/Location/loc4.png">
     <span class="locText"></span>
     <p>축산 3이 써져있는 문을 열고 들어가주세요</p>
-    <img src="resources/img/DetailStoreImg/Location/loc5.png">
+    <img src="resources/DetailStore/Location/loc5.png">
     <span class="locText"></span>
     <p>들어가시면 많은 축산 점포가 보입니다.</p>
-    <img src="resources/img/DetailStoreImg/Location/loc6.png">
+    <img src="resources/DetailStore/Location/loc6.png">
     <span class="locText"></span>
     <p>B66 점포번호를 확인해주세요</p>
     <p>정육 백화점이 보입니다.</p>
 </div>
 </section>
-<h2 class="page-section-heading" style="margin-top: 100px;display: flex; justify-content: center;">문의</h2>
 <section id="Qna_s">
-<br>
-<div class="CsCenterCon">
-    <button class="CsInsert_btn" style="background-color: #016301;">가게문의 작성</button>
-        <a href="#"><div class="CsMainText1">
-        <div class="CsCenterText"><span>고기를 당일에 예약해서 가면 바로먹을수 있나요?</span>
-        </div>
-        <div class="CsInsertName">
-            <span>고*우</span>
-        </div>
-        <div class="CsInsertTime">
-            <span>2020.12.30</span>
-        </div>
-        <div class="CsUnReady">
-            <span>답변대기</span>
-    </div></div></a>
-<a href="#"><div class="CsMainText2">
-        <div class="CsCenterText"><span>테이블이 많이 준비되어있나요? 회식인원이 좀많아서요...</span></div>
-        <div class="CsInsertName">
-            <span>오*석</span>
-        </div>
-        <div class="CsInsertTime">
-            <span>2020.12.30</span>
-        </div>
-        <div class="CsReady">
-            <span>답변완료</span>
-        </div>
-        </div>
-    </a>
-    <div class="CsMainTextRe">
-        <div class="CsCenterText"><span>충분히 많습니다!! 언제든지 들러주세요~</span>
-        </div>
-        <div class="CsInsertNamead">
-            <span>정육백화점</span>
-        </div>
-        <div class="CsInsertTime">
-            <span>2020.12.30</span>
+    <br>
+    <div class="container">
+        <!-- Portfolio Section Heading-->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2 style="margin-top: 30px;">문의</h2>
+                </div>
+                </div>
+            </div>
+</div>
+<div class="StoreQnA">
+	<div class="row">
+		<div class="col-md-12"style="size:100%";>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th><h5>
+							번호
+							</h5>
+						</th>
+						<th><h5>
+							제목
+							</h5>
+						</th>
+						<th><h5>
+							작성자
+							</h5>
+						</th>
+						<th><h5>
+							날짜
+						</h5></th>
+					</tr>
+				</thead>
+				<tbody>
+					</a><tr>
+						<td><h5>
+							1
+                        </h5></td>
+                       
+						<td>
+                            <a href="#"><h5>
+							홈페이지에서 예약할수 있나요?
+							</h5>
+                        </a>
+                        </td>
+						<td><h5>
+							오*석
+						</h5></td>
+						<td><h5>
+							21/01/05
+						</h5></td>
+                  
+                    </tr>
+                
+					<tr class="table table-striped">
+						<td><h5>
+							2
+						</h5></td>
+						<td>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+					</tr>
+					<tr class="table table-striped">
+						<td><h5>
+							3
+						</h5></td>
+						<td>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+					</tr>
+					<tr class="table table-striped">
+						<td><h5>
+							4
+						</h5></td>
+						<td>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+					</tr>
+					<tr class="table table-striped">
+						<td><h5>
+							5
+						</h5></td>
+						<td>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+					</tr>
+				</tbody>
+            </table> 
+            <div class="qna_insert" style="text-align: right;">
+			<a href="qna_insert.html"><button type="button" class="btn btn-lg btn-outline-secondary" a href = "qna_insert.html"style="background-color: #338333; color: white;">
+				<h5>글쓰기
+            </h5></button>
+        </a>
         </div>
     </div>
+    </div>
+    <div class="container-fluid" >
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <class class="pagination-lg">
+                    <ul class="pagination" style="margin-bottom: 30px;">
+                        <li class="page-item">
+                            <a class="page-link" href="#">Previous</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">4</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">5</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">6</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">7</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">8</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">9</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">10</a>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-md-2">
+            </div>
         </div>
-   	</section>
-    <div class="btnTotal">
-        <button type="button" class="btn btn-primary btn-lg btn-block" style="background-color:#016301;font-size: 15px;">전체보기</button>
-        <div class="EventNav">
-            <ul style="margin-top: 30px;">
-                <li style="border: solid black; background-color: #016301; color: white;"><a href="#">추천리뷰</a></li>
-                <li style="border: solid black; background-color: #016301;  color: white;"><a href="#">위치</a>
-                <li style="border: solid black; background-color: #016301;  color: white;"><a href="#">문의</a></li>
-            </ul>
-        </div>   
-</div>
+    </div>
 <a style="display:scroll;position:fixed;bottom:10px;right:5px;" href="#" title=”top">TOP</a> 
+
+
       
     
   <!-- Footer Section Begin -->
