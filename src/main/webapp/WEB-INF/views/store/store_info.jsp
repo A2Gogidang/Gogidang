@@ -187,6 +187,7 @@ geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
       
       </div>
       
+      
       <!-- Modal -->
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel" aria-hidden="true">
