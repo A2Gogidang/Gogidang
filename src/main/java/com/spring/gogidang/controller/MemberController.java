@@ -138,17 +138,20 @@ public class MemberController {
       response.setContentType("text/html; charset=utf-8");
       PrintWriter writer = response.getWriter();
   
-      if(res != 0) {
-         MemberVO vo = memberService.selectMember(memberVO);
-         session.setAttribute("MemberVO",vo);
-         writer.write("<script>alert('로그인되었습니다!!!');" +"location.href = './main.me';</script>");
+
+		if(res != 0) {
+			MemberVO vo = memberService.selectMember(memberVO);
+			session.setAttribute("MemberVO",vo);
+			writer.write("<script>alert('수정완료!!');" +"location.href = './updateList.me';</script>");
+
      
       }else {
 
-         writer.write("<script>alert('로그인에 실패하였습니다.!!!');" +"location.href = './main.me';</script>");
-      }
-      return null;
-   }
+
+			writer.write("<script>alert('수정실패!!');" +"location.href = './updateList.me';</script>");
+		}
+		return null;
+
    
    //soobin start
   

@@ -13,7 +13,7 @@
   
 <body>
 	 <!--네비게이션바 사용 시작-->
-    <section class="hero">
+   <!--<section class="hero">
         <div class="container">
             <div class="hero__item__box2"></div>
                     <div class="EventNav">
@@ -25,10 +25,13 @@
                     </div>   
             </div>   
         </div>
-    </section>
+    </section>  --> 
     <!--네비게이션바 사용 끝-->
     
 	<!-- 회원가입 시작 -->
+	
+	
+	
 	<div class="container" id="join">
 		<div class="row justify-content-center">
         <div class="col-lg-8">
@@ -38,45 +41,55 @@
             <!-- join form -->
          	<form name="joinform" action="./joinProcess.me" method="post">
          		<div class="id_input_box">
-         		<ts>아이디<span class="ico">*</span> </ts>
-         	 	<td><input type="text"  id="u_id" placeholder="숫자와 영어를 포함 4~10자리내로 입력하세요." /></td> <!-- name="u_id"  -->
+         			<ts>아이디<span class="ico">*</span> </ts>
+         	 		<td><input type="text"  name="u_id" placeholder="숫자와 영어를 포함 4~10자리내로 입력하세요." style="font-size:13px;" /></td> <!-- name="u_id"  -->
          	 	</div>
          	 	
          	 	<div class="id_input_box">
-         	 	<ts>비밀번호<span class="ico">*</span>  </ts>
-         	 	<td><input type="password" name="u_pw" placeholder="숫자와 영어를 포함 6~12자리내로 입력하세요."/></td>
+         	 		<ts>비밀번호<span class="ico">*</span>  </ts>
+         	 		<td><input type="password" name="u_pw" placeholder="숫자와 영어를 포함 6~12자리내로 입력하세요." style="font-size:13px;"/></td>
          	 	</div>
          	 	
          	 	<div class="id_input_box">
-         	 	<ts>비밀번호 확인<span class="ico">*</span>   </ts>
-         	 	<td><input type="password" name="u_pw2" placeholder="숫자와 영어를 포함 6~12자리내로 입력하세요."/></td>
+	         	 	<ts>비밀번호 확인<span class="ico">*</span>   </ts>
+	         	 	<td><input type="password" name="u_pw2" placeholder="숫자와 영어를 포함 6~12자리내로 입력하세요." style="font-size:13px;"/></td>
          	 	</div>
          	 	
          	 	<div class="id_input_box">
-         	 	<ts>이름<span class="ico">*</span></ts>
-         	 	<td><input type="text" name="u_birth" placeholder="19990120"/></td>
+	         	 	<ts>이름<span class="ico">*</span>   </ts>
+	         	 	<td><input type="text" name="u_name" placeholder="이름을 입력하세요." style="font-size:13px;"/></td>
+         	 	</div>
+         	 	
+         	 	<div class="id_input_box">
+	         	 	<ts>닉네임<span class="ico">*</span>   </ts>
+	         	 	<td><input type="text" name="u_nick" placeholder="이름을 입력하세요." style="font-size:13px;"/></td>
+         	 	</div>
+         	 	
+         	 	<div class="id_input_box">
+	         	 	<ts>생년월일<span class="ico">*</span></ts>
+	         	 	<td><input type="text" name="u_birth" placeholder="생년월일 8자리를 입력하세요.(예: 19990120)" style="font-size:13px;"/></td>
          	 	</div>
          	 	
          	 	<div class="id_input_box_s">
          	 		<div class="id_input_box">
 		         	 	<ts>주소<span class="ico">*</span></ts>
-		         	 	<td><input class="add_input" type="text" id="u_post" name="u_post" placeholder="우편번호">
-		         	 		<input class="add_btn" type="button" onclick="execDaumPostcode()" value="우편번호찾기"></td>
+		         	 	<td><input class="add_input" type="text" id="u_post" name="u_post" placeholder="우편번호" style="font-size:13px;">
+		         	 		<input class="add_btn" type="button" onclick="execDaumPostcode()" value="우편번호찾기" style="font-size:10px;"></td>
 		         	 </div>
 		         	 <div class="id_input_box">
 		         		 <ts> </ts>
-		         	 	<td><input  type="text" id="u_addr" name="u_addr" placeholder="주소"></td>
+		         	 	<td><input  type="text" id="u_addr" name="u_addr" placeholder="주소" style="font-size:13px;"></td>
 		         	 </div>
 		         	 <div class="id_input_box">		
 		         	 	<ts> </ts>
-		         	 	<input type="text" id="u_addr" name="u_addr" placeholder="상세주소"></td>
+		         	 	<input type="text" id="u_addr" name="u_addr" placeholder="상세주소" style="font-size:13px;"></td>
 	         	 	</div>
          	 	</div>
          	 
          		
          	 	<div class="id_input_box">
 		         	<ts>이메일<span class="ico">*</span></ts>
-		         	 <td><input class="add_input_email" type="text" name="u_email"/><span class="ico_email">@</span>
+		         	 <td><input class="add_input_email" type="text" name="u_email"/><span class="ico_email" style="font-size:13px;">@</span>
 		         	 <select name="u_email" width="120px"> 
 		         	 		<option value="">메일주소선택</option>
 							<option value="@naver,com">naver.com</option>
@@ -90,7 +103,7 @@
          	 	
          	 	<div class="id_input_box">
          	 	<ts>전화번호<span class="ico">*</span></ts>
-         	 	<td><input type="text" name="u_phone"/></td>
+         	 	<td><input type="text" name="u_phone" style="font-size:13px;"/></td>
          	 	</div>
          	 	
          	 	<div class="id_input_box">
@@ -109,14 +122,15 @@
          			</div>	
          	 	</div>
          	 	
-         	 	<div class="id_input_box">
-         	 	<ts>생년월일</ts>
-         	 	<td><input type="text" name="u_nick"/></td>
+         	 	<!-- 
+         	 	 <a href="#" onclick="check_input()">회원가입</a>&nbsp;&nbsp;
+         		<a href="javascript:joinform.reset()">다시작성</a>
+         		 -->
+         		 
+         	 	<div class="join_btn">
+         	 	<button type="submit" class="btn-jj btn-lg btn-block btn-success"  >회원가입</button>
+         	 	<button type="reset" class="btn-j btn-lg btn-block btn-success" >다시 작성</button>
          	 	</div>
-         	 	
-         	 	
-         	 	
-         	 	
          	 	
          	
          	

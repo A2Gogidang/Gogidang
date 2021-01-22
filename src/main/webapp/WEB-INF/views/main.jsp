@@ -192,7 +192,7 @@
                                 <h4><ul><a href="#">후기 검색</a></ul></h4>
                             </div>
                             <div class="sidebar__item">
-                                <h4><ul><a href="#">마이 페이지</a></ul></h4>
+                                <h4><ul><a href="./updateList.me">마이 페이지</a></ul></h4>
                             </div>
                             <div class="sidebar__item">
                                 <h4><ul><a href="#">예약 현황</a></ul></h4>
