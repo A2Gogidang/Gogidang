@@ -48,243 +48,244 @@ import com.spring.gogidang.service.StoreService;
 
 @Controller
 public class MemberController {
-	
-	@Autowired
-	private MemberService memberService;
-	
-	@Autowired
-	private EventService eventService;
-	
-	@Autowired
-	private StoreService storeService;
-	
-	@Autowired
-	private ReviewService reviewService;
+   
+   @Autowired
+   private MemberService memberService;
+   
+   @Autowired
+   private EventService eventService;
+   
+   @Autowired
+   private StoreService storeService;
+   
+   @Autowired
+   private ReviewService reviewService;
 
-	@RequestMapping("/main.me") 
-	public String mainPage(Criteria cri, Model model, HttpSession seesion) throws Exception { 
-		ArrayList<EventVO> event_list = eventService.getEventList();
-		ArrayList<StoreVO> store_list = storeService.getList();
-		List<ReviewVO> review_list = reviewService.getList(cri);
-		model.addAttribute("event_list", event_list);
-		model.addAttribute("store_list", store_list);
-		model.addAttribute("review_list", review_list);
-		
-		return "main";
-	}
-	
-	@RequestMapping("/loginForm.me") 
-	public String loginForm() throws Exception {
-		
-		return "member/loginForm";
-	}
+   @RequestMapping("/main.me")
+   public String mainPage(Model model, HttpSession seesion) throws Exception { 
 
-	@RequestMapping("/joinForm.me") 
-	public String joinForm() throws Exception { 
-		
-		return "member/joinForm";
-	}
-	
-	
-	@RequestMapping("/login.me") 
-	public String userCheck(MemberVO memberVO, HttpSession session, HttpServletResponse response) throws Exception { 
-		
-		MemberVO vo = memberService.selectMember(memberVO);
-		
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter writer = response.getWriter();
-		
-		if ( vo != null && vo.getU_id() != null ) {
-			
-			session.setAttribute("MemberVO",vo);
-			
-			if(vo.getSeller_key() == 1 ) {
-				
-				StoreVO storevo = new StoreVO();
-				storevo.setU_id(vo.getU_id());
-				StoreVO vo1 = storeService.selectStore(storevo);
-				session.setAttribute("StoreVO", vo1);
-			}
-			writer.write("<script>alert('로그인 성공!');location.href='./main.me';</script>");
-		}else {
-			writer.write("<script>alert('로그인 실패!');location.href='./loginForm.me';</script>");
-		}
-		return null;
-	}
-	
-	@RequestMapping("/joinProcess.me") 
-	public String insertMember(MemberVO memberVO, HttpServletResponse response) throws Exception { 
-		int res = memberService.insertMember(memberVO);
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter writer = response.getWriter();
-    
-		if (res==1) {
-
-			writer.write("<script>alert('회원가입되었습니다!!'); location.href='./loginForm.me';</script>");
-		}
-		else {
-			writer.write("<script>alert('회원가입에 실패하였습니다!!'); location.href='./joinForm.me';</script>");
-		}
-		return null;
-	}
-	
-	@RequestMapping("/updateProcess.me")
-	public String memberUpdate(MemberVO memberVO, HttpSession session , HttpServletResponse response) throws Exception {
+      model.addAttribute("eventList", eventService.getEventList());
+      model.addAttribute("storeList", storeService.getList());
+      model.addAttribute("reviewList", reviewService.getList());
       
-		memberVO.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
+      return "main";
+   }
+   
+   @RequestMapping("/loginForm.me") 
+   public String loginForm() throws Exception {
+      
+      return "member/loginForm";
+   }
+
+   @RequestMapping("/joinForm.me") 
+   public String joinForm() throws Exception { 
+      
+      return "member/joinForm";
+   }
+   
+   @RequestMapping("/login.me")
+   public String userCheck(MemberVO memberVO, HttpSession session, HttpServletResponse response) throws Exception { 
+      
+      MemberVO vo = memberService.selectMember(memberVO);
+      
+      response.setCharacterEncoding("utf-8");
+      response.setContentType("text/html; charset=utf-8");
+      PrintWriter writer = response.getWriter();
+      
+      if ( vo != null && vo.getU_id() != null ) {
+         
+         session.setAttribute("memberVO",vo);
+         
+         if(vo.getSeller_key() == 1 ) {
+            
+            StoreVO storevo = new StoreVO();
+            storevo.setU_id(vo.getU_id());
+            StoreVO vo1 = storeService.selectStore(storevo);
+            session.setAttribute("StoreVO", vo1);
+         }
+         writer.write("<script>alert('로그인 성공!');location.href='./main.me';</script>");
+      }else {
+         writer.write("<script>alert('로그인 실패!');location.href='./loginForm.me';</script>");
+      }
+      return null;
+   }
+   
+   @RequestMapping("/joinProcess.me") 
+   public String insertMember(MemberVO memberVO, HttpServletResponse response) throws Exception { 
+      int res = memberService.insertMember(memberVO);
+      response.setCharacterEncoding("utf-8");
+      response.setContentType("text/html; charset=utf-8");
+      PrintWriter writer = response.getWriter();
+    
+      if (res==1) {
+
+         writer.write("<script>alert('회원가입되었습니다!!'); location.href='./loginForm.me';</script>");
+      }
+      else {
+         writer.write("<script>alert('회원가입에 실패하였습니다!!'); location.href='./joinForm.me';</script>");
+      }
+      return null;
+   }
+   
+   @RequestMapping("/updateProcess.me")
+   public String memberUpdate(MemberVO memberVO, HttpSession session , HttpServletResponse response) throws Exception {
+      
+      memberVO.setU_id(((MemberVO)session.getAttribute("memberVO")).getU_id());
   
-		int res = memberService.updateMember(memberVO);
+      int res = memberService.updateMember(memberVO);
   
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter writer = response.getWriter();
+      response.setCharacterEncoding("utf-8");
+      response.setContentType("text/html; charset=utf-8");
+      PrintWriter writer = response.getWriter();
   
+
 		if(res != 0) {
 			MemberVO vo = memberService.selectMember(memberVO);
 			session.setAttribute("MemberVO",vo);
 			writer.write("<script>alert('수정완료!!');" +"location.href = './updateList.me';</script>");
+
      
-		}else {
+      }else {
+
 
 			writer.write("<script>alert('수정실패!!');" +"location.href = './updateList.me';</script>");
 		}
 		return null;
+
+   
+   //soobin start
+  
+   @RequestMapping("/updateForm.me")
+   public String updateForm(MemberVO memberVO) throws Exception{
+      
+      return "member/updateForm";
    }
-	
-	//soobin start
+   
+   @RequestMapping("/updateList.me")
+   public String updateList() throws Exception{
+      
+      return "member/updateList";
+   }
+   
+   //soobin end
   
-	@RequestMapping("/updateForm.me")
-	public String updateForm(MemberVO memberVO) throws Exception{
-		
-		return "member/updateForm";
-	}
-	
-	@RequestMapping("/updateList.me")
-	public String updateList() throws Exception{
-		
-		return "member/updateList";
-	}
-	
-	//soobin end
-  
-	@RequestMapping(value = "/checkid.me", method = RequestMethod.POST)
-	@ResponseBody
-	public  String idcheck(@RequestParam("u_id") String u_id) throws Exception{
-		System.out.println("u_id=" + u_id);
-		String str = "";
-		int idcheck = memberService.checkid(u_id);
-		if(idcheck==1){ //이미 존재하는 계정
-			str = "NO";	
-		}else{	//사용 가능한 계정
-			str = "YES";	
-		}
-		System.out.println(str);
-		return str;
-	}
-	
-	// 인증메일 전송 및 인증키 session 저장
-	@RequestMapping(value="/checkemail.bo", produces="application/text; charset=utf8")
-	@ResponseBody
-	public String SendMail(String u_email, HttpSession session){
-		
-		// 결과값 메세지
-		String res = "메일 발송에 실패하였습니다";
-		
-		Random random = new Random();
-		String authkey = "";
-		
-		for( int i=0; i < 3; i++ ) {
-			int index = random.nextInt(25)+65;
-			
-			authkey +=(char)index;
-		}
-		
-		int numIndex = random.nextInt(8999)+1000;
-		authkey += numIndex;
-		
-		// 세션에 key 값 저장
-		session.setAttribute("authkey", authkey);
-		
-		// 메서드 안에 try catch 로 묶여있긴 하지만
-		// method return 타입이 void 여서 성공 여부를 위해
-		// try catch 로 한번더 묶고
-		// Exception 발생 안할시에 res 결과메세지 성공으로 바꿈
-		try {
-			
-			// 인증메일 발송
-			sendAuthMail(u_email, authkey);
-			
-			// 결과값 메세지 성공으로 변경
-			res = "인증 메일 발송에 성공하였습니다";
-			
-		} catch (Exception e) {
-			// 메일 전송 도중 오류 방생했을때 진입
-			System.err.println("메일 전송 오류");
-		}
-		
-		// 결과 메세지 return
-		return res;
-	}
-	
-	// 메일 인증 확인 method
-	@RequestMapping(value="/checkAuthKey.bo", produces="application/text; charset=utf8")
-	@ResponseBody
-	public String checkAuthKey( String key, HttpSession session ) {
-		
-		// 00 = 실패 코드
-		String res = "00";
-		
-		// 세션에 저장된 인증키 값 가져오기
-		String authKey = (String) session.getAttribute("authkey");
-		
-		// 사용자가 입력한 키값과 session 에 저장된 인증키값이 일치하는지 비교
-		if( authKey.equals(key) ) {
-			// 01 = 성공 코드
-			res = "01";
-			System.out.println("메일 인증 성공");
-		} else {
-			System.err.println("메일 인증 실패");
-		}
-		
-		// 코드값 return
-		return res;
-	}
-	
-	// 메일 전송 method
-	public static void sendAuthMail( String email, String key ) {
-		
-		Properties prop = new Properties();
+   @RequestMapping(value = "/checkid.bo", method = RequestMethod.POST)
+   @ResponseBody
+   public  String idcheck(@RequestParam("u_id") String u_id) throws Exception{
+      System.out.println("u_id=" + u_id);
+      String str = "";
+      int idcheck = memberService.checkid(u_id);
+      if(idcheck==1){ //이미 존재하는 계정
+         str = "NO";   
+      }else{   //사용 가능한 계정
+         str = "YES";   
+      }
+      System.out.println(str);
+      return str;
+   }
+   
+   // 인증메일 전송 및 인증키 session 저장
+   @RequestMapping(value="/checkemail.li", produces="application/text; charset=utf8")
+   @ResponseBody
+   public String SendMail(String u_email, HttpSession session){
+      
+      // 결과값 메세지
+      String res = "메일 발송에 실패하였습니다";
+      
+      Random random = new Random();
+      String authkey = "";
+      
+      for( int i=0; i < 3; i++ ) {
+         int index = random.nextInt(25)+65;
+         
+         authkey +=(char)index;
+      }
+      
+      int numIndex = random.nextInt(8999)+1000;
+      authkey += numIndex;
+      
+      // 세션에 key 값 저장
+      System.out.println(authkey);
+      session.setAttribute("authkey", authkey);
+      
+      // 메서드 안에 try catch 로 묶여있긴 하지만
+      // method return 타입이 void 여서 성공 여부를 위해
+      // try catch 로 한번더 묶고
+      // Exception 발생 안할시에 res 결과메세지 성공으로 바꿈
+      try {
+         
+         // 인증메일 발송
+         sendAuthMail(u_email, authkey);
+         
+         // 결과값 메세지 성공으로 변경
+         res = "인증 메일 발송에 성공하였습니다";
+         
+      } catch (Exception e) {
+         // 메일 전송 도중 오류 방생했을때 진입
+         System.err.println("메일 전송 오류");
+      }
+      
+      // 결과 메세지 return
+      return res;
+   }
+   
+   // 메일 인증 확인 method
+   @RequestMapping(value="/checkAuthKey.li", produces="application/text; charset=utf8")
+   @ResponseBody
+   public String checkAuthKey( String key, HttpSession session ) {
+      
+      // 00 = 실패 코드
+      String res = "00";
+      
+      // 세션에 저장된 인증키 값 가져오기
+      String authKey = (String) session.getAttribute("authkey");
+      
+      // 사용자가 입력한 키값과 session 에 저장된 인증키값이 일치하는지 비교
+      if( authKey.equals(key) ) {
+         // 01 = 성공 코드
+         res = "01";
+         System.out.println("메일 인증 성공");
+      } else {
+         System.err.println("메일 인증 실패");
+      }
+      
+      // 코드값 return
+      return res;
+   }
+   
+   // 메일 전송 method
+   public static void sendAuthMail( String email, String key ) {
+      
+      Properties prop = new Properties();
 
-		prop.put("mail.smtp.host", "smtp.daum.net");
-		prop.put("mail.smtp.port", "465");
-		prop.put("mail.smtp.auth", "true");
-		prop.put("mail.smtp.ssl.enable", "true");
-		prop.put("mail.smtp.ssl.trust", "smtp.daum.net");
+      prop.put("mail.smtp.host", "smtp.daum.net");
+      prop.put("mail.smtp.port", "465");
+      prop.put("mail.smtp.auth", "true");
+      prop.put("mail.smtp.ssl.enable", "true");
+      prop.put("mail.smtp.ssl.trust", "smtp.daum.net");
 
-		Session session = Session.getDefaultInstance(prop, new javax.mail.Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("kalgusals@daum.net", "tmd369!!!");
-			}
-		});
-		
-		try {
-			
-			MimeMessage message = new MimeMessage(session);
-	        
-	        message.setFrom(new InternetAddress("kalgusals@daum.net"));
-	        message.setSubject("고기당 회원 가입 이메일 인증번호");
-	        message.setContent(key, "text/html;charset=UTF-8");
-	        
-	        message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
-	        
-	        Transport.send(message);
-	        
-		} catch (Exception e) {
-			System.err.println("error : 이메일 발송 오류");
-		}
-		
-	}
-	
+      Session session = Session.getDefaultInstance(prop, new javax.mail.Authenticator() {
+         protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication("kalgusals@daum.net", "tmd369!!!");
+         }
+      });
+      
+      try {
+         
+         MimeMessage message = new MimeMessage(session);
+           
+           message.setFrom(new InternetAddress("kalgusals@daum.net"));
+           message.setSubject("고기당 회원 가입 이메일 인증번호");
+           message.setContent(key, "text/html;charset=UTF-8");
+           
+           message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
+           
+           Transport.send(message);
+           
+      } catch (Exception e) {
+         System.err.println("error : 이메일 발송 오류");
+      }
+      
+   }
+   
 }

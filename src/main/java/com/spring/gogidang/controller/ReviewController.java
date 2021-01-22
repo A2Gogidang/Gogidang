@@ -33,6 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 @Controller
+@Slf4j
 public class ReviewController {
 	
 	@Autowired
@@ -41,27 +42,52 @@ public class ReviewController {
 	@Autowired
 	private StoreService storeService;
 	
-	@GetMapping("/reviewList.re")
-	public String reviewList(Criteria cri, Model model) {
+	@RequestMapping("/reviewList.re")
+	public String reviewList(Model model) {
 		
-		model.addAttribute("list", reviewService.getList(cri));
+		model.addAttribute("reviewList", reviewService.getList());
 		
-		int total = reviewService.getTotal(cri);
-		model.addAttribute("pageMaker", new PageDTO(cri, total));
-		
-//		return "review/review_list_grid";
 		return "review/review_list";
 	}
 	
-	@RequestMapping("/reviewUidList.re")
-	public String reveiwUidList(ReviewVO review,  Criteria cri, HttpSession session, Model model) {
+	@RequestMapping("/reviewListWithPaging.re")
+	public String reviewListWithPaging(Criteria cri, Model model) {
 		
-		model.addAttribute("reviewUidList", reviewService.getUidList(cri, review.getU_id()));
+		model.addAttribute("reviewList", reviewService.getListWithPaging(cri));
 		
 		int total = reviewService.getTotal(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		
-		return "mypage/member_review";
+		return "review/review_list";
+	}
+	
+	@RequestMapping("/reviewListByIdWithPaging.re")
+	public String reviewListByIdWithPaging(@RequestParam("u_id") String u_id, Criteria cri, Model model) {
+		
+		model.addAttribute("reviewList", reviewService.getListByIdWithPaing(cri, u_id));
+		
+		int total = reviewService.getTotal(cri);
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		
+		return "review/review_list";
+	}
+	
+	@RequestMapping("/reviewListBySnWithPaging.re")
+	public String reviewListBySnWithPaging(@RequestParam("s_num") int s_num, Criteria cri, Model model) {
+		
+		model.addAttribute("reviewList", reviewService.getListBySnWithPaing(cri, s_num));
+		
+		int total = reviewService.getTotal(cri);
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		
+		return "review/review_list";
+	}
+	
+	@RequestMapping("/reviewInfo.re")
+	public String reviewInfo(@RequestParam("review_num") int review_num, Model model) {
+		model.addAttribute("review", reviewService.getReview(review_num));
+		
+		return "/review/review_info";
 	}
 	
 	// file upload
@@ -91,8 +117,8 @@ public class ReviewController {
 		return false;
 	}
 
-	@RequestMapping("/reviewReg.re")
-	public String reviewReg(ReviewVO review, MultipartHttpServletRequest request) {
+	@RequestMapping("/regReview.re")
+	public String regReview(ReviewVO review, MultipartHttpServletRequest request) {
 		
 		List<MultipartFile> fileList = request.getFiles("file");
 		System.out.println(fileList.size());
@@ -147,51 +173,46 @@ public class ReviewController {
 			} 
 		}
 		
-		reviewService.reviewReg(review);
+		reviewService.regReview(review);
 		
 		return "redirect:main.me";
 	}
 	
-	@RequestMapping("/review_reg.re")
-	public String review_reg(StoreVO store, Model model, HttpSession session) {
-		
-		StoreVO svo = storeService.storeInfo(store);
-		
-		model.addAttribute("svo", svo);
-//		return "review/review_reg_ajax";
-		return "review/review_reg";
-	}
 	
-	@RequestMapping("/reviewModify.re")
-	public String reviewModify(ReviewVO review, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-		
-		if (reviewService.reviewModify(review)) {
-			rttr.addFlashAttribute("result", "success");
-		}
-		
-		rttr.addAttribute("pageNum", cri.getPageNum());
-		rttr.addAttribute("amount", cri.getAmount());
-		
-		return "redirect:/review/review_list";
-	}
-	
-	@RequestMapping("/reviewRemove.re")
-	public String reviewRemove(@RequestParam("review_num") int review_num, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-		
-		if (reviewService.reviewRemove(review_num)) {
-			rttr.addFlashAttribute("result", "success");
-		}
-		
-		rttr.addAttribute("pageNum", cri.getPageNum());
-		rttr.addAttribute("amount", cri.getAmount());
-		
-		return "redirect:/review/review_list";
-	}
-	
-	@RequestMapping("/reviewInfo.re")
-	public String reviewInfo(@RequestParam("review_num") int review_num, Model model) {
-		model.addAttribute("review", reviewService.getReview(review_num));
-		
-		return "/review/review_info";
-	}
 }
+
+
+//	@RequestMapping("/review_reg.re")
+//	public String review_reg(StoreVO store, Model model, HttpSession session) {
+//		
+//		StoreVO svo = storeService.storeInfo(store);
+//		
+//		model.addAttribute("svo", svo);
+//		return "review/review_reg";
+//	}
+//
+//	@RequestMapping("/reviewModify.re")
+//	public String reviewModify(ReviewVO review, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+//		
+//		if (reviewService.reviewModify(review)) {
+//			rttr.addFlashAttribute("result", "success");
+//		}
+//		
+//		rttr.addAttribute("pageNum", cri.getPageNum());
+//		rttr.addAttribute("amount", cri.getAmount());
+//		
+//		return "redirect:/review/review_list";
+//	}
+//	
+//	@RequestMapping("/reviewRemove.re")
+//	public String reviewRemove(@RequestParam("review_num") int review_num, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+//		
+//		if (reviewService.reviewRemove(review_num)) {
+//			rttr.addFlashAttribute("result", "success");
+//		}
+//		
+//		rttr.addAttribute("pageNum", cri.getPageNum());
+//		rttr.addAttribute("amount", cri.getAmount());
+//		
+//		return "redirect:/review/review_list";
+//	}

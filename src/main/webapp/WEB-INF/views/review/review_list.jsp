@@ -8,14 +8,21 @@
 <%@include file="../includes/header.jsp"%>
 
 <%
-	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
-	String id = mvo.getU_id();
-	List<ReviewVO> review_list = (List<ReviewVO>) request.getAttribute("list");
+	MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
+	String u_id = "";
+	int seller_key;
+	if(mvo != null) {
+		u_id = mvo.getU_id();
+		seller_key = mvo.getSeller_key();
+	} else {
+		seller_key = 0;
+	}
+	List<ReviewVO> review_list = (List<ReviewVO>) request.getAttribute("reviewList");
 	List<ReviewVO> reviewUidList = (List<ReviewVO>) request.getAttribute("reviewUidList");
 	PageDTO  pageMaker = (PageDTO) request.getAttribute("pageMaker");
 %>
 
-	<h3><%=id %></h3>
+	<h3><%=u_id %></h3>
 	<center>
 		<table border=1 width=500>
 			<tr align=center>
