@@ -16,11 +16,8 @@ public interface ReviewMapper {
 	
 	public ReviewVO getReview(int review_num);
 	public void regReview(ReviewVO review);
-	
 	public int getTotal(Criteria cri);
-	
-	public int update(ReviewVO review);
-	public int delete(int review_num);
-	public ReviewVO read(int review_num);
-	public int getTotalCount(Criteria cri);
 }
+
+//public int update(ReviewVO review);
+//public int delete(int review_num);

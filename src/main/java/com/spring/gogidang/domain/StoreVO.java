@@ -19,6 +19,8 @@ public class StoreVO {
 	private int delibery;
 	private int confirm;
 	
+	private int avgStar;
+	
 	/* menu column*/
 	private int menu_num; 
 	private int meat;
