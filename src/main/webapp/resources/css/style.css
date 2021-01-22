@@ -225,10 +225,10 @@ a:link {
 }
 .header {
 	margin: auto auto 3px auto;
-	background-color: #ffffff; /*dh*/
+	background-color: #ffffff;
 }
 .header__top {
-	background: #f5f5f5;
+	/*background: #f5f5f5;*/
 }
 
 .header__top__left {
@@ -2983,6 +2983,7 @@ label {
 	}
 	.header .container {
 		position: relative;
+		border: 
 	}
 	.humberger__menu__wrapper {
 		width: 300px;
@@ -3241,6 +3242,7 @@ label {
 	}
 	.header .container {
 		position: relative;
+		
 	}
 	.humberger__menu__wrapper {
 		width: 300px;
