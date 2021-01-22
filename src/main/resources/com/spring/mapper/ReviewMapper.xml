@@ -48,7 +48,7 @@
 		]]>
 	</select>
 	
-	<select id="getReview" resultType="ReviewVO">
+	<select id="getReview" parameterType="int" resultType="ReviewVO">
 		select * from review where review_num = #{review_num)
 	</select>
 

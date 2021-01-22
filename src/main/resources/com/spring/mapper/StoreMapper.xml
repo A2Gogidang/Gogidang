@@ -74,29 +74,25 @@
  	 	 	,s_addr=#{s_addr}
  	  	 	,s_phone=#{s_phone}
  	  	 	,s_hour=#{s_hour}
- 	  	 	,delibery=#{delibery}
  	  	where u_id=#{u_id}
  	</update>
  	<!-- soobin end -->
  	
 	<!-- dohyeong start -->
 	<select id="getStoreList"  resultType="StoreVO">
-		select mr.img , mr.meat , mr.price, sr.s_name, substr(sr.s_addr,1,2) s_addr from menu_reg mr inner join shop_reg sr on mr.s_num=sr.s_num 
+		SELECT sr.s_name, sr.thumbnail , mr.meat , mr.price, substr(sr.s_addr,1,2) s_addr 
+		FROM menu_reg mr INNER JOIN shop_reg sr ON mr.s_num=sr.s_num 
  	</select>
  	
  	
 	<select id="getStoreListAjax" parameterType="java.util.HashMap" resultType="StoreVO">
-		select distinct img , meat , price, s_name, s_addr 
-	from	
-			(select distinct mr.img , mr.meat , mr.price, sr.s_name, substr(sr.s_addr,1,2) s_addr from menu_reg mr inner join shop_reg sr on mr.s_num=sr.s_num 
-			 where  
-			 	
-			 		substr(sr.s_addr,1,2) in <foreach collection="s_addr" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
+		SELECT distinct meat , price, s_name, s_addr, thumbnail
+		FROM(	
+				SELECT distinct mr.meat , mr.price, sr.s_name, substr(sr.s_addr,1,2) s_addr, sr.thumbnail
+				FROM menu_reg mr INNER JOIN shop_reg sr ON mr.s_num=sr.s_num
+			 	WHERE substr(sr.s_addr,1,2) IN <foreach collection="s_addr" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
 			)
-				
-	where 
-			meat in<foreach collection="meat" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
-		 
+		WHERE meat IN<foreach collection="meat" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
 	</select>
 	<!-- dohyeong end -->
 </mapper>

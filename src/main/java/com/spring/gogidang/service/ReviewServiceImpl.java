@@ -58,18 +58,17 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public int getTotal(Criteria cri) {
-		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
-		
-		return reviewMapper.getTotalCount(cri);
-	}
-	
-	@Override
 	public void regReview(ReviewVO review) {
 		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
 		reviewMapper.regReview(review);
 	}
 
+	@Override
+	public int getTotal(Criteria cri) {
+		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
+		
+		return reviewMapper.getTotal(cri);
+	}
 } 
 
 

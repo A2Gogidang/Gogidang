@@ -367,9 +367,13 @@ public class StoreController {
 		  System.out.println("list" + list);
 		 */
 		  List<StoreVO> list = storeService.getStoreListAjax(mapp);
+		  StoreVO vo = (StoreVO) list.get(0);
+		  
+		  System.out.println(vo.getThumbnail());
 		  return list; 
 	  }
 	// dogyeong end
+	
 	@RequestMapping(value = "/store_info_Design.st")
 	public String design1(Model model) {
 		return "store/store_info_Design"; 
