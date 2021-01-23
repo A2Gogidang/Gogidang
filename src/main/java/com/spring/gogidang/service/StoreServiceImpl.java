@@ -55,9 +55,9 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 	@Override
-	public StoreVO storeInfo(StoreVO storeVO) {
+	public StoreVO storeInfo(int s_num) {
 		StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
-		StoreVO vo = storeMapper.storeInfo(storeVO);
+		StoreVO vo = storeMapper.storeInfo(s_num);
 		
 		return vo;
 	}

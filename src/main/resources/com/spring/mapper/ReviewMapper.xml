@@ -49,7 +49,7 @@
 	</select>
 	
 	<select id="getReview" parameterType="int" resultType="ReviewVO">
-		select * from review where review_num = #{review_num)
+		select * from review where review_num = #{review_num}
 	</select>
 
 	

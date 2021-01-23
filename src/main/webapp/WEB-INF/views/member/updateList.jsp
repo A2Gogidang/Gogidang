@@ -12,7 +12,7 @@
 	
 %>
     <!--네비게이션바 사용 시작-->
-    <%if(memberVO.getSeller_key() == 0 ){ %>
+    <%if(memberVO.getSeller_key() == 0  ){ %>
 	   <section class="hero">
         <div class="container">
             <div class="hero__item__box2"></div>

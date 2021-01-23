@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.spring.gogidang.domain.*"%>
+<%@ page import="java.util.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="kr">
-
 <head>
 <link rel="stylesheet" href="resources/css/newDetailStore.css"
 	type="text/css">
@@ -11,6 +14,22 @@
 <script src="resources/js/newDetailStore.js"></script>
 <script src="resources/DetailStore/newDetailStore.css"></script>
 <%@include file="../includes/header.jsp"%>
+<%
+	MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
+	String u_id = "";
+	int seller_key;
+	if(mvo != null) {
+		u_id = mvo.getU_id();
+		seller_key = mvo.getSeller_key();
+	} else {
+		seller_key = 0;
+	}
+	
+	StoreVO svo = (StoreVO) request.getAttribute("storeVO");
+	PageDTO  pageMaker = (PageDTO) request.getAttribute("pageMaker");
+	ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>) request.getAttribute("menuList");
+	ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>) request.getAttribute("reviewList");
+%>
 <script>
 	$(function() {
 
@@ -123,7 +142,7 @@
 				<div class="card bg-default">
 					<div class="CardHeader" style="color: #ffffff;">
 						<h3 class="card-header" style="text-align: center;">
-							정육백화점
+							<%=svo.getS_name() %>
 							<button type="button" id="show" class="btn btn-custom pull-right"
 								aria-label="Left Align">
 								<p>위치</p>
@@ -134,7 +153,7 @@
 						<p class="card-text"
 							style="display: flex; align-items: center; justify-content: center;">
 							<img class="img-responsive"
-								src="resources/DetailStore/SellerImg/sellerpic.png" alt=''
+								src="resources/img/store/<%=svo.getThumbnail() %>" alt=''
 								/ width="350px ">
 						</p>
 					</div>
@@ -145,27 +164,26 @@
 								<h5>
 									<a href="#"><img
 										src="resources/DetailStore/Icon/location.ico" width="40px"
-										height="40px;" alt='' /> 서울 특별시 성동구 마장동 정육백화점</a>
+										height="40px;" alt='' /> <%=svo.getS_addr() %></a>
 								</h5>
 							</ul>
 							<ul>
 								<h5>
 									<a href="#"><img src="resources/DetailStore/Icon/time.ico"
-										width="40px" height="42px;" alt='' /> 10:00 ~ 21:00</a>
+										width="40px" height="42px;" alt='' /> <%=svo.getS_hour() %></a>
 								</h5>
 							</ul>
 							<ul>
 								<h5>
 									<a href="#"><img src="resources/DetailStore/Icon/call.ico"
-										width="40px" height="40px;" alt='' /> 010-0000-0000
-										02-0000-0000</a>
+										width="40px" height="40px;" alt='' /> <%=svo.getS_phone() %></a>
 								</h5>
 							</ul>
 							<ul>
 								<h5>
 									<a href="#"><img
 										src="resources/DetailStore/Icon/delivery.ico" width="40px"
-										height="40px;" alt='' /> 서울 특별시 성동구 마장동 정육백화점</a>
+										height="40px;" alt='' /> 한줄 소개 글 작성</a>
 								</h5>
 							</ul>
 						</ul>
@@ -182,47 +200,66 @@
 								<div class="container-fluid">
 									<div class="row">
 										<div class="col-md-12">
-											 <div id="map" style="width:800px;height:400px;"></div>
+											<div id="map" style="width: 800px; height: 400px;"></div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=241b4077cebf45bee1ed06d47263650b&libraries=services"></script>
-<script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
+											<script type="text/javascript"
+												src="//dapi.kakao.com/v2/maps/sdk.js?appkey=241b4077cebf45bee1ed06d47263650b&libraries=services"></script>
+											<script>
+												var mapContainer = document
+														.getElementById('map'), // 지도를 표시할 div 
+												mapOption = {
+													center : new kakao.maps.LatLng(
+															33.450701,
+															126.570667), // 지도의 중심좌표
+													level : 3
+												// 지도의 확대 레벨
+												};
 
-// 지도를 생성합니다    
-var map = new kakao.maps.Map(mapContainer, mapOption); 
+												// 지도를 생성합니다    
+												var map = new kakao.maps.Map(
+														mapContainer, mapOption);
 
-// 주소-좌표 변환 객체를 생성합니다
-var geocoder = new kakao.maps.services.Geocoder();
+												// 주소-좌표 변환 객체를 생성합니다
+												var geocoder = new kakao.maps.services.Geocoder();
 
-// 주소로 좌표를 검색합니다
-geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
+												// 주소로 좌표를 검색합니다
+												geocoder
+														.addressSearch(
+																'${storeVO.getS_addr()}',
+																function(
+																		result,
+																		status) {
 
-    // 정상적으로 검색이 완료됐으면 
-     if (status === kakao.maps.services.Status.OK) {
+																	// 정상적으로 검색이 완료됐으면 
+																	if (status === kakao.maps.services.Status.OK) {
 
-        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+																		var coords = new kakao.maps.LatLng(
+																				result[0].y,
+																				result[0].x);
 
-        // 결과값으로 받은 위치를 마커로 표시합니다
-        var marker = new kakao.maps.Marker({
-            map: map,
-            position: coords
-        });
+																		// 결과값으로 받은 위치를 마커로 표시합니다
+																		var marker = new kakao.maps.Marker(
+																				{
+																					map : map,
+																					position : coords
+																				});
 
-        // 인포윈도우로 장소에 대한 설명을 표시합니다
-        var infowindow = new kakao.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">저희 가게</div>'
-        });
-        infowindow.open(map, marker);
+																		// 인포윈도우로 장소에 대한 설명을 표시합니다
+																		var infowindow = new kakao.maps.InfoWindow(
+																				{
+																					content : '<div style="width:150px;text-align:center;padding:6px 0;">저희 가게</div>'
+																				});
+																		infowindow
+																				.open(
+																						map,
+																						marker);
 
-        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-        map.setCenter(coords);
-    } 
-});    
-</script>
+																		// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+																		map
+																				.setCenter(coords);
+																	}
+																});
+											</script>
 										</div>
 									</div>
 								</div>
@@ -245,7 +282,7 @@ geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
 				<li class="active"><a href="#Price_info" data-toggle="tab">가격정보</a></li>
 				<!-- a 태그의 href는 아래의 tab-content 영역의 id를 설정하고 data-toggle 속성을 tab으로 설정한다. -->
 				<li><a href="#location" data-toggle="tab">가게위치</a></li>
-				<li><a href="#BestReview" data-toggle="tab">추천리뷰</a></li>
+				<li><a href="#BestReview" data-toggle="tab">가게리뷰</a></li>
 				<li><a href="#Qna" data-toggle="tab">문의</a></li>
 			</ul>
 		</div>
@@ -321,26 +358,21 @@ geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="section-title">
-								<h2 style="margin-top: 30px;">추천 리뷰</h2>
+								<h2 style="margin-top: 30px;">가게 리뷰</h2>
 							</div>
 						</div>
 					</div>
-					<div class="qna_insert" style="display: block; text-align: right;"margin-right:30px;">
-						<a href="qna_insert.html"><button type="button"
-								class="btn btn-lg btn-outline-secondary" a
-								href="qna_insert.html"
-								style="background-color: #338333; color: white;">
-								<h5>글쓰기</h5>
-							</button> </a>
-					</div>
 					<!-- Portfolio Grid Items-->
 					<div class="row justify-content-center" style="margin-top: 20px;">
+						<%for (int i=0; i<review_List.size(); i++) {
+
+            				ReviewVO vo = (ReviewVO) review_List.get(i);
+           				%>
 						<!-- Portfolio Item 1-->
 						<div class="col-md-6 col-lg-4 mb-5">
 							<div class="BestReview-item mx-auto" data-toggle="modal"
 								data-target="#BestReviewModal1">
-								<div
-									class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+								<div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
 									<div
 										class="BestReview-item-caption-content text-center text-white"></div>
 								</div>
@@ -348,131 +380,70 @@ geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
 									src="resources//DetailStore/Review/추천리뷰1.png" alt="" />
 							</div>
 						</div>
-						<!-- Portfolio Item 2-->
-						<div class="col-md-6 col-lg-4 mb-5">
-							<div class="BestReview-item mx-auto" data-toggle="modal"
-								data-target="#BestReviewModal2">
-								<div
-									class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-									<div
-										class="BestReview-item-caption-content text-center text-white"></div>
-								</div>
-								<img class="img-fluid"
-									src="resources/DetailStore/Review/추천리뷰2.png" alt="" />
-							</div>
-						</div>
-						<!-- Portfolio Item 3-->
-						<div class="col-md-6 col-lg-4 mb-5">
-							<div class="BestReview-item mx-auto" data-toggle="modal"
-								data-target="#BestReviewModal3">
-								<div
-									class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-									<div
-										class="BestReview-item-caption-content text-center text-white"></div>
-								</div>
-								<img class="img-fluid"
-									src="resources/DetailStore/Review/추천리뷰3.png" alt="" />
-							</div>
-						</div>
-						<!-- Portfolio Item 4-->
-						<div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
-							<div class="BestReview-item mx-auto" data-toggle="modal"
-								data-target="#BestReviewModal4">
-								<div
-									class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-									<div
-										class="BestReview-item-caption-content text-center text-white"></div>
-								</div>
-								<img class="img-fluid"
-									src="resources/DetailStore/Review/추천리뷰4.png" alt="" />
-							</div>
-						</div>
-						<!-- Portfolio Item 5-->
-						<div class="col-md-6 col-lg-4 mb-5 mb-md-0">
-							<div class="BestReview-item mx-auto" data-toggle="modal"
-								data-target="#BestReviewModal5">
-								<div
-									class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-									<div
-										class="BestReview-item-caption-content text-center text-white"></div>
-								</div>
-								<img class="img-fluid"
-									src="resources/DetailStore/Review/추천리뷰5.png" alt="" />
-							</div>
-						</div>
-						<!-- Portfolio Item 3-->
-						<div class="col-md-6 col-lg-4 mb-5">
-							<div class="BestReview-item mx-auto" data-toggle="modal"
-								data-target="#BestReviewModal3">
-								<div
-									class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-									<div
-										class="BestReview-item-caption-content text-center text-white"></div>
-								</div>
-								<img class="img-fluid"
-									src="resources/DetailStore/Review/추천리뷰6.png" alt="" />
-							</div>
-						</div>
+						<%
+						}
+						%>
 					</div>
 				</div>
 			</section>
 		</div>
 		<!--         </div> -->
 		<div class="tab-pane fade" id="Qna">
-			
-				<div class="row">
-						<div class="col-lg-12">
-							<div class="section-title">
-								<h2 style="margin-top: 30px;">문의</h2>
-							</div>
-						</div>
-					</div>
-			
-			<div class='row'>
 
-  <div class="col-lg-12">
-
-    <!-- /.panel -->
-     <div class="panel panel-default">
-       <!-- <div class="panel-heading">
-        <i class="fa fa-comments fa-fw"></i> Reply
-      </div> -->  
-      
-     <div class="panel-heading">
-       <h5><i class="fa fa-comments fa-fw"></i> 가게문의</h5>
-        <button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>가게 문의 등록</button>
-      </div>   
-      
-      
-      <!-- /.panel-heading -->
-      <div class="panel-body">        
-      
-        <ul class="chat">
-         <!-- start reply -->
-         <li class="left clearfix" data-qs_num='1'>
-            <div>
-               <div class="header">
-                  <strong class="primary-font">user00</strong>
-                  <small class="pull-right text-muted">2018-01-01 13:13</small>
-               </div>
-               <p>Good job!</p>
-            </div>
-         </li>
-         <!-- end reply -->
-        </ul>
-        <!-- ./ end ul -->
-      </div>
-      <!-- /.panel .chat-panel -->
-      
-      <div class="panel-footer">
-      
-      </div>
-      
-      
-							<div class="col-md-2"></div>
-						</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="section-title">
+						<h2 style="margin-top: 30px;">문의</h2>
 					</div>
 				</div>
+			</div>
+
+			<div class='row'>
+
+				<div class="col-lg-12">
+
+					<!-- /.panel -->
+					<div class="panel panel-default">
+						<!-- <div class="panel-heading">
+        <i class="fa fa-comments fa-fw"></i> Reply
+      </div> -->
+
+						<div class="panel-heading">
+							<h5>
+								<i class="fa fa-comments fa-fw"></i> 가게문의
+							</h5>
+							<button id='addReplyBtn'
+								class='btn btn-primary btn-xs pull-right'>가게 문의 등록</button>
+						</div>
+
+
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+
+							<ul class="chat">
+								<!-- start reply -->
+								<li class="left clearfix" data-qs_num='1'>
+									<div>
+										<div class="header">
+											<strong class="primary-font">user00</strong> <small
+												class="pull-right text-muted">2018-01-01 13:13</small>
+										</div>
+										<p>Good job!</p>
+									</div>
+								</li>
+								<!-- end reply -->
+							</ul>
+							<!-- ./ end ul -->
+						</div>
+						<!-- /.panel .chat-panel -->
+
+						<div class="panel-footer"></div>
+
+
+						<div class="col-md-2"></div>
+					</div>
+				</div>
+			</div>
 			</section>
 		</div>
 	</div>

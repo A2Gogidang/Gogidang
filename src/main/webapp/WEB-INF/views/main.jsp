@@ -307,7 +307,7 @@
 	  					
 			      		<div class="col-lg-">
 	                    	<div class="categories__item set-bg" data-setbg="resources/img/store/<%=vo.getThumbnail() %>">
-	                        	<h5><a href="./store"><%=vo.getS_name() %></a></h5>
+	                        	<h5><a href="./storeInfo.st?s_num=<%=vo.getS_num() %>"><%=vo.getS_name() %></a></h5>
 	                    	</div>
 	                	</div>
                 	<%} %>
@@ -346,7 +346,7 @@
 	                            <ul class="featured__item__pic__hover"></ul>
 	                        </div>
 	                        <div class="featured__item__text">
-	                            <h6><a href="#"><%=vo.getTitle() %></a></h6>
+	                            <h6><a href="./reviewInfo.re?review_num=<%=vo.getReview_num() %>"><%=vo.getTitle() %></a></h6>
 	                            <i class="fal fa-smile"></i>
 	                            <h5>★ <%=vo.getStar() %></h5>
 	                        </div>
