@@ -20,6 +20,7 @@
 				 ,#{u_name}
 				 ,#{u_nick}
 				 ,#{u_birth}
+				 ,#{u_addr}
 				 ,#{u_addr} 
 				 ,#{u_email}
 				 ,#{u_phone}
