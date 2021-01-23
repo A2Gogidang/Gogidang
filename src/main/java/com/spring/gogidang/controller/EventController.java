@@ -34,5 +34,31 @@ public class EventController {
 		model.addAttribute("eventVO",vo);
 		return "event/eventpage_info";
 	}
+	
+	@RequestMapping("/event.ev") 
+	public String event(EventVO eventVO, Model model) throws Exception { 
+		
+		return "event/event";
+	}
+	
+		@RequestMapping("/qna.ev") 
+		public String qna(EventVO eventVO, Model model) throws Exception { 
+			
+			return "event/qna";
+			
+		}
+		@RequestMapping("/qnainsert.ev") 
+		public String qnainsert(EventVO eventVO, Model model) throws Exception { 
+			
+			return "event/qnainsert";
+			
+		}
+			@RequestMapping("/notice.ev") 
+			public String notice(EventVO eventVO, Model model) throws Exception { 
+				
+				return "event/notice";
+				
+				
 
+	}
 }

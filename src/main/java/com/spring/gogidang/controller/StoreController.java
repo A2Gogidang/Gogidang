@@ -89,7 +89,7 @@ public class StoreController {
 	public String shopInfo(Criteria cri, StoreVO storeVO, Model model) {
 		StoreVO vo = storeService.storeInfo(storeVO);
 		ArrayList<MenuVO> menuList = menuService.getMenuList();
-		List<ReviewVO> reviewList = reviewService.getList(cri);
+		List<ReviewVO> reviewList = reviewService.getList();
 
 		model.addAttribute("storeVO", vo);
 		model.addAttribute("menuList",menuList);
@@ -367,7 +367,16 @@ public class StoreController {
 		  System.out.println("list" + list);
 		 */
 		  List<StoreVO> list = storeService.getStoreListAjax(mapp);
+		  StoreVO vo = (StoreVO) list.get(0);
+		  
+		  System.out.println(vo.getThumbnail());
 		  return list; 
 	  }
 	// dogyeong end
+	
+	@RequestMapping(value = "/store_info_Design.st")
+	public String design1(Model model) {
+		return "store/store_info_Design"; 
+		
+	}
 }

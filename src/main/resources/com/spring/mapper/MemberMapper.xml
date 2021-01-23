@@ -4,6 +4,15 @@
 	 
 <mapper namespace="com.spring.mapper.MemberMapper">
 
+ 	<select id="selectMember" parameterType="MemberVO" resultType="MemberVO">
+	      SELECT * 
+	      FROM member 
+	      where u_id=#{u_id}
+     	<if test="u_pw != null">
+    	  AND u_pw=#{u_pw}
+  	 	</if>
+ 	</select> 
+
 	<insert id="insertMember" parameterType="MemberVO" >
 	      INSERT INTO member 
 	      VALUES (#{u_id}
@@ -12,19 +21,11 @@
 				 ,#{u_nick}
 				 ,#{u_birth}
 				 ,#{u_addr}
+				 ,#{u_addr} 
 				 ,#{u_email}
 				 ,#{u_phone}
 				 ,#{seller_key})
- 	</insert> 
-	
- 	<select id="selectMember" parameterType="MemberVO" resultType="MemberVO">
-	      SELECT * 
-	      FROM member 
-	      where u_id=#{u_id}
-     	<if test="u_pw != null"> <!-- dynamic query -->
-    	  AND u_pw=#{u_pw}
-  	 	</if>
- 	</select>    
+ 	</insert>    
     
  	<update id="updateMember" parameterType="MemberVO" >
 	 	  UPDATE member 

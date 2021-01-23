@@ -1,147 +1,35 @@
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%
-	
-	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
-	String u_id = mvo.getU_id();
-	int seller_key = mvo.getSeller_key();
-	
-	ArrayList<EventVO> event_list =(ArrayList<EventVO>) request.getAttribute("event_list");
-	ArrayList<StoreVO> store_list =(ArrayList<StoreVO>) request.getAttribute("store_list");
-	ArrayList<ReviewVO> review_list =(ArrayList<ReviewVO>) request.getAttribute("review_list");
-	
-%>
- <html>
-<head>
-<title>회원관리 시스템 메인 페이지</title>
-</head>
-<body>	
-<header><h3><%=u_id %> 로 로그인하셨습니다.</h3></header>
-	<%
-	if (mvo.getU_id() == "" || mvo.getU_id() == null) {	
-	%>
-	<h2><a href="./loginForm.me">로그인</a></h2>
-	<h2><a href="./joinForm.me">회원가입</a></h2>
-	<%
-	}else if (seller_key == 1) {	
-	%>
-		<h3>판매자입니다.</h3>
-		<h2><a href="./updateList.me">판매자 마이페이지</a></h2>
-		<%
-			if (u_id.equals("admin")) {
-		%>
-				<h3>관리자입니다.</h3>
-				<a href="">관리자 마이 페이지</a>
-				<a href="./storeList.st">전체 가게 리스트 보기</a>
-				<br>
-				<a href="./storeWaitListWithPaging.st">승인 대기 중인 가게 리스트 확인</a>
-		<%
-			}
-		%>
-	<% 
-	}else {
-	%>
-		<h3>관리자입니다.</h3>
-		<a href="./storeList.st">전체 가게 리스트 보기</a>
-		<br>
-		<br>
-		<a href="./updateList.me?u_id=<%=mvo.getU_id()%>">내정보보러가기</a>
-		<a href="./storeWaitListWithPaging.st">승인 대기 중인 가게 리스트 확인</a>
-	<% 
+	MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
+	String u_id = "";
+	int seller_key;
+	if(mvo != null) {
+		u_id = mvo.getU_id();
+		seller_key = mvo.getSeller_key();
+	} else {
+		seller_key = 0;
 	}
-	%>			
-<center>
-	<h3>이벤트 메인사진</h3>
-			<table border=1 width=300>
-				
-					<%
-						for (int i=0; i<event_list.size(); i++)
-							{
-							EventVO vo = (EventVO)event_list.get(i);
-					%>
-					<tr align=center>
-						<td colspan=2>
-							<a href="eventInfo.ev?event_num=<%=vo.getEvent_num()%>"><%=vo.getThumbnail() %>
-						</td>
-					</tr>
-					<%
-							} 
-					%>
-				
-				
-			</table>
-			
-			<h3>가게 메인사진</h3>
-			<tr>
-			<a href="./storeList.st">가게전체보기</a>
-			</tr>
-					<%
-						for (int i=0; i<store_list.size(); i++) {
-							
-							StoreVO vo1 = (StoreVO)store_list.get(i);
-					%>
-					<tr align=center>
-						
-					<td><a href="storeInfo.st?s_num=<%=vo1.getS_num()%>"><img src="resources/img/store/<%=vo1.getThumbnail() %>" width="100px" height="100px" /></a></td>
-						
-					</tr>	
-					<%
-							}
-					%>
-				
-			
-				<h3>리뷰 닉네임,사진,등록날짜,별점</h3>
-				<a href="./reviewList.re">리뷰전체보기</a>
-				<table border=1 width=300>
-				<c:forEach items="${review_list }" var="review_list">
-					<tr>
-						<td><c:out value="${review_list.title }" /></td>
-						<td><c:out value="${review_list.nickname }" /></td>
-						<td><c:out value="${review_list.star }" /></td>
-						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${review_list.review_date }" /></td>
-					</tr>
-				</c:forEach>
-				</table>
-<%-- 				<table border=1 width=300>
-					<%
-						for (int i=0; i<3; i++)
-							{
-							ReviewVO vo2 = (ReviewVO)review_list.get(i);
-					%>
-					<tr>
-						<td><a href="./reviewInfo.re?review_num=<%=vo2.getReview_num() %>"><%=vo2.getTitle() %></a></td>
-						<td><%=vo2.getNickname() %></td>
-						<td><%=vo2.getPhoto1() %></td>
-						<td><fmt:formatDate pattern="yyyy-MM-dd" value="<%=vo2.getRe_date() %>" /><%=vo2.getRe_date() %></td>
-						<td><%=vo2.getStar()%></td>
-					</tr>
-					<%
-							} 
-					%>
-			</table> --%>
-			<a href="./eventPage.ev">이벤트 페이지</a>
-		</center>
-</p>
-</body>
-</html>
+	
+	ArrayList<EventVO> event_list =(ArrayList<EventVO>) request.getAttribute("eventList");
+	ArrayList<StoreVO> store_list =(ArrayList<StoreVO>) request.getAttribute("storeList");
+	ArrayList<ReviewVO> review_list =(ArrayList<ReviewVO>) request.getAttribute("reviewList");
+%>
+
 <!DOCTYPE html>
-
-
 <html lang="kr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Ogani Template">
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>고기당</title>
-    <link rel="shortcut icon" href="resources/cut-pig.jpg"> 
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>고기당</title>
+    <link rel="shortcut icon" href="cut-pig.jpg"> 
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
     <!--사이드바 및 햄버거 아이콘 액션-->
     <style>
@@ -158,11 +46,9 @@
         input[id="menuicon"]:checked + label span:nth-child(3) {bottom:50%;transform:translateY(50%) rotate(-45deg);}
         div[class="sidebar"] {width:300px;height:100%;background :  rgba(0, 100, 0,0.2);position:fixed;top:0;left:-300px;z-index:1;transition:all .35s;}
         input[id="menuicon"]:checked + label + div {left:0;}
-
    </style>
     <!--사이드바 및 햄버거 아이콘 액션 end-->
 
-    
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
@@ -175,84 +61,117 @@
     <link rel="stylesheet" href="resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="resources/css/style.css" type="text/css">
+    
+	<!-- 제이쿼리 불러오기 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+ 
+	<!-- Slick 불러오기 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+    
+	<script>
+  		$(function(){
+			$('#slider-div').slick({
+				slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
+				infinite : true, 	//무한 반복 옵션	 
+				slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
+				slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+				speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+				arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+				dots : true, 		// 스크롤바 아래 점으로 페이지네이션 여부
+				autoplay : true,			// 자동 스크롤 사용 여부
+				autoplaySpeed : 10000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+				pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+				vertical : false,		// 세로 방향 슬라이드 옵션
+				prevArrow : "<button type='button' class='slick-prev'>Previous</button>",		// 이전 화살표 모양 설정
+				nextArrow : "<button type='button' class='slick-next'>Next</button>",		// 다음 화살표 모양 설정
+				dotsClass : "slick-dots", 	//아래 나오는 페이지네이션(점) css class 지정
+				draggable : true, 	//드래그 가능 여부 
+				
+				responsive: [ // 반응형 웹 구현 옵션
+					{  
+						breakpoint: 960, //화면 사이즈 960px
+						settings: {
+							//위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+							slidesToShow:3 
+						} 
+					},
+					{ 
+						breakpoint: 768, //화면 사이즈 768px
+						settings: {	
+							//위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+							slidesToShow:2 
+						} 
+					}
+				]
+
+			});
+  		});
+  		
+  		$(function(){
+  			$('.single-item').slick();
+  		});
+	</script>
 </head>
-
-
 <body>
-    <!-- 3.Header Section Begin -->
+ <!-- 3.Header Section Begin -->
     <header class="header">
+    
         <div class="header__top">
             <div class="container">
                 <div class="row">
-                    
                     <div class="col-lg-6 col-md-6"> </div>
                     <div class="col-md-6">
                         <div class="header__top__right">
                            <div class="header__top__right__auth">
-                               <header><h6><%=u_id %> 로 로그인하셨습니다.</h6></header>
-	<%
-	if (mvo.getU_id() == "" || mvo.getU_id() == null) {	
-	%>
-	<h2><a href="./loginForm.me">로그인</a></h2>
-	<h2><a href="./joinForm.me">회원가입</a></h2>
-	<%
-	}else if (seller_key == 1) {	
-	%>
-		<h5>판매자입니다.</h5>
-		<h2><a href="./updateList.me">판매자 마이페이지</a></h2>
-		<%
-			if (u_id.equals("admin")) {
-		%>
-				<h3>관리자입니다.</h3>
-				<a href="./storeList.st">전체 가게 리스트 보기</a>
-				<br>
-				<a href="./storeWaitListWithPaging.st">승인 대기 중인 가게 리스트 확인</a>
-		<%
-			}
-		%>
-	<% 
-	}else {
-	%>
-		<h5><%=u_id %>님 환영합니다!</h5>
-		<%-- <a href="./storeList.st">전체 가게 리스트 보기</a>
-		<br>
-		<br>
-		<a href="./updateList.me?u_id=<%=mvo.getU_id()%>">내정보보러가기</a>
-		<a href="./storeWaitListWithPaging.st">승인 대기 중인 가게 리스트 확인</a> --%>
-	<% 
-	}
-	%>			
-<center>
-                            </div>
-                            <!--로그인후 모드-->
-                            <!--<div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user">맛나식육</i> </a>
-                                <aa>사장님 !</aa>
-                            </div>
-                            -->
-                        </div>
-                    </div>
-                   
-                </div>
-                
-            </div>
-        </div>
+								<%
+								if (u_id == "" || u_id == null) {	
+								%>
+									<h2><a href="./loginForm.me">로그인 </a></h2>
+									<h2><a href="./joinForm.me">회원가입</a></h2>
+								<%
+								} else if (seller_key == 1) {	
+								%>
+									<h5>판매자입니다.</h5>
+									<h2><a href="./updateList.me">판매자 마이페이지</a></h2>
+								<%
+								} else if (seller_key == 2) {
+								%>
+									<h3>관리자입니다.</h3>
+									<a href="./storeList.st">전체 가게 리스트 보기</a>
+									<br>
+									<a href="./storeWaitListWithPaging.st">승인 대기 중인 가게 리스트 확인</a>
+								<%
+								} else {
+								%>
+									<h6><%=u_id %>님!</h6>
+								<%
+								} 
+								%>		
+                            </div><!-- header__top__right__auth -->
+                        </div><!-- header__top__right -->
+                    </div><!-- col-md-6 -->
+                </div><!-- row -->
+            </div><!-- container -->
+        </div><!-- header__top -->
+        
         <div class="container">
             <div class="row">
                 <div class="col1"></div>
                 <!--메인페이지 이미지 1400*380-->
                 <div class="header__logo">
-                    <a href="./indexmain.html"><img src="resources/img/mainlogo.png" alt=""></a>
+                    <a href="#"><img src="resources/img/mainlogo.png" alt=""></a> <!-- main logo img -->
                 </div>
                 <div class="col1"></div>
-            </div>
-        <div>
-        <div class="row">
-                <div class="col-menu">
-                </div>
-            </div>
+            </div><!-- row -->
+        	<div class="row">
+                <div class="col-menu"></div>
+            </div><!-- row -->
         </div>
-        <div class="hero__search"> <!--기존의 hero서치바를 head로 옮김-->
+        
+        <!--기존의 hero서치바를 head로 옮김-->
+        <div class="hero__search"> 
             <div class="sidebar-icon"> 
                 <input type="checkbox" id="menuicon">
                     <label for="menuicon">
@@ -273,7 +192,7 @@
                                 <h4><ul><a href="#">후기 검색</a></ul></h4>
                             </div>
                             <div class="sidebar__item">
-                                <h4><ul><a href="#">마이 페이지</a></ul></h4>
+                                <h4><ul><a href="./updateList.me">마이 페이지</a></ul></h4>
                             </div>
                             <div class="sidebar__item">
                                 <h4><ul><a href="#">예약 현황</a></ul></h4>
@@ -293,8 +212,9 @@
                                -->
                            
                         <!--</div>-->
-                </div>
-            </div>   
+                </div><!-- sidebar -->
+            </div><!-- sidebar-icon -->
+            
             <div class="hero__search__form">
                 <form action="#">
                     <div class="hero__search__categories">
@@ -304,260 +224,143 @@
                     <input type="text" placeholder="식당검색하기 GO" >
                     <button type="submit" class="site-btn ">검색</button>
                 </form>
-            </div>
-        </div>
-    </header>
-    <!-- Header Section End --> 
-
-    <!-- 4.Hero Section Begin -->
-    <!--메인 사진크기 1400*380-->
-    <!--메인 사진사용 시작
-        <section class="hero">
-            <div class="container">
-                        <div class="hero__item__box"> 
-                            
-                            <div class="hero__item set-bg" data-setbg="img/hero/top-banner-test3.jpg">
-                            </div>
-                        </div>
-                    
-            </div>
-        </section>
-    메인 사진 사용 끝-->
-
+            </div><!-- hero__search__form -->
+        </div><!-- hero__search -->
+    </header><!-- header -->
+ 
     <!--네비게이션바 사용 시작-->
     <section class="hero">
         <div class="container">
             <div class="hero__item__box2"></div>
-                    <div class="EventNav">
-                        <ul>
-                            <li><a href="./storeList.st">가게 리스트</a></li>
-                            <li><a href="./reviewList.re">리뷰 전체</a></li>
-                            <li><a href="#">공지사항</a></li>
-                        </ul>
-                    </div>   
-            </div>   
-        </div>
+            <div class="EventNav">
+                <ul>
+                    <li><a href="./storeList.st">가게 리스트</a></li>
+                    <li><a href="./reviewListWithPaging.re">리뷰 전체</a></li>
+                    <li><a href="#">공지사항</a></li>
+                </ul>
+            </div><!-- EventNav -->
+   		</div><!-- container -->
     </section>
     <!--네비게이션바 사용 끝-->
     <!-- Hero Section End -->
+	
+	<div class="section-title"  style="margin: top 0%;">
+		<h2>진행중 이벤트</h2>
+	</div>
+	 
 
-    <!-- Categories Section Begin -->
-    <section class="categories">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                    <a href="./storeList.st">가게전체보기</a>
-                        <h2>추천 가게</h2>
-                    </div>
-                    <div class="featured__controls">
-                        <ul>
-                            <li data-filter="*">고기당이 자신있게 추천 합니다 !</li>
-                            <!--
-                            <li class="active" data-filter="*">고기당이 자신있게 추천 합니다 !</li>
-                            <li data-filter=".oranges">Oranges</li>
-                            <li data-filter=".fresh-meat">Fresh Meat</li>
-                            <li data-filter=".vegetables">Vegetables</li>
-                            <li data-filter=".fastfood">Fastfood</li>
-                            -->
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="categories__slider owl-carousel">
-                <!--추천가게 액션이미지 320*270으로 넣을것-->
-           		    <%
-						for (int i=0; i<store_list.size(); i++) {
-							
-							StoreVO st = (StoreVO)store_list.get(i);
-					%> 
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg">
-                        <h5><a href="storeInfo.st?s_num=<%=st.getS_num()%>"><img src="resources/img/store/<%=st.getThumbnail() %>" width="320px" height="270px" /></a><%=st.getS_name() %></h5>
-                    </div>
-                </div> 
-              
-            </div>
-            <div class="row">
-            </div>
-        </div>
-    </section>
-    <!-- Categories Section End -->
-	 <%} %>
+	<div class="container-fluid" style="display: flex; align-items: center; justify-content: center;">
+		<div class="col-md-11" style="width:1370px;display: flex;align-items: center; justify-content: center;">
+			<div class="carousel slide" id="carousel-524864">
+				<ol class="carousel-indicators" style="display: flex; align-items: center; justify-content: center;">
+					<li data-slide-to="0" data-target="#carousel-524864" class="active"></li>
+					<li data-slide-to="1" data-target="#carousel-524864"></li>
+					<li data-slide-to="2" data-target="#carousel-524864"></li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img class="d-block w-100" alt="Carousel Bootstrap First" src="resources/img/hero/top-banner-test3.jpg" />
+						<div class="carousel-caption"></div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" alt="Carousel Bootstrap Second" src="resources/img/hero/top-banner-test3.jpg" />
+						<div class="carousel-caption"></div>
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" alt="Carousel Bootstrap Third" src="resources/img/hero/top-banner-test3.jpg" />
+						<div class="carousel-caption"></div>
+					</div>
+				 	<a class="carousel-control-prev" href="#carousel-524864" data-slide="prev">
+				 		<span class="carousel-control-prev-icon"></span>
+				  		<span class="sr-only">Previous</span>
+		  			</a> 
+			 
+				  	<a class="carousel-control-next" href="#carousel-524864" data-slide="next">
+				  		<span class="carousel-control-next-icon"></span>
+				   		<span class="sr-only">Next</span>
+				   	</a> 
+				 	<!-- 
+				 	<a class="carousel-control left carousel-control-prev" href="#carousel-524864" data-slide="prev">
+						<i class="fa fa-angle-left text-dark"></i>
+					</a>
+					<a class="carousel-control right carousel-control-next" href="#carousel-524864" data-slide="next">
+						<i class="fa fa-angle-right text-dark"></i>
+					</a> 
+					-->
+				</div><!-- carousel-inner -->
+			</div><!-- carousel slide -->
+		</div><!-- col-md-11 -->
+	</div><!-- container-fluid -->
+	
+	<div class="col-lg-12">
+		<div class="section-title" style="padding-top: 80px;padding-bottom: 40px;">
+			<h2><a href="#">추천 가게</a></h2>
+		</div>
+		<!-- stlye 은 slick 영역 확인용 -->
+		<div class="container">
+			<div class="categories">
+	  			<div id="slider-div">
+	  				<%for(int i=0; i<store_list.size(); i++) {
+	  				
+	  					StoreVO vo = (StoreVO) store_list.get(i);
+	  				%>
+	  					
+			      		<div class="col-lg-">
+	                    	<div class="categories__item set-bg" data-setbg="resources/img/store/<%=vo.getThumbnail() %>">
+	                        	<h5><a href="./store"><%=vo.getS_name() %></a></h5>
+	                    	</div>
+	                	</div>
+                	<%} %>
+            	</div><!-- slider-div -->
+            	<div class="row"></div>
+        	</div><!-- categories -->
+	  	</div><!-- container -->
+	</div><!-- col-lg-12 -->
+	
     <!-- Featured Section Begin -->
     <section class="featured spad">
         <div class="container">
-        	
-        
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>BEST 리뷰</h2>
+                        <h2><a href="#">BEST 리뷰</a></h2>
                     </div>
                     <div class="featured__controls">
                         <ul>
                             <li data-filter="*">이번달 베스트 리뷰 확인하세요 !</li>
-                            <!--
-                            <li class="active" data-filter="*">All</li>
-                            <li data-filter=".oranges">Oranges</li>
-                            <li data-filter=".fresh-meat">Fresh Meat</li>
-                            <li data-filter=".vegetables">Vegetables</li>
-                            <li data-filter=".fastfood">Fastfood</li>
-                            -->
                         </ul>
-                    </div>
-                </div>
-            </div>
+                    </div><!-- featured__controls -->
+                </div><!-- col-lg-12 -->
+            </div><!-- row -->
+            
             <!--best 리뷰-->
-            <%
-						for (int i=0; i<review_list.size(); i++)
-							{
-							ReviewVO rv = (ReviewVO)review_list.get(i);
-					%>
             <div class="row featured__filter">
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                    <div class="featured__item">
-                        <!--DATA-setbg 이미지 300*270-->
-                        <div class="featured__item__pic set-bg" data-setbg="resources/img/featured/best-re-img1.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <!--
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                -->
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                        	<a href="storeInfo.st?s_num=<%=rv.getS_num()%>">
-                        	<img src="/resources/img/up/<%=rv.getReview_img1() %>" width="320px" height="270px" /></a>
-                            <h6><%=rv.getS_name() %></h6>
-                            <i class="fal fa-smile"></i>
-                            <h5>★<%=rv.getStar() %></h5>
-                        </div>
-                    </div>
-                </div>
+            	<%for (int i=0; i<4; i++) {
+            		
+            		ReviewVO vo = (ReviewVO) review_list.get(i);
+           		%>
+	        		<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+	                    <div class="featured__item">
+	                        <!--DATA-setbg 이미지 300*270-->
+	                        <div class="featured__item__pic set-bg" data-setbg="resources/img/featured/best-re-img1.jpg">
+	                            <ul class="featured__item__pic__hover"></ul>
+	                        </div>
+	                        <div class="featured__item__text">
+	                            <h6><a href="#"><%=vo.getTitle() %></a></h6>
+	                            <i class="fal fa-smile"></i>
+	                            <h5>★ <%=vo.getStar() %></h5>
+	                        </div>
+	                    </div>
+	                </div>
+           		<%
+            	}
+           		%>
             </div>
-            <%} %>
-             
         </div>
     </section>
-    <!-- Featured Section End -->
+    <!— Featured Section End —>
 
-    <!-- Banner Begin -->
-    <div class="banner">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <!--이미지크기 570*270-->
-                    <div class="banner__pic">
-                        <img src="resources/img/banner/bottom-banner1.jpg" alt="">
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="banner__pic">
-                        <img src="resources/img/banner/bottom-banner1.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Banner End -->
-
-    <!-- Footer Section Begin -->
-    
-    <footer class="footer spad">
-        <div class="container">
-            <div class="row1">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer__about">
-                        <div class="footer__about__logo">
-                            <!--logo크기 120*50-->
-                            <a href="./index.html"><img src="resources/img/bottom-logo-test1.jpg" alt=""></a>
-                        </div>
-                        <ul>
-                            <li>법인명(상호) : 주식회사 고기당 </li>
-                            <li>사업자등록번호 000-00-0000</li>
-                            <li>통신판매업: 제2020-서울종로-00000                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             호 &nbsp; </li> &nbsp;
-                            <li>대표이사 : 정수빈</li>
-                            <li>개인정보 보호 책임자 : 임도형, 고종우</li>
-                            
-                        </ul>
-                    </div>
-                </div>
-                <div class="vertical-line">
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
-                </div>
-                <!--<div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                    <div class="footer__widget">
-                        <h6>Links</h6>
-                        <ul>
-                            <li>입점문의 : <a href="#">입점문의하기</a></li>
-                            <li><a href="#">About Our Shop</a></li>
-                            <li><a href="#">Secure Shopping</a></li>
-                            <li><a href="#">Delivery infomation</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Our Sitemap</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="#">Who We Are</a></li>
-                            <li><a href="#">Our Services</a></li>
-                            <li><a href="#">Projects</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Innovation</a></li>
-                            <li><a href="#">Testimonials</a></li>
-                        </ul>
-                    </div>
-                </div>
-                -->
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer__widget">
-                        <h6></h6>
-                        <h6>< 입점 문의 하기 ></h6>
-                        <h6>함께 하실 탁월한 사장님들을 기다립니다.</h6>
-                        <p><a href="#">>> 지금 바로 입점 신청하기 <<</a></p>
-                        <!--
-                        <form action="#">
-                            <input type="text" placeholder="Enter your mail">
-                            <button type="submit" class="site-btn">Subscribe</button>
-                        </form>
-                        -->
-                        <div class="footer__widget__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div> <!--row1 end-->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="footer__copyright">
-                        <div class="footer__copyright__text"><p>
-                        <!--<div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>-->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer> 
-<!-- Footer Section End -->
-
-    <!-- Js Plugins -->
-    <script src="resources/js/jquery-3.3.1.min.js"></script>
-    <script src="resources/js/bootstrap.min.js"></script>
-    <script src="resources/js/jquery.nice-select.min.js"></script>
-    <script src="resources/js/jquery-ui.min.js"></script>
-    <script src="resources/js/jquery.slicknav.js"></script>
-    <script src="resources/js/mixitup.min.js"></script>
-    <script src="resources/js/owl.carousel.min.js"></script>
-    <script src="resources/js/main.js"></script>
-
-
-
+ <%@include file="includes/footer.jsp"%>
+<script type="text/javascript" src="resources/js/slick.js"></script>
 </body>
-
 </html>
-
-

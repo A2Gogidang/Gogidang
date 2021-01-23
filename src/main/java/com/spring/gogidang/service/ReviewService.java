@@ -7,12 +7,17 @@ import com.spring.gogidang.domain.ReviewVO;
 
 public interface ReviewService {
 	
-	public List<ReviewVO> getList(Criteria cri);
-	public List<ReviewVO> getUidList(Criteria cri, String u_id);
-	public List<ReviewVO> getSnumList(Criteria cri, int s_num);
-	public void reviewReg(ReviewVO review);
-	public boolean reviewModify(ReviewVO review);
-	public boolean reviewRemove(int review_num);
+	public List<ReviewVO> getList();
+	public List<ReviewVO> getListWithPaging(Criteria cri);
+	public List<ReviewVO> getListByIdWithPaing(Criteria cri, String u_id);
+	public List<ReviewVO> getListBySnWithPaing(Criteria cri, int s_num);
+	
 	public ReviewVO getReview(int review_num);
+	public void regReview(ReviewVO review);
+	
 	public int getTotal(Criteria cri);
+
 }
+
+//public boolean reviewModify(ReviewVO review);
+//public boolean reviewRemove(int review_num);
