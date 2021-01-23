@@ -24,6 +24,8 @@ public interface StoreMapper {
 	public int insertStore(StoreVO storeVO);
 	public StoreVO selectStore(StoreVO storeVO);
 	public int updateStore(StoreVO storeVO);
+	
+	//카드 부분
 
 
 	// dohyeong
