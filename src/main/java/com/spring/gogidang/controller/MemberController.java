@@ -151,6 +151,7 @@ public class MemberController {
 			writer.write("<script>alert('수정실패!!');" +"location.href = './updateList.me';</script>");
 		}
 		return null;
+		}
 
    
    //soobin start
