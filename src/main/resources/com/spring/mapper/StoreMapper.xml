@@ -20,7 +20,7 @@
 		DELETE FROM shop_reg WHERE s_num=#{s_num}
 	</delete>
 	
-	<select id="storeInfo" parameterType="StoreVO" resultType="StoreVO">
+	<select id="storeInfo" parameterType="int" resultType="StoreVO">
 		SELECT * FROM shop_reg WHERE s_num=#{s_num}
 	</select>
 	

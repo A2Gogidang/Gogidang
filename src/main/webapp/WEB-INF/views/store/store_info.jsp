@@ -35,9 +35,6 @@
 <%
    MemberVO membervo = (MemberVO)session.getAttribute("MemberVO");
    String u_id=(String)membervo.getU_id();
-   %>
-
-<%
    ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>)request.getAttribute("menuList");
    ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>)request.getAttribute("reviewList");
    

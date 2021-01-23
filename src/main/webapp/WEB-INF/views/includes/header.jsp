@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" %>
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%
-	MemberVO memberVO = (MemberVO)session.getAttribute("MemberVO");
+	MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
 %>
 <!DOCTYPE html>
 <html>
