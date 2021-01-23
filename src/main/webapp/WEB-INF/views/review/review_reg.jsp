@@ -36,7 +36,7 @@
 				<img id="review_img3" src="" />
 			</div>
 		</div>
-		<input type="button" value="리뷰작성" onclick="fnAction('./reviewReg.re')" multiple />
+		<input type="button" value="리뷰작성" onclick="fnAction('./regReview.re')" multiple />
 	</form>
 	
 	<script>

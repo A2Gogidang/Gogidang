@@ -17,6 +17,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public MemberVO selectMember(MemberVO memberVO) {
+		
 		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
 		MemberVO member = memberMapper.selectMember(memberVO);
       

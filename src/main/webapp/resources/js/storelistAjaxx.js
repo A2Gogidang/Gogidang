@@ -14,10 +14,9 @@
 					s_addr.push($(this).val());
 				});
 			getlist(s_addr,meat);
-			}
-		else {
+			} else {
 
-			$('input[name=f_Acheck]:checked').each(function(){
+				$('input[name=f_Acheck]:checked').each(function(){
 				
 				s_addr.push($(this).val());
 			});
@@ -85,7 +84,7 @@
 											'</div>';
 								output += '<div class="card_store_img" >' + 
 											'<div>'+
-												'<img src="best-re-img5.jpg">' +
+												'<img src=resources/img/store/'+ item.thumbnail +'>' +
 											'</div>' +
 										'</div>';
 								output += '<div class="card_store_name" >'+
@@ -99,17 +98,15 @@
 												'<div class="text_right">'+
 													meat +
 												'</div>' +
-											'</div>'
-										
-								'</div>'; //class="card_store_box" 끝
+											'</div>' +
+										'</div>'; //class="card_store_box" 끝
 										
 								$('#card_row').append(output);
 								
-							});//each 끝
-										
+							});//each 끝			
 						}, //success 끝  
 						error : function(Request,Status, error) { 
-							alert("품목을 한 개 이상 선택 해주세요 ")
+							alert("품목을 한 개 이상 선택 해주세요 ");
 						}//error 끝
 					}); //ajax끝
 				};//input:checked끝

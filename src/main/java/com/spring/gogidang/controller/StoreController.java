@@ -86,17 +86,20 @@ public class StoreController {
 	 * 가게 상세 정보 보기
 	 */
 	@RequestMapping(value = "/storeInfo.st")
-	public String shopInfo(Criteria cri, StoreVO storeVO, Model model) {
-		StoreVO vo = storeService.storeInfo(storeVO);
+	public String shopInfo(@RequestParam("s_num") int s_num, Criteria cri, Model model) {
+		StoreVO vo = storeService.storeInfo(s_num);
 		ArrayList<MenuVO> menuList = menuService.getMenuList();
-		List<ReviewVO> reviewList = reviewService.getList(cri);
+		List<ReviewVO> reviewList = reviewService.getListBySnWithPaing(cri, s_num);
+		
+		int total = reviewService.getTotal(cri);
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 
 		model.addAttribute("storeVO", vo);
 		model.addAttribute("menuList",menuList);
 		model.addAttribute("reviewList",reviewList);
 
 
-		return "store/store_info";
+		return "store/store_info_Design";
 	}
 
 	/*
@@ -367,7 +370,22 @@ public class StoreController {
 		  System.out.println("list" + list);
 		 */
 		  List<StoreVO> list = storeService.getStoreListAjax(mapp);
+		  StoreVO vo = (StoreVO) list.get(0);
+		  
+		  System.out.println(vo.getThumbnail());
 		  return list; 
 	  }
 	// dogyeong end
+	
+	@RequestMapping(value = "/store_info_Design.st")
+	public String design1(Model model) {
+		return "store/store_info_Design"; 
+		
+	}
+
+	@RequestMapping(value = "/store_info_Design2.st")
+	public String design2(Model model) {
+		return "store/store_info_design/store_info_Design2"; 
+	}
+
 }

@@ -49,7 +49,7 @@
 	</servlet-mapping>
 	
 	<welcome-file-list>
-		<welcome-file>loginForm.me</welcome-file>
+		<welcome-file>main.me</welcome-file>
 	</welcome-file-list>
 	
 	<!-- Korean Filter -->

@@ -9,13 +9,15 @@ import com.spring.gogidang.domain.ReviewVO;
 
 public interface ReviewMapper {
 
-	// taehyun
+	public List<ReviewVO> getList();
 	public List<ReviewVO> getListWithPaging(Criteria cri);
-	public List<ReviewVO> getUidListWithPaging(@Param("pageNum") int pageNum, @Param("amount") int amount, @Param("u_id") String u_id);
-	public List<ReviewVO> getSnumListWithPaging(@Param("pageNum") int pageNum, @Param("amount") int amount, @Param("s_num") int s_num);
-	public void reviewReg(ReviewVO review);
-	public int update(ReviewVO review);
-	public int delete(int review_num);
-	public ReviewVO read(int review_num);
-	public int getTotalCount(Criteria cri);
+	public List<ReviewVO> getListByIdWithPaging(@Param("pageNum") int pageNum, @Param("amount") int amount, @Param("u_id") String u_id);
+	public List<ReviewVO> getListBySnWithPaging(@Param("pageNum") int pageNum, @Param("amount") int amount, @Param("s_num") int s_num);
+	
+	public ReviewVO getReview(int review_num);
+	public void regReview(ReviewVO review);
+	public int getTotal(Criteria cri);
 }
+
+//public int update(ReviewVO review);
+//public int delete(int review_num);
