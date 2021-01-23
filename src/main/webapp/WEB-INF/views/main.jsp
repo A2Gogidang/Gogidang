@@ -186,10 +186,10 @@
                             </div>
                             <div class="sidebar__item">
                             <!--style="color: black"-->
-                                <h4><ul><a href="#" >가게 검색</a></ul></h4>
+                                <h4><ul><a href="./storeList.st" >가게 검색</a></ul></h4>
                             </div>
                             <div class="sidebar__item">
-                                <h4><ul><a href="#">후기 검색</a></ul></h4>
+                                <h4><ul><a href="./reviewList.re">후기 검색</a></ul></h4>
                             </div>
                             <div class="sidebar__item">
                                 <h4><ul><a href="./updateList.me">마이 페이지</a></ul></h4>
