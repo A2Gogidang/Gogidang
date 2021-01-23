@@ -14,7 +14,7 @@
 	ArrayList<ReviewVO> review_list =(ArrayList<ReviewVO>) request.getAttribute("review_list");
 	
 %>
-<%-- <html>
+ <html>
 <head>
 <title>회원관리 시스템 메인 페이지</title>
 </head>
@@ -34,6 +34,7 @@
 			if (u_id.equals("admin")) {
 		%>
 				<h3>관리자입니다.</h3>
+				<a href="">관리자 마이 페이지</a>
 				<a href="./storeList.st">전체 가게 리스트 보기</a>
 				<br>
 				<a href="./storeWaitListWithPaging.st">승인 대기 중인 가게 리스트 확인</a>
@@ -74,23 +75,24 @@
 			</table>
 			
 			<h3>가게 메인사진</h3>
+			<tr>
 			<a href="./storeList.st">가게전체보기</a>
-			<table border=1 width=300>
+			</tr>
 					<%
 						for (int i=0; i<store_list.size(); i++) {
 							
 							StoreVO vo1 = (StoreVO)store_list.get(i);
 					%>
 					<tr align=center>
-						<td colspan=2>
-							<a href="storeInfo.st?s_num=<%=vo1.getS_num()%>"><%=vo1.getThumbnail() %>
-						</td>
+						
+					<td><a href="storeInfo.st?s_num=<%=vo1.getS_num()%>"><img src="resources/img/store/<%=vo1.getThumbnail() %>" width="100px" height="100px" /></a></td>
+						
 					</tr>	
 					<%
 							}
 					%>
 				
-				</table>
+			
 				<h3>리뷰 닉네임,사진,등록날짜,별점</h3>
 				<a href="./reviewList.re">리뷰전체보기</a>
 				<table border=1 width=300>
@@ -103,7 +105,7 @@
 					</tr>
 				</c:forEach>
 				</table>
-				<table border=1 width=300>
+<%-- 				<table border=1 width=300>
 					<%
 						for (int i=0; i<3; i++)
 							{
@@ -119,12 +121,12 @@
 					<%
 							} 
 					%>
-			</table>
+			</table> --%>
 			<a href="./eventPage.ev">이벤트 페이지</a>
 		</center>
 </p>
 </body>
-</html> --%>
+</html>
 <!DOCTYPE html>
 
 
@@ -345,6 +347,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
+                    <a href="./storeList.st">가게전체보기</a>
                         <h2>추천 가게</h2>
                     </div>
                     <div class="featured__controls">
@@ -363,41 +366,29 @@
             </div>
             <div class="categories__slider owl-carousel">
                 <!--추천가게 액션이미지 320*270으로 넣을것-->
+           		    <%
+						for (int i=0; i<store_list.size(); i++) {
+							
+							StoreVO st = (StoreVO)store_list.get(i);
+					%> 
                 <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="resources/img/categories/seller1.jpg">
-                        <h5><a href="#">맛나식육식당</a></h5>
+                    <div class="categories__item set-bg">
+                        <h5><a href="storeInfo.st?s_num=<%=st.getS_num()%>"><img src="resources/img/store/<%=st.getThumbnail() %>" width="320px" height="270px" /></a><%=st.getS_name() %></h5>
                     </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="resources/img/categories/seller4.jpg">
-                        <h5><a href="#">명성한우돼지</a></h5>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="resources/img/categories/seller3.jpg">
-                        <h5><a href="#">종우명가 식당</a></h5>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="resources/img/categories/seller2.jpg">
-                        <h5><a href="#">횡성길 한우</a></h5>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="resources/img/categories/seller5.jpg">
-                        <h5><a href="#">수빈정육</a></h5>
-                    </div>
-                </div>
+                </div> 
+              
             </div>
             <div class="row">
             </div>
         </div>
     </section>
     <!-- Categories Section End -->
-
+	 <%} %>
     <!-- Featured Section Begin -->
     <section class="featured spad">
         <div class="container">
+        	
+        
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
@@ -418,6 +409,11 @@
                 </div>
             </div>
             <!--best 리뷰-->
+            <%
+						for (int i=0; i<review_list.size(); i++)
+							{
+							ReviewVO rv = (ReviewVO)review_list.get(i);
+					%>
             <div class="row featured__filter">
                 <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                     <div class="featured__item">
@@ -432,132 +428,17 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">고기나라</a></h6>
+                        	<a href="storeInfo.st?s_num=<%=rv.getS_num()%>">
+                        	<img src="/resources/img/up/<%=rv.getReview_img1() %>" width="320px" height="270px" /></a>
+                            <h6><%=rv.getS_name() %></h6>
                             <i class="fal fa-smile"></i>
-                            <h5>★ 4.5</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="resources/img/featured/best-re-img2.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <!--
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                -->
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">진한우명가</a></h6>
-                            <h5>★ 4.78</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="resources/img/featured/best-re-img1.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <!--
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                -->
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">태현한우</a></h6>
-                            <h5>★ 4.88</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="resources/img/featured/best-re-img3.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <!--
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                -->
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">한우리식당</a></h6>
-                            <h5>★ 4.88</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="resources/img/featured/best-re-img3.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <!--
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                -->
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">나들평화식당</a></h6>
-                            <h5>★ 4.35</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="resources/img/featured/best-re-img4.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <!--
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                -->
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">민석네 식육</a></h6>
-                            <h5>★4.38</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="resources/img/featured/best-re-img5.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <!--
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                -->
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">신선횡성한우</a></h6>
-                            <h5>★ 4.5</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="resources/img/featured/best-re-img2.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <!--
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                -->
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">마장축산</a></h6>
-                            <h5>★ 4.8</h5>
+                            <h5>★<%=rv.getStar() %></h5>
                         </div>
                     </div>
                 </div>
             </div>
+            <%} %>
+             
         </div>
     </section>
     <!-- Featured Section End -->
