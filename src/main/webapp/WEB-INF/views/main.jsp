@@ -335,7 +335,7 @@
             
             <!--best 리뷰-->
             <div class="row featured__filter">
-            	<%for (int i=0; i<4; i++) {
+            	<%for (int i=0; i<review_list.size(); i++) {
             		
             		ReviewVO vo = (ReviewVO) review_list.get(i);
            		%>
