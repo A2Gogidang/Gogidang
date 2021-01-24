@@ -15,21 +15,37 @@ public class EventServiceImpl implements EventService {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	@Override
-	public ArrayList<EventVO> getEventList() {
+	public ArrayList<EventVO> eventList() {
 		EventMapper eventMapper = sqlSession.getMapper(EventMapper.class);
-		ArrayList<EventVO> eventList = new ArrayList<EventVO>();
-		eventList = eventMapper.getEvents();
-		
-		return eventList;
+
+		return eventMapper.list();
 	}
-	
+
 	@Override
-	public EventVO selectEvent(EventVO eventVO) {
+	public EventVO getByNum(int event_num) {
 		EventMapper eventMapper = sqlSession.getMapper(EventMapper.class);
-		EventVO vo = eventMapper.selectEvent(eventVO);
-		return vo;
+		
+		return eventMapper.getByNum(event_num);
+	}
+
+	@Override
+	public void modifyByNum(int event_num) {
+		EventMapper eventMapper = sqlSession.getMapper(EventMapper.class);
+		eventMapper.modifyByNum(event_num);
+	}
+
+	@Override
+	public void deleteByNum(int event_num) {
+		EventMapper eventMapper = sqlSession.getMapper(EventMapper.class);
+		eventMapper.deleteByNum(event_num);
+	}
+
+	@Override
+	public void register(EventVO eventVO) {
+		EventMapper eventMapper = sqlSession.getMapper(EventMapper.class);
+		eventMapper.register(eventVO);
 	}
 
 }
