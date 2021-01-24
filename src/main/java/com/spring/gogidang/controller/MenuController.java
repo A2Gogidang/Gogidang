@@ -40,7 +40,7 @@ public class MenuController {
 		PrintWriter writer = response.getWriter();
 
 		StoreVO storeVO = new StoreVO();
-		storeVO.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
+		storeVO.setU_id(((MemberVO)session.getAttribute("memberVO")).getU_id());
 
 		StoreVO vo = storeService.selectStore(storeVO);
 
@@ -50,12 +50,13 @@ public class MenuController {
 			writer.write("<script>alert('가게정보 등록 먼저 하세요!!!!');" +"location.href = './storeRegForm.st';</script>");
 
 		}else {
+			
+			int s_num = vo.getS_num();
+			ArrayList<MenuVO> menuList  = new ArrayList<MenuVO>();
+			
+			menuList = menuService.menuList(s_num);
 
-			menuVO.setS_num(vo.getS_num());			
-			ArrayList<MenuVO> menuSelectList  = new ArrayList<MenuVO>();
-			menuSelectList = menuService.selectMenu(menuVO);
-
-			model.addAttribute("menuSelectList",menuSelectList);
+			model.addAttribute("menuList",menuList);
 			model.addAttribute("StoreVO",vo);
 
 			return "sellerpage/menu_reg_form";
@@ -114,7 +115,7 @@ public class MenuController {
 		System.out.println(menuVO.getS_num());	
 		menuVO.setMenu_num(i++);
 
-		int res = menuService.insertMenu(menuVO);
+		int res = menuService.menuRegister(menuVO);
 
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
