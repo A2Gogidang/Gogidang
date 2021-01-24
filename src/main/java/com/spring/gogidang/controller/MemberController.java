@@ -288,5 +288,31 @@ public class MemberController {
       }
       
    }
+	@RequestMapping("/adminmypage.bo")
+	public String adminmypage(Model model) {
+		return "mypage/admin_mypage"; 
+		
+	}
+	@RequestMapping("/admin_notice_insert.bo")
+	public String admin_notice_insert(Model model) {
+		return "mypage/admin_notice_insert"; 
+		
+	}
+	@RequestMapping("/admin_event_insert.bo")
+	public String admin_event_insert(Model model) {
+		return "mypage/admin_event_insert"; 
+		
+	}
+	@RequestMapping("/admin_confirm_list.bo")
+	public String admin_confirm_list(Model model) {
+		return "mypage/admin_confirm_list"; 
+		
+	}
+	@RequestMapping("/admin_confirm_ch.bo")
+	public String admin_confirm_ch(Model model) {
+		return "mypage/admin_confirm_ch"; 
+		
+	}
+	
    
 }
