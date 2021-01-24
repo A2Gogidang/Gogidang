@@ -139,9 +139,10 @@
 								} else if (seller_key == 2) {
 								%>
 									<h3>관리자입니다.</h3>
+									<a href="./adminmypage.me">관리자페이지</a>
+									<br>
 									<a href="./storeList.st">전체 가게 리스트 보기</a>
 									<br>
-									<a href="./storeWaitListWithPaging.st">승인 대기 중인 가게 리스트 확인</a>
 								<%
 								} else {
 								%>
@@ -236,7 +237,7 @@
                 <ul>
                     <li><a href="./storeList.st">가게 리스트</a></li>
                     <li><a href="./reviewListWithPaging.re">리뷰 전체</a></li>
-                    <li><a href="#">공지사항</a></li>
+                    <li><a href="./notice.ev">공지사항</a></li>
                 </ul>
             </div><!-- EventNav -->
    		</div><!-- container -->

@@ -57,8 +57,6 @@ public class EventController {
 			public String notice(EventVO eventVO, Model model) throws Exception { 
 				
 				return "event/notice";
-				
-				
-
+	
 	}
 }

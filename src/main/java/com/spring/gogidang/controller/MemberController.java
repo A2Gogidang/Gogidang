@@ -288,29 +288,32 @@ public class MemberController {
       }
       
    }
-	@RequestMapping("/adminmypage.bo")
+	@RequestMapping("/adminmypage.me")
 	public String adminmypage(Model model) {
-		return "mypage/admin_mypage"; 
-		
+		return "admin/admin_mypage"; 
 	}
-	@RequestMapping("/admin_notice_insert.bo")
+	
+	@RequestMapping("/admin_notice_insert.me")
 	public String admin_notice_insert(Model model) {
-		return "mypage/admin_notice_insert"; 
+		return "admin/admin_notice_insert"; 
 		
 	}
-	@RequestMapping("/admin_event_insert.bo")
+	
+	@RequestMapping("/admin_event_insert.me")
 	public String admin_event_insert(Model model) {
-		return "mypage/admin_event_insert"; 
+		return "admin/admin_event_insert"; 
 		
 	}
-	@RequestMapping("/admin_confirm_list.bo")
+	
+	@RequestMapping("/admin_confirm_list.me")
 	public String admin_confirm_list(Model model) {
-		return "mypage/admin_confirm_list"; 
+		return "admin/admin_confirm_list"; 
 		
 	}
-	@RequestMapping("/admin_confirm_ch.bo")
+	
+	@RequestMapping("/admin_confirm_ch.me")
 	public String admin_confirm_ch(Model model) {
-		return "mypage/admin_confirm_ch"; 
+		return "admin/admin_confirm_ch"; 
 		
 	}
 	
