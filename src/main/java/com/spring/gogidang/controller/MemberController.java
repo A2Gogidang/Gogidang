@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.EventVO;
 import com.spring.gogidang.domain.MemberVO;
+import com.spring.gogidang.domain.PageDTO;
 import com.spring.gogidang.domain.ReviewVO;
 import com.spring.gogidang.domain.StoreVO;
 import com.spring.gogidang.service.EventService;
@@ -306,15 +307,21 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/admin_confirm_list.me")
-	public String admin_confirm_list(Model model) {
+	public String admin_confirm_list(Criteria cri, Model model) {
+		model.addAttribute("list", storeService.getWaitList());
+		
+		int total = storeService.getTotal(cri);
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		
 		return "admin/admin_confirm_list"; 
 		
 	}
 	
 	@RequestMapping("/admin_confirm_ch.me")
-	public String admin_confirm_ch(Model model) {
-		return "admin/admin_confirm_ch"; 
+	public String admin_confirm_ch(@RequestParam("s_num") int s_num, Model model) {
+		model.addAttribute("storeVO", storeService.storeInfo(s_num));
 		
+		return "admin/admin_confirm_ch"; 
 	}
 	
    

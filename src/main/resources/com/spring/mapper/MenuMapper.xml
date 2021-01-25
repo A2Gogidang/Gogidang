@@ -12,7 +12,7 @@
  		UPDATE menu_reg SET price=#{price} WHERE menu_num = #{menu_num}
  	</update>
  	
-	<delete id="deleteByNum" parameterType="menu_num">
+	<delete id="deleteByNum" parameterType="int">
 		DELETE FROM menu_reg WHERE menu_num = #{menu_num}
 	</delete>
 	
