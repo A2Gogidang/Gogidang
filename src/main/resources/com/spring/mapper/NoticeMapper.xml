@@ -21,7 +21,7 @@
 		<selectKey keyProperty="notice_num" order="BEFORE" resultType="int">
 			SELECT nvl(max(notice_num), 0)+1 FROM notice
 		</selectKey>
-		INSERT INTO notice VALUES (#{notice_num}, #{u_id}, #{title}, #{content},#{notice_password},sysdate,#{notice_num})
+		INSERT INTO notice VALUES (#{notice_num}, #{u_id}, #{title}, #{content},sysdate,#{notice_num})
 	</insert>
 	
 	<select id="getDetail" parameterType="int" resultType="NoticeVO">

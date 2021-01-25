@@ -171,7 +171,6 @@
         	<div class="row">
                 <div class="col-menu"></div>
             </div><!-- row -->
-        </div>
         
         <!--기존의 hero서치바를 head로 옮김-->
         <div class="hero__search"> 
@@ -239,10 +238,11 @@
                 <ul>
                     <li><a href="./storeList.st">가게 리스트</a></li>
                     <li><a href="./reviewListWithPaging.re">리뷰 전체</a></li>
-                    <li><a href="./notice.ev">공지사항</a></li>
+                    <li><a href="./noticelist.no">공지사항</a></li>
                 </ul>
             </div><!-- EventNav -->
    		</div><!-- container -->
+   		</div>
     </section>
     <!--네비게이션바 사용 끝-->
     <!-- Hero Section End -->
