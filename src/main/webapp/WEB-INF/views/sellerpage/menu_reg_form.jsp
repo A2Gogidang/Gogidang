@@ -176,10 +176,6 @@ function check_input() {
 	
      
  <%if ( menuList != null || menuList.size() > 0 ){ %>
-	<%for(int i = 0; i < menuList.size(); i++){ 
-	
-		MenuVO menuVO = (MenuVO)menuList.get(i);
-	%>
 		<!-- for 문으로 저장된 리스트 출력해주기 
 		<div class="menu_box">
 			<font size=5>등록 내역</font>
@@ -189,12 +185,16 @@ function check_input() {
 		</div>
 		-->
 		<div class="menu_box">
-		<table border=1>
+		<table border=1px>
 			<tr>
 				<td colspan="2" align=center>
 					<b><font size=5>등록 내역</font></b>
 				</td>
 			</tr>
+			<%
+				for(int i = 0; i < menuList.size(); i++){ 
+					MenuVO menuVO = (MenuVO)menuList.get(i);
+			%>
 			<tr>
 				<td>상품이름 : </td> 
 				<td><span name="menu_name" type="text" ><%=menuVO.getMenu_name() %></span></td>
@@ -215,8 +215,9 @@ function check_input() {
 				<td>상품 등급 : </td> 
 				<td><span name="grade" type="text" ></span><%=menuVO.getGrade() %></td>
 			</tr>
+			<%} %>
 		</table>
-	<%} %>
+
 <%}else{ %>
 	<h1>상품을 추가해주세요.</h1>
 <%} %>

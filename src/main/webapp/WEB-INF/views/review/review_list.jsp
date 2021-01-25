@@ -10,7 +10,7 @@
 <%
 	StoreVO storevo = (StoreVO)session.getAttribute("StoreVO");
 	String id = memberVO.getU_id();
-	List<ReviewVO> review_list = (List<ReviewVO>) request.getAttribute("list");
+	List<ReviewVO> review_list = (List<ReviewVO>) request.getAttribute("reviewList");
 	List<ReviewVO> reviewUidList = (List<ReviewVO>) request.getAttribute("reviewUidList");
 	PageDTO  pageMaker = (PageDTO) request.getAttribute("pageMaker");
 %>
@@ -24,7 +24,7 @@
                             <li><a href="./updateList.me">내정보</a></li>
                             <li><a href="./bookingList.bo?u_id=<%=memberVO.getU_id()%>">내예약확인</a>
                             <li><a href="./likeStoreList.li?u_id=<%=memberVO.getU_id()%>">찜목록</a></li>
-                            <li><a href="./reviewList.re?u_id=<%=memberVO.getU_id()%>">내가 작성한 후기</a></li>
+                            <li><a href="./reviewListByIdWithPaging.re?u_id=<%=memberVO.getU_id()%>">내가 작성한 후기</a></li>
                             <li><a href="./cartList.ct">장바구니</a></li>
                         </ul>
                     </div>   

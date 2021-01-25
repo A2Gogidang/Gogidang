@@ -81,7 +81,7 @@ public class ReviewController {
 	public String reviewInfo(@RequestParam("review_num") int review_num, Model model) {
 		model.addAttribute("review", reviewService.getReview(review_num));
 		
-		return "/review/review_info";
+		return "review/review_info";
 	}
 	
 	// file upload
