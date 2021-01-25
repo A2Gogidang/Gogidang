@@ -27,7 +27,8 @@
 			  ,#{price,jdbcType=VARCHAR}
 			  ,#{img,jdbcType=VARCHAR}
 			  ,#{grade,jdbcType=INTEGER}
-			  ,#{gram,jdbcType=INTEGER}) 
+			  ,#{origin,jdbcType=VARCHAR}
+			  
 	</insert>
 	
 </mapper>	

@@ -6,7 +6,7 @@
 
 <%
 	StoreVO vo = (StoreVO)request.getAttribute("StoreVO");
-	ArrayList<MenuVO> menuList = (ArrayList<MenuVO>)request.getAttribute("menuSelectList");
+	ArrayList<MenuVO> menuList = (ArrayList<MenuVO>)request.getAttribute("menuList");
 %>
 
 <section class="hero">
