@@ -61,4 +61,12 @@ public class EventController {
 				
 
 	}
+			@RequestMapping("/eventDetail.ev") 
+			public String eventDetail(EventVO eventVO, Model model) throws Exception { 
+				
+				return "event/eventDetail";
+				
+				
+				
+			}
 }
