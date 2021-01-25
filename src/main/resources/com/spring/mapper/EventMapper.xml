@@ -4,13 +4,24 @@
 	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	 
  <mapper namespace="com.spring.mapper.EventMapper">
- 
- 	<select id="getEvents" resultType="EventVO">
-		SELECT * FROM event 
-	</select>
-	
-	<select id="selectEvent" resultType="EventVO">
-		SELECT * FROM event WHERE event_num=#{event_num}
-	</select>
- 
+ 	
+ 	<select id="list" resultType="EventVO">
+ 		SELECT * FROM event
+ 	</select>
+ 	
+ 	<select id="getByNum" parameterType="int" resultType="EventVO">
+ 		SELECT * FROM event WHERE event_num = #{event_num}
+ 	</select>
+ 	
+ 	<update id="modifyByNum" parameterType="int">
+ 		UPDATE event SET content=#{content} WHERE event_num = #{event_num}
+ 	</update>
+ 	
+ 	<delete id="deleteByNum" parameterType="int">
+ 		DELETE FROM event WHERE event_num = #{event_num}
+ 	</delete>
+ 	
+ 	<insert id="register">
+ 		INSERT INTO event VALUES (seq_event.nextval, #{photo}, #{thumbnail}, #{title}, #{content}, sysdate)
+ 	</insert>
  </mapper>

@@ -12,6 +12,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -64,7 +65,7 @@ public class MemberController {
    @RequestMapping("/main.me")
    public String mainPage(Model model, HttpSession seesion) throws Exception { 
 
-      model.addAttribute("eventList", eventService.getEventList());
+      model.addAttribute("eventList", eventService.eventList());
       model.addAttribute("storeList", storeService.getList());
       model.addAttribute("reviewList", reviewService.getList());
       
@@ -92,6 +93,7 @@ public class MemberController {
       response.setContentType("text/html; charset=utf-8");
       PrintWriter writer = response.getWriter();
       
+
       if ( vo != null && vo.getU_id() != null ) {
          
          session.setAttribute("memberVO",vo);
@@ -163,8 +165,9 @@ public class MemberController {
    }
    
    @RequestMapping("/updateList.me")
-   public String updateList() throws Exception{
-      
+   public String updateList(HttpServletRequest request) throws Exception{
+      HttpSession session = request.getSession();
+      System.out.println(session.getAttribute("StoreVO"));
       return "member/updateList";
    }
    
@@ -288,29 +291,32 @@ public class MemberController {
       }
       
    }
-	@RequestMapping("/adminmypage.bo")
+	@RequestMapping("/adminmypage.me")
 	public String adminmypage(Model model) {
-		return "mypage/admin_mypage"; 
-		
+		return "admin/admin_mypage"; 
 	}
-	@RequestMapping("/admin_notice_insert.bo")
+	
+	@RequestMapping("/admin_notice_insert.me")
 	public String admin_notice_insert(Model model) {
-		return "mypage/admin_notice_insert"; 
+		return "admin/admin_notice_insert"; 
 		
 	}
-	@RequestMapping("/admin_event_insert.bo")
+	
+	@RequestMapping("/admin_event_insert.me")
 	public String admin_event_insert(Model model) {
-		return "mypage/admin_event_insert"; 
+		return "admin/admin_event_insert"; 
 		
 	}
-	@RequestMapping("/admin_confirm_list.bo")
+	
+	@RequestMapping("/admin_confirm_list.me")
 	public String admin_confirm_list(Model model) {
-		return "mypage/admin_confirm_list"; 
+		return "admin/admin_confirm_list"; 
 		
 	}
-	@RequestMapping("/admin_confirm_ch.bo")
+	
+	@RequestMapping("/admin_confirm_ch.me")
 	public String admin_confirm_ch(Model model) {
-		return "mypage/admin_confirm_ch"; 
+		return "admin/admin_confirm_ch"; 
 		
 	}
 	

@@ -376,8 +376,8 @@
 									<div
 										class="BestReview-item-caption-content text-center text-white"></div>
 								</div>
-								<img class="img-fluid"
-									src="resources//DetailStore/Review/추천리뷰1.png" alt="" />
+								<a href=""><img class="img-fluid"
+									src="resources//DetailStore/Review/추천리뷰1.png" alt="" /></a>
 							</div>
 						</div>
 						<%
