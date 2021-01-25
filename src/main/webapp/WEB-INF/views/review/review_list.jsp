@@ -88,8 +88,8 @@
 			</thead>
 			<tbody class="text-center">
  		<%
-			for (int i=0; i<review_list.size(); i++)
-			{
+			for (int i=0; i<review_list.size(); i++){
+				
 				ReviewVO vo = (ReviewVO)review_list.get(i);
 		%>
 			<tr align=center>

@@ -14,7 +14,8 @@
 			   ,like_store ls
 		where rg.s_num=ls.s_num 
 		   and ls.u_id=#{u_id}
-	  </select>
+
+   </select>
 
 	<insert id="addLikeStore" parameterType="LikeStoreVO">
 		insert into like_store 
