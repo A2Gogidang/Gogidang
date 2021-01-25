@@ -22,9 +22,9 @@ font-size: 16px;
             <div class="hero__item__box2"></div>
                     <div class="EventNav">
                         <ul>
-                            <li><a href="event.jsp">이벤트</a></li>
-                            <li><a href="qna.jsp">문의</a>
-                            <li><a href="notice.jsp">공지사항</a></li>
+                            <li><a href="eventPage.ev">이벤트</a></li>
+                            <li><a href="qnalist.qn">문의</a>
+                            <li><a href="notice.ev">공지사항</a></li>
                         </ul>
                     </div>   
             </div>   

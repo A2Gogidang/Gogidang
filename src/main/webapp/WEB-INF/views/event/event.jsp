@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,9 +18,9 @@ margin-top: 30px;
             <div class="hero__item__box2"></div>
                     <div class="EventNav">
                         <ul>
-                            <li><a href="event.jsp">이벤트</a></li>
-                            <li><a href="qna.jsp">문의</a>
-                            <li><a href="notice.jsp">공지사항</a></li>
+                            <li><a href="event.ev">이벤트</a></li>
+                            <li><a href="qna.qn">문의</a>
+                            <li><a href="notice.ev">공지사항</a></li>
                         </ul>
                     </div>   
             </div>   

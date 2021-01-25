@@ -10,13 +10,27 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@include file="../includes/header.jsp"%>
+        <div class="container">
+            <div class="hero__item__box2"></div>
+                    <div class="EventNav">
+                        <ul>
+                            <li><a href="eventPage.ev">이벤트</a></li>
+                            <li><a href="qnalist.qn">문의</a>
+                            <li><a href="notice.ev">공지사항</a></li>
+                        </ul>
+                    </div>   
+            </div> 
 	<table border=1 width=300 align=center>
 		<tr align=center><td>글번호 : </td><td>${eventVO.getEvent_num()}</td></tr>
 		<tr align=center><td>사진 : </td><td>${eventVO.getPhoto()}</td></tr>
 		<tr align=center><td>메인사진 : </td><td>${eventVO.getThumbnail()}</td></tr>
 		<tr align=center><td>글내용 : </td><td>${eventVO.getContent()}</td></tr>
 		<tr align=center><td>이벤트 등록일 : </td><td>${eventVO.getRe_date()}</td></tr>
-		<td colspan=2><a href="eventPage.ev">이벤트 페이지로 돌아가기</a>
+		<td colspan=2><a href="eventPage.ev">이벤트 페이지로 돌아가기</a></td>
 	</table>
+	
+	<%@include file="../includes/footer.jsp"%>
+	
 </body>
 </html>

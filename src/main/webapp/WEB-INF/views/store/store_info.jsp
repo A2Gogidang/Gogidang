@@ -34,7 +34,7 @@
 
 <%
    MemberVO membervo = (MemberVO)session.getAttribute("MemberVO");
-   String u_id=(String)membervo.getU_id();
+
    ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>)request.getAttribute("menuList");
    ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>)request.getAttribute("reviewList");
    //ArrayList<CartListVO> cartList= (ArrayList<CartListVO>)request.getAttribute("cartList");
@@ -97,42 +97,8 @@
   </c:forEach>
  </tbody>
 </table>
-	    
-<table border="1">
-	<tr>
-		<td>${menuList.img}</td>
-		<td>
-			<table border="1" style="height:300px; width: 400px;">
-				<tr align="center">
-					<td>상품명</td>				
-					<td>${menuList.menu_name}</td>	
-				</tr>
-				<tr align="center">
-					<td>가격</td>
-					<td><fmt:formatNumber value="${menuList.price}" pattern="###,###,###"/></td>
-				</tr>
-				<tr align="center">
-					<td colspan="2">
-						<form name="form1" method="post" action="">
-							<input type="hidden" name="" value="${menuList.}">
-						</form>
-					</td>
-				</tr>
-			</table>
-		
-	
-	</tr>
-</table>	     
-         <p class="cartStock">
-		 <span>구입 수량</span>
-		 <button type="button" class="plus">+</button>
-		 <input type="number" class="numBox" min="1" max="100" value="1" readonly="readonly"/>
-		 <button type="button" class="minus">-</button>
-		 <input type="hidden" value="${cartList.cartStock}" class="gdsStock_hidden" />
-		
-		
-      <p class="addToCart">
- 		<button type="button" class="addCart_btn">카트에 담기</button>
+     
+   
       <tr>
       
      
