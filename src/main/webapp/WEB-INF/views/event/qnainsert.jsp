@@ -36,25 +36,20 @@ font-size: 16px;
             
   <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-12 cc_cursor">
+		<div class="col-md-8 cc_cursor">
 			<form role="form">
 				<div class="form-group">
 					 
-					<label for="qna_title">
-						제목
-					</label>
-					<input type="qna_title" class="form-control" id="qna_title1" />
+				
+					<input type="qna_title" class="form-control" id="qna_title1" placeholder="제목" style="font-size:15px;"/>
 				</div>
 				<div class="form-group">
 					 
-					<label for="qna_insert_content">
-						 내용
-					</label>
-					<input type="qna_insert_content" class="form-control" id="qna_insert_content1"/ style="height: 500px;">
+					<textarea type="qna_insert_content" class="form-control" id="qna_insert_content1"placeholder="내용"/ style="height: 300px;font-size:15px;"></textarea>
 				</div>
-					<input type="checkbox" name="chk_info" value="agree">동의
+					<input type="radio" name="chk_info" value="agree">동의
 					&nbsp;
-					<input type="checkbox" name="chk_info" value="nagree">비동의
+					<input type="radio" name="chk_info" value="nagree">비동의
 					<br>
 					<br>
                 <label class="qna_insert_password">
@@ -67,56 +62,7 @@ font-size: 16px;
 		</div>
 	</div>
 </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-8">
-                <class class="pagination-lg">
-                    <ul class="pagination" style="margin-bottom: 30px;display: flex; justify-content: center; align-items: center;">
-                        <li class="page-item">
-                            <a class="page-link" href="#"style="color :rgb(51,131,51);">Previous</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"style="color :rgb(51,131,51);">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"style="color :rgb(51,131,51);">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"style="color :rgb(51,131,51);">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"style="color :rgb(51,131,51);">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"style="color :rgb(51,131,51);">5</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"style="color :rgb(51,131,51);">6</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"style="color :rgb(51,131,51);">7</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"style="color :rgb(51,131,51);">8</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"style="color :rgb(51,131,51);">9</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"style="color :rgb(51,131,51);">10</a>
-                        <li class="page-item">
-                            <a class="page-link" href="#"style="color :rgb(51,131,51);">Next</a>
-                        </li>
-                    </ul>
-            </div>
-            <div class="col-md-2">
-            </div>
-        </div>
-    </div>
 
-</div>
 
 <%@include file="../includes/footer.jsp"%>
 

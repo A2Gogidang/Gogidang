@@ -171,7 +171,6 @@
         	<div class="row">
                 <div class="col-menu"></div>
             </div><!-- row -->
-        </div>
         
         <!--기존의 hero서치바를 head로 옮김-->
         <div class="hero__search"> 
@@ -243,6 +242,7 @@
                 </ul>
             </div><!-- EventNav -->
    		</div><!-- container -->
+   		</div>
     </section>
     <!--네비게이션바 사용 끝-->
     <!-- Hero Section End -->
