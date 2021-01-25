@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member_liststoreStyle.css" type="text/css">
 <% 
 	StoreVO storevo = (StoreVO)session.getAttribute("StoreVO");
-	ArrayList<LikeStoreVO>likestore_list = (ArrayList<LikeStoreVO>)request.getAttribute("likestore_list");
+	ArrayList<LikeStoreVO> likeStoreList = (ArrayList<LikeStoreVO>)request.getAttribute("likeStoreList");
 %>
 
     <!--네비게이션바 사용 시작-->
@@ -21,7 +21,7 @@
                             <li><a href="./updateList.me">내정보</a></li>
                             <li><a href="./bookingList.bo?u_id=<%=memberVO.getU_id()%>">내예약확인</a>
                             <li><a href="./likeStoreList.li?u_id=<%=memberVO.getU_id()%>">찜목록</a></li>
-                            <li><a href="./reviewList.re?u_id=<%=memberVO.getU_id()%>">내가 작성한 후기</a></li>
+                            <li><a href="./reviewListByIdWithPaging.re?u_id=<%=memberVO.getU_id()%>">내가 작성한 후기</a></li>
                             <li><a href="./cartList.ct">장바구니</a></li>
                         </ul>
                     </div>   
@@ -76,26 +76,20 @@
 		<% 
 					//for(int i=0;i<likestore_list.size();i++){
 						//LikeStoreVO likestore=(LikeStoreVO)likestore_list.get(i);
-		for(int i=0;i < 7;i++){
-						
-			if(i % 5 == 0){
+		for(int i=0;i < likeStoreList.size();i++){
+				LikeStoreVO lsvo = likeStoreList.get(i);
 		%>	
 				<br/><br/><br/>
-		<%
-			}else{
-		%>
+
 				<div id="card">
 				<div class="card" style="width: 18rem;">
-					<a href="#"><img src="./resources/img/best-re-img5.jpg" class="card-img-top" alt="..."></a>
+					<a href="./storeInfo.st?s_num=<%=lsvo.getS_num() %>"><img src="resources/img/store/<%=lsvo.getThumbnail() %>" class="card-img-top" width="200" height="150"></a>
 				    <div class="card-body">
-				     <p class="card-text">뚜룹가게</p>
-				     <p class="card-text">9:00 ~ 20:00</p>
-				     <p class="card-text">010 - 8231 - 9263</p>
+				     <p class="card-text"><a href="./storeInfo.st?s_num=<%=lsvo.getS_num() %>"><%=lsvo.getS_name() %></a></p>
 				  	</div>
 				</div>
 				</div>
 		<%
-			}
 		}
 		%>
 			</div>
