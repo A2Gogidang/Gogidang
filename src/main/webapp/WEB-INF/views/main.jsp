@@ -237,7 +237,7 @@
                 <ul>
                     <li><a href="./storeList.st">가게 리스트</a></li>
                     <li><a href="./reviewListWithPaging.re">리뷰 전체</a></li>
-                    <li><a href="./notice.ev">공지사항</a></li>
+                    <li><a href="./noticelist.no">공지사항</a></li>
                 </ul>
             </div><!-- EventNav -->
    		</div><!-- container -->

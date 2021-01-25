@@ -44,7 +44,7 @@ color :rgb(51,131,51);
             <div class="hero__item__box2"></div>
                     <div class="EventNav">
                         <ul>
-                            <li><a href="eventPage.ev">이벤트</a></li>
+                            <li><a href="eventList.ev">이벤트</a></li>
                             <li><a href="qnalist.qn">문의</a>
                             <li><a href="noticelist.no">공지사항</a></li>
                         </ul>
@@ -96,7 +96,7 @@ color :rgb(51,131,51);
 				<%} %>
 				▶
 			<%}else{ %>
-				▶
+				
 			<%} %>
 			<a href="./qnadetail.qn?qna_num=<%=ql.getQna_num()%>">
 				<%=ql.getTitle()%>
@@ -127,6 +127,7 @@ color :rgb(51,131,51);
         <div class="row">
             <div class="col-md-2">
             </div>
+            
             <div class="col-md-8">
                 <class class="pagination-lg">
                     <ul class="pagination" style="margin-bottom: 30px;display: flex; justify-content: center; align-items: center;">
