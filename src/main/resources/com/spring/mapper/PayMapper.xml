@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+<mapper namespace="com.spring.mapper.PayMapper">
+
+	<insert id="insertPay" parameterType="PayVO">
+	INSERT INTO pay values(#{pay_num},#{rv_num},#{u_id},#{s_num},#{price},#{status})
+	</insert>
+	
+	<select id="selectPay" parameterType="PayVO" resultType="PayVO">
+	select rv_num,u_id,s_name,price,status from pay where u_id=#{u_id}
+	</select>
+	
+	<delete id="deletePay" parameterType="int">
+	delete from pay where u_id=#{u_id}
+	</delete>
+</mapper>

@@ -1,6 +1,7 @@
 package com.spring.gogidang.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +17,28 @@ public class LikeStoreServiceImpl implements LikeStoreService{
    SqlSession sqlSession;
    
    @Override
-   public ArrayList<LikeStoreVO> getLikeStore(String id){
-      LikeStoreMapper likestoremapper = sqlSession.getMapper(LikeStoreMapper.class);
-      ArrayList<LikeStoreVO>likeList = new ArrayList<LikeStoreVO>();
-      likeList = likestoremapper.getLikeStores(id);
-      
-      return likeList;
+   public void addLikeStore(LikeStoreVO likeStoreVO) {
+	   
+	   LikeStoreMapper likeStoreMapper = sqlSession.getMapper(LikeStoreMapper.class);
+	   
+	   likeStoreMapper.addLikeStore(likeStoreVO);
+   	
    }
-
+   
+   @Override
+   public int getCountBySn(int s_num) {
+	   
+	   LikeStoreMapper likeStoreMapper = sqlSession.getMapper(LikeStoreMapper.class);
+	   
+	   return likeStoreMapper.getCountBySn(s_num);
+   }
+   
+   @Override
+   public List<LikeStoreVO> getListByUid(String u_id) {
+	   
+	   LikeStoreMapper likeStoreMapper = sqlSession.getMapper(LikeStoreMapper.class);
+	   
+	   return likeStoreMapper.getListByUid(u_id);
+   }
+   
 }

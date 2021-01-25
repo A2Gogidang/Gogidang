@@ -14,5 +14,18 @@
 			   ,like_store ls
 		where rg.s_num=ls.s_num 
 		   and ls.u_id=#{u_id}
+
+	<insert id="addLikeStore" parameterType="LikeStoreVO">
+		insert into like_store 
+		values (seq_likestore.nextval, #{u_id}, #{s_num})
+	</insert>
+	
+	<select id="getCountBySn" parameterType="int" resultType="int">
+		select count(*) from like_store where s_num=#{s_num}
 	</select>
+	
+	<select id="getListByUid" parameterType="String" resultType="LikeStoreVO">
+		select * from like_store where u_id=#{u_id}
+	</select>
+	
 </mapper>

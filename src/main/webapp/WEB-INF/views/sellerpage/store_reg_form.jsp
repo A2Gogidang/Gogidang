@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@include file="../includes/header.jsp"%>
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/store_regStyle.css" type="text/css">
 <%
 	StoreVO storeVO = (StoreVO)session.getAttribute("StoreVO");
 %>
@@ -42,7 +42,7 @@
 	          document.getElementById('s_post').value = data.zonecode; //5자리 새우편번호 사용
 	          document.getElementById('s_addr').value = Addr;
 	          // 커서를 상세주소 필드로 이동한다.
-	          document.getElementById('s_addr1').focus();
+	          document.getElementById('s_addr').focus();
 	      }
 	  }).open();
 	}
@@ -128,11 +128,12 @@
 	                        </ul>
 	                    </div>   
 	            </div>   
-	        </div>  
+	        </div> 
+	 </section> 
 <%
 		}else{
 %>
-	</section>
+	
 	
     <section class="hero">
         <div class="container">
@@ -154,137 +155,163 @@
 	}
 %>
 <!--네비게이션바 사용 end-->
+<!-- Hero Section End -->
+
+	<div class="container" id="store_reg_form">
+			<div class="row justify-content-center">
+	        <div class="col-lg-8">
+		        <div class="store_reg_form">
+		        	<h3>내 가게 정보</h3>
+		        		
+		        	<!-- store_form -->
+		        	<form  action="./storeUpdateForm.st" method="post" enctype="multipart/form-data">
+		        		<input type="hidden" name = "u_id" value=<%=memberVO.getU_id() %>>
+			        		
+			        		<div class="id_input_box_ss">
+		         				<ts>가게 메인 사진 </ts>	         		
+		         				<%if( storeVO == null || storeVO.getThumbnail() == null || storeVO.getThumbnail() == ""){ %>
+		         				<td><input type="file" id="thumbnail" name="file" multiple="multiple"/></td>
+	         	 				<%}else{ %>	
+	         	 				<td><img src="resources/img/store/<%=storeVO.getThumbnail() %>" width="350px" height="200px" /></td>
+	         	 				<%} %>
+	         	 			</div>
+	         	 			
+	         	 			<div class= "id_input_box_ss">
+		         				<ts>사업자등록증 </ts>
+		         				<%if( storeVO == null || storeVO.getS_num() == 0){ %>
+		         				<td><input type="file" id="s_img" name="file" multiple="multiple"/></td>
+	         	 				<%}else{ %>	
+	         	 				<td><img src="resources/img/store/<%=storeVO.getS_img() %>"  name="s_num" width="350px" height="200px" /></td>
+	         	 				<%} %>
+	         	 			</div>
+	         	 	
+	         	 			<div class="id_input_box">
+		         				<ts>사업자등록번호 </ts>
+		         				<%if( storeVO == null || storeVO.getS_num() == 0){ %>
+		         				<td><input type="text" name="s_num" /></td>
+	         	 				<%}else{ %>	
+	         	 				<td><input type="text" name="s_num"  readonly value="<%=storeVO.getS_num() %>"/></td>
+	         	 				<%} %>
+	         	 			</div>
+	         	 			
+         	 				<div class="id_input_box">
+		         				<ts>가게이름</ts>
+		         				<%if( storeVO == null|| storeVO.getS_name() == null || storeVO.getS_name() == ""){ %>
+		         				<td><input type="text" name="s_name"  /></td>
+	         	 				<%}else{ %>	
+	         	 				<td><input type="text" name="s_name" readonly value="<%=storeVO.getS_name() %>"/></td>
+	         	 				<%} %>
+	         	 			</div>
+	         	 			
+	         	 			<div class="id_input_box_s"> 
+	         	 					<%if( storeVO == null|| storeVO.getS_addr() == null || storeVO.getS_addr() == ""){ %>        	 				
+			         				<div class="id_input_box">
+				         				<ts>가게주소</ts>	
+				         								         			
+					         			<td><input class="add_input" type="text" id="s_post" name="s_post" placeholder="우편번호" style="font-size:13px;"/>
+				         	 				<input class="add_btn" type="button"   onclick="execDaumPostcode()" value="우편번호찾기" style="font-size:10px;"/></td>
+			         	 			</div>
+			         	 			<div class="id_input_box">
+			         		 			<ts> </ts>
+			         	 				<td><input  type="text" id="s_addr" name="s_addr" placeholder="주소" style="font-size:13px;"></td>
+			         	 			</div>
+			         	 			<div class="id_input_box">
+			         		 			<ts> </ts>
+			         	 				<td><input  type="text" id="s_addr" name="s_addr"  placeholder="상세주소" style="font-size:13px;"></td>
+			         	 			</div>
+		         	 			<%}else{ %>
+		         	 				<div class="id_input_box">
+		         	 					<ts>가게주소</ts>
+										<td><input type="text" class="add_input" name="s_addr" readonly value="<%=storeVO.getS_addr() %>" /></ts>
+									</div>
+								<%} %>
+							</div>
+							
+							<div class="id_input_box">
+		         				<ts>가게 전화번호</ts>
+		         				<%if( storeVO == null|| storeVO.getS_phone() == null || storeVO.getS_phone() == ""){ %>
+		         					<td><input type="text" name="s_phone" /></td>
+	         	 				<%}else{ %>	
+	         	 					<td><input type="text" name="s_phone" readonly value="<%=storeVO.getS_phone() %>"/></td>
+	         	 				<%} %>
+	         	 			</div>
+		         	 		
+		         	 		
+         					<div class="id_input_box">
+         					
+		         				<ts>운영시간</ts>
+		         				<%if( storeVO == null|| storeVO.getS_phone() == null || storeVO.getS_phone() == ""){ %>
+		         					<select name="s_hour">
+										<option value="">오픈시간</option>
+										<option value="08:00">08:00</option>
+										<option value="09:00">09:00</option>
+										<option value="10:00">10:00</option>
+										<option value="11:00">11:00</option>
+										<option value="12:00">12:00</option>
+										<option value="13:00">13:00</option>
+										<option value="14:00">14:00</option>
+										<option value="15:00">15:00</option>
+									</select>
+									
+										<select name="s_hour">
+											<option value="">마감시간</option>
+											<option value="15:00">15:00</option>
+											<option value="16:00">16:00</option>
+											<option value="17:00">17:00</option>
+											<option value="18:00">18:00</option>
+											<option value="19:00">19:00</option>
+											<option value="20:00">20:00</option>
+											<option value="21:00">21:00</option>
+											<option value="22:00">22:00</option>
+											<option value="23:00">23:00</option>
+										</select>
+	         	 				<%}else{ %>	
+	         	 					<td><input  type="text" name="s_hour" size=30 readonly value="<%=storeVO.getS_hour() %>"/></td>
+	         	 				<%} %>
+	         	 			</div>
+				
+							<div class="id_input_box">
+		         				<ts>배달 가능여부</ts>
+		         				<td><input class="radio_input" type="radio" name="delibery"  value="0" checked/>불가능</td>
+								<td><input class="radio_input" type="radio" name="delibery"  value="1"/>가능</td>
+	         	 			</div>
+		
+							<div class="join_btn_box">
+								<div class="join_btn">
+								<%if( storeVO == null || storeVO.getS_num() == 0){ %>
+			         				
+			         				<%if( storeVO == null|| storeVO.getS_phone() == null || storeVO.getS_phone() == ""){ %>
+			         					<button type="submit" class="btn-jj btn-lg btn-block btn-success" onclick="fnAction('./storeInsert.st')" multiple / >작성</button>	         	
+		         	 				<%}else{ %>	
+		         	 					<button type="submit" class="btn-jj btn-lg btn-block btn-success" >수정</button>
+		         	 				<%} 
+			         				}%>
+		         	 			</div>
+		         	 			
+		         	 			<div class="join_btn">
+		         	 			<%if( storeVO == null || storeVO.getS_num() == 0){ %>
+		         	 				
+					         	 	<button type="reset" class="btn-j btn-lg btn-block btn-success" >다시 작성</button>
+				         	 	<%}else{ %>
+				         	 		<button type="submit" class="btn-jj btn-lg btn-block btn-success" >수정하러 가기</button>
+									<!-- <a href="./storeUpdateForm.st">수정</a> -->
+								<%}%>
+				         	 	</div>
+				         	 </div>
+        		
+		        	</form>
+				</div><!-- store_reg_form -->
+			</div><!-- col-lg-8 -->.
+		</div><!-- row justify-content-center -->
+	</div><!-- container id="join" -->
 
 
-<form id="storeform" action="./storeInsert.st" method="post" enctype="multipart/form-data">
-	<input type="hidden" name = "u_id" value=<%=memberVO.getU_id() %>>
-	<center>
-		<table border=1>
-			<tr>
-				<td colspan="2" align=center>
-					<b><font size=5>가게등록 페이지</font></b>
-				</td>
-			</tr>
-			
-			<tr>
-				<td>메인사진 : </td> 
-			<%if( storeVO == null || storeVO.getThumbnail() == null || storeVO.getThumbnail() == ""){ %>
-				<td><input id="thumbnail" name="file" type="file" multiple="multiple"/></td>
-			<%}else{ %>	
-				<td><img src="resources/img/store/<%=storeVO.getThumbnail() %>" width="100px" height="100px" /></td>
-			<%} %>
-			</tr>
-			
-			<tr>
-				<td>사업자등록번호  : </td>
-			<%if( storeVO == null || storeVO.getS_num() == 0){ %>
-				<td><input type="text" name="s_num" /></td>
-			<%}else{ %>
-				<td><span type="text" name="s_num"  value="<%=storeVO.getS_num() %>"/><%=storeVO.getS_num() %></td>
-			<%} %>
-			</tr>
-			
-			<tr>
-				<td>사업자등록증  : </td>
-			<%if( storeVO == null|| storeVO.getS_img() == null || storeVO.getS_img() == ""){ %>
-				<td><input id="s_img" name="file" type="file" multiple="multiple"/></td>
-			<%}else{ %>
-				<td><img src="resources/img/store/<%=storeVO.getS_img() %>"  width="100px" height="100px" /></td>
-			<%} %>
-			</tr>	
-			<tr>
-				<td>가게이름 </td>
-			<%if( storeVO == null|| storeVO.getS_name() == null || storeVO.getS_name() == ""){ %>
-				<td><input name="s_name" type="text"/></td>
-			<%}else{ %>
-				<td><span type="text" name="s_name" value="<%=storeVO.getS_name() %>"/><%=storeVO.getS_name()%></td>
-			<%} %>
-			</tr>
-			
-			<tr>
-				<td>가게주소  : </td>
-			<%if( storeVO == null|| storeVO.getS_addr() == null || storeVO.getS_addr() == ""){ %>
-				<tr>
-					<td>주소 : </td>
-		      		<td><input type="text" id="u_post" name="u_post" placeholder="우편번호">
-		         		<input type="button" onclick="execDaumPostcode()" value="우편번호찾기"><br>
-		         		<input type="text" id="u_addr" name="s_addr" placeholder="주소">
-		         		<input type="text" id="u_addr" name="s_addr" placeholder="상세주소">
-	         		</td>
-         		</tr>
-			<%}else{ %>
-				<td><span type="text" name="s_addr" value="<%=storeVO.getS_addr() %>"/><%=storeVO.getS_addr() %></td>
-			<%} %>
-			</tr>
-			
-			<tr>
-				<td>가게전화번호  : </td>
-			<%if( storeVO == null|| storeVO.getS_phone() == null || storeVO.getS_phone() == ""){ %>
-				<td><input name="s_phone" type="text"/></td>
-			<%}else{ %>
-				<td><span type="text" name="s_phone" value="<%=storeVO.getS_phone() %>"/><%=storeVO.getS_phone() %></td>
-			<%} %>
-			</tr>
-			
-	<tr>
-	<%if( storeVO == null|| storeVO.getS_hour() == null || storeVO.getS_hour() == ""){ %>
-		<td>운영시간 : </td>
-		<td>
-			<select name="s_hour">
-				<option value="">오픈시간</option>
-				<option value="08:00">08:00</option>
-				<option value="09:00">09:00</option>
-				<option value="10:00">10:00</option>
-				<option value="11:00">11:00</option>
-				<option value="12:00">12:00</option>
-				<option value="13:00">13:00</option>
-				<option value="14:00">14:00</option>
-				<option value="15:00">15:00</option>
-			</select>
-			
-			<select name="s_hour">
-				<option value="">마감시간</option>
-				<option value="15:00">15:00</option>
-				<option value="16:00">16:00</option>
-				<option value="17:00">17:00</option>
-				<option value="18:00">18:00</option>
-				<option value="19:00">19:00</option>
-				<option value="20:00">20:00</option>
-				<option value="21:00">21:00</option>
-				<option value="22:00">22:00</option>
-				<option value="23:00">23:00</option>
-			</select>
-		</td>
-	<%}else{ %>
-		<td><span type="text" name="s_hour" size=30 value="<%=storeVO.getS_hour() %>"/><%=storeVO.getS_hour() %></td>
-	<%} %>
-	</tr>
-			
-	<tr>
-		<td>배달가능여부  : </td>
-		<td>
-			<input type="radio" name="delibery" value="0" checked/>불가능
-			<input type="radio" name="delibery" value="1"/>가능
-		</td>
-	</tr>
-			
-	<tr>
-		<%if( storeVO == null || storeVO.getS_num() == 0){ %>
-				<!-- onclick 두개 -->
-				<input type="button" value="작성" onclick="fnAction('./storeInsert.st') check_input()" multiple />
-				<a href="javascript:storeform.reset()">다시작성</a>
-		<%}else{ %>
-				<a href="./storeUpdateForm.st">수정</a>
-		<%}%>
-	</tr>	
-</table>
 
-			<div class="select_img">
-				<img id="out_thumbnail" src="" />
-				<img id="out_s_img" src="" />
-			</div>
-	</center>
-</form>
+
+
+
+
+
 <script>
 	function fnAction(url) {
 		var frm = document.getElementById("storeform");

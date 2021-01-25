@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %>
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%
-	MemberVO memberVO = (MemberVO)session.getAttribute("MemberVO");
+	MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
 %>
 <!DOCTYPE html>
 <html>
@@ -11,8 +11,8 @@
 	<meta name="description" content="Ogani Template">
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>가게 전체보기</title>
-	<link rel="shortcut icon" href="cut-pig.jpg"> 
+	<title>고기당</title>
+	<link rel="shortcut icon" href="reources/cut-pig.jpg"> 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     
     <!-- taehyun modal -->
@@ -54,7 +54,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/storelist.css" type="text/css">
-
+	
 
 </head>
 <body>
@@ -74,8 +74,7 @@
                             </div>
                            <%}else{ %>
                             <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"><%=memberVO.getU_nick() %></i> </a>
-                                <aa>님 !</aa>
+                                <a href="#"><i class="fa fa-user" style="margin-top: 10px;"><%=memberVO.getU_nick() %>님! 환영합니다!</i></a> <a href="#"><img class="cart" src="resources/img/storeinfo/cart1.ico" style ="width:30px;height:30px;"/></a>
                            <%} %>
                         </div>
                     </div>

@@ -50,39 +50,41 @@
 	<div id="card_row" >
 		<%
 		for(int i=0; i<storeList.size(); i++) {
+			StoreVO svo = (StoreVO) storeList.get(i);
 		%>
 			<div class="card_store_box">
 				<div class="card_store_addr" >
 					<div class="text_left">
-						<h5> <%=storeList.get(i).getS_addr()%> </h5>
+						<h5> <%=svo.getS_addr()%> </h5>
 					
 					</div>
 				</div>
 				
-				 
 				<div class="card_store_img" >
-					<div><img src="./resources/img/best-re-img5.jpg"></div>
+					<div><img src="resources/img/store/<%=svo.getThumbnail() %>"></div>
 				</div>
 				
 				
 				<div class="card_store_name" >
 					<div class="text_right">
-					<h5><a href="#"><%= storeList.get(i).getS_name() %></a></h5>
-					
+						<h5><a href="#"><%= svo.getS_name() %></a></h5>
 					</div>
 				</div>
+				
 				<div class="card_store_tag" >
 					<div class="text_right">
 						<%
-						if(storeList.get(i).getMeat()== 0) {
+						if(svo.getMeat() == 0) {
 						%>
 							<h6>소고기 </h6> 
-						
 						<%
-						}
-						else {
+						} else if (svo.getMeat() == 1) {
 						%>
 							<h6> 돼지고기 </h6>
+						<%
+						} else {
+						%>
+							<h6>식당</h6>
 						<%
 						}
 						%>

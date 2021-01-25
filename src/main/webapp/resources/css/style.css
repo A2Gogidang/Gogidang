@@ -204,6 +204,17 @@ a:link {
    border: none;
 }*/
 
+/*.btn btn-lg btn-block btn-success {
+	font-size: 14px;
+	color: #ffffff;
+	font-weight: 800;
+	text-transform: uppercase;
+	display: inline-block;
+	padding: 10px ;
+	background:  rgba(0, 100, 0,0.8);
+	border: none;
+}*/
+
 /*---------------------
   3.Header
 -----------------------*/
@@ -224,7 +235,7 @@ a:link {
    align-items: center;
 }
 .header {
-   margin: auto auto 3px auto;
+  margin: auto auto 3px auto;
    background-color: #ffffff;
 }
 .header__top {
@@ -543,7 +554,7 @@ a:link {
    display: flex;
    justify-content: space-around;
    align-items: center;
-   
+  
   }
 
   .EventNav li {
@@ -552,6 +563,7 @@ a:link {
    font-weight: bold;
    color: rgba(0,88,0,0.7);
   }
+  
     a.scroll {
    padding: 20px;
    font-size: 18px;
@@ -2355,6 +2367,9 @@ label {
 .scroll ul li a:hover {
    color: rgba(0, 100, 0,0.8);
 }
+.scroll ul li a:hover {
+	color: rgba(0, 100, 0,0.8);
+}
 
 .blog__sidebar__search {
    margin-bottom: 50px;
@@ -2678,38 +2693,39 @@ label {
 }
 
 .footer__widget .footer__widget__social a {
-   display: felx;
-   justify-content: center;
-   align-items: center;
-   height: 41px;
-   width: 41px;
-   font-size: 16px;
-   color: #404040;
-   border: 1px solid #ededed;
-   border-radius: 50%;
-   line-height: 38px;
-   text-align: center;
-   background: #ffffff;
-   -webkit-transition: all, 0.3s;
-   -moz-transition: all, 0.3s;
-   -ms-transition: all, 0.3s;
-   -o-transition: all, 0.3s;
-   transition: all, 0.3s;
-   margin-right: 10px;
-   margin-top:10px;
+
+	display: felx;
+	justify-content: center;
+	align-items: center;
+	height: 41px;
+	width: 41px;
+	font-size: 16px;
+	color: #404040;
+	border: 1px solid #ededed;
+	border-radius: 50%;
+	line-height: 38px;
+	text-align: center;
+	background: #ffffff;
+	-webkit-transition: all, 0.3s;
+	-moz-transition: all, 0.3s;
+	-ms-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
+	margin-right: 10px;
+	margin-top:10px;
 }
 
 .footer__widget .footer__widget__social a i{
-   display: felx;
-   justify-content: center;
-   align-items: center;
-   
+	display: felx;
+	justify-content: center;
+	align-items: center;
+	
 }
 
 
 .footer__widget .footer__widget__social a:last-child {
-   margin-top:2px;
-   margin-right: 0;
+	margin-top:2px;
+	margin-right: 0;
 }
 
 .footer__widget .footer__widget__social a:hover {
@@ -3155,6 +3171,7 @@ label {
    .over_hid {
       overflow: hidden;
    }
+
 }
 
 /* Wide Mobile = 480px */

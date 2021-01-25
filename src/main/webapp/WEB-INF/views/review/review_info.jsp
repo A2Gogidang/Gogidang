@@ -7,7 +7,15 @@
 <%@include file="../includes/header.jsp"%>
 
 <%
-	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
+	MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
+	String u_id = "";
+	int seller_key;
+	if(mvo != null) {
+		u_id = mvo.getU_id();
+		seller_key = mvo.getSeller_key();
+	} else {
+		seller_key = 0;
+	}
 	ReviewVO rvo = (ReviewVO) request.getAttribute("review");
 %>
 
@@ -63,8 +71,9 @@
                     <td><fmt:formatDate pattern="yyyy-MM-dd" value="${review.review_date }" /></td>
                 </tr>
                 <tr>
-                    <td colspan="2" align=center>
-                        <a href="#">가게리뷰리스트보기</a>&nbsp;&nbsp;
+                    <td align=center>
+                        <a href="./storeInfo.st?s_num=<%=rvo.getS_num() %>">해당가게로이동</a>&nbsp;&nbsp;
+                        <a href="./reviewListWithPaging.re">후기 목록보기</a>
                     </td>
                 </tr>
             </table>

@@ -6,8 +6,8 @@ import com.spring.gogidang.domain.MenuVO;
 
 public interface MenuMapper {
 	
-	public ArrayList<MenuVO> getMenues();
-	public ArrayList<MenuVO> selectMenu(MenuVO menuVO);
-	public int insertMenu(MenuVO menuVO);
-
+	public ArrayList<MenuVO> listByNum(int s_num);
+	public void modifyByNum(int menu_num);
+	public void deleteByNum(int menu_num);
+	public int register(MenuVO menuVO);
 }
