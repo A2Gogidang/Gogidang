@@ -217,7 +217,7 @@ public class StoreController {
 	@RequestMapping("/storeUpdate.st")
 	public String storeUpdate(StoreVO store , HttpSession session, HttpServletResponse response)throws Exception {
 
-		store.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
+		store.setU_id(((MemberVO)session.getAttribute("memberVO")).getU_id());
 
 		int res = storeService.updateStore(store);
 
@@ -241,19 +241,21 @@ public class StoreController {
 	@RequestMapping("/storeUpdateForm.st")
 	public String storeUpdateForm(StoreVO storeVO, HttpSession session) throws Exception {
 
-		storeVO.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
+		storeVO.setU_id(((MemberVO)session.getAttribute("memberVO")).getU_id());
 		StoreVO vo = storeService.selectStore(storeVO);
 
 		session.setAttribute("StoreVO",vo);
 		return "sellerpage/store_updateForm";
 	}
 
+		//판매자 가게정보
 	@RequestMapping("/storeRegForm.st")
 	public String registrationForm(StoreVO storeVO, HttpSession session) throws Exception {
-
-		storeVO.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
+		
+		//원래코드
+		storeVO.setU_id(((MemberVO)session.getAttribute("memberVO")).getU_id());
 		StoreVO vo = storeService.selectStore(storeVO);
-
+				
 		session.setAttribute("StoreVO",vo);
 		return "sellerpage/store_reg_form";
 	}
@@ -266,7 +268,7 @@ public class StoreController {
 		PrintWriter writer = response.getWriter();
 
 		StoreVO storeVO = new StoreVO();
-		storeVO.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
+		storeVO.setU_id(((MemberVO)session.getAttribute("memberVO")).getU_id());
 
 		StoreVO vo = storeService.selectStore(storeVO);
 		

@@ -10,9 +10,10 @@
   
 <%
 	StoreVO storevo = (StoreVO)session.getAttribute("StoreVO");
+
 %>
-    <!--네비게이션바 사용 시작-->
-    <!-- 일반고객 -->
+   <!--네비게이션바 사용 시작-->
+   <!-- 일반고객 -->
     <%if(memberVO.getSeller_key() == 0 ){ %>
 	   <section class="hero">
         <div class="container">
@@ -66,7 +67,7 @@
 	} 
 }
 %>
-    <!--네비게이션바 사용 끝-->
+   <!--네비게이션바 사용 끝-->
     <!-- Hero Section End -->
 		 <!-- Hero Section End -->
 	

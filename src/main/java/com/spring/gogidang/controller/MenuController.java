@@ -40,7 +40,7 @@ public class MenuController {
 		PrintWriter writer = response.getWriter();
 
 		StoreVO storeVO = new StoreVO();
-		storeVO.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
+		storeVO.setU_id(((MemberVO)session.getAttribute("memberVO")).getU_id());
 
 		StoreVO vo = storeService.selectStore(storeVO);
 
