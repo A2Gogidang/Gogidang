@@ -5,9 +5,14 @@
 <mapper namespace="com.spring.mapper.BookingMapper">
    
 	<select id="getBookingList" parameterType="String" resultType="BookingVO">
-		select shop_reg.s_name,booking.time,booking.head_count,booking.booking_state
-	   	from booking,shop_reg
-	   	where booking.s_num = shop_reg.s_num and booking.u_id=#{u_id}
+		select shop_reg.s_name
+			  ,booking.time
+			  ,booking.head_count
+			  ,booking.booking_state
+			  ,booking.b_date
+	   	  from booking,shop_reg
+	   	 where booking.s_num = shop_reg.s_num 
+	   	   and booking.u_id=#{u_id}
 	</select>
 	
 	<insert id="insertBooking" parameterType="BookingVO">

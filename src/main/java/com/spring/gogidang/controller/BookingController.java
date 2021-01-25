@@ -40,6 +40,7 @@ public class BookingController {
    public String getBookinglist(MemberVO memberVO, Model model, HttpSession session)throws Exception{
 	   String u_id = memberVO.getU_id();
 	   ArrayList<BookingVO> booking_list = bookingService.getBookingList(u_id);
+	   System.out.println(booking_list.get(0).toString());
 	   model.addAttribute("booking_list",booking_list);
 	   
 ////		프로젝트 기능중 예약하기나 글작성 같이 로그인해야지만 할수 있는 기능은 session 에 로그인 정보가 있는지 판별하여 없으면 로그인 폼으로 return 시킴

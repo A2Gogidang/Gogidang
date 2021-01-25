@@ -28,33 +28,28 @@ margin-top: 30px;
             
              
             <div class="section-title" style="margin-top : 70px;">
-								<h2 style="margin-top: 30px;">이벤트</h2>
+								<h2 style="margin-top: 30px;">이벤트 내용</h2>
 							</div>
             
-<div class="container-fluid"style="display: flex; justify-content: center; align-items: center;">
-	<ul>
+<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<a href="#"><img alt="Bootstrap Image Preview" src="resources/img/event/eventPicex.jpg"/>
-		</a></div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<a href="#"><img alt="Bootstrap Image Preview" src="resources/img/event/eventPicex.jpg" />
-		</a></div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<a href="#"><img alt="Bootstrap Image Preview" src="resources/img/event/eventPicex.jpg" />
-		</a></div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<a href="#"><img alt="Bootstrap Image Preview" src="resources/img/event/eventPicex.jpg" />
-		</a></div>
+			<img alt="Bootstrap Image Preview" src="resources/img/event/eventPicex.jpg" />
+			<h4><dl style="margin-top: 30px;">
+				고기당 오픈 기념 이벤트~
+				<div>
+					친구 초대하면 현금처럼 사용 가능한 2천포인트가 무제한으로~
+				</div>
+				<div>
+					기간: 20.01.26~20.02.26까지
+				</div>
+				
+			</dl>
+			</h4>
+			
+		</div>
 	</div>
 </div>
-</ul>
 <%@include file="../includes/footer.jsp"%>
 </body>
 </html>

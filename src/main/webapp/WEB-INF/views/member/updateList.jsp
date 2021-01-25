@@ -5,15 +5,13 @@
 <%@ page import="javax.naming.*"%>
 <%@ page import="java.util.*"%>
 <%@include file="../includes/header.jsp"%>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/updateStyle.css" type="text/css">
-  
 <%
-   StoreVO storevo = (StoreVO)session.getAttribute("StoreVO");
+	StoreVO storevo = (StoreVO)session.getAttribute("StoreVO");
+	
 %>
     <!--네비게이션바 사용 시작-->
-    <%if(memberVO.getSeller_key() == 0){ %>
-      <section class="hero">
-
+    <%if(memberVO.getSeller_key() == 0 ){ %>
+	   <section class="hero">
         <div class="container">
             <div class="hero__item__box2"></div>
                     <div class="EventNav">
@@ -22,6 +20,7 @@
                             <li><a href="./bookingList.bo?u_id=<%=memberVO.getU_id()%>">내예약확인</a>
                             <li><a href="./likeStoreList.li?u_id=<%=memberVO.getU_id()%>">찜목록</a></li>
                             <li><a href="./reviewList.re?u_id=<%=memberVO.getU_id()%>">내가 작성한 후기</a></li>
+                            <li><a href="./cartList.ct">장바구니</a></li>
                         </ul>
                     </div>   
             </div>   
@@ -29,7 +28,7 @@
     </section>
 <%
 }else{ 
-   if(storevo == null || storevo.getConfirm() == 0 || storevo.getS_num() == 0 ){
+	if(storevo == null || storevo.getConfirm() == 0 || storevo.getS_num() == 0 ){
 %>
  <section class="hero">
         <div class="container">
@@ -41,11 +40,10 @@
                         </ul>
                     </div>   
             </div>   
-        </div>
-        </section>  
+        </div>  
 <%
-   }else{
-%>
+	}else{
+%></section>
     <section class="hero">
         <div class="container">
             <div class="hero__item__box2"></div>
@@ -62,74 +60,51 @@
         </div>
     </section>
 <%
-   } 
+	} 
 }
 %>
     <!--네비게이션바 사용 끝-->
-
     <!-- Hero Section End -->
-  
-	<div class="container" id="update">
-		<div class="row justify-content-center">
-        <div class="col-lg-8">
-        	<div class="update">
-        		<h3>내 정보</h3>
-        		
-        		<!-- join form -->
-         		<form name="seller_info_form" action="./updateForm.me" method="post">
-         			<div class="id_input_box">
-         				<ts>아이디</ts>
-         				<ts><input type="text" name="u_id" value="<%=memberVO.getU_id() %>" readonly style="font-size:13px;"/></ts>
-         	 		</div>
-         	 		
-         	 		<div class="id_input_box">
-         				<ts>비밀번호</ts>
-         				<ts><input type="password" name="u_pw" value="<%=memberVO.getU_pw()%>" readonly style="font-size:13px;"/></ts>
-         	 		</div>
-         	 		
-         	 		<div class="id_input_box">
-         				<ts>이름</ts>
-         				<ts><input type="text" name="u_name" value="<%=memberVO.getU_name()%>" readonly style="font-size:13px;"/></ts>
-         	 		</div>
-         	 		
-         	 		<div class="id_input_box">
-         				<ts>닉네임</ts>
-         				<ts><input type="text" name="u_nick" value="<%=memberVO.getU_nick()%>" readonly style="font-size:13px;"/></ts>
-         	 		</div>
-         	 		
-         	 		<div class="id_input_box">
-         				<ts>생년월일</ts>
-         				<ts><input type="text" name="u_birth" value="<%=memberVO.getU_birth()%>" readonly style="font-size:13px;"/></ts>
-         	 		</div>
-         	 		
-         	 		<div class="id_input_box">
-         				<ts>주소</ts>
-         				<ts><input type="text" name="u_addr" value="<%=memberVO.getU_addr()%>" readonly style="font-size:13px;"/></ts>
-         	 		</div>
-         		
-         			<div class="id_input_box">
-					<ts>이메일 주소</ts>
-					<ts><input type="text" name="u_email" value="<%=memberVO.getU_email()%>" readonly style="font-size:13px;"/></ts>
-					</div>
+		<center>
+			<table border=1 width=400>
+				<tr>회원 정보 수정</tr>
+				<tr>
+					<td>아이디 :</td>
+					<td><%=memberVO.getU_id()%></td>
+					<!-- id는 수정사항에 포함되지 않기 때문에 hidden으로 설정 -->
+				</tr>
+				<tr>
+					<td>비밀번호 :</td>
+					<td><span type="password" name="u_pw" value="<%=memberVO.getU_pw()%>" /></td>
+				</tr>
+				<tr>
+					<td>이름 :</td>
+					<td><%=memberVO.getU_name()%></td>
+				</tr>
+				<tr>
+					<td>닉네임 :</td>
+					<td><%=memberVO.getU_nick()%></td>
 					
-					<div class="id_input_box">
-					<ts>핸드폰 번호</ts>
-					<ts><input type="text" name="u_phone" value="<%=memberVO.getU_phone()%>" readonly style="font-size:13px;"/></ts>
-					</div>
-				
-					<div class="join_btn">
-	         	 	<button  class="btn-jj btn-lg btn-block btn-success"> 수정하기</button>
-	         	 	</div>
-	         	 	
-					<!-- 
-					<tr align=center>
-						<td colspan=2><a href="./updateForm.me">수정</a></td>
-					</tr>
-					 -->
-         		</form>
-        	</div>
-        </div>
-        </div>
-    </div>
-        	
+				</tr>
+				<tr>
+					<td>생년월일 :</td>
+					<td><%=memberVO.getU_birth()%></td>
+				</tr>
+				<tr>
+					<td>주소 :</td>
+					<td><%=memberVO.getU_addr()%></td>
+				</tr>	
+				<tr>
+					<td>이메일 주소 :</td>
+					<td><%=memberVO.getU_email()%></td>
+				</tr>
+				<tr>
+					<td>핸드폰 번호 :</td>
+					<td><%=memberVO.getU_phone()%></td>
+				</tr>
+				<tr align=center>
+					<td colspan=2><a href="./updateForm.me">수정</a></td>
+				</tr>
+			</table>
+		</center>
 <%@include file="../includes/footer.jsp"%>

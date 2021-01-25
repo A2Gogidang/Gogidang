@@ -42,7 +42,7 @@
 
 <insert id="replyNoticeInsert" parameterType="ReplyNoticeVO">
 		INSERT 
-		INTO sub_qna_store
+		  INTO sub_qna_store
 		VALUES(#{s_comment_num}
 			  ,#{qs_num}
 			  ,#{s_num}
@@ -53,7 +53,9 @@
 </insert>
 
 <delete id="replyNoticeDelete" parameterType="ReplyNoticeVO">
-		DELETE FROM sub_qna_store WHERE qs_num=#{qs_num} 
+		DELETE 
+		  FROM sub_qna_store 
+		 WHERE qs_num=#{qs_num} 
 </delete>
 
 
