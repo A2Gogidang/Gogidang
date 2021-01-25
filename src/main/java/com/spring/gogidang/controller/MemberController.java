@@ -12,6 +12,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -93,6 +94,7 @@ public class MemberController {
       response.setContentType("text/html; charset=utf-8");
       PrintWriter writer = response.getWriter();
       
+
       if ( vo != null && vo.getU_id() != null ) {
          
          session.setAttribute("memberVO",vo);
@@ -164,8 +166,9 @@ public class MemberController {
    }
    
    @RequestMapping("/updateList.me")
-   public String updateList() throws Exception{
-      
+   public String updateList(HttpServletRequest request) throws Exception{
+      HttpSession session = request.getSession();
+      System.out.println(session.getAttribute("StoreVO"));
       return "member/updateList";
    }
    
