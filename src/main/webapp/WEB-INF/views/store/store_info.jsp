@@ -49,8 +49,7 @@
 
 </head>
 <body>
-
-   <table border="1" align=center>
+<table border="1" align=center>
    <tr>
  		<td><button onclick="location.href='./review_reg.re?s_num=${storeVO.getS_num() }'">리뷰작성</button></td>
    </tr>
@@ -68,26 +67,53 @@
       <td>${storeVO.getDelibery()}</td>
    </tr>
    </table>
-   
-    <table align=center>
-      <tr>
-         <%
+      <%
+         CartVO cartVO = new CartVO();
             for(int i=0; i<menu_List.size(); i++)
             {
                MenuVO vo =(MenuVO)menu_List.get(i);
-            
          %>
+          <form id="addCart<%=i%>" action="./addCart.ct" method="post">
+          <input type="hidden" id ="menu_num" name="menu_num" value="<%=vo.getMenu_num() %>">
+	  	<table border="1">
+	  		 <tr>
+		  		 <td>사진</td>
+		         <td>상품명</td>
+		         <td>그램</td>
+		         <td>등급</td>
+		         <td>가격</td>
+		         <td>구입 수량</td>
+		         <td rowspan="2">
+		         <input type="submit" value="장바구니에 담기" id="addCart<%=i%>"/>
+		         </td>		    
+	         </tr>
+	         <tr>
+		         <td><%=vo.getImg() %></td>
+		         <td><%=vo.getMenu_name() %></td>
+		         <td><%=vo.getGram() %></td>
+		         <td><%=vo.getGrade() %></td>
+		         <td><input type="hidden" id ="price" name="price" value="<%=vo.getPrice()%>"><%=vo.getPrice() %></td>
+		         <td><input type="number" id="cartStock" name="cartStock" min="1" max="100" value="1" /></td>		         
+	         </tr>
+	         
+	 	</table><br><br>	 	
+ 	</form>
+ <%} %>
+          <tr>
+         <table border=1 align=center>
          <tr>
-         <td><%=vo.getImg() %></td>
-         <td><%=vo.getMenu_name() %></td>
-         <td><%=vo.getGram() %></td>
-         <td><%=vo.getGrade() %></td>
-         <td><%=vo.getPrice() %></td>
-         <td>
-         </tr>
+         <%
+            for(int i=0; i<review_List.size(); i++)
+            {
+               ReviewVO vo1 =(ReviewVO)review_List.get(i);
+         %>
+         <td><%=vo1.getStar() %></td>
+         <td><%=vo1.getTitle() %>
          <%} %>
+         </tr>
+         </table>
       </tr>
-      
+   </table>
       <tr>
          <table border=1 align=center>
          <tr>
@@ -103,7 +129,6 @@
          </tr>
          </table>
       </tr>
-   </table>
    
    <div id="map" style="width:800px;height:400px;"></div>
 

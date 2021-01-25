@@ -61,7 +61,7 @@
 				
 				 
 				<div class="card_store_img" >
-					<div><img src="best-re-img5.jpg"></div>
+					<div><img src="./resources/img/best-re-img5.jpg"></div>
 				</div>
 				
 				

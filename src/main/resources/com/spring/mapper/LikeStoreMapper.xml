@@ -5,8 +5,14 @@
 <mapper namespace="com.spring.mapper.LikeStoreMapper">
 
 	<select id="getLikeStores" parameterType="String" resultType="LikeStoreVO">
-		select rg.thumbnail,rg.s_name,rg.s_addr,rg.s_hour,rg.s_phone
-		from shop_reg rg,like_store ls
-		where rg.s_num=ls.s_num and ls.u_id=#{u_id}
+		select  rg.thumbnail
+			   ,rg.s_name
+			   ,rg.s_addr
+			   ,rg.s_hour
+			   ,rg.s_phone
+		  from  shop_reg rg
+			   ,like_store ls
+		where rg.s_num=ls.s_num 
+		   and ls.u_id=#{u_id}
 	</select>
 </mapper>

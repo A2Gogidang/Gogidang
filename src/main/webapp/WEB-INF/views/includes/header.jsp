@@ -114,13 +114,13 @@
                             </div>
                             <div class="sidebar__item">
                             <!--style="color: black"-->
-                                <h4><ul><a href="#" >가게 검색</a></ul></h4>
+                                <h4><ul><a href="./storeList.st" >가게 검색</a></ul></h4>
                             </div>
                             <div class="sidebar__item">
-                                <h4><ul><a href="#">후기 검색</a></ul></h4>
+                                <h4><ul><a href="./reviewList.re">후기 검색</a></ul></h4>
                             </div>
                             <div class="sidebar__item">
-                                <h4><ul><a href="#">마이 페이지</a></ul></h4>
+                                <h4><ul><a href="./updateList.me">마이 페이지</a></ul></h4>
                             </div>
                             <div class="sidebar__item">
                                 <h4><ul><a href="#">예약 현황</a></ul></h4>
@@ -141,7 +141,6 @@
                            
                         <!--</div>-->
                 	</div>
-                </input>
             </div>   
             <div class="hero__search__form">
                 <form action="#">
@@ -149,10 +148,11 @@
                         지역
                         <span class="arrow_carrot-down"></span>
                     </div>
-                    <input type="text" placeholder="식당검색하기 GO" >
+                    <input type="text" placeholder="식당검색하기 GO" />
                     <button type="submit" class="site-btn ">검색</button>
                 </form>
             </div>
         </div>
+    </div>
     </header>
     <!-- Header Section End --> 

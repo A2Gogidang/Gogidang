@@ -33,6 +33,7 @@ import com.spring.gogidang.service.MemberService;
 import com.spring.gogidang.service.ReviewService;
 import com.spring.gogidang.service.StoreService;
 
+
 /*
  * main.me
  * 
@@ -184,6 +185,17 @@ public class MemberController {
 		return str;
 	}
 	
+	/*
+	//soobin start
+	@RequestMapping(value="/kakaologin.me", produces="application/text; charset=utf8")
+	@ResponseBody
+	public void kakaologin(String kakaoinfo, HttpSession session){
+	
+		System.out.println(kakaoinfo);
+	}
+	//soobin end
+	*/
+	
 	// 인증메일 전송 및 인증키 session 저장
 	@RequestMapping(value="/checkemail.bo", produces="application/text; charset=utf8")
 	@ResponseBody
@@ -286,5 +298,11 @@ public class MemberController {
 		}
 		
 	}
+	
+	
+	
+	
+	
+	
 	
 }
