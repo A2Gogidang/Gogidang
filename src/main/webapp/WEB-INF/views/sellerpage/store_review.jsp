@@ -5,6 +5,7 @@
 <%@ page import="javax.naming.*"%>
 <%@ page import="java.util.*"%>
 <%@include file="../includes/header.jsp"%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/store_reviewStyle.css" type="text/css">
 <%
 	ArrayList<SRReviewVO> srReviewList = (ArrayList<SRReviewVO>)request.getAttribute("srReviewList");
 
@@ -28,21 +29,23 @@
     </section>
     <!--네비게이션바 사용 끝-->
     <!-- Hero Section End -->
-<table border=1>
-	<thead>		
-	<tr><th colspan="7">리뷰 게시판</th></tr>
-	<tr>
-		<th>글번호</th>
-		<th>글제목</th>
-		<th>작성자</th>
-		<th>글내용 </th>
-		<th>리뷰사진</th>
-		<th>등록일자</th>
-		<th>별점</th>
-	</tr>
-	</thead>
-	<tbody>
-
+<h3 align="center">리뷰 관리</h3>
+  	 <hr/>
+   		<div class="container">
+	   	<table class="table table-hover">
+	     <thead>
+	      	<tr align=center>
+				<th>글번호</th>
+				<th>글제목</th>
+				<th>작성자</th>
+				<th>글내용 </th>
+				<th>리뷰사진</th>
+				<th>등록일자</th>
+				<th>별점</th>
+				<th>답변하기</th>
+			</tr>
+		 </thead>
+     	 <tbody class="text-center">
 	<%
 	
 	for(int i = 0; i < srReviewList.size(); i++){ 
@@ -58,12 +61,12 @@
 		<td><span name="photo1" type="text" /><%=vo.getPhoto1() %></td>
 		<td><span name="review_date" type="text" /><%=vo.getReview_date() %></td>
 		<td><span name="star" type="text" /><%=vo.getStar() %></td>
-	</tr>
+	
 		<%
 		if(vo.getRe_content() == null || vo.getRe_content() == ""){
 		%>
-	<tr>
-		<td colspan="7"><a href="replyReviewInputForm.bo?Review_num=<%=vo.getReview_num()%>">답변하기</a></td>
+	
+		<td colspan="8"><a href="replyReviewInputForm.bo?Review_num=<%=vo.getReview_num()%>">답변하기</a></td>
 	</tr>
 		<%
 		}else{
@@ -85,5 +88,6 @@
 	%>
 	</tbody>
 </table>
-</center>
+   </div>
+
 <%@include file="../includes/footer.jsp"%>

@@ -8,12 +8,12 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/updateStyle.css" type="text/css">
   
 <%
-	StoreVO storevo = (StoreVO)session.getAttribute("StoreVO");
-	
+   StoreVO storevo = (StoreVO)session.getAttribute("StoreVO");
 %>
     <!--네비게이션바 사용 시작-->
-    <%if(memberVO.getSeller_key() == 0  ){ %>
-	   <section class="hero">
+    <%if(memberVO.getSeller_key() == 0){ %>
+      <section class="hero">
+
         <div class="container">
             <div class="hero__item__box2"></div>
                     <div class="EventNav">
@@ -29,7 +29,7 @@
     </section>
 <%
 }else{ 
-	if(storevo == null || storevo.getConfirm() == 0 || storevo.getS_num() == 0 ){
+   if(storevo == null || storevo.getConfirm() == 0 || storevo.getS_num() == 0 ){
 %>
  <section class="hero">
         <div class="container">
@@ -41,10 +41,10 @@
                         </ul>
                     </div>   
             </div>   
-        </div>  
-  </section>
+        </div>
+        </section>  
 <%
-	}else{
+   }else{
 %>
     <section class="hero">
         <div class="container">
@@ -62,10 +62,11 @@
         </div>
     </section>
 <%
-	} 
+   } 
 }
 %>
     <!--네비게이션바 사용 끝-->
+
     <!-- Hero Section End -->
   
 	<div class="container" id="update">
@@ -78,46 +79,46 @@
          		<form name="seller_info_form" action="./updateForm.me" method="post">
          			<div class="id_input_box">
          				<ts>아이디</ts>
-         				<td><input type="text" name="u_id" value="<%=memberVO.getU_id()%>" readonly style="font-size:13px;" /></td>
+         				<ts><input type="text" name="u_id" value="<%=memberVO.getU_id() %>" readonly style="font-size:13px;"/></ts>
          	 		</div>
          	 		
          	 		<div class="id_input_box">
          				<ts>비밀번호</ts>
-         				<td><input type="password" name="u_pw" value="<%=memberVO.getU_pw()%>" readonly style="font-size:13px;"/></td>
+         				<ts><input type="password" name="u_pw" value="<%=memberVO.getU_pw()%>" readonly style="font-size:13px;"/></ts>
          	 		</div>
          	 		
          	 		<div class="id_input_box">
          				<ts>이름</ts>
-         				<td><input type="text" name="u_name" value="<%=memberVO.getU_name()%>" readonly style="font-size:13px;"/></td>
+         				<ts><input type="text" name="u_name" value="<%=memberVO.getU_name()%>" readonly style="font-size:13px;"/></ts>
          	 		</div>
          	 		
          	 		<div class="id_input_box">
          				<ts>닉네임</ts>
-         				<td><input type="text" name="u_nick" value="<%=memberVO.getU_nick()%>" readonly style="font-size:13px;"/></td>
+         				<ts><input type="text" name="u_nick" value="<%=memberVO.getU_nick()%>" readonly style="font-size:13px;"/></ts>
          	 		</div>
          	 		
          	 		<div class="id_input_box">
          				<ts>생년월일</ts>
-         				<td><input type="text" name="u_birth" value="<%=memberVO.getU_birth()%>" readonly style="font-size:13px;"/></td>
+         				<ts><input type="text" name="u_birth" value="<%=memberVO.getU_birth()%>" readonly style="font-size:13px;"/></ts>
          	 		</div>
          	 		
          	 		<div class="id_input_box">
          				<ts>주소</ts>
-         				<td><input type="text" name="u_addr" value="<%=memberVO.getU_addr()%>" readonly style="font-size:13px;"/></td>
+         				<ts><input type="text" name="u_addr" value="<%=memberVO.getU_addr()%>" readonly style="font-size:13px;"/></ts>
          	 		</div>
-         	 		
-         	 		<div class="id_input_box">
-         				<ts>이메일 주소</ts>
-         				<td><input type="text" name="u_email" value="<%=memberVO.getU_email()%>" readonly style="font-size:13px;"/></td>
-         	 		</div>
-         	 		
-         	 		<div class="id_input_box">
-         				<ts>핸드폰 번호</ts>
-         				<td><input type="text" name="u_phone" value="<%=memberVO.getU_phone()%>" readonly style="font-size:13px;"/></td>
-         	 		</div>
+         		
+         			<div class="id_input_box">
+					<ts>이메일 주소</ts>
+					<ts><input type="text" name="u_email" value="<%=memberVO.getU_email()%>" readonly style="font-size:13px;"/></ts>
+					</div>
+					
+					<div class="id_input_box">
+					<ts>핸드폰 번호</ts>
+					<ts><input type="text" name="u_phone" value="<%=memberVO.getU_phone()%>" readonly style="font-size:13px;"/></ts>
+					</div>
 				
 					<div class="join_btn">
-	         	 	<button  class="btn-jj btn-lg btn-block btn-success"> 수정하러 가기</button>
+	         	 	<button  class="btn-jj btn-lg btn-block btn-success"> 수정하기</button>
 	         	 	</div>
 	         	 	
 					<!-- 

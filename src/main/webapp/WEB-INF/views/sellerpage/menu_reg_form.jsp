@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@include file="../includes/header.jsp"%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/menu_regStyle.css" type="text/css">
 
 <%
 	StoreVO vo = (StoreVO)request.getAttribute("StoreVO");
@@ -25,9 +26,7 @@
 </section>
     
 <script type="text/javascript">
-
 var str,i,ch ="";
-
 function check_input() {
 	
 	if(document.menuForm.price.value=="") {
@@ -54,9 +53,7 @@ function check_input() {
 	
 	str = document.menuForm.menu_name.value;
 	var regExp = /,/gi;
-
 	var str2 = str.match(regExp);
-
 	if( str2.length > 0) {
         alert("한가지 종류만 선택해 주세요!!!");
         document.menuForm.menu_name.focus();
@@ -72,20 +69,21 @@ function check_input() {
 	crossorigin="anonymous">
 </script>
 
-<form name="menuForm" id="menuForm" action="./menuProcess.mn" method="post" enctype="multipart/form-data">
-	<input type="hidden" name = "s_num" value=<%=vo.getS_num() %>>
-	<input type="hidden" name = "u_id" value=<%=vo.getU_id() %>>
-	<center>
-		<table border=1>
-			<tr>
-				<td colspan="2" align=center>
-					<b><font size=5>상품등록</font></b>
-				</td>
-			</tr>
+
+
+<div class="container" id="menu_reg">
+		<div class="row justify-content-center">
+        <div class="col-lg-8">
+        	<div class="menu_reg">
+        		<h3>상품등록</h3>
+        		
+			<form name="menuForm" id="menuForm" action="./menuProcess.mn" method="post" enctype="multipart/form-data">
+				<input type="hidden" name = "s_num" value=<%=vo.getS_num() %>>
+				<input type="hidden" name = "u_id" value=<%=vo.getU_id() %>>
 			
-			<tr>
-				<td>상품이름 : </td>
-				<td>
+			<div class="id_input_box">
+		        <ts>상품이름 </ts>	         		
+		         <td>
 					<select name="menu_name"> 
 						<option value="">상품을 선택하세요</option>
 						<option value="안심">안심</option>
@@ -97,55 +95,66 @@ function check_input() {
 					    <option value="사태">사태</option>
 					</select>
 				</td>
-				<td>기타<input name="menu_name" type="text" /></td>
-			</tr>
+	        </div>
+	        
+	        <div class="id_input_box">
+		        <ts>기타</ts>
+		        <td><input name="menu_name" type="text" /></td>
+	        </div>
+	         
+	         <div class="id_input_box_ss">
+		        <ts>상품사진</ts>
+		        <td><img id="menu_img2" src="" width="350px;" height="200px;"/></td>
+		     </div>
+		     <div class="id_input_box">
+		     	<ts> </ts>        		
+		        <td><input id="menu_img1" name="file" type="file" width="350px;" height="200px;" multiple="multiple" /></td>
+		     </div>   
 			
-			<tr>
-				<td>상품 사진 : </td>
-				<td>
-					<input id="menu_img1" name="file" type="file" multiple="multiple" />
-					<img id="menu_img2" src="" />
+	      
+	        
+	        <div class="id_input_box">
+		        <ts>품목</ts>
+		        <td>
+			        <select name="meat"> 
+						<option value="">종류를 선택하세요</option>
+						<option value="1">소</option>
+						<option value="0">돼지</option>
+					</select>
 				</td>
-			</tr>
-			
-			<tr>
-				<td>고기 종류 : </td>  
-				<td><select name="meat"> 
-				<option value="">종류를 선택하세요</option>
-				<option value="1">소</option>
-				<option value="0">돼지</option>
-				</select></td>
-			</tr>
-			
-			<tr>
-				<td>상품 금액 : </td> 
-				<td><input name="price" type="text" /></td>
-			</tr>
-			
-			<tr>
-				<td>상품 그램 : </td> 
-				<td><input name="gram" type="text" /></td>
-			</tr>
-			
-			<tr>
-				<td>상품 등급 : </td>  
-				<td><select name="grade"> 
-				<option value="">등급을 선택하세요</option>
-				<option value="0">일반</option>
-				<option value="1">1등급</option>
-				<option value="2">특등급</option>
-				</select></td>
-			</tr>
-			
-			<tr>
-				<td>
-					<input type="button" value="저장" onclick="fnAction('menuProcess.mn')" multiple />
-					<a href="javascript:menuForm.reset()">다시 입력</a>
+	        </div>
+	        
+	        <div class="id_input_box">
+		        <ts>상품 금액</ts>
+		        <td><input name="price" type="text" /></td>
+	        </div>
+	        
+	         <div class="id_input_box">
+		        <ts>상품 그램</ts>
+		        <td><input name="gram" type="text" /></td>
+	        </div>
+	        
+	         <div class="id_input_box">
+		        <ts>상품 등급</ts>
+		        <td>
+			        <select name="grade"> 
+						<option value="">등급을 선택하세요</option>
+						<option value="0">일반</option>
+						<option value="1">1등급</option>
+						<option value="2">특등급</option>
+					</select>
 				</td>
-			</tr>
-		</table>
-	</center>
-</form>
+	        </div>
+	        
+	        <div class="join_btn">		
+	        		<button type="submit" class="btn-jj btn-lg btn-block btn-success" onclick="fnAction('menuProcess.mn')" multiple  >저장</button>
+					<button type="reset" class="btn-j btn-lg btn-block btn-success" >다시 작성</button>
+				    
+					<!-- <a href="./storeUpdateForm.st">수정</a> -->			
+			</div>
+		  </form>
+	
+		
              
 <script>
 	function fnAction(url1) {
@@ -171,7 +180,15 @@ function check_input() {
 	
 		MenuVO menuVO = (MenuVO)menuList.get(i);
 	%>
-		<!-- for 문으로 저장된 리스트 출력해주기 -->
+		<!-- for 문으로 저장된 리스트 출력해주기 
+		<div class="menu_box">
+			<font size=5>등록 내역</font>
+			<div class="menu_reg">
+				
+			</div>
+		</div>
+		-->
+		<div class="menu_box">
 		<table border=1>
 			<tr>
 				<td colspan="2" align=center>
@@ -203,4 +220,10 @@ function check_input() {
 <%}else{ %>
 	<h1>상품을 추가해주세요.</h1>
 <%} %>
+</div>
+
+	</div><!-- store_reg_form -->
+		</div><!-- col-lg-8 -->.
+	</div><!-- row justify-content-center -->
+</div><!-- container id="join" -->
 <%@include file="../includes/footer.jsp"%>
