@@ -147,6 +147,8 @@
 								} else {
 								%>
 									<h6><%=u_id %>님!</h6>
+									<br>
+									<a href="./updateList.me">마이페이지</a>
 								<%
 								} 
 								%>		
