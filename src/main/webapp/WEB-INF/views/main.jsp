@@ -139,9 +139,10 @@
 								} else if (seller_key == 2) {
 								%>
 									<h3>관리자입니다.</h3>
+									<a href="./adminmypage.me">관리자페이지</a>
+									<br>
 									<a href="./storeList.st">전체 가게 리스트 보기</a>
 									<br>
-									<a href="./storeWaitListWithPaging.st">승인 대기 중인 가게 리스트 확인</a>
 								<%
 								} else {
 								%>
@@ -186,10 +187,10 @@
                             </div>
                             <div class="sidebar__item">
                             <!--style="color: black"-->
-                                <h4><ul><a href="#" >가게 검색</a></ul></h4>
+                                <h4><ul><a href="./storeList.st" >가게 검색</a></ul></h4>
                             </div>
                             <div class="sidebar__item">
-                                <h4><ul><a href="#">후기 검색</a></ul></h4>
+                                <h4><ul><a href="./reviewList.re">후기 검색</a></ul></h4>
                             </div>
                             <div class="sidebar__item">
                                 <h4><ul><a href="./updateList.me">마이 페이지</a></ul></h4>
@@ -236,7 +237,7 @@
                 <ul>
                     <li><a href="./storeList.st">가게 리스트</a></li>
                     <li><a href="./reviewListWithPaging.re">리뷰 전체</a></li>
-                    <li><a href="#">공지사항</a></li>
+                    <li><a href="./notice.ev">공지사항</a></li>
                 </ul>
             </div><!-- EventNav -->
    		</div><!-- container -->
@@ -307,7 +308,7 @@
 	  					
 			      		<div class="col-lg-">
 	                    	<div class="categories__item set-bg" data-setbg="resources/img/store/<%=vo.getThumbnail() %>">
-	                        	<h5><a href="./store"><%=vo.getS_name() %></a></h5>
+	                        	<h5><a href="./storeInfo.st?s_num=<%=vo.getS_num() %>"><%=vo.getS_name() %></a></h5>
 	                    	</div>
 	                	</div>
                 	<%} %>
@@ -335,7 +336,7 @@
             
             <!--best 리뷰-->
             <div class="row featured__filter">
-            	<%for (int i=0; i<4; i++) {
+            	<%for (int i=0; i<review_list.size(); i++) {
             		
             		ReviewVO vo = (ReviewVO) review_list.get(i);
            		%>
@@ -346,7 +347,7 @@
 	                            <ul class="featured__item__pic__hover"></ul>
 	                        </div>
 	                        <div class="featured__item__text">
-	                            <h6><a href="#"><%=vo.getTitle() %></a></h6>
+	                            <h6><a href="./reviewInfo.re?review_num=<%=vo.getReview_num() %>"><%=vo.getTitle() %></a></h6>
 	                            <i class="fal fa-smile"></i>
 	                            <h5>★ <%=vo.getStar() %></h5>
 	                        </div>

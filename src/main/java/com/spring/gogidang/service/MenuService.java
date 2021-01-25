@@ -6,9 +6,8 @@ import com.spring.gogidang.domain.MenuVO;
 
 public interface MenuService {
 
-	public ArrayList<MenuVO> getMenuList();
-	//soobin start
-	public ArrayList<MenuVO> selectMenu(MenuVO menuVO);
-	public int insertMenu(MenuVO menuVO);
-	//soobin end
+	public ArrayList<MenuVO> menuList(int s_num);
+	public void menuModify(int menu_num);
+	public void menuDelete(int menu_num);
+	public int menuRegister(MenuVO menuVO);
 }

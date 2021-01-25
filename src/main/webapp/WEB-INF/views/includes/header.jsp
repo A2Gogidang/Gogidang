@@ -11,7 +11,7 @@
 	<meta name="description" content="Ogani Template">
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>가게 전체보기</title>
+	<title>고기당</title>
 	<link rel="shortcut icon" href="cut-pig.jpg"> 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     

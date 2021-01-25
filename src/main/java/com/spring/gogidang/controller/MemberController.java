@@ -65,7 +65,7 @@ public class MemberController {
    @RequestMapping("/main.me")
    public String mainPage(Model model, HttpSession seesion) throws Exception { 
 
-      model.addAttribute("eventList", eventService.getEventList());
+      model.addAttribute("eventList", eventService.eventList());
       model.addAttribute("storeList", storeService.getList());
       model.addAttribute("reviewList", reviewService.getList());
       
@@ -154,6 +154,7 @@ public class MemberController {
 		}
 		return null;
    }
+
    
    //soobin start
   
@@ -290,5 +291,34 @@ public class MemberController {
       }
       
    }
+	@RequestMapping("/adminmypage.me")
+	public String adminmypage(Model model) {
+		return "admin/admin_mypage"; 
+	}
+	
+	@RequestMapping("/admin_notice_insert.me")
+	public String admin_notice_insert(Model model) {
+		return "admin/admin_notice_insert"; 
+		
+	}
+	
+	@RequestMapping("/admin_event_insert.me")
+	public String admin_event_insert(Model model) {
+		return "admin/admin_event_insert"; 
+		
+	}
+	
+	@RequestMapping("/admin_confirm_list.me")
+	public String admin_confirm_list(Model model) {
+		return "admin/admin_confirm_list"; 
+		
+	}
+	
+	@RequestMapping("/admin_confirm_ch.me")
+	public String admin_confirm_ch(Model model) {
+		return "admin/admin_confirm_ch"; 
+		
+	}
+	
    
 }

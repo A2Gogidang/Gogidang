@@ -17,27 +17,31 @@ public class MenuServiceImpl implements MenuService {
 	private SqlSession sqlSession;
 
 	@Override
-	public ArrayList<MenuVO> getMenuList() {
+	public ArrayList<MenuVO> menuList(int s_num) {
 		MenuMapper menuMapper = sqlSession.getMapper(MenuMapper.class);
 		ArrayList<MenuVO> menuList = new ArrayList<MenuVO>();
-		menuList = menuMapper.getMenues();
+		menuList = menuMapper.listByNum(s_num);
+		
 		return menuList;
-	}
-	//soobin start	
-	@Override
-	public ArrayList<MenuVO> selectMenu(MenuVO menuVO) {
-		MenuMapper menuMapper = sqlSession.getMapper(MenuMapper.class);
-		ArrayList<MenuVO> menuSelectList = new ArrayList<MenuVO>();
-		menuSelectList = menuMapper.selectMenu(menuVO);
-		return menuSelectList;
 	}
 	
 	@Override
-	public int insertMenu(MenuVO menuVO) {
+	public void menuModify(int menu_num) {
 		MenuMapper menuMapper = sqlSession.getMapper(MenuMapper.class);
-		int res = menuMapper.insertMenu(menuVO);
-		return res;
+		menuMapper.modifyByNum(menu_num);
 	}
-	//soobin end
+	
+	@Override
+	public void menuDelete(int menu_num) {
+		MenuMapper menuMapper = sqlSession.getMapper(MenuMapper.class);
+		menuMapper.deleteByNum(menu_num);
+	}
+	
+	@Override
+	public int menuRegister(MenuVO menuVO) {
+		MenuMapper menuMapper = sqlSession.getMapper(MenuMapper.class);
+		
+		return menuMapper.register(menuVO);
+	}
 
 }
