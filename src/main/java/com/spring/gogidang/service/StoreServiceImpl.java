@@ -141,5 +141,25 @@ public class StoreServiceImpl implements StoreService {
 	}
 	//dohyeong end
 
+	@Override
+	public List<StoreVO> getStoreListAjaxByMeat(Map<String, String[]> mapp) {
+		StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
+		
+		List<StoreVO> storelistAjax = storeMapper.getStoreListAjaxByMeat(mapp); 
+		
+		
+		return storelistAjax;
+	}
+
+	@Override
+	public List<StoreVO> getStoreListAjaxByAddr(Map<String, String[]> mapp) {
+		StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
+		
+		List<StoreVO> storelistAjax = storeMapper.getStoreListAjaxByAddr(mapp); 
+		
+		
+		return storelistAjax;
+	}
+
 
 }
