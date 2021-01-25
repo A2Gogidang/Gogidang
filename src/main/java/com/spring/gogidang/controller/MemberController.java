@@ -12,6 +12,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -26,12 +27,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.EventVO;
 import com.spring.gogidang.domain.MemberVO;
+import com.spring.gogidang.domain.PageDTO;
 import com.spring.gogidang.domain.ReviewVO;
 import com.spring.gogidang.domain.StoreVO;
 import com.spring.gogidang.service.EventService;
 import com.spring.gogidang.service.MemberService;
 import com.spring.gogidang.service.ReviewService;
 import com.spring.gogidang.service.StoreService;
+
 
 /*
  * main.me
@@ -64,7 +67,7 @@ public class MemberController {
    @RequestMapping("/main.me")
    public String mainPage(Model model, HttpSession seesion) throws Exception { 
 
-      model.addAttribute("eventList", eventService.getEventList());
+      model.addAttribute("eventList", eventService.eventList());
       model.addAttribute("storeList", storeService.getList());
       model.addAttribute("reviewList", reviewService.getList());
       
@@ -92,6 +95,7 @@ public class MemberController {
       response.setContentType("text/html; charset=utf-8");
       PrintWriter writer = response.getWriter();
       
+
       if ( vo != null && vo.getU_id() != null ) {
          
          session.setAttribute("memberVO",vo);
@@ -163,8 +167,9 @@ public class MemberController {
    }
    
    @RequestMapping("/updateList.me")
-   public String updateList() throws Exception{
-      
+   public String updateList(HttpServletRequest request) throws Exception{
+      HttpSession session = request.getSession();
+      System.out.println(session.getAttribute("StoreVO"));
       return "member/updateList";
    }
    
@@ -288,31 +293,74 @@ public class MemberController {
       }
       
    }
-	@RequestMapping("/adminmypage.bo")
+	@RequestMapping("/adminmypage.me")
 	public String adminmypage(Model model) {
-		return "mypage/admin_mypage"; 
-		
+		return "admin/admin_mypage"; 
 	}
-	@RequestMapping("/admin_notice_insert.bo")
+	
+	@RequestMapping("/admin_notice_insert.me")
 	public String admin_notice_insert(Model model) {
-		return "mypage/admin_notice_insert"; 
-		
-	}
-	@RequestMapping("/admin_event_insert.bo")
-	public String admin_event_insert(Model model) {
-		return "mypage/admin_event_insert"; 
-		
-	}
-	@RequestMapping("/admin_confirm_list.bo")
-	public String admin_confirm_list(Model model) {
-		return "mypage/admin_confirm_list"; 
-		
-	}
-	@RequestMapping("/admin_confirm_ch.bo")
-	public String admin_confirm_ch(Model model) {
-		return "mypage/admin_confirm_ch"; 
+		return "admin/admin_notice_insert"; 
 		
 	}
 	
+	/*
+	//soobin start
+	@RequestMapping(value="/kakaologin.me", produces="application/text; charset=utf8")
+	@ResponseBody
+	public void kakaologin(String kakaoinfo, HttpSession session){
+	
+		System.out.println(kakaoinfo);
+	}
+	//soobin end
+	*/
+	
+	// 인증메일 전송 및 인증키 session 저장
+//	@RequestMapping(value="/checkemail.bo", produces="application/text; charset=utf8")
+//	@ResponseBody
+//	public String SendMail(String u_email, HttpSession session){
+//		
+//		// 결과값 메세지
+//		String res = "메일 발송에 실패하였습니다";
+//		
+//		Random random = new Random();
+//		String authkey = "";
+//		
+//		for( int i=0; i < 3; i++ ) {
+//			int index = random.nextInt(25)+65;
+//			
+//			authkey +=(char)index;
+//		}
+//		
+//		int numIndex = random.nextInt(8999)+1000;
+//		authkey += numIndex;
+//		
+//		// 세션에 key 값 저장
+//		session.setAttribute("authkey", authkey);
+//  }
+
+	@RequestMapping("/admin_event_insert.me")
+	public String admin_event_insert(Model model) {
+		return "admin/admin_event_insert"; 
+		
+	}
+	
+	@RequestMapping("/admin_confirm_list.me")
+	public String admin_confirm_list(Criteria cri, Model model) {
+		model.addAttribute("list", storeService.getWaitList());
+		
+		int total = storeService.getTotal(cri);
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		
+		return "admin/admin_confirm_list"; 
+		
+	}
+	
+	@RequestMapping("/admin_confirm_ch.me")
+	public String admin_confirm_ch(@RequestParam("s_num") int s_num, Model model) {
+		model.addAttribute("storeVO", storeService.storeInfo(s_num));
+		
+		return "admin/admin_confirm_ch"; 
+	}
    
 }

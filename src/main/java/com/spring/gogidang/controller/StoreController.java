@@ -49,17 +49,6 @@ public class StoreController {
 	private ReviewService reviewService;
 	
 	/*
-	 * 전체 가게 리스트
-	 */
-	/*
-	 * @RequestMapping(value = "/storeList.st") public String getStoreList(Model
-	 * model) { ArrayList<StoreVO> storeList = storeService.getStoreList();
-	 * model.addAttribute("storeList", storeList);
-	 * 
-	 * return "store/store_list"; }
-	 */
-
-	/*
 	 * 승인대기중인 가게 리스트 보기
 	 */
 	@RequestMapping(value = "/storeWait.st")
@@ -86,9 +75,9 @@ public class StoreController {
 	 * 가게 상세 정보 보기
 	 */
 	@RequestMapping(value = "/storeInfo.st")
-	public String shopInfo(@RequestParam("s_num") int s_num, Criteria cri, Model model) {
+	public String storeInfo(@RequestParam("s_num") int s_num, Criteria cri, Model model) {
 		StoreVO vo = storeService.storeInfo(s_num);
-		ArrayList<MenuVO> menuList = menuService.getMenuList();
+		ArrayList<MenuVO> menuList = menuService.menuList(s_num);
 		List<ReviewVO> reviewList = reviewService.getListBySnWithPaing(cri, s_num);
 		
 		int total = reviewService.getTotal(cri);
@@ -220,7 +209,7 @@ public class StoreController {
 	@RequestMapping("/storeUpdate.st")
 	public String storeUpdate(StoreVO store , HttpSession session, HttpServletResponse response)throws Exception {
 
-		store.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
+		store.setU_id(((MemberVO)session.getAttribute("memberVO")).getU_id());
 
 		int res = storeService.updateStore(store);
 
@@ -244,77 +233,24 @@ public class StoreController {
 	@RequestMapping("/storeUpdateForm.st")
 	public String storeUpdateForm(StoreVO storeVO, HttpSession session) throws Exception {
 
-		storeVO.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
+		storeVO.setU_id(((MemberVO)session.getAttribute("memberVO")).getU_id());
 		StoreVO vo = storeService.selectStore(storeVO);
 
 		session.setAttribute("StoreVO",vo);
 		return "sellerpage/store_updateForm";
 	}
 
+		//판매자 가게정보
 	@RequestMapping("/storeRegForm.st")
 	public String registrationForm(StoreVO storeVO, HttpSession session) throws Exception {
-
-		storeVO.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
+		
+		//원래코드
+		storeVO.setU_id(((MemberVO)session.getAttribute("memberVO")).getU_id());
 		StoreVO vo = storeService.selectStore(storeVO);
-
+				
 		session.setAttribute("StoreVO",vo);
 		return "sellerpage/store_reg_form";
 	}
-
-	@RequestMapping("/menuRegForm.st")
-	public String menuRegForm(MenuVO menuVO, HttpSession session, HttpServletResponse response ,Model model) throws Exception {
-
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter writer = response.getWriter();
-
-		StoreVO storeVO = new StoreVO();
-		storeVO.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
-
-		StoreVO vo = storeService.selectStore(storeVO);
-		
-		//사업자 번호 대신 가입승인 컬럼 가지고 비교해야됨 나중에 수정하기
-		if( vo == null || vo.getS_num() == 0 || vo.getConfirm() == 0) {
-			
-			writer.write("<script>alert('가게정보 등록 먼저 하세요!!!!');" +"location.href = './storeRegForm.st';</script>");
-
-		}else {
-			
-			menuVO.setS_num(vo.getS_num());			
-			ArrayList<MenuVO> menuSelectList  = new ArrayList<MenuVO>();
-			menuSelectList = menuService.selectMenu(menuVO);
-
-			model.addAttribute("menuSelectList",menuSelectList);
-			model.addAttribute("StoreVO",vo);
-
-			return "sellerpage/menu_reg_form";
-		}
-		return null;
-	}
-
-	@RequestMapping("/menuProcess.st")
-	public String menuProcess(MenuVO menuVO, HttpSession session , HttpServletResponse response) throws Exception {
-
-		int i = 0;
-		menuVO.setMenu_num(i++);
-
-		int res = menuService.insertMenu(menuVO);
-
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter writer = response.getWriter();
-
-		if (res==1) {
-
-			writer.write("<script>alert('메뉴등록 성공!!'); location.href='./menuRegForm.st';</script>");
-		}
-		else {
-			writer.write("<script>alert('가게등록 실패!!'); location.href='./menuRegForm.st';</script>");
-		}
-
-		return null;
-	}
-
 	//soobin end
 
 /*

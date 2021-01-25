@@ -87,7 +87,7 @@ public class ReviewController {
 	public String reviewInfo(@RequestParam("review_num") int review_num, Model model) {
 		model.addAttribute("review", reviewService.getReview(review_num));
 		
-		return "/review/review_info";
+		return "review/review_info";
 	}
 	
 	// file upload
@@ -124,7 +124,7 @@ public class ReviewController {
 		System.out.println(fileList.size());
 		
 //		String uploadPath = "/Users/taehyun/Documents/Spring_Source/Gogidang/src/main/webapp/resources/img/up/";
-		String uploadPath = request.getServletContext().getRealPath("/resources/img/up/");
+		String uploadPath = request.getServletContext().getRealPath("/resources/img/review/");
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("review/review_list");

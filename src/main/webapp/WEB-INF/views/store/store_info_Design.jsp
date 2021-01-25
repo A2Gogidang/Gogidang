@@ -18,15 +18,15 @@
 	MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
 	String u_id = "";
 	int seller_key;
-	if(mvo != null) {
+	if (mvo != null) {
 		u_id = mvo.getU_id();
 		seller_key = mvo.getSeller_key();
 	} else {
 		seller_key = 0;
 	}
-	
+
 	StoreVO svo = (StoreVO) request.getAttribute("storeVO");
-	PageDTO  pageMaker = (PageDTO) request.getAttribute("pageMaker");
+	PageDTO pageMaker = (PageDTO) request.getAttribute("pageMaker");
 	ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>) request.getAttribute("menuList");
 	ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>) request.getAttribute("reviewList");
 %>
@@ -142,7 +142,7 @@
 				<div class="card bg-default">
 					<div class="CardHeader" style="color: #ffffff;">
 						<h3 class="card-header" style="text-align: center;">
-							<%=svo.getS_name() %>
+							<%=svo.getS_name()%>
 							<button type="button" id="show" class="btn btn-custom pull-right"
 								aria-label="Left Align">
 								<p>위치</p>
@@ -153,7 +153,7 @@
 						<p class="card-text"
 							style="display: flex; align-items: center; justify-content: center;">
 							<img class="img-responsive"
-								src="resources/img/store/<%=svo.getThumbnail() %>" alt=''
+								src="resources/img/store/<%=svo.getThumbnail()%>" alt=''
 								/ width="350px ">
 						</p>
 					</div>
@@ -164,19 +164,19 @@
 								<h5>
 									<a href="#"><img
 										src="resources/DetailStore/Icon/location.ico" width="40px"
-										height="40px;" alt='' /> <%=svo.getS_addr() %></a>
+										height="40px;" alt='' /> <%=svo.getS_addr()%></a>
 								</h5>
 							</ul>
 							<ul>
 								<h5>
 									<a href="#"><img src="resources/DetailStore/Icon/time.ico"
-										width="40px" height="42px;" alt='' /> <%=svo.getS_hour() %></a>
+										width="40px" height="42px;" alt='' /> <%=svo.getS_hour()%></a>
 								</h5>
 							</ul>
 							<ul>
 								<h5>
 									<a href="#"><img src="resources/DetailStore/Icon/call.ico"
-										width="40px" height="40px;" alt='' /> <%=svo.getS_phone() %></a>
+										width="40px" height="40px;" alt='' /> <%=svo.getS_phone()%></a>
 								</h5>
 							</ul>
 							<ul>
@@ -299,11 +299,29 @@
 					<div class="section-title">
 						<h2 style="margin-top: 30px;">가격정보</h2>
 					</div>
+					<div class="row justify-content-center" style="margin-top: 20px;">
+						<%
+							for (int i = 0; i < review_List.size(); i++) {
 
-
-					<img src="resources/img/price_info.png"> <img
-						src="resources/img/PriceInfo_Detail.png">
-
+								ReviewVO vo = (ReviewVO) review_List.get(i);
+						%>
+						<!-- Portfolio Item 1-->
+						<div class="col-md-6 col-lg-4 mb-5">
+							<div class="BestReview-item mx-auto" data-toggle="modal"
+								data-target="#BestReviewModal1">
+								<div
+									class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+									<div
+										class="BestReview-item-caption-content text-center text-white"></div>
+								</div>
+								<a href="./reviewInfo.re?review_num=<%=vo.getReview_num()%>"><img
+									class="img-fluid" src="resources//DetailStore/Review/추천리뷰1.png" /></a>
+							</div>
+						</div>
+						<%
+							}
+						%>
+					</div>
 				</div>
 			</section>
 		</div>
@@ -348,8 +366,8 @@
 				</div>
 			</section>
 		</div>
-		<!-- fade 클래스는 선택적인 사항으로 트랜지션(transition)효과가 있다.
-<!-- in 클래스는 fade 클래스를 선언하여 트랜지션효과를 사용할 때 in은 active와 선택되어 있는 탭 영역의 설정이다. -->
+		<!-- fade 클래스는 선택적인 사항으로 트랜지션(transition)효과가 있다. -->
+		<!-- in 클래스는 fade 클래스를 선언하여 트랜지션효과를 사용할 때 in은 active와 선택되어 있는 탭 영역의 설정이다. -->
 		<div class="tab-pane fade" id="BestReview">
 			<section class="page-section BestReview" id="BestReview">
 				<br>
@@ -364,24 +382,26 @@
 					</div>
 					<!-- Portfolio Grid Items-->
 					<div class="row justify-content-center" style="margin-top: 20px;">
-						<%for (int i=0; i<review_List.size(); i++) {
+						<%
+							for (int i = 0; i < review_List.size(); i++) {
 
-            				ReviewVO vo = (ReviewVO) review_List.get(i);
-           				%>
+								ReviewVO vo = (ReviewVO) review_List.get(i);
+						%>
 						<!-- Portfolio Item 1-->
 						<div class="col-md-6 col-lg-4 mb-5">
 							<div class="BestReview-item mx-auto" data-toggle="modal"
 								data-target="#BestReviewModal1">
-								<div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+								<div
+									class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
 									<div
 										class="BestReview-item-caption-content text-center text-white"></div>
 								</div>
-								<img class="img-fluid"
-									src="resources//DetailStore/Review/추천리뷰1.png" alt="" />
+								<a href="./reviewInfo.re?review_num=<%=vo.getReview_num()%>"><img
+									class="img-fluid" src="resources//DetailStore/Review/추천리뷰1.png" /></a>
 							</div>
 						</div>
 						<%
-						}
+							}
 						%>
 					</div>
 				</div>

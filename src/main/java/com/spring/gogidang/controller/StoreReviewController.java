@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.spring.gogidang.domain.EventVO;
 import com.spring.gogidang.domain.MemberVO;
 import com.spring.gogidang.domain.ReviewReplyVO;
 import com.spring.gogidang.domain.SRReviewVO;
@@ -89,4 +90,5 @@ public class StoreReviewController {
 		}
 		return null;
 	}
+	
 }

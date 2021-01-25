@@ -10,9 +10,10 @@
   
 <%
 	StoreVO storevo = (StoreVO)session.getAttribute("StoreVO");
+
 %>
-    <!--네비게이션바 사용 시작-->
-    <!-- 일반고객 -->
+   <!--네비게이션바 사용 시작-->
+   <!-- 일반고객 -->
     <%if(memberVO.getSeller_key() == 0 ){ %>
 	   <section class="hero">
         <div class="container">
@@ -23,6 +24,7 @@
                             <li><a href="./bookingList.bo?u_id=<%=memberVO.getU_id()%>">내예약확인</a>
                             <li><a href="./likeStoreList.li?u_id=<%=memberVO.getU_id()%>">찜목록</a></li>
                             <li><a href="./reviewList.re?u_id=<%=memberVO.getU_id()%>">내가 작성한 후기</a></li>
+                            <li><a href="./cartList.ct">장바구니</a></li>
                         </ul>
                     </div>   
             </div>   
@@ -66,7 +68,7 @@
 	} 
 }
 %>
-    <!--네비게이션바 사용 끝-->
+   <!--네비게이션바 사용 끝-->
     <!-- Hero Section End -->
 		 <!-- Hero Section End -->
 	

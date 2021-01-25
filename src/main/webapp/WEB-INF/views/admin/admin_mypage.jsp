@@ -5,15 +5,14 @@
 <%@include file="../includes/header.jsp"%>
 
     <!--네비게이션바 사용 시작-->
-	   <section class="hero">
+   <section class="hero">
         <div class="container">
             <div class="hero__item__box2"></div>
                     <div class="EventNav">
                         <ul>
-                            <li><a href="">내정보</a></li>
-                            <li><a href="">공지사항 등록</a></li>
-                            <li><a href="">이벤트 등록</a></li>
-                            <li><a href="">가게 승인</a></li>
+                            <li><a href="./admin_notice_insert.me">공지사항 등록</a></li>
+                            <li><a href="./admin_event_insert.me">이벤트 등록</a></li>
+                            <li><a href="./admin_confirm_list.me">가게 승인</a></li>
                         </ul>
                     </div>   
             </div>   
