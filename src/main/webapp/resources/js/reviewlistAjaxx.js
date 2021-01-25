@@ -1,5 +1,4 @@
-	
-	var s_addr = [];
+var s_addr = [];
 	var meat =[];   
 	
 	$('#checkBtn').click(function() {
@@ -79,51 +78,3 @@
 				}//error 끝
 			}); //ajax끝
 		};//input:checked끝
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	$('[name=f_Acheck]').change(function(){	
-//		
-//		s_addr = [];
-//		
-//		if($('input[name=f_Acheck]').is(":checked") == true){
-//			
-//			$('input[name=f_Acheck]:checked').each(function(){
-//				s_addr.push($(this).val());
-//			});
-//			alert(s_addr);
-//			getlist(s_addr,meat);
-//		} else {
-//			alert("체크를 해주세요!");
-//		}
-//	});	
-//	
-//
-//	$('[name=f_Mcheck]').change(function(){	
-//			
-//			meat = []
-//			
-//			if($('input[name=f_Mcheck]').is(":checked") == true){
-//				console.log (meat);
-//					$('input[name=f_Mcheck]:checked').each(function(){
-//						meat.push($(this).val());
-//					});
-//				alert(meat);
-//				getlist(s_addr,meat);
-//			} else {
-//				alert("체크를 해주세요!");
-//			};
-//		}); 
-	
-	
-	
-			
-		
-			

@@ -34,8 +34,6 @@ import com.spring.gogidang.service.MenuService;
 import com.spring.gogidang.service.ReviewService;
 import com.spring.gogidang.service.StoreService;
 
-
-
 @Controller
 public class StoreController {
 
@@ -88,7 +86,7 @@ public class StoreController {
 		model.addAttribute("reviewList",reviewList);
 
 
-		return "store/store_info";
+		return "store/store_info_Design";
 	}
 
 	/*
@@ -282,7 +280,15 @@ public class StoreController {
 	// dohyeong start
 	@RequestMapping(value = "/storeList.st")
 	public String getStoreList(Model model) {
-		ArrayList<StoreVO> storeList = storeService.getStoreList();
+		ArrayList<StoreVO> storeList = storeService.getList();
+//		ArrayList<StoreVO> storeList = storeService.getStoreList();
+		
+		for (int i=0; i<storeList.size(); i++) {
+			StoreVO svo = storeList.get(i);
+			String addr = svo.getS_addr().substring(0, 2);
+			svo.setS_addr(addr);
+		}
+		
 		model.addAttribute("storeList", storeList);
 		
 		return "store/store_list";
@@ -290,26 +296,41 @@ public class StoreController {
 	
 	@RequestMapping(value="/storelist_ajax.li", produces="application/json; charset=utf-8")
 	@ResponseBody 
-	 public List<StoreVO> getStoreListAjax( @RequestBody Map<String, String[]> map) { 
+	public List<StoreVO> getStoreListAjax( @RequestBody Map<String, String[]> map) {
+		
 		String[] s_addr = map.get("s_addr");
-		  for(String no : s_addr) {
-			  System.out.println("컨트롤러" + no);
-		  }
-		  String[] meat = map.get("meat");
-		  for(String no : meat) {
-			  System.out.println("컨트롤러 " + no);
-		  }
-		  Map<String, String[]> mapp = new HashMap<String, String[]>();
-			mapp.put("s_addr",s_addr);
-			mapp.put("meat", meat);
-		  /*List<StoreVO> list = storeService.getStoreListAjax(s_addr, meat);
-		  System.out.println("list" + list);
-		 */
-		  List<StoreVO> list = storeService.getStoreListAjax(mapp);
-		  StoreVO vo = (StoreVO) list.get(0);
+		for(String no : s_addr) {
+			System.out.println("컨트롤러" + no);
+		}
 		  
-		  System.out.println(vo.getThumbnail());
-		  return list; 
+		String[] meat = map.get("meat");
+		for(String no : meat) {
+			System.out.println("컨트롤러 " + no);
+		}
+		
+		Map<String, String[]> mapp = new HashMap<String, String[]>();
+		
+		if(s_addr.length > 0 && meat.length > 0) {
+			mapp.put("s_addr",s_addr);
+			mapp.put("meat", meat);		
+			List<StoreVO> list = storeService.getStoreListAjax(mapp);
+			
+			return list;
+			
+		} else if(s_addr.length == 0 && meat.length>0) {
+			mapp.put("meat", meat);		
+			List<StoreVO> list = storeService.getStoreListAjaxByMeat(mapp);
+			
+			return list;
+		} else if (s_addr.length > 0 && meat.length==0) {
+			mapp.put("s_addr",s_addr);
+			List<StoreVO> list = storeService.getStoreListAjaxByAddr(mapp);
+			
+			return list;
+		} else {
+			
+			return null;
+		}
 	  }
 	// dogyeong end
 	

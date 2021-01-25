@@ -31,4 +31,6 @@ public interface StoreMapper {
 	// dohyeong
 	public ArrayList<StoreVO> getStoreList();
 	public List<StoreVO> getStoreListAjax(Map<String, String[]> mapp);
+	public List<StoreVO> getStoreListAjaxByMeat(Map<String, String[]> mapp);
+	public List<StoreVO> getStoreListAjaxByAddr(Map<String, String[]> mapp);
 }
