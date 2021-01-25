@@ -47,14 +47,7 @@
 			<textarea name="content" cols="67" rows="15"></textarea>
 		</td>
 	</tr>
-	<tr>
-		<td style="font-family:돋음; font-size:12">
-			<div align="center">비밀번호</div>
-		</td>
-		<td>
-			<input type="password" name="notice_password" cols="10" rows="15" />
-		</td>
-	</tr>
+	
 	<tr bgcolor="cccccc">
 		<td colspan="2" style="height:1px;">
 		</td>
