@@ -5,14 +5,19 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.PageDTO;
 import com.spring.gogidang.domain.ReviewVO;
+import com.spring.gogidang.domain.StoreVO;
 import com.spring.gogidang.service.ReviewService;
 import com.spring.gogidang.service.StoreService;
 
@@ -41,7 +47,8 @@ public class ReviewController {
 		
 		model.addAttribute("reviewList", reviewService.getList());
 		
-		return "review/review_list";
+		return "review/review_list_grid";
+//		return "review/review_list";
 	}
 	
 	@RequestMapping("/reviewListWithPaging.re")
@@ -52,7 +59,8 @@ public class ReviewController {
 		int total = reviewService.getTotal(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		
-		return "review/review_list";
+		return "review/review_list_grid";
+//		return "review/review_list";
 	}
 	
 	@RequestMapping("/reviewListByIdWithPaging.re")
@@ -171,6 +179,83 @@ public class ReviewController {
 		
 		return "redirect:main.me";
 	}
+	
+	@RequestMapping(value="/reviewlist_ajax.re", produces="application/json; charset=utf-8")
+	@ResponseBody 
+	public List<ReviewVO> getStoreListAjax( @RequestBody Map<String, String[]> map) {
+		
+		String[] s_addr = map.get("s_addr");
+		for(String no : s_addr) {
+			System.out.println("review 컨트롤러 addr : " + no);
+		}
+		  
+		String[] meat = map.get("meat");
+		for(String no : meat) {
+			System.out.println("review 컨트롤러 meat : " + no);
+		}
+		
+		String[] star = map.get("star");
+		System.out.println(star[0]);
+		int starInt = Integer.parseInt(star[0]);
+		
+		Map<String, String[]> mapp = new HashMap<String, String[]>();
+		
+		if(s_addr.length > 0 && meat.length > 0) {
+			mapp.put("s_addr",s_addr);
+			mapp.put("meat", meat);
+			
+			List<ReviewVO> list = reviewService.getReviewListAjax(mapp);
+			
+			System.out.println("리스트 size : " + list.size());
+			
+			for (int i=0; i<list.size(); i++) {
+				ReviewVO rvo = list.get(i);
+				int getStar = rvo.getStar();
+				System.out.println(getStar);
+				
+				if (getStar < starInt) {
+					list.remove(i);
+				}
+			}
+			
+			return list;
+			
+		} else if(s_addr.length == 0 && meat.length>0) {
+			mapp.put("meat", meat);		
+			List<ReviewVO> list = reviewService.getReviewListAjax(mapp);
+			
+			for (int i=0; i<list.size(); i++) {
+				ReviewVO rvo = list.get(i);
+				int getStar = rvo.getStar();
+				System.out.println(getStar);
+				
+				if (getStar < starInt) {
+					list.remove(i);
+				}
+			}
+			
+			return list;
+		} else if (s_addr.length > 0 && meat.length==0) {
+			mapp.put("s_addr",s_addr);
+			List<ReviewVO> list = reviewService.getReviewListAjax(mapp);
+			
+			for (int i=0; i<list.size(); i++) {
+				ReviewVO rvo = list.get(i);
+				int getStar = rvo.getStar();
+				System.out.println(getStar);
+				
+				if (getStar < starInt) {
+					list.remove(i);
+				}
+			}
+			
+			return list;
+		} else {
+			
+			return null;
+		}
+	  }
+	 
 	
 	
 }
