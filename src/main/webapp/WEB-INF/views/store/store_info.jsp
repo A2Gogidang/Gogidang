@@ -33,7 +33,7 @@
    
 
 <%
-   MemberVO membervo = (MemberVO)session.getAttribute("MemberVO");
+   MemberVO membervo = (MemberVO)session.getAttribute("memberVO");
    String u_id=(String)membervo.getU_id();
    %>
 

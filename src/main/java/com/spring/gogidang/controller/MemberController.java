@@ -315,6 +315,7 @@ public class MemberController {
 	//soobin end
 	*/
 	
+
 	// 인증메일 전송 및 인증키 session 저장
 //	@RequestMapping(value="/checkemail.bo", produces="application/text; charset=utf8")
 //	@ResponseBody

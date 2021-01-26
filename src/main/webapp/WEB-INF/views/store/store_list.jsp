@@ -3,13 +3,11 @@
 <%@ page import="java.util.*" %>
 <%@ page import = "com.spring.gogidang.domain.*" %>
 <%@ page import="java.util.ArrayList"%>
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/storelist.css" type="text/css">
 <!-- MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
 	String id = mvo.getU_id();
 	int seller_key = mvo.getSeller_key(); -->
 <%
-	
-	
 	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
 %>
 
@@ -28,9 +26,12 @@
                         </ul>
                         <ul>
                             <li>지역</li>
-                     			<li><input type="checkbox" id="s_seoul" class="f_check" name="f_Acheck" value="서울" checked="checked" >서울</li>
-                            <li><input type="checkbox" id="s_gyeong" class="f_check" name="f_Acheck"  value="경기"  checked="checked">경기</li>
-                            <li><input type="checkbox" id="s_gang" class="f_check" name="f_Acheck"  value="강원" checked="checked">강원</li>
+                   			<li><input type="checkbox" id="s_seoul" class="f_check" name="f_Acheck" value="서울" >서울</li>
+                            <li><input type="checkbox" id="s_gyeong" class="f_check" name="f_Acheck" value="경기">경기도</li>
+                            <li><input type="checkbox" id="s_gang" class="f_check" name="f_Acheck" value="강원" >강원도</li>
+                            <li><input type="checkbox" id="s_jeon" class="f_check" name="f_Acheck" value="전라" >전라도</li>
+                            <li><input type="checkbox" id="s_gyeong" class="f_check" name="f_Acheck" value="경상" >경상도</li>
+                            <li><input type="checkbox" id="s_chung" class="f_check" name="f_Acheck" value="충청" >충정도</li>
          					
                         </ul>
                         
@@ -41,6 +42,7 @@
                             <li></li>
                        </ul> 
                     </div>   
+                    <button type="button" name="button" id="checkBtn">검색</button>
             </div>   
         </div>
     </section>

@@ -86,13 +86,24 @@
  	
  	
 	<select id="getStoreListAjax" parameterType="java.util.HashMap" resultType="StoreVO">
-		SELECT distinct meat , price, s_name, s_addr, thumbnail
-		FROM(	
-				SELECT distinct mr.meat , mr.price, sr.s_name, substr(sr.s_addr,1,2) s_addr, sr.thumbnail
-				FROM menu_reg mr INNER JOIN shop_reg sr ON mr.s_num=sr.s_num
-			 	WHERE substr(sr.s_addr,1,2) IN <foreach collection="s_addr" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
-			)
-		WHERE meat IN<foreach collection="meat" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
+		select distinct mr.meat, sr.s_num, sr.s_name, substr(sr.s_addr,1,2) s_addr, sr.thumbnail
+		from menu_reg mr INNER JOIN shop_reg sr ON mr.s_num=sr.s_num
+		where substr(sr.s_addr,1,2) IN <foreach collection="s_addr" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
+		and mr.meat IN<foreach collection="meat" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
 	</select>
+	
+	<select id="getStoreListAjaxByMeat" parameterType="java.util.HashMap" resultType="StoreVO">
+		select distinct mr.meat, sr.s_num, sr.s_name, substr(sr.s_addr,1,2) s_addr, sr.thumbnail
+		from menu_reg mr INNER JOIN shop_reg sr ON mr.s_num=sr.s_num
+		where mr.meat IN<foreach collection="meat" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
+	</select>
+	
+	<select id="getStoreListAjaxByAddr" parameterType="java.util.HashMap" resultType="StoreVO">
+		select distinct mr.meat, sr.s_num, sr.s_name, substr(sr.s_addr,1,2) s_addr, sr.thumbnail
+		from menu_reg mr INNER JOIN shop_reg sr ON mr.s_num=sr.s_num
+		where substr(sr.s_addr,1,2) IN <foreach collection="s_addr" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
+	</select>
+
+	
 	<!-- dohyeong end -->
 </mapper>
