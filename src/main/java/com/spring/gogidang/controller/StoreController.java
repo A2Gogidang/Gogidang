@@ -339,6 +339,11 @@ public class StoreController {
 		return "store/store_info_Design"; 
 		
 	}
+	@RequestMapping(value = "/store_info_scroll.st")
+	public String store_info_scroll(Model model) {
+		return "store/store_info_scroll"; 
+		
+	}
 
 	@RequestMapping(value = "/store_info_Design2.st")
 	public String design2(Model model) {

@@ -32,7 +32,7 @@ margin-top: 30px;
 							</div>
             
 <div class="container-fluid">
-	<div class="row">
+	<div class="row"style="display: flex; justify-items: center; align-items: center;">
 		<div class="col-md-12">
 			<img alt="Bootstrap Image Preview" src="resources/img/event/eventPicex.jpg" />
 			<h4><dl style="margin-top: 30px;">
