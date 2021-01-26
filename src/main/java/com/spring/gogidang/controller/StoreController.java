@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -285,6 +286,9 @@ public class StoreController {
 		
 		for (int i=0; i<storeList.size(); i++) {
 			StoreVO svo = storeList.get(i);
+			int s_num = svo.getS_num();
+			Double avgStar = storeService.getAvgStar(s_num);
+			svo.setAvgStar(avgStar);
 			String addr = svo.getS_addr().substring(0, 2);
 			svo.setS_addr(addr);
 		}
@@ -298,15 +302,22 @@ public class StoreController {
 	@ResponseBody 
 	public List<StoreVO> getStoreListAjax( @RequestBody Map<String, String[]> map) {
 		
+		int min = 0;
+		
 		String[] s_addr = map.get("s_addr");
 		for(String no : s_addr) {
-			System.out.println("컨트롤러" + no);
+			System.out.println("컨트롤러 addr : " + no);
 		}
 		  
 		String[] meat = map.get("meat");
 		for(String no : meat) {
-			System.out.println("컨트롤러 " + no);
+			System.out.println("컨트롤러 meat : " + no);
 		}
+		
+		String[] star = map.get("star");
+		System.out.println(star[0]);
+		int starInt = Integer.parseInt(star[0]);
+		
 		
 		Map<String, String[]> mapp = new HashMap<String, String[]>();
 		
@@ -314,17 +325,58 @@ public class StoreController {
 			mapp.put("s_addr",s_addr);
 			mapp.put("meat", meat);		
 			List<StoreVO> list = storeService.getStoreListAjax(mapp);
+			System.out.println("리스트 size : " + list.size());
+
+			for (int i=0; i<list.size(); i++) {
+				StoreVO svo = list.get(i);
+				int s_num = svo.getS_num();
+				Double avgStar = storeService.getAvgStar(s_num);
+				System.out.println("avgStar : " + avgStar);
+				
+				if ((avgStar+0.1) < starInt) {
+					list.remove(i);
+					i=-1;
+				} else {
+					svo.setAvgStar(avgStar);
+				}
+			}
 			
 			return list;
 			
 		} else if(s_addr.length == 0 && meat.length>0) {
 			mapp.put("meat", meat);		
-			List<StoreVO> list = storeService.getStoreListAjaxByMeat(mapp);
+			List<StoreVO> list = storeService.getStoreListAjax(mapp);
+			
+			for (int i=0; i<list.size(); i++) {
+				StoreVO svo = list.get(i);
+				int s_num = svo.getS_num();
+				Double avgStar = storeService.getAvgStar(s_num);
+				System.out.println("avgStar : " + avgStar);
+				
+				if (avgStar < starInt) {
+					list.remove(i);
+				} else {
+					svo.setAvgStar(avgStar);
+				}
+			}
 			
 			return list;
 		} else if (s_addr.length > 0 && meat.length==0) {
 			mapp.put("s_addr",s_addr);
-			List<StoreVO> list = storeService.getStoreListAjaxByAddr(mapp);
+			List<StoreVO> list = storeService.getStoreListAjax(mapp);
+			
+			for (int i=0; i<list.size(); i++) {
+				StoreVO svo = list.get(i);
+				int s_num = svo.getS_num();
+				Double avgStar = storeService.getAvgStar(s_num);
+				System.out.println("avgStar : " + avgStar);
+				
+				if (avgStar < starInt) {
+					list.remove(i);
+				} else {
+					svo.setAvgStar(avgStar);
+				}
+			}
 			
 			return list;
 		} else {
