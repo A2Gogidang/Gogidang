@@ -1,9 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="javax.sql.*"%>
 <%@ page import="javax.naming.*"%>
 <%@ page import="java.util.*"%>
+<%@ page import="com.spring.gogidang.domain.*" %>
 <%@include file="../includes/header.jsp"%>
 <%
 	StoreVO storevo = (StoreVO)session.getAttribute("StoreVO");
@@ -84,7 +85,7 @@
 		
 		CartVO cvo = (CartVO)cart_list.get(i);
 		
-		int price = cvo.getPrice() * cvo.getCartStock();
+		int price = cvo.getPrice() * cvo.getCartStock(); 
 		tot = price + tot;
 %>
 	<form id = "cartDelet<%=i %>" action="./cartdelete.ct">
@@ -109,4 +110,4 @@
 
 <h2>총 금액 : <%=tot %>원</h2>
 
-<%@include file="../includes/footer.jsp" %>
+<%@include file="../includes/footer.jsp" %> --%>
