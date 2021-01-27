@@ -1,4 +1,4 @@
-@charset "UTF-8";
+	@charset "UTF-8";
 
 form #store_not{
 	width: 1370px;
@@ -6,4 +6,20 @@ form #store_not{
 
 #store_not h3 hr {
 	width: 1370px;
+	
 }
+
+
+.reviewboard{
+	width: 800px;
+}
+
+
+
+
+
+
+
+
+
+
