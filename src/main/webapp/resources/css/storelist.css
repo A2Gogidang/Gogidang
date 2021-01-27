@@ -75,7 +75,8 @@ table {
 	height:100%;
 }
 .card_store_img img {
-	size: 80%
+	size:80%;
+  object-fit: cover;
 }
 .card_store_name {
 	height:25px;

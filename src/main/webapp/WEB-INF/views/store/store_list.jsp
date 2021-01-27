@@ -3,6 +3,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import = "com.spring.gogidang.domain.*" %>
 <%@ page import="java.util.ArrayList"%>
+<%@include file="../includes/header.jsp"%>
 
 <!-- MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
 	String id = mvo.getU_id();
@@ -13,7 +14,6 @@
 	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
 %>
 
-<%@include file="../includes/header.jsp"%>
 <body>
     <!-- 4.Hero Section Begin -->
   	<!--네비게이션바 사용 시작-->
@@ -61,7 +61,7 @@
 				</div>
 				
 				<div class="card_store_img" >
-					<div><img src="resources/img/store/<%=svo.getThumbnail() %>"></div>
+					<div><img src="resources/img/up/1610939661018image.png"></div>
 				</div>
 				
 				
@@ -116,9 +116,8 @@
 
 
 	<script src="https://code.jquery.com/jquery-latest.js"></script> 
-	
-	<script type="text/javascript"  charset="utf-8" src="${pageContext.request.contextPath}/resources/js/storelistAjaxx.js"></script> 
-	
+	 
+	<script type="text/javascript"  charset="utf-8" src="${pageContext.request.contextPath}/resources/js/storelistAjaxx.js"></script>
 </body>
 
 </html>

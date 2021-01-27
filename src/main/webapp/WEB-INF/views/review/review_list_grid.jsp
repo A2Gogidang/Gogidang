@@ -1,330 +1,499 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="kr">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="javax.sql.*" %>
+<%@ page import="javax.naming.*" %>  
+<%@ page import="com.spring.gogidang.domain.*" %>
+<%@ page import="java.util.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Ogani Template">
-    <meta name="keywords" content="Ogani, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>고기당</title>
-    <link rel="shortcut icon" href="resources/cut-pig.jpg"> 
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="resources/js/newDetailStore.js"></script>
-    <script src="resources/DetailStore/newDetailStore.css"></script>
-
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <!--사이드바 및 햄버거 아이콘 액션 end-->
-
-        <!-- Google Font -->
-        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
-        <!-- Css Styles -->
-        <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/font-awesome.min.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/elegant-icons.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/nice-select.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/jquery-ui.min.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/owl.carousel.min.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/slicknav.min.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/newDetailStore.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/DetailStore.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/style.css" type="text/css">
-
-
-   <script>
-    jQuery(document).ready(function($) {
-
-       $(".scroll").click(function(event){            
-               event.preventDefault();
-               $('html,body').animate({scrollTop:$(this.hash).offset().top}, 900); //속도조절 900으로 맞춤
-       });
-       });
-       //부드러운 스크롤링 jquery
-   </script>
-    </head>
-    <body>
-            <!-- 3.Header Section Begin -->
-    <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    
-                    <div class="col-lg-6 col-md-6"> </div>
-                    <div class="col-md-6">
-                        <div class="header__top__right">
-                           <div class="header__top__right__auth">
-                                <aa><a href="#">로그인 </a></aa>
-                                <aa><a href="#"> 회원가입 </a></aa>
-                            </div>
-                            <!--로그인후 모드-->
-                            <!--<div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user">맛나식육</i> </a>
-                                <aa>사장님 !</aa>
-                            </div>
-                            -->
-                        </div>
-                    </div>
-                   
-                </div>
-                
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col1"></div>
-                <!--메인페이지 이미지 1400*380-->
-                <div class="header__logo">
-                    <a href="indexmain.html"><img src="resources/img/mainlogo.png" alt=""></a>
-                </div>
-                <div class="col1"></div>
-            </div>
-        <div>
-        <div class="row">
-                <div class="col-menu">
-                </div>
-            </div>
-        </div>
-        <div class="hero__search"> <!--기존의 hero서치바를 head로 옮김-->
-            <div class="sidebar-icon"> 
-                <input type="checkbox" id="menuicon">
-                    <label for="menuicon">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </label>
-                    <div class="sidebar">
-                        <!--<div class="navibar">-->
-                            <div class="sidebar__item">
-                                <h4><ul><a href="#">&nbsp;</a></ul></h4>
-                            </div>
-                            <div class="sidebar__item">
-                            <!--style="color: black"-->
-                                <h4><ul><a href="#" >가게 검색</a></ul></h4>
-                            </div>
-                            <div class="sidebar__item">
-                                <h4><ul><a href="#">후기 검색</a></ul></h4>
-                            </div>
-                            <div class="sidebar__item">
-                                <h4><ul><a href="#">마이 페이지</a></ul></h4>
-                            </div>
-                            <div class="sidebar__item">
-                                <h4><ul><a href="#">예약 현황</a></ul></h4>
-                            </div>
-                            <!--사장님 모드-->
-                            <!--
-                            <div class="sidebar__item">
-                                <h4><ul><a href="#">예약 관리</a></ul></h4>
-                            </div>
-                            -->
-                            <!--사장님 모드 end-->
-                               <!-- 사장님 메뉴
-                                <ul><a href="#">가게 검색</a></ul>
-                                <ul><a href="#">후기 검색</a></ul>
-                                <ul><a href="#">마이 페이지</a></ul>
-                                <ul><a href="#">가게 승인관리</a></ul>
-                               -->
-                           
-                        <!--</div>-->
-                </div>
-            </div>   
-            <div class="hero__search__form">
-                <form action="#">
-                    <div class="hero__search__categories">
-                        지역
-                        <span class="arrow_carrot-down"></span>
-                    </div>
-                    <input type="text" placeholder="식당검색하기 GO" >
-                    <button type="submit" class="site-btn ">검색</button>
-                </form>
-            </div>
-        </div>
-    </header>
-    <!-- Header Section End --> 
-
-    <!-- 4.Hero Section Begin -->
-    <!--메인 사진크기 1400*380-->
-    <!--메인 사진사용 시작
-        <section class="hero">
-            <div class="container">
-                        <div class="hero__item__box"> 
-                            
-                            <div class="hero__item set-bg" data-setbg="img/hero/top-banner-test3.jpg">
-                            </div>
-                        </div>
-                    
-            </div>
-        </section>
-    메인 사진 사용 끝-->
-
-
-    <section class="page-section BestReview" id="BestReview">
-    <br>
-        <div class="container">
-            <!-- Portfolio Section Heading-->
-            <h2 class="page-section-heading" style="margin-top: 100px;display: flex; justify-content: center;">추천리뷰</h2>
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-            </div>
-            <!-- Portfolio Grid Items-->
-            <div class="row justify-content-center" style="margin-top: 50px;">
-                <!-- Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal1">
-                        <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="BestReview-item-caption-content text-center text-white"></div>
-                        </div>
-                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview1.png" alt="" />
-                    </div>
-                </div>
-                <!-- Item 2-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal2">
-                        <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="BestReview-item-caption-content text-center text-white"></div>
-                        </div>
-                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview2.png" alt="" />
-                    </div>
-                </div>
-                <!-- Item 3-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal3">
-                        <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="BestReview-item-caption-content text-center text-white"></div>
-                        </div>
-                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview3.png" alt="" />
-                    </div>
-                </div>
-                <!-- Item 4-->
-                <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
-                    <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal4">
-                        <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="BestReview-item-caption-content text-center text-white"></div>
-                        </div>
-                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview4.png" alt="" />
-                    </div>
-                </div>
-                <!-- Item 5-->
-                <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
-                    <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal5">
-                        <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="BestReview-item-caption-content text-center text-white"></div>
-                        </div>
-                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview5.png" alt="" />
-                    </div>
-                </div>
-                <!-- Item 6-->
-                <div class="col-md-6 col-lg-4">
-                    <div class="BestReview-item mx-auto" data-toggle="modal" data-target="#BestReviewModal6">
-                        <div class="BestReview-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="BestReview-item-caption-content text-center text-white"></div>
-                        </div>
-                        <img class="img-fluid" src="resources/img/DetailStoreImg/Review/BestReview6.png" alt="" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-<a style="display:scroll;position:fixed;bottom:10px;right:5px;" href="#" title=”top">TOP</a> 
-      
-    
-  <!-- Footer Section Begin -->
-    
-  <footer class="footer spad" style="margin-top: 30px;">
-    <div class="container">
-        <div class="row1">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="footer__about">
-                    <div class="footer__about__logo">
-                        <!--logo크기 120*50-->
-                        <a href="./index.html"><img src="resources/img/bottom-logo-test1.jpg" alt=""></a>
-                    </div>
-                    <ul>
-                        <li>법인명(상호) : 주식회사 고기당 </li>
-                        <li>사업자등록번호 000-00-0000</li>
-                        <li>통신판매업: 제2020-서울종로-00000                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             호 &nbsp; </li> &nbsp;
-                        <li>대표이사 : 정수빈</li>
-                        <li>개인정보 보호 책임자 : 임도형, 고종우</li>
-                        
-                    </ul>
-                </div>
-            </div>
-            <div class="vertical-line">
-                &nbsp;
-                &nbsp;
-                &nbsp;
-            </div>
-            <!--<div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                <div class="footer__widget">
-                    <h6>Links</h6>
-                    <ul>
-                        <li>입점문의 : <a href="#">입점문의하기</a></li>
-                        <li><a href="#">About Our Shop</a></li>
-                        <li><a href="#">Secure Shopping</a></li>
-                        <li><a href="#">Delivery infomation</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Our Sitemap</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#">Who We Are</a></li>
-                        <li><a href="#">Our Services</a></li>
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Innovation</a></li>
-                        <li><a href="#">Testimonials</a></li>
-                    </ul>
-                </div>
-            </div>
-            -->
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="footer__widget">
-                    <h6></h6>
-                    <h6>< 입점 문의 하기 ></h6>
-                    <h6>함께 하실 탁월한 사장님들을 기다립니다.</h6>
-                    <p><a href="#">>> 지금 바로 입점 신청하기 <<</a></p>
-                    <!--
-                    <form action="#">
-                        <input type="text" placeholder="Enter your mail">
-                        <button type="submit" class="site-btn">Subscribe</button>
-                    </form>
-                    -->
-                    <div class="footer__widget__social">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-pinterest"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div> <!--row1 end-->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="footer__copyright">
-                    <div class="footer__copyright__text"><p>
-                    <!--<div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>-->
-                </div>
-            </div>
-        </div>
-    </div>
-</footer> 
-<!-- Footer Section End -->
-
-<!-- Js Plugins -->
-<script src="resources/js/jquery-3.3.1.min.js"></script>
-<script src="resources/js/bootstrap.min.js"></script>
-<script src="resources/js/jquery.nice-select.min.js"></script>
-<script src="resources/js/jquery-ui.min.js"></script>
-<script src="resources/js/jquery.slicknav.js"></script>
-<script src="resources/js/mixitup.min.js"></script>
-<script src="resources/js/owl.carousel.min.js"></script>
-<script src="resources/js/main.js"></script>
 
    
-</div>
+  <!-- Bootstrap Core CSS -->
+    <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="resources/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="resources/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   
+   
+
+<%
+   MemberVO membervo = (MemberVO)session.getAttribute("MemberVO");
+   String u_id=(String)membervo.getU_id();
+   ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>)request.getAttribute("menuList");
+   ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>)request.getAttribute("reviewList");
+   //ArrayList<CartListVO> cartList= (ArrayList<CartListVO>)request.getAttribute("cartList");
+%>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+
+</head>
+<body>
+
+   <table border="1" align=center>
+   <a href="/cart/cartList">카트 리스트</a>
+   <tr>
+ 		<td><button onclick="location.href='./review_reg.re?s_num=${storeVO.getS_num() }'">리뷰작성</button></td>
+   </tr>
+   <tr>
+      <td rowspan=5>${storeVO.getThumbnail()}</td>
+      <td>${storeVO.getS_addr()}</td>
+   </tr>
+   <tr>
+      <td>${storeVO.getS_phone()}</td>
+   </tr>
+   <tr>
+      <td>${storeVO.getS_hour()}</td>
+   </tr>
+   <tr>
+      <td>${storeVO.getDelibery()}</td>
+   </tr>
+   </table>
+   
+    <table>
+   
+					
+				
+    
+ <thead>
+  <tr>
+   <th>번호</th>
+   <th>종류</th>
+   <th>이름</th>
+   <th>가격</th>
+   <th>이미지</th>
+   <th>등급</th>
+   <th>이미지</th>
+  </tr>
+ </thead>
+ <tbody>
+  <c:forEach items="${menuList}" var="menuList">
+  <tr>
+   <td>${menuList.menu_num}</td>
+   <td>${menuList.meat}</td>
+   <td>${menuList.menu_name}</td>
+   <td>${menuList.price}</td>
+   <td>${menuList.img}</td>
+   <td>${menuList.grade}</td>
+   <td>${menuList.gram}</td>
+  </tr>   
+  </c:forEach>
+ </tbody>
+</table>
+	    
+<table border="1">
+	<tr>
+		<td>${menuList.img}</td>
+		<td>
+			<table border="1" style="height:300px; width: 400px;">
+				<tr align="center">
+					<td>상품명</td>				
+					<td>${menuList.menu_name}</td>	
+				</tr>
+				<tr align="center">
+					<td>가격</td>
+					<td><fmt:formatNumber value="${menuList.price}" pattern="###,###,###"/></td>
+				</tr>
+				<tr align="center">
+					<td colspan="2">
+						<form name="form1" method="post" action="">
+							<input type="hidden" name="" value="${menuList.}">
+						</form>
+					</td>
+				</tr>
+			</table>
+		
+	
+	</tr>
+</table>	     
+         <p class="cartStock">
+		 <span>구입 수량</span>
+		 <button type="button" class="plus">+</button>
+		 <input type="number" class="numBox" min="1" max="100" value="1" readonly="readonly"/>
+		 <button type="button" class="minus">-</button>
+		 <input type="hidden" value="${cartList.cartStock}" class="gdsStock_hidden" />
+		
+		
+      <p class="addToCart">
+ 		<button type="button" class="addCart_btn">카트에 담기</button>
+      <tr>
+      
+     
+         <table border=1 align=center>
+         <tr>
+         <%
+            for(int i=0; i<review_List.size(); i++)
+            {
+               ReviewVO vo1 =(ReviewVO)review_List.get(i);
+            
+         %>
+         <td><%=vo1.getStar() %></td>
+         <td><%=vo1.getTitle() %>
+         <%} %>
+         </tr>
+         </table>
+      </tr>
+  
+
+   <div id="map" style="width:800px;height:400px;"></div>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=241b4077cebf45bee1ed06d47263650b&libraries=services"></script>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">저희 가게</div>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});    
+</script>
+
+<div class='row'>
+
+  <div class="col-lg-12">
+
+    <!-- /.panel -->
+     <div class="panel panel-default">
+       <!-- <div class="panel-heading">
+        <i class="fa fa-comments fa-fw"></i> Reply
+      </div> -->  
+      
+     <div class="panel-heading">
+       <i class="fa fa-comments fa-fw"></i> 가게문의
+        <button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>가게 문의 등록</button>
+      </div>   
+      
+      
+      <!-- /.panel-heading -->
+      <div class="panel-body">        
+      
+        <ul class="chat">
+         <!-- start reply -->
+         <li class="left clearfix" data-qs_num='1'>
+            <div>
+               <div class="header">
+                  <strong class="primary-font">user00</strong>
+                  <small class="pull-right text-muted">2018-01-01 13:13</small>
+               </div>
+               <p>Good job!</p>
+            </div>
+         </li>
+         <!-- end reply -->
+        </ul>
+        <!-- ./ end ul -->
+      </div>
+      <!-- /.panel .chat-panel -->
+      
+      <div class="panel-footer">
+      
+      </div>
+      
+      
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"
+                aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel">가게문의등록페이지</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label>제목</label> 
+                <input class="form-control" name='u_id' value='New Reply!!!!'>
+              </div>      
+              <div class="form-group">
+                <label>내용</label> 
+                <input class="form-control" name='content' value='replyer'>
+              </div>
+              <div class="form-group">
+                <label>등록일</label> 
+                <input class="form-control" name='qna_date' value=''>
+              </div>
+      
+            </div>
+<div class="modal-footer">
+        <button id='modalModBtn' type="button" class="btn btn-warning">수정</button>
+        <button id='modalRemoveBtn' type="button" class="btn btn-danger">제거</button>
+        <button id='modalRegisterBtn' type="button" class="btn btn-primary">등록</button>
+        <button id='modalCloseBtn' type="button" class="btn btn-default" data-dismiss='modal'>닫기</button>
+        <button id='modalClassBtn' type='button' class="btn btn-default" data-dismiss='modal'>닫기</button>
+      </div>          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+
+	<script type="text/javascript" src="./resources/js/qnastore.js"></script>
+    <script src="./resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="./resources/vendor/metisMenu/metisMenu.min.js"></script>
+    <!-- DataTables JavaScript -->
+    <script src="./resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="./resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="./resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="./resources/dist/js/sb-admin-2.js"></script>
+
+
+<script>
+	$(".addCart_btn").click(function(){
+		var menu_Num = $("menu_num").val();
+		//var cartStock = $(".numBox").val();
+		
+		var data = {
+				menu_Num : menu_Num,
+				//cartStock : cartStock
+		};
+		
+		
+		$.ajax({
+			url : "/cart/addCart.st",
+			type : "post",
+			data : data,
+			success : function() {
+				alert("카트 담기 성공");
+				//$(".numBox").val("1");
+			},
+			error : function() {
+				alert("카트 담기 실패");
+			}
+		});
+	});
+</script>
+
+<script>
+$(document).ready(function (){
+   var s_numValue = '<c:out value="${storeVO.getS_num()}"/>';
+   var replyUL = $(".chat");
+      
+   showList(1);
+      
+      function showList(page) {
+    	  console.log("show List" +page);
+    	  qnaService.getList({s_num:s_numValue,page: page || 1}, function(qnastoreCnt,list){
+            console.log("qnastorCnt:"+ qnastoreCnt);
+            console.log("list:"+ list);
+            console.log(list);
+            
+            if(page == -1) {
+            	pageNum = Math.ceil(qnastoreCnt/10.0);
+            	showList(pageNum);
+            	return;
+            }
+    		  
+            var str="";
+            
+            if(list == null || list.length == 0) {
+            	return;
+               
+            }
+            for (var i=0,len = list.length || 0; i < len; i++) {
+               str +="<li class='left clearfix' data-qs_num='"+list[i].qs_num+"'>";
+               str +="      <div><div class='header'><strong class='primary-font'>"+list[i].u_id+"</strong>";
+               str +="         <small class='pull-right text-muted'>"+qnaService.displayTime(list[i].qna_date)+"</small></div>";
+               str +="            <p>"+list[i].content+"</p></div></li>";
+            }
+               replyUL.html(str);
+               
+               showqnastorePage(qnastoreCnt);
+         });//end function
+      } //end showList
+
+      var modal = $(".modal");
+      var modalInputContent = modal.find("input[name='content']");
+      var modalInputU_id = modal.find("input[name='u_id']");
+      var modalInputQna_date = modal.find("input[name='qna_date']");
+      
+      var modalModBtn = $("#modalModBtn");
+      var modalRemoveBtn = $("#modalRemoveBtn");
+      var modalRegisterBtn = $("#modalRegisterBtn");
+      
+      $("#addReplyBtn").on("click", function(e){
+         modal.find("input").val("");
+         modalInputQna_date.closest("div").hide();
+         modal.find("button[id !='modalCloseBtn']").hide();
+         
+         modalRegisterBtn.show();
+   
+         $(".modal").modal("show");
+     
+	});
+      var qnastore;
+      modalRegisterBtn.on("click",function(e){
+    	 
+  	  qnastore = {
+  			  content: modalInputContent.val(),
+  			  u_id: modalInputU_id.val(),
+  			  s_num: s_numValue
+  	  	};
+  	qnaService.add(qnastore, function(result) {
+  		  
+  		  alert("추가되었습니다"+result);
+  		  
+  		  modal.find("input").val("");
+  		  modal.modal("hide");
+  		  
+  		  //showList(1);
+  		  showList(-1);
+});
+
+  	});
+  	
+  	//댓글 조회 클릭 이벤트 처리
+  	$(".chat").on("click","li",function(e){
+
+  		var qs_num = $(this).data("qs_num");
+  		alert("qs_num=" + qs_num);
+  		
+  		qnaService.get(qs_num,function(res) {
+  			console.log(res);
+  			alert("qnastore.qs_num=" + res.qs_num);
+  			modalInputContent.val(res.content);
+  			modalInputU_id.val(res.u_id);
+  			modalInputQna_date.val(qnaService.displayTime(res.qna_date)).attr("readonly","readonly");
+  			modal.data("qs_num",res.qs_num);
+  			
+  			console.log(qs_num);
+  			
+  			modal.find("button[id !='modalCloseBtn']").hide();
+  			modalModBtn.show();
+  			modalRemoveBtn.show();
+  			
+  			$(".modal").modal("show");
+  		});
+  	});
+  	
+  	modalModBtn.on("click",function(e) {
+  		var content = {qs_num:modal.data("qs_num"), content:modalInputContent.val()};
+  		
+  		qnaService.update(content, function(result) {
+  			alert(result);
+  			modal.modal("hide");
+  			showList(pageNum);
+  		});
+  		
+  	});
+  	
+  	modalRemoveBtn.on("click",function(e) {
+  		var qs_num = modal.data("qs_num");
+  		
+  		qnaService.remove(qs_num, function(result) {
+  			alert(result);
+  			modal.modal("hide");
+  			showList(pageNum);
+  		});
+  	});
+  	
+  	var pageNum = 1;
+	var qnastorePageFooter = $(".panel-footer");
+	
+	function showqnastorePage(qnastoreCnt) { //페이징 처리
+		
+		var endNum = Math.ceil(pageNum / 10.0) * 10;
+		var startNum = endNum - 9;
+		
+		var prev = startNum != 1;
+		var next = false;
+		
+		if(endNum * 10 >= qnastoreCnt) {
+			endNum = Math.ceil(qnastoreCnt/10.0);
+		}
+		
+		if(endNum * 10 < qnastoreCnt) {
+			next = true;
+		}
+		
+		var str = "<ul class='pagination pull-right'>";
+		
+		if(prev) {
+			str += "<li class='page-item'><a class='page-link' href='"+(startNum -1)+"'>Previous</a></li>";
+		}
+		
+		for(var i = startNum ; i <=endNum; i++) {
+			
+			var active = pageNum == i? "active":"";
+			
+			str += "<li class='page-item "+active+" '><a class='page-link' href='"+i+"'>"+i+"</a></li>";
+		}
+		
+		if(next) {
+			str += "<li class='page-item'><a class='page-link' href='"+(endNum+1)+"'>Next</a></li>";
+		}
+		
+		str += "</ul></div>";
+		
+		qnastorePageFooter.html(str);
+	}
+	
+	qnastorePageFooter.on("click","li a", function(e){ //페이지 번호를 클릭했을때 새로운 댓글 가져옴
+		e.preventDefault();
+		
+		var targetPageNum = $(this).attr("href");
+		
+		console.log("targetPageNum:" + targetPageNum);
+		
+		pageNum = targetPageNum;
+		
+		showList(pageNum);
+	});
+  	
+});	
+  	
+
+</script>
 </body>
+
+
+
 </html>

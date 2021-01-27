@@ -24,6 +24,7 @@
 			  ,#{s_num,jdbcType=INTEGER}
 			  ,#{meat,jdbcType=INTEGER}
 			  ,#{menu_name,jdbcType=VARCHAR}
+			  ,#{menu_Stock}
 			  ,#{price,jdbcType=VARCHAR}
 			  ,#{img,jdbcType=VARCHAR}
 			  ,#{grade,jdbcType=INTEGER}
