@@ -365,7 +365,7 @@
     </section>
     <!--Featured Section End -->
 
- <%@include file="includes/footer.jsp"%>
+ <%-- <%@include file="includes/footer.jsp"%> --%>
 <script type="text/javascript" src="resources/js/slick.js"></script>
 </body>
 </html>
