@@ -305,7 +305,8 @@ public class StoreController {
 
 		model.addAttribute("storeList", storeList);
 
-		return "store/store_list";
+//		return "store/store_list";
+		return "store/shopgrid";
 	}
 
 	@RequestMapping(value = "/storelist_ajax.li", produces = "application/json; charset=utf-8")
