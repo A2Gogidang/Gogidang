@@ -10,31 +10,33 @@
 	ArrayList<MenuVO> menuList = (ArrayList<MenuVO>)request.getAttribute("menuList");
 %>
 
-<section class="hero">
-    <div class="container">
-        <div class="hero__item__box2"></div>
-                <div class="EventNav">
-                    <ul>
-						<li><a href="./updateList.me">내정보</a></li>
-                        <li><a href="./storeRegForm.st">가게 정보</a>
-                        <li><a href="./menuRegForm.mn">메뉴 정보</a></li>
-                        <li><a href="./storeNoticeList.no">문의 관리</a></li>
-                        <li><a href="./reviewListBySnWithPaging.re?s_num=<%=vo.getS_num() %>">리뷰 관리</a></li>
-                    </ul>
-                </div>   
-        </div>   
-    </div>
-</section>
-
-<div class="container" id="menu_reg">
+ 	<section class="product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-5">
+                    <div class="sidebar">
+                        <div class="sidebar__item">
+                             <h4>판매자 마이페이지</h4>
+                            <ul>
+	                            <li><a href="./updateList.me">내정보</a></li>
+	                            <li><a href="./storeRegForm.st">가게 정보</a></li>
+	                            <li><a href="./menuRegForm.mn">메뉴 등록</a></li>
+	                            <li><a href="./storeNoticeList.no">리뷰 관리</a></li>
+	                            <li><a href="./storereviewList.bo">문의 관리</a></li>
+                       		 </ul> 
+                        </div>
+                    </div>
+                </div>     
+<!-- ---------------------------------------------------시작----------------------------------------------------- -->          
+        <div class="reviewboard">
+       			<div class="section-title product__discount__title">
+          			<h2>상품 등록</h2>
+    			</div>
+   <div class="container" id="menu_reg">
 		<div class="row justify-content-center">
         <div class="col-lg-8">
-        	<div class="menu_reg">
-        		<h3>상품등록</h3>
-        		
+        	<div class="menu_reg">     		
 			<form name="menuForm" id="menuForm" action="./menuProcess.mn" method="post" enctype="multipart/form-data">
-				
-			
 			<div class="id_input_box">
 		        <ts>상품이름 </ts>	         		
 		         <td>
@@ -64,9 +66,6 @@
 		     	<ts> </ts>        		
 		        <td><input id="menu_img1" name="file" type="file" width="350px;" height="200px;" multiple="multiple" /></td>
 		     </div>   
-			
-	      
-	        
 	        <div class="id_input_box">
 		        <ts>품목</ts>
 		        <td>
@@ -108,57 +107,55 @@
 			</div>
 		  </form>
 
-		<!-- for 문으로 저장    
- <%if ( menuList != null || menuList.size() > 0 ){ %>
-	<%for(int i = 0; i < menuList.size(); i++){ 
 	
-		MenuVO menuVO = (MenuVO)menuList.get(i);
-	%>된 리스트 출력해주기 
-		<div class="menu_box">
-			<font size=5>등록 내역</font>
-			<div class="menu_reg">
-				
-			</div>
-		</div>
-		-->
-			<div class="menu_box">
-				<table border=1>
-					<tr>
-						<td colspan="2" align=center>
-							<b><font size=5>등록 내역</font></b>
-						</td>
-					</tr>
-					<tr>
-						<td>상품이름 : </td> 
-						<td><span name="menu_name" type="text" ></span><%=menuVO.getMenu_name() %></td>
-					</tr>
-					<tr>
-						<td>상품 사진 : </td> 
-						<td><img src="resources/img/menu/<%=menuVO.getImg() %>"  width="100px" height="100px" /></td>
-					</tr>
-					<tr>
-						<td>상품 금액 : </td> 
-						<td><span name="price" type="text" ></span><%=menuVO.getPrice() %></td>
-					</tr>
-					<tr>
-						<td>상품 그램 : </td> 
-						<td><span name="gram" type="text" ></span><%=menuVO.getGram() %></td>
-					</tr>
-					<tr>
-						<td>상품 등급 : </td> 
-						<td><span name="grade" type="text" ></span><%=menuVO.getGrade() %></td>
-					</tr>
-				</table>
-				<%} %>
-				<%}else{ %>
-				<h1>상품을 추가해주세요.</h1>
-				<%} %>
-			</div>
 
 			</div><!-- store_reg_form -->
 		</div><!-- col-lg-8 -->.
 	</div><!-- row justify-content-center -->
 </div><!-- container id="join" -->
+
+</div>
+<div class="menulist">
+			<div class="section-title product__discount__title">
+          		<h2>상품 등록 내역</h2>
+    		</div>
+		<table class="table">
+			<thead>
+			<tr>
+				<th>번호</th>
+				<th>상품 사진</th>
+				<th>상품 명</th>
+				<th>상품 금액</th>
+				<th>그램</th>
+				<th>등급</th>
+			</tr>
+			</thead>
+<%
+	if ( menuList != null || menuList.size() > 0 ){
+		for(int i = 0; i < menuList.size(); i++){ 
+	
+			MenuVO menuVO = (MenuVO)menuList.get(i);
+%>
+			<tbody>
+				<td><%=i+1 %></td>
+				<td><img src="resources/img/store/store_gogi.png"></td>
+				<td><%=menuVO.getMenu_name() %></td>
+				<td><%=menuVO.getPrice() %> 원</td>
+				<td><%=menuVO.getGram() %> g</td>
+				<td><%=menuVO.getGrade() %></td>
+			</tbody>					
+				<%} %>
+		<%}else{ %>
+			<h1>상품을 추가해주세요.</h1>
+		<%} %>
+		</table>
+<!-- ----------------------------------------------------끝---------------------------------------------------- --> 
+	</div>
+            </div>
+        </div>
+    </section>
+    <!-- Product Section End -->
+
 
 
 <%@include file="../includes/footer.jsp"%>
@@ -222,53 +219,7 @@ function check_input() {
 }  
 </script>
      
- <%if ( menuList != null || menuList.size() > 0 ){ %>
-		<!-- for 문으로 저장된 리스트 출력해주기 
-		<div class="menu_box">
-			<font size=5>등록 내역</font>
-			<div class="menu_reg">
-				
-			</div>
-		</div>
-		-->
-		<div class="menu_box">
-		<table border=1px>
-			<tr>
-				<td colspan="2" align=center>
-					<b><font size=5>등록 내역</font></b>
-				</td>
-			</tr>
-			<%
-				for(int i = 0; i < menuList.size(); i++){ 
-					MenuVO menuVO = (MenuVO)menuList.get(i);
-			%>
-			<tr>
-				<td>상품이름 : </td> 
-				<td><span name="menu_name" type="text" ><%=menuVO.getMenu_name() %></span></td>
-			</tr>
-			<tr>
-				<td>상품 사진 : </td> 
-				<td><img src="resources/img/menu/<%=menuVO.getImg() %>"  width="100px" height="100px" /></td>
-			</tr>
-			<tr>
-				<td>상품 금액 : </td> 
-				<td><span name="price" type="text" ></span><%=menuVO.getPrice() %></td>
-			</tr>
-			<tr>
-				<td>상품 그램 : </td> 
-				<td><span name="gram" type="text" ></span><%=menuVO.getGram() %></td>
-			</tr>
-			<tr>
-				<td>상품 등급 : </td> 
-				<td><span name="grade" type="text" ></span><%=menuVO.getGrade() %></td>
-			</tr>
-			<%} %>
-		</table>
-
-<%}else{ %>
-	<h1>상품을 추가해주세요.</h1>
-<%} %>
-</div>
+ 
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

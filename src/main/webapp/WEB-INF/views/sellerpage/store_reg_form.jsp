@@ -137,35 +137,41 @@
 <%
 		}else{
 %>
-	
-	
-    <section class="hero">
+
+ 	<section class="product spad">
         <div class="container">
-            <div class="hero__item__box2"></div>
-                    <div class="EventNav">
-                        <ul>
-				        <li><a href="./updateList.me">내정보</a></li>
-                        <li><a href="./storeRegForm.st">가게 정보</a>
-                        <li><a href="./menuRegForm.mn">메뉴 정보</a></li>
-                        <li><a href="./storeNoticeList.no">문의 관리</a></li>
-                        <li><a href="./reviewListBySnWithPaging.re?s_num=<%=storeVO.getS_num() %>">리뷰 관리</a></li>
-                        </ul>
-                    </div>   
-            </div>   
-        </div>
-    </section>
+            <div class="row">
+                <div class="col-lg-3 col-md-5">
+                    <div class="sidebar">
+                        <div class="sidebar__item">
+                             <h4>판매자 마이페이지</h4>
+                            <ul>
+	                            <li><a href="./updateList.me">내정보</a></li>
+	                            <li><a href="./storeRegForm.st">가게 정보</a></li>
+	                            <li><a href="./menuRegForm.mn">메뉴 등록</a></li>
+	                            <li><a href="./storeNoticeList.no">리뷰 관리</a></li>
+	                            <li><a href="./storereviewList.bo">문의 관리</a></li>
+                       		 </ul> 
+                        </div>
+                    </div>
+                </div>     
+      
 <%
 		} 
 	}
 %>
 <!--네비게이션바 사용 end-->
 <!-- Hero Section End -->
-
+<!-- ---------------------------------------------------시작----------------------------------------------------- -->        
+  <div class="reviewboard">
+  			<div class="section-title product__discount__title">
+          		<h2>상품 등록 내역</h2>
+    		</div>	
 	<div class="container" id="store_reg_form">
 			<div class="row justify-content-center">
 	        <div class="col-lg-8">
 		        <div class="store_reg_form">
-		        	<h3>내 가게 정보</h3>
+		    
 		        		
 		        	<!-- store_form -->
 		        	<form  action="./storeUpdateForm.st" method="post" enctype="multipart/form-data">
@@ -308,7 +314,11 @@
 			</div><!-- col-lg-8 -->.
 		</div><!-- row justify-content-center -->
 	</div><!-- container id="join" -->
-
+<!-- ----------------------------------------------------끝---------------------------------------------------- --> 
+	</div>
+            </div>
+        </div>
+    </section>
 
 
 

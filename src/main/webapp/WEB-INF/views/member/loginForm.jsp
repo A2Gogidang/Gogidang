@@ -3,18 +3,18 @@
 <%@ page import="java.util.*" %>
 <%@ page import = "com.spring.gogidang.domain.*" %>
 <%@ page import="java.util.ArrayList"%>
+<%@include file="../includes/header.jsp"%>
 <html>
 <%	
 	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
 %>
 
 <!-- Header Section start --> 
-<%@include file="../includes/header.jsp"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/loginstyle.css" type="text/css">
 <!-- Header Section End --> 
 
   <body>
-    <!--네비게이션바 사용 시작-->
+    <!--네비게이션바 사용 시작
     <section class="hero">
         <div class="container">
             <div class="hero__item__box2"></div>
@@ -28,7 +28,7 @@
             </div>   
         </div>
     </section>
-
+-->
     <!-- End Backgrounds -->
 
     <div class="container" id="login">
