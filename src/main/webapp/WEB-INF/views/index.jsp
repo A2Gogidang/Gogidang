@@ -316,32 +316,15 @@
                     </div>
 	             </div>  
 	                <div class="categories__slider owl-carousel">
-	                 	
+	                 		<%for(int i=0; i<store_list.size(); i++) {
+	  				
+	  					StoreVO vo = (StoreVO) store_list.get(i);
+	  						%>
 	                    <div class="col-lg-3">
-	                        <div class="categories__item set-bg" data-setbg="./resources/img/categories/cat-1.jpg">
-	                            <h5><a href="#">Fresh Fruit</a></h5>
+	                        <div class="categories__item set-bg" data-setbg="resources/img/store/<%=vo.getThumbnail() %>">
+	                            <h5><a href="./storeInfo.st?s_num=<%=vo.getS_num() %>"><%=vo.getS_name() %></a></h5>
 	                        </div>
-	                    </div>
-	                    <div class="col-lg-3">
-	                        <div class="categories__item set-bg" data-setbg="./resources/img/categories/cat-2.jpg">
-	                            <h5><a href="#">Dried Fruit</a></h5>
-	                        </div>
-	                    </div>
-	                    <div class="col-lg-3">
-	                        <div class="categories__item set-bg" data-setbg="./resources/img/categories/cat-3.jpg">
-	                            <h5><a href="#">Vegetables</a></h5>
-	                        </div>
-	                    </div>
-	                    <div class="col-lg-3">
-	                        <div class="categories__item set-bg" data-setbg="./resources/img/categories/cat-4.jpg">
-	                            <h5><a href="#">drink fruits</a></h5>
-	                        </div>
-	                    </div>
-	                    <div class="col-lg-3">
-	                        <div class="categories__item set-bg" data-setbg="./resources/img/categories/cat-5.jpg">
-	                            <h5><a href="#">drink fruits</a></h5>
-	                        </div>
-	                    </div>
+	     				<%} %>
 	                </div>
                
             </div><!-- row -->
