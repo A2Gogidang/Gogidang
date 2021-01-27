@@ -4,6 +4,7 @@
 <%@ page import="javax.sql.*"%>
 <%@ page import="javax.naming.*"%>
 <%@ page import="java.util.*"%>
+<%@ page import="com.spring.gogidang.domain.*" %>
 <%@include file="../includes/header.jsp"%>
 <%
 	StoreVO storevo = (StoreVO)session.getAttribute("StoreVO");

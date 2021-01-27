@@ -71,6 +71,7 @@
        
            <div class="update">
 				<h2 >찜한가게</h2>
+		   </div>
 				<br><br><br>
 				<div class="card_box">
 		<% 
@@ -93,7 +94,7 @@
 		}
 		%>
 			</div>
-		  </div>
+		  
 	</div>
 </div>
 
