@@ -3,7 +3,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import = "com.spring.gogidang.domain.*" %>
 <%@ page import="java.util.ArrayList"%>
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/storelist.css" type="text/css">
 <!-- MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
 	String id = mvo.getU_id();
 	int seller_key = mvo.getSeller_key(); -->
@@ -53,15 +53,16 @@
 			StoreVO svo = (StoreVO) storeList.get(i);
 		%>
 			<div class="card_store_box">
+			
 				<div class="card_store_addr" >
 					<div class="text_left">
 						<h5> <%=svo.getS_addr()%> </h5>
-					
 					</div>
 				</div>
 				
 				<div class="card_store_img" >
-					<div><img src="resources/img/store/<%=svo.getThumbnail() %>"></div>
+					<div><img src="resources/img/store/store_gogi.png"></div>
+					<!-- <div><img src="resources/img/store/%=svo.getThumbnail()% "></div> -->
 				</div>
 				
 				

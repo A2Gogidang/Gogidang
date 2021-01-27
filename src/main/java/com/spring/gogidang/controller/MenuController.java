@@ -54,6 +54,7 @@ public class MenuController {
 			int s_num = vo.getS_num();
 			ArrayList<MenuVO> menuList  = new ArrayList<MenuVO>();
 			
+			
 			menuList = menuService.menuList(s_num);
 
 			model.addAttribute("menuList",menuList);

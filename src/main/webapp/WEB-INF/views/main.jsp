@@ -70,6 +70,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
     
+    <!-- 추천가게 스크립트코드 -->
 	<script>
   		$(function(){
 			$('#slider-div').slick({
@@ -108,10 +109,13 @@
 
 			});
   		});
-  		
+  		 <!-- 추천가게 스크립트코드  끝-->
+   		
+  		 <!-- ??-->
   		$(function(){
   			$('.single-item').slick();
   		});
+  		
 	</script>
 </head>
 <body>
