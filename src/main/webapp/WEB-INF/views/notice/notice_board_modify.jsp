@@ -1,25 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@include file="../includes/header.jsp"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%
-	String u_id = (String)session.getAttribute("u_id");
+	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
 	NoticeVO notice = (NoticeVO)request.getAttribute("notice");
 %>
 
-<html>
-<head>
+
+
 	<title>MVC 게시판</title>
 	<script type="text/javascript">
 	function modifynotice(){
 		modifyform.submit();
 	}
 	</script>
-</head>
+
 
 <body>
 <!-- 게시판 수정 -->
 <form action="noticemodify.no" method="post" name="modifyform">
 <input type="hidden" name="notice_num" value="<%=notice.getNotice_num() %>">
-<input type="hidden" name="u_id" value="<%=u_id %>">
+<input type="hidden" name="u_id" value="<%=memberVO.getU_id() %>">
 
 <table cellpadding="0" cellspacing="0">
 	<tr align="center" valign="middle">
@@ -59,5 +61,4 @@
 	</tr>
 </table>
 </form>
-</body>
-</html>
+<%@include file="../includes/footer.jsp"%>
