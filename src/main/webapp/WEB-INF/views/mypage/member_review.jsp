@@ -1,32 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="javax.sql.*" %>
 <%@ page import="javax.naming.*" %>
 <%@ page import="java.util.*" %>
-<%@ page import="com.spring.gogidang.domain.*" %>
+<%@include file="../includes/header.jsp"%>
 <% 
 	String u_id =(String)session.getAttribute("u_id");
-	MemberVO vo = (MemberVO)session.getAttribute("MemberVO");
+	
 	ArrayList<ReviewVO> review_list = (ArrayList<ReviewVO>)request.getAttribute("reviewUidList");
 	PageDTO  pageMaker = (PageDTO) request.getAttribute("pageMaker");
 %>
-<html>
-<head>
-<title>내가 작성한 후기</title>
-</head>
-<body>
+  
 	<center>
-	<h1><a href="./main.me">메인페이지</a></h1>
-	<div>
-	<table border="1">
-		<tr>
-			<td><a href="./updateForm.me">내정보</a></td>
-			<td><a href="./bookingList.bo?u_id=<%=vo.getU_id()%>">내예약확인</a></td>
-			<td><a href="./likeStoreList.li?u_id=<%=vo.getU_id()%>">찜목록</a></td>
-			<td><a href="./reviewUidList.re?u_id=<%=vo.getU_id()%>">내가 작성한 후기</a></td>
-		</tr>
-	</table>
-	</div>
+	
 	<br><br>
 	<div>
 	<table border=1>

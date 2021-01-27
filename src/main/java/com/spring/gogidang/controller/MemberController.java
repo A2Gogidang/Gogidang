@@ -27,12 +27,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.EventVO;
 import com.spring.gogidang.domain.MemberVO;
+import com.spring.gogidang.domain.PageDTO;
 import com.spring.gogidang.domain.ReviewVO;
 import com.spring.gogidang.domain.StoreVO;
 import com.spring.gogidang.service.EventService;
 import com.spring.gogidang.service.MemberService;
 import com.spring.gogidang.service.ReviewService;
 import com.spring.gogidang.service.StoreService;
+
 
 /*
  * main.me
@@ -303,6 +305,42 @@ public class MemberController {
 		
 	}
 	
+	/*
+	//soobin start
+	@RequestMapping(value="/kakaologin.me", produces="application/text; charset=utf8")
+	@ResponseBody
+	public void kakaologin(String kakaoinfo, HttpSession session){
+	
+		System.out.println(kakaoinfo);
+	}
+	//soobin end
+	*/
+	
+
+	// 인증메일 전송 및 인증키 session 저장
+//	@RequestMapping(value="/checkemail.bo", produces="application/text; charset=utf8")
+//	@ResponseBody
+//	public String SendMail(String u_email, HttpSession session){
+//		
+//		// 결과값 메세지
+//		String res = "메일 발송에 실패하였습니다";
+//		
+//		Random random = new Random();
+//		String authkey = "";
+//		
+//		for( int i=0; i < 3; i++ ) {
+//			int index = random.nextInt(25)+65;
+//			
+//			authkey +=(char)index;
+//		}
+//		
+//		int numIndex = random.nextInt(8999)+1000;
+//		authkey += numIndex;
+//		
+//		// 세션에 key 값 저장
+//		session.setAttribute("authkey", authkey);
+//  }
+
 	@RequestMapping("/admin_event_insert.me")
 	public String admin_event_insert(Model model) {
 		return "admin/admin_event_insert"; 
@@ -310,16 +348,21 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/admin_confirm_list.me")
-	public String admin_confirm_list(Model model) {
+	public String admin_confirm_list(Criteria cri, Model model) {
+		model.addAttribute("list", storeService.getWaitList());
+		
+		int total = storeService.getTotal(cri);
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		
 		return "admin/admin_confirm_list"; 
 		
 	}
 	
 	@RequestMapping("/admin_confirm_ch.me")
-	public String admin_confirm_ch(Model model) {
-		return "admin/admin_confirm_ch"; 
+	public String admin_confirm_ch(@RequestParam("s_num") int s_num, Model model) {
+		model.addAttribute("storeVO", storeService.storeInfo(s_num));
 		
+		return "admin/admin_confirm_ch"; 
 	}
-	
    
 }

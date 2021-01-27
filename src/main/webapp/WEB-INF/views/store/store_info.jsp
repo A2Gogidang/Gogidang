@@ -26,18 +26,21 @@
 
     <!-- Custom Fonts -->
     <link href="resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+   
    
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    
    
 
 <%
-   MemberVO membervo = (MemberVO)session.getAttribute("MemberVO");
+   MemberVO membervo = (MemberVO)session.getAttribute("memberVO");
    String u_id=(String)membervo.getU_id();
+   %>
+
+<%
    ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>)request.getAttribute("menuList");
    ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>)request.getAttribute("reviewList");
-   //ArrayList<CartListVO> cartList= (ArrayList<CartListVO>)request.getAttribute("cartList");
+   
 %>
 <html>
 <head>
@@ -46,9 +49,7 @@
 
 </head>
 <body>
-
-   <table border="1" align=center>
-   <a href="/cart/cartList">카트 리스트</a>
+<table border="1" align=center>
    <tr>
  		<td><button onclick="location.href='./review_reg.re?s_num=${storeVO.getS_num() }'">리뷰작성</button></td>
    </tr>
@@ -66,76 +67,54 @@
       <td>${storeVO.getDelibery()}</td>
    </tr>
    </table>
-   
-    <table>
-   
-					
-				
-    
- <thead>
-  <tr>
-   <th>번호</th>
-   <th>종류</th>
-   <th>이름</th>
-   <th>가격</th>
-   <th>이미지</th>
-   <th>등급</th>
-   <th>이미지</th>
-  </tr>
- </thead>
- <tbody>
-  <c:forEach items="${menuList}" var="menuList">
-  <tr>
-   <td>${menuList.menu_num}</td>
-   <td>${menuList.meat}</td>
-   <td>${menuList.menu_name}</td>
-   <td>${menuList.price}</td>
-   <td>${menuList.img}</td>
-   <td>${menuList.grade}</td>
-   <td>${menuList.gram}</td>
-  </tr>   
-  </c:forEach>
- </tbody>
-</table>
-	    
-<table border="1">
-	<tr>
-		<td>${menuList.img}</td>
-		<td>
-			<table border="1" style="height:300px; width: 400px;">
-				<tr align="center">
-					<td>상품명</td>				
-					<td>${menuList.menu_name}</td>	
-				</tr>
-				<tr align="center">
-					<td>가격</td>
-					<td><fmt:formatNumber value="${menuList.price}" pattern="###,###,###"/></td>
-				</tr>
-				<tr align="center">
-					<td colspan="2">
-						<form name="form1" method="post" action="">
-							<input type="hidden" name="" value="${menuList.}">
-						</form>
-					</td>
-				</tr>
-			</table>
-		
-	
-	</tr>
-</table>	     
-         <p class="cartStock">
-		 <span>구입 수량</span>
-		 <button type="button" class="plus">+</button>
-		 <input type="number" class="numBox" min="1" max="100" value="1" readonly="readonly"/>
-		 <button type="button" class="minus">-</button>
-		 <input type="hidden" value="${cartList.cartStock}" class="gdsStock_hidden" />
-		
-		
-      <p class="addToCart">
- 		<button type="button" class="addCart_btn">카트에 담기</button>
+      <%
+         CartVO cartVO = new CartVO();
+            for(int i=0; i<menu_List.size(); i++)
+            {
+               MenuVO vo =(MenuVO)menu_List.get(i);
+         %>
+          <form id="addCart<%=i%>" action="./addCart.ct" method="post">
+          <input type="hidden" id ="menu_num" name="menu_num" value="<%=vo.getMenu_num() %>">
+	  	<table border="1">
+	  		 <tr>
+		  		 <td>사진</td>
+		         <td>상품명</td>
+		         <td>그램</td>
+		         <td>등급</td>
+		         <td>가격</td>
+		         <td>구입 수량</td>
+		         <td rowspan="2">
+		         <input type="submit" value="장바구니에 담기" id="addCart<%=i%>"/>
+		         </td>		    
+	         </tr>
+	         <tr>
+		         <td><%=vo.getImg() %></td>
+		         <td><%=vo.getMenu_name() %></td>
+		         <td><%=vo.getGram() %></td>
+		         <td><%=vo.getGrade() %></td>
+		         <td><input type="hidden" id ="price" name="price" value="<%=vo.getPrice()%>"><%=vo.getPrice() %></td>
+		         <td><input type="number" id="cartStock" name="cartStock" min="1" max="100" value="1" /></td>		         
+	         </tr>
+	         
+	 	</table><br><br>	 	
+ 	</form>
+ <%} %>
+          <tr>
+         <table border=1 align=center>
+         <tr>
+         <%
+            for(int i=0; i<review_List.size(); i++)
+            {
+               ReviewVO vo1 =(ReviewVO)review_List.get(i);
+         %>
+         <td><%=vo1.getStar() %></td>
+         <td><%=vo1.getTitle() %>
+         <%} %>
+         </tr>
+         </table>
+      </tr>
+   </table>
       <tr>
-      
-     
          <table border=1 align=center>
          <tr>
          <%
@@ -150,8 +129,7 @@
          </tr>
          </table>
       </tr>
-  
-
+   
    <div id="map" style="width:800px;height:400px;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=241b4077cebf45bee1ed06d47263650b&libraries=services"></script>
@@ -234,7 +212,6 @@ geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
       
       </div>
       
-      
       <!-- Modal -->
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel" aria-hidden="true">
@@ -285,32 +262,6 @@ geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
     <!-- Custom Theme JavaScript -->
     <script src="./resources/dist/js/sb-admin-2.js"></script>
 
-
-<script>
-	$(".addCart_btn").click(function(){
-		var menu_Num = $("menu_num").val();
-		//var cartStock = $(".numBox").val();
-		
-		var data = {
-				menu_Num : menu_Num,
-				//cartStock : cartStock
-		};
-		
-		
-		$.ajax({
-			url : "/cart/addCart.st",
-			type : "post",
-			data : data,
-			success : function() {
-				alert("카트 담기 성공");
-				//$(".numBox").val("1");
-			},
-			error : function() {
-				alert("카트 담기 실패");
-			}
-		});
-	});
-</script>
 
 <script>
 $(document).ready(function (){

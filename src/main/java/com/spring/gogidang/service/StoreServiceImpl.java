@@ -84,6 +84,13 @@ public class StoreServiceImpl implements StoreService {
 		System.out.println("impl" + storeMapper.getTotalCount(cri));
 		return storeMapper.getTotalCount(cri);
 	}
+	
+	@Override
+	public Double getAvgStar(int s_num) {
+		StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
+
+		return storeMapper.getAvgStar(s_num);
+	}
 
 	// taehyun end
 	
@@ -140,6 +147,8 @@ public class StoreServiceImpl implements StoreService {
 		return storelistAjax;
 	}
 	//dohyeong end
+
+
 
 
 }

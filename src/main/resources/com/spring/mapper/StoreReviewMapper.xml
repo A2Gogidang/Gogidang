@@ -11,7 +11,7 @@
 		   ,r.title
 		   ,r.content
 		   ,r.star
-		   ,r.photo1
+		   ,r.REVIEW_IMG1
 		   ,r.review_date
 		   ,s.re_content
 		   ,s.re_date  

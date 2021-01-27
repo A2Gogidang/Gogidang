@@ -14,36 +14,47 @@ ArrayList<EventVO> event_list =(ArrayList<EventVO>) request.getAttribute("event_
 <title>Insert title here</title>
 </head>
 <body>
-	<h1 align=center>이벤트 페이지</h1>
-	<table border=1 align=center>
-	<tr>
-		<td><a href="eventpage.ev">이벤트</a></td>
-		<td><a href="qnalist.qn">문의</a></td>
-		<td><a href="noticelist.no">공지사항</a></td>
-	</tr>
-	</table>
-	<table border=1 width=300 align=center>
+<%@include file="../includes/header.jsp"%>
+        <div class="container">
+            <div class="hero__item__box2"></div>
+                    <div class="EventNav">
+                        <ul>
+                            <li><a href="eventPage.ev">이벤트</a></li>
+                            <li><a href="qnalist.qn">문의</a>
+                            <li><a href="notice.ev">공지사항</a></li>
+                        </ul>
+                    </div>   
+            </div>   
+            
+            <div class="section-title" style="margin-top : 70px;">
+								<h2 style="margin-top: 30px;">이벤트</h2>
+							</div>
+            
+<div class="container-fluid"style="display: flex; justify-content: center; align-items: center;">
+	<ul>
+		<%
+			for (int i=0; i<event_list.size(); i++)
+				{
+				EventVO vo = (EventVO)event_list.get(i);
+		%>
 					
-					<%
-						for (int i=0; i<event_list.size(); i++)
-							{
-							EventVO vo = (EventVO)event_list.get(i);
-					%>
-					
-						<tr align=center>
-							<td colspan=2>
-								<a href="eventinfo.ev?event_num=<%=vo.getEvent_num()%>"><%=vo.getThumbnail() %>
-							</td>
-					</tr>
-					
-					<%
-							} 
-					%>
-					
-				
-			</table>
+	<div class="row">
+		<div class="col-md-12">
+			<a href="eventInfo.ev?event_num=<%=vo.getEvent_num()%>">
+				<img alt="Bootstrap Image Preview" src="<%=vo.getThumbnail()%>"/>
+			</a>
+		</div>
+	</div>
+	
+		<%
+			}
+		%>
+	</div>
+	</ul>
+</div>
+
+
 			
-			
-			<a href="main.me">메인페이지로 돌아가기</a>
+<%@include file="../includes/footer.jsp"%>			
 </body>
 </html>

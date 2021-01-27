@@ -20,6 +20,8 @@ public interface StoreMapper {
 	public ArrayList<StoreVO> getWaitListWithPage(Criteria cri);
 	public int getTotalCount(Criteria cri);
 	
+	public Double getAvgStar(int s_num);
+	
 	// soobin
 	public int insertStore(StoreVO storeVO);
 	public StoreVO selectStore(StoreVO storeVO);

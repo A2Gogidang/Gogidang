@@ -50,6 +50,15 @@ public class EventController {
 		
 		return "redirect:eventList.ev";
 	}
+  
+    @RequestMapping("/eventDetail.ev") 
+    public String eventDetail(EventVO eventVO, Model model) throws Exception { 
+
+      return "event/eventDetail";
+
+
+
+    }
 	
 	@RequestMapping("/eventRegister.ev")
 	public String eventRegister(EventVO eventVO) {
@@ -77,5 +86,4 @@ public class EventController {
 		
 		return "event/notice";
 	}
-	
 }

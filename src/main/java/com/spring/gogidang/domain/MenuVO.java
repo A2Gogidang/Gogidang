@@ -18,4 +18,5 @@ public class MenuVO {
 	private String gram;
 	private String u_id;
 	private int s_num;
+	private String origin;
 }

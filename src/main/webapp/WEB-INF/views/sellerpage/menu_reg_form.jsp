@@ -6,7 +6,7 @@
 
 <%
 	StoreVO vo = (StoreVO)request.getAttribute("StoreVO");
-	ArrayList<MenuVO> menuList = (ArrayList<MenuVO>)request.getAttribute("menuSelectList");
+	ArrayList<MenuVO> menuList = (ArrayList<MenuVO>)request.getAttribute("menuList");
 %>
 
 <section class="hero">
@@ -14,11 +14,11 @@
         <div class="hero__item__box2"></div>
                 <div class="EventNav">
                     <ul>
-                        <li><a href="./updateList.me">내정보</a></li>
+						<li><a href="./updateList.me">내정보</a></li>
                         <li><a href="./storeRegForm.st">가게 정보</a>
                         <li><a href="./menuRegForm.mn">메뉴 정보</a></li>
                         <li><a href="./storeNoticeList.no">문의 관리</a></li>
-                        <li><a href="./storereviewList.bo">리뷰 관리</a></li>
+                        <li><a href="./reviewListBySnWithPaging.re?s_num=<%=vo.getS_num() %>">리뷰 관리</a></li>
                     </ul>
                 </div>   
         </div>   
@@ -220,6 +220,54 @@ function check_input() {
 	
 }  
 </script>
+     
+ <%if ( menuList != null || menuList.size() > 0 ){ %>
+		<!-- for 문으로 저장된 리스트 출력해주기 
+		<div class="menu_box">
+			<font size=5>등록 내역</font>
+			<div class="menu_reg">
+				
+			</div>
+		</div>
+		-->
+		<div class="menu_box">
+		<table border=1px>
+			<tr>
+				<td colspan="2" align=center>
+					<b><font size=5>등록 내역</font></b>
+				</td>
+			</tr>
+			<%
+				for(int i = 0; i < menuList.size(); i++){ 
+					MenuVO menuVO = (MenuVO)menuList.get(i);
+			%>
+			<tr>
+				<td>상품이름 : </td> 
+				<td><span name="menu_name" type="text" ><%=menuVO.getMenu_name() %></span></td>
+			</tr>
+			<tr>
+				<td>상품 사진 : </td> 
+				<td><img src="resources/img/menu/<%=menuVO.getImg() %>"  width="100px" height="100px" /></td>
+			</tr>
+			<tr>
+				<td>상품 금액 : </td> 
+				<td><span name="price" type="text" ></span><%=menuVO.getPrice() %></td>
+			</tr>
+			<tr>
+				<td>상품 그램 : </td> 
+				<td><span name="gram" type="text" ></span><%=menuVO.getGram() %></td>
+			</tr>
+			<tr>
+				<td>상품 등급 : </td> 
+				<td><span name="grade" type="text" ></span><%=menuVO.getGrade() %></td>
+			</tr>
+			<%} %>
+		</table>
+
+<%}else{ %>
+	<h1>상품을 추가해주세요.</h1>
+<%} %>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

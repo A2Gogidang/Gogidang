@@ -8,8 +8,6 @@
 	String id = mvo.getU_id();
 	int seller_key = mvo.getSeller_key(); -->
 <%
-	
-	
 	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
 %>
 
@@ -28,9 +26,12 @@
                         </ul>
                         <ul>
                             <li>지역</li>
-                     			<li><input type="checkbox" id="s_seoul" class="f_check" name="f_Acheck" value="서울" checked="checked" >서울</li>
-                            <li><input type="checkbox" id="s_gyeong" class="f_check" name="f_Acheck"  value="경기"  checked="checked">경기</li>
-                            <li><input type="checkbox" id="s_gang" class="f_check" name="f_Acheck"  value="강원" checked="checked">강원</li>
+                   			<li><input type="checkbox" id="s_seoul" class="f_check" name="f_Acheck" value="서울" >서울</li>
+                            <li><input type="checkbox" id="s_gyeong" class="f_check" name="f_Acheck" value="경기">경기도</li>
+                            <li><input type="checkbox" id="s_gang" class="f_check" name="f_Acheck" value="강원" >강원도</li>
+                            <li><input type="checkbox" id="s_jeon" class="f_check" name="f_Acheck" value="전라" >전라도</li>
+                            <li><input type="checkbox" id="s_gyeong" class="f_check" name="f_Acheck" value="경상" >경상도</li>
+                            <li><input type="checkbox" id="s_chung" class="f_check" name="f_Acheck" value="충청" >충정도</li>
          					
                         </ul>
                         
@@ -39,8 +40,19 @@
                         	<li><input type="checkbox" id="cow" class="f_check" name="f_Mcheck" value="0" >소고기</li>
                             <li><input type="checkbox" id="pig" class="f_check" name="f_Mcheck"  value="1" >돼지고기</li>
                             <li></li>
-                       </ul> 
+                       </ul>
+                       <ul>
+                       		<li>별점</li>
+                       		<li><input type="radio" id="one" class="f_check" name="f_Scheck" value="0" checked>모든별점</li>
+                       		<li><input type="radio" id="one" class="f_check" name="f_Scheck" value="1" >1점 이상</li>
+                       		<li><input type="radio" id="two" class="f_check" name="f_Scheck" value="2" >2점 이상</li>
+                       		<li><input type="radio" id="three" class="f_check" name="f_Scheck" value="3" >3점 이상</li>
+                       		<li><input type="radio" id="four" class="f_check" name="f_Scheck" value="4" >4점 이상</li>
+                   			<li><input type="radio" id="five" class="f_check" name="f_Scheck" value="5" >5점 이상</li>
+                       	</ul> 
                     </div>   
+                    <button type="button" name="button" id="checkBtn">검색</button>
+                    <button type="button" name="button" id="sortBtn">별점순</button>
             </div>   
         </div>
     </section>
@@ -68,7 +80,10 @@
 				
 				<div class="card_store_name" >
 					<div class="text_right">
-						<h5><a href="#"><%= svo.getS_name() %></a></h5>
+						<h5>
+							<a href="#" style="display:inline"><%= svo.getS_name() %></a>
+							<input type="hidden" id="avgStar" class="avgStar" name="avgStar" value="<%=svo.getAvgStar() %>" style="border:none" /><%=svo.getAvgStar() %>
+						</h5>
 					</div>
 				</div>
 				
@@ -77,7 +92,7 @@
 						<%
 						if(svo.getMeat() == 0) {
 						%>
-							<h6>소고기 </h6> 
+							<h6>소고기 </h6>
 						<%
 						} else if (svo.getMeat() == 1) {
 						%>
