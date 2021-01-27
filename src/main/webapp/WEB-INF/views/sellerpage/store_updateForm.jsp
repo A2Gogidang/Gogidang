@@ -4,6 +4,11 @@
 <%@ page import="javax.sql.*"%>
 <%@ page import="javax.naming.*"%>
 <%@ page import="java.util.*"%>
+<%@ page import="com.spring.gogidang.domain.*"%>
+<%@ page import="com.spring.gogidang.domain.*"%>
+<%
+	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+%>
 <%@include file="../includes/header.jsp"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/store_updateStyle.css" type="text/css">
 <%

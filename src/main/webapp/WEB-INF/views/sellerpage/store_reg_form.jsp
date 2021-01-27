@@ -2,11 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@include file="../includes/header.jsp"%>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/store_regStyle.css" type="text/css">
+<%@ page import="com.spring.gogidang.domain.*"%>
+<%
+	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+%>
 <%
 	StoreVO storeVO = (StoreVO)session.getAttribute("StoreVO");
 %>
 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/store_regStyle.css" type="text/css">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 

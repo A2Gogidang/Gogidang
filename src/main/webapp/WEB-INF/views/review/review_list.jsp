@@ -4,7 +4,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<%@ page import = "com.spring.gogidang.domain.*" %>
+<%@ page import="com.spring.gogidang.domain.*"%>
+<%
+	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+%>
 <%@include file="../includes/header.jsp"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member_liststoreStyle.css" type="text/css">
 <%

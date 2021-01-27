@@ -5,6 +5,10 @@
 <%@ page import="javax.naming.*" %>
 <%@ page import="java.util.*" %>
 <%@include file="../includes/header.jsp"%>
+<%@ page import="com.spring.gogidang.domain.*"%>
+<%
+	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+%>
 <% 
 	String u_id =(String)session.getAttribute("u_id");
 	
