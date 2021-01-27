@@ -411,5 +411,11 @@ public class StoreController {
 	public String design2(Model model) {
 		return "store/store_info_design/store_info_Design2";
 	}
+	
+	@RequestMapping(value = "/shopgrid.st")
+	public String shopgrid(Model model) {
+		return "store/shopgrid";
+
+	}
 
 }

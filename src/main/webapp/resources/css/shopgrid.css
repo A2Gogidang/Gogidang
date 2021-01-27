@@ -22,6 +22,14 @@
 	display: flex;
 	justify-content: center;
 	}
+	.shoplistoness{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 35px;
+	height: 35px;
+	font-size: 20px;
+	}
 	.shoplisttwo{
 	padding-top: 10px;
 	padding-bottom: 10px;
