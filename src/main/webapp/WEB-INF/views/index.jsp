@@ -5,19 +5,19 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mainPage.css" type="text/css">
 
 <%
-	MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
-	String u_id = "";
-	int seller_key;
-	if(mvo != null) {
-		u_id = mvo.getU_id();
-		seller_key = mvo.getSeller_key();
-	} else {
-		seller_key = 0;
-	}
-	
-	ArrayList<EventVO> event_list =(ArrayList<EventVO>) request.getAttribute("eventList");
-	ArrayList<StoreVO> store_list =(ArrayList<StoreVO>) request.getAttribute("storeList");
-	ArrayList<ReviewVO> review_list =(ArrayList<ReviewVO>) request.getAttribute("reviewList");
+   MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
+   String u_id = "";
+   int seller_key;
+   if(mvo != null) {
+      u_id = mvo.getU_id();
+      seller_key = mvo.getSeller_key();
+   } else {
+      seller_key = 0;
+   }
+   
+   ArrayList<EventVO> event_list =(ArrayList<EventVO>) request.getAttribute("eventList");
+   ArrayList<StoreVO> store_list =(ArrayList<StoreVO>) request.getAttribute("storeList");
+   ArrayList<ReviewVO> review_list =(ArrayList<ReviewVO>) request.getAttribute("reviewList");
 %>
 
 <!DOCTYPE html>
@@ -112,7 +112,7 @@
     -->
     <!-- Humberger End -->
 
-	<!-- Header Section Begin -->
+   <!-- Header Section Begin -->
     <!-- Header Section Begin -->
     <header class="header">
         <div class="header__top">
@@ -121,8 +121,8 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                            	<!-- 최상단 좌측 이메일과 문구 삭제 -->
-                            	<!-- <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                               <!-- 최상단 좌측 이메일과 문구 삭제 -->
+                               <!-- <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
                                 <li>Free Shipping for all Order of $99</li> -->
                                 
                             </ul>
@@ -130,9 +130,9 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
-                        	
-                        	<!-- 최상단 우측 sns와 언어 삭제 -->
-                        	<!-- <div class="header__top__right__social">
+                           
+                           <!-- 최상단 우측 sns와 언어 삭제 -->
+                           <!-- <div class="header__top__right__social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
                                 <a href="#"><i class="fa fa-linkedin"></i></a>
@@ -196,10 +196,10 @@
                  -->
                  
                 <div class="hero__search">
-                	<div class="hero__search__form">
+                   <div class="hero__search__form">
                         <form action="#">
                               <div class="hero__search__categories">
-                                    	가게검색
+                                       가게검색
                                 <!--<span class="arrow_carrot-down"></span> 아래화살표  -->  
                               </div>
                               <input type="text" placeholder="어떤가게를찾으세요?" style="font-size: 12px;">
@@ -259,12 +259,12 @@
                 
                
                 <div class="col-lg-9">
-                	<!-- 기존위치에잇던 검색창자리
+                   <!-- 기존위치에잇던 검색창자리
                     <div class="hero__search">
                         <div class="hero__search__form">
                             <form action="#">
                                 <div class="hero__search__categories">
-                                    	가게검색하기
+                                       가게검색하기
                                    <span class="arrow_carrot-down"></span> 
                                     
                                 </div>
@@ -272,7 +272,7 @@
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
                         </div>
-                        	헤더쪽 전화아이콘, 전화번호 시작
+                           헤더쪽 전화아이콘, 전화번호 시작
                         <div class="hero__search__phone">
                             <div class="hero__search__phone__icon">
                                 <i class="fa fa-phone"></i>
@@ -287,7 +287,7 @@
                     -->
                     <div class="hero__item set-bg" data-setbg="./resources/img/hero/top-banner-test3.jpg">
                         <div class="hero__text">
-                        	<!-- 
+                           <!-- 
                             <span>FRUIT FRESH</span>
                             <h2>Vegetable <br />100% Organic</h2>
                             <p>Free Pickup and Delivery Available</p>
@@ -305,44 +305,27 @@
     <section class="categories">
         <div class="container">
             <div class="row">
-            	 <div class="col-lg-12">
-	            	<div class="section-title">
-	                    <h2>추천가게</h2>
-	                </div>
-	                 <div class="featured__controls">
-                    	<ul>
-                    		<li>자신있게 추천 드립니다 !</li>
-                    	</ul>
+                <div class="col-lg-12">
+                  <div class="section-title">
+                       <h2>추천가게</h2>
+                   </div>
+                    <div class="featured__controls">
+                       <ul>
+                          <li>자신있게 추천 드립니다 !</li>
+                       </ul>
                     </div>
-	             </div>  
-	                <div class="categories__slider owl-carousel">
-	                 	
-	                    <div class="col-lg-3">
-	                        <div class="categories__item set-bg" data-setbg="./resources/img/categories/cat-1.jpg">
-	                            <h5><a href="#">Fresh Fruit</a></h5>
-	                        </div>
-	                    </div>
-	                    <div class="col-lg-3">
-	                        <div class="categories__item set-bg" data-setbg="./resources/img/categories/cat-2.jpg">
-	                            <h5><a href="#">Dried Fruit</a></h5>
-	                        </div>
-	                    </div>
-	                    <div class="col-lg-3">
-	                        <div class="categories__item set-bg" data-setbg="./resources/img/categories/cat-3.jpg">
-	                            <h5><a href="#">Vegetables</a></h5>
-	                        </div>
-	                    </div>
-	                    <div class="col-lg-3">
-	                        <div class="categories__item set-bg" data-setbg="./resources/img/categories/cat-4.jpg">
-	                            <h5><a href="#">drink fruits</a></h5>
-	                        </div>
-	                    </div>
-	                    <div class="col-lg-3">
-	                        <div class="categories__item set-bg" data-setbg="./resources/img/categories/cat-5.jpg">
-	                            <h5><a href="#">drink fruits</a></h5>
-	                        </div>
-	                    </div>
-	                </div>
+                </div>  
+                   <div class="categories__slider owl-carousel">
+                          <%for(int i=0; i<store_list.size(); i++) {
+                 
+                    StoreVO vo = (StoreVO) store_list.get(i);
+                       %>
+                       <div class="col-lg-3">
+                           <div class="categories__item set-bg" data-setbg="resources/img/store/<%=vo.getThumbnail() %>">
+                               <h5><a href="./storeInfo.st?s_num=<%=vo.getS_num() %>"><%=vo.getS_name() %></a></h5>
+                           </div>
+                    <%} %>
+                   </div>
                
             </div><!-- row -->
         </div>
@@ -358,10 +341,10 @@
                         <h2>베스트 리뷰</h2>
                     </div>
                     <div class="featured__controls">
-                    	<ul>
-                    		<li>고기당이 엄선한 베스트 리뷰 !</li>
-                    	</ul>
-                    	<!-- 
+                       <ul>
+                          <li>고기당이 엄선한 베스트 리뷰 !</li>
+                       </ul>
+                       <!-- 
                         <ul>
                             <li class="active" data-filter="*">All</li>
                             <li data-filter=".oranges">Oranges</li>
@@ -864,4 +847,4 @@
 
 
 </body>
-</html>
+</html>	

@@ -7,6 +7,7 @@
 <html lang="zxx">
 
 <head>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/storelist.css" type="text/css">
     <meta charset="UTF-8">
     <meta name="description" content="Ogani Template">
     <meta name="keywords" content="Ogani, unica, creative, html">
@@ -248,7 +249,7 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                 src="resources/img/store/<%=svo.getThumbnail() %>" width="400px" height="380px"> 
+                 src="resources/img/store/<%=svo.getThumbnail() %>"width="400px;" height="380px;">
                         </div>
 <!--                         <div class="product__details__pic__slider owl-carousel">
                             <img data-imgbigurl="resources/img/product/details/product-details-2.jpg"
@@ -277,115 +278,18 @@
                             <i class="fa fa-star-half-o"></i>
                             <span>(18 reviews)</span>
                         </div>
-                        <div class="product__details__price" style="color:#7fad39;"><%=svo.getS_addr() %></div>
+                        <div class="product__details__price" style="color:#7fad39; font-size: 25px; width:400px; height:73px;"><%=svo.getS_addr() %></div>
                         
-						<ul>
-                            <li><img src="resources/DetailStore/Icon/time.ico"
-                              width="40px" height="42px;" alt='' / style="margin-right : 10px;"><b>운영시간</b> <span><%=svo.getS_hour() %></span></li>
+						<ul style="margin-top : 60px;">
+                           <li><img src="resources/DetailStore/Icon/time.ico"
+                              width="40px" height="42px;" alt='' / style="margin-right : 10px;"><span>운영시간 : &nbsp;&nbsp;<%=svo.getS_hour() %></span></li>
                             <li><img src="resources/DetailStore/Icon/call.ico"
-                              width="40px" height="42px;" alt='' / style="margin-right : 10px;"><b>전화번호</b> <span><%=svo.getS_phone() %></span></li>
+                              width="40px" height="42px;" alt='' / style="margin-right : 10px;"><span>전화번호 : &nbsp;&nbsp;<%=svo.getS_phone() %></span></li>
                             <li><img src="resources/DetailStore/Icon/delivery.ico"
-                              width="40px" height="42px;" alt='' / style="margin-right : 10px;"><b>가게소개</b> <span>한줄소개글 추가</span></li>
-                        <div class="container-fluid">
-	<div class="row cc_cursor">
-		<div class="col-md-12">
-			 <a id="modal-684388" href="#modal-container-684388" role="button" class="btn" data-toggle="modal">상세위치 보기</a>
-			
-			<div class="modal fade" id="modal-container-684388" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="myModalLabel">
-								<%=svo.getS_name() %>
-							</h5> 
-							<button type="button" class="close" data-dismiss="modal">
-								<span aria-hidden="true">×</span>
-							</button>
-						</div>
-						<div class="modal-body">
-						<div class="DetailLocation"
-                        style="text-align: left; margin-top: 30px;">
-                        <h4>서울 송파구 양재대로 932 38</h4>
-                        <h6>가락시장역8번 출구에서215m</h6>
-                        <div class="container-fluid">
-                           <div class="row">
-                              <div class="col-md-12">
-                                 <div id="map" style="width: 300px; height: 200px;"></div>
-
-                                 <script type="text/javascript"
-                                    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=241b4077cebf45bee1ed06d47263650b&libraries=services"></script>
-                                 <script>
-                                    var mapContainer = document
-                                          .getElementById('map'), // 지도를 표시할 div 
-                                    mapOption = {
-                                       center : new kakao.maps.LatLng(
-                                             33.450701,
-                                             126.570667), // 지도의 중심좌표
-                                       level : 3
-                                    // 지도의 확대 레벨
-                                    };
-
-                                    // 지도를 생성합니다    
-                                    var map = new kakao.maps.Map(
-                                          mapContainer, mapOption);
-
-                                    // 주소-좌표 변환 객체를 생성합니다
-                                    var geocoder = new kakao.maps.services.Geocoder();
-
-                                    // 주소로 좌표를 검색합니다
-                                    geocoder
-                                          .addressSearch(
-                                                '${storeVO.getS_addr()}',
-                                                function(
-                                                      result,
-                                                      status) {
-
-                                                   // 정상적으로 검색이 완료됐으면 
-                                                   if (status === kakao.maps.services.Status.OK) {
-
-                                                      var coords = new kakao.maps.LatLng(
-                                                            result[0].y,
-                                                            result[0].x);
-
-                                                      // 결과값으로 받은 위치를 마커로 표시합니다
-                                                      var marker = new kakao.maps.Marker(
-                                                            {
-                                                               map : map,
-                                                               position : coords
-                                                            });
-
-                                                      // 인포윈도우로 장소에 대한 설명을 표시합니다
-                                                      var infowindow = new kakao.maps.InfoWindow(
-                                                            {
-                                                               content : '<div style="width:50px;text-align:center;padding:6px 0;">저희 가게</div>'
-                                                            });
-                                                      infowindow
-                                                            .open(
-                                                                  map,
-                                                                  marker);
-
-                                                      // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                                                      map
-                                                            .setCenter(coords);
-                                                   }
-                                                });
-                                 </script>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-						</div>
-						</div>
-					</div>
-					
-				</div>
-				
-			</div>
-			
-		</div>
-	</div>
-</div>
+                              width="40px" height="42px;" alt='' / style="margin-right : 10px;"><span>가게소개 : &nbsp;&nbsp;한줄소개글 추가</span></li>
                         </ul>
+						</div>
+                        </div>
                         <!-- <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
@@ -414,19 +318,19 @@
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
-                                    aria-selected="true">menu</a>
+                                    aria-selected="true">메뉴</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
-                                    aria-selected="false">loc</a>
+                               <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
+                                    aria-selected="false">위치</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
-                                    aria-selected="false">Reviews </a>
+                                    aria-selected="false">후기 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab"
-                                    aria-selected="false">qna </a>
+                                    aria-selected="false">문의 </a>
                             </li>
                         </ul>
                         
