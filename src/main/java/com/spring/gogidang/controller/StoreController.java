@@ -85,9 +85,10 @@ public class StoreController {
 		model.addAttribute("storeVO", vo);
 		model.addAttribute("menuList",menuList);
 		model.addAttribute("reviewList",reviewList);
+		
 
 
-		return "store/store_info_Design";
+		return "store/store_info";
 	}
 
 	/*
