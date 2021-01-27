@@ -104,6 +104,8 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+	
+	
 
 	</body>
 </html>

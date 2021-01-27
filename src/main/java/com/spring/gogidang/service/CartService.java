@@ -1,16 +1,14 @@
 package com.spring.gogidang.service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.ArrayList;
 
-import com.spring.gogidang.domain.CartVO;
-
+import com.spring.gogidang.domain.*;
 
 public interface CartService {
-	
-	//카트 담기
-	public void addCart(CartVO cart) throws Exception;
-	
-	
+   
+   public int addCart(CartVO cartVO)throws Exception;
+   public ArrayList<CartVO> cartList(CartVO cartVO)throws Exception;
+   public int cartDelete(CartVO cartVO)throws Exception;
+   
+   
 }

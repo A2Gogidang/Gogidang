@@ -33,7 +33,7 @@
 	</update>
 	
 	<delete id="noticeDelete" parameterType="int">
-		DELETE FROM notice WHERE notice_num=#{notice_num}
+		DELETE FROM notice WHERE notice_num= #{notice_num}
 	</delete>
 	
 	<select id="isBoardWriter" parameterType="HashMap" resultType="int">

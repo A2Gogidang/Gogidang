@@ -37,7 +37,7 @@
                   <ul>
                      <li><a href="./storeList.st">전체가게 보기</a></li>
                      <li><a href="./reviewList.re">전체리뷰 보기</a></li>
-                     <li><a href="./notice.ev">이벤트 & 공지사항</a></li>
+                     <li><a href="./noticelist.no">이벤트 & 공지사항</a></li>
                      <li><a href="./updateList.me">마이페이지</a></li>
                      <li><a href="#"></a></li>
                      <li><a href="#"></a></li>

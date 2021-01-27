@@ -12,13 +12,9 @@
 	QnaVO qna = (QnaVO)request.getAttribute("qna");
 %>
 
-<html>
-<head>
-	<title>MVC 게시판</title>
 
-</head>
 
-<body>
+
 <!-- 게시판 수정 -->
 <table cellpadding="0" cellspacing="0">
 	<tr align="center" valign="middle">
@@ -75,7 +71,7 @@
 			<a href="./qnamodifyform.qn?qna_num=<%=qna.getQna_num() %>">
 			[수정]
 			</a>&nbsp;&nbsp;
-			<a href="./qnaList.qn">[목록]</a>&nbsp;&nbsp;
+			<a href="./qnalist.qn">[목록]</a>&nbsp;&nbsp;
 			</font>
 		</td>
 	</tr>
@@ -103,6 +99,4 @@
 		}
 	}
 </script> -->
-
-</body>
-</html>
+<%@include file="../includes/footer.jsp"%>
