@@ -71,7 +71,8 @@ public class MemberController {
       model.addAttribute("storeList", storeService.getList());
       model.addAttribute("reviewList", reviewService.getList());
       
-      return "main";
+      //return "main";
+      return "index";
    }
    
    @RequestMapping("/loginForm.me") 
@@ -315,6 +316,7 @@ public class MemberController {
 	//soobin end
 	*/
 	
+
 	// 인증메일 전송 및 인증키 session 저장
 //	@RequestMapping(value="/checkemail.bo", produces="application/text; charset=utf8")
 //	@ResponseBody

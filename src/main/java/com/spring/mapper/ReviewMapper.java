@@ -1,6 +1,7 @@
 package com.spring.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -17,6 +18,8 @@ public interface ReviewMapper {
 	public ReviewVO getReview(int review_num);
 	public void regReview(ReviewVO review);
 	public int getTotal(Criteria cri);
+	
+	public List<ReviewVO> getReviewListAjax(Map<String, String[]> mapp);
 }
 
 //public int update(ReviewVO review);

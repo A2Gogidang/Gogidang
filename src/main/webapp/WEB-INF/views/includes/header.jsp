@@ -3,6 +3,7 @@
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%
 	MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
+
 %>
 <!DOCTYPE html>
 <html>

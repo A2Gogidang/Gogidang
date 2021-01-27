@@ -3,6 +3,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="com.spring.gogidang.domain.NoticeVO" %>
+<%@include file="../includes/header.jsp"%>
 <%
 	String u_id=null;
 	u_id=(String)session.getAttribute("u_id");
@@ -40,8 +41,6 @@ color :rgb(51,131,51);
 </head>
 
 <body>
-
-<%@include file="../includes/header.jsp"%>
         <div class="container">
             <div class="hero__item__box2"></div>
                     <div class="EventNav">

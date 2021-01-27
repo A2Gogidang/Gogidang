@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,8 +34,6 @@ import com.spring.gogidang.domain.StoreVO;
 import com.spring.gogidang.service.MenuService;
 import com.spring.gogidang.service.ReviewService;
 import com.spring.gogidang.service.StoreService;
-
-
 
 @Controller
 public class StoreController {
@@ -88,7 +87,7 @@ public class StoreController {
 		model.addAttribute("reviewList",reviewList);
 
 
-		return "store/store_info";
+		return "store/store_info_Design";
 	}
 
 	/*
@@ -282,7 +281,18 @@ public class StoreController {
 	// dohyeong start
 	@RequestMapping(value = "/storeList.st")
 	public String getStoreList(Model model) {
-		ArrayList<StoreVO> storeList = storeService.getStoreList();
+		ArrayList<StoreVO> storeList = storeService.getList();
+//		ArrayList<StoreVO> storeList = storeService.getStoreList();
+		
+		for (int i=0; i<storeList.size(); i++) {
+			StoreVO svo = storeList.get(i);
+			int s_num = svo.getS_num();
+			Double avgStar = storeService.getAvgStar(s_num);
+			svo.setAvgStar(avgStar);
+			String addr = svo.getS_addr().substring(0, 2);
+			svo.setS_addr(addr);
+		}
+		
 		model.addAttribute("storeList", storeList);
 		
 		return "store/store_list";
@@ -290,32 +300,100 @@ public class StoreController {
 	
 	@RequestMapping(value="/storelist_ajax.li", produces="application/json; charset=utf-8")
 	@ResponseBody 
-	 public List<StoreVO> getStoreListAjax( @RequestBody Map<String, String[]> map) { 
+	public List<StoreVO> getStoreListAjax( @RequestBody Map<String, String[]> map) {
+		
+		int min = 0;
+		
 		String[] s_addr = map.get("s_addr");
-		  for(String no : s_addr) {
-			  System.out.println("컨트롤러" + no);
-		  }
-		  String[] meat = map.get("meat");
-		  for(String no : meat) {
-			  System.out.println("컨트롤러 " + no);
-		  }
-		  Map<String, String[]> mapp = new HashMap<String, String[]>();
-			mapp.put("s_addr",s_addr);
-			mapp.put("meat", meat);
-		  /*List<StoreVO> list = storeService.getStoreListAjax(s_addr, meat);
-		  System.out.println("list" + list);
-		 */
-		  List<StoreVO> list = storeService.getStoreListAjax(mapp);
-		  StoreVO vo = (StoreVO) list.get(0);
+		for(String no : s_addr) {
+			System.out.println("컨트롤러 addr : " + no);
+		}
 		  
-		  System.out.println(vo.getThumbnail());
-		  return list; 
+		String[] meat = map.get("meat");
+		for(String no : meat) {
+			System.out.println("컨트롤러 meat : " + no);
+		}
+		
+		String[] star = map.get("star");
+		System.out.println(star[0]);
+		int starInt = Integer.parseInt(star[0]);
+		
+		
+		Map<String, String[]> mapp = new HashMap<String, String[]>();
+		
+		if(s_addr.length > 0 && meat.length > 0) {
+			mapp.put("s_addr",s_addr);
+			mapp.put("meat", meat);		
+			List<StoreVO> list = storeService.getStoreListAjax(mapp);
+			System.out.println("리스트 size : " + list.size());
+
+			for (int i=0; i<list.size(); i++) {
+				StoreVO svo = list.get(i);
+				int s_num = svo.getS_num();
+				Double avgStar = storeService.getAvgStar(s_num);
+				System.out.println("avgStar : " + avgStar);
+				
+				if ((avgStar+0.1) < starInt) {
+					list.remove(i);
+					i=-1;
+				} else {
+					svo.setAvgStar(avgStar);
+				}
+			}
+			
+			return list;
+			
+		} else if(s_addr.length == 0 && meat.length>0) {
+			mapp.put("meat", meat);		
+			List<StoreVO> list = storeService.getStoreListAjax(mapp);
+			
+			for (int i=0; i<list.size(); i++) {
+				StoreVO svo = list.get(i);
+				int s_num = svo.getS_num();
+				Double avgStar = storeService.getAvgStar(s_num);
+				System.out.println("avgStar : " + avgStar);
+				
+				if (avgStar < starInt) {
+					list.remove(i);
+				} else {
+					svo.setAvgStar(avgStar);
+				}
+			}
+			
+			return list;
+		} else if (s_addr.length > 0 && meat.length==0) {
+			mapp.put("s_addr",s_addr);
+			List<StoreVO> list = storeService.getStoreListAjax(mapp);
+			
+			for (int i=0; i<list.size(); i++) {
+				StoreVO svo = list.get(i);
+				int s_num = svo.getS_num();
+				Double avgStar = storeService.getAvgStar(s_num);
+				System.out.println("avgStar : " + avgStar);
+				
+				if (avgStar < starInt) {
+					list.remove(i);
+				} else {
+					svo.setAvgStar(avgStar);
+				}
+			}
+			
+			return list;
+		} else {
+			
+			return null;
+		}
 	  }
 	// dogyeong end
 	
 	@RequestMapping(value = "/store_info_Design.st")
 	public String design1(Model model) {
 		return "store/store_info_Design"; 
+		
+	}
+	@RequestMapping(value = "/store_info_scroll.st")
+	public String store_info_scroll(Model model) {
+		return "store/store_info_scroll"; 
 		
 	}
 

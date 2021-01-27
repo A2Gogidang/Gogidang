@@ -19,7 +19,7 @@ public class StoreVO {
 	private int delibery;
 	private int confirm;
 	
-	private int avgStar;
+	private Double avgStar;
 	
 	/* menu column*/
 	private int menu_num; 

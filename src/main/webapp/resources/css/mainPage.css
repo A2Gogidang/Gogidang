@@ -1,0 +1,37 @@
+@charset "UTF-8";
+/*------------------------------------------------------------------
+[Table of contents]
+
+1.  박스
+2.  Helper Css
+3.  Header Section
+4.  Hero Section
+5.  Service Section
+6.  Categories Section
+7.  Featured Section
+8.  Latest Product Section
+9.  Contact
+10.  Footer Style
+-------------------------------------------------------------------*/
+
+/*-----------------
+  1. 박스
+-----------------*/
+.hero__categories li {
+	width: 220px;
+	height: 55px;
+}
+
+
+/*-----------------
+  2. 이미지크기
+-----------------*/
+.header__logo a .mainlogo_img{
+	width: 160px;
+	height: 160px;
+}
+
+.row_main .col-lg-3 {
+	padding: 0px;
+	margin: 0px;	
+}
