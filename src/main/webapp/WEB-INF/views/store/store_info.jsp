@@ -68,7 +68,6 @@
    </tr>
    </table>
       <%
-         CartVO cartVO = new CartVO();
             for(int i=0; i<menu_List.size(); i++)
             {
                MenuVO vo =(MenuVO)menu_List.get(i);

@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.spring.gogidang.domain.*" %>
+
 <%
 	StoreVO svo = (StoreVO) request.getAttribute("storeVO");
 %>
-<!DOCTYPE html>
-<html lang="zxx">
 
+<!DOCTYPE html>
+
+<html lang="zxx">
+	
+	
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Ogani Template">
@@ -26,6 +30,28 @@
     <link rel="stylesheet" href="resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="resources/css/style.css" type="text/css">
+    
+  <!-- Bootstrap Core CSS -->
+    <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="resources/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="resources/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+   
+   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -287,102 +313,7 @@
                             <li><img src="resources/DetailStore/Icon/delivery.ico"
                               width="40px" height="42px;" alt='' / style="margin-right : 10px;"><b>가게소개</b> <span>한줄소개글 추가</span></li>
                         <div class="container-fluid">
-	<div class="row cc_cursor">
-		<div class="col-md-12">
-			 <a id="modal-684388" href="#modal-container-684388" role="button" class="btn" data-toggle="modal">상세위치 보기</a>
-			
-			<div class="modal fade" id="modal-container-684388" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="myModalLabel">
-								<%=svo.getS_name() %>
-							</h5> 
-							<button type="button" class="close" data-dismiss="modal">
-								<span aria-hidden="true">×</span>
-							</button>
-						</div>
-						<div class="modal-body">
-						<div class="DetailLocation"
-                        style="text-align: left; margin-top: 30px;">
-                        <h4>서울 송파구 양재대로 932 38</h4>
-                        <h6>가락시장역8번 출구에서215m</h6>
-                        <div class="container-fluid">
-                           <div class="row">
-                              <div class="col-md-12">
-                                 <div id="map" style="width: 300px; height: 200px;"></div>
-
-                                 <script type="text/javascript"
-                                    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=241b4077cebf45bee1ed06d47263650b&libraries=services"></script>
-                                 <script>
-                                    var mapContainer = document
-                                          .getElementById('map'), // 지도를 표시할 div 
-                                    mapOption = {
-                                       center : new kakao.maps.LatLng(
-                                             33.450701,
-                                             126.570667), // 지도의 중심좌표
-                                       level : 3
-                                    // 지도의 확대 레벨
-                                    };
-
-                                    // 지도를 생성합니다    
-                                    var map = new kakao.maps.Map(
-                                          mapContainer, mapOption);
-
-                                    // 주소-좌표 변환 객체를 생성합니다
-                                    var geocoder = new kakao.maps.services.Geocoder();
-
-                                    // 주소로 좌표를 검색합니다
-                                    geocoder
-                                          .addressSearch(
-                                                '${storeVO.getS_addr()}',
-                                                function(
-                                                      result,
-                                                      status) {
-
-                                                   // 정상적으로 검색이 완료됐으면 
-                                                   if (status === kakao.maps.services.Status.OK) {
-
-                                                      var coords = new kakao.maps.LatLng(
-                                                            result[0].y,
-                                                            result[0].x);
-
-                                                      // 결과값으로 받은 위치를 마커로 표시합니다
-                                                      var marker = new kakao.maps.Marker(
-                                                            {
-                                                               map : map,
-                                                               position : coords
-                                                            });
-
-                                                      // 인포윈도우로 장소에 대한 설명을 표시합니다
-                                                      var infowindow = new kakao.maps.InfoWindow(
-                                                            {
-                                                               content : '<div style="width:50px;text-align:center;padding:6px 0;">저희 가게</div>'
-                                                            });
-                                                      infowindow
-                                                            .open(
-                                                                  map,
-                                                                  marker);
-
-                                                      // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                                                      map
-                                                            .setCenter(coords);
-                                                   }
-                                                });
-                                 </script>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-						</div>
-						</div>
-					</div>
-					
-				</div>
-				
-			</div>
-			
-		</div>
+	
 	</div>
 </div>
                         </ul>
@@ -510,34 +441,73 @@
                   <div class="col-lg-12">
                      <div class="section-title">
                         <h2>가게 위치</h2>
+                   <div id="map" style="width:100%;height:350px;"></div>
+
+
+<button onclick="resizeMap()">지도 크기 바꾸기</button> 
+<button onclick="relayout()">relayout 호출하기</button>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=241b4077cebf45bee1ed06d47263650b&libraries=services"></script>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+//지도를 표시하는 div 크기를 변경하는 함수입니다
+function resizeMap() {
+    var mapContainer = document.getElementById('map');
+    mapContainer.style.width = '650px';
+    mapContainer.style.height = '650px'; 
+}
+
+function relayout() {    
+    
+    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
+    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
+    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
+    map.relayout();
+}
+
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});
+
+
+</script>
+                     
                      </div>
                   </div>
                </div>
             </div>
-            <div class="location"
-               style="display: flex; flex-flow: column; justify-content: center; align-items: center;">
-               <img src="resources/DetailStore/Location/location.png"> <img
-                  src="resources/DetailStore/Location/loc1.png"> <span
-                  class="locText"></span>
-               <p>가락시장역2번 출구로 나오세요</p>
-               <p>가락몰이 보입니다</p>
-               <img src="resources/DetailStore/Location/loc2.png"> <span
-                  class="locText"></span>
-               <p>가락몰 쪽으로 주욱 가다보시면</p>
-               <img src="resources/DetailStore/Location/loc3.png"> <span
-                  class="locText"></span>
-               <p>축산이 써져있는 문들이 보입니다</p>
-               <img src="resources/DetailStore/Location/loc4.png"> <span
-                  class="locText"></span>
-               <p>축산 3이 써져있는 문을 열고 들어가주세요</p>
-               <img src="resources/DetailStore/Location/loc5.png"> <span
-                  class="locText"></span>
-               <p>들어가시면 많은 축산 점포가 보입니다.</p>
-               <img src="resources/DetailStore/Location/loc6.png"> <span
-                  class="locText"></span>
-               <p>B66 점포번호를 확인해주세요</p>
-               <p>정육 백화점이 보입니다.</p>
-            </div>
+           
          </section>
          </div></div>
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
@@ -703,7 +673,7 @@
     <script src="./resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="./resources/dist/js/sb-admin-2.js"></script>
+    <script src="./resources/dist/js/sb-admin-2.js"></script>																	
 
 
 <script>
@@ -887,7 +857,10 @@ $(document).ready(function (){
 
 </script>
 </body>
-                         
+                                </div>
+                            </div>
+                        </div>
+                    </div>
     </section>
     <!-- Product Details Section End -->
 
