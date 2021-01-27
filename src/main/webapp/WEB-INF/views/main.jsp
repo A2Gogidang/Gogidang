@@ -70,6 +70,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
     
+    <!-- 추천가게 스크립트코드 -->
 	<script>
   		$(function(){
 			$('#slider-div').slick({
@@ -108,10 +109,13 @@
 
 			});
   		});
-  		
+  		 <!-- 추천가게 스크립트코드  끝-->
+   		
+  		 <!-- ??-->
   		$(function(){
   			$('.single-item').slick();
   		});
+  		
 	</script>
 </head>
 <body>
@@ -139,13 +143,16 @@
 								} else if (seller_key == 2) {
 								%>
 									<h3>관리자입니다.</h3>
+									<a href="./admin_confirm_list.me">관리자페이지</a>
+									<br>
 									<a href="./storeList.st">전체 가게 리스트 보기</a>
 									<br>
-									<a href="./storeWaitListWithPaging.st">승인 대기 중인 가게 리스트 확인</a>
 								<%
 								} else {
 								%>
 									<h6><%=u_id %>님!</h6>
+									<br>
+									<a href="./updateList.me">마이페이지</a>
 								<%
 								} 
 								%>		
@@ -168,7 +175,6 @@
         	<div class="row">
                 <div class="col-menu"></div>
             </div><!-- row -->
-        </div>
         
         <!--기존의 hero서치바를 head로 옮김-->
         <div class="hero__search"> 
@@ -186,10 +192,10 @@
                             </div>
                             <div class="sidebar__item">
                             <!--style="color: black"-->
-                                <h4><ul><a href="#" >가게 검색</a></ul></h4>
+                                <h4><ul><a href="./storeList.st" >가게 검색</a></ul></h4>
                             </div>
                             <div class="sidebar__item">
-                                <h4><ul><a href="#">후기 검색</a></ul></h4>
+                                <h4><ul><a href="./reviewList.re">후기 검색</a></ul></h4>
                             </div>
                             <div class="sidebar__item">
                                 <h4><ul><a href="./updateList.me">마이 페이지</a></ul></h4>
@@ -236,10 +242,11 @@
                 <ul>
                     <li><a href="./storeList.st">가게 리스트</a></li>
                     <li><a href="./reviewListWithPaging.re">리뷰 전체</a></li>
-                    <li><a href="#">공지사항</a></li>
+                    <li><a href="./noticelist.no">공지사항</a></li>
                 </ul>
             </div><!-- EventNav -->
    		</div><!-- container -->
+   		</div>
     </section>
     <!--네비게이션바 사용 끝-->
     <!-- Hero Section End -->
@@ -307,7 +314,7 @@
 	  					
 			      		<div class="col-lg-">
 	                    	<div class="categories__item set-bg" data-setbg="resources/img/store/<%=vo.getThumbnail() %>">
-	                        	<h5><a href="./store"><%=vo.getS_name() %></a></h5>
+	                        	<h5><a href="./storeInfo.st?s_num=<%=vo.getS_num() %>"><%=vo.getS_name() %></a></h5>
 	                    	</div>
 	                	</div>
                 	<%} %>
@@ -335,8 +342,10 @@
             
             <!--best 리뷰-->
             <div class="row featured__filter">
-            	<%for (int i=0; i<4; i++) {
-            		
+            	<%for (int i=0; i<review_list.size(); i++) {
+            		if (i == 4) {
+            			break;
+            		}
             		ReviewVO vo = (ReviewVO) review_list.get(i);
            		%>
 	        		<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
@@ -346,7 +355,7 @@
 	                            <ul class="featured__item__pic__hover"></ul>
 	                        </div>
 	                        <div class="featured__item__text">
-	                            <h6><a href="#"><%=vo.getTitle() %></a></h6>
+	                            <h6><a href="./reviewInfo.re?review_num=<%=vo.getReview_num() %>"><%=vo.getTitle() %></a></h6>
 	                            <i class="fal fa-smile"></i>
 	                            <h5>★ <%=vo.getStar() %></h5>
 	                        </div>
@@ -358,7 +367,7 @@
             </div>
         </div>
     </section>
-    <!— Featured Section End —>
+    <!--Featured Section End -->
 
  <%@include file="includes/footer.jsp"%>
 <script type="text/javascript" src="resources/js/slick.js"></script>

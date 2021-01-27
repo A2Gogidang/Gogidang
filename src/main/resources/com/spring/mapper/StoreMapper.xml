@@ -20,7 +20,7 @@
 		DELETE FROM shop_reg WHERE s_num=#{s_num}
 	</delete>
 	
-	<select id="storeInfo" parameterType="StoreVO" resultType="StoreVO">
+	<select id="storeInfo" parameterType="int" resultType="StoreVO">
 		SELECT * FROM shop_reg WHERE s_num=#{s_num}
 	</select>
 	
@@ -43,6 +43,13 @@
 	
 	<select id="getTotalCount" resultType="int">
 		select count(*) from shop_reg
+	</select>
+	
+	<select id="getAvgStar" parameterType="int" resultType="Double">
+		select avg(re.star) avgStar
+		from shop_reg sr, review re
+		where sr.s_num = re.s_num
+		and sr.s_num = #{s_num}
 	</select>
 	<!-- taehyun End -->
 
@@ -85,14 +92,27 @@
  	</select>
  	
  	
-	<select id="getStoreListAjax" parameterType="java.util.HashMap" resultType="StoreVO">
-		SELECT distinct meat , price, s_name, s_addr, thumbnail
-		FROM(	
-				SELECT distinct mr.meat , mr.price, sr.s_name, substr(sr.s_addr,1,2) s_addr, sr.thumbnail
-				FROM menu_reg mr INNER JOIN shop_reg sr ON mr.s_num=sr.s_num
-			 	WHERE substr(sr.s_addr,1,2) IN <foreach collection="s_addr" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
-			)
-		WHERE meat IN<foreach collection="meat" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
+<!-- 	<select id="getStoreListAjax" parameterType="java.util.HashMap" resultType="StoreVO">
+		select distinct mr.meat, sr.s_num, sr.s_name, substr(sr.s_addr,1,2) s_addr, sr.thumbnail, avg(re.star) avgStar
+		from menu_reg mr INNER JOIN shop_reg sr ON mr.s_num=sr.s_num INNER JOIN review re ON sr.s_num=re.s_num
+		where substr(sr.s_addr,1,2) IN <foreach collection="s_addr" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
+		AND mr.meat IN<foreach collection="meat" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
+		<if test=" != null">
+			AND 
+		</if>
+	</select>  -->
+	
+ 	<select id="getStoreListAjax" parameterType="java.util.HashMap" resultType="StoreVO">
+		select distinct mr.meat, sr.s_num, sr.s_name, substr(sr.s_addr,1,2) s_addr, sr.thumbnail
+		from menu_reg mr INNER JOIN shop_reg sr ON mr.s_num=sr.s_num
+		where sr.s_num > 0
+		<if test="s_addr != null">
+			AND substr(sr.s_addr,1,2) IN <foreach collection="s_addr" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
+		</if>
+		<if test="meat != null">
+			AND mr.meat IN<foreach collection="meat" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
+		</if>
 	</select>
+
 	<!-- dohyeong end -->
 </mapper>

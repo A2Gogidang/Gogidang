@@ -55,9 +55,9 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 	@Override
-	public StoreVO storeInfo(StoreVO storeVO) {
+	public StoreVO storeInfo(int s_num) {
 		StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
-		StoreVO vo = storeMapper.storeInfo(storeVO);
+		StoreVO vo = storeMapper.storeInfo(s_num);
 		
 		return vo;
 	}
@@ -83,6 +83,13 @@ public class StoreServiceImpl implements StoreService {
 		StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
 		System.out.println("impl" + storeMapper.getTotalCount(cri));
 		return storeMapper.getTotalCount(cri);
+	}
+	
+	@Override
+	public Double getAvgStar(int s_num) {
+		StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
+
+		return storeMapper.getAvgStar(s_num);
 	}
 
 	// taehyun end
@@ -140,6 +147,8 @@ public class StoreServiceImpl implements StoreService {
 		return storelistAjax;
 	}
 	//dohyeong end
+
+
 
 
 }

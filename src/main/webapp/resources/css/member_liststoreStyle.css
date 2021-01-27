@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+.card_box {
+	display: flex;
+	/*justify-content: center;
+	align-items: center;*/
+	flex-direction: row;
+	width: 250px;
+	height: 100%;
+	margin
+}
+
+.card {
+	margin-right: 90px;
+}
+
+.container .update {
+	
+	width: 100%;
+	
+}
+
+th{
+	font-size: large;
+}
+
+tr{
+	font-size: medium;
+}
+
+/*
+.card_box .col-lg-8 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	
+}*/
