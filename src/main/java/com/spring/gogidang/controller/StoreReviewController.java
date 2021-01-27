@@ -38,7 +38,20 @@ public class StoreReviewController {
 		return "sellerpage/store_review";
 	}
 	
-	@RequestMapping(value = "/replyReviewInputForm.bo")
+	/*
+	 * @RequestMapping(value = "/replyReviewInputForm.bo") public String
+	 * replyReviewInputForm(Model model, SRReviewVO srReviewVO , HttpSession
+	 * session, HttpServletResponse response)throws Exception {
+	 * 
+	 * srReviewVO.setS_num(((StoreVO)session.getAttribute("StoreVO")).getS_num());
+	 * SRReviewVO srReviewvo = storeReviewService.srReviewList(srReviewVO);
+	 * 
+	 * model.addAttribute("srReviewvo", srReviewvo);
+	 * 
+	 * return "sellerpage/store_reply_review"; }
+	 */
+	
+	@RequestMapping(value = "/storereviewInfo.bo")
 	public String replyReviewInputForm(Model model, SRReviewVO srReviewVO , HttpSession session, HttpServletResponse response)throws Exception {
 			
 		srReviewVO.setS_num(((StoreVO)session.getAttribute("StoreVO")).getS_num());		
@@ -46,7 +59,7 @@ public class StoreReviewController {
 		
 		model.addAttribute("srReviewvo", srReviewvo);
 		
-		return "sellerpage/store_reply_review";
+		return "sellerpage/store_reply_info";
 	}
 	
 	@RequestMapping(value = "/replyReviewInsert.bo")
