@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
+<%@ page import="com.spring.gogidang.domain.*"%>
 <%@include file="../includes/header.jsp"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/menu_regStyle.css" type="text/css">
 
