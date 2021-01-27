@@ -615,12 +615,279 @@
                             </div>
                             <div class="tab-pane" id="tabs-4" role="tabpanel">
                                 <div class="product__details__tab__desc">
-                                    <h6>Products Infomation</h6>
-                                    <p>tabs-4</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                   <div class='row'>
+
+  <div class="col-lg-12">
+
+    <!-- /.panel -->
+     <div class="panel panel-default">
+       <!-- <div class="panel-heading">
+        <i class="fa fa-comments fa-fw"></i> Reply
+      </div> -->  
+      
+     <div class="panel-heading">
+       <i class="fa fa-comments fa-fw"></i> 가게문의
+        <button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>가게 문의 등록</button>
+      </div>   
+      
+      
+      <!-- /.panel-heading -->
+      <div class="panel-body">        
+      
+        <ul class="chat">
+         <!-- start reply -->
+         <li class="left clearfix" data-qs_num='1'>
+            <div>
+               <div class="header">
+                  <strong class="primary-font">user00</strong>
+                  <small class="pull-right text-muted">2018-01-01 13:13</small>
+               </div>
+               <p>Good job!</p>
+            </div>
+         </li>
+         <!-- end reply -->
+        </ul>
+        <!-- ./ end ul -->
+      </div>
+      <!-- /.panel .chat-panel -->
+      
+      <div class="panel-footer">
+      
+      </div>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"
+                aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel">가게문의등록페이지</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label>제목</label> 
+                <input class="form-control" name='u_id' value='New Reply!!!!'>
+              </div>      
+              <div class="form-group">
+                <label>내용</label> 
+                <input class="form-control" name='content' value='replyer'>
+              </div>
+              <div class="form-group">
+                <label>등록일</label> 
+                <input class="form-control" name='qna_date' value=''>
+              </div>
+      
+            </div>
+<div class="modal-footer">
+        <button id='modalModBtn' type="button" class="btn btn-warning">수정</button>
+        <button id='modalRemoveBtn' type="button" class="btn btn-danger">제거</button>
+        <button id='modalRegisterBtn' type="button" class="btn btn-primary">등록</button>
+        <button id='modalCloseBtn' type="button" class="btn btn-default" data-dismiss='modal'>닫기</button>
+        <button id='modalClassBtn' type='button' class="btn btn-default" data-dismiss='modal'>닫기</button>
+      </div>          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+
+	<script type="text/javascript" src="./resources/js/qnastore.js"></script>
+    <script src="./resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="./resources/vendor/metisMenu/metisMenu.min.js"></script>
+    <!-- DataTables JavaScript -->
+    <script src="./resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="./resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="./resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="./resources/dist/js/sb-admin-2.js"></script>
+
+
+<script>
+$(document).ready(function (){
+   var s_numValue = '<c:out value="${storeVO.getS_num()}"/>';
+   var replyUL = $(".chat");
+      
+   showList(1);
+      
+      function showList(page) {
+    	  console.log("show List" +page);
+    	  qnaService.getList({s_num:s_numValue,page: page || 1}, function(qnastoreCnt,list){
+            console.log("qnastorCnt:"+ qnastoreCnt);
+            console.log("list:"+ list);
+            console.log(list);
+            
+            if(page == -1) {
+            	pageNum = Math.ceil(qnastoreCnt/10.0);
+            	showList(pageNum);
+            	return;
+            }
+    		  
+            var str="";
+            
+            if(list == null || list.length == 0) {
+            	return;
+               
+            }
+            for (var i=0,len = list.length || 0; i < len; i++) {
+               str +="<li class='left clearfix' data-qs_num='"+list[i].qs_num+"'>";
+               str +="      <div><div class='header'><strong class='primary-font'>"+list[i].u_id+"</strong>";
+               str +="         <small class='pull-right text-muted'>"+qnaService.displayTime(list[i].qna_date)+"</small></div>";
+               str +="            <p>"+list[i].content+"</p></div></li>";
+            }
+               replyUL.html(str);
+               
+               showqnastorePage(qnastoreCnt);
+         });//end function
+      } //end showList
+
+      var modal = $(".modal");
+      var modalInputContent = modal.find("input[name='content']");
+      var modalInputU_id = modal.find("input[name='u_id']");
+      var modalInputQna_date = modal.find("input[name='qna_date']");
+      
+      var modalModBtn = $("#modalModBtn");
+      var modalRemoveBtn = $("#modalRemoveBtn");
+      var modalRegisterBtn = $("#modalRegisterBtn");
+      
+      $("#addReplyBtn").on("click", function(e){
+         modal.find("input").val("");
+         modalInputQna_date.closest("div").hide();
+         modal.find("button[id !='modalCloseBtn']").hide();
+         
+         modalRegisterBtn.show();
+   
+         $(".modal").modal("show");
+     
+	});
+      var qnastore;
+      modalRegisterBtn.on("click",function(e){
+    	 
+  	  qnastore = {
+  			  content: modalInputContent.val(),
+  			  u_id: modalInputU_id.val(),
+  			  s_num: s_numValue
+  	  	};
+  	qnaService.add(qnastore, function(result) {
+  		  
+  		  alert("추가되었습니다"+result);
+  		  
+  		  modal.find("input").val("");
+  		  modal.modal("hide");
+  		  
+  		  //showList(1);
+  		  showList(-1);
+});
+
+  	});
+  	
+  	//댓글 조회 클릭 이벤트 처리
+  	$(".chat").on("click","li",function(e){
+
+  		var qs_num = $(this).data("qs_num");
+  		alert("qs_num=" + qs_num);
+  		
+  		qnaService.get(qs_num,function(res) {
+  			console.log(res);
+  			alert("qnastore.qs_num=" + res.qs_num);
+  			modalInputContent.val(res.content);
+  			modalInputU_id.val(res.u_id);
+  			modalInputQna_date.val(qnaService.displayTime(res.qna_date)).attr("readonly","readonly");
+  			modal.data("qs_num",res.qs_num);
+  			
+  			console.log(qs_num);
+  			
+  			modal.find("button[id !='modalCloseBtn']").hide();
+  			modalModBtn.show();
+  			modalRemoveBtn.show();
+  			
+  			$(".modal").modal("show");
+  		});
+  	});
+  	
+  	modalModBtn.on("click",function(e) {
+  		var content = {qs_num:modal.data("qs_num"), content:modalInputContent.val()};
+  		
+  		qnaService.update(content, function(result) {
+  			alert(result);
+  			modal.modal("hide");
+  			showList(pageNum);
+  		});
+  		
+  	});
+  	
+  	modalRemoveBtn.on("click",function(e) {
+  		var qs_num = modal.data("qs_num");
+  		
+  		qnaService.remove(qs_num, function(result) {
+  			alert(result);
+  			modal.modal("hide");
+  			showList(pageNum);
+  		});
+  	});
+  	
+  	var pageNum = 1;
+	var qnastorePageFooter = $(".panel-footer");
+	
+	function showqnastorePage(qnastoreCnt) { //페이징 처리
+		
+		var endNum = Math.ceil(pageNum / 10.0) * 10;
+		var startNum = endNum - 9;
+		
+		var prev = startNum != 1;
+		var next = false;
+		
+		if(endNum * 10 >= qnastoreCnt) {
+			endNum = Math.ceil(qnastoreCnt/10.0);
+		}
+		
+		if(endNum * 10 < qnastoreCnt) {
+			next = true;
+		}
+		
+		var str = "<ul class='pagination pull-right'>";
+		
+		if(prev) {
+			str += "<li class='page-item'><a class='page-link' href='"+(startNum -1)+"'>Previous</a></li>";
+		}
+		
+		for(var i = startNum ; i <=endNum; i++) {
+			
+			var active = pageNum == i? "active":"";
+			
+			str += "<li class='page-item "+active+" '><a class='page-link' href='"+i+"'>"+i+"</a></li>";
+		}
+		
+		if(next) {
+			str += "<li class='page-item'><a class='page-link' href='"+(endNum+1)+"'>Next</a></li>";
+		}
+		
+		str += "</ul></div>";
+		
+		qnastorePageFooter.html(str);
+	}
+	
+	qnastorePageFooter.on("click","li a", function(e){ //페이지 번호를 클릭했을때 새로운 댓글 가져옴
+		e.preventDefault();
+		
+		var targetPageNum = $(this).attr("href");
+		
+		console.log("targetPageNum:" + targetPageNum);
+		
+		pageNum = targetPageNum;
+		
+		showList(pageNum);
+	});
+  	
+});	
+  	
+
+</script>
+</body>
+                         
     </section>
     <!-- Product Details Section End -->
 

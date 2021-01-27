@@ -88,7 +88,8 @@ public class StoreController {
 		
 
 
-		return "store/store_info";
+		//return "store/shop-details";
+		return "store/shop-details";
 	}
 
 	/*

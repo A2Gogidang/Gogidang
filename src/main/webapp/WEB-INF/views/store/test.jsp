@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*" %>
-<%@ page import="javax.sql.*" %>
-<%@ page import="javax.naming.*" %>  
 <%@ page import="com.spring.gogidang.domain.*" %>
-<%@ page import="java.util.*" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%
 	StoreVO svo = (StoreVO) request.getAttribute("storeVO");
@@ -57,27 +51,11 @@
    
    
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-   
-   
-
-<%
-   MemberVO membervo = (MemberVO)session.getAttribute("memberVO");
-   String u_id=(String)membervo.getU_id();
-   %>
-
-<%
-   ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>)request.getAttribute("menuList");
-   ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>)request.getAttribute("reviewList");
-   
-%>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Insert title here</title>
 
 </head>
+
 <body>
-   <!-- Page Preloder -->
+    <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
@@ -220,6 +198,7 @@
         </div>
     </header>
     <!-- Header Section End -->
+
     <!-- Hero Section Begin -->
     <section class="hero hero-normal">
         <div class="container">
@@ -249,7 +228,7 @@
                     <div class="hero__search">
                         <div class="hero__search__form">
                             <form action="#">
-                                <div class="hero__search__categories" font-size="15px">
+                                <div class="hero__search__categories">
                                     All Categories
                                     <span class="arrow_carrot-down"></span>
                                 </div>
@@ -324,7 +303,7 @@
                             <i class="fa fa-star-half-o"></i>
                             <span>(18 reviews)</span>
                         </div>
-                        <div class="product__details__price" style="color:#7fad39; font-size:25px"><%=svo.getS_addr() %></div>
+                        <div class="product__details__price" style="color:#7fad39;"><%=svo.getS_addr() %></div>
                         
 						<ul>
                             <li><img src="resources/DetailStore/Icon/time.ico"
@@ -463,7 +442,9 @@
                      <div class="section-title">
                         <h2>가게 위치</h2>
                    <div id="map" style="width:100%;height:350px;"></div>
- <button onclick="resizeMap()">지도 크기 바꾸기</button> 
+
+
+<button onclick="resizeMap()">지도 크기 바꾸기</button> 
 <button onclick="relayout()">relayout 호출하기</button>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=241b4077cebf45bee1ed06d47263650b&libraries=services"></script>
 <script>
@@ -604,8 +585,7 @@ geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
                             </div>
                             <div class="tab-pane" id="tabs-4" role="tabpanel">
                                 <div class="product__details__tab__desc">
-
-<div class='row'>
+                                   <div class='row'>
 
   <div class="col-lg-12">
 
@@ -693,7 +673,7 @@ geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
     <script src="./resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="./resources/dist/js/sb-admin-2.js"></script>
+    <script src="./resources/dist/js/sb-admin-2.js"></script>																	
 
 
 <script>
@@ -876,8 +856,91 @@ $(document).ready(function (){
   	
 
 </script>
+</body>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    </section>
+    <!-- Product Details Section End -->
 
-<!-- Footer Section Begin -->
+    <!-- Related Product Section Begin -->
+<!--     <section class="related-product">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title related__product__title">
+                        <h2>Related Product</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="resources/img/product/product-1.jpg">
+                            <ul class="product__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Crab Pool Security</a></h6>
+                            <h5>$30.00</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="resources/img/product/product-2.jpg">
+                            <ul class="product__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Crab Pool Security</a></h6>
+                            <h5>$30.00</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="resources/img/product/product-3.jpg">
+                            <ul class="product__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Crab Pool Security</a></h6>
+                            <h5>$30.00</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="resources/img/product/product-7.jpg">
+                            <ul class="product__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Crab Pool Security</a></h6>
+                            <h5>$30.00</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- Related Product Section End -->
+
+    <!-- Footer Section Begin -->
     <footer class="footer spad">
         <div class="container">
             <div class="row">
@@ -945,15 +1008,17 @@ $(document).ready(function (){
     </footer>
     <!-- Footer Section End -->
 
-	
-	<script src="resources/js/jquery.nice-select.min.js"></script>
+    <!-- Js Plugins -->
+    <script src="resources/js/jquery-3.3.1.min.js"></script>
+    <script src="resources/js/bootstrap.min.js"></script>
+    <script src="resources/js/jquery.nice-select.min.js"></script>
     <script src="resources/js/jquery-ui.min.js"></script>
     <script src="resources/js/jquery.slicknav.js"></script>
     <script src="resources/js/mixitup.min.js"></script>
     <script src="resources/js/owl.carousel.min.js"></script>
     <script src="resources/js/main.js"></script>
+
+
 </body>
-
-
 
 </html>
