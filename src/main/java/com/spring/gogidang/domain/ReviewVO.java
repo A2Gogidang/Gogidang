@@ -25,5 +25,13 @@ public class ReviewVO {
 	private String review_img1;
 	private String review_img2;
 	private String review_img3;
+	
+	/* menu column*/
+	private int menu_num; 
+	private int meat;
+	private String menu_name;
+	private String price;
+	private String img;
+	private int grade;
 
 }

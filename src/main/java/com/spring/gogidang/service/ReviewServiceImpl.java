@@ -1,6 +1,7 @@
 package com.spring.gogidang.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.ReviewVO;
+import com.spring.gogidang.domain.StoreVO;
 import com.spring.mapper.ReviewMapper;
+import com.spring.mapper.StoreMapper;
 
 @Service
 public class ReviewServiceImpl implements ReviewService {
@@ -69,6 +72,18 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return reviewMapper.getTotal(cri);
 	}
+
+	@Override
+	public List<ReviewVO> getReviewListAjax(Map<String, String[]> mapp) {
+		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
+		
+		List<ReviewVO> reviewListAjax = reviewMapper.getReviewListAjax(mapp); 
+		
+		
+		return reviewListAjax;
+	}
+
+	
 } 
 
 
