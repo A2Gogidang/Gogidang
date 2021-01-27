@@ -7,7 +7,7 @@
 <%@ page import="com.spring.gogidang.domain.*"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/store_reviewStyle.css" type="text/css">
 <%
-	ArrayList<SRNoticeVO> srNoticeList = (ArrayList<SRNoticeVO>)request.getAttribute("srNoticeList");
+	SRReviewVO srReviewvo = (SRReviewVO)request.getAttribute("srReviewvo");
 	StoreVO storeVO = (StoreVO)session.getAttribute("StoreVO");
 	
 %>
@@ -274,56 +274,34 @@
                     </div>
                 </div>     
 <!-- ---------------------------------------------------시작----------------------------------------------------- -->          
-        <div class="reviewboard">
+<div class="reviewboard">
     <div class="section-title product__discount__title">
-          <h2>문의 관리</h2>
+          <h2>문의 상세페이지</h2>
     </div>
-	<div class="container">
-			<table class="table table-hover">
-			<thead>
-				<tr align=center>
-					<th>번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>등록일</th>
-					<th>답변 상태</th>
-				</tr>
-			</thead>
-			<tbody class="text-center">
-<%
-for(int i = 0; i < srNoticeList.size(); i++){ 
-	
-	SRNoticeVO srNoticevo = (SRNoticeVO)srNoticeList.get(i);
-%>
-	 <tr align=center>
-				<td>
-					<%=i+1 %>
-				</td>
-				<td>
-					<a href="reviewInfo.re?review_num=<%=srNoticevo.getQs_num()%>"><%=srNoticevo.getTitle() %></a>
-				</td>
-				<td>
-					<%=srNoticevo.getU_id() %>
-				</td>
-				<td>
-					<%=srNoticevo.getQna_date() %>
-				</td>
-<%
- 		if(srNoticevo.getRe_content() == null || srNoticevo.getRe_content() == ""){
-%>				
-	  			<td>
-	  			<button class="button">답변 등록</button>
-	  			</td>
-
-<% 		}else{%>
-	 			<td>답변 완료</td>
-	<% }%>
-				
-<% }%>
-   			  </tr>
-			</tbody>
-		</table>
-	</div>
+	  <table class="board_view">
+		        <colgroup>
+		            <col width="15%">
+		            <col width="35%">
+		            <col width="15%">
+		            <col width="*">
+		        </colgroup>
+  		  <tbody>
+	            <tr>
+	                <th colspan="2">제목</th>
+	                <td><%=srReviewvo.getTitle() %></td>
+	            </tr>
+	            <tr>
+	                <th>작성자</th>
+	                <td><%=srReviewvo.getU_id() %></td>
+	                <th>작성시간</th>
+	                <td><%=srReviewvo.getReview_date() %></td>
+	            </tr>
+	            <tr>
+	                <th>내용</th>
+	                <td colspan="3"><%=srReviewvo.getStar() %></td>
+	            </tr>
+		  </tbody>
+	  </table>
 </div>
 <!-- ----------------------------------------------------끝---------------------------------------------------- --> 
             </div>
