@@ -257,19 +257,14 @@
                 <div class="col-lg-3 col-md-5">
                     <div class="sidebar">
                         <div class="sidebar__item">
-                            <h4>Department</h4>
+                            <h4>판매자 마이페이지</h4>
                             <ul>
-                                <li><a href="#">Fresh Meat</a></li>
-                                <li><a href="#">Vegetables</a></li>
-                                <li><a href="#">Fruit & Nut Gifts</a></li>
-                                <li><a href="#">Fresh Berries</a></li>
-                                <li><a href="#">Ocean Foods</a></li>
-                                <li><a href="#">Butter & Eggs</a></li>
-                                <li><a href="#">Fastfood</a></li>
-                                <li><a href="#">Fresh Onion</a></li>
-                                <li><a href="#">Papayaya & Crisps</a></li>
-                                <li><a href="#">Oatmeal</a></li>
-                            </ul>
+	                            <li><a href="./updateList.me">내정보</a></li>
+	                            <li><a href="./storeRegForm.st">가게 정보</a></li>
+	                            <li><a href="./menuRegForm.mn">메뉴 등록</a></li>
+	                            <li><a href="./storeNoticeList.no">문의 관리</a></li>
+	                            <li><a href="./storereviewList.bo">리뷰 관리</a></li>
+                       		 </ul> 
                         </div>
                     </div>
                 </div>     

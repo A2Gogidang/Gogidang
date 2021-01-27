@@ -51,35 +51,45 @@
 <%
    }else{
 %>
-    <section class="hero">
+ 	<section class="product spad">
         <div class="container">
-            <div class="hero__item__box2"></div>
-                    <div class="EventNav">
-                        <ul>
-                            <li><a href="./updateList.me">내정보</a></li>
-                            <li><a href="./storeRegForm.st">가게 정보</a>
-                            <li><a href="./menuRegForm.mn">메뉴 정보</a></li>
-                            <li><a href="./storeNoticeList.no">문의 관리</a></li>
-                            <li><a href="./storereviewList.bo">리뷰 관리</a></li>
-                        </ul>
-                    </div>   
-            </div>   
-        </div>
-    </section>
+            <div class="row">
+                <div class="col-lg-3 col-md-5">
+                    <div class="sidebar">
+                        <div class="sidebar__item">
+                             <h4>판매자 마이페이지</h4>
+                            <ul>
+	                            <li><a href="./updateList.me">내정보</a></li>
+	                            <li><a href="./storeRegForm.st">가게 정보</a></li>
+	                            <li><a href="./menuRegForm.mn">메뉴 등록</a></li>
+	                            <li><a href="./storeNoticeList.no">리뷰 관리</a></li>
+	                            <li><a href="./storereviewList.bo">문의 관리</a></li>
+                       		 </ul> 
+                        </div>
+                    </div>
+                </div>     
+        
+  
 <%
    } 
 }
 %>
+ <div class="reviewboard">
+<!-- ---------------------------------------------------시작----------------------------------------------------- -->     
     <!--네비게이션바 사용 끝-->
 
     <!-- Hero Section End -->
   
    <div class="container" id="update">
+   				<div class="section-title product__discount__title">
+	          		<h2>내정보</h2>
+	    		</div>
       <div class="row justify-content-center">
+      
+	            
+	              
         <div class="col-lg-8">
            <div class="update">
-              <h3>내 정보</h3>
-              
               <!-- join form -->
                <form name="seller_info_form" action="./updateForm.me" method="post">
                   <div class="id_input_box">
@@ -136,5 +146,9 @@
         </div>
         </div>
     </div>
-           
+ <!-- ----------------------------------------------------끝---------------------------------------------------- --> 
+	</div>
+            </div>
+        </div>
+    </section>               
 <%@include file="../includes/footer.jsp"%>
