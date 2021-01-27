@@ -159,6 +159,9 @@
                             <div class="header__top__right__auth">
                                 <a href="./joinForm.me"><i class="fa fa-shopping-cart"></i> CART</a>
                             </div>
+                            <div class="header__top__right__auth">
+                                <a href="./storeWait.st"><i class="fa fa-shopping-cart"></i> 관리자 마이 페이지</a>
+                            </div>
                             
                         </div>
                     </div>
