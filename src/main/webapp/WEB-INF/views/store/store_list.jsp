@@ -65,6 +65,7 @@
 			StoreVO svo = (StoreVO) storeList.get(i);
 		%>
 			<div class="card_store_box">
+			
 				<div class="card_store_addr" >
 					<div class="text_left">
 						<h5> <%=svo.getS_addr()%> </h5>
@@ -72,7 +73,8 @@
 				</div>
 				
 				<div class="card_store_img" >
-					<div><img src="resources/img/store/<%=svo.getThumbnail() %>"></div>
+					<div><img src="resources/img/store/store_gogi.png"></div>
+					<!-- <div><img src="resources/img/store/%=svo.getThumbnail()% "></div> -->
 				</div>
 				
 				

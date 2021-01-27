@@ -99,13 +99,7 @@ readonly
 /*----------------------------------------*/
 /* 2. 박스크기
 /*----------------------------------------*/
-.row {
-    margin: 0 50px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    
-}
+
 
 .id_input_box {
 	width: 100%;
