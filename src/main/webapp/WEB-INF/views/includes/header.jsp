@@ -99,7 +99,7 @@
             </div>
         </div>
         <div class="hero__search"> <!--기존의 hero서치바를 head로 옮김-->
-            <div class="sidebar-icon"> 
+            <div class="sidebar-icon" style="align:left;"> 
                 <input type="checkbox" id="menuicon">
                     <label for="menuicon">
                         <span></span>

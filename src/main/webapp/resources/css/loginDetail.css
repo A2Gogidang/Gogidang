@@ -17,10 +17,10 @@
 	1.4	Reset
 2.  Helper Css
 3.  Header Section 
-4.  Hero Section (메인사진 or 네비게이션바)
+4.  Hero Section (硫붿씤�궗吏� or �꽕鍮꾧쾶�씠�뀡諛�)
 5.  Service Section (x)
 6.  Categories Section
-7.  Featured Section(베스트리뷰)
+7.  Featured Section(踰좎뒪�듃由щ럭)
 8.  Latest Product Section
 9.  Contact
 10.  Footer Style
@@ -523,12 +523,11 @@ a:link {
 -----------------------*/
 
 .EventNav ul {
-	
 	/*border: 1px solid rgba(0, 0, 0, 0.2);*/
 	background-color: rgb(226, 226, 226, 0.4);
 	list-style-type: none;
 	display: flex ;
-	justify-content: space-around;
+	justify-content: flex-start;
 	align-items: center;
 	
   }

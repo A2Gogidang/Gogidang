@@ -3,7 +3,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import = "com.spring.gogidang.domain.*" %>
 <%@ page import="java.util.ArrayList"%>
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/storelist.css" type="text/css">
 <!-- MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
 	String id = mvo.getU_id();
 	int seller_key = mvo.getSeller_key(); -->
@@ -23,26 +23,36 @@
                     <div class="EventNav">
                         <ul>
                             <li>조건 필터로 검색하기</li>
-                            <li></li>
-                            <li></li>
+
                         </ul>
                         <ul>
                             <li>지역</li>
-                     			<li><input type="checkbox" id="s_seoul" class="f_check" name="f_Acheck" value="서울" checked="checked" >서울</li>
+                     		<li><input type="checkbox" id="s_seoul" class="f_check" name="f_Acheck" value="서울" checked="checked" >서울</li>
                             <li><input type="checkbox" id="s_gyeong" class="f_check" name="f_Acheck"  value="경기"  checked="checked">경기</li>
-                            <li><input type="checkbox" id="s_gang" class="f_check" name="f_Acheck"  value="강원" checked="checked">강원</li>
-         					
+                            <li><input type="checkbox" id="s_gangwon" class="f_check" name="f_Acheck"  value="제주" checked="checked">강원도</li>
+                            <li><input type="checkbox" id="s_junra" class="f_check" name="f_Acheck"  value="전라도" checked="checked">전라도</li>
+                            <li><input type="checkbox" id="s_choong" class="f_check" name="f_Acheck"  value="충청도" checked="checked">충청도</li>
+                            <li><input type="checkbox" id="s_kyung" class="f_check" name="f_Acheck"  value="경상도" checked="checked">경상도</li>
+                            <li><input type="checkbox" id="s_jeju" class="f_check" name="f_Acheck"  value="제주" checked="checked">제주도</li>
                         </ul>
-                        
                         <ul>
                             <li>품목</li>
                         	<li><input type="checkbox" id="cow" class="f_check" name="f_Mcheck" value="0" >소고기</li>
                             <li><input type="checkbox" id="pig" class="f_check" name="f_Mcheck"  value="1" >돼지고기</li>
+                       </ul>
+                       <ul>
+                            <li>부위</li>
+                        	<li><input type="checkbox" id="" class="f_check" name="f_Mcheck" value="0" >등심</li>
+                            <li><input type="checkbox" id="pig" class="f_check" name="f_Mcheck"  value="1" >안심</li>
+                            <li><input type="checkbox" id="pig" class="f_check" name="f_Mcheck"  value="1" >채끝</li>
+                            <li><input type="checkbox" id="pig" class="f_check" name="f_Mcheck"  value="1" >갈비</li>
+                            <li><input type="checkbox" id="pig" class="f_check" name="f_Mcheck"  value="1" >삼겹살</li>
+                            <li><input type="checkbox" id="pig" class="f_check" name="f_Mcheck"  value="1" >목살</li>
+                            <li><input type="checkbox" id="pig" class="f_check" name="f_Mcheck"  value="1" >특수부위</li>
                             <li></li>
                        </ul> 
                     </div>   
             </div>   
-        </div>
     </section>
     <!--네비게이션바 사용 끝-->
     <!-- Hero Section End -->
