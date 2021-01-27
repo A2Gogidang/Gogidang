@@ -1,11 +1,6 @@
 @charset "utf-8";
 
 	/*조건필터*/
-	
-	.shoplistt{
-	display: flex;
-	justify-content: center;
-	}
 	.shoplist {
 	padding-top: 20px;
 	padding-right: 30px;
@@ -153,15 +148,9 @@
 	display: flex;
 	justify-content: center;
 	}
+	/*리뷰 위치조정*/
 	.reviewlist{
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
-	align-items: center;
-	}
-	.reviewlistm{
-	margin-top: 50px;
-	display: flex;
-	justify-content: flex-end;
 	align-items: center;
 	}

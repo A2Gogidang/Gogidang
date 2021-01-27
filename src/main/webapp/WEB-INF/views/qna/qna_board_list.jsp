@@ -3,8 +3,8 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import = "com.spring.gogidang.domain.*" %>
-<%@include file="../includes/header.jsp"%>
 
+<%@ include file="../includes/header.jsp"%>
 <%
 	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
 	List<QnaVO> qnalist=(List<QnaVO>)request.getAttribute("qnalist");
@@ -15,10 +15,7 @@
 	int endpage=((Integer)request.getAttribute("endpage")).intValue();
 %>
 
-<html>
-<head>
-	<title>MVC 게시판</title>
-	<style>
+<style>
 .th,td{
 font-size: 16px;
 }
@@ -36,9 +33,7 @@ color :rgb(51,131,51);
 color :rgb(51,131,51);
 }
 </style>
-</head>
 
-<body>
 
         <div class="container">
             <div class="hero__item__box2"></div>
@@ -164,6 +159,4 @@ color :rgb(51,131,51);
             </div>
         </div>
     </div>
-
-</body>
-</html>
+<%@ include file="../includes/footer.jsp"%>

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@include file="../includes/header.jsp"%>
+<%@ include file="../includes/header.jsp"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%
 	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
@@ -12,16 +12,12 @@
 	QnaVO qna=(QnaVO)request.getAttribute("qna"); 
 %>
 
-<html>
-<head>
-	<title>문의 게시판</title>
 	<script language="javascript">
 	function replyboard(){
 		boardform.submit();
 	}
 	</script>
-</head>
-<body>
+
 <!-- 게시판 답변 -->
 <form action="./qnareply.qn" method="post" name="boardform">
 <!-- 원글에 대한 정보 -->
@@ -76,5 +72,4 @@
 	</tr>
 </table>
 </form>
-</body>
-</html>
+<%@include file="../includes/footer.jsp"%>

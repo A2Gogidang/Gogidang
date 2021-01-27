@@ -112,6 +112,9 @@
 			</div>
 		</div>
 	</div>
+</section>
+<!— Product Section End —>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
 
 	<div id="card_row">
 		<%

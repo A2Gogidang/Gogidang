@@ -1,21 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="com.spring.gogidang.domain.QnaVO" %>
+<%@ include file="../includes/header.jsp"%>
 <%
 	String u_id = (String)session.getAttribute("u_id");
 	QnaVO qna = (QnaVO)request.getAttribute("qna");
 %>
 
-<html>
-<head>
+
 	<title>MVC 게시판</title>
 	<script type="text/javascript">
 	function modifyqna(){
 		modifyform.submit();
 	}
 	</script>
-</head>
 
-<body>
+
+
 <!-- 게시판 수정 -->
 <form action="qnamodify.qn" method="post" name="modifyform">
 <input type="hidden" name="qna_num" value="<%=qna.getQna_num() %>">
@@ -59,6 +60,4 @@
 	</tr>
 </table>
 </form>
-<!-- 게시판 수정 -->
-</body>
-</html>
+<%@ include file="../includes/footer.jsp"%>
