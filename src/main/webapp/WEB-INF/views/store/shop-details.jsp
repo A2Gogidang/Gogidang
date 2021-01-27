@@ -17,6 +17,7 @@
 	
 	
 <head>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/storelist.css" type="text/css">
     <meta charset="UTF-8">
     <meta name="description" content="Ogani Template">
     <meta name="keywords" content="Ogani, unica, creative, html">
@@ -295,7 +296,7 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                 src="resources/img/store/<%=svo.getThumbnail() %>" width="400px" height="380px"> 
+                 src="resources/img/store/<%=svo.getThumbnail() %>"width="400px;" height="380px;">
                         </div>
 <!--                         <div class="product__details__pic__slider owl-carousel">
                             <img data-imgbigurl="resources/img/product/details/product-details-2.jpg"
@@ -324,20 +325,18 @@
                             <i class="fa fa-star-half-o"></i>
                             <span>(18 reviews)</span>
                         </div>
-                        <div class="product__details__price" style="color:#7fad39; font-size:25px"><%=svo.getS_addr() %></div>
+                        <div class="product__details__price" style="color:#7fad39; font-size: 25px; width:400px; height:73px;"><%=svo.getS_addr() %></div>
                         
-						<ul>
-                            <li><img src="resources/DetailStore/Icon/time.ico"
-                              width="40px" height="42px;" alt='' / style="margin-right : 10px;"><b>운영시간</b> <span><%=svo.getS_hour() %></span></li>
+						<ul style="margin-top : 60px;">
+                           <li><img src="resources/DetailStore/Icon/time.ico"
+                              width="40px" height="42px;" alt='' / style="margin-right : 10px;"><span>운영시간 : &nbsp;&nbsp;<%=svo.getS_hour() %></span></li>
                             <li><img src="resources/DetailStore/Icon/call.ico"
-                              width="40px" height="42px;" alt='' / style="margin-right : 10px;"><b>전화번호</b> <span><%=svo.getS_phone() %></span></li>
+                              width="40px" height="42px;" alt='' / style="margin-right : 10px;"><span>전화번호 : &nbsp;&nbsp;<%=svo.getS_phone() %></span></li>
                             <li><img src="resources/DetailStore/Icon/delivery.ico"
-                              width="40px" height="42px;" alt='' / style="margin-right : 10px;"><b>가게소개</b> <span>한줄소개글 추가</span></li>
-                        <div class="container-fluid">
-	
-	</div>
-</div>
+                              width="40px" height="42px;" alt='' / style="margin-right : 10px;"><span>가게소개 : &nbsp;&nbsp;한줄소개글 추가</span></li>
                         </ul>
+						</div>
+                        </div>
                         <!-- <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
@@ -366,19 +365,19 @@
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
-                                    aria-selected="true">menu</a>
+                                    aria-selected="true">메뉴</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
-                                    aria-selected="false">loc</a>
+                               <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
+                                    aria-selected="false">위치</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
-                                    aria-selected="false">Reviews </a>
+                                    aria-selected="false">후기 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab"
-                                    aria-selected="false">qna </a>
+                                    aria-selected="false">문의 </a>
                             </li>
                         </ul>
                         
