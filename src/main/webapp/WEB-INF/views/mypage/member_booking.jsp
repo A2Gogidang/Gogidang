@@ -5,6 +5,10 @@
 <%@ page import="javax.naming.*" %>
 <%@ page import="java.util.*" %>
 <%@include file="../includes/header.jsp"%>
+<%@ page import="com.spring.gogidang.domain.*"%>
+<%
+	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+%>
 <% 
 	ArrayList<BookingVO> booking_list = (ArrayList<BookingVO>)request.getAttribute("booking_list");
 	StoreVO storevo = (StoreVO)session.getAttribute("StoreVO");

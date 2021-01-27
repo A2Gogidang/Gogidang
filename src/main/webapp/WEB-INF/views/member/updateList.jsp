@@ -5,6 +5,10 @@
 <%@ page import="javax.naming.*"%>
 <%@ page import="java.util.*"%>
 <%@include file="../includes/header.jsp"%>
+<%@ page import="com.spring.gogidang.domain.*"%>
+<%
+	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/updateStyle.css" type="text/css">
   
 <%

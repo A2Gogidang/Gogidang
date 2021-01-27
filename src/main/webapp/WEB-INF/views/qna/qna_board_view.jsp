@@ -3,8 +3,11 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import = "com.spring.gogidang.domain.*" %>
 <%@include file="../includes/header.jsp"%>
+<%@ page import="com.spring.gogidang.domain.*"%>
+<%
+	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+%>
 <%
 	QnaVO qna = (QnaVO)request.getAttribute("qna");
 %>
