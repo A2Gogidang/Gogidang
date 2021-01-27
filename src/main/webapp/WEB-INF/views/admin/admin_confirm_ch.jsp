@@ -3,6 +3,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/updateStyle.css"
 	type="text/css">
+<%@ page import="com.spring.gogidang.domain.*" %>
 <%
 	StoreVO svo = (StoreVO) request.getAttribute("storeVO");
 %>
