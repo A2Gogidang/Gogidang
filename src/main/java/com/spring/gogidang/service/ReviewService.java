@@ -1,6 +1,7 @@
 package com.spring.gogidang.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.ReviewVO;
@@ -16,6 +17,8 @@ public interface ReviewService {
 	public void regReview(ReviewVO review);
 	
 	public int getTotal(Criteria cri);
+	
+	public List<ReviewVO> getReviewListAjax(Map<String, String[]> mapp);
 
 }
 

@@ -1,9 +1,11 @@
-var s_addr = [];
-	var meat =[];   
+	var s_addr = [];
+	var meat =[];  
+	var star = [];
 	
 	$('#checkBtn').click(function() {
 		s_addr = [];
 		meat = [];
+		star = [];
 		
 		if($('input[name=f_Acheck]').is(":checked") == true) {
 			$('input[name=f_Acheck]:checked').each(function() {
@@ -17,15 +19,17 @@ var s_addr = [];
 			});
 		}
 		
-		getlist(s_addr, meat);
+		star.push($('input[name=f_Scheck]:checked').val());
+		
+		getlist(s_addr, meat,star);
 
 	})
 	
-	function getlist(s_addr, meat) {
-		var params = {"s_addr" : s_addr, "meat" : meat};
+	function getlist(s_addr, meat, star) {
+		var params = {"s_addr" : s_addr, "meat" : meat, "star" : star};
 	 	$.ajax({
 				//type:'post',
-				url:'./storelist_ajax.li',
+				url:'./reviewlist_ajax.re',
 				contentType : "application/json; charset=utf-8",
 				data: JSON.stringify(params),
 				type : "POST",
@@ -37,6 +41,7 @@ var s_addr = [];
 					$.each(data, function(index, item){
 						console.log(item)
 						var output= '';
+						
 						if (item.meat == 0){
 							meat = '소고기'
 						}
@@ -47,12 +52,12 @@ var s_addr = [];
 						output += '<div class="card_store_box">'+
 									'<div class="card_store_addr" >'+
 										'<div class="text_left">'+
-											'<h5>'+ item.s_addr + '</h5>'+
+											'<h5>'+ item.title + '</h5>'+
 										'</div>'+
 									'</div>';
 						output += '<div class="card_store_img" >' + 
 									'<div>'+
-										'<img src=resources/img/store/'+ item.thumbnail +'>' +
+										'<img src=resources/img/store/'+ item.review_img1 +'>' +
 									'</div>' +
 								'</div>';
 						output += '<div class="card_store_name" >'+
@@ -64,7 +69,7 @@ var s_addr = [];
 								'</div>' ;
 						output += '<div class="card_store_tag" >' +
 										'<div class="text_right">'+
-											meat +
+											meat + item.star + 
 										'</div>' +
 									'</div>' +
 								'</div>'; //class="card_store_box" 끝
@@ -74,7 +79,7 @@ var s_addr = [];
 					});//each 끝			
 				}, //success 끝  
 				error : function(Request,Status, error) { 
-					alert("오류");
+					alert("리뷰 리스트 오류");
 				}//error 끝
 			}); //ajax끝
 		};//input:checked끝

@@ -1,10 +1,12 @@
 	
 	var s_addr = [];
-	var meat =[];   
+	var meat =[];  
+	var star = [];
 	
 	$('#checkBtn').click(function() {
 		s_addr = [];
 		meat = [];
+		star = [];
 		
 		if($('input[name=f_Acheck]').is(":checked") == true) {
 			$('input[name=f_Acheck]:checked').each(function() {
@@ -18,12 +20,14 @@
 			});
 		}
 		
-		getlist(s_addr, meat);
+		star.push($('input[name=f_Scheck]:checked').val());
+		
+		getlist(s_addr, meat,star);
 
 	})
 	
-	function getlist(s_addr, meat) {
-		var params = {"s_addr" : s_addr, "meat" : meat};
+	function getlist(s_addr, meat, star) {
+		var params = {"s_addr" : s_addr, "meat" : meat, "star" : star};
 	 	$.ajax({
 				//type:'post',
 				url:'./storelist_ajax.li',
@@ -38,11 +42,13 @@
 					$.each(data, function(index, item){
 						console.log(item)
 						var output= '';
+						
 						if (item.meat == 0){
 							meat = '소고기'
-						}
-						else {
+						} else if (item.meat == 1) {
 							meat = '돼지고기'
+						} else {
+							meat = '가게'
 						}
 						
 						output += '<div class="card_store_box">'+
@@ -59,7 +65,8 @@
 						output += '<div class="card_store_name" >'+
 									'<div class="text_right">' +
 										'<h5>' +
-											'<a href="#">' + item.s_name + '</a>'+
+											'<a href="#" style="display:inline">' + item.s_name + '</a>'+
+											'<input type="hidden" id="avgStar" class="avgStar" name="avgStar" value="' + item.avgStar + '" style="border:none" />' + item.avgStar +
 										'</h5>' +
 									'</div>' +
 								'</div>' ;
@@ -75,10 +82,26 @@
 					});//each 끝			
 				}, //success 끝  
 				error : function(Request,Status, error) { 
-					alert("오류");
+					alert("결과값이 없습니다!");
 				}//error 끝
 			}); //ajax끝
 		};//input:checked끝
+		
+		
+		$('#sortBtn').click(function() {
+			
+			var avgStar = [];
+			
+			$('input[name=avgStar]').each(function() {
+				avgStar.push($(this).val());
+			});
+			avgStar.sort();
+			alert(avgStar);
+		});
+
+			
+		
+		
 	
 	
 	

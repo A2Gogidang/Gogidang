@@ -8,7 +8,7 @@
 	String id = mvo.getU_id();
 	int seller_key = mvo.getSeller_key(); -->
 <%
-	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
+	ArrayList<ReviewVO> reviewList = (ArrayList<ReviewVO>) request.getAttribute("reviewList");
 %>
 
 <%@include file="../includes/header.jsp"%>
@@ -41,10 +41,19 @@
                             <li><input type="checkbox" id="pig" class="f_check" name="f_Mcheck"  value="1" >돼지고기</li>
                             <li></li>
                        </ul> 
+						<ul>
+                       		<li>별점</li>
+                       		<li><input type="radio" id="one" class="f_check" name="f_Scheck" value="0" checked>모든별점</li>
+                       		<li><input type="radio" id="one" class="f_check" name="f_Scheck" value="1" >1점 이상</li>
+                       		<li><input type="radio" id="two" class="f_check" name="f_Scheck" value="2" >2점 이상</li>
+                       		<li><input type="radio" id="three" class="f_check" name="f_Scheck" value="3" >3점 이상</li>
+                       		<li><input type="radio" id="four" class="f_check" name="f_Scheck" value="4" >4점 이상</li>
+                   			<li><input type="radio" id="five" class="f_check" name="f_Scheck" value="5" >5점 이상</li>
+                       	</ul> 
                     </div>   
                     <button type="button" name="button" id="checkBtn">검색</button>
-                    <button type="button" name="button" id="sortStar">별점순</button>
-                    <button type="button" name="button" id="sortTime">최신순</button>
+                    <!-- <button type="button" name="button" id="sortStar">별점순</button>
+                    <button type="button" name="button" id="sortTime">최신순</button> -->
             </div>    
         </div>
     </section>
@@ -53,45 +62,31 @@
     <!-- 내용 내용 내용 -->
 	<div id="card_row" >
 		<%
-		for(int i=0; i<storeList.size(); i++) {
-			StoreVO svo = (StoreVO) storeList.get(i);
+		for(int i=0; i<reviewList.size(); i++) {
+			ReviewVO rvo = (ReviewVO) reviewList.get(i);
 		%>
 			<div class="card_store_box">
 				<div class="card_store_addr" >
 					<div class="text_left">
-						<h5> <%=svo.getS_addr()%> </h5>
+						<h5> <%=rvo.getTitle()%> </h5>
 					
 					</div>
 				</div>
 				
 				<div class="card_store_img" >
-					<div><img src="resources/img/store/<%=svo.getThumbnail() %>"></div>
+					<div><img src="resources/img/review/<%=rvo.getReview_img1() %>"></div>
 				</div>
 				
 				
 				<div class="card_store_name" >
 					<div class="text_right">
-						<h5><a href="#"><%= svo.getS_name() %></a></h5>
+						<h5><a href="#"><%= rvo.getS_name() %></a></h5>
 					</div>
 				</div>
 				
 				<div class="card_store_tag" >
 					<div class="text_right">
-						<%
-						if(svo.getMeat() == 0) {
-						%>
-							<h6>소고기 </h6> 
-						<%
-						} else if (svo.getMeat() == 1) {
-						%>
-							<h6> 돼지고기 </h6>
-						<%
-						} else {
-						%>
-							<h6>식당</h6>
-						<%
-						}
-						%>
+						<h5><%=rvo.getStar() %></h5>
 					</div>
 				</div>
 		</div>	

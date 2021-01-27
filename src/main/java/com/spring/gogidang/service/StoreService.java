@@ -20,6 +20,8 @@ public interface StoreService {
 	public ArrayList<StoreVO> getWaitListWithPage(Criteria cri);
 	public int getTotal(Criteria cri);
 	
+	public Double getAvgStar(int s_num);
+	
 	// soobin
 	public int insertStore(StoreVO storeVO); 
 	public StoreVO selectStore(StoreVO storeVO);
@@ -29,6 +31,4 @@ public interface StoreService {
 	// dohyeong
 	public ArrayList<StoreVO> getStoreList();
 	public List<StoreVO> getStoreListAjax(Map<String, String[]> mapp);
-	public List<StoreVO> getStoreListAjaxByMeat(Map<String, String[]> mapp);
-	public List<StoreVO> getStoreListAjaxByAddr(Map<String, String[]> mapp);
 }
