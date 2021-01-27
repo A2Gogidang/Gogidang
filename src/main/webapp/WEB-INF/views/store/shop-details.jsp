@@ -17,7 +17,7 @@
 	
 	
 <head>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/storelist.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/shop-details.css" type="text/css">
     <meta charset="UTF-8">
     <meta name="description" content="Ogani Template">
     <meta name="keywords" content="Ogani, unica, creative, html">
