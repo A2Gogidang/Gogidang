@@ -289,7 +289,9 @@ ol {
 /*---------------------
   Header
 -----------------------*/
-
+.header {
+	margin: 10px;
+}
 .header__top {
 	background: #f5f5f5;
 }
@@ -2665,6 +2667,7 @@ ol {
 	background: #F3F6FA;
 	padding-top: 70px;
 	padding-bottom: 0;
+	margin: 100px;
 }
 
 .footer__about {
