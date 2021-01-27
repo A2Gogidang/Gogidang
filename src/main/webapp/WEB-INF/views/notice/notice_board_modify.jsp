@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
-<%@ page import="com.spring.gogidang.domain.NoticeVO" %>
+<%@ page import="com.spring.gogidang.domain.*"%>
 <%
 	String u_id = (String)session.getAttribute("u_id");
 	NoticeVO notice = (NoticeVO)request.getAttribute("notice");
