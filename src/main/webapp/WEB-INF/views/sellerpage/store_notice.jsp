@@ -28,72 +28,67 @@
             </div>   
         </div>
     </section>
-    
-
-		        	
+	        	
 	<!-- store_notice -->
-	<form  id="store_not" action="./storeUpdateForm.st" method="post" enctype="multipart/form-data">
-	
-   <h3 align="center">문의 관리</h3>
-  	 <hr/>
-   		<div class="container">
-   		<table class="table table-hover">
-      	<thead>
-	         <tr align=center>
-	           <th>글번호</th>
-				<th>글제목</th>
-				<th>작성자</th>
-				<th>글내용 </th>
-				<th>문의날짜</th>
-				<th>답변하기</th>
-	         </tr>
-     	 </thead>
-     	 <tbody class="text-center">
-         <%
+    <div class="title">
+		<h3>문의 관리</h3>
+	</div>
+	<hr align="center" style="border: solid 3px black; width: 40%;">
 		
-		for(int i = 0; i < srNoticeList.size(); i++){ 
-			SRNoticeVO vo = (SRNoticeVO)srNoticeList.get(i);
-			
-			int num = i+1;
-		%>
-         <tr>
-            <td><%=num %></td>
-            <td><span name="title" type="text" /><%=vo.getTitle() %></td>
-            <td><span name="content" type="text" /><%=vo.getU_id() %></td>
-            <td><span name="content" type="text" /><%=vo.getContent() %></td>
-            <td><span name="qna_date" type="text" /><%=vo.getQna_date() %></td>
-         
-			<%
-			if(vo.getRe_content() == null || vo.getRe_content() == ""){
-			%>	
-		  	<td colspan="6"><a href="replyNoticeInputForm.no?qs_num=<%=vo.getQs_num()%>">답변하기</a></td>
-		 </tr>
-           <%
-			}else{
-			%>
-		<tr>
-			<th colspan="2">답변내용 : </th> 
-			<td colspan="3"><span name="content" type="text" /><%=vo.getRe_content() %></td>
-		</tr>
+<%
+		for(int i = 0; i < 5; i++){
+%>
+<%
+			if(i == 3){						
+	%>		
+				<div class="uid">
+		            <h5>작성자 : 정수빈 고객님</h5>
+		        </div>
+			 <div class="qnabox1">	
+				<div class="qnatitle">	 
+		            <h5>제목 : 문의 이씁니다ㅏ</h5><br>         
+		        </div>
+		        <div class="qnacontent">
+		            <h5>내용 : 홈페이지 디자인 왜이래여</h5>
+		        </div>
+		        <div class="qnabox2">
+		        	<p><br></p>
+		         	<h5>답변 : 글쎄여 저두 몰라여</h5>
+		        </div>
+		   	 </div>
+		        <button class="button"><h5>답변 삭제</h5></button>
+		<%}else{%>
+				<div class="uid">
+		            <h5>작성자 : 정수빈 고객님</h5>
+		        </div>
+		      <div class="qnabox3">	
+				<div class="qnatitle">	 
+		            <h5>제목 : 문의 이씁니다ㅏ</h5><br>         
+		        </div>
+		        <div class="qnacontent">
+		            <h5>내용 : 홈페이지 디자인 왜이래여</h5>
+		        </div>
+		      </div>
+		        <button class="button"><h5>답변 등록</h5></button>
+		<%	}%>
 		
-		<tr>
-			<th colspan="2">답변날짜 : </th> 		
-			<td colspan="3"><span name="re_date" type="text" /><%=vo.getRe_date() %></td>
-		</tr>
-		
-		<tr>
-			<td colspan="5"><a href="replyNoticeDelete.no?qs_num=<%=vo.getQs_num()%>">답변 삭제</a></td>		
-		</tr>	
-		<%
-			}
-		}
-		%>	
-          
-      </tbody>      
-   </table>
-   </div>
-<hr/>
+<%	}%>
 
-</form>
 
-<%@include file="../includes/footer.jsp"%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	      
