@@ -11,6 +11,7 @@ encoding//src/main/webapp/WEB-INF/views/main.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/mainAdmin.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/mypage.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/mypage/admin_mypage.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/mypage/new_mypage.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/notice/notice_board_list.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/qna/qna_board_list.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/qna/qna_board_write.jsp=UTF-8

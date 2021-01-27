@@ -364,5 +364,11 @@ public class MemberController {
 		
 		return "admin/admin_confirm_ch"; 
 	}
+	
+	@RequestMapping("/new_mypage.me")
+	public String new_mypage() {
+		
+		return "mypage/new_mypage"; 
+	}
    
 }
