@@ -1,4 +1,4 @@
-@charset "UTF-8";
+	@charset "UTF-8";
 
 form #store_not{
 	width: 1370px;
@@ -6,4 +6,94 @@ form #store_not{
 
 #store_not h3 hr {
 	width: 1370px;
+	
 }
+
+/*리뷰관리 글자 위치조정*/
+.title{
+	margin-left: 550px;
+}
+
+/*리뷰관리 밑 초록박스*/
+.reviewbox {
+    border-style:solid;
+    border-width:2px;  
+    border-color:#145f10;
+    width:500px;
+    height:140px;
+    margin-left: 580px;
+    margin-top: 20px;
+    
+}
+
+/*박스안 글자들 (float으로 오른쪽으로 글자 위치 조정)*/
+.content{
+	margin-left: 215px;
+}
+
+/*등록일자 위치*/
+.date {
+	margin-left: 930px;	
+	margin-bottom: -25px;
+	margin-top: 35px;
+}
+
+/*이미지 (height 를 0으로 줘야지 글자들이랑 나란히 나옴 이유는 모름)*/
+.reviewimg{
+	width: 195px;
+    height: 0px;
+}
+
+.button {
+   width: 500px;
+   height: 25px;
+   border-radius: 10px;
+   margin-left: 580px;
+   margin-top: 10px;
+   border-style: solid;
+   border-width: 2px;
+   border-color: #145f10;
+   background-color: #00a000;
+
+}
+
+.button h5 {
+	text-align: center;
+}
+
+.recontent {
+ position:relative;
+ margin: 50px;
+ width:400px;
+ height:100px;
+  background:#145f10;
+  border-radius: 10px;
+}
+.recontent:after {
+ border-top:15px solid #145f10;
+ border-left: 15px solid transparent;
+ border-right: 0px solid transparent;
+ border-bottom: 0px solid transparent;
+ content:"";
+ position:absolute;
+ top:10px;
+ left:-15px;
+}
+
+.reviewbox h4{
+	width: 80px;
+    margin-top: 58px;
+    margin-left: 5px;
+}
+
+.recontent p{
+	margin-left:10px;
+	margin-tot:20px;
+}
+
+.aaa {
+	margin-top: 4rem;
+	border:solid 1px black; 
+	width: 40%;
+}
+
