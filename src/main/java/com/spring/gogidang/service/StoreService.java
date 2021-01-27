@@ -20,6 +20,8 @@ public interface StoreService {
 	public ArrayList<StoreVO> getWaitListWithPage(Criteria cri);
 	public int getTotal(Criteria cri);
 	
+	public Double getAvgStar(int s_num);
+	
 	// soobin
 	public int insertStore(StoreVO storeVO); 
 	public StoreVO selectStore(StoreVO storeVO);

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.gogidang.domain.*;
 import com.spring.gogidang.service.LikeStoreService;
+import com.spring.gogidang.service.StoreService;
 
 /*
  * likeStroeList.li
@@ -23,6 +24,9 @@ public class LikeStoreController {
    
    @Autowired
    public LikeStoreService likeStoreService;
+   
+   @Autowired
+   public StoreService storeService;
    
    @RequestMapping("/addLikeStore.li")
    public String addLikeStore(@RequestParam("s_num") int s_num, HttpSession session) {
@@ -46,6 +50,23 @@ public class LikeStoreController {
 	   
 	   return "mypage/member_likestore";
    }
-
+   
+   @RequestMapping("/likeStoreList.li")
+   public String likeStoreList(@RequestParam("u_id") String u_id, Model model) {
+	   ArrayList<LikeStoreVO> likeStoreList = new ArrayList<LikeStoreVO>();
+	   likeStoreList = (ArrayList<LikeStoreVO>) likeStoreService.getListByUid(u_id);
+	   
+	   for (int i=0; i<likeStoreList.size(); i++) {
+		   LikeStoreVO lsvo = likeStoreList.get(i);
+		   int s_num = lsvo.getS_num();
+		   StoreVO svo = storeService.storeInfo(s_num);
+		   lsvo.setS_name(svo.getS_name());
+		   lsvo.setThumbnail(svo.getThumbnail());
+	   }
+	   
+	   model.addAttribute("likeStoreList", likeStoreList);
+	   
+	   return "mypage/member_likestore";
+   }
    
 }

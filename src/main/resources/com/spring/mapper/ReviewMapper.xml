@@ -56,20 +56,32 @@
 	<insert id="regReview" parameterType="ReviewVO">
 		INSERT INTO review (review_num, u_id, nickname, s_num, s_name, title, content, star, review_img1, review_img2, review_img3) 
 		VALUES (seq_review.nextval
-		, #{u_id}
-		, #{nickname}
-		, #{s_num}
-		, #{s_name}
-		, #{title}
-		, #{content}
-		, #{star}
-    	, #{review_img1}
-    	, #{review_img2}
-    	, #{review_img3})
+			  , #{u_id}
+			  , #{nickname}
+			  , #{s_num}
+			  , #{s_name}
+			  , #{title}
+			  , #{content}
+			  , #{star}
+	    	  , #{review_img1}
+	    	  , #{review_img2}
+	    	  , #{review_img3})
 	</insert>
 		
 	<select id="getTotal" resultType="int">
 		select count(*) from review where review_num > 0
+	</select>
+	
+	<select id="getReviewListAjax" parameterType="java.util.HashMap" resultType="ReviewVO">
+		select distinct re.review_num, re.s_name, re.title, re.star, re.review_img1, re.review_date, mr.meat
+		from menu_reg mr INNER JOIN shop_reg sr ON mr.s_num=sr.s_num INNER JOIN review re ON sr.s_num=re.s_num
+		where re.review_num > 0
+		<if test="s_addr != null">
+			AND substr(sr.s_addr,1,2) IN <foreach collection="s_addr" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
+		</if>
+		<if test="meat != null">
+			AND mr.meat IN<foreach collection="meat" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
+		</if>
 	</select>
 
 </mapper>

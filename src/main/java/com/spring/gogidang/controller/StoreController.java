@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,8 +35,6 @@ import com.spring.gogidang.service.MenuService;
 import com.spring.gogidang.service.ReviewService;
 import com.spring.gogidang.service.StoreService;
 
-
-
 @Controller
 public class StoreController {
 
@@ -48,17 +47,6 @@ public class StoreController {
 	@Autowired
 	private ReviewService reviewService;
 	
-	/*
-	 * 전체 가게 리스트
-	 */
-	/*
-	 * @RequestMapping(value = "/storeList.st") public String getStoreList(Model
-	 * model) { ArrayList<StoreVO> storeList = storeService.getStoreList();
-	 * model.addAttribute("storeList", storeList);
-	 * 
-	 * return "store/store_list"; }
-	 */
-
 	/*
 	 * 승인대기중인 가게 리스트 보기
 	 */
@@ -86,9 +74,9 @@ public class StoreController {
 	 * 가게 상세 정보 보기
 	 */
 	@RequestMapping(value = "/storeInfo.st")
-	public String shopInfo(@RequestParam("s_num") int s_num, Criteria cri, Model model) {
+	public String storeInfo(@RequestParam("s_num") int s_num, Criteria cri, Model model) {
 		StoreVO vo = storeService.storeInfo(s_num);
-		ArrayList<MenuVO> menuList = menuService.getMenuList();
+		ArrayList<MenuVO> menuList = menuService.menuList(s_num);
 		List<ReviewVO> reviewList = reviewService.getListBySnWithPaing(cri, s_num);
 		
 		int total = reviewService.getTotal(cri);
@@ -221,7 +209,7 @@ public class StoreController {
 	@RequestMapping("/storeUpdate.st")
 	public String storeUpdate(StoreVO store , HttpSession session, HttpServletResponse response)throws Exception {
 
-		store.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
+		store.setU_id(((MemberVO)session.getAttribute("memberVO")).getU_id());
 
 		int res = storeService.updateStore(store);
 
@@ -245,77 +233,24 @@ public class StoreController {
 	@RequestMapping("/storeUpdateForm.st")
 	public String storeUpdateForm(StoreVO storeVO, HttpSession session) throws Exception {
 
-		storeVO.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
+		storeVO.setU_id(((MemberVO)session.getAttribute("memberVO")).getU_id());
 		StoreVO vo = storeService.selectStore(storeVO);
 
 		session.setAttribute("StoreVO",vo);
 		return "sellerpage/store_updateForm";
 	}
 
+		//판매자 가게정보
 	@RequestMapping("/storeRegForm.st")
 	public String registrationForm(StoreVO storeVO, HttpSession session) throws Exception {
-
-		storeVO.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
+		
+		//원래코드
+		storeVO.setU_id(((MemberVO)session.getAttribute("memberVO")).getU_id());
 		StoreVO vo = storeService.selectStore(storeVO);
-
+				
 		session.setAttribute("StoreVO",vo);
 		return "sellerpage/store_reg_form";
 	}
-
-	@RequestMapping("/menuRegForm.st")
-	public String menuRegForm(MenuVO menuVO, HttpSession session, HttpServletResponse response ,Model model) throws Exception {
-
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter writer = response.getWriter();
-
-		StoreVO storeVO = new StoreVO();
-		storeVO.setU_id(((MemberVO)session.getAttribute("MemberVO")).getU_id());
-
-		StoreVO vo = storeService.selectStore(storeVO);
-		
-		//사업자 번호 대신 가입승인 컬럼 가지고 비교해야됨 나중에 수정하기
-		if( vo == null || vo.getS_num() == 0 || vo.getConfirm() == 0) {
-			
-			writer.write("<script>alert('가게정보 등록 먼저 하세요!!!!');" +"location.href = './storeRegForm.st';</script>");
-
-		}else {
-			
-			menuVO.setS_num(vo.getS_num());			
-			ArrayList<MenuVO> menuSelectList  = new ArrayList<MenuVO>();
-			menuSelectList = menuService.selectMenu(menuVO);
-
-			model.addAttribute("menuSelectList",menuSelectList);
-			model.addAttribute("StoreVO",vo);
-
-			return "sellerpage/menu_reg_form";
-		}
-		return null;
-	}
-
-	@RequestMapping("/menuProcess.st")
-	public String menuProcess(MenuVO menuVO, HttpSession session , HttpServletResponse response) throws Exception {
-
-		int i = 0;
-		menuVO.setMenu_num(i++);
-
-		int res = menuService.insertMenu(menuVO);
-
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter writer = response.getWriter();
-
-		if (res==1) {
-
-			writer.write("<script>alert('메뉴등록 성공!!'); location.href='./menuRegForm.st';</script>");
-		}
-		else {
-			writer.write("<script>alert('가게등록 실패!!'); location.href='./menuRegForm.st';</script>");
-		}
-
-		return null;
-	}
-
 	//soobin end
 
 /*
@@ -347,7 +282,18 @@ public class StoreController {
 	// dohyeong start
 	@RequestMapping(value = "/storeList.st")
 	public String getStoreList(Model model) {
-		ArrayList<StoreVO> storeList = storeService.getStoreList();
+		ArrayList<StoreVO> storeList = storeService.getList();
+//		ArrayList<StoreVO> storeList = storeService.getStoreList();
+		
+		for (int i=0; i<storeList.size(); i++) {
+			StoreVO svo = storeList.get(i);
+			int s_num = svo.getS_num();
+			Double avgStar = storeService.getAvgStar(s_num);
+			svo.setAvgStar(avgStar);
+			String addr = svo.getS_addr().substring(0, 2);
+			svo.setS_addr(addr);
+		}
+		
 		model.addAttribute("storeList", storeList);
 		
 		return "store/store_list";
@@ -355,32 +301,100 @@ public class StoreController {
 	
 	@RequestMapping(value="/storelist_ajax.li", produces="application/json; charset=utf-8")
 	@ResponseBody 
-	 public List<StoreVO> getStoreListAjax( @RequestBody Map<String, String[]> map) { 
+	public List<StoreVO> getStoreListAjax( @RequestBody Map<String, String[]> map) {
+		
+		int min = 0;
+		
 		String[] s_addr = map.get("s_addr");
-		  for(String no : s_addr) {
-			  System.out.println("컨트롤러" + no);
-		  }
-		  String[] meat = map.get("meat");
-		  for(String no : meat) {
-			  System.out.println("컨트롤러 " + no);
-		  }
-		  Map<String, String[]> mapp = new HashMap<String, String[]>();
-			mapp.put("s_addr",s_addr);
-			mapp.put("meat", meat);
-		  /*List<StoreVO> list = storeService.getStoreListAjax(s_addr, meat);
-		  System.out.println("list" + list);
-		 */
-		  List<StoreVO> list = storeService.getStoreListAjax(mapp);
-		  StoreVO vo = (StoreVO) list.get(0);
+		for(String no : s_addr) {
+			System.out.println("컨트롤러 addr : " + no);
+		}
 		  
-		  System.out.println(vo.getThumbnail());
-		  return list; 
+		String[] meat = map.get("meat");
+		for(String no : meat) {
+			System.out.println("컨트롤러 meat : " + no);
+		}
+		
+		String[] star = map.get("star");
+		System.out.println(star[0]);
+		int starInt = Integer.parseInt(star[0]);
+		
+		
+		Map<String, String[]> mapp = new HashMap<String, String[]>();
+		
+		if(s_addr.length > 0 && meat.length > 0) {
+			mapp.put("s_addr",s_addr);
+			mapp.put("meat", meat);		
+			List<StoreVO> list = storeService.getStoreListAjax(mapp);
+			System.out.println("리스트 size : " + list.size());
+
+			for (int i=0; i<list.size(); i++) {
+				StoreVO svo = list.get(i);
+				int s_num = svo.getS_num();
+				Double avgStar = storeService.getAvgStar(s_num);
+				System.out.println("avgStar : " + avgStar);
+				
+				if ((avgStar+0.1) < starInt) {
+					list.remove(i);
+					i=-1;
+				} else {
+					svo.setAvgStar(avgStar);
+				}
+			}
+			
+			return list;
+			
+		} else if(s_addr.length == 0 && meat.length>0) {
+			mapp.put("meat", meat);		
+			List<StoreVO> list = storeService.getStoreListAjax(mapp);
+			
+			for (int i=0; i<list.size(); i++) {
+				StoreVO svo = list.get(i);
+				int s_num = svo.getS_num();
+				Double avgStar = storeService.getAvgStar(s_num);
+				System.out.println("avgStar : " + avgStar);
+				
+				if (avgStar < starInt) {
+					list.remove(i);
+				} else {
+					svo.setAvgStar(avgStar);
+				}
+			}
+			
+			return list;
+		} else if (s_addr.length > 0 && meat.length==0) {
+			mapp.put("s_addr",s_addr);
+			List<StoreVO> list = storeService.getStoreListAjax(mapp);
+			
+			for (int i=0; i<list.size(); i++) {
+				StoreVO svo = list.get(i);
+				int s_num = svo.getS_num();
+				Double avgStar = storeService.getAvgStar(s_num);
+				System.out.println("avgStar : " + avgStar);
+				
+				if (avgStar < starInt) {
+					list.remove(i);
+				} else {
+					svo.setAvgStar(avgStar);
+				}
+			}
+			
+			return list;
+		} else {
+			
+			return null;
+		}
 	  }
 	// dogyeong end
 	
 	@RequestMapping(value = "/store_info_Design.st")
 	public String design1(Model model) {
 		return "store/store_info_Design"; 
+		
+	}
+	@RequestMapping(value = "/store_info_scroll.st")
+	public String store_info_scroll(Model model) {
+		return "store/store_info_scroll"; 
 		
 	}
 

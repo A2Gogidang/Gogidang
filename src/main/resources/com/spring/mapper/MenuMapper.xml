@@ -4,19 +4,19 @@
 
 <mapper namespace="com.spring.mapper.MenuMapper">
 	
-	<select id="getMenues" resultType="MenuVO">
-		SELECT * 
-		FROM menu_reg 
-		order by menu_num
-	</select> 
+	<select id="listByNum" parameterType="int" resultType="MenuVO">
+		SELECT * FROM menu_reg WHERE s_num = #{s_num}
+ 	</select>
+ 	
+ 	<update id="modifyByNum" parameterType="int">
+ 		UPDATE menu_reg SET price=#{price} WHERE menu_num = #{menu_num}
+ 	</update>
+ 	
+	<delete id="deleteByNum" parameterType="int">
+		DELETE FROM menu_reg WHERE menu_num = #{menu_num}
+	</delete>
 	
-	<select id="selectMenu" resultType="MenuVO" parameterType="MenuVO">
-		SELECT * 
-		FROM menu_reg
-		where s_num=#{s_num}
-	</select>
-	
-	<insert id="insertMenu" parameterType="MenuVO">
+	<insert id="register" parameterType="MenuVO">
 		INSERT  
 		INTO menu_reg
 		values(seq_menu_reg.nextval
@@ -28,9 +28,8 @@
 			  ,#{price,jdbcType=VARCHAR}
 			  ,#{img,jdbcType=VARCHAR}
 			  ,#{grade,jdbcType=INTEGER}
-			  ,#{gram,jdbcType=INTEGER}
-				) 
+			  ,#{origin,jdbcType=VARCHAR}
+			  
 	</insert>
-	
 	
 </mapper>	

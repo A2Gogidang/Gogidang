@@ -73,16 +73,16 @@
          	 	<div class="id_input_box_s">
          	 		<div class="id_input_box">
 		         	 	<ts>주소<span class="ico">*</span></ts>
-		         	 	<td><input class="add_input" type="text" id="u_post" name="u_post" placeholder="우편번호" style="font-size:13px;">
-		         	 		<input class="add_btn" type="button" onclick="execDaumPostcode()" value="우편번호찾기" style="font-size:10px;"></td>
+		         	 	<td><input class="add_input" type="text" id="u_post" name="u_post" placeholder="우편번호" style="font-size:13px;"/>
+		         	 		<input class="add_btn" type="button" onclick="execDaumPostcode()" value="우편번호찾기" style="font-size:10px;"/></td>
 		         	 </div>
 		         	 <div class="id_input_box">
 		         		 <ts> </ts>
-		         	 	<td><input  type="text" id="u_addr" name="u_addr" placeholder="주소" style="font-size:13px;"></td>
+		         	 	<td><input  type="text" id="u_addr" name="u_addr" placeholder="주소" style="font-size:13px;"/></td>
 		         	 </div>
 		         	 <div class="id_input_box">		
 		         	 	<ts> </ts>
-		         	 	<input type="text" id="u_addr" name="u_addr" placeholder="상세주소" style="font-size:13px;"></td>
+		         	 	<input type="text" id="u_addr" name="u_addr" placeholder="상세주소" style="font-size:13px;"/></td>
 	         	 	</div>
          	 	</div>
          	 
@@ -292,4 +292,4 @@ $(function(){
 </script>
  
   </body>
-</html>    
+</html>

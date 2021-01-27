@@ -2,43 +2,25 @@
     pageEncoding="UTF-8" %>
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%
-   MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
+	MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
+
 %>
 <!DOCTYPE html>
 <html>
 <head>
-   <meta charset="utf-8">
-   <meta name="description" content="Ogani Template">
+	<meta charset="utf-8">
+	<meta name="description" content="Ogani Template">
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   <title>고기당</title>
-   <link rel="shortcut icon" href="reources/cut-pig.jpg"> 
+	<title>고기당</title>
+	<link rel="shortcut icon" href="reources/cut-pig.jpg"> 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     
-    <!-- minseok css -->
-      <!-- Bootstrap Core CSS -->
-    <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- DataTables CSS -->
-    <link href="resources/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-
-    <!-- DataTables Responsive CSS -->
-    <link href="resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="resources/dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- taehyun modal -->
-    
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>   
-	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!--sidebar action and hamburger icon action START START -->
@@ -57,8 +39,8 @@
         div[class="sidebar"] {width:300px;height:100%;background :  rgba(0, 100, 0,0.2);position:fixed;top:0;left:-300px;z-index:1;transition:all .35s;}
         input[id="menuicon"]:checked + label + div {left:0;}
 
-      </style>
-   <!--sidebar action and hamburger icon action END END -->
+   	</style>
+	<!--sidebar action and hamburger icon action END END -->
  
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -72,8 +54,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/storelist.css" type="text/css">
-   
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/storelist.css" type="text/css">
+	
 
 </head>
 <body>
@@ -118,7 +100,7 @@
             </div>
         </div>
         <div class="hero__search"> <!--기존의 hero서치바를 head로 옮김-->
-            <div class="sidebar-icon"> 
+            <div class="sidebar-icon" style="align:left;"> 
                 <input type="checkbox" id="menuicon">
                     <label for="menuicon">
                         <span></span>
@@ -158,7 +140,7 @@
                                -->
                            
                         <!--</div>-->
-                   </div>
+                	</div>
             </div>   
             <div class="hero__search__form">
                 <form action="#">

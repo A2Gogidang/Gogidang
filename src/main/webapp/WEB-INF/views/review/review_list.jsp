@@ -1,81 +1,146 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <%@ page import = "com.spring.gogidang.domain.*" %>
-<%@ page import="java.util.ArrayList"%>
 <%@include file="../includes/header.jsp"%>
-
-<!-- MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
-	String id = mvo.getU_id();
-	int seller_key = mvo.getSeller_key(); -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member_liststoreStyle.css" type="text/css">
 <%
-	
-	
-ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>)request.getAttribute("reviewList");
+	StoreVO storevo = (StoreVO)session.getAttribute("StoreVO");
+	String id = memberVO.getU_id();
+	List<ReviewVO> review_list = (List<ReviewVO>) request.getAttribute("reviewList");
+	List<ReviewVO> reviewUidList = (List<ReviewVO>) request.getAttribute("reviewUidList");
+	PageDTO  pageMaker = (PageDTO) request.getAttribute("pageMaker");
 %>
-
-<body>
-    <!-- 4.Hero Section Begin -->
-  	<!--네비게이션바 사용 시작-->
-    <!-- filter bar -->
-    
-    <!--네비게이션바 사용 끝-->
-    <!-- Hero Section End -->
-    <!-- 내용 내용 내용 -->
-	<div id="card_row" >
-		<%
-		for(int i=0; i<review_List.size(); i++) {
-			ReviewVO rvo = (ReviewVO) review_List.get(i);
+ <!--네비게이션바 사용 시작-->
+    <%if(memberVO.getSeller_key() == 0){ %>
+      <section class="hero">
+        <div class="container">
+            <div class="hero__item__box2"></div>
+                    <div class="EventNav">
+                        <ul>
+                            <li><a href="./updateList.me">내정보</a></li>
+                            <li><a href="./bookingList.bo?u_id=<%=memberVO.getU_id()%>">내예약확인</a>
+                            <li><a href="./likeStoreList.li?u_id=<%=memberVO.getU_id()%>">찜목록</a></li>
+                            <li><a href="./reviewListByIdWithPaging.re?u_id=<%=memberVO.getU_id()%>">내가 작성한 후기</a></li>
+                            <li><a href="./cartList.ct">장바구니</a></li>
+                        </ul>
+                    </div>   
+            </div>   
+        </div>
+    </section>
+<%
+}else{ 
+   if(storevo == null || storevo.getConfirm() == 0 || storevo.getS_num() == 0 ){
+%>
+ <section class="hero">
+        <div class="container">
+            <div class="hero__item__box2"></div>
+                    <div class="EventNav">
+                        <ul>
+                            <li><a href="./updateList.me">내정보</a></li>
+                            <li><a href="./storeRegForm.st">가게 정보</a>
+                        </ul>
+                    </div>   
+            </div>   
+        </div>
+        </section>  
+<%
+   }else{
+%>
+    <section class="hero">
+        <div class="container">
+            <div class="hero__item__box2"></div>
+                    <div class="EventNav">
+                        <ul>
+                            <li><a href="./updateList.me">내정보</a></li>
+                            <li><a href="./storeRegForm.st">가게 정보</a>
+                            <li><a href="./menuRegForm.mn">메뉴 정보</a></li>
+                            <li><a href="./storeNoticeList.no">문의 관리</a></li>
+                            <li><a href="./storereviewList.bo">리뷰 관리</a></li>
+                        </ul>
+                    </div>   
+            </div>   
+        </div>
+    </section>
+<%
+   } 
+}
+%>
+<!--네비게이션바 사용 끝-->
+<center>	
+	<h3 align="center">가게 후기 리스트</h3>
+	<br><br><br>
+	<hr/>	
+		<div class="container">
+			<table class="table table-hover">
+			<thead>
+				<tr align=center>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>가게명</th>
+					<th>별점</th>
+					<th >등록일</th>
+				</tr>
+			</thead>
+			<tbody class="text-center">
+ 		<%
+			for (int i=0; i<review_list.size(); i++){
+				
+				ReviewVO vo = (ReviewVO)review_list.get(i);
 		%>
-			<div class="card_store_box">
-				
-				
-				<div class="card_store_img" >
-					<div><img src="resources/img/store/김선호님1.jpg"></div>
-				</div>
-				
-				
-				<div class="card_store_name" >
-					<div class="text_right">
-						<h5><a href="#"><%= rvo.getS_name() %></a></h5>
-					</div>
-				</div>
-				
-				<div class="card_store_name" >
-					<div class="text_right">
-						<h5><a href="#"><%= rvo.getStar() %></a></h5>
-					</div>
-				</div>
-				
-		
-		</div>	
+			<tr align=center>
+				<td>
+					<%=vo.getReview_num() %>
+				</td>
+				<td>
+					<a href="reviewInfo.re?review_num=<%=vo.getReview_num()%>"><%=vo.getTitle() %></a>
+				</td>
+				<td>
+					<%=vo.getNickname() %>
+				</td>
+				<td>
+					<%=vo.getS_name() %>
+				</td>
+				<td>
+					<%=vo.getStar() %>
+				</td>
+				<td>
+					<%=vo.getReview_date() %>
+				</td>
+			</tr>
 		<%
-		}
+			} 
 		%>
-	</div>
-
-	 <div id="card_row" > 
- 	
-	 </div>
- 
-    <!-- Footer Section Begin -->
-   	<!-- Footer Section -->
-	<%@include file="../includes/footer.jsp"%>
-
-    <!-- Js Plugins -->
-    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/jquery.nice-select.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/jquery.slicknav.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/mixitup.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-
-
-	<script src="https://code.jquery.com/jquery-latest.js"></script> 
-	 
-	<script type="text/javascript"  charset="utf-8" src="${pageContext.request.contextPath}/resources/js/storelistAjaxx.js"></script>
-</body>
-
-</html>
+			<tr align=center height=20>
+				<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
+					<%if(pageMaker.isPrev()){ %>
+					<a href="./reviewList.re?pageNum=pageMaker.getCri().getPageNum()-1">[이전]</a>&nbsp;
+					<%}else{ %>
+					[이전]&nbsp;
+					<%} %>
+					
+					<%for(int a=pageMaker.getStartPage();a<=pageMaker.getEndPage();a++){
+						if(a==pageMaker.getCri().getPageNum()){%>
+						[<%=a %>]
+						<%}else{ %>
+						<a href="./reviewList.re?pageNum=<%=a %>">[<%=a %>]</a>
+						&nbsp;
+						<%} %>
+					<%} %>
+					
+					<%if(pageMaker.isNext()){ %>
+					<a href="./reviewList.re?pageNum=<%=pageMaker.getCri().getPageNum()+1 %>&amount=10">[다음]</a>
+					<%}else{ %>
+					[다음]
+					<%} %>
+				</td>
+			</tr>
+		</tbody>
+</table>
+</div>
+</center>
+<%@include file="../includes/footer.jsp"%>

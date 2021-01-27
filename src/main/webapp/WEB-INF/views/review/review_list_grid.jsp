@@ -1,499 +1,123 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*" %>
-<%@ page import="javax.sql.*" %>
-<%@ page import="javax.naming.*" %>  
-<%@ page import="com.spring.gogidang.domain.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
-
-   
-  <!-- Bootstrap Core CSS -->
-    <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- DataTables CSS -->
-    <link href="resources/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-
-    <!-- DataTables Responsive CSS -->
-    <link href="resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="resources/dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-   
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-   
-   
-
+<%@ page import = "com.spring.gogidang.domain.*" %>
+<%@ page import="java.util.ArrayList"%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/storelist.css" type="text/css">
+<!-- MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
+	String id = mvo.getU_id();
+	int seller_key = mvo.getSeller_key(); -->
 <%
-   MemberVO membervo = (MemberVO)session.getAttribute("MemberVO");
-   String u_id=(String)membervo.getU_id();
-   ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>)request.getAttribute("menuList");
-   ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>)request.getAttribute("reviewList");
-   //ArrayList<CartListVO> cartList= (ArrayList<CartListVO>)request.getAttribute("cartList");
+	ArrayList<ReviewVO> reviewList = (ArrayList<ReviewVO>) request.getAttribute("reviewList");
 %>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Insert title here</title>
 
-</head>
+<%@include file="../includes/header.jsp"%>
 <body>
-
-   <table border="1" align=center>
-   <a href="/cart/cartList">카트 리스트</a>
-   <tr>
- 		<td><button onclick="location.href='./review_reg.re?s_num=${storeVO.getS_num() }'">리뷰작성</button></td>
-   </tr>
-   <tr>
-      <td rowspan=5>${storeVO.getThumbnail()}</td>
-      <td>${storeVO.getS_addr()}</td>
-   </tr>
-   <tr>
-      <td>${storeVO.getS_phone()}</td>
-   </tr>
-   <tr>
-      <td>${storeVO.getS_hour()}</td>
-   </tr>
-   <tr>
-      <td>${storeVO.getDelibery()}</td>
-   </tr>
-   </table>
-   
-    <table>
-   
-					
-				
-    
- <thead>
-  <tr>
-   <th>번호</th>
-   <th>종류</th>
-   <th>이름</th>
-   <th>가격</th>
-   <th>이미지</th>
-   <th>등급</th>
-   <th>이미지</th>
-  </tr>
- </thead>
- <tbody>
-  <c:forEach items="${menuList}" var="menuList">
-  <tr>
-   <td>${menuList.menu_num}</td>
-   <td>${menuList.meat}</td>
-   <td>${menuList.menu_name}</td>
-   <td>${menuList.price}</td>
-   <td>${menuList.img}</td>
-   <td>${menuList.grade}</td>
-   <td>${menuList.gram}</td>
-  </tr>   
-  </c:forEach>
- </tbody>
-</table>
-	    
-<table border="1">
-	<tr>
-		<td>${menuList.img}</td>
-		<td>
-			<table border="1" style="height:300px; width: 400px;">
-				<tr align="center">
-					<td>상품명</td>				
-					<td>${menuList.menu_name}</td>	
-				</tr>
-				<tr align="center">
-					<td>가격</td>
-					<td><fmt:formatNumber value="${menuList.price}" pattern="###,###,###"/></td>
-				</tr>
-				<tr align="center">
-					<td colspan="2">
-						<form name="form1" method="post" action="">
-							<input type="hidden" name="" value="${menuList.}">
-						</form>
-					</td>
-				</tr>
-			</table>
-		
-	
-	</tr>
-</table>	     
-         <p class="cartStock">
-		 <span>구입 수량</span>
-		 <button type="button" class="plus">+</button>
-		 <input type="number" class="numBox" min="1" max="100" value="1" readonly="readonly"/>
-		 <button type="button" class="minus">-</button>
-		 <input type="hidden" value="${cartList.cartStock}" class="gdsStock_hidden" />
-		
-		
-      <p class="addToCart">
- 		<button type="button" class="addCart_btn">카트에 담기</button>
-      <tr>
-      
-     
-         <table border=1 align=center>
-         <tr>
-         <%
-            for(int i=0; i<review_List.size(); i++)
-            {
-               ReviewVO vo1 =(ReviewVO)review_List.get(i);
-            
-         %>
-         <td><%=vo1.getStar() %></td>
-         <td><%=vo1.getTitle() %>
-         <%} %>
-         </tr>
-         </table>
-      </tr>
-  
-
-   <div id="map" style="width:800px;height:400px;"></div>
-
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=241b4077cebf45bee1ed06d47263650b&libraries=services"></script>
-<script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
-
-// 지도를 생성합니다    
-var map = new kakao.maps.Map(mapContainer, mapOption); 
-
-// 주소-좌표 변환 객체를 생성합니다
-var geocoder = new kakao.maps.services.Geocoder();
-
-// 주소로 좌표를 검색합니다
-geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
-
-    // 정상적으로 검색이 완료됐으면 
-     if (status === kakao.maps.services.Status.OK) {
-
-        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-        // 결과값으로 받은 위치를 마커로 표시합니다
-        var marker = new kakao.maps.Marker({
-            map: map,
-            position: coords
-        });
-
-        // 인포윈도우로 장소에 대한 설명을 표시합니다
-        var infowindow = new kakao.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">저희 가게</div>'
-        });
-        infowindow.open(map, marker);
-
-        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-        map.setCenter(coords);
-    } 
-});    
-</script>
-
-<div class='row'>
-
-  <div class="col-lg-12">
-
-    <!-- /.panel -->
-     <div class="panel panel-default">
-       <!-- <div class="panel-heading">
-        <i class="fa fa-comments fa-fw"></i> Reply
-      </div> -->  
-      
-     <div class="panel-heading">
-       <i class="fa fa-comments fa-fw"></i> 가게문의
-        <button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>가게 문의 등록</button>
-      </div>   
-      
-      
-      <!-- /.panel-heading -->
-      <div class="panel-body">        
-      
-        <ul class="chat">
-         <!-- start reply -->
-         <li class="left clearfix" data-qs_num='1'>
-            <div>
-               <div class="header">
-                  <strong class="primary-font">user00</strong>
-                  <small class="pull-right text-muted">2018-01-01 13:13</small>
-               </div>
-               <p>Good job!</p>
-            </div>
-         </li>
-         <!-- end reply -->
-        </ul>
-        <!-- ./ end ul -->
-      </div>
-      <!-- /.panel .chat-panel -->
-      
-      <div class="panel-footer">
-      
-      </div>
-      
-      
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-        aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"
-                aria-hidden="true">&times;</button>
-              <h4 class="modal-title" id="myModalLabel">가게문의등록페이지</h4>
-            </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <label>제목</label> 
-                <input class="form-control" name='u_id' value='New Reply!!!!'>
-              </div>      
-              <div class="form-group">
-                <label>내용</label> 
-                <input class="form-control" name='content' value='replyer'>
-              </div>
-              <div class="form-group">
-                <label>등록일</label> 
-                <input class="form-control" name='qna_date' value=''>
-              </div>
-      
-            </div>
-<div class="modal-footer">
-        <button id='modalModBtn' type="button" class="btn btn-warning">수정</button>
-        <button id='modalRemoveBtn' type="button" class="btn btn-danger">제거</button>
-        <button id='modalRegisterBtn' type="button" class="btn btn-primary">등록</button>
-        <button id='modalCloseBtn' type="button" class="btn btn-default" data-dismiss='modal'>닫기</button>
-        <button id='modalClassBtn' type='button' class="btn btn-default" data-dismiss='modal'>닫기</button>
-      </div>          </div>
-          <!-- /.modal-content -->
+    <!-- 4.Hero Section Begin -->
+  	<!--네비게이션바 사용 시작-->
+    <!-- filter bar -->
+    <section class="hero">
+        <div class="container">
+                    <div class="EventNav">
+                        <ul>
+                            <li>조건 필터로 검색하기</li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                        <ul>
+                            <li>지역</li>
+                   			<li><input type="checkbox" id="s_seoul" class="f_check" name="f_Acheck" value="서울" >서울</li>
+                            <li><input type="checkbox" id="s_gyeong" class="f_check" name="f_Acheck" value="경기">경기도</li>
+                            <li><input type="checkbox" id="s_gang" class="f_check" name="f_Acheck" value="강원" >강원도</li>
+                            <li><input type="checkbox" id="s_jeon" class="f_check" name="f_Acheck" value="전라" >전라도</li>
+                            <li><input type="checkbox" id="s_gyeong" class="f_check" name="f_Acheck" value="경상" >경상도</li>
+                            <li><input type="checkbox" id="s_chung" class="f_check" name="f_Acheck" value="충청" >충정도</li>
+         					
+                        </ul>
+                        
+                        <ul>
+                            <li>품목</li>
+                        	<li><input type="checkbox" id="cow" class="f_check" name="f_Mcheck" value="0" >소고기</li>
+                            <li><input type="checkbox" id="pig" class="f_check" name="f_Mcheck"  value="1" >돼지고기</li>
+                            <li></li>
+                       </ul> 
+						<ul>
+                       		<li>별점</li>
+                       		<li><input type="radio" id="one" class="f_check" name="f_Scheck" value="0" checked>모든별점</li>
+                       		<li><input type="radio" id="one" class="f_check" name="f_Scheck" value="1" >1점 이상</li>
+                       		<li><input type="radio" id="two" class="f_check" name="f_Scheck" value="2" >2점 이상</li>
+                       		<li><input type="radio" id="three" class="f_check" name="f_Scheck" value="3" >3점 이상</li>
+                       		<li><input type="radio" id="four" class="f_check" name="f_Scheck" value="4" >4점 이상</li>
+                   			<li><input type="radio" id="five" class="f_check" name="f_Scheck" value="5" >5점 이상</li>
+                       	</ul> 
+                    </div>   
+                    <button type="button" name="button" id="checkBtn">검색</button>
+                    <!-- <button type="button" name="button" id="sortStar">별점순</button>
+                    <button type="button" name="button" id="sortTime">최신순</button> -->
+            </div>    
         </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->
+    </section>
+    <!--네비게이션바 사용 끝-->
+    <!-- Hero Section End -->
+    <!-- 내용 내용 내용 -->
+	<div id="card_row" >
+		<%
+		for(int i=0; i<reviewList.size(); i++) {
+			ReviewVO rvo = (ReviewVO) reviewList.get(i);
+		%>
+			<div class="card_store_box">
+				<div class="card_store_addr" >
+					<div class="text_left">
+						<h5> <%=rvo.getTitle()%> </h5>
+					
+					</div>
+				</div>
+				
+				<div class="card_store_img" >
+					<div><img src="resources/img/review/<%=rvo.getReview_img1() %>"></div>
+				</div>
+				
+				
+				<div class="card_store_name" >
+					<div class="text_right">
+						<h5><a href="#"><%= rvo.getS_name() %></a></h5>
+					</div>
+				</div>
+				
+				<div class="card_store_tag" >
+					<div class="text_right">
+						<h5><%=rvo.getStar() %></h5>
+					</div>
+				</div>
+		</div>	
+		<%
+		}
+		%>
+	</div>
 
-	<script type="text/javascript" src="./resources/js/qnastore.js"></script>
-    <script src="./resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="./resources/vendor/metisMenu/metisMenu.min.js"></script>
-    <!-- DataTables JavaScript -->
-    <script src="./resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="./resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="./resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
+	 <div id="card_row" > 
+ 	
+	 </div>
+ 
+    <!-- Footer Section Begin -->
+   	<!-- Footer Section -->
+	<%@include file="../includes/footer.jsp"%>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="./resources/dist/js/sb-admin-2.js"></script>
+    <!-- Js Plugins -->
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.nice-select.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.slicknav.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/mixitup.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 
 
-<script>
-	$(".addCart_btn").click(function(){
-		var menu_Num = $("menu_num").val();
-		//var cartStock = $(".numBox").val();
-		
-		var data = {
-				menu_Num : menu_Num,
-				//cartStock : cartStock
-		};
-		
-		
-		$.ajax({
-			url : "/cart/addCart.st",
-			type : "post",
-			data : data,
-			success : function() {
-				alert("카트 담기 성공");
-				//$(".numBox").val("1");
-			},
-			error : function() {
-				alert("카트 담기 실패");
-			}
-		});
-	});
-</script>
-
-<script>
-$(document).ready(function (){
-   var s_numValue = '<c:out value="${storeVO.getS_num()}"/>';
-   var replyUL = $(".chat");
-      
-   showList(1);
-      
-      function showList(page) {
-    	  console.log("show List" +page);
-    	  qnaService.getList({s_num:s_numValue,page: page || 1}, function(qnastoreCnt,list){
-            console.log("qnastorCnt:"+ qnastoreCnt);
-            console.log("list:"+ list);
-            console.log(list);
-            
-            if(page == -1) {
-            	pageNum = Math.ceil(qnastoreCnt/10.0);
-            	showList(pageNum);
-            	return;
-            }
-    		  
-            var str="";
-            
-            if(list == null || list.length == 0) {
-            	return;
-               
-            }
-            for (var i=0,len = list.length || 0; i < len; i++) {
-               str +="<li class='left clearfix' data-qs_num='"+list[i].qs_num+"'>";
-               str +="      <div><div class='header'><strong class='primary-font'>"+list[i].u_id+"</strong>";
-               str +="         <small class='pull-right text-muted'>"+qnaService.displayTime(list[i].qna_date)+"</small></div>";
-               str +="            <p>"+list[i].content+"</p></div></li>";
-            }
-               replyUL.html(str);
-               
-               showqnastorePage(qnastoreCnt);
-         });//end function
-      } //end showList
-
-      var modal = $(".modal");
-      var modalInputContent = modal.find("input[name='content']");
-      var modalInputU_id = modal.find("input[name='u_id']");
-      var modalInputQna_date = modal.find("input[name='qna_date']");
-      
-      var modalModBtn = $("#modalModBtn");
-      var modalRemoveBtn = $("#modalRemoveBtn");
-      var modalRegisterBtn = $("#modalRegisterBtn");
-      
-      $("#addReplyBtn").on("click", function(e){
-         modal.find("input").val("");
-         modalInputQna_date.closest("div").hide();
-         modal.find("button[id !='modalCloseBtn']").hide();
-         
-         modalRegisterBtn.show();
-   
-         $(".modal").modal("show");
-     
-	});
-      var qnastore;
-      modalRegisterBtn.on("click",function(e){
-    	 
-  	  qnastore = {
-  			  content: modalInputContent.val(),
-  			  u_id: modalInputU_id.val(),
-  			  s_num: s_numValue
-  	  	};
-  	qnaService.add(qnastore, function(result) {
-  		  
-  		  alert("추가되었습니다"+result);
-  		  
-  		  modal.find("input").val("");
-  		  modal.modal("hide");
-  		  
-  		  //showList(1);
-  		  showList(-1);
-});
-
-  	});
-  	
-  	//댓글 조회 클릭 이벤트 처리
-  	$(".chat").on("click","li",function(e){
-
-  		var qs_num = $(this).data("qs_num");
-  		alert("qs_num=" + qs_num);
-  		
-  		qnaService.get(qs_num,function(res) {
-  			console.log(res);
-  			alert("qnastore.qs_num=" + res.qs_num);
-  			modalInputContent.val(res.content);
-  			modalInputU_id.val(res.u_id);
-  			modalInputQna_date.val(qnaService.displayTime(res.qna_date)).attr("readonly","readonly");
-  			modal.data("qs_num",res.qs_num);
-  			
-  			console.log(qs_num);
-  			
-  			modal.find("button[id !='modalCloseBtn']").hide();
-  			modalModBtn.show();
-  			modalRemoveBtn.show();
-  			
-  			$(".modal").modal("show");
-  		});
-  	});
-  	
-  	modalModBtn.on("click",function(e) {
-  		var content = {qs_num:modal.data("qs_num"), content:modalInputContent.val()};
-  		
-  		qnaService.update(content, function(result) {
-  			alert(result);
-  			modal.modal("hide");
-  			showList(pageNum);
-  		});
-  		
-  	});
-  	
-  	modalRemoveBtn.on("click",function(e) {
-  		var qs_num = modal.data("qs_num");
-  		
-  		qnaService.remove(qs_num, function(result) {
-  			alert(result);
-  			modal.modal("hide");
-  			showList(pageNum);
-  		});
-  	});
-  	
-  	var pageNum = 1;
-	var qnastorePageFooter = $(".panel-footer");
+	<script src="https://code.jquery.com/jquery-latest.js"></script> 
 	
-	function showqnastorePage(qnastoreCnt) { //페이징 처리
-		
-		var endNum = Math.ceil(pageNum / 10.0) * 10;
-		var startNum = endNum - 9;
-		
-		var prev = startNum != 1;
-		var next = false;
-		
-		if(endNum * 10 >= qnastoreCnt) {
-			endNum = Math.ceil(qnastoreCnt/10.0);
-		}
-		
-		if(endNum * 10 < qnastoreCnt) {
-			next = true;
-		}
-		
-		var str = "<ul class='pagination pull-right'>";
-		
-		if(prev) {
-			str += "<li class='page-item'><a class='page-link' href='"+(startNum -1)+"'>Previous</a></li>";
-		}
-		
-		for(var i = startNum ; i <=endNum; i++) {
-			
-			var active = pageNum == i? "active":"";
-			
-			str += "<li class='page-item "+active+" '><a class='page-link' href='"+i+"'>"+i+"</a></li>";
-		}
-		
-		if(next) {
-			str += "<li class='page-item'><a class='page-link' href='"+(endNum+1)+"'>Next</a></li>";
-		}
-		
-		str += "</ul></div>";
-		
-		qnastorePageFooter.html(str);
-	}
+	<script type="text/javascript"  charset="utf-8" src="${pageContext.request.contextPath}/resources/js/reviewlistAjaxx.js"></script> 
 	
-	qnastorePageFooter.on("click","li a", function(e){ //페이지 번호를 클릭했을때 새로운 댓글 가져옴
-		e.preventDefault();
-		
-		var targetPageNum = $(this).attr("href");
-		
-		console.log("targetPageNum:" + targetPageNum);
-		
-		pageNum = targetPageNum;
-		
-		showList(pageNum);
-	});
-  	
-});	
-  	
-
-</script>
 </body>
-
-
 
 </html>
