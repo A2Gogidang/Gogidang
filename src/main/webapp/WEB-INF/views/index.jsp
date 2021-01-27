@@ -1,13 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
 <%@include file="./includes/header.jsp"%>
+	
+<%@ page import="java.util.*"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
-<%@ page import="java.util.ArrayList"%>
-
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/mainPage.css"
-	type="text/css">
 
 <%
 	MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
@@ -24,6 +20,11 @@
 	ArrayList<StoreVO> store_list = (ArrayList<StoreVO>) request.getAttribute("storeList");
 	ArrayList<ReviewVO> review_list = (ArrayList<ReviewVO>) request.getAttribute("reviewList");
 %>
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/mainPage.css"
+	type="text/css">
+
 
 <!-- Hero Section Begin -->
 <section class="hero">
