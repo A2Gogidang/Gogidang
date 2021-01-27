@@ -177,7 +177,7 @@
 			<div class="row_main">
 				<div class="col-lg-3">
 					<div class="header__logo">
-						<a href="/main.me"><img class="mainlogo_img"
+						<a href="./main.me"><img class="mainlogo_img"
 							src="./resources/img/mainlogo_12.PNG" alt=""></a>
 					</div>
 				</div>
