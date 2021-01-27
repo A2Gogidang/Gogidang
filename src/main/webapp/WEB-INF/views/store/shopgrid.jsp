@@ -267,10 +267,13 @@
                 </div>
                 <div class="col-lg-9 col-md-7">
 	                <div class="shoplis" >
-	                    <div class= "shoplist" >
+	                    <div class="shoplist">
 		                    	<div class="shoplistone">
-		                    		<div class="shoplistones">
-		                    			<h3>조건 필터로 검색하기</h3>
+		                    		<div class="shoplistoness">
+		                    			<i class="fa fa-search" aria-hidden="true"></i>
+		                    			</div>
+		                    			<div class="shoplistones">
+		                    			<h3>S E R C H</h3>
 		                    		</div>
 		                    	</div>
 		                    	<div class="shoplisttwo">
