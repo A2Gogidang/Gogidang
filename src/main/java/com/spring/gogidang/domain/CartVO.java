@@ -15,5 +15,8 @@ public class CartVO {
 	private String menu_name;
 	private int cartStock;
 	private Date addDate;
+	private int price;
+	private int cartNum;
+	private String img;
 	
 }
