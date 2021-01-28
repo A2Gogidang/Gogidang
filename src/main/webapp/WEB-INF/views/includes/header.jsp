@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.spring.gogidang.domain.*"%>
+<%
+	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+	String u_id = memberVO.getU_id();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,8 +46,9 @@
 	href="${pageContext.request.contextPath}/resources/css/style.css"
 	type="text/css">
 
-   
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 
@@ -153,18 +159,28 @@
                                     <li><a href="#">English</a></li>
                                 </ul>
                             </div> -->
-
-							<div class="header__top__right__auth">
-								<a href="./loginForm.me"><i class="fa fa-user"></i>LOGIN</a>
-							</div>
-							<div class="header__top__right__auth">
-								<a href="./joinForm.me"><i class="fa fa-user-o"></i> JOIN</a>
-							</div>
-							<div class="header__top__right__auth">
+                            <%if (session.getAttribute("memberVO") != null) { %>
+							<div>
+								<div class="header__top__right__auth">
+									<a href="./loginForm.me"><i class="fa fa-user"></i>LOGIN</a>
+								</div>
+								<div class="header__top__right__auth">
+									<a href="./joinForm.me"><i class="fa fa-user-o"></i> JOIN</a>
+								</div>
+								<div class="header__top__right__auth">
 								<a href="./joinForm.me"><i class="fa fa-shopping-cart"></i>
 									CART</a>
 							</div>
-
+							</div>
+							<%} else { %>
+								<div class="header__top__right__auth">
+									<a href="./updateList.me"><% %>마이페이지</a>
+								</div>
+								<div class="header__top__right__auth">
+								<a href="./joinForm.me"><i class="fa fa-shopping-cart"></i>
+									CART</a>
+							</div>
+							<%} %>
 						</div>
 					</div>
 				</div>
