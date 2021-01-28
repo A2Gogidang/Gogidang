@@ -89,7 +89,8 @@
 					<div class="col-lg-6 col-md-6">
 						<div class="header__top__right">
 							<div class="header__top__right__auth">
-								<a href="./storeInsert.st"><i class="fa fa-user"></i><%=u_id %> 사장님 !</a>
+								<a href="./updateList.me"><i class="fa fa-user"></i><%=u_id %> 사장님 !</a>
+								<a href="./logout.me">logout</a>
 							</div>
 						</div>
 					</div>
@@ -99,7 +100,8 @@
 					<div class="col-lg-6 col-md-6">
 						<div class="header__top__right">
 							<div class="header__top__right__auth">
-								<a href="./adminmypage.me"><i class="fa fa-user"></i>관리자 입니다.</a>
+								<a href="./updateList.me"><i class="fa fa-user"></i>관리자 입니다.</a>
+								<a href="./logout.me">logout</a>
 							</div>
 						</div>
 					</div>
@@ -109,7 +111,8 @@
 						<div class="col-lg-6 col-md-6">
 						<div class="header__top__right">
 							<div class="header__top__right__auth">
-								<a href="./loginForm.me"><i class="fa fa-user"></i><%=u_id %>님!</a>
+								<a href="./updateList.me"><i class="fa fa-user"></i><%=u_id %>님!</a>
+								<a href="./logout.me">logout</a>
 							</div>
 						</div>
 					</div>
