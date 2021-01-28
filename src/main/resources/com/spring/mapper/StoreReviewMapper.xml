@@ -21,6 +21,27 @@
        and  r.s_num = s.s_num(+)
        and  r.s_num = #{s_num}
   ORDER BY  r.review_num
+  
+</select>
+
+<select id="srReviewSelect_m" parameterType="SRReviewVO" resultType="SRReviewVO">
+	SELECT  r.review_num	
+		   ,r.u_id
+		   ,r.s_num
+		   ,r.title
+		   ,r.content
+		   ,r.star
+		   ,r.REVIEW_IMG1
+		   ,r.review_date
+		   ,s.re_content
+		   ,s.re_date  
+ 	  FROM  review r
+           ,sub_review s
+     where  r.review_num = s.review_num(+)
+       and  r.s_num = s.s_num(+)
+       and  r.u_id = #{u_id}
+  ORDER BY  r.review_num
+  
 </select>
 
 <select id="srReviewList" resultType="SRReviewVO" parameterType="SRReviewVO">

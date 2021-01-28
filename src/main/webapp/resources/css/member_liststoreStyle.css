@@ -1,41 +1,41 @@
 @charset "UTF-8";
 
 .card_box {
-   display: flex;
-   /*justify-content: center;
-   align-items: center;*/
-   flex-direction: row;
-   width: 250px;
-   height: 100%;
-   margin
+	display: flex;
+	/*justify-content: center;
+	align-items: center;*/
+	flex-direction: row;
+	width: 250px;
+	height: 100%;
+	margin
 }
 
 .card {
-   margin-right: 90px;
+	margin-right: 90px;
 }
 
 .container .update {
-   
-   width: 100%;
-   
+	
+	width: 100%;
+	
 }
 
 th{
-   font-size: large;
+	font-size: large;
 }
 
 tr{
-   font-size: medium;
+	font-size: medium;
 }
 
 
 .card_box {
-   display: inline;
-   
+	display: inline;
+	
 }
 
 .likecard{
-   position: relative;
+	position: relative;
     display: flex;
     flex-direction: inherit;
     min-width: 0;
@@ -56,11 +56,11 @@ tr{
 }
 
 .card-img{
-   width: 1500px;
+	width: 1500px;
 }
 
 
 /*soobin*/
 .reviewboard{
-   width: 800px;
+	width: 800px;
 }

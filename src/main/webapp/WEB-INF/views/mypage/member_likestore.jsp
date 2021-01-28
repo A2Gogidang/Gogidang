@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@include file="../includes/header_simple.jsp"%>
-
+	
 <%@ page import="java.util.*"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
 
@@ -37,40 +37,40 @@
 					</div>
 				</div>
 			</div>
-			<!-- ---------------------------------------------------시작----------------------------------------------------- -->
+<!-- ---------------------------------------------------시작----------------------------------------------------- -->
 			<div class="reviewboard">
-				<!-- content Start -->
-				<div class="section-title product__discount__title">
-					<h2>찜 목록</h2>
-				</div>
-				<div class="card_box">
-					<%
-						//for(int i=0;i<likestore_list.size();i++){
-						//LikeStoreVO likestore=(LikeStoreVO)likestore_list.get(i);
-						for (int i = 0; i < likeStoreList.size(); i++) {
-							LikeStoreVO lsvo = likeStoreList.get(i);
-					%>
-					<div id="card">
-						<div class="likecard">
-							<a href="./storeInfo.st?s_num=<%=lsvo.getS_num()%>"><img
-								src="resources/img/store/<%=lsvo.getThumbnail()%>"
-								class="card-img" width="200" height="150"></a>
-							<div class="card-body">
-								<p class="card-text">
-									<a href="./storeInfo.st?s_num=<%=lsvo.getS_num()%>"><%=lsvo.getS_name()%></a>
-								</p>
-							</div>
+			<!-- content Start -->
+			<div class="section-title product__discount__title">
+				<h2>찜 목록</h2>
+			</div>
+			<div class="card_box">
+				<%
+					//for(int i=0;i<likestore_list.size();i++){
+					//LikeStoreVO likestore=(LikeStoreVO)likestore_list.get(i);
+					for (int i = 0; i < likeStoreList.size(); i++) {
+						LikeStoreVO lsvo = likeStoreList.get(i);
+				%>
+				<div id="card">
+					<div class="likecard">
+						<a href="./storeInfo.st?s_num=<%=lsvo.getS_num()%>"><img
+							src="resources/img/store/<%=lsvo.getThumbnail()%>"
+							class="card-img" width="200" height="150"></a>
+						<div class="card-body">
+							<p class="card-text">
+								<a href="./storeInfo.st?s_num=<%=lsvo.getS_num()%>"><%=lsvo.getS_name()%></a>
+							</p>
 						</div>
 					</div>
-					<%
-						}
-					%>
 				</div>
-				<!-- content End -->
+				<%
+					}
+				%>
 			</div>
-			<!-- ----------------------------------------------------끝---------------------------------------------------- -->
-
+			<!-- content End -->
 		</div>
+		<!-- ----------------------------------------------------끝---------------------------------------------------- -->
+			
+	</div>
 </section>
 <!-- Product Section End -->
 
