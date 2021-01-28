@@ -7,7 +7,7 @@
 
 <%
 	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
-	String u_id = (String) session.getAttribute("u_id");
+	u_id = (String) session.getAttribute("u_id");
 	ArrayList<ReviewVO> review_list = (ArrayList<ReviewVO>) request.getAttribute("reviewList");
 	PageDTO pageMaker = (PageDTO) request.getAttribute("pageMaker");
 %>

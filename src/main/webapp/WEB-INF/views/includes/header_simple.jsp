@@ -12,10 +12,6 @@
    } else {
       seller_key = 0;
    }
-   
-   ArrayList<EventVO> event_list =(ArrayList<EventVO>) request.getAttribute("eventList");
-   ArrayList<StoreVO> store_list =(ArrayList<StoreVO>) request.getAttribute("storeList");
-   ArrayList<ReviewVO> review_list =(ArrayList<ReviewVO>) request.getAttribute("reviewList");
 
 %>
 <!DOCTYPE html>

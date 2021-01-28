@@ -4,7 +4,7 @@
 <%@ include file="../includes/header_simple.jsp"%>
 
 <%
-	String u_id = (String)session.getAttribute("u_id");
+	u_id = (String)session.getAttribute("u_id");
 	QnaVO qna = (QnaVO)request.getAttribute("qna");
 %>
 

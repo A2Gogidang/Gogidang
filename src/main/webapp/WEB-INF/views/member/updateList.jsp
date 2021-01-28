@@ -8,7 +8,7 @@
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%
 	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
-	String u_id = memberVO.getU_id();
+	u_id = memberVO.getU_id();
 	StoreVO storevo = (StoreVO) session.getAttribute("StoreVO");
 %>
 <link rel="stylesheet"
