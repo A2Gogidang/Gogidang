@@ -4,25 +4,14 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
 
-<%@ include file="../includes/header.jsp"%>
+<%@ include file="../includes/header_simple.jsp"%>
 <%
-<<<<<<< HEAD
-	//MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
 	List<QnaVO> qnalist=(List<QnaVO>)request.getAttribute("qnalist");
 	int listcount=((Integer)request.getAttribute("listcount")).intValue();
 	int nowpage=((Integer)request.getAttribute("page")).intValue();
 	int maxpage=((Integer)request.getAttribute("maxpage")).intValue();
 	int startpage=((Integer)request.getAttribute("startpage")).intValue();
 	int endpage=((Integer)request.getAttribute("endpage")).intValue();
-=======
-	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
-	List<QnaVO> qnalist = (List<QnaVO>) request.getAttribute("qnalist");
-	int listcount = ((Integer) request.getAttribute("listcount")).intValue();
-	int nowpage = ((Integer) request.getAttribute("page")).intValue();
-	int maxpage = ((Integer) request.getAttribute("maxpage")).intValue();
-	int startpage = ((Integer) request.getAttribute("startpage")).intValue();
-	int endpage = ((Integer) request.getAttribute("endpage")).intValue();
->>>>>>> 3ac65e1f7d2d71dd9e8a4b84fd977822245ce3e5
 %>
 
 <style>
@@ -55,16 +44,6 @@
 	<div class="container">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="sidebar">
-					<div class="sidebar__item">
-						<h4>공지사항</h4>
-						<ul>
-							<li><a href="noticelist.no">공지사항</a></li>
-							<li><a href="qnalist.qn">문의</a></li>
-							<li><a href="eventList.ev">이벤트</a></li>
-						</ul>
-					</div>
-				</div>
 				<div class="qnaList" style="width: 960px; margin-left: 50px;">
 					<table class="table table-striped">
 						<thead>

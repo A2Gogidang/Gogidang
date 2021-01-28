@@ -3,12 +3,12 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%@ page import="java.util.ArrayList"%>
+<%@include file="../includes/header_simple.jsp"%>
 
 <%
 	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
 %>
 
-<%@include file="../includes/header.jsp"%>
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/shopgrid.css"
@@ -140,7 +140,7 @@
 							<div class="card_store_name">
 								<div class="text_right">
 									<h5>
-										<a href="#" style="display: inline"><%=svo.getS_name()%></a> <input
+										<a href="./storeInfo.st?s_num=<%=svo.getS_num()%>" style="display: inline"><%=svo.getS_name()%></a> <input
 											type="hidden" id="avgStar" class="avgStar" name="avgStar"
 											value="<%=svo.getAvgStar()%>" style="border: none" /><%=svo.getAvgStar()%>
 									</h5>

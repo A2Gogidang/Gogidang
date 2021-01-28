@@ -33,7 +33,6 @@
 	rel="stylesheet">
 
 <!-- Css Styles -->
-<<<<<<< HEAD
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/elegant-icons.css" type="text/css">
@@ -126,12 +125,7 @@
 			<div class="row_main">
 				<div class="col-lg-3">
 					<div class="header__logo">
-<<<<<<< HEAD
 						<a href="./main.me"><img class="mainlogo_img" src="./resources/img/mainlogo_19.PNG" alt=""></a>
-=======
-						<a href="./main.me"><img class="mainlogo_img"
-							src="./resources/img/mainlogo_12.PNG" alt=""></a>
->>>>>>> 3ac65e1f7d2d71dd9e8a4b84fd977822245ce3e5
 					</div>
 				</div>
 

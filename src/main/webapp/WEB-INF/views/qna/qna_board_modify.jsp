@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.spring.gogidang.domain.QnaVO" %>
-<%@ include file="../includes/header.jsp"%>
+<%@ include file="../includes/header_simple.jsp"%>
+
 <%
 	String u_id = (String)session.getAttribute("u_id");
 	QnaVO qna = (QnaVO)request.getAttribute("qna");

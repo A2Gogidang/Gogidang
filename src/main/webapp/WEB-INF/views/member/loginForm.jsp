@@ -3,34 +3,10 @@
 <%@ page import="java.util.*" %>
 <%@ page import = "com.spring.gogidang.domain.*" %>
 <%@ page import="java.util.ArrayList"%>
-<%@include file="../includes/header.jsp"%>
-<html>
-<%	
-	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
-%>
 <%@include file="../includes/header_simple.jsp"%>
-<!-- Header Section start --> 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/loginstyle.css" type="text/css">
-<!-- Header Section End --> 
 
-  <body>
-    <!--네비게이션바 사용 시작
-    <section class="hero">
-        <div class="container">
-            <div class="hero__item__box2"></div>
-                    <div class="EventNav">
-                        <ul>
-                            <li><a href="#">가게리스트</a></li>
-                            <li><a href="#">리뷰전체</a>
-                            <li><a href="#">공지사항</a></li>
-                        </ul>
-                    </div>   
-            </div>   
-        </div>
-    </section>
-<<<<<<< HEAD
-    -->
-    <!-- End Backgrounds -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/loginstyle.css" type="text/css">
+
 
     <div class="container" id="login">
         <div class="row justify-content-center">

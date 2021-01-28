@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*" %>
-<%@ page import="javax.sql.*" %>
-<%@ page import="javax.naming.*" %>  
-<%@ page import="com.spring.gogidang.domain.*" %>
+
 <%@ page import="java.util.*" %>
+<%@ page import="com.spring.gogidang.domain.*" %>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@include file="../includes/header.jsp"%>
+
+<%@ include file="../includes/header_simple.jsp"%>
 
 <%
 	StoreVO svo = (StoreVO) request.getAttribute("storeVO");

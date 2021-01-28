@@ -8,7 +8,7 @@
 	ArrayList<ReviewVO> reviewList = (ArrayList<ReviewVO>) request.getAttribute("reviewList");
 %>
 
-<%@include file="../includes/header.jsp"%>
+<%@include file="../includes/header_simple.jsp"%>
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/shopgrid.css"
