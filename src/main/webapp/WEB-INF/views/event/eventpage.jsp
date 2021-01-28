@@ -3,18 +3,16 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@include file="../includes/header.jsp"%>
 <!DOCTYPE html>
-<%
-ArrayList<EventVO> event_list =(ArrayList<EventVO>) request.getAttribute("event_list");
-%>
+
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<%@include file="../includes/header.jsp"%>
+
         <div class="container">
             <div class="hero__item__box2"></div>
                     <div class="EventNav">

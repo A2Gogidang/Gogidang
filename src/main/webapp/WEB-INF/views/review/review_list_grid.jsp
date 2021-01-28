@@ -8,7 +8,7 @@
 	ArrayList<ReviewVO> reviewList = (ArrayList<ReviewVO>) request.getAttribute("reviewList");
 %>
 
-<%@include file="../includes/header.jsp"%>
+<%@include file="../includes/header_simple.jsp"%>
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/shopgrid.css"
@@ -29,7 +29,7 @@
 							<div class="section-title product__discount__title">
 								<h2>리뷰리스트</h2>
 							</div>
-						</div>	
+						</div>
 						<div class="shoplist">
 							<div class="shoplistone">
 								<div class="shoplistoness">
@@ -70,19 +70,19 @@
 								</div>
 							</div>
 							<!-- <div class="shoplistfo">
-	                    			<div class="shoplistfoo">
-	                    				<h5>부위</h5>
-	                    			</div>
-	                    			<div class="shoplistfot">
-	                    				<li><input type="checkbox" id="deung" class="f_check" name="f_Acheck" value="등심" >등심</li>
-	                    				<li><input type="checkbox" id="an" class="f_check" name="f_Acheck" value="안심" >안심</li>
-	                    				<li><input type="checkbox" id="chae" class="f_check" name="f_Acheck" value="채끝" >채끝</li>
-	                    				<li><input type="checkbox" id="gal" class="f_check" name="f_Acheck" value="갈비" >갈비</li>
-	                    				<li><input type="checkbox" id="sam" class="f_check" name="f_Acheck" value="삼겹" >삼겹</li>
-	                    				<li><input type="checkbox" id="mok" class="f_check" name="f_Acheck" value="목살" >목살</li>
-	                    				<li><input type="checkbox" id="etc" class="f_check" name="f_Acheck" value="특수부위" >특수</li>
-	                    			</div>
-	                    		</div> -->
+                                <div class="shoplistfoo">
+                                   <h5>부위</h5>
+                                </div>
+                                <div class="shoplistfot">
+                                   <li><input type="checkbox" id="deung" class="f_check" name="f_Acheck" value="등심" >등심</li>
+                                   <li><input type="checkbox" id="an" class="f_check" name="f_Acheck" value="안심" >안심</li>
+                                   <li><input type="checkbox" id="chae" class="f_check" name="f_Acheck" value="채끝" >채끝</li>
+                                   <li><input type="checkbox" id="gal" class="f_check" name="f_Acheck" value="갈비" >갈비</li>
+                                   <li><input type="checkbox" id="sam" class="f_check" name="f_Acheck" value="삼겹" >삼겹</li>
+                                   <li><input type="checkbox" id="mok" class="f_check" name="f_Acheck" value="목살" >목살</li>
+                                   <li><input type="checkbox" id="etc" class="f_check" name="f_Acheck" value="특수부위" >특수</li>
+                                </div>
+                             </div> -->
 							<div class="shopliststar">
 								<div class="shopliststarone">
 									<h5>별점</h5>

@@ -3,13 +3,14 @@
 <%@ page import="java.util.*" %>
 <%@ page import = "com.spring.gogidang.domain.*" %>
 <%@ page import="java.util.ArrayList"%>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/storelist.css" type="text/css">
-<!-- MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
-	String id = mvo.getU_id();
-	int seller_key = mvo.getSeller_key(); -->
 <%
 	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
 %>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/storelist.css" type="text/css">
+<!-- MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
+	String id = mvo.getU_id();
+	int seller_key = mvo.getSeller_key(); -->
+
 
 <%@include file="../includes/header.jsp"%>
 <body>

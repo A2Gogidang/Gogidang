@@ -1,34 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*" %>
-<%@ page import="javax.sql.*" %>
-<%@ page import="javax.naming.*" %>  
-<%@ page import="com.spring.gogidang.domain.*" %>
+
 <%@ page import="java.util.*" %>
+<%@ page import="com.spring.gogidang.domain.*" %>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<link rel="stylesheet" href="resources/css/newDetailStore.css"
-   type="text/css">
-<link rel="stylesheet" href="resources/css/DetailStore.css"
-   type="text/css">
-<script src="resources/js/newDetailStore.js"></script>
-<script src="resources/DetailStore/newDetailStore.css"></script>
-<%@include file="../includes/header.jsp"%>
-<%
-   MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
-   String u_id = "";
-   int seller_key;
-   if (mvo != null) {
-      u_id = mvo.getU_id();
-      seller_key = mvo.getSeller_key();
-   } else {
-      seller_key = 0;
-   }
 
+<%@ include file="../includes/header_simple.jsp"%>
+
+<%
    StoreVO svo = (StoreVO) request.getAttribute("storeVO");
    PageDTO pageMaker = (PageDTO) request.getAttribute("pageMaker");
    ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>) request.getAttribute("menuList");
    ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>) request.getAttribute("reviewList");
 %>
+
+<link rel="stylesheet" href="resources/css/newDetailStore.css"
+   type="text/css">
+<link rel="stylesheet" href="resources/css/DetailStore.css"
+   type="text/css">
+   
+<script src="resources/js/newDetailStore.js"></script>
+<script src="resources/DetailStore/newDetailStore.css"></script>
+
 <script>
    $(function() {
 

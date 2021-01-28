@@ -75,6 +75,13 @@ public class MemberController {
       return "index";
    }
    
+   @RequestMapping("/logout.me")
+   public String logout(HttpSession session) {
+       session.invalidate();
+       
+       return "redirect:/main.me";
+   }
+
    @RequestMapping("/loginForm.me") 
    public String loginForm() throws Exception {
       
@@ -109,9 +116,9 @@ public class MemberController {
             session.setAttribute("StoreVO", vo1);
          }
          writer.write("<script>alert('로그인 성공!');location.href='./main.me';</script>");
-      }else {
+      	}else {
          writer.write("<script>alert('로그인 실패!');location.href='./loginForm.me';</script>");
-      }
+      	}
       return null;
    }
    
