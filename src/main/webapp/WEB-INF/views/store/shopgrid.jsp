@@ -113,7 +113,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="shoplistm">
+				<div class="shoplistm" id="card_row">
 					<div class="row">
 						<%
 							for (int i = 0; i < storeList.size(); i++) {
@@ -140,7 +140,8 @@
 							<div class="card_store_name">
 								<div class="text_right">
 									<h5>
-										<a href="./storeInfo.st?s_num=<%=svo.getS_num()%>" style="display: inline"><%=svo.getS_name()%></a> <input
+										<a href="./storeInfo.st?s_num=<%=svo.getS_num()%>"
+											style="display: inline"><%=svo.getS_name()%></a> <input
 											type="hidden" id="avgStar" class="avgStar" name="avgStar"
 											value="<%=svo.getAvgStar()%>" style="border: none" /><%=svo.getAvgStar()%>
 									</h5>
@@ -172,6 +173,9 @@
 						%>
 					</div>
 				</div>
+				<div class="shoplistm" id="card_row">
+					
+				</div>
 			</div>
 		</div>
 	</div>
@@ -180,6 +184,6 @@
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 
 <script type="text/javascript" charset="utf-8"
-	src="${pageContext.request.contextPath}/resources/js/reviewlistAjaxx.js"></script>
+	src="${pageContext.request.contextPath}/resources/js/storelistAjaxx.js"></script>
 
 <%@include file="../includes/footer.jsp"%>
