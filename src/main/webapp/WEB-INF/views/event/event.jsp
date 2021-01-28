@@ -4,8 +4,10 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
 
-<%@ include file="../includes/header.jsp"%>
-
+<%@ include file="../includes/header_simple.jsp"%>
+<%
+	ArrayList<EventVO> event_list = (ArrayList<EventVO>) request.getAttribute("event_list");
+%>
 <title>Insert title here</title>
 <style>
 .col-md-12 {
@@ -21,16 +23,6 @@
 	<div class="container">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="sidebar">
-					<div class="sidebar__item">
-						<h4>공지사항</h4>
-						<ul>
-							<li><a href="noticelist.no">공지사항</a></li>
-							<li><a href="qnalist.qn">문의</a></li>
-							<li><a href="eventList.ev">이벤트</a></li>
-						</ul>
-					</div>
-				</div>
 				<div class="qnaList" style="width: 960px; margin-left: 50px;">
 					<table class="table table-striped">
 						<tr>
@@ -44,7 +36,6 @@
 										alt="Bootstrap Image Preview"
 										src="resources/img/event/eventPicex.jpg" /> </a>
 								</div>
->>>>>>> 3ac65e1f7d2d71dd9e8a4b84fd977822245ce3e5
 							</div>
 						</tr>
 						<%

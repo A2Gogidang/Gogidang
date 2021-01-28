@@ -33,7 +33,6 @@
 	rel="stylesheet">
 
 <!-- Css Styles -->
-
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/elegant-icons.css" type="text/css">
@@ -90,7 +89,8 @@
 					<div class="col-lg-6 col-md-6">
 						<div class="header__top__right">
 							<div class="header__top__right__auth">
-								<a href="./storeInsert.st"><i class="fa fa-user"></i><%=u_id %> 사장님 !</a>
+								<a href="./updateList.me"><i class="fa fa-user"></i><%=u_id %> 사장님 !</a>
+								<a href="./logout.me">logout</a>
 							</div>
 						</div>
 					</div>
@@ -100,7 +100,8 @@
 					<div class="col-lg-6 col-md-6">
 						<div class="header__top__right">
 							<div class="header__top__right__auth">
-								<a href="./adminmypage.me"><i class="fa fa-user"></i>관리자 입니다.</a>
+								<a href="./updateList.me"><i class="fa fa-user"></i>관리자 입니다.</a>
+								<a href="./logout.me">logout</a>
 							</div>
 						</div>
 					</div>
@@ -110,7 +111,8 @@
 						<div class="col-lg-6 col-md-6">
 						<div class="header__top__right">
 							<div class="header__top__right__auth">
-								<a href="./loginForm.me"><i class="fa fa-user"></i><%=u_id %>님!</a>
+								<a href="./updateList.me"><i class="fa fa-user"></i><%=u_id %>님!</a>
+								<a href="./logout.me">logout</a>
 							</div>
 						</div>
 					</div>
@@ -126,9 +128,7 @@
 			<div class="row_main">
 				<div class="col-lg-3">
 					<div class="header__logo">
-
 						<a href="./main.me"><img class="mainlogo_img" src="./resources/img/mainlogo_19.PNG" alt=""></a>
-
 					</div>
 				</div>
 

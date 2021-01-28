@@ -38,6 +38,7 @@ public class StoreReviewController {
 		return "sellerpage/store_review";
 	}
 	
+	
 	/*
 	 * @RequestMapping(value = "/replyReviewInputForm.bo") public String
 	 * replyReviewInputForm(Model model, SRReviewVO srReviewVO , HttpSession

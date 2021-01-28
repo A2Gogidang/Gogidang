@@ -31,6 +31,16 @@ public class StoreReviewServiceImpl implements StoreReviewService{
 	}
 	
 	@Override
+	public ArrayList<SRReviewVO> srReviewSelect_m(SRReviewVO srReviewVO) {
+		
+		StoreReviewMapper storeReviewMapper = sqlSession.getMapper(StoreReviewMapper.class);
+		ArrayList<SRReviewVO> srReviewList = new ArrayList<SRReviewVO>();
+		srReviewList = storeReviewMapper.srReviewSelect_m(srReviewVO);
+		
+		return srReviewList;
+	}
+	
+	@Override
 	public SRReviewVO srReviewList(SRReviewVO srReviewVO) {
 		
 		StoreReviewMapper storeReviewMapper = sqlSession.getMapper(StoreReviewMapper.class);

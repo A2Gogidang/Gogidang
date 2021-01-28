@@ -28,15 +28,36 @@ tr{
 	font-size: medium;
 }
 
-/*
-.card_box .col-lg-8 {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: row;
-	
-}*/
 
+.card_box {
+	display: inline;
+	
+}
+
+.likecard{
+	position: relative;
+    display: flex;
+    flex-direction: inherit;
+    min-width: 0;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgb(230 220 220 / 13%);
+    border-radius: .25rem;
+    width: 700px;
+    margin-bottom: 30px;
+}
+
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+    width: 600%;
+}
+
+.card-img{
+	width: 1500px;
+}
 
 
 /*soobin*/
