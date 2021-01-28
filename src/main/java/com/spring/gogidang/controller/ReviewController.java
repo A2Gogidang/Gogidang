@@ -5,11 +5,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,8 +26,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.PageDTO;
 import com.spring.gogidang.domain.ReviewVO;
+import com.spring.gogidang.domain.SRReviewVO;
 import com.spring.gogidang.domain.StoreVO;
 import com.spring.gogidang.service.ReviewService;
+import com.spring.gogidang.service.StoreReviewService;
 import com.spring.gogidang.service.StoreService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -41,6 +44,9 @@ public class ReviewController {
 	
 	@Autowired
 	private StoreService storeService;
+	
+	@Autowired
+	private StoreReviewService storeReviewService;
 	
 	@RequestMapping("/reviewList.re")
 	public String reviewList(Model model) {
@@ -63,14 +69,30 @@ public class ReviewController {
 //		return "review/review_list";
 	}
 	
-	@RequestMapping("/reviewListByIdWithPaging.re")
-	public String reviewListByIdWithPaging(@RequestParam("u_id") String u_id, Criteria cri, Model model) {
+	/*
+	 * @RequestMapping("/reviewListByIdWithPaging.re") public String
+	 * reviewListByIdWithPaging(@RequestParam("u_id") String u_id, Criteria cri,
+	 * Model model) {
+	 * 
+	 * model.addAttribute("reviewList", reviewService.getListByIdWithPaing(cri,
+	 * u_id));
+	 * 
+	 * int total = reviewService.getTotal(cri); model.addAttribute("pageMaker", new
+	 * PageDTO(cri, total));
+	 * 
+	 * return "mypage/member_review"; }
+	 */
+	
+	@RequestMapping("/reviewListByIdWithPaging.re") 
+	public String reviewListByIdWithPaging(@RequestParam("u_id") String u_id,Criteria cri,Model model , HttpSession session) {
 		
-		model.addAttribute("reviewList", reviewService.getListByIdWithPaing(cri, u_id));
+		SRReviewVO srReviewVO = new SRReviewVO();		
+		System.out.println(u_id);
+		srReviewVO.setU_id(u_id);		
+		ArrayList<SRReviewVO> srReviewList = storeReviewService.srReviewSelect_m(srReviewVO);	
 		
-		int total = reviewService.getTotal(cri);
-		model.addAttribute("pageMaker", new PageDTO(cri, total));
-		
+		model.addAttribute("srReviewList", srReviewList);
+
 		return "mypage/member_review";
 	}
 	

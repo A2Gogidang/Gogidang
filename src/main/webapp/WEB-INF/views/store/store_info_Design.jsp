@@ -9,16 +9,6 @@
 <%@ include file="../includes/header_simple.jsp"%>
 
 <%
-   MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
-   String u_id = "";
-   int seller_key;
-   if (mvo != null) {
-      u_id = mvo.getU_id();
-      seller_key = mvo.getSeller_key();
-   } else {
-      seller_key = 0;
-   }
-
    StoreVO svo = (StoreVO) request.getAttribute("storeVO");
    PageDTO pageMaker = (PageDTO) request.getAttribute("pageMaker");
    ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>) request.getAttribute("menuList");

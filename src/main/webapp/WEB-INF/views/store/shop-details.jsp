@@ -10,6 +10,8 @@
 
 <%
 	StoreVO svo = (StoreVO) request.getAttribute("storeVO");
+	MemberVO membervo = (MemberVO)session.getAttribute("memberVO");
+	u_id=(String)membervo.getU_id();
 %>
 
 <!DOCTYPE html>
@@ -43,10 +45,6 @@
    
    
 
-<%
-   MemberVO membervo = (MemberVO)session.getAttribute("memberVO");
-   String u_id=(String)membervo.getU_id();
-   %>
 
 <%
    ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>)request.getAttribute("menuList");
