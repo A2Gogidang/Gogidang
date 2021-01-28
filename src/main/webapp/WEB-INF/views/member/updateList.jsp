@@ -4,7 +4,7 @@
 <%@ page import="javax.sql.*"%>
 <%@ page import="javax.naming.*"%>
 <%@ page import="java.util.*"%>
-<%@include file="../includes/header.jsp"%>
+<%@ include file="../includes/header_simple.jsp"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%
 	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
@@ -63,8 +63,8 @@
 				<li><a href="./updateList.me">내정보</a></li>
 				<li><a href="./storeRegForm.st">가게 정보</a></li>
 				<li><a href="./menuRegForm.mn">메뉴 등록</a></li>
-				<li><a href="./storeNoticeList.no">리뷰 관리</a></li>
-				<li><a href="./storereviewList.bo">문의 관리</a></li>
+				<li><a href="./storeNoticeList.no">문의 관리</a></li>
+				<li><a href="./storereviewList.bo">리뷰 관리</a></li>
 			</ul>
 			<%
 				}

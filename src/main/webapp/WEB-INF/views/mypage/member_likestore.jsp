@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@include file="../includes/header.jsp"%>
+<%@include file="../includes/header_simple.jsp"%>
 	
 <%@ page import="java.util.*"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
@@ -39,7 +39,7 @@
 			</div>
 			<!-- content Start -->
 			<div class="update">
-				<h2>찜한가게</h2>
+				<h2>찜목록</h2>
 			</div>
 			<div class="card_box">
 				<%

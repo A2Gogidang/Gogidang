@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="../includes/header.jsp"%>
+<%@ include file="../includes/header_simple.jsp"%>
 
 <%@ page import="java.util.*"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
@@ -8,7 +8,7 @@
 <%
 	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
 	String u_id = (String) session.getAttribute("u_id");
-	ArrayList<ReviewVO> review_list = (ArrayList<ReviewVO>) request.getAttribute("reviewUidList");
+	ArrayList<ReviewVO> review_list = (ArrayList<ReviewVO>) request.getAttribute("reviewList");
 	PageDTO pageMaker = (PageDTO) request.getAttribute("pageMaker");
 %>
 
@@ -39,7 +39,7 @@
 			</div>
 			<!-- content Start -->
 			<div>
-				<h3>대기중인 가게 승인</h3>
+				<h3>내가 작성한 후기</h3>
 				<br>
 				<center>
 					<table border=1>
