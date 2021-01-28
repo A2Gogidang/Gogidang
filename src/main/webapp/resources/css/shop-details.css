@@ -1,13 +1,16 @@
 @charset "UTF-8";
 
-.product__details__pic__item{
-width:400px; height :380px;
+.product__details__pic__item img{
+	width:400px; 
+	height :380px;
 }
-.product__details__text{
-h3 display:inline-flex; color:#7fad39;
+.product__details__text h3{
+	display:inline-flex; 
+	color:#7fad39;
 }
 
-.product__details__pic__item{
+.product__details__pic__item img{
 	
-	img width:400px; height:380px;
+	width:400px; 
+	height:380px;
 }

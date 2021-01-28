@@ -3,14 +3,13 @@
 <%@ page import="java.util.*" %>
 <%@ page import = "com.spring.gogidang.domain.*" %>
 <%@ page import="java.util.ArrayList"%>
+<%@include file="../includes/header.jsp"%>
 <html>
 <%	
 	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
 %>
 <%@include file="../includes/header_simple.jsp"%>
 <!-- Header Section start --> 
-<title>로그인</title>
-
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/loginstyle.css" type="text/css">
 <!-- Header Section End --> 
 
@@ -29,8 +28,8 @@
             </div>   
         </div>
     </section>
+<<<<<<< HEAD
     -->
-
     <!-- End Backgrounds -->
 
     <div class="container" id="login">

@@ -1,12 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@include file="../includes/header.jsp"%>
+<%@ page import="com.spring.gogidang.domain.*"%>
 <!DOCTYPE html>
 <%
-	String u_id=(String)session.getAttribute("u_id");
+MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
 %>
-<html>
-<head>
-<meta charset="utf-8">
+
+
 <title>Insert title here</title>
 	<script language="javascript">
 	
@@ -14,10 +17,10 @@
 		noticeform.submit();
 	}
 	</script>
-</head>
-<body>
+
+
 <form action="./noticewrite.no" method="post" name="noticeform">
-<input type="hidden" name="u_id" value="<%=u_id %>">
+<input type="hidden" name="u_id" value="<%=memberVO.getU_id() %>">
 <table cellpadding="0" cellspacing="0">
 	<tr align="center" valign="middle">
 		<td colspan="5">공지사항 </td>
@@ -27,7 +30,7 @@
 			<div align="center">글쓴이</div>
 		</td>
 		<td>
-			<%=u_id %>
+			<%=memberVO.getU_id() %>
 		</td>
 	</tr>
 	<tr>
@@ -61,5 +64,5 @@
 	</tr>
 </table>
 </form>
-</body>
-</html>
+
+<%@include file="../includes/footer.jsp"%>

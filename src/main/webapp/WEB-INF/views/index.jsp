@@ -1,44 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 <%@include file="./includes/header.jsp"%>
-   
+
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%@ page import="java.util.ArrayList"%>
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/resources/css/mainPage.css"
    type="text/css">
-   
-d
+  
 
-   <!-- Hero Section Begin -->
-   <section class="hero">
-      <div class="container">
-         <div class="row">
-            <div class="col-lg-3">
-               <div class="hero__categories">
-                  <div class="hero__categories__all">
-                     <i class="fa fa-bars"></i> <span>All departments</span>
-                  </div>
-                  <ul>
-                     <li><a href="./storeList.st">전체가게 보기</a></li>
-                     <li><a href="./reviewList.re">전체리뷰 보기</a></li>
-                     <li><a href="./notice.ev">이벤트 & 공지사항</a></li>
-                     <li><a href="./updateList.me">마이페이지</a></li>
-                     <li><a href="#"></a></li>
-                     <li><a href="#"></a></li>
-                     <!--<li><a href="#">Fastfood</a></li>
+<!-- Hero Section Begin -->
+<section class="hero">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="hero__categories">
+					<div class="hero__categories__all">
+						<i class="fa fa-bars"></i> <span>All departments</span>
+					</div>
+					<ul>
+						<li><a href="./storeList.st">전체가게 보기</a></li>
+						<li><a href="./reviewList.re">전체리뷰 보기</a></li>
+						<li><a href="noticelist.no">공지사항</a></li>
+						<li><a href="qnalist.qn">문의</a></li>
+						<li><a href="eventList.ev">이벤트</a></li>
+						<li><a href="./updateList.me">마이페이지</a></li>
+						<!--<li><a href="#">Fastfood</a></li>
                             <li><a href="#">Fresh Onion</a></li>
                             <li><a href="#">Papayaya & Crisps</a></li>
                              <li><a href="#">Oatmeal</a></li>
                             <li><a href="#">Fresh Bananas</a></li> -->
-                  </ul>
-               </div>
-            </div>
+					</ul>
+				</div>
+			</div>
 
 
-            <div class="col-lg-9">
-               <!-- 기존위치에잇던 검색창자리
+			<div class="col-lg-9">
+				<!-- 기존위치에잇던 검색창자리
                     <div class="hero__search">
                         <div class="hero__search__form">
                             <form action="#">
@@ -64,54 +63,54 @@ d
                            
                     </div>
                     -->
-               <div class="hero__item set-bg"
-                  data-setbg="./resources/img/hero/top-banner-test3.jpg">
-                  <div class="hero__text">
-                     <!-- 
+				<div class="hero__item set-bg"
+					data-setbg="./resources/img/hero/top-banner-test3.jpg">
+					<div class="hero__text">
+						<!-- 
                             <span>FRUIT FRESH</span>
                             <h2>Vegetable <br />100% Organic</h2>
                             <p>Free Pickup and Delivery Available</p>
                              -->
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </section>
-   <!-- Hero Section End -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Hero Section End -->
 
-   <!-- Categories Section Begin -->
-   <section class="categories">
-      <div class="container">
-         <div class="row">
-            <div class="col-lg-12">
-               <div class="section-title">
-                  <h2>추천가게</h2>
-               </div>
-               <div class="featured__controls">
-                  <ul>
-                     <li>자신있게 추천 드립니다 !</li>
-                  </ul>
-               </div>
-            </div>
-            <div class="categories__slider owl-carousel">
-               <%
-                  for (int i = 0; i < store_list.size(); i++) {
+<!-- Categories Section Begin -->
+<section class="categories">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="section-title">
+					<h2>추천가게</h2>
+				</div>
+				<div class="featured__controls">
+					<ul>
+						<li>자신있게 추천 드립니다 !</li>
+					</ul>
+				</div>
+			</div>
+			<div class="categories__slider owl-carousel">
+				<%
+					for (int i = 0; i < store_list.size(); i++) {
 
-                     StoreVO vo = (StoreVO) store_list.get(i);
-               %>
-               <div class="col-lg-3">
-                  <div class="categories__item set-bg"
-                     data-setbg="./resources/img/store/<%=vo.getThumbnail()%>">
-                     <h5>
-                        <a href="./storeInfo.st?s_num=<%=vo.getS_num()%>"><%=vo.getS_name()%></a>
-                     </h5>
-                  </div>
-               </div>
-               <%
-                  }
-               %>
-               <!-- 
+						StoreVO vo = (StoreVO) store_list.get(i);
+				%>
+				<div class="col-lg-3">
+					<div class="categories__item set-bg"
+						data-setbg="./resources/img/store/<%=vo.getThumbnail()%>">
+						<h5>
+							<a href="./storeInfo.st?s_num=<%=vo.getS_num()%>"><%=vo.getS_name()%></a>
+						</h5>
+					</div>
+				</div>
+				<%
+					}
+				%>
+				<!-- 
                        <div class="col-lg-3">
                            <div class="categories__item set-bg" data-setbg="./resources/img/categories/cat-2.jpg">
                                <h5><a href="#">Dried Fruit</a></h5>
@@ -134,7 +133,6 @@ d
                        </div>
                    </div>
                     -->
-
             </div>
             <!-- row -->
          </div>
@@ -183,23 +181,24 @@ d
   
    <!-- Featured Section End -->
 
-   <!-- Banner Begin -->
-   <div class="banner">
-      <div class="container">
-         <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6">
-               <div class="banner__pic">
-                  <img src="./resources/img/banner/banner-1.jpg" alt="">
-               </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
-               <div class="banner__pic">
-                  <img src="./resources/img/banner/banner-2.jpg" alt="">
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- Banner End -->
+
+<!-- Banner Begin -->
+<div class="banner">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6">
+				<div class="banner__pic">
+					<img src="./resources/img/banner/banner-1.jpg" alt="">
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6">
+				<div class="banner__pic">
+					<img src="./resources/img/banner/banner-2.jpg" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Banner End -->
 
 <%@include file="./includes/footer.jsp"%>
