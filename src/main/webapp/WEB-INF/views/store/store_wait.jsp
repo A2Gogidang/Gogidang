@@ -5,7 +5,7 @@
 <%@include file="../includes/header.jsp"%>
 
 <%
-	MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
+	//MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
 	String id = mvo.getU_id();
 	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("list");
 	PageDTO  pageMaker = (PageDTO) request.getAttribute("pageMaker");

@@ -10,7 +10,8 @@
 /* 1.body
 /*----------------------------------------*/
 body {
-	font-family: "Cairo", sans-serif;
+	/*font-family: "Cairo", sans-serif;*/
+	font-family: 'Montserrat', sans-serif;
 	/*text-rendering : optimizeLegibility;*/
 	-webkit-font-smoothing : antialiased;
 }
@@ -77,10 +78,15 @@ body {
 }
 
 #join {
-    /*padding: 5%;*/
+    /*padding: 5%;
     text-align: center;
     text-transform: uppercase;
-    
+    margin: 110px;*/
+    margin-top: 110px;
+    padding: 0 auto 7% auto;
+    text-align: center;
+    text-transform: uppercase;
+}
 }
 
 .join row justify-content-center {
@@ -140,6 +146,13 @@ body {
 	width:160px;
 	border: 1px solid  rgb(204, 204, 204);
 	border-radius: 3px;
+	
+}
+
+.join .add_input_email_se {
+	
+	width:122px;
+	
 	
 }
 
@@ -209,7 +222,7 @@ body {
 
 
 .join .join_btn {
-	width :80%;
+	width :100%;
 	display: flex;
 	justify-content:space-evenly;
 	align-items: center;
@@ -217,10 +230,10 @@ body {
 }
 
 .join .btn-jj {
-	width: 180px;
-	height: 50px;
-	background: rgba(0, 100, 0,0.7);
-	border:1px solid rgba(0, 100, 0,0.6);
+	width: 220px;
+	height: 60px;
+	background: #7fad39;
+	border:1px solid #7fad39;;
 	font-family: "Cairo", sans-serif;
 	font-size: 15px;
 	font-weight:bold;
@@ -230,17 +243,18 @@ body {
 }
 
 .join .btn-j {
-	width: 180px;
-	height: 50px;
+	width: 220px;
+	height: 60px;
 	background: #ffffff ;
-	border:1px solid rgba(0, 100, 0,0.6);
+	border:1px solid #7fad39;;
 	font-family: "Cairo", sans-serif;
 	font-size: 15px;
 	font-weight:bold;
 	border-radius: 3px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: rgba(0, 100, 0,0.7);
+    color:#7fad39;
+    margin: 0;
 }
 
 

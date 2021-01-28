@@ -7,9 +7,9 @@
 
 
 
-<%@include file="../includes/header.jsp"%>
+<%@include file="../includes/header_simple.jsp"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/joinstyle.css" type="text/css">
-  
+<title>회원가입</title>  
   
 <body>
 	 <!--네비게이션바 사용 시작-->
@@ -90,7 +90,7 @@
          	 	<div class="id_input_box">
 		         	<ts>이메일<span class="ico">*</span></ts>
 		         	 <td><input class="add_input_email" type="text" name="u_email"/><span class="ico_email" style="font-size:13px;">@</span>
-		         	 <select name="u_email" width="120px"> 
+		         	 <select class="add_input_email_se" name="u_email" width="110px"> 
 		         	 		<option value="">메일주소선택</option>
 							<option value="@naver,com">naver.com</option>
 							<option value="@hanmail.net">hanmail.net</option>

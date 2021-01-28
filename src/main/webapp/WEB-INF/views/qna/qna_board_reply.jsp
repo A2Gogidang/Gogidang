@@ -8,7 +8,7 @@
 	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
 %>
 <%
-	String u_id=(String)session.getAttribute("u_id");
+	//String u_id=(String)session.getAttribute("u_id");
 	QnaVO qna=(QnaVO)request.getAttribute("qna"); 
 %>
 

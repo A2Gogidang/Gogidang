@@ -6,6 +6,17 @@
 <%@include file="../includes/header.jsp"%>
 
 <%
+<<<<<<< HEAD
+	//String u_id=null;
+	//u_id=(String)session.getAttribute("u_id");
+	
+ 	List<NoticeVO> noticelist=(List<NoticeVO>)request.getAttribute("noticelist");
+	int listcount=((Integer)request.getAttribute("listcount")).intValue();
+	int nowpage=((Integer)request.getAttribute("page")).intValue();
+	int maxpage=((Integer)request.getAttribute("maxpage")).intValue();
+	int startpage=((Integer)request.getAttribute("startpage")).intValue();
+	int endpage=((Integer)request.getAttribute("endpage")).intValue();
+=======
 	String u_id = null;
 	u_id = (String) session.getAttribute("u_id");
 
@@ -15,6 +26,7 @@
 	int maxpage = ((Integer) request.getAttribute("maxpage")).intValue();
 	int startpage = ((Integer) request.getAttribute("startpage")).intValue();
 	int endpage = ((Integer) request.getAttribute("endpage")).intValue();
+>>>>>>> 3ac65e1f7d2d71dd9e8a4b84fd977822245ce3e5
 %>
 
 <title>공지사항</title>

@@ -46,6 +46,7 @@
 										alt="Bootstrap Image Preview"
 										src="resources/img/event/eventPicex.jpg" /> </a>
 								</div>
+>>>>>>> 3ac65e1f7d2d71dd9e8a4b84fd977822245ce3e5
 							</div>
 						</tr>
 						<%
