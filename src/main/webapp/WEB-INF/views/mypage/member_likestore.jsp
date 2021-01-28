@@ -37,9 +37,11 @@
 					</div>
 				</div>
 			</div>
+<!-- ---------------------------------------------------시작----------------------------------------------------- -->
+			<div class="reviewboard">
 			<!-- content Start -->
-			<div class="update">
-				<h2>찜목록</h2>
+			<div class="section-title product__discount__title">
+				<h2>찜 목록</h2>
 			</div>
 			<div class="card_box">
 				<%
@@ -48,13 +50,11 @@
 					for (int i = 0; i < likeStoreList.size(); i++) {
 						LikeStoreVO lsvo = likeStoreList.get(i);
 				%>
-				<br /> <br /> <br />
-
 				<div id="card">
-					<div class="card" style="width: 18rem;">
+					<div class="likecard">
 						<a href="./storeInfo.st?s_num=<%=lsvo.getS_num()%>"><img
 							src="resources/img/store/<%=lsvo.getThumbnail()%>"
-							class="card-img-top" width="200" height="150"></a>
+							class="card-img" width="200" height="150"></a>
 						<div class="card-body">
 							<p class="card-text">
 								<a href="./storeInfo.st?s_num=<%=lsvo.getS_num()%>"><%=lsvo.getS_name()%></a>
@@ -68,6 +68,8 @@
 			</div>
 			<!-- content End -->
 		</div>
+		<!-- ----------------------------------------------------끝---------------------------------------------------- -->
+			
 	</div>
 </section>
 <!-- Product Section End -->

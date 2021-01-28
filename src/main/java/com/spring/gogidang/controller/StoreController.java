@@ -99,8 +99,8 @@ public class StoreController {
 		model.addAttribute("menuList", menuList);
 		model.addAttribute("reviewList", reviewList);
 
-		//return "store/shop-details";
-		return "store/shop-detail";
+		//return "store/store_info";
+		return "store/shop-details";
 	}
 
 	/*
