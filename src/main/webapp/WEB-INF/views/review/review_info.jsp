@@ -7,9 +7,9 @@
 <%@include file="../includes/header.jsp"%>
 
 <%
-	MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
-	String u_id = "";
-	int seller_key;
+	//MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
+	//String u_id = "";
+	//int seller_key;
 	if(mvo != null) {
 		u_id = mvo.getU_id();
 		seller_key = mvo.getSeller_key();

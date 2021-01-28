@@ -9,21 +9,7 @@
    href="${pageContext.request.contextPath}/resources/css/mainPage.css"
    type="text/css">
    
-<%
-   MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
-   String u_id = "";
-   int seller_key;
-   if (mvo != null) {
-      u_id = mvo.getU_id();
-      seller_key = mvo.getSeller_key();
-   } else {
-      seller_key = 0;
-   }
-
-   ArrayList<EventVO> event_list = (ArrayList<EventVO>) request.getAttribute("eventList");
-   ArrayList<StoreVO> store_list = (ArrayList<StoreVO>) request.getAttribute("storeList");
-   ArrayList<ReviewVO> review_list = (ArrayList<ReviewVO>) request.getAttribute("reviewList");
-%>
+d
 
    <!-- Hero Section Begin -->
    <section class="hero">
@@ -152,67 +138,49 @@
             </div>
             <!-- row -->
          </div>
+        </div>
    </section>
    <!-- Categories Section End -->
-
-   <!-- Featured Section Begin -->
-   <section class="featured spad">
+   
+   <!-- 베스트리뷰 디자인 수정추가 -->
+   <section class="categories">
       <div class="container">
          <div class="row">
             <div class="col-lg-12">
                <div class="section-title">
-                  <h2>베스트 리뷰</h2>
+                  <h2 class="index_h">베스트 리뷰</h2>
                </div>
                <div class="featured__controls">
                   <ul>
                      <li>고기당이 엄선한 베스트 리뷰 !</li>
                   </ul>
-                  <!-- 
-                        <ul>
-                            <li class="active" data-filter="*">All</li>
-                            <li data-filter=".oranges">Oranges</li>
-                            <li data-filter=".fresh-meat">Fresh Meat</li>
-                            <li data-filter=".vegetables">Vegetables</li>
-                            <li data-filter=".fastfood">Fastfood</li>
-                        </ul>
-                         -->
                </div>
             </div>
-         </div>
-         <div class="row featured__filter">
-            <%
-               for (int i = 0; i < review_list.size(); i++) {
-                  if (i == 12) {
-                     break;
-                  }
-                  ReviewVO vo = (ReviewVO) review_list.get(i);
-            %>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-               <div class="featured__item">
-                  <div class="featured__item__pic set-bg"
-                     data-setbg="./resources/img/featured/feature-1.jpg">
-                     <ul class="featured__item__pic__hover">
-                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                     </ul>
-                  </div>
-                  <div class="featured__item__text">
-                     <h6>
-                        <a href="./reviewInfo.re?review_num=<%=vo.getReview_num()%>"><%=vo.getTitle()%></a>
-                     </h6>
-                     <h5>
-                        ★
-                        <%=vo.getStar()%></h5>
-                  </div>
-               </div>
-            </div>
-            <%
-               }
-            %>
+            <div class="categories__slider owl-carousel">
+               <%
+                  for (int i = 0; i < review_list.size(); i++) {
 
+                     ReviewVO vo = (ReviewVO)review_list.get(i);
+               %>
+               <div class="col-lg-3">
+                  <div class="categories__item set-bg"
+                     data-setbg="./resources/img/store/<%=vo.getImg()%>">
+                     <h5>
+                        <a href="./storeInfo.st?s_num=<%=vo.getS_num()%>"><%=vo.getS_name()%></a>
+                     </h5>
+                  </div>
+               </div>
+               <%
+                  }
+               %>            
+            </div><!-- row -->
          </div>
-      </div>
+        </div>
    </section>
+   <!-- 베스트리뷰 디자인 수정추가 끝 -->
+
+   <!-- Featured Section Begin -->
+  
    <!-- Featured Section End -->
 
    <!-- Banner Begin -->

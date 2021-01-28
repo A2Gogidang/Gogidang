@@ -13,7 +13,7 @@
 <%
 	StoreVO storevo = (StoreVO)session.getAttribute("StoreVO");
 	String id = memberVO.getU_id();
-	List<ReviewVO> review_list = (List<ReviewVO>) request.getAttribute("reviewList");
+//	List<ReviewVO> review_list = (List<ReviewVO>) request.getAttribute("reviewList");
 	List<ReviewVO> reviewUidList = (List<ReviewVO>) request.getAttribute("reviewUidList");
 	PageDTO  pageMaker = (PageDTO) request.getAttribute("pageMaker");
 %>

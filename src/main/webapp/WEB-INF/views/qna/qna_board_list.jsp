@@ -6,7 +6,7 @@
 <%@include file="../includes/header.jsp"%>
 
 <%
-	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
+	//MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
 	List<QnaVO> qnalist=(List<QnaVO>)request.getAttribute("qnalist");
 	int listcount=((Integer)request.getAttribute("listcount")).intValue();
 	int nowpage=((Integer)request.getAttribute("page")).intValue();

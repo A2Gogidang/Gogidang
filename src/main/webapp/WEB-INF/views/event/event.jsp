@@ -3,11 +3,8 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@include file="../includes/header.jsp"%>
 <!DOCTYPE html>
-<%
-ArrayList<EventVO> event_list =(ArrayList<EventVO>) request.getAttribute("event_list");
-%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -20,7 +17,7 @@ margin-top: 30px;
 </head>
 <body>
  <!--네비게이션바 사용 시작-->
-<%@include file="../includes/header.jsp"%>
+
         <div class="container">
             <div class="hero__item__box2"></div>
                     <div class="EventNav">
