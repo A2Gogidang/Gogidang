@@ -100,7 +100,7 @@ public class StoreController {
 		model.addAttribute("reviewList", reviewList);
 
 		//return "store/shop-details";
-		return "store/shop-details";
+		return "store/shop-detail";
 	}
 
 	/*
