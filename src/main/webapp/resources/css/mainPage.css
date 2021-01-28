@@ -14,31 +14,4 @@
 10.  Footer Style
 -------------------------------------------------------------------*/
 
-/*-----------------
-  1. 박스
------------------*/
-.hero__categories li {
-	width: 220px;
-	height: 55px;
-}
 
-.footer__about {
-	width: 300px;
-}
-
-.footer__widget {
-	margin-left: 40px;
-}
-
-/*-----------------
-  2. 이미지크기
------------------*/
-.header__logo a .mainlogo_img{
-	width: 160px;
-	height: 160px;
-}
-
-.row_main .col-lg-3 {
-	padding: 0px;
-	margin: 0px;	
-}

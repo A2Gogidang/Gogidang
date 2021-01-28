@@ -8,7 +8,7 @@
 <%	
 	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
 %>
-
+<%@include file="../includes/header_simple.jsp"%>
 <!-- Header Section start --> 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/loginstyle.css" type="text/css">
 <!-- Header Section End --> 
@@ -28,7 +28,8 @@
             </div>   
         </div>
     </section>
--->
+<<<<<<< HEAD
+    -->
     <!-- End Backgrounds -->
 
     <div class="container" id="login">
@@ -52,25 +53,26 @@
 		                      	<span class="slider round"></span>
 		                   		</div>
 		                   	-->
-						<!-- 로그인과 회원가입 -->
+						<!-- 로그인과 회원가입
 	                    <div>
-                    	 	<a href="javascript:loginForm.submit()"><!-- <label class="form-check-label" for="exampleCheck1"></label> -->로그인</a>
+                    	 	<a href="javascript:loginForm.submit()"><!-- <label class="form-check-label" for="exampleCheck1"></label> 로그인</a>
                       	</div>
                       	<div>
-                     	 	<a href="./joinForm.me"><!--<label class="join-label"> </label>  -->회원가입</a>
+                     	 	<a href="./joinForm.me"><!--<label class="join-label"> </label>  회원가입</a>
 						</div>
+						 -->
                     </div>
-                  </form>
+                  
                     <br>
                      <div class="form-checkkk">
                      	
                    			<button type="submit" class="btn btn-lg btn-block btn-success"  >로그인</button>
-                   			<button type="submit" class="btn-j btn-lg btn-block btn-success"  >회원가입</button>
+                   			<button type="submit" class="btn-j btn-lg btn-block btn-success" onclick="fnAction('./storeInsert.st')" >회원가입</button>
                    			 <br>
                     		<button type="submit" class="btn-k btn-lg btn-block btn-success" onclick="loginFormWithKakao();" style="cursor: pointer;" >카카오 로그인</button>
                     	<!--<img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="250" height="60" onclick="loginFormWithKakao();" style="cursor: pointer;"/>  -->
                   	</div>
-                  	
+                  </form>	
              <!-- End Loging form -->
 
           </div>
@@ -128,6 +130,29 @@
        }
       
    </script>
-
+   
+   <script>
+	function fnAction(url) {
+		var frm = document.getElementById("storeform");
+		frm.action = url;
+		frm.submit();
+	}
+	
+	$("#thumbnail").change(function () {
+		var reader = new FileReader;
+		reader.onload = function(data) {
+			$(".select_img>#out_thumbnail").attr("src", data.target.result).width(500);
+		}
+		reader.readAsDataURL(this.files[0]);
+	});
+	
+	$("#s_img").change(function () {
+		var reader = new FileReader;
+		reader.onload = function(data) {
+			$(".select_img>#out_s_img").attr("src", data.target.result).width(500);
+		}
+		reader.readAsDataURL(this.files[0]);
+	});
+	</script>
   </body>
 </html>

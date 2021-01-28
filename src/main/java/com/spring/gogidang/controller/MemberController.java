@@ -109,9 +109,9 @@ public class MemberController {
             session.setAttribute("StoreVO", vo1);
          }
          writer.write("<script>alert('로그인 성공!');location.href='./main.me';</script>");
-      }else {
+      	}else {
          writer.write("<script>alert('로그인 실패!');location.href='./loginForm.me';</script>");
-      }
+      	}
       return null;
    }
    
