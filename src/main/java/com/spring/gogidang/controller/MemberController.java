@@ -75,6 +75,13 @@ public class MemberController {
       return "index";
    }
    
+   @RequestMapping("/logout.me")
+   public String logout(HttpSession session) {
+       session.invalidate();
+       
+       return "redirect:/main.me";
+   }
+
    @RequestMapping("/loginForm.me") 
    public String loginForm() throws Exception {
       

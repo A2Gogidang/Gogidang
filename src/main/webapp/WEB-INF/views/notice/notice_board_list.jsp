@@ -6,6 +6,7 @@
 <%@ include file="../includes/header_simple.jsp"%>
 
 <%
+	u_id = null;
 	u_id = (String) session.getAttribute("u_id");
 
 	List<NoticeVO> noticelist = (List<NoticeVO>) request.getAttribute("noticelist");
