@@ -5,9 +5,7 @@
 <%@ page import="com.spring.gogidang.domain.*"%>
 
 <%@ include file="../includes/header.jsp"%>
-<%
-	ArrayList<EventVO> event_list = (ArrayList<EventVO>) request.getAttribute("event_list");
-%>
+
 <title>Insert title here</title>
 <style>
 .col-md-12 {

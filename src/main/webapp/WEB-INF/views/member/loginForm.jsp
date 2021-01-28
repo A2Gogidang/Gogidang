@@ -3,12 +3,13 @@
 <%@ page import="java.util.*" %>
 <%@ page import = "com.spring.gogidang.domain.*" %>
 <%@ page import="java.util.ArrayList"%>
-<%@include file="../includes/header.jsp"%>
-<html>
+<%@include file="../includes/header_simple.jsp"%>
 <%	
 	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
 %>
-<%@include file="../includes/header_simple.jsp"%>
+
+
+
 <!-- Header Section start --> 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/loginstyle.css" type="text/css">
 <!-- Header Section End --> 

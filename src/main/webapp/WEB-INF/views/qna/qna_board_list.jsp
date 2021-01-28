@@ -6,7 +6,7 @@
 
 <%@ include file="../includes/header.jsp"%>
 <%
-<<<<<<< HEAD
+
 	//MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
 	List<QnaVO> qnalist=(List<QnaVO>)request.getAttribute("qnalist");
 	int listcount=((Integer)request.getAttribute("listcount")).intValue();
@@ -14,15 +14,7 @@
 	int maxpage=((Integer)request.getAttribute("maxpage")).intValue();
 	int startpage=((Integer)request.getAttribute("startpage")).intValue();
 	int endpage=((Integer)request.getAttribute("endpage")).intValue();
-=======
-	MemberVO mvo = (MemberVO) session.getAttribute("MemberVO");
-	List<QnaVO> qnalist = (List<QnaVO>) request.getAttribute("qnalist");
-	int listcount = ((Integer) request.getAttribute("listcount")).intValue();
-	int nowpage = ((Integer) request.getAttribute("page")).intValue();
-	int maxpage = ((Integer) request.getAttribute("maxpage")).intValue();
-	int startpage = ((Integer) request.getAttribute("startpage")).intValue();
-	int endpage = ((Integer) request.getAttribute("endpage")).intValue();
->>>>>>> 3ac65e1f7d2d71dd9e8a4b84fd977822245ce3e5
+
 %>
 
 <style>

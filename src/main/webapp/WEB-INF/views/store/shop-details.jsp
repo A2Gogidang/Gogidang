@@ -6,48 +6,16 @@
 <%@ page import="java.util.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@include file="../includes/header.jsp"%>
-
+<%@include file="../includes/header_simple.jsp"%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/shop-details.css" type="text/css">
 <%
 	StoreVO svo = (StoreVO) request.getAttribute("storeVO");
 %>
 
-<!DOCTYPE html>
-
-<html lang="zxx">
-	
-	
-<head>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/shop-details.css" type="text/css">
-    <meta charset="UTF-8">
-    <meta name="description" content="Ogani Template">
-    <meta name="keywords" content="Ogani, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ogani | Template</title>
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="resources/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="resources/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="resources/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="resources/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="resources/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="resources/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="resources/css/style.css" type="text/css">
-    
-  
-   
-   
-
 <%
    MemberVO membervo = (MemberVO)session.getAttribute("memberVO");
-   String u_id=(String)membervo.getU_id();
+   //String u_id=(String)membervo.getU_id();
    %>
-
 <%
    ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>)request.getAttribute("menuList");
    ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>)request.getAttribute("reviewList");
@@ -171,53 +139,77 @@
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                        <div class="section-title">
-                        <h2>메뉴</h2>
-                     </div>
-                                    <div class="row featured__filter" style="display: flex; justify-content: center; aligin-items : center;" >
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                <%
-				for (int i=0; i<menu_List.size(); i++)
-					{
-					MenuVO mv = (MenuVO)menu_List.get(i);
-				%>
+                        					<h2>메뉴</h2>
+                     					</div>
+                      					<div class="row featured__filter" style="display: flex; justify-content: center; aligin-items : center;" >
+	                					<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+		                
+		            
+		                <%
+						for (int i=0; i<menu_List.size(); i++)
+							{
+							MenuVO mv = (MenuVO)menu_List.get(i);
+						%>
                     <div class="featured__item">
-             				 <form id="addCart<%=i%>" action="./addCart.ct" method="post">
-          <input type="hidden" id ="menu_num" name="menu_num" value="<%=mv.getMenu_num() %>">
-                        <div class="featured__item__pic set-bg" data-setbg="resources/img/menu/<%=mv.getImg() %>">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
+             			<form id="addCart<%=i%>" action="./addCart.ct" method="post">
+          					<input type="hidden" id ="menu_num" name="menu_num" value="<%=mv.getMenu_num() %>">
+	                        	<div class="featured__item__pic set-bg" data-setbg="resources/img/menu/<%=mv.getImg() %>">
+		                            <ul class="featured__item__pic__hover">
+		                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+		                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+		                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+		                            </ul>
+	                        </div>
+	                     </form>
                       <div class="row">
-                                             <div class="col-md-6">
-                                                <span><%=mv.getMenu_name() %></span>
-                                             </div>
-                                             <div class="col-md-6">
-                                                <span><%=mv.getGrade() %></span>
-                                             </div>
-                                          </div>
+                         <div class="col-md-6">
+                         	
+                            <h3><%=mv.getMenu_name() %> 메뉴</h3>
+                            
+                         </div>
+                      	 <div class="col-md-6">
+                      	 	<div class="shop_menu">
+                             <td><%=mv.getGrade() %> 등급</td>
+                             
+                             	<% if (mv.getMeat() == 0) {%>
+                             	<span>소고기</span>
+                             	<%} else { %>
+                             	<span> 돼지고기</span>
+                             	<%} %>
+                             
+                             </div>
+                         </div>
+                      </div><!-- row -->
 
-                    </div>
+                   
                      <div class="row">
-                                             <div class="col-md-6">
-                                                <span><%=mv.getGram() %></span>
-                                             </div>
-                                             <div class="col-md-6">
-                                               <td><input type="hidden" id ="price" name="price" value="<%=mv.getPrice()%>"><%=mv.getPrice() %></td>
-                                             </div>
-                                          </div>
-                                          <div class="row">
-                                             <div class="col-md-6">
-                                                <td><input type="number" id="cartStock" name="cartStock" min="1" max="100" value="1" /></td>
-                                             </div>
-                                              <div class="col-md-6">
-                                                <input type="submit" value="장바구니에 담기" id="addCart<%=i%>"/>
-                                             </div>
-                                             
-                    </div>
-                    <%} %>
+                     	<div class="shop_info_bar">
+                            <div class="col-md-8">
+                               <span><%=mv.getGram() %> 그램</span>
+                               <span><%=mv.getPrice() %> 원</span>
+                            </div>
+                            <!-- 
+                            <div class="col-md-6">
+                                <td><input type="hidden" id ="price" name="price" value="<%=mv.getPrice()%>"><%=mv.getPrice() %></td>
+                            </div>
+                             -->
+                     </div>
+                     <div class="row"></div>
+                     	<div class="shop_cartbar">
+                             <div class="col-md-10">
+                                <td><input type="number" id="cartStock" name="cartStock" min="1" max="100" value="1" /></td>
+                                <input type="submit" value="장바구니에 담기" id="addCart<%=i%>"/>
+                             </div>
+                    	</div>	
+                    		<!-- 
+                     		<div class="col-md-6">
+                               <input type="submit" value="장바구니에 담기" id="addCart<%=i%>"/>
+                    		</div>
+                    		 -->
+                      </div>     
+                     </div>
+                       <%} %>
+                       
                 </div>
                 
                 </div>
@@ -226,7 +218,9 @@
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                     <section id="locationNav_s">
-            <br>
+        
+            
+            
             <div class="container">
                <!-- Portfolio Section Heading-->
                <div class="row">
@@ -234,6 +228,8 @@
                      <div class="section-title">
                         <h2>가게 위치</h2>
                    <div id="map" style="width:100%;height:350px;"></div>
+                   
+                   
  <button onclick="resizeMap()">지도 크기 바꾸기</button> 
 <button onclick="relayout()">relayout 호출하기</button>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=241b4077cebf45bee1ed06d47263650b&libraries=services"></script>

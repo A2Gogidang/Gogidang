@@ -1,5 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.spring.gogidang.domain.*"%>
+<%@ page import="java.util.ArrayList"%>
+<%
+	MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
+	String u_id = "";
+	int seller_key;
+	if(mvo != null) {
+		u_id = mvo.getU_id();
+		seller_key = mvo.getSeller_key();
+	} else {
+		seller_key = 0;
+	}
+	
+	ArrayList<EventVO> event_list =(ArrayList<EventVO>) request.getAttribute("eventList");
+	ArrayList<StoreVO> store_list =(ArrayList<StoreVO>) request.getAttribute("storeList");
+	ArrayList<ReviewVO> review_list =(ArrayList<ReviewVO>) request.getAttribute("reviewList");
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,6 +62,9 @@
 							</ul>
 						</div>
 					</div>
+						<%
+						  if (u_id == "" || u_id == null) {	
+						%>
 					<div class="col-lg-6 col-md-6">
 						<div class="header__top__right">
 
@@ -57,9 +78,41 @@
 							<div class="header__top__right__auth">
 								<a href="#"><i class="fa fa-shopping-cart"></i> CART</a>
 							</div>
-
 						</div>
 					</div>
+							<%
+						  } else if (seller_key == 1) {	
+						%>
+					<div class="col-lg-6 col-md-6">
+						<div class="header__top__right">
+							<div class="header__top__right__auth">
+								<a href="./storeInsert.st"><i class="fa fa-user"></i><%=u_id %> 사장님 !</a>
+							</div>
+						</div>
+					</div>
+						<%
+						  } else if (seller_key == 2) {
+						%>
+					<div class="col-lg-6 col-md-6">
+						<div class="header__top__right">
+							<div class="header__top__right__auth">
+								<a href="./adminmypage.me"><i class="fa fa-user"></i>관리자 입니다.</a>
+							</div>
+						</div>
+					</div>
+						<%
+							} else {
+						%>
+						<div class="col-lg-6 col-md-6">
+						<div class="header__top__right">
+							<div class="header__top__right__auth">
+								<a href="./loginForm.me"><i class="fa fa-user"></i><%=u_id %>님!</a>
+							</div>
+						</div>
+					</div>
+						<%
+							} 
+						%>	
 				</div>
 				<!-- row -->
 			</div>
