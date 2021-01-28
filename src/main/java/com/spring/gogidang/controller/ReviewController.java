@@ -71,7 +71,7 @@ public class ReviewController {
 		int total = reviewService.getTotal(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		
-		return "review/review_list";
+		return "mypage/member_review";
 	}
 	
 	@RequestMapping("/reviewListBySnWithPaging.re")
