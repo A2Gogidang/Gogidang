@@ -305,7 +305,8 @@ public class StoreController {
 
 		model.addAttribute("storeList", storeList);
 
-		return "store/store_list";
+//		return "store/store_list";
+		return "store/shopgrid";
 	}
 
 	@RequestMapping(value = "/storelist_ajax.li", produces = "application/json; charset=utf-8")
@@ -410,6 +411,12 @@ public class StoreController {
 	@RequestMapping(value = "/store_info_Design2.st")
 	public String design2(Model model) {
 		return "store/store_info_design/store_info_Design2";
+	}
+	
+	@RequestMapping(value = "/shopgrid.st")
+	public String shopgrid(Model model) {
+		return "store/shopgrid";
+
 	}
 
 }

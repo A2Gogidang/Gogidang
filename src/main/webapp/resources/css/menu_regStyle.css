@@ -293,8 +293,19 @@ font {
    
 }
 
+.menulist img{
+	height: 70px;
+    width: 100px;
+}
 
+.menulist {
+	margin-top : 70px;
+	margin-left: 300px;
+}
 
-
+.table{
+	width: 720px;
+}
+    
 
 
