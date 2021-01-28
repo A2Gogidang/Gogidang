@@ -61,10 +61,10 @@
 			<a onclick="return qnacheck()" href="./noticemodifyform.no?notice_num=<%=notice.getNotice_num() %>">
 			[수정]
 			</a>&nbsp;&nbsp;
-			<a onclick="return qnacheck()" href="./noticedelete.no?notice_num=<%=notice.getNotice_num() %>"
+			<%-- <a onclick="return qnacheck()" href="./noticedelete.no?notice_num=<%=notice.getNotice_num() %>"
 			>
 			[삭제]
-			</a>&nbsp;&nbsp;
+			</a>&nbsp;&nbsp; --%>
 			<a href="./noticelist.no">[목록]</a>&nbsp;&nbsp;
 			</font>
 		</td>
