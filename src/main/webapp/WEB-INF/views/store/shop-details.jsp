@@ -10,6 +10,10 @@
 
 <%
 	StoreVO svo = (StoreVO) request.getAttribute("storeVO");
+	MemberVO membervo = (MemberVO)session.getAttribute("memberVO");
+	u_id = (String) membervo.getU_id();
+	ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>)request.getAttribute("menuList");
+	ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>)request.getAttribute("reviewList");
 %>
 
 <!DOCTYPE html>
@@ -39,20 +43,6 @@
     <link rel="stylesheet" href="resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="resources/css/style.css" type="text/css">
     
-  
-   
-   
-
-<%
-   MemberVO membervo = (MemberVO)session.getAttribute("memberVO");
-   String u_id=(String)membervo.getU_id();
-   %>
-
-<%
-   ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>)request.getAttribute("menuList");
-   ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>)request.getAttribute("reviewList");
-   
-%>
 <html>
 <head>
 <meta charset="utf-8">

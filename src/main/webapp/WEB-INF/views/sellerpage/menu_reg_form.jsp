@@ -42,6 +42,7 @@
 									method="post" enctype="multipart/form-data">
 									<div class="id_input_box">
 										<ts>품목</ts>
+										<input type="hidden" name="s_num" value="<%=vo.getS_num() %>">
 										<td><select name="meat">
 												<option value="">종류를 선택하세요</option>
 												<option value="1">소</option>
@@ -96,6 +97,17 @@
 												<option value="0">일반</option>
 												<option value="1">1등급</option>
 												<option value="2">특등급</option>
+										</select></td>
+									</div>
+									
+									<div class="id_input_box">
+										<ts>원산지</ts>
+										<td><select name="origin">
+												<option value="">원산지를 선택하세요.</option>
+												<option value="한국">한국</option>
+												<option value="일본">일본</option>
+												<option value="호주">호주</option>
+												<option value="미국">미국</option>
 										</select></td>
 									</div>
 
