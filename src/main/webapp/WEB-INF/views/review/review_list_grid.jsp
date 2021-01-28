@@ -23,7 +23,7 @@
 	<div class="container">
 		<div class="reviewl">
 			<div class="reviewlist">
-				<div class="col-lg-9 col-md-7">
+				<div class="reviewlistt">
 					<div class="shoplis">
 						<div class="shoplistt">
 							<div class="section-title product__discount__title">
