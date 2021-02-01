@@ -2,6 +2,8 @@ package com.spring.gogidang.controller;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,19 +12,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.gogidang.domain.MemberVO;
 import com.spring.gogidang.domain.ReviewReplyVO;
 import com.spring.gogidang.domain.ReviewVO;
 import com.spring.gogidang.domain.SRReviewVO;
 import com.spring.gogidang.domain.StoreVO;
+import com.spring.gogidang.service.MemberService;
 import com.spring.gogidang.service.ReviewReplyService;
 import com.spring.gogidang.service.ReviewService;
 import com.spring.gogidang.service.StoreReviewService;
+import com.spring.gogidang.service.StoreService;
 
 @Controller
 public class StoreReviewController {
 	
+	@Autowired
+	private MemberService memberService;
 
 	@Autowired
 	private StoreReviewService storeReviewService;
@@ -40,9 +49,23 @@ public class StoreReviewController {
 		
 		
 		model.addAttribute("srReviewList", srReviewList);
-		
+		model.addAttribute("s_num", ((StoreVO)session.getAttribute("StoreVO")).getS_num());
 
 		return "sellerpage/store_review";
+	}
+	
+	@RequestMapping(value = "/storeReviewList.re", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public ArrayList<SRReviewVO> storeReviewListAjax(@RequestParam String u_id)throws Exception {
+		System.out.println("u_id = " + u_id);
+		int s_num = memberService.getSnumByUid(u_id);
+		System.out.println("s_num = " + s_num);
+		SRReviewVO srReviewVO = new SRReviewVO();
+		srReviewVO.setS_num(s_num);
+		ArrayList<SRReviewVO> srReviewList = storeReviewService.srReviewSelect(srReviewVO);	
+		System.out.println(srReviewList.size());
+		
+		return srReviewList;
 	}
 	
 	

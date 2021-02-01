@@ -57,4 +57,12 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.getId(u_id);
 	}
 
+	@Override
+	public int getSnumByUid(String u_id) {
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		int s_num = memberMapper.getSnumByUid(u_id);
+		
+		return s_num;
+	}
+
 }

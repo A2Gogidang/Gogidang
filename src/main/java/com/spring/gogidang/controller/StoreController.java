@@ -385,6 +385,22 @@ public class StoreController {
 //		return "store/store_list";
 		return "store/shopgrid";
 	}
+	
+	@RequestMapping(value = "/storeListAjax.st")
+	public List<StoreVO> getStoreListAjax() {
+		ArrayList<StoreVO> storeList = storeService.getList();
+		
+		for (int i = 0; i < storeList.size(); i++) {
+			StoreVO svo = storeList.get(i);
+			int s_num = svo.getS_num();
+			Double avgStar = storeService.getAvgStar(s_num);
+			svo.setAvgStar(avgStar);
+			String addr = svo.getS_addr().substring(0, 2);
+			svo.setS_addr(addr);
+		}
+		
+		return storeList;
+	}
 
 	@RequestMapping(value = "/storelist_ajax.li", produces = "application/json; charset=utf-8")
 	@ResponseBody

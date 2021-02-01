@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -55,6 +56,15 @@ public class ReviewController {
 		
 		return "review/review_list_grid";
 //		return "review/review_list";
+	}
+	
+	@RequestMapping(value = "/reviewListAjax.re", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public List<ReviewVO> reviewListAjax() {
+		
+		List<ReviewVO> reviewList = reviewService.getList();
+		System.out.println(reviewList.size());
+		return reviewList;
 	}
 	
 	@RequestMapping("/reviewListWithPaging.re")
@@ -112,6 +122,23 @@ public class ReviewController {
 		model.addAttribute("review", reviewService.getReview(review_num));
 		
 		return "review/review_info";
+	}
+	
+	@RequestMapping(value = "/reviewInfoAjax.re", method =RequestMethod.POST, produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public Map<String, Object> reviewInfoAjax(@RequestParam("review_num") int review_num) {
+		Map<String, Object> retVal = new HashMap<String, Object>();
+		
+		try {
+			ReviewVO rvo = reviewService.getReview(review_num);
+			retVal.put("review_num", rvo.getReview_num());
+			retVal.put("res", "OK");
+		} catch (Exception e) {
+			retVal.put("res", "FAIL");
+			retVal.put("message", "Failure");
+		}
+	
+		return retVal;
 	}
 	
 	// file upload
