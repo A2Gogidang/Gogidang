@@ -17,10 +17,13 @@
     <section class="product spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-5">
-                    <div class="sidebar">
-                        <div class="sidebar__item">
-                             <h4>판매자 마이페이지</h4>
+            	
+            	<!-- 좌측네비바 시작 -->
+				<div class="col-lg-3" id="nav-bar">
+					<div class="hero__categories">
+                		<div class="hero__categories__all">
+						<span>판매자 마이페이지</span>
+						</div>
                             <ul>
 	                            <li><a href="./updateList.me">내정보</a></li>
 	                            <li><a href="./storeRegForm.st">가게 정보</a></li>
@@ -30,7 +33,7 @@
                        		 </ul> 
                         </div>
                     </div>
-                </div>     
+                     
 <!-- ---------------------------------------------------시작----------------------------------------------------- -->          
         <div class="reviewboard">
     <div class="section-title product__discount__title">
@@ -84,6 +87,7 @@ for(int i = 0; i < srNoticeList.size(); i++){
 	</div>
 </div>
 <!-- ----------------------------------------------------끝---------------------------------------------------- --> 
+            </div>
             </div>
         </div>
     </section>

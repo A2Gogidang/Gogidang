@@ -1,76 +1,124 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <%@ page import="java.util.*"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
 
-<%@ include file="../includes/header_simple.jsp"%>
+<%@include file="../includes/header_simple.jsp"%>
 
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/shop-details.css"
+	type="text/css">
 <%
-	//MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
-	String id = mvo.getU_id();
-	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("list");
-	PageDTO pageMaker = (PageDTO) request.getAttribute("pageMaker");
+	StoreVO svo = (StoreVO) request.getAttribute("svo");
 %>
 
-<title>대기가게리스트</title>
+<section class="product-details spad" style="padding-top: 0%;">
+	<div class="container">
+		<div class="row">
 
-<h3>대기가게리스트</h3>
-<center>
-	<table border=1 width=300>
-		<tr align=center>
-			<td colspan=2>가게 대기 리스트</td>
-		</tr>
-		<%
-			if (storeList.size() > 0) {
-				for (int i = 0; i < storeList.size(); i++) {
-					StoreVO vo = (StoreVO) storeList.get(i);
-		%>
-		<tr>
-			<td><a href="storeInfo.st?s_num=<%=vo.getS_num()%>"><%=vo.getS_num()%>
-					/ <%=vo.getS_name()%> - <%=vo.getU_id()%></a></td>
-			<td><a href="confirmStore.st?s_num=<%=vo.getS_num()%>">승인</a> <a
-				href="refuseStore.st?s_num=<%=vo.getS_num()%>">거절</a></td>
-		</tr>
-		<%
-			}
-			} else {
-		%>
-		<h2>대기중인 가게가 없습니다.</h2>
-		<%
-			}
-		%>
-		<tr align=center height=20>
-			<td colspan=7 style="font-family: Tahoma; font-size: 10pt;">
-				<%
-					if (pageMaker.isPrev()) {
-				%> <a
-				href="./reviewList.re?pageNum=pageMaker.getCri().getPageNum()-1">[이전]</a>&nbsp;
-				<%
-					} else {
-				%> [이전]&nbsp; <%
- 	}
- %> <%
- 	for (int a = pageMaker.getStartPage(); a <= pageMaker.getEndPage(); a++) {
- 		if (a == pageMaker.getCri().getPageNum()) {
- %> [<%=a%>] <%
- 	} else {
- %> <a href="./reviewList.re?pageNum=<%=a%>">[<%=a%>]
-			</a> &nbsp; <%
- 	}
- %> <%
- 	}
- %> <%
- 	if (pageMaker.isNext()) {
- %> <a
-				href="./reviewList.re?pageNum=<%=pageMaker.getCri().getPageNum() + 1%>&amount=10">[다음]</a>
-				<%
-					} else {
-				%> [다음] <%
-					}
-				%>
-			</td>
-		</tr>
-	</table>
-</center>
+			<div class="col-lg-6 col-md-6">
+				<div class="product__details__pic">
+					<div class="product__details__pic__item">
+						<%-- <img src="resources/img/store/<%=svo.getThumbnail()%>" style="height:240px;">
+						<img src="resources/img/store/<%=svo.getS_img() %>" style="height:240px;"> --%>
+						<img src="resources/img/store/daeho.jpg" style="height:240px;">
+						<img src="resources/img/store/daeho.jpg" style="height:240px;">
+					</div>
+				</div>
+			</div>
 
-<%@include file="../includes/footer.jsp"%>
+			<!-- 사진옆정보 -->
+			<div class="col-lg-6 col-md-6">
+				<div class="product__details__text">
+					<h3 style="display: inline-flex; color: #7fad39;"><%=svo.getS_name()%></h3>
+					<div class="product__details__price"
+						style="color: black; font-size: 20px;">주소</div>
+					<p><%=svo.getS_addr()%></p>
+					<div class="product__details__price"
+						style="color: black; font-size: 20px;">가게소개</div>
+					<p>한줄 소개글 추가</p>
+					<ul id="seller_detail">
+						<li><b>운영시간</b> <span><%=svo.getS_hour()%></span></li>
+						<li><b>전화번호</b> <span><%=svo.getS_phone()%></span></li>
+						<li><b>휴무일</b> <span>2,4주 일요일</span></li>
+					</ul>
+				</div>
+			</div>
+
+			<div>
+				<input type="hidden" id="msg" value="승인되었습니다." />
+				<input type="hidden" id="u_id" value=<%=svo.getU_id() %> />
+				<input type="hidden" id="s_num" value=<%=svo.getS_num() %> />				
+				<input type="button" id="confirmBtn" value="승인"/>
+				<input type="button" id="refuseBtn" value="거절"/>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<script>
+
+var u_id = $('input#u_id').val();
+var s_num = $('input#s_num').val();
+
+$(document).ready( function() {
+	$('#confirmBtn').on('click', function(evt) {
+		$.ajax({
+			url: 'confirmStore.re',
+			type : 'POST',
+			data : {'s_num' : $('input#s_num').val()},
+			contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+			dataType : 'json',
+			success : function(retVal) {
+				// webSocket에 보내기 (confirm, 댓글작성자(admin), 게시글작성자(u_id), 글번호(s_num))
+				if (retVal.res == "confirm") {
+					let socketMsg = ("confirm," + "admin," + u_id + "," + s_num);
+					console.debug("ssssssmsg>> ", socketMsg);
+					socket.send(socketMsg);	
+				} else {
+					alert("confirm Fail!!!!");
+				}
+			}, 
+			error:function() {
+				alert("confirm ajax 통신 실패!!")
+			}
+		});
+		
+		evt.preventDefault();
+		if (socket.readyState !== 1) return;
+		
+/* 		let msg = $('input#msg').val();
+		socket.send(msg);
+ */
+	});
+	
+	$('#refuseBtn').on('click', function(evt) {
+		$.ajax({
+			url: 'refuseStore.re',
+			type : 'POST',
+			data : {'s_num' : $('input#s_num').val()},
+			contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+			dataType : 'json',
+			success : function(retVal) {
+				// webSocket에 보내기 (confirm, 댓글작성자(admin), 게시글작성자(u_id), 글번호(s_num))
+				if (retVal.res == "refuse") {
+					let socketMsg = ("refuse," + "admin," + u_id + "," + s_num);
+					console.debug("ssssssmsg>> ", socketMsg);
+					socket.send(socketMsg);	
+				} else {
+					alert("confirm Fail!!!!");
+				}
+			}, 
+			error:function() {
+				alert("confirm ajax 통신 실패!!")
+			}
+		});
+	});
+});
+</script>
+
+
+<%@ include file="../includes/footer.jsp"%>

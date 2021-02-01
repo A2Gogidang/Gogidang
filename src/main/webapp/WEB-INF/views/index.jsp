@@ -11,6 +11,7 @@
   
 
 <!-- Hero Section Begin -->
+<!-- Hero 좌측 네비 -->
 <section class="hero">
 	<div class="container">
 		<div class="row">
@@ -85,12 +86,10 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="section-title">
-					<h2>추천가게</h2>
+					<h2><a href="./storeList.st">추천가게</a></h2>
 				</div>
 				<div class="featured__controls">
-					<ul>
-						<li>자신있게 추천 드립니다 !</li>
-					</ul>
+					
 				</div>
 			</div>
 			<div class="categories__slider owl-carousel">
@@ -146,12 +145,10 @@
          <div class="row">
             <div class="col-lg-12">
                <div class="section-title">
-                  <h2 class="index_h">베스트 리뷰</h2>
+                  <h2 class="index_h"><a href="./reviewList.re">베스트 리뷰</a></h2>
                </div>
                <div class="featured__controls">
-                  <ul>
-                     <li>고기당이 엄선한 베스트 리뷰 !</li>
-                  </ul>
+                  
                </div>
             </div>
             <div class="categories__slider owl-carousel">
@@ -188,12 +185,12 @@
 		<div class="row">
 			<div class="col-lg-6 col-md-6 col-sm-6">
 				<div class="banner__pic">
-					<img src="./resources/img/banner/banner-1.jpg" alt="">
+					<a href="./eventList.ev"><img src="./resources/img/banner/banner_5.png" alt=""></a>
 				</div>
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-6">
 				<div class="banner__pic">
-					<img src="./resources/img/banner/banner-2.jpg" alt="">
+					<a href="./eventList.ev"><img src="./resources/img/banner/banner_4.PNG" alt="" style="height: 262.99px;"></a>
 				</div>
 			</div>
 		</div>

@@ -43,7 +43,7 @@
                      <div class="form-checkkk">
                      	
                    			<button type="submit" class="btn btn-lg btn-block btn-success"  >로그인</button>
-                   			<button type="submit" class="btn-j btn-lg btn-block btn-success" onclick="fnAction('./storeInsert.st')" >회원가입</button>
+                   			<button type="button" class="btn-j btn-lg btn-block btn-success" onClick="location.href='./joinForm.me'"  >회원가입</button>
                    			 <br>
                     		<button type="submit" class="btn-k btn-lg btn-block btn-success" onclick="loginFormWithKakao();" style="cursor: pointer;" >카카오 로그인</button>
                     	<!--<img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="250" height="60" onclick="loginFormWithKakao();" style="cursor: pointer;"/>  -->

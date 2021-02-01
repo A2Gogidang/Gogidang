@@ -39,17 +39,17 @@ public class StoreServiceImpl implements StoreService {
 	}
 	 
 	@Override
-	public int confirmStore(StoreVO storeVO) {
+	public int confirmStore(int s_num) {
 		StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
-		int res = storeMapper.confirmStore(storeVO);
+		int res = storeMapper.confirmStore(s_num);
 		
 		return res;
 	}
 
 	@Override
-	public int refuseStore(StoreVO storeVO) {
+	public int refuseStore(int s_num) {
 		StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
-		int res = storeMapper.refuseStore(storeVO);
+		int res = storeMapper.refuseStore(s_num);
 		
 		return res;
 	}
