@@ -12,11 +12,11 @@
  		select * from shop_reg where confirm=0
  	</select>
 	 
-	<update id="confirmStore" parameterType="StoreVO">
+	<update id="confirmStore" parameterType="int">
 		UPDATE shop_reg SET confirm=1 WHERE s_num=#{s_num}
 	</update>
 	
-	<delete id="refuseStore" parameterType="StoreVO">
+	<delete id="refuseStore" parameterType="int">
 		DELETE FROM shop_reg WHERE s_num=#{s_num}
 	</delete>
 	
