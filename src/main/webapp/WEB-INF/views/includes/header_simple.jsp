@@ -41,6 +41,7 @@
 </head>
 
 <body>
+<div id="socketAlert" class="alert alert-success" role="alert" style="display:none;"></div>
    <!-- Page Preloder -->
    <div id="preloder">
       <div class="loader"></div>
