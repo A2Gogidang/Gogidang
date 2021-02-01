@@ -1,5 +1,6 @@
 package com.spring.gogidang.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -7,20 +8,18 @@ import org.apache.ibatis.annotations.Param;
 import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.QnaStorePageDTO;
 import com.spring.gogidang.domain.QnaStoreVO;
+import com.spring.gogidang.domain.QnaVO;
 
 public interface QnaStoreService {
 	
-	public int register(QnaStoreVO vo);
-	
-	public QnaStoreVO get(int qs_num);
-	
-	public int remove(int qs_num);
-	
-	public int modify(QnaStoreVO qna);
-	
-	//public List<QnaStoreVO> getList(Criteria cri,int s_num);
-	
-	public QnaStorePageDTO getListPage(Criteria cri,int s_num);
+	public int getListCounts(); // 글 개수 구하기 
+	public List<QnaStoreVO> getQnaList(HashMap<String, Integer> hashmap); // 글 목록 보기
+	public int qnaInsert(QnaStoreVO qna);
+	public QnaStoreVO getDetail(int qnastore_num);
+	public int qnaModify(QnaStoreVO qna);
+	public QnaStoreVO qnaModifyForm(int qnastore_num);
+	public int qnaDelete(HashMap<String, String> hashmap);
+	public int qnaReply(QnaStoreVO qna);
 	
 
 }

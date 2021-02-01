@@ -51,7 +51,7 @@
 		   ,r.title
 		   ,r.content
 		   ,r.star
-		   ,r.photo1
+		   ,r.REVIEW_IMG1
 		   ,r.review_date
 		   ,s.re_content
 		   ,s.re_date
@@ -66,13 +66,13 @@
 
 <insert id="replyReviewInsert" parameterType="ReviewReplyVO">
 		INSERT 
-		  INTO sub_review
+		  INTO review_reply
 		VALUES(#{comment_num}
 			  ,#{review_num}
 			  ,#{u_id}
-			  ,#{s_num}
 			  ,#{re_content}
 			  ,#{re_date}
+			  
 		)
 </insert>
 

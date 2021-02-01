@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SRReviewVO {
-
+	
 	private int review_num;
 	private int comment_num;
 	private String u_id;
@@ -22,4 +22,6 @@ public class SRReviewVO {
 	private Date review_date;
 	private String re_content;
 	private Date re_date;
+
+
 }

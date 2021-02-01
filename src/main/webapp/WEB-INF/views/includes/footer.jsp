@@ -88,7 +88,7 @@
 	</footer>
 	<!-- Footer Section End -->
 
-	<!-- Js Plugins -->
+	
 	<script
 		src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 	<script
@@ -104,9 +104,6 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-	
-	
-
-	
+		
 	</body>
 </html>
