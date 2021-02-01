@@ -10,22 +10,22 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
    <!-- Namespace탭에서1234 mybatis-spring체크해서 추가할것 -->
    
-<!-- Root Context: defines shared resources visible to all other web components 
-<bean id="dataSource"
+<!-- Root Context: defines shared resources visible to all other web components -->
+<!-- <bean id="dataSource"
    class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
    <property name="driverClass" value="oracle.jdbc.OracleDriver"/>
    <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
    <property name="username" value="gogidang"/>
    <property name="password" value="gogidang"/>
-   </bean> 
--->
-  	<bean id="dataSource"
+   </bean>  -->
+
+ 	<bean id="dataSource"
    class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
    <property name="driverClass" value="oracle.jdbc.OracleDriver"/>
    <property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
    <property name="username" value="scott"/>
    <property name="password" value="123456"/>
-    </bean> 
+    </bean>  
 
     
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
