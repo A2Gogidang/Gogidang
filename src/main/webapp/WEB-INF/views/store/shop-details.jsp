@@ -32,9 +32,7 @@
 <title>Ogani | Template</title>
 
 <!-- Google Font -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
 <!-- Css Styles -->
 <link rel="stylesheet" href="resources/css/bootstrap.min.css"
@@ -804,17 +802,9 @@ margin-top:30px;
 																		});
 
 													});
-								</script>
-
-
-
-								<script src="resources/js/jquery.nice-select.min.js"></script>
-								<script src="resources/js/jquery-ui.min.js"></script>
-								<script src="resources/js/jquery.slicknav.js"></script>
-								<script src="resources/js/mixitup.min.js"></script>
-								<script src="resources/js/owl.carousel.min.js"></script>
-								<script src="resources/js/main.js"></script>
-								</body>
-
-								<%@include file="../includes/footer.jsp"%>
+									</script>
+								
+								
+				<%@include file="../includes/footer.jsp"%>
+	</body>
 </html>

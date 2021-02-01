@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
-<%@include file="../includes/header.jsp"%>
+<%@include file="../includes/header_simple.jsp"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%
 	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
@@ -17,6 +17,7 @@
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <script>
+
 	function execDaumPostcode() {
 		new daum.Postcode({
 			oncomplete : function(data) {
@@ -103,52 +104,43 @@
 </script>
 
 <!--네비게이션바 사용 시작-->
-<%
-	if (memberVO.getSeller_key() == 0) {
-%>
-<section class="hero">
-	<div class="container">
-		<div class="hero__item__box2"></div>
-		<div class="EventNav">
-			<ul>
-				<li><a href="./updateList.me">내정보</a></li>
-				<li><a href="./bookingList.bo?u_id=<%=memberVO.getU_id()%>">내예약확인</a>
-				<li><a href="./likeStoreList.li?u_id=<%=memberVO.getU_id()%>">찜목록</a></li>
-				<li><a href="./reviewList.re?u_id=<%=memberVO.getU_id()%>">내가
-						작성한 후기</a></li>
-			</ul>
-		</div>
-	</div>
-	</div>
-</section>
-<%
-	} else {
-
-		if (storeVO == null || storeVO.getConfirm() == 0 || storeVO.getS_num() == 0) {
-%>
-<section class="hero">
-	<div class="container">
-		<div class="hero__item__box2"></div>
-		<div class="EventNav">
-			<ul>
-				<li><a href="./updateList.me">내정보</a></li>
-				<li><a href="./storeRegForm.st">가게 정보</a>
-			</ul>
-		</div>
-	</div>
-	</div>
-</section>
-<%
-	} else {
-%>
-
 <section class="product spad">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-3 col-md-5">
-				<div class="sidebar">
-					<div class="sidebar__item">
-						<h4>판매자 마이페이지</h4>
+		
+			<!-- 좌측네비바 시작 -->
+			<div class="col-lg-3" id="nav-bar">
+				<div class="hero__categories">
+					<%
+						if (memberVO.getSeller_key() == 0) {
+					%>
+					<div class="hero__categories__all">
+						<span>마이 페이지</span>
+					</div>
+						<ul>
+							<li><a href="./updateList.me">내정보</a></li>
+							<li><a href="./bookingList.bo?u_id=<%=memberVO.getU_id()%>">내예약확인</a>
+							<li><a href="./likeStoreList.li?u_id=<%=memberVO.getU_id()%>">찜목록</a></li>
+							<li><a href="./reviewList.re?u_id=<%=memberVO.getU_id()%>">내가 작성한 후기</a></li>
+						</ul>
+					<%
+						} else {
+					
+							if (storeVO == null || storeVO.getConfirm() == 0 || storeVO.getS_num() == 0) {
+					%>
+					<div class="hero__categories__all">
+						<span>판매자페이지</span>
+					</div>
+						<ul>
+							<li><a href="./updateList.me">내정보</a></li>
+							<li><a href="./storeRegForm.st">가게 정보</a>
+						</ul>
+					<%
+						} else {
+					%>
+					<div class="hero__categories__all">
+						<span>판매자 마이페이지</span>
+					</div>
 						<ul>
 							<li><a href="./updateList.me">내정보</a></li>
 							<li><a href="./storeRegForm.st">가게 정보</a></li>
@@ -156,14 +148,14 @@
 							<li><a href="./storeNoticeList.no">문의 관리</a></li>
 							<li><a href="./storereviewList.bo">리뷰 관리</a></li>
 						</ul>
-					</div>
+					<%
+						}
+					}
+					%>
 				</div>
 			</div>
+	
 
-			<%
-				}
-				}
-			%>
 			<!--네비게이션바 사용 end-->
 			<!-- Hero Section End -->
 			<!-- ---------------------------------------------------시작----------------------------------------------------- -->
@@ -178,7 +170,7 @@
 
 
 								<!-- store_form -->
-								<form action="./storeUpdateForm.st" method="post"
+								<form action="./storeInsert.st" method="post"
 									enctype="multipart/form-data">
 									<input type="hidden" name="u_id" value=<%=memberVO.getU_id()%>>
 
@@ -355,19 +347,28 @@
 												if (storeVO == null || storeVO.getS_num() == 0) {
 											%>
 
-											<%
-												if (storeVO == null || storeVO.getS_phone() == null || storeVO.getS_phone() == "") {
-											%>
-											<button type="submit"
-												class="btn-jj btn-lg btn-block btn-success"
-												onclick="fnAction('./storeInsert.st')"multiple / >작성</button>
-											<%
-												} else {
-											%>
-											<button type="submit"
-												class="btn-jj btn-lg btn-block btn-success">수정</button>
-											<%
-												}
+												<%
+													if (storeVO == null || storeVO.getS_phone() == null || storeVO.getS_phone() == "") {
+												%>
+												<button type="submit"
+													class="btn-jj btn-lg btn-block btn-success"
+													multiple / >작성하기</button>
+												<%
+													} else {
+												%>
+												<button type="button"
+												class="btn-jj btn-lg btn-block btn-success" onClick="location.href='./storeUpdateForm.st'">수정하러 가기</button>
+												<!-- 
+												<button type="submit"
+													class="btn-jj btn-lg btn-block btn-success"
+													multiple / >작성하기</button>
+													 -->
+												<!-- 
+												<button type="button"
+													class="btn-jj btn-lg btn-block btn-success" >수정하러 가기</button>
+												 -->
+												<%
+													}
 												}
 											%>
 										</div>
@@ -376,14 +377,16 @@
 											<%
 												if (storeVO == null || storeVO.getS_num() == 0) {
 											%>
-
-											<button type="reset"
-												class="btn-j btn-lg btn-block btn-success">다시 작성</button>
+											<!-- <button type="reset"
+												class="btn-j btn-lg btn-block btn-success">다시 작성</button> -->
+											<button type="button"
+												class="btn-jj btn-lg btn-block btn-success" onClick="location.href='./storeUpdateForm.st'">수정하러 가기</button>
+											
 											<%
 												} else {
 											%>
-											<button type="submit"
-												class="btn-jj btn-lg btn-block btn-success">수정하러 가기</button>
+											<button type="button"
+												class="btn-jj btn-lg btn-block btn-success" onClick="location.href='./storeUpdateForm.st'">수정하러 가기</button>
 											<!-- <a href="./storeUpdateForm.st">수정</a> -->
 											<%
 												}
