@@ -231,7 +231,7 @@ public class ReviewController {
 	
 	@RequestMapping(value="/reviewlist_ajax.re", produces="application/json; charset=utf-8")
 	@ResponseBody 
-	public List<ReviewVO> getStoreListAjax( @RequestBody Map<String, String[]> map) {
+	public List<ReviewVO> getReviewListAjax( @RequestBody Map<String, String[]> map) {
 		
 		String[] s_addr = map.get("s_addr");
 		for(String no : s_addr) {
