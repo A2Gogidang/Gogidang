@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.gogidang.domain.ReviewReplyVO;
+import com.spring.gogidang.domain.ReviewVO;
 import com.spring.gogidang.domain.SRNoticeVO;
 import com.spring.gogidang.domain.SRReviewVO;
 import com.spring.mapper.StoreNoticeMapper;
@@ -49,6 +50,8 @@ public class StoreReviewServiceImpl implements StoreReviewService{
 		
 		return vo;
 	}
+	
+
 	
 	@Override
 	public int replyReviewInsert(ReviewReplyVO reviewReplyVO) {

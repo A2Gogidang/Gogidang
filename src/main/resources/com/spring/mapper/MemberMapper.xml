@@ -39,4 +39,8 @@
 	<select id="checkid" resultType="int">
 		select count(*) from member where u_id=#{u_id}
 	</select>
+	
+	<select id="getId" resultType="MemberVO">
+		select * from member where u_id=#{u_id}
+	</select>
 </mapper>

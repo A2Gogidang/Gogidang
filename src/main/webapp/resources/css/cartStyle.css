@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.shoping__cart__btns {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.shoping__checkout {
+	
+}

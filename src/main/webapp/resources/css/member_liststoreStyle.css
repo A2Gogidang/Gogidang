@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+.likestore{
+	display: flex;
+	width: 100%;
+	height: 100%
+}
+
 .card_box {
 	display: flex;
 	/*justify-content: center;
@@ -33,6 +39,15 @@ tr{
 	display: inline;
 	
 }
+.card-body{
+	border: 1px solid rgb(173, 173, 173);
+	width: 100%;
+	height: 100%;
+	margin-left: 50px;
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+}
 
 .likecard{
 	position: relative;
@@ -41,26 +56,44 @@ tr{
     min-width: 0;
     background-color: #fff;
     background-clip: border-box;
-    border: 1px solid rgb(230 220 220 / 13%);
     border-radius: .25rem;
-    width: 700px;
+    width: 100%;
+    height:100%;
     margin-bottom: 30px;
 }
 
-.card-body {
+.card-text {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     min-height: 1px;
     padding: 1.25rem;
-    width: 600%;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    color: black;
 }
 
-.card-img{
-	width: 1500px;
+.likecard img{
+	width: 250px;
+	height: 100%;
+	margin-right: 40px;
 }
-
+.card-bodys{
+	display: flex;
+	justify-content: space-between;
+	
+}
 
 /*soobin*/
 .reviewboard{
-	width: 800px;
+	width: 100%;
+}
+.card-text i.fas.fa-heart{
+	width: 50%;
+	height: 50%;
+	margin-top: -10px;
+}
+.myreview{
+	display: flex;
+	width: 100%;
 }
