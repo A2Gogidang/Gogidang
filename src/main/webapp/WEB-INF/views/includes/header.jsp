@@ -115,6 +115,7 @@
 							<div class="header__top__right__auth">
 								<a href="./updateList.me"><i class="fa fa-user"></i><%=u_id %>님!</a>
 								<a href="./logout.me">logout</a>
+								 <a href="./cartList.ct"><i class="fa fa-shopping-cart"></i> CART</a>
 							</div>
 						</div>
 					</div>

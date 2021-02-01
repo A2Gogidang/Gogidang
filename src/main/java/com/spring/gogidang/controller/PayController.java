@@ -1,9 +1,9 @@
 package com.spring.gogidang.controller;
 
-import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,11 +17,13 @@ import com.spring.gogidang.service.PayService;
 @Controller
 public class PayController {
 	
-	PayService payservice;
+	@Autowired
+	private PayService payService;
 	
-	@RequestMapping(value="/cancel.bo",method=RequestMethod.POST)
+	@RequestMapping(value="/cancel.py",method=RequestMethod.POST)
 	@ResponseBody
 	public String cancel(@RequestParam(value="rv_num")String rv_num) {
+		
 		PaymentCheck obj= new PaymentCheck();
 		String token = obj.getImportToken();
 		int res = obj.cancelPayment(token, rv_num);
@@ -32,28 +34,41 @@ public class PayController {
 		}
 	}
 	
-	@RequestMapping("/insertpay.bo")
-	public String insertPay(PayVO payVO,HttpServletResponse response) throws Exception{ 
-		int res = payservice.insertPay(payVO);
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charcet=urf-8");
-		PrintWriter writer = response.getWriter();
+	/*
+	 * @RequestMapping("/pay.py") 
+	 * public String PayForm(PayVO payVO, Model model)throws Exception{
+	 * 
+	 * System.out.println(payVO.getTotal_price()); 
+	 * model.addAttribute("PayVO",payVO);
+	 * 
+	 * return "payTest"; }
+	 */
+	
+	
+	@RequestMapping(value="/insertpay.py",produces="appliction/json;charset=UTF-8")
+	@ResponseBody
+	public Map<String, String>  insertPay(PayVO payVO) throws Exception{ 
 		
-		if(res==1) {
-			writer.write("<script>alert('결제 가완료되었습니다'); location.href='./main.me';</script");
-		}else {
-			writer.write("<script>alert('결제에 실패하였습니다'); location.href='./bookinglist.bo';</script>");
+		Map<String, String> map = new HashMap<String, String>();
+		int res = payService.insertPay(payVO);
+		
+		if(res == 1){
+			 map.put("res", "success");
+			 return map;
+		} else {
+			 map.put("res", "fail");
+			 return map;
 		}
-		return null;
+		 
 	}
 	
-	@RequestMapping("/selectpay.bo")
-	public String deletePay(PayVO payVO) throws Exception{
-		String rv_num=payVO.getRv_num();
-		payservice.deletePay(payVO);
-		
-		return "redirect:/booking.bo";
-	}
+	/*
+	 * @RequestMapping("/selectpay.py") public String deletePay(PayVO payVO) throws
+	 * Exception{ String rv_num=payVO.getRv_num(); payservice.deletePay(payVO);
+	 * 
+	 * return "redirect:/booking.bo"; }
+	 */
+	
 }
 
 
