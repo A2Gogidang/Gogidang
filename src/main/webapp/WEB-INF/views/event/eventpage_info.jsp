@@ -6,6 +6,7 @@
 <%@ page import = "com.spring.gogidang.domain.*" %>
 <%
 	EventVO eventVO = (EventVO)request.getAttribute("EventVO");
+	
 %>
 
 <!DOCTYPE html>

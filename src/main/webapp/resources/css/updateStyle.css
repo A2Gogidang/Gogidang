@@ -93,6 +93,9 @@ body {
 /* 2. 박스크기
 /*----------------------------------------*/
 
+#nav-bar {
+	margin-right: 50px;
+}
 
 .id_input_box {
 	width: 100%;
@@ -110,7 +113,12 @@ body {
     border-radius: 3px;
 }
 
-
+/*.sidebar__item h4 {
+	color: #1c1c1c;
+    font-weight: 700;
+    margin-bottom: 25px;
+    background: #7fad39;
+}*/
 /*----------------------------------------*/
 /* 2. btn
 /*----------------------------------------*/

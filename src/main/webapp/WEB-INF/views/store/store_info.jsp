@@ -1,3 +1,5 @@
+store_info.jsp 수정전
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.sql.*" %>
@@ -442,7 +444,7 @@ $(document).ready(function (){
   	
 
 </script>
+
+	<%@include file="../includes/footer.jsp"%>
 </body>
-
-
-
+</html>

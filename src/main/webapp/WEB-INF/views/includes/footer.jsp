@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
  <!-- Footer Section Begin -->
 	<footer class="footer spad">
 		<div class="container">
+		
 			<div class="row">
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="footer__about">
 						<div class="footer__about__logo">
-							<a href="./index.html"><img src="./resources/img/logo.png"
+							<a href="./main.me"><img src="./resources/img/footerlogo_1.PNG"
 								alt=""></a>
 						</div>
 						<ul>
@@ -58,10 +60,8 @@
 						</div>
 					</div>
 				</div>
-
-
-
 			</div>
+			
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="footer__copyright">
@@ -84,6 +84,7 @@
 					</div>
 				</div>
 			</div>
+			
 		</div>
 	</footer>
 	<!-- Footer Section End -->
