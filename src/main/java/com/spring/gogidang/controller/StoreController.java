@@ -38,7 +38,7 @@ public class StoreController {
 
 	@Autowired
 	private ReviewService reviewService;
-
+	
 	@Autowired
 	private StoreReviewService storeReviewService;
 

@@ -11,18 +11,21 @@
               ,u_id
               ,menu_num
               ,cartStock
-              ,price)
+              ,price
+              ,s_num)
    values (cart_seq.nextval
          ,#{u_id}
          ,#{menu_num}
          ,#{cartStock}
-         ,#{price})
+         ,#{price}
+         ,#{s_num})
 </insert>
 
 
 <select id ="cartList" parameterType="CartVO" resultType="CartVO">
    SELECT  m.menu_name
-            ,m.img
+           ,m.img
+           ,m.s_num
            ,c.cartStock
            ,c.price
            ,c.adddate

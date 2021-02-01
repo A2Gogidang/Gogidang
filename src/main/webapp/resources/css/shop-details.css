@@ -79,3 +79,40 @@ margin-bottom : 30px;
    background: #ebebeb;
    content: "";
 }
+
+element.style {
+    background-image: url((unknown));
+}
+.set-bg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    padding-bottom: 80px;
+}
+
+element.style {
+}
+.panel-default>.panel-heading {
+    color: #333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+}
+#ReviewId{
+   text-aligin : left;
+}
+
+#ReviewTitle{
+   display : flex;
+   justify-content: space-between;
+}
+#reviewStar{
+   text-aligin : left;
+}
+
+#Insert_date{
+   text-aligin : left;
+}
+.i{
+   color : 
+   #edbb0e;
+}
