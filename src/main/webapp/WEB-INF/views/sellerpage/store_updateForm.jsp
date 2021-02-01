@@ -6,11 +6,10 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
-<%@include file="../includes/header_simple.jsp"%>
 <%
 	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
 %>
-
+<%@include file="../includes/header_simple.jsp"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/store_updateStyle.css" type="text/css">
 <%
 	StoreVO vo = (StoreVO) session.getAttribute("StoreVO");
@@ -46,7 +45,7 @@
 		        	     
 		        	    	 <div class="id_input_box_ss">
 		         				<ts>가게 메인 사진 </ts>
-		         				<td><img src="resources/img/store/<%=vo.getThumbnail() %>" style="width:350px; height:200px;" /></td>      			         				
+		         				<td><img src="resources/img/store/<%=vo.getThumbnail() %>" width="350px" height="200px" /></td>      			         				
 	         	 			</div>
 	         	 			 <div class="id_input_box">
 		         				<ts> </ts>        				
@@ -55,7 +54,7 @@
 	         	 			
 	         	 			<div class="id_input_box_ss">
 		         				<ts>사업자등록증</ts>	         		
-		         				<td><img src="resources/img/store/<%=vo.getS_img() %>"  name="s_num" width="350px" height="200px"/></td>							
+		         				<td><img src="resources/img/store/<%=vo.getS_img() %>"  name="s_num" width="350px" height="200px" /></td>							
 	         	 			</div>
 	         	 			<div class="id_input_box">
 		         				<ts> </ts>        				
