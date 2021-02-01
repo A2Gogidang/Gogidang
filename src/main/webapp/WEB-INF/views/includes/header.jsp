@@ -128,6 +128,7 @@
 							</div>
 							<div class="header__top__right__auth">
 								<a href="./logout.me">logout</a>
+								 <a href="./cartList.ct"><i class="fa fa-shopping-cart"></i> CART</a>
 							</div>
 						</div>
 					</div>

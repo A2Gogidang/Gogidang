@@ -18,37 +18,37 @@
 %>
 
 <title>공지사항</title>
-<style>
-.th, td {
-	font-size: 16px;
-}
 
-.pagination-lg {
-	font-size: 16px;
-}
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/updateList.css"
+	type="text/css">
 
-.page-item {
-	color: rgb(51, 131, 51);
-}
-
-.page-link {
-	color: rgb(51, 131, 51);
-}
-
-.pagination {
-	color: rgb(51, 131, 51);
-}
-</style>
-
-<div class="section-title" style="margin-top: 70px;">
-	<h2 style="margin-top: 30px;">공지사항</h2>
-</div>
 
 <section class="product spad">
 	<div class="container">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="qnaList" style="width: 960px; margin-left: 50px;">
+		<div class="row">
+			<div class="rowNotice">
+				<div class="col-lg-3 col-md-5">
+					<div class="sidebar">
+						<div class="sidebar__item">
+							<h4>공지사항</h4>
+								<ul>
+									<li><a href="eventList.ev">이벤트</a></li>
+									<li><a href="noticelist.no">공지사항</a></li>
+									<li><a href="qnalist.qn">문의</a></li>
+									<!--<li><a href="#">Fastfood</a></li>
+			                            <li><a href="#">Fresh Onion</a></li>
+			                            <li><a href="#">Papayaya & Crisps</a></li>
+			                             <li><a href="#">Oatmeal</a></li>
+			                            <li><a href="#">Fresh Bananas</a></li> -->
+								</ul>
+						</div>
+					</div>
+				</div>
+				<div class="qnaList">
+					<div class="section-title">
+						<h2>공지사항</h2>
+					</div>
 					<table class="table table-striped">
 						<thead>
 							<tr>
@@ -83,72 +83,15 @@
 							%>
 						</tbody>
 					</table>
-<!-- 					<div class="qna_insert" style="text-align: right;">
-						<a href="noticewriteform.no"><button type="button"
-								class="btn btn-lg btn-outline-secondary"
-								style="background-color: #076507; color: white;">글쓰기</button> </a>
-					</div> -->
+					<div class="product__pagination">
+						<a href="#"><i class="fa fa-long-arrow-left"></i></a>
+                        <a href="#">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    </div>
 				</div>
 			</div>
-			<%-- <div class="container-fluid">
-				<div class="row">
-					<div class="col-md-2"></div>
-					<div class="col-md-8">
-						<class class="pagination-lg">
-						<ul class="pagination"
-							style="margin-bottom: 30px; display: flex; justify-content: center; align-items: center;">
-							<%
-								if (nowpage <= 1) {
-							%>
-
-							<li class="page-item"><a class="page-link"
-								style="color: rgb(51, 131, 51);">Previous</a></li>
-							<%
-								} else {
-							%>
-							<li class="page-item"><a class="page-link"
-								href="./noticelist.no?page=<%=nowpage - 1%>"
-								style="color: rgb(51, 131, 51);">Previous</a></li>
-							<%
-								}
-							%>
-							<%
-								for (int a = startpage; a <= endpage; a++) {
-									if (a == nowpage) {
-							%>
-							<%=a%>
-							<%
-								} else {
-							%>
-							<li class="page-item"><a class="page-link"
-								href="./noticelist.no?page=<%=a%>"
-								style="color: rgb(51, 131, 51);"><%=a%></a></li>
-							<%
-								}
-							%>
-							<%
-								}
-							%>
-							<%
-								if (nowpage >= maxpage) {
-							%>
-
-							<li class="page-item"><a class="page-link"
-								style="color: rgb(51, 131, 51);">Next</a></li>
-							<%
-								} else {
-							%>
-							<li class="page-item"><a class="page-link"
-								href="./noticelist.no?page=<%=nowpage + 1%>"
-								style="color: rgb(51, 131, 51);">Next</a></li>
-							<%
-								}
-							%>
-						</ul>
-					</div>
-					<div class="col-md-2"></div>
-				</div>
-			</div> --%>
 
 		</div>
 	</div>

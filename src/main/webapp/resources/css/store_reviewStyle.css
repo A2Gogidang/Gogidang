@@ -13,7 +13,32 @@ form #store_not{
 .reviewboard{
 	width: 800px;
 }
+.reviewboard button{
+	width: 100px;
+	height: 100%;
+	background: #7fad39;
+	border:1px solid #7fad39;;
+	font-family: "Cairo", sans-serif;
+	font-size: 15px;
+	font-weight:bold;
+	border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+}
 
+.join_btn .btn-jj {
+	width: 220px;
+	height: 60px;
+	background: #7fad39;
+	border:1px solid #7fad39;;
+	font-family: "Cairo", sans-serif;
+	font-size: 15px;
+	font-weight:bold;
+	border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
 
 
 
