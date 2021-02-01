@@ -72,7 +72,7 @@
                         <a href="./joinForm.me"><i class="fa fa-user-o"></i> JOIN</a>
                      </div>
                      <div class="header__top__right__auth">
-                        <a href="#"><i class="fa fa-shopping-cart"></i> CART</a>
+                        <a href="./cartList.ct"><i class="fa fa-shopping-cart"></i> CART</a>
                      </div>
                   </div>
                </div>
@@ -105,6 +105,7 @@
                   <div class="header__top__right">
                      <div class="header__top__right__auth">
                         <a href="./updateList.me"><i class="fa fa-user"></i><%=u_id %>님!</a>
+                        <a href="./cartList.ct"><i class="fa fa-shopping-cart"></i>
                         <a href="./logout.me">logout</a>
                      </div>
                   </div>

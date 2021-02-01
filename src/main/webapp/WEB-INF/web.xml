@@ -47,6 +47,7 @@
 		<url-pattern>*.up</url-pattern>
 		<url-pattern>*.mn</url-pattern>
 		<url-pattern>*.ct</url-pattern>
+		<url-pattern>*.py</url-pattern>
 	</servlet-mapping>
 	
 	<welcome-file-list>

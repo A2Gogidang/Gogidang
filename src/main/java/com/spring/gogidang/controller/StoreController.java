@@ -34,9 +34,11 @@ import com.spring.gogidang.domain.MemberVO;
 import com.spring.gogidang.domain.MenuVO;
 import com.spring.gogidang.domain.PageDTO;
 import com.spring.gogidang.domain.ReviewVO;
+import com.spring.gogidang.domain.SRReviewVO;
 import com.spring.gogidang.domain.StoreVO;
 import com.spring.gogidang.service.MenuService;
 import com.spring.gogidang.service.ReviewService;
+import com.spring.gogidang.service.StoreReviewService;
 import com.spring.gogidang.service.StoreService;
 
 @Controller
@@ -50,6 +52,9 @@ public class StoreController {
 
 	@Autowired
 	private ReviewService reviewService;
+	
+	@Autowired
+	private StoreReviewService storeReviewService;
 
 	/*
 	 * 승인대기중인 가게 리스트 보기
@@ -87,21 +92,29 @@ public class StoreController {
 	 * 가게 상세 정보 보기
 	 */
 	@RequestMapping(value = "/storeInfo.st")
-	public String storeInfo(@RequestParam("s_num") int s_num, Criteria cri, Model model) {
-		StoreVO vo = storeService.storeInfo(s_num);
-		ArrayList<MenuVO> menuList = menuService.menuList(s_num);
-		List<ReviewVO> reviewList = reviewService.getListBySnWithPaing(cri, s_num);
+	   public String storeInfo(@RequestParam("s_num") int s_num, Criteria cri, Model model, HttpSession session) {
+	      StoreVO vo = storeService.storeInfo(s_num);   
+	      SRReviewVO srReviewVO = new SRReviewVO();      
+	      srReviewVO.setS_num(s_num);   
+	      
+	      ArrayList<MenuVO> menuList = menuService.menuList(s_num);
+	      List<ReviewVO> reviewList = reviewService.getListBySnWithPaing(cri, s_num);
+	      ArrayList<SRReviewVO> srReviewList = storeReviewService.srReviewSelect(srReviewVO);   
 
-		int total = reviewService.getTotal(cri);
-		model.addAttribute("pageMaker", new PageDTO(cri, total));
+	      int total = reviewService.getTotal(cri);
+//	      model.addAttribute("pageMaker", new PageDTO(cri, total));
 
-		model.addAttribute("storeVO", vo);
-		model.addAttribute("menuList", menuList);
-		model.addAttribute("reviewList", reviewList);
+	      model.addAttribute("storeVO", vo);
+	      model.addAttribute("menuList", menuList);
+	      // model.addAttribute("reviewList", reviewList);
+	      model.addAttribute("srReviewList", srReviewList);
+	      
+	      
+	      
 
-		//return "store/store_info";
-		return "store/shop-details";
-	}
+	      //return "store/store_info";
+	      return "store/shop-details";
+	   }
 
 	/*
 	 * 승인대기중인 가게 승인

@@ -5,7 +5,7 @@
 <mapper namespace="com.spring.mapper.PayMapper">
 
 	<insert id="insertPay" parameterType="PayVO">
-	INSERT INTO pay values(#{pay_num},#{rv_num},#{u_id},#{s_num},#{price},#{status})
+	INSERT INTO pay values(#{u_id},#{s_num},#{pay_code},#{totalPrice},sysdate,#{imp_uid})
 	</insert>
 	
 	<select id="selectPay" parameterType="PayVO" resultType="PayVO">
