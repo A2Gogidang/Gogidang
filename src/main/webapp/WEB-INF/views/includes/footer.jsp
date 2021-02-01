@@ -106,7 +106,36 @@
 		src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 	
+	<script>
+		var socket = null;
+		
+		$(document).ready(function() {
+			connectWS();
+		});
+		
+		function connectWS() {
+			console.log("ttttttt");
+			
+			var ws = new WebSocket("ws://localhost:8090/gogidang/manageSocket.me");
+			socket = ws
 	
+			ws.onopen = function() {
+				console.log('info: connection opened.');
+			};
+	
+			ws.onmessage = function (event) {
+				console.log("ReceiveMessage:", event.data + '\n');
+			};
+	
+			ws.onclose = function (event) { 
+				console.log('info: connection closed.');
+			};
+			
+			ws.onerror = function (event) { 
+				console.log('info: connection closed.');
+			};
+		}
+	</script>
 
 	
 	</body>

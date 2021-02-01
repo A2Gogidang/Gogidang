@@ -112,7 +112,7 @@
 
    </div>
 </section>
-<body>
+
    <!--네비게이션바 사용 끝-->
    <!-- Hero Section End -->
    <div class="container-fluid">
@@ -828,11 +828,10 @@ $(document).ready(function (){
      
 
 </script>
-</body>
+
 <%@include file="../includes/footer.jsp"%>
          </section>
    
    <a style="display: scroll; position: fixed; bottom: 10px; right: 5px;"
       href="#" title="top">TOP</a>
 
-</html>

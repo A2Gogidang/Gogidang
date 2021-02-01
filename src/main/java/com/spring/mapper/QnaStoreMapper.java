@@ -1,26 +1,25 @@
 package com.spring.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
 import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.QnaStoreVO;
+import com.spring.gogidang.domain.QnaVO;
 
 
 public interface QnaStoreMapper {
 	
-	public int insert(QnaStoreVO vo);
-	
-	public QnaStoreVO read(int qs_num);
-	
-	public int delete(int qs_num);
-	
-	public int update(QnaStoreVO qna);
-	
-	public List<QnaStoreVO> getListWithPaging(@Param("s_num") int s_num,
-											  @Param("cri") Criteria cri);
-	
-	public int getCountByS_num(int s_num);
+	public int getListCounts(); 
+	public List<QnaStoreVO> getQnaList(HashMap<String, Integer> hashmap);
+	public int qnaInsert(QnaStoreVO qna);
+	public QnaStoreVO getDetail(int qnastore_num);
+	public int qnaModify(QnaStoreVO qna);
+	public int qnaDelete(int qnastore_num);
+	public int isBoardWriter(HashMap<String, String> hashmap);
+	public int qnaReplyupdate(QnaStoreVO qna);
+	public int qnaReply(QnaStoreVO qna);
 
 }
