@@ -1,54 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE mapper
 	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	 
-<mapper namespace="com.spring.mapper.QnaStoreMapper">
+ <mapper namespace="com.spring.mapper.QnaStoreMapper">
+ 
+	 <select id="getListCounts" resultType="int">
+	 	SELECT count(*) FROM qna_store
+	 </select>
+ 
+ 	<select id="getQnaList" parameterType="HashMap" resultType="QnaStoreVO">	
+	<![CDATA[
+	SELECT * 
+	FROM (SELECT rownum rnum,qnastore_num,u_id,title,content,re_date,re_ref,re_lev,re_seq 
+	FROM (SELECT * FROM qna_store ORDER BY re_ref desc, re_seq asc)) 
+	WHERE rnum>=#{startrow} AND rnum<=#{endrow}
+	 ]]>
+	</select>
 	
-	<insert id="insert">
-		insert into qna_store (qs_num,u_id,s_num,content)
-		values (seq_qna_store.nextval, #{u_id},#{s_num},#{content})
+	<insert id="qnaInsert" parameterType="QnaStoreVO">
+		<selectKey keyProperty="qnastore_num" order="BEFORE" resultType="int">
+			SELECT nvl(max(qnastore_num), 0)+1 FROM qna_store
+		</selectKey>
+		INSERT INTO qna_store VALUES (#{qnastore_num}, #{u_id}, #{title}, #{content},sysdate,#{qnastore_num}, #{re_lev}, #{re_seq})
 	</insert>
 	
-	<select id="read" resultType="QnaStoreVO">
-		select * from qna_store where qs_num = #{qs_num}
-	</select>
-	
-	<delete id="delete">
-		delete from qna_store where qs_num = #{qs_num}
-	</delete>
-	
-	<update id="update">
-		update qna_store set content = #{content},qna_updatedate = sysdate where qs_num = #{qs_num}
+	<select id="getDetail" parameterType="int" resultType="QnaStoreVO">
+ 		SELECT * FROM qna_store WHERE qnastore_num=#{qnastore_num}
+ 	</select>
+ 	
+ 	<update id="qnaModify" parameterType="QnaStoreVO">
+		UPDATE qna_store SET title=#{title}, content=#{content} WHERE qnastore_num=#{qnastore_num}
 	</update>
 	
-<!--  	<select id="getListWithS_num" resultType="QnaStoreVO">
-		select *
-		from qna_store
-		where s_num = #{s_num}
-		order by qs_num asc
-	</select>  --> 
+	<delete id="qnaDelete" parameterType="int">
+		DELETE FROM qna_store WHERE qna_num=#{qnastore_num}
+	</delete>
 	
-	<select id="getListWithPaging" resultType="QnaStoreVO">
-
-  	<![CDATA[
- 	select  qs_num, s_num, content, u_id, qna_date, qna_updateDate
- 	from 
-   	(
-    	select /*+INDEX(qna_store idx_qnastore) */ 
-      	rownum rn,  qs_num, s_num, content, u_id, qna_date, qna_updateDate
-    from qna_store
-    where s_num =  #{s_num}
-    and qs_num > 0
-    and rownum <= #{cri.pageNum} * #{cri.amount}
-   	) where rn > (#{cri.pageNum} -1) * #{cri.amount}
-	]]>
-
+	<select id="isBoardWriter" parameterType="HashMap" resultType="int">
+		SELECT count(*) FROM qna_store WHERE qnastore_num=#{qnastore_num} and u_id=#{u_id}
 	</select>
 	
-	<select id="getCountByS_num" resultType="int">
-		<![CDATA[
-			select count(qs_num) from qna_store where s_num = #{s_num} 
-		]]>
-	</select>
-
-</mapper>
+		<insert id="qnaReplyupdate" parameterType="QnaStoreVO">
+		UPDATE qna_store SET re_seq = re_seq+1 WHERE re_ref = #{re_ref} and re_seq > #{re_seq}
+	</insert>
+	
+	<insert id="qnaReply" parameterType="QnaStoreVO">
+		<selectKey keyProperty="qna_num" order="BEFORE" resultType="int">
+			SELECT nvl(max(qnastore_num), 0)+1 FROM qna_store
+		</selectKey>
+		INSERT INTO qna_store(qnastore_num,u_id,title,content,re_date,re_ref,re_lev,re_seq) 
+		VALUES (#{qnastore_num}, #{u_id}, #{title}, #{content},sysdate , #{re_ref}, #{re_lev}, #{re_seq})
+	</insert>
+	
+ 
+ </mapper>

@@ -11,13 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.spring.gogidang.domain.EventVO;
 import com.spring.gogidang.domain.MemberVO;
 import com.spring.gogidang.domain.ReviewReplyVO;
+import com.spring.gogidang.domain.ReviewVO;
 import com.spring.gogidang.domain.SRReviewVO;
 import com.spring.gogidang.domain.StoreVO;
+import com.spring.gogidang.service.ReviewReplyService;
+import com.spring.gogidang.service.ReviewService;
 import com.spring.gogidang.service.StoreReviewService;
-import com.spring.gogidang.service.StoreService;
 
 @Controller
 public class StoreReviewController {
@@ -26,14 +27,20 @@ public class StoreReviewController {
 	@Autowired
 	private StoreReviewService storeReviewService;
 	
+	@Autowired
+	private ReviewReplyService reviewReplyService;
+	
 	@RequestMapping(value = "/storereviewList.bo")
 	public String storeNoticeList(Model model , HttpSession session)throws Exception {
 		 
 		SRReviewVO srReviewVO = new SRReviewVO();		
+		ReviewVO vo = new ReviewVO();
 		srReviewVO.setS_num(((StoreVO)session.getAttribute("StoreVO")).getS_num());		
 		ArrayList<SRReviewVO> srReviewList = storeReviewService.srReviewSelect(srReviewVO);	
 		
+		
 		model.addAttribute("srReviewList", srReviewList);
+		
 
 		return "sellerpage/store_review";
 	}
@@ -53,14 +60,16 @@ public class StoreReviewController {
 	 */
 	
 	@RequestMapping(value = "/storereviewInfo.bo")
-	public String replyReviewInputForm(Model model, SRReviewVO srReviewVO , HttpSession session, HttpServletResponse response)throws Exception {
+	public String replyReviewInputForm(Model model, SRReviewVO srReviewVO,ReviewVO review_num, HttpSession session, HttpServletResponse response)throws Exception {
 			
 		srReviewVO.setS_num(((StoreVO)session.getAttribute("StoreVO")).getS_num());		
+		
 		SRReviewVO srReviewvo = storeReviewService.srReviewList(srReviewVO);
 		
 		model.addAttribute("srReviewvo", srReviewvo);
 		
-		return "sellerpage/store_reply_info";
+		
+		return "review/review_info";
 	}
 	
 	@RequestMapping(value = "/replyReviewInsert.bo")
@@ -80,7 +89,7 @@ public class StoreReviewController {
 					+ "location.href='./storereviewList.bo';</script>");
 		}else{
 			writer.write("<script>alert('답변등록 실패!');"
-					+ "location.href='./storereviewList.bo';</script>");
+					+ "location.href='./storereviewInfo.bo';</script>");
 		}
 		return null;
 	}
@@ -104,5 +113,7 @@ public class StoreReviewController {
 		}
 		return null;
 	}
+	
+
 	
 }

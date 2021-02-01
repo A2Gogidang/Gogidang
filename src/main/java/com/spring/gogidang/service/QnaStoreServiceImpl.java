@@ -1,61 +1,88 @@
 package com.spring.gogidang.service;
 
+import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.gogidang.domain.Criteria;
-import com.spring.gogidang.domain.QnaStorePageDTO;
 import com.spring.gogidang.domain.QnaStoreVO;
+import com.spring.gogidang.domain.QnaVO;
+import com.spring.mapper.QnaMapper;
 import com.spring.mapper.QnaStoreMapper;
 
-@Service
+
+
+@Service("qnastoreService")
 public class QnaStoreServiceImpl implements QnaStoreService {
-	
+
 	@Autowired
-	private QnaStoreMapper mapper;
+	private SqlSession sqlSession;
 	
 	@Override
-	public int register(QnaStoreVO vo) {
-		// TODO Auto-generated method stub
-		return mapper.insert(vo);
+	public int getListCounts() {
+		QnaStoreMapper qnastoreMapper = sqlSession.getMapper(QnaStoreMapper.class);
+		int res= qnastoreMapper.getListCounts();
+		return res;
 	}
 
 	@Override
-	public QnaStoreVO get(int qs_num) {
-		// TODO Auto-generated method stub
-		//return mapper.read(qs_num);
-		QnaStoreVO vo = mapper.read(qs_num);
-		System.out.print("(vo.getContent()=" + vo.getContent());
-		return vo;
+	public List<QnaStoreVO> getQnaList(HashMap<String, Integer> hashmap) {
+		QnaStoreMapper qnastoreMapper = sqlSession.getMapper(QnaStoreMapper.class);
+		List<QnaStoreVO> qnalist = qnastoreMapper.getQnaList(hashmap);
+		return qnalist;
 	}
-
-	@Override
-	public int remove(int qs_num) {
-		// TODO Auto-generated method stub
-		return mapper.delete(qs_num);
-	}
-
-	@Override
-	public int modify(QnaStoreVO qna) {
-		// TODO Auto-generated method stub
-		return mapper.update(qna);
-	}
-
-	
-	/*
-	 * @Override public List<QnaStoreVO> getList(Criteria cri,int s_num) {
-	 * 
-	 * return mapper.getListWithPaging(cri,s_num); }
-	 */
-	 
 	
 	@Override
-	public QnaStorePageDTO getListPage(Criteria cri,int s_num) {
-		
-		return new QnaStorePageDTO(mapper.getCountByS_num(s_num),
-								   mapper.getListWithPaging(s_num, cri));
+	public int qnaInsert(QnaStoreVO qna) {
+		QnaStoreMapper qnastoreMapper = sqlSession.getMapper(QnaStoreMapper.class);
+		int res= qnastoreMapper.qnaInsert(qna);
+		return res;
 	}
-
+	
+	@Override
+	public QnaStoreVO getDetail(int qnastore_num) {
+		QnaStoreMapper qnastoreMapper = sqlSession.getMapper(QnaStoreMapper.class);
+		QnaStoreVO qna = qnastoreMapper.getDetail(qnastore_num);
+		return qna;
+	}
+	
+	@Override
+	public QnaStoreVO qnaModifyForm(int qnastore_num) {
+		QnaStoreMapper qnastoreMapper = sqlSession.getMapper(QnaStoreMapper.class);
+		QnaStoreVO qna = qnastoreMapper.getDetail(qnastore_num);
+		return qna;
+	}
+	
+	@Override
+	public int qnaModify(QnaStoreVO qna) {
+		QnaStoreMapper qnastoreMapper = sqlSession.getMapper(QnaStoreMapper.class);
+		int res = qnastoreMapper.qnaModify(qna);
+		return res;
+	}
+	
+	  @Override
+	   public int qnaDelete(HashMap<String, String> hashmap) {
+		  QnaStoreMapper qnastoreMapper = sqlSession.getMapper(QnaStoreMapper.class);
+	      int res= qnastoreMapper.isBoardWriter(hashmap);
+	      int qnastore_num= Integer.parseInt(hashmap.get("qnastore_num"));
+	      if(res==1) {
+	         res=qnastoreMapper.qnaDelete(qnastore_num);
+	      }
+	      return res;
+	   }
+	  
+	   @Override
+	   public int qnaReply(QnaStoreVO qna) {
+		  QnaStoreMapper qnastoreMapper = sqlSession.getMapper(QnaStoreMapper.class);
+		  qnastoreMapper.qnaReplyupdate(qna);
+		   qna.setRe_seq(qna.getRe_seq()+1);
+		   qna.setRe_lev(qna.getRe_lev()+1);
+	      int res = qnastoreMapper.qnaReply(qna);
+	      return res;
+	   }
+	
 }
+
