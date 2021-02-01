@@ -69,8 +69,9 @@
 										name="f_Mcheck" value="1">돼지고기</li>
 								</div>
 							</div>
-							<!-- <div class="shoplistfo">
-                                <div class="shoplistfoo">
+							
+ 							<div class="shoplistfo">
+                                <!-- <div class="shoplistfoo">
                                    <h5>부위</h5>
                                 </div>
                                 <div class="shoplistfot">
@@ -81,8 +82,9 @@
                                    <li><input type="checkbox" id="sam" class="f_check" name="f_Acheck" value="삼겹" >삼겹</li>
                                    <li><input type="checkbox" id="mok" class="f_check" name="f_Acheck" value="목살" >목살</li>
                                    <li><input type="checkbox" id="etc" class="f_check" name="f_Acheck" value="특수부위" >특수</li>
-                                </div>
-                             </div> -->
+                                </div> -->
+                             </div>
+                             
 							<div class="shopliststar">
 								<div class="shopliststarone">
 									<h5>별점</h5>
@@ -114,7 +116,7 @@
 					</div>
 				</div>
 				<div class="shoplistm">
-					<div class="row">
+					<div class="row" id="card_row">
 						<div class="shoplistn">
 							<%
 								for (int i = 0; i < storeList.size(); i++) {
@@ -139,7 +141,7 @@
 										<div class="card_store_name">
 											<div class="shoptexto">
 												<h5>
-													<a href="#"><%=svo.getS_name()%></a> <input
+													<a href="./storeInfo.st?s_num=<%=svo.getS_num()%>"><%=svo.getS_name()%></a> <input
 														type="hidden" id="avgStar" class="avgStar" name="avgStar"
 														value="<%=svo.getAvgStar()%>" /><%=svo.getAvgStar()%>
 												</h5>
@@ -180,6 +182,6 @@
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 
 <script type="text/javascript" charset="utf-8"
-	src="${pageContext.request.contextPath}/resources/js/reviewlistAjaxx.js"></script>
+	src="${pageContext.request.contextPath}/resources/js/storelistAjaxx.js"></script>
 
 <%@include file="../includes/footer.jsp"%>
