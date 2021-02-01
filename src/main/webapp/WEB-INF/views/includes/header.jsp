@@ -90,6 +90,7 @@
 						<div class="header__top__right">
 							<div class="header__top__right__auth">
 								<a href="./updateList.me"><i class="fa fa-user"></i><%=u_id %> 사장님 !</a>
+								<a href="#"><i class="fa fa-shopping-cart"></i> CART</a>
 								<a href="./logout.me">logout</a>
 							</div>
 						</div>

@@ -4,24 +4,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import = "com.spring.gogidang.domain.*" %>
-<%@include file="../includes/header.jsp"%>
+<%@include file="../includes/header_simple.jsp"%>
 
 <%
-	//MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
-	//String u_id = "";
-	//int seller_key;
+
 	if(mvo != null) {
 		u_id = mvo.getU_id();
 		seller_key = mvo.getSeller_key();
 	} else {
 		seller_key = 0;
 	}
-	ReviewVO rvo = (ReviewVO) request.getAttribute("review");
+
+
+	SRReviewVO srrvo = (SRReviewVO)request.getAttribute("srReviewvo");
 %>
 
-        <form name="review_info" action="./shop_reg.st" method="post">
+         <form name="review_info" action="./replyReviewInsert.bo" method="post">
             <table border=1>
-                <tr>
+       <%--          <tr>
                     <td colspan="2" align=center>
                         <b><font size=5>${review.title }</font></b>
                     </td>
@@ -46,33 +46,45 @@
                 	}
                 %>
                 </tr>
+ 	               --%>
 				<tr>
-                    <td>가게명 : </td>
-                    <td>${review.s_name }</td>
+                    <td>제목 : </td>
+                    <td><%=srrvo.getTitle() %></td>
                 </tr>
                 <tr>
                     <td>작성자 아이디 : </td>
-                    <td>${review.u_id }</td>
-                </tr>
-                <tr>
-                    <td>작성자 닉네임 : </td>
-                    <td>${review.nickname }</td>
+                    <td><%=srrvo.getU_id() %></td>
                 </tr>
                 <tr>
                     <td>별점 : </td>
-                    <td>${review.star }</td>
+                    <td><%=srrvo.getStar() %></td>
                 </tr>
                 <tr>
                     <td>내용 : </td>
-                    <td>${review.content }</td>
+                    <td><%=srrvo.getContent() %></td>
                 </tr>
-                <tr>
-                    <td>리뷰등록일 : </td>
-                    <td><fmt:formatDate pattern="yyyy-MM-dd" value="${review.review_date }" /></td>
-                </tr>
+                <table border="1">
+                <form name="replyform" action="./replyReviewInsert.bo" method="post">
+                	<tr>
+                		<td>관리자 아이디:</td>
+                		<td><%=u_id %></td>
+                	</tr>
+                	<tr>
+                		<td>댓글번호</td>
+                		<td><%=srrvo.getReview_num() %></td>
+                	</tr>
+                	<tr>
+                		<td><input type="text" name="re_content"></td>
+                	</tr>
+                	<tr>
+                		<td><button type="submit">등록</button></td>
+                	</tr>
+                </form>
+            	</table>
+   
                 <tr>
                     <td align=center>
-                        <a href="./storeInfo.st?s_num=<%=rvo.getS_num() %>">해당가게로이동</a>&nbsp;&nbsp;
+                        <%-- <a href="./storeInfo.st?s_num=<%=rvo.getS_num() %>">해당가게로이동</a>&nbsp;&nbsp; --%>
                         <a href="./reviewListWithPaging.re">후기 목록보기</a>
                     </td>
                 </tr>

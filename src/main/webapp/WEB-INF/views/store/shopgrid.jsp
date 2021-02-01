@@ -3,12 +3,12 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%@ page import="java.util.ArrayList"%>
-<%@include file="../includes/header_simple.jsp"%>
 
 <%
 	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
 %>
 
+<%@include file="../includes/header.jsp"%>
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/shopgrid.css"
@@ -113,68 +113,64 @@
 						</div>
 					</div>
 				</div>
-				<div class="shoplistm" id="card_row">
+				<div class="shoplistm">
 					<div class="row">
-						<%
-							for (int i = 0; i < storeList.size(); i++) {
-								StoreVO svo = (StoreVO) storeList.get(i);
-						%>
-						<div class="col-lg-4 col-md-6 col-sm-6">
-
-							<div class="card_store_addr">
-								<div class="text_left">
-									<h5>
-										<%=svo.getS_addr()%>
-									</h5>
+						<div class="shoplistn">
+							<%
+								for (int i = 0; i < storeList.size(); i++) {
+									StoreVO svo = (StoreVO) storeList.get(i);
+							%>
+							<div class="col-lg-4 col-md-6 col-sm-6">
+		
+								<div class="card_store_addr">
+									<div class="text_left">
+										<h5>
+											<%=svo.getS_addr()%>
+										</h5>
+									</div>
+								</div>
+		
+								<div class="product-item">
+										<img src="resources/img/store/store_gogi.png">
+									<!-- <div><img src="resources/img/store/%=svo.getThumbnail()% "></div> -->
+								</div>
+		
+								<div class="shoptext">
+										<div class="card_store_name">
+											<div class="shoptexto">
+												<h5>
+													<a href="#"><%=svo.getS_name()%></a> <input
+														type="hidden" id="avgStar" class="avgStar" name="avgStar"
+														value="<%=svo.getAvgStar()%>" /><%=svo.getAvgStar()%>
+												</h5>
+											</div>
+									</div>
+									<div class="shoptextt">
+										<div class="card_store_tag">
+												<%
+													if (svo.getMeat() == 0) {
+												%>
+												<h6>소고기</h6>
+												<%
+													} else if (svo.getMeat() == 1) {
+												%>
+												<h6>돼지고기</h6>
+												<%
+													} else {
+												%>
+												<h6>식당</h6>
+												<%
+													}
+												%>
+										</div>
+									</div>	
 								</div>
 							</div>
-
-							<div class="product-item">
-								<div>
-									<img src="resources/img/store/store_gogi.png">
-								</div>
-								<!-- <div><img src="resources/img/store/%=svo.getThumbnail()% "></div> -->
-							</div>
-
-
-							<div class="card_store_name">
-								<div class="text_right">
-									<h5>
-										<a href="./storeInfo.st?s_num=<%=svo.getS_num()%>"
-											style="display: inline"><%=svo.getS_name()%></a> <input
-											type="hidden" id="avgStar" class="avgStar" name="avgStar"
-											value="<%=svo.getAvgStar()%>" style="border: none" /><%=svo.getAvgStar()%>
-									</h5>
-								</div>
-							</div>
-
-							<div class="card_store_tag">
-								<div class="text_right">
-									<%
-										if (svo.getMeat() == 0) {
-									%>
-									<h6>소고기</h6>
-									<%
-										} else if (svo.getMeat() == 1) {
-									%>
-									<h6>돼지고기</h6>
-									<%
-										} else {
-									%>
-									<h6>식당</h6>
-									<%
-										}
-									%>
-								</div>
-							</div>
+							<%
+								}
+							%>
 						</div>
-						<%
-							}
-						%>
 					</div>
-				</div>
-				<div class="shoplistm" id="card_row">
-					
 				</div>
 			</div>
 		</div>
@@ -184,6 +180,6 @@
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 
 <script type="text/javascript" charset="utf-8"
-	src="${pageContext.request.contextPath}/resources/js/storelistAjaxx.js"></script>
+	src="${pageContext.request.contextPath}/resources/js/reviewlistAjaxx.js"></script>
 
 <%@include file="../includes/footer.jsp"%>

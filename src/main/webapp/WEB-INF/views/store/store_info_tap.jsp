@@ -626,7 +626,7 @@ geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
               </div>
       
             </div>
-<div class="modal-footer">
+	<div class="modal-footer">
         <button id='modalModBtn' type="button" class="btn btn-warning">수정</button>
         <button id='modalRemoveBtn' type="button" class="btn btn-danger">제거</button>
         <button id='modalRegisterBtn' type="button" class="btn btn-primary">등록</button>
@@ -834,11 +834,8 @@ $(document).ready(function (){
      
 
 </script>
-</body>
-<%@include file="../includes/footer.jsp"%>
-         </section>
+ </section>
    
-   <a style="display: scroll; position: fixed; bottom: 10px; right: 5px;"
-      href="#" title="top">TOP</a>
 
+</body>
 </html>

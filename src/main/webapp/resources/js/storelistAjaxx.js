@@ -24,7 +24,7 @@
 		
 		getlist(s_addr, meat,star);
 
-	})
+	});
 	
 	function getlist(s_addr, meat, star) {
 		var params = {"s_addr" : s_addr, "meat" : meat, "star" : star};

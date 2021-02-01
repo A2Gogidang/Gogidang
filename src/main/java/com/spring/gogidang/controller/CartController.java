@@ -79,10 +79,19 @@ public class CartController {
          
          session.setAttribute("cart_list", cart_list);
          return "mypage/cartList";
+        
       }
 
       return null;      
    }
+   
+   //장바구니 테스트용 페이지, 추후 삭제해야합니다
+   @RequestMapping("/cartTest.ct") 
+   public String cartForm() throws Exception {
+      
+      return "mypage/cart";
+   }
+   //장바구니 테스트용 페이지, 끝
    
    @RequestMapping("/cartdelete.ct")
    public String cartDelete(CartVO cartVO, HttpServletResponse response) throws Exception {
