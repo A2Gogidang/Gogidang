@@ -90,10 +90,14 @@
 						<div class="header__top__right">
 							<div class="header__top__right__auth">
 								<a href="./updateList.me"><i class="fa fa-user"></i><%=u_id %> 사장님 !</a>
-								<a href="#"><i class="fa fa-shopping-cart"></i> CART</a>
+							</div>
+							<div class="header__top__right__auth">
+								<a href="#"><i class="fa fa-bell"></i></a>
+							</div>
+							<div class="header__top__right__auth">
 								<a href="./logout.me">logout</a>
 							</div>
-						</div>
+						</div>	
 					</div>
 						<%
 						  } else if (seller_key == 2) {
@@ -102,6 +106,11 @@
 						<div class="header__top__right">
 							<div class="header__top__right__auth">
 								<a href="./updateList.me"><i class="fa fa-user"></i>관리자 입니다.</a>
+							</div>
+							<div class="header__top__right__auth">
+								<a href="#"><i class="fa fa-bell"></i></a>
+							</div>
+							<div class="header__top__right__auth">
 								<a href="./logout.me">logout</a>
 							</div>
 						</div>
@@ -113,6 +122,11 @@
 						<div class="header__top__right">
 							<div class="header__top__right__auth">
 								<a href="./updateList.me"><i class="fa fa-user"></i><%=u_id %>님!</a>
+							</div>
+							<div class="header__top__right__auth">
+								<a href="#"><i class="fa fa-bell"></i></a>
+							</div>
+							<div class="header__top__right__auth">
 								<a href="./logout.me">logout</a>
 							</div>
 						</div>
