@@ -12,8 +12,8 @@ public interface StoreMapper {
 	// taehyun
 	public ArrayList<StoreVO> getList();
 	public ArrayList<StoreVO> getWaitList();
-	public int confirmStore(StoreVO storeVO);
-	public int refuseStore(StoreVO storeVO);
+	public int confirmStore(int s_num);
+	public int refuseStore(int s_num);
 	public StoreVO storeInfo(int s_num);
 	public int checkStore(StoreVO storeVO);
 	

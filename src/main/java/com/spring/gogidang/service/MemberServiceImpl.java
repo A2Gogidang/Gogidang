@@ -50,4 +50,11 @@ public class MemberServiceImpl implements MemberService {
 		return res;
 	}
 
+	@Override
+	public MemberVO getId(String u_id) {
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		
+		return memberMapper.getId(u_id);
+	}
+
 }

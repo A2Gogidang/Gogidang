@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,13 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,22 +23,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import com.spring.gogidang.domain.*;
+import com.spring.gogidang.service.*;
 
-import com.spring.gogidang.domain.Criteria;
-import com.spring.gogidang.domain.MemberVO;
-import com.spring.gogidang.domain.MenuVO;
-import com.spring.gogidang.domain.PageDTO;
-import com.spring.gogidang.domain.QnaStoreVO;
-import com.spring.gogidang.domain.QnaVO;
-import com.spring.gogidang.domain.ReviewVO;
-import com.spring.gogidang.domain.SRReviewVO;
-import com.spring.gogidang.domain.StoreVO;
-import com.spring.gogidang.service.MenuService;
-import com.spring.gogidang.service.QnaService;
-import com.spring.gogidang.service.QnaStoreService;
-import com.spring.gogidang.service.ReviewService;
-import com.spring.gogidang.service.StoreReviewService;
-import com.spring.gogidang.service.StoreService;
 
 @Controller
 public class StoreController {
@@ -86,12 +68,36 @@ public class StoreController {
 		return "store/store_wait";
 	}
 
-	@GetMapping(value = "/get/{s_num}.st", produces = { MediaType.APPLICATION_XML_VALUE,
-			MediaType.APPLICATION_JSON_UTF8_VALUE })
-	@ResponseBody
-	public ResponseEntity<StoreVO> get(@PathVariable("s_num") int s_num) {
 
-		return new ResponseEntity<StoreVO>(storeService.storeInfo(s_num), HttpStatus.OK);
+	/*
+	 * @GetMapping(value = "/get/{s_num}.st", produces = {
+	 * MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE })
+	 */
+
+	
+	@RequestMapping(value = "/storeWaitInfo.re", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public Map<String, Object> storeWaitInfo(@RequestParam("s_num") int s_num) {
+		Map<String, Object> retVal = new HashMap<String, Object>();
+		
+		try {
+			StoreVO svo = storeService.storeInfo(s_num);
+			retVal.put("svo", svo);
+			retVal.put("s_num", svo.getS_num());
+			retVal.put("u_id", svo.getU_id());
+			retVal.put("thumbnail", svo.getThumbnail());
+			retVal.put("s_name", svo.getS_name());
+			retVal.put("s_addr", svo.getS_addr());
+			retVal.put("s_phone", svo.getS_phone());
+			retVal.put("s_img", svo.getS_img());
+			retVal.put("s_hour", svo.getS_hour());
+			retVal.put("res", "OK");
+		} catch (Exception e) {
+			retVal.put("res", "FAIL");
+			retVal.put("message", "Failure");
+		}
+		
+		return retVal;
 	}
 
 	/*
@@ -152,21 +158,46 @@ public class StoreController {
 	/*
 	 * 승인대기중인 가게 승인
 	 */
-	@RequestMapping(value = "/confirmStore.st")
-	public String confirmStore(StoreVO storeVO) {
-		storeService.confirmStore(storeVO);
-
-		return "redirect:storeList.st";
+//	@RequestMapping(value = "/confirmStore.st")
+//	@ResponseBody
+//	public String confirmStore(@RequestParam("s_num") int s_num) {
+//		storeService.confirmStore(s_num);
+//
+//		return "redirect:storeWait.st";
+//	}
+	
+	@RequestMapping(value = "/confirmStore.re", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public Map<String, Object> confirmStore(@RequestParam("s_num") int s_num) {
+		Map<String, Object> retVal = new HashMap<String, Object>();
+		System.out.println("s_num = " + s_num);
+		try {
+			storeService.confirmStore(s_num);
+			retVal.put("res", "confirm");
+		} catch (Exception e) {
+			retVal.put("res", "FAIL");
+			retVal.put("message", "Failure");
+		} 
+		
+		return retVal;
 	}
 
 	/*
 	 * 승인대기중인 가게 거절
 	 */
-	@RequestMapping(value = "/refuseStore.st")
-	public String refuseStore(StoreVO storeVO) {
-		storeService.refuseStore(storeVO);
+	@RequestMapping(value = "/refuseStore.re", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public Map<String, Object> refuseStore(@RequestParam("s_num") int s_num) {
+		Map<String, Object> retVal = new HashMap<String, Object>();
+		try {
+			storeService.refuseStore(s_num);
+			retVal.put("res", "refuse");
+		} catch (Exception e) {
+			retVal.put("res", "FAIL");
+			retVal.put("message", "Failure");
+		} 
 
-		return "redirect:storeList.st";
+		return retVal;
 	}
 
 	// soobin start
@@ -464,6 +495,7 @@ public class StoreController {
 		return "store/shopgrid";
 
 	}
+	
 
 	@RequestMapping("qnawriteform.st")
 	public String qnaInsertForm() {
