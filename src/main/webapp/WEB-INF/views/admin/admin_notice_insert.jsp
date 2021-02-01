@@ -59,6 +59,7 @@ font-size: 16px;
                 <br>
                 <button type="button" class="btn btn-success" style="background-color:#026202;">입력</button>
                 <button type="button" class="btn btn-back" style="background-color:#026202; color: white;" >뒤로가기</button>
+			</form>
 		</div>
 	</div>
 </div>

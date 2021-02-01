@@ -6,13 +6,17 @@
 <%
 	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
 %>
-<%@include file="../includes/header.jsp"%>
+<%@include file="../includes/header_simple.jsp"%>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/storewait.css"
+	type="text/css">
 
 
 <!-- Product Section Begin -->
 <section class="product spad">
 	<div class="container">
 		<div class="row">
+		<div class="qnaListn">
 			<div class="col-lg-3 col-md-5">
 				<div class="sidebar">
 					<div class="sidebar__item">
@@ -27,39 +31,38 @@
 				</div>
 			</div>
 			<!-- content Start -->
-			<div>
-				<h3>대기중인 가게 승인</h3>
-				<br>
-				<center>
-					<table border=1 width=850>
-						<tr align=center>
-							<td colspan=3>가게 대기 리스트</td>
-						</tr>
-						<tr align=center>
-							<td>가게 번호</td>
-							<td>가게 이름</td>
-							<td>상세보기</td>
-						</tr>
+			<div class="qnaList">
+				<div class="section-title">
+					<h2>가게 승인 리스트</h2>
+				</div>
+					
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>가게번호</th>
+								<th>가게이름</th>
+								<th>상세보기</th>
+							</tr>
+						</thead>
 						<%
 							if (storeList.size() > 0) {
 								for (int i = 0; i < storeList.size(); i++) {
 									StoreVO vo = (StoreVO) storeList.get(i);
 						%>
-						<tr align=center>
+						<tr>
 							<td><%=vo.getS_num()%></td>
 							<td><%=vo.getS_name()%></td>
-							<td><input type="button" data-toggle="modal"
+							<td><input type="button" class="bbtn" data-toggle="modal"
 								data-target="#myModal" value="상세보기"></td>
 						</tr>
 						<%
 							}
 							}
 						%>
-						</tr>
 					</table>
-				</center>
+
 			</div>
-			<!-- content End -->
+			</div>
 		</div>
 	</div>
 </section>

@@ -9,7 +9,7 @@
 <%
 	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
 %>
-<%@include file="../includes/header.jsp"%>
+<%@include file="../includes/header_simple.jsp"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/store_updateStyle.css" type="text/css">
 <%
 	StoreVO vo = (StoreVO) session.getAttribute("StoreVO");

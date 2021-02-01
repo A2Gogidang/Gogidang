@@ -4,9 +4,9 @@
 	.shoplistt{
 	display: flex;
 	justify-content: center;
+	width: 100%;
 	}
 	.shoplis{
-	width: 1140px;
 	padding-top: auto;
 	padding-right: 15px;
 	padding-left: 15px; 
@@ -17,6 +17,7 @@
 	padding-left: 15px;
 	padding-bottom: 15px; 
 	 background-color: #f5faff;
+	 width: 100%;
 	}
 	.shoplistone{
 	display: flex;
@@ -199,10 +200,11 @@
 	}
 	.shoplistm .row .col-lg-4{
 	padding-top: 20px;
+	width: 100%;
 	}
 	.shoplistn {
 	display:flex;
-	width:1080px;
 	flex-wrap: wrap;
+	padding-left: 20px;
 
 	}
