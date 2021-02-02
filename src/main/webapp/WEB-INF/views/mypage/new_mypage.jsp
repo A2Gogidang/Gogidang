@@ -7,10 +7,13 @@
 	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
 	StoreVO storeVO = (StoreVO) session.getAttribute("StoreVO");
 %>
-<%@include file="../includes/header.jsp"%>
+
+<%@include file="../includes/header_simple.jsp"%>
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/new_mypage.css"
 	type="text/css">
+
 
 <style>
 /* The Modal 스타일 시작 --------------------------------> */
@@ -18,6 +21,9 @@
 
 /* The Modal 스타일 끝 <---------------------------------- */
 </style>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/storewait.css"
+	type="text/css">
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -85,6 +91,7 @@ $(document).ready(function() {
 <section class="product spad">
 	<div class="container">
 		<div class="row">
+		<div class="qnaListn">
 			<div class="col-lg-3 col-md-5">
 				<div class="sidebar">
 					<div class="sidebar__item">
@@ -99,25 +106,24 @@ $(document).ready(function() {
 				</div>
 			</div>
 			<!-- content Start -->
-			<div>
-				<h3>대기중인 가게 승인</h3>
-				<br>
-				<center>
-					<table border=1 width=850>
-						<tr align=center>
-							<td colspan=3>가게 대기 리스트</td>
-						</tr>
+			<div class="qnaList">
+				<div class="section-title">
+					<h2>가게 승인 대기 리스트</h2>
+				</div>
+					<table class="table table-striped">
+						<thead>
 						<tr align=center>
 							<td>가게 번호</td>
 							<td>가게 이름</td>
 							<td>상세보기</td>
 						</tr>
+						</thead>
 						<%
 							if (storeList.size() > 0) {
 								for (int i = 0; i < storeList.size(); i++) {
 									StoreVO vo = (StoreVO) storeList.get(i);
 						%>
-						<tr align=center>
+						<tr>
 							<td><%=vo.getS_num()%></td>
 							<td><%=vo.getS_name()%></td>
 							<td><button id="myBtn">Open Modal</button></td>
@@ -130,11 +136,10 @@ $(document).ready(function() {
 							}
 							}
 						%>
-						</tr>
 					</table>
-				</center>
 			</div>
 			<!-- content End -->
+			</div>
 		</div>
 	</div>
 </section>
