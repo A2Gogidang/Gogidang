@@ -112,47 +112,45 @@
 		<span class="close">&times;</span>                                                               
 		<form>
 			<fieldset>
-			<legend>회원 기본 정보</legend>
+			<legend>리뷰 내용</legend>
 			<ol>
 			  <li>
 			    <label for="review_num">리뷰번호</label>
 			    <input type="text" id="review_num" name="review_num">
 			  </li>
 			  <li>
+				<li>
+			    <label for="title">리뷰제목</label>
+			    <input type="text" id="title" name="title">
+			  </li>
 			    <label for="u_id">회원아이디</label>
 			    <input type="text" id="u_id" name="u_id">
 			  </li>
 			  <li>
-			    <label for="thumbnail">가게메인사진</label>
-			    <input type="text" id="thumbnail" name="thumbnail">
+			    <label for="nickname">회원닉네임</label>
+			    <input type="text" id="nickname" name="nickname">
 			  </li> 
 				
 				<li>
-			    <label for="s_name">가게이름</label>
-			    <input type="text" id="s_name" name="s_name">
-			  </li>
-				<li>
-				<label for="s_addr">가게주소</label>
-			    <input id="s_addr" name="s_addr" type="text">
+				<label for="content">리뷰내용</label>
+			    <input id="content" name="content" type="text">
 			  </li> 
 				<li>
-					<label for="s_phone">가게번호</label>
-			    <input id="s_phone" name="s_phone" type="text">
+					<label for="star">별점</label>
+			    <input id="star" name="star" type="text">
 			  </li> 
-			  <li>
-			    <label for="s_img">사업자등록사진</label>
-			    <input id="s_img" name="s_img" type="text" >
-			  </li>
-			  <li>
-			    <label for="s_hour">운영시간</label>
-			    <input id="s_hour" name="s_hour" type="text">
-			  </li>
+				<li>
+					<label for="re_review">답글</label>
+			   <input type="text" id="re_review" name="re_review"/>
+			  </li> 
 			</ol>
 			</fieldset>
-
+			
+			
+			
 			<fieldset>
-			  	<input type="button" id="confirmBtn" value="승인"/>
-				<input type="button" id="refuseBtn" value="거절"/>
+			  	<input type="button" id="confirmBtn" value="댓글달기"/>
+			  	<input type="button" id="confirmBtn" value="닫기"/>
 			</fieldset>
 		</form>
 	</div>
@@ -183,13 +181,23 @@ $(document).ready(function() {
 		$.ajax({
 			url : 'reviewInfoAjax.re',
 			type : 'POST',
-			data : {'review_num' : $('input#vo_review_num').val()},
+			data : {'review_num' : event},
 			contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 			dataType : 'json',
 			success : function(retVal) {
 				if (retVal.res == "OK") {
 					var review_num = retVal.review_num;
+					var u_id = retVal.u_id;
+					var nickname = retVal.nickname;
+					var title = retVal.title;
+					var content = retVal.content;
+					var star = retVal.star;
 					$('input#review_num').val(review_num);
+					$('input#u_id').val(u_id);
+					$('input#nickname').val(nickname);
+					$('input#title').val(title);
+					$('input#content').val(content);
+					$('input#star').val(star);
 				} else {
 					alert("confirm Fail!!!!");
 				}
@@ -210,10 +218,6 @@ $(document).ready(function() {
 	        modal.style.display = "none";
 	    }
 	}
-	
-	 $('[id=myBtn1]').click(function(){ //댓글 등록 버튼 클릭시 속성이름 [] 으로 접근 가능
-		 callModal(event);
-	   });
 
 //리뷰 목록
 function commentList(){
@@ -230,7 +234,7 @@ function commentList(){
       		a += '<td>' + value.u_id + '</td>';
       		a += '<td>' + value.star + '</td>';
       		a += '<td>' + value.review_date + '</td>';
-      		a += '<td><button id="myBtn'+ value.review_num +'" class="btn btn-primary btn-xs pull-right">리뷰댓글</button></td></tr>';
+      		a += '<td><button onclick="callModal(' + value.review_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right">리뷰댓글</button></td></tr>';
         });
         
         $("#review_content").html(a); //a내용을 html에 형식으로 .commentList로 넣음
