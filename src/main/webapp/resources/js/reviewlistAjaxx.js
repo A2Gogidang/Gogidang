@@ -1,3 +1,34 @@
+	$(document).ready(function() {
+	
+		commentList();
+	});
+	
+	//리뷰 목록
+	function commentList(){
+		$('#review_content').empty();
+	  $.ajax({
+	     url : 'reviewListAjax.re',
+	     contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+	     success: function(data) {
+	    	 	var output = '';
+				$.each(data, function(index, item) {
+					output += '<div class="col-lg-4 col-md-6 col-sm-6">';
+					output += '<div class="product-item">';
+					output += '<div><img src="resources/img/store/store_gogi.png"></div></div>';
+					output += '<div class="card_store_name"><div class="text_right"><h5>';
+					output += '<a href="#" style="display: inline">' + item.title + '</a>';
+					output += '<input type="hidden" id="avgStar" class="avgStar" name="avgStar" value="' + item.star + '" style="border: none" />' +item.star;
+					output += '</h5></div></div></div>';
+				});
+				$('#review_content').append(output);
+			},
+			error:function() {
+				alert("ajax통신 실패");
+			}
+	  });
+	}
+
+
 	var s_addr = [];
 	var meat =[];  
 	var star = [];

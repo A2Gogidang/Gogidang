@@ -4,7 +4,7 @@ padding-top: 30px; padding-bottom: 30px; padding-left: 25px;
  padding-right: 0;
  }
  #cartbutton{
-   background-color: #7fad39; color: white; border: 0; outline: 0;  border-radius: 3px; height : 30px;
+	background-color: #7fad39; color: white; border: 0; outline: 0;  border-radius: 3px; height : 30px;
 }
 #menu_info{
 margin-top : 15px;
@@ -98,21 +98,62 @@ element.style {
     border-color: #ddd;
 }
 #ReviewId{
-   text-aligin : left;
+	text-aligin : left;
 }
 
 #ReviewTitle{
-   display : flex;
-   justify-content: space-between;
+	display : flex;
+	justify-content: space-between;
 }
 #reviewStar{
-   text-aligin : left;
+	text-aligin : left;
 }
 
 #Insert_date{
-   text-aligin : left;
+	text-aligin : left;
 }
-.i{
-   color : 
-   #edbb0e;
+.panel-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: inherit;
+}
+
+#ReviewTitle{
+	font-size : 20px;
+	    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.panel-heading .panel-title{
+	font-size : 30px;
+	    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	color : white;
+}	
+
+#panel-default{
+margin-top : 70px;
+}
+#panel-heading{
+	background-color : rgb(127,173,57 ,0.9);
+}
+#reviewTextContent{
+	margin-top : 20px;
+	font-size : 20px;
+	text-aligin : left;
+	    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.Seller_answer{
+	font-size: 20px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	margin-bottom : 10px;
+}
+.review_Container {
+    width: 1138px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.review_Pic{
+	width : 923px;
+	height : 197px;
 }

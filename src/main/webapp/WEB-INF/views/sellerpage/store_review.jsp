@@ -5,21 +5,60 @@
 <%@ page import="javax.naming.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
- <%@include file="../includes/header_simple.jsp"%>
+<%@include file="../includes/header_simple.jsp"%>
 
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-   
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<style>
+/* The Modal 스타일 시작 --------------------------------> */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* 10% from the top and centered */
+    padding: 0px;
+    border: 10px solid #585858;
+    width: 440px; /* Could be more or less, depending on screen size */                          
+}
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* The Modal 스타일 끝 <---------------------------------- */
+</style>
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/store_reviewStyle.css"
 	type="text/css">
+	
 <%
 	ArrayList<SRReviewVO> srReviewList = (ArrayList<SRReviewVO>) request.getAttribute("srReviewList");
 	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+	String id1 = memberVO.getU_id();
+	String id = "'" + memberVO.getU_id() + "'";
 %>
-
-
-
 
 <!-- Product Section Begin -->
 <section class="product spad">
@@ -39,7 +78,6 @@
 					</div>
 				</div>
 			</div>
-			<!-- ---------------------------------------------------시작----------------------------------------------------- -->
 			<div class="reviewboard">
 				<div class="section-title product__discount__title">
 					<h2>리뷰 관리</h2>
@@ -56,238 +94,157 @@
 								<th>답변 상태</th>
 							</tr>
 						</thead>
-						<tbody class="text-center">
-							<%
-								for (int i = 0; i < srReviewList.size(); i++) {
-
-									SRReviewVO srReviewvo = (SRReviewVO) srReviewList.get(i);
-							%>
-							<tr align=center>
-								<td><%=i + 1%></td>
-								<td><a
-									href="storereviewInfo.bo?review_num=<%=srReviewvo.getReview_num()%>"><%=srReviewvo.getTitle()%></a>
-								</td>
-								<td><%=srReviewvo.getU_id()%></td>
-								<td><%=srReviewvo.getStar()%></td>
-								<td><%=srReviewvo.getReview_date()%></td>
-
-								<%
-									if (srReviewvo.getRe_content() == null || srReviewvo.getRe_content() == "") {
-								%>
-								<td>
-				<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>리뷰문의 등록</button>
-								</td>
-
-								<%
-									} else {
-								%>
-								<td>답변 완료</td>
-								<%
-									}
-								%>
-
-								<%
-									}
-								%>
-							</tr>
+						<tbody id="review_content" class="text-center">
+							
 						</tbody>
 					</table>
 				</div>
 			</div>
-			<!-- ----------------------------------------------------끝---------------------------------------------------- -->
 		</div>
 	</div>
-	
-	
 </section>
-      <!-- Modal -->
 
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-        aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"
-                aria-hidden="true">&times;</button>
-              <h4 class="modal-title" id="myModalLabel">리뷰 답변 페이지</h4>
-            </div>
-            <div class="modal-body">
-        
-              <div class="form-group">
-                <label>번호</label> 
-                <input class="form-control" name='review_num' value= >
-              </div>      
-              <div class="form-group">
-                <label>제목</label> 
-                <input class="form-control" name='title' value=''>
-              </div>
-              <div class="form-group">
-                <label>작성자</label> 
-                <input class="form-control" name='u_id' value=''>
-              </div>
-                            <div class="form-group">
-                <label>별점</label> 
-                <input class="form-control" name='star' value=''>
-              </div>      
- 
-            </div>
-            
-<div class="modal-footer">
-        <button id='modalModBtn' type="button" class="btn btn-warning">수정</button>
-        <button id='modalRemoveBtn' type="button" class="btn btn-danger">제거</button>
-        <button id='modalRegisterBtn' type="button" class="btn btn-primary">등록</button>
-        <button id='modalCloseBtn' type="button" class="btn btn-default" data-dismiss='modal'>닫기</button>
-        <button id='modalClassBtn' type='button' class="btn btn-default" data-dismiss='modal'>닫기</button>
-      </div>          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->
-<!-- Product Section End -->
+<!-- The Modal -->
+<div id="myModal" class="modal">
+	 
+	<!-- Modal content -->
+	<div class="modal-content">
+		<span class="close">&times;</span>                                                               
+		<form>
+			<fieldset>
+			<legend>리뷰 내용</legend>
+			<ol>
+			  <li>
+			    <label for="review_num">리뷰번호</label>
+			    <input type="text" id="review_num" name="review_num">
+			  </li>
+			  <li>
+				<li>
+			    <label for="title">리뷰제목</label>
+			    <input type="text" id="title" name="title">
+			  </li>
+			    <label for="u_id">회원아이디</label>
+			    <input type="text" id="u_id" name="u_id">
+			  </li>
+			  <li>
+			    <label for="nickname">회원닉네임</label>
+			    <input type="text" id="nickname" name="nickname">
+			  </li> 
+				
+				<li>
+				<label for="content">리뷰내용</label>
+			    <input id="content" name="content" type="text">
+			  </li> 
+				<li>
+					<label for="star">별점</label>
+			    <input id="star" name="star" type="text">
+			  </li> 
+				<li>
+					<label for="re_review">답글</label>
+			   <input type="text" id="re_review" name="re_review"/>
+			  </li> 
+			</ol>
+			</fieldset>
+			
+			
+			
+			<fieldset>
+			  	<input type="button" id="confirmBtn" value="댓글달기"/>
+			  	<input type="button" id="confirmBtn" value="닫기"/>
+			</fieldset>
+		</form>
+	</div>
+</div>
+<!-- modal END -->
 
-	<script type="text/javascript" src="./resources/js/review-reply.js"></script>
-    <script src="./resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="./resources/vendor/metisMenu/metisMenu.min.js"></script>
-    <!-- DataTables JavaScript -->
-    <script src="./resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="./resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="./resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="./resources/dist/js/sb-admin-2.js"></script>
-	
 <script>
-$(document).ready(function (){
-   var s_numValue = '<c:out value="${storeVO.getS_num()}"/>';
-   var replyUL = $(".chat");
-      
-  // showList(1);
-   /*    
-      function showList(page) {
-    	  console.log("show List" +page);
-    	  reviewService.getList({s_num:s_numValue,page: page || 1}, function(qnastoreCnt,list){
-            console.log("qnastorCnt:"+ qnastoreCnt);
-            console.log("list:"+ list);
-            console.log(list);
-            
-            if(page == -1) {
-            	pageNum = Math.ceil(qnastoreCnt/10.0);
-            	showList(pageNum);
-            	return;
-            }
-    		  
-            var str="";
-            
-            if(list == null || list.length == 0) {
-            	return;
-               
-            }
-            for (var i=0,len = list.length || 0; i < len; i++) {
-               str +="<li class='left clearfix' data-qs_num='"+list[i].qs_num+"'>";
-               str +="      <div><div class='header'><strong class='primary-font'>"+list[i].u_id+"</strong>";
-               str +="         <small class='pull-right text-muted'>"+qnaService.displayTime(list[i].qna_date)+"</small></div>";
-               str +="            <p>"+list[i].content+"</p></div></li>";
-            }
-               replyUL.html(str);
-               
-               showqnastorePage(qnastoreCnt);
-         });//end function
-      } //end showList */
+var u_id = <%=id %>;
 
-      var modal = $(".modal");
-      var modalInputContent = modal.find("input[name='re_content']");
-      var modalInputU_id = modal.find("input[name='u_id']");
-      var modalInputQna_date = modal.find("input[name='re_date']");
-      
-      var modalModBtn = $("#modalModBtn");
-      var modalRemoveBtn = $("#modalRemoveBtn");
-      var modalRegisterBtn = $("#modalRegisterBtn");
-      
-      $("#addReplyBtn").on("click", function(e){
-         modal.find("input").val("");
-         modalInputQna_date.closest("div").hide();
-         modal.find("button[id !='modalCloseBtn']").hide();
-         
-         modalRegisterBtn.show();
-   
-         $(".modal").modal("show");
-     
-	});
-      var srreview;
-      modalRegisterBtn.on("click",function(e){
-    	 
-    	  srreview = {
-  			  re_content: modalInputContent.val(),
-  			  u_id: modalInputU_id.val()
-  			  
-  	  	};
-  	reviewService.add(srreview, function(result) {
-  		  
-  		  alert("추가되었습니다"+result);
-  		  
-  		  modal.find("input").val("");
-  		  modal.modal("hide");
-  		  
-  		  //showList(1);
-  		  showList(1);
+$(document).ready(function() {
+	
+	commentList();
 });
+	
+	// Get the modal
+	var modal = document.getElementById('myModal');
 
-  	});
-  	
-/*   	//댓글 조회 클릭 이벤트 처리
-  	$(".chat").on("click","li",function(e){
+	// Get the button that opens the modal
+	var btn = document.getElementById('myBtn1');
+	
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];   
 
-  		var qs_num = $(this).data("qs_num");
-  		alert("qs_num=" + qs_num);
-  		
-  		reviewService.get(qs_num,function(res) {
-  			console.log(res);
-  			alert("qnastore.qs_num=" + res.qs_num);
-  			modalInputContent.val(res.content);
-  			modalInputU_id.val(res.u_id);
-  			modalInputQna_date.val(qnaService.displayTime(res.qna_date)).attr("readonly","readonly");
-  			modal.data("qs_num",res.qs_num);
-  			
-  			console.log(qs_num);
-  			
-  			modal.find("button[id !='modalCloseBtn']").hide();
-  			modalModBtn.show();
-  			modalRemoveBtn.show();
-  			
-  			$(".modal").modal("show");
-  		});
-  	});
-  	
-  	modalModBtn.on("click",function(e) {
-  		var content = {qs_num:modal.data("qs_num"), content:modalInputContent.val()};
-  		
-  		reviewService.update(content, function(result) {
-  			alert(result);
-  			modal.modal("hide");
-  			showList(pageNum);
-  		});
-  		
-  	});
-  	
-  	modalRemoveBtn.on("click",function(e) {
-  		var qs_num = modal.data("qs_num");
-  		
-  		reviewService.remove(qs_num, function(result) {
-  			alert(result);
-  			modal.modal("hide");
-  			showList(pageNum);
-  		});
-  	});
-  	 */
-  
-  	
-});	
-  	
+	// When the user clicks on the button, open the modal 
+	function callModal(event) {
+		$.ajax({
+			url : 'reviewInfoAjax.re',
+			type : 'POST',
+			data : {'review_num' : event},
+			contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+			dataType : 'json',
+			success : function(retVal) {
+				if (retVal.res == "OK") {
+					var review_num = retVal.review_num;
+					var u_id = retVal.u_id;
+					var nickname = retVal.nickname;
+					var title = retVal.title;
+					var content = retVal.content;
+					var star = retVal.star;
+					$('input#review_num').val(review_num);
+					$('input#u_id').val(u_id);
+					$('input#nickname').val(nickname);
+					$('input#title').val(title);
+					$('input#content').val(content);
+					$('input#star').val(star);
+				} else {
+					alert("confirm Fail!!!!");
+				}
+			}
+		});
+		
+	    modal.style.display = "block";
+	}
 
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function(event) {
+	    modal.style.display = "none";
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	}
+
+//리뷰 목록
+function commentList(){
+  $.ajax({
+     url : 'storeReviewList.re',
+     data : {'u_id' : u_id}, //u_id의 가게의 리뷰를 다 가져온다.
+     dataType : 'json',
+     contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+     success : function(data){ 
+        var a ='';
+        $.each(data, function(key,value){ //data는 list객체를 받음(controller return 부분)list는 commentVO를 여려개 가지고 있음
+      		a += '<tr align=center><td>'+ value.review_num + '</td>';
+      		a += '<td>' + value.title + '</td>';
+      		a += '<td>' + value.u_id + '</td>';
+      		a += '<td>' + value.star + '</td>';
+      		a += '<td>' + value.review_date + '</td>';
+      		a += '<td><button onclick="callModal(' + value.review_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right">리뷰댓글</button></td></tr>';
+        });
+        
+        $("#review_content").html(a); //a내용을 html에 형식으로 .commentList로 넣음
+     },
+     error:function(){
+        alert("ajax통신 실패(list)!!!");
+     }
+  });
+}
 </script>
 
-<!-- Footer Section Begin -->
-<%@include file="../includes/footer.jsp"%>
-	
+
+<%@include file="../includes/footer.jsp" %>

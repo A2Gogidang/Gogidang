@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -57,6 +58,15 @@ public class ReviewController {
 //		return "review/review_list";
 	}
 	
+	@RequestMapping(value = "/reviewListAjax.re", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public List<ReviewVO> reviewListAjax() {
+		
+		List<ReviewVO> reviewList = reviewService.getList();
+		System.out.println(reviewList.size());
+		return reviewList;
+	}
+	
 	@RequestMapping("/reviewListWithPaging.re")
 	public String reviewListWithPaging(Criteria cri, Model model) {
 		
@@ -66,22 +76,7 @@ public class ReviewController {
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		
 		return "review/review_list_grid";
-//		return "review/review_list";
 	}
-	
-	/*
-	 * @RequestMapping("/reviewListByIdWithPaging.re") public String
-	 * reviewListByIdWithPaging(@RequestParam("u_id") String u_id, Criteria cri,
-	 * Model model) {
-	 * 
-	 * model.addAttribute("reviewList", reviewService.getListByIdWithPaing(cri,
-	 * u_id));
-	 * 
-	 * int total = reviewService.getTotal(cri); model.addAttribute("pageMaker", new
-	 * PageDTO(cri, total));
-	 * 
-	 * return "mypage/member_review"; }
-	 */
 	
 	@RequestMapping("/reviewListByIdWithPaging.re") 
 	public String reviewListByIdWithPaging(@RequestParam("u_id") String u_id,Criteria cri,Model model , HttpSession session) {
@@ -112,6 +107,28 @@ public class ReviewController {
 		model.addAttribute("review", reviewService.getReview(review_num));
 		
 		return "review/review_info";
+	}
+	
+	@RequestMapping(value = "/reviewInfoAjax.re", method =RequestMethod.POST, produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public Map<String, Object> reviewInfoAjax(@RequestParam("review_num") int review_num) {
+		Map<String, Object> retVal = new HashMap<String, Object>();
+		
+		try {
+			ReviewVO rvo = reviewService.getReview(review_num);
+			retVal.put("review_num", rvo.getReview_num());
+			retVal.put("u_id", rvo.getU_id());
+			retVal.put("nickname", rvo.getNickname());
+			retVal.put("title", rvo.getTitle());
+			retVal.put("content", rvo.getContent());
+			retVal.put("star", rvo.getStar());
+			retVal.put("res", "OK");
+		} catch (Exception e) {
+			retVal.put("res", "FAIL");
+			retVal.put("message", "Failure");
+		}
+	
+		return retVal;
 	}
 	
 	// file upload
@@ -204,7 +221,7 @@ public class ReviewController {
 	
 	@RequestMapping(value="/reviewlist_ajax.re", produces="application/json; charset=utf-8")
 	@ResponseBody 
-	public List<ReviewVO> getStoreListAjax( @RequestBody Map<String, String[]> map) {
+	public List<ReviewVO> getReviewListAjax( @RequestBody Map<String, String[]> map) {
 		
 		String[] s_addr = map.get("s_addr");
 		for(String no : s_addr) {

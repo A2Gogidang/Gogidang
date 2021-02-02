@@ -18,5 +18,7 @@ encoding//src/main/webapp/WEB-INF/views/qna/qna_board_modify.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/qna/qna_board_write.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/review/review_list_grid.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/sellerpage/store_reg_form.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/store/shop-detail.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/store/shop-details.jsp=UTF-8
 encoding//src/main/webapp/resources/css/loginDetail.css=UTF-8
 encoding//src/main/webapp/resources/css/style.css=UTF-8
