@@ -1,4 +1,4 @@
-<%@ page import="com.spring.gogidang.domain.*"%>
+<%-- <%@ page import="com.spring.gogidang.domain.*"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -197,9 +197,23 @@
                             <div class="sidebar__item">
                                 <h4><ul><a href="./reviewList.re">후기 검색</a></ul></h4>
                             </div>
+                            <%
+                           if(mvo == null|| mvo.getU_id() == null || mvo.getU_id()==""){
+                            %>
                             <div class="sidebar__item">
                                 <h4><ul><a href="./updateList.me">마이 페이지</a></ul></h4>
                             </div>
+                            <%
+                            }else{
+                            %>	
+                            <div class="sidebar__item">
+                                <h4><ul><a href="./loginForm.me">마이 페이지</a></ul></h4>
+                            </div>
+                            <% 
+                            }
+                            %>
+                           
+                            
                             <div class="sidebar__item">
                                 <h4><ul><a href="#">예약 현황</a></ul></h4>
                             </div>
@@ -372,4 +386,4 @@
  <%@include file="./includes/footer.jsp"%>
 <script type="text/javascript" src="resources/js/slick.js"></script>
 </body>
-</html>
+</html> --%>

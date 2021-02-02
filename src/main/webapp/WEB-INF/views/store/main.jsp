@@ -1,4 +1,4 @@
-<%@ page import="com.spring.gogidang.domain.*"%>
+<%-- <%@ page import="com.spring.gogidang.domain.*"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -369,4 +369,4 @@
  
 <script type="text/javascript" src="resources/js/slick.js"></script>
 </body>
-</html>
+</html> --%>

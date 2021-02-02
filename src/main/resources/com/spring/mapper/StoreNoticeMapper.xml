@@ -8,7 +8,7 @@
 		SELECT s.s_comment_num
 			  ,s.re_content
 			  ,s.re_date
-			  ,q.qs_num
+			  ,q.QNASTORE_NUM
 			  ,q.u_id
 			  ,q.content
 			  ,q.qna_date
