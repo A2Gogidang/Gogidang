@@ -53,5 +53,8 @@
 		VALUES (#{qna_num}, #{u_id}, #{title}, #{content},sysdate , #{re_ref}, #{re_lev}, #{re_seq})
 	</insert>
 	
+	<select id="getList" resultType="QnaVO">
+		select * from qna
+	</select>
  
  </mapper>

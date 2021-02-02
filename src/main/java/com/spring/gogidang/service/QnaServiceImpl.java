@@ -11,8 +11,6 @@ import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.QnaVO;
 import com.spring.mapper.QnaMapper;
 
-
-
 @Service("qnaService")
 public class QnaServiceImpl implements QnaService {
 
@@ -81,6 +79,12 @@ public class QnaServiceImpl implements QnaService {
 	      int res = qnaMapper.qnaReply(qna);
 	      return res;
 	   }
+
+	@Override
+	public List<QnaVO> getList() {
+		QnaMapper qnaMapper = sqlSession.getMapper(QnaMapper.class);
+		return qnaMapper.getList();
+	}
 	
 }
 
