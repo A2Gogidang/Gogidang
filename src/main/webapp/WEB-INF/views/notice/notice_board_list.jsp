@@ -20,7 +20,7 @@
 <title>공지사항</title>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/updateList.css"
+	href="${pageContext.request.contextPath}/resources/css/notice.css"
 	type="text/css">
 
 
@@ -46,7 +46,7 @@
 					</div>
 				</div>
 				<div class="qnaList">
-					<div class="section-title">
+					<div class="section-title product__discount__title">
 						<h2>공지사항</h2>
 					</div>
 					<table class="table table-striped">

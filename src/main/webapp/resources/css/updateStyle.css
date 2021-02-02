@@ -317,7 +317,7 @@ align-item: center;
     -webkit-tap-highlight-color: transparent;
     background-color: #fff;
     border-radius: 5px;
-    border: solid 1px #e8e8e8;
+    border: 1px solid rgb(173, 173, 173);
     box-sizing: border-box;
     clear: both;
     cursor: pointer;
@@ -347,4 +347,8 @@ align-item: center;
 /*soobin*/
 .reviewboard{
 	width: 580px;
+}
+
+.current{
+	font-size: 13px;	
 }

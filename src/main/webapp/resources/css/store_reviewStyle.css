@@ -19,13 +19,15 @@ form #store_not{
 	background: #7fad39;
 	border:1px solid #7fad39;;
 	font-family: "Cairo", sans-serif;
-	font-size: 15px;
+	font-size: 13px;
 	font-weight:bold;
 	border-radius: 3px;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: white;
 }
+
+
 
 .join_btn .btn-jj {
 	width: 220px;

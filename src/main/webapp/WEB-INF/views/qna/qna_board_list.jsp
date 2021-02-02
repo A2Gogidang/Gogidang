@@ -39,7 +39,7 @@
 				</div>
 			</div>
 			<div class="rowNotice">
-				<div class="section-title">
+				<div class="section-title product__discount__title">
 					<h2>문의 게시판</h2>
 				</div>
 				

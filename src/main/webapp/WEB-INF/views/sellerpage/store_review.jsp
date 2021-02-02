@@ -6,6 +6,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
  <%@include file="../includes/header_simple.jsp"%>
+ 
 
 
    
@@ -75,7 +76,7 @@
 									if (srReviewvo.getRe_content() == null || srReviewvo.getRe_content() == "") {
 								%>
 								<td>
-				<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>리뷰문의 등록</button>
+									<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>리뷰문의 등록</button>
 								</td>
 
 								<%
@@ -100,8 +101,8 @@
 	
 	
 </section>
-      <!-- Modal -->
-
+     <!-- Modal -->
+<!-- 
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -139,23 +140,23 @@
         <button id='modalCloseBtn' type="button" class="btn btn-default" data-dismiss='modal'>닫기</button>
         <button id='modalClassBtn' type='button' class="btn btn-default" data-dismiss='modal'>닫기</button>
       </div>          </div>
-          <!-- /.modal-content -->
+          /.modal-content
         </div>
-        <!-- /.modal-dialog -->
+        /.modal-dialog
       </div>
-      <!-- /.modal -->
-<!-- Product Section End -->
+      /.modal
+Product Section End
 
 	<script type="text/javascript" src="./resources/js/review-reply.js"></script>
     <script src="./resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!-- Metis Menu Plugin JavaScript -->
+    Metis Menu Plugin JavaScript
     <script src="./resources/vendor/metisMenu/metisMenu.min.js"></script>
-    <!-- DataTables JavaScript -->
+    DataTables JavaScript
     <script src="./resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="./resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="./resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
 
-    <!-- Custom Theme JavaScript -->
+    Custom Theme JavaScript
     <script src="./resources/dist/js/sb-admin-2.js"></script>
 	
 <script>
@@ -234,8 +235,8 @@ $(document).ready(function (){
   		  showList(1);
 });
 
-  	});
-  	
+  	}); -->
+<!--   	
 /*   	//댓글 조회 클릭 이벤트 처리
   	$(".chat").on("click","li",function(e){
 
@@ -283,12 +284,12 @@ $(document).ready(function (){
   	 */
   
   	
-});	
+});	 -->
   	
 
 </script>
 
-<!-- Footer Section Begin -->
+<!-- <--!Footer Section Begin
 	<footer class="footer spad">
 		<div class="container">
 			<div class="row">
@@ -355,7 +356,7 @@ $(document).ready(function (){
 					<div class="footer__copyright">
 						<div class="footer__copyright__text">
 							<p>
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
 								Copyright &copy;
 								<script>
 									document.write(new Date().getFullYear());
@@ -363,7 +364,7 @@ $(document).ready(function (){
 								All rights reserved | This template is made with <i
 									class="fa fa-heart" aria-hidden="true"></i> by <a
 									href="https://colorlib.com" target="_blank">Colorlib</a>
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
 							</p>
 						</div>
 						<div class="footer__copyright__payment">
@@ -374,19 +375,9 @@ $(document).ready(function (){
 			</div>
 		</div>
 	</footer>
-	<!-- Footer Section End -->
+	Footer Section End -->
 	
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.nice-select.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.slicknav.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/mixitup.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+	<%@include file="../includes/footer.jsp"%>
 		
 	</body>
 </html>

@@ -42,7 +42,7 @@
 					</div>
 				</div>
 					<div class="eventList">
-						<div class="section-title">
+						<div class="section-title product__discount__title">
 							<h2>이벤트</h2>
 						</div>
 
