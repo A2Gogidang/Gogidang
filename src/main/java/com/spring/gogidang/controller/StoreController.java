@@ -68,38 +68,6 @@ public class StoreController {
 		return "store/store_wait";
 	}
 
-
-	/*
-	 * @GetMapping(value = "/get/{s_num}.st", produces = {
-	 * MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE })
-	 */
-
-	
-	@RequestMapping(value = "/storeWaitInfo.re", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
-	@ResponseBody
-	public Map<String, Object> storeWaitInfo(@RequestParam("s_num") int s_num) {
-		Map<String, Object> retVal = new HashMap<String, Object>();
-		
-		try {
-			StoreVO svo = storeService.storeInfo(s_num);
-			retVal.put("svo", svo);
-			retVal.put("s_num", svo.getS_num());
-			retVal.put("u_id", svo.getU_id());
-			retVal.put("thumbnail", svo.getThumbnail());
-			retVal.put("s_name", svo.getS_name());
-			retVal.put("s_addr", svo.getS_addr());
-			retVal.put("s_phone", svo.getS_phone());
-			retVal.put("s_img", svo.getS_img());
-			retVal.put("s_hour", svo.getS_hour());
-			retVal.put("res", "OK");
-		} catch (Exception e) {
-			retVal.put("res", "FAIL");
-			retVal.put("message", "Failure");
-		}
-		
-		return retVal;
-	}
-
 	/*
 	 * 가게 상세 정보 보기
 	 */
@@ -154,53 +122,7 @@ public class StoreController {
 		// return "store/store_info";
 		return "store/shop-details";
 	}
-
-	/*
-	 * 승인대기중인 가게 승인
-	 */
-//	@RequestMapping(value = "/confirmStore.st")
-//	@ResponseBody
-//	public String confirmStore(@RequestParam("s_num") int s_num) {
-//		storeService.confirmStore(s_num);
-//
-//		return "redirect:storeWait.st";
-//	}
 	
-	@RequestMapping(value = "/confirmStore.re", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
-	@ResponseBody
-	public Map<String, Object> confirmStore(@RequestParam("s_num") int s_num) {
-		Map<String, Object> retVal = new HashMap<String, Object>();
-		System.out.println("s_num = " + s_num);
-		try {
-			storeService.confirmStore(s_num);
-			retVal.put("res", "confirm");
-		} catch (Exception e) {
-			retVal.put("res", "FAIL");
-			retVal.put("message", "Failure");
-		} 
-		
-		return retVal;
-	}
-
-	/*
-	 * 승인대기중인 가게 거절
-	 */
-	@RequestMapping(value = "/refuseStore.re", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
-	@ResponseBody
-	public Map<String, Object> refuseStore(@RequestParam("s_num") int s_num) {
-		Map<String, Object> retVal = new HashMap<String, Object>();
-		try {
-			storeService.refuseStore(s_num);
-			retVal.put("res", "refuse");
-		} catch (Exception e) {
-			retVal.put("res", "FAIL");
-			retVal.put("message", "Failure");
-		} 
-
-		return retVal;
-	}
-
-	// soobin start
 	// 가게 등록 + 수정
 	@RequestMapping(value = "/storeInsert.st", method = RequestMethod.POST)
 	public String storeInsert(StoreVO store, HttpSession session, HttpServletResponse response,
@@ -274,24 +196,6 @@ public class StoreController {
 
 	}
 
-	/*
-	 * @RequestMapping(value = "/fileUpload.me", method = RequestMethod.POST) public
-	 * String fileUpload(StoreVO storeVO, MultipartFile file) throws Exception {
-	 * String imgUploadPath = uploadPath + File.separator + "imgUpload"; String
-	 * ymdPath = UploadFileUtils.calcPath(imgUploadPath); String fileName = null;
-	 * 
-	 * if(file != null) { fileName = UploadFileUtils.fileUpload(imgUploadPath,
-	 * file.getOriginalFilename(), file.getBytes(), ymdPath); } else { fileName =
-	 * uploadPath + File.separator + "images" + File.separator + "none.png"; }
-	 * 
-	 * storeVO.setThumbnail(File.separator + "imgUpload" + ymdPath + File.separator
-	 * + fileName);
-	 * 
-	 * storeService.update_store_img(storeVO);
-	 * 
-	 * return "redirect:/redirect할 url 혹은 .jsp파일명"; }
-	 */
-
 	@RequestMapping("/storeUpdate.st")
 	public String storeUpdate(StoreVO store, HttpSession session, HttpServletResponse response) throws Exception {
 
@@ -339,37 +243,10 @@ public class StoreController {
 	}
 	// soobin end
 
-	/*
-	 * //dohyeong start
-	 * 
-	 * @RequestMapping("/storelist_ajax.li")
-	 * 
-	 * @ResponseBody public List<StoreVO>
-	 * getStoreListAjax( @RequestParam(value="s_addr[]", required =false) String[]
-	 * s_addr) {
-	 * 
-	 * for(String no : s_addr) { System.out.println("컨트롤러");
-	 * System.out.println("s_addr" + no);
-	 * 
-	 * }
-	 * 
-	 * 
-	 * Map<String, String[]> map = new HashMap<String, String[]>();
-	 * map.put("s_addr", s_addr);
-	 * 
-	 * List<StoreVO> list = storeService.getStoreListAjax(s_addr);
-	 * System.out.println("list" + list);
-	 * 
-	 * return list;
-	 * 
-	 * } //dogyeong end
-	 */
-
 	// dohyeong start
 	@RequestMapping(value = "/storeList.st")
 	public String getStoreList(Model model) {
 		ArrayList<StoreVO> storeList = storeService.getList();
-//		ArrayList<StoreVO> storeList = storeService.getStoreList();
 
 		for (int i = 0; i < storeList.size(); i++) {
 			StoreVO svo = storeList.get(i);
@@ -381,8 +258,7 @@ public class StoreController {
 		}
 
 		model.addAttribute("storeList", storeList);
-
-//		return "store/store_list";
+		
 		return "store/shopgrid";
 	}
 	
@@ -402,91 +278,7 @@ public class StoreController {
 		return storeList;
 	}
 
-	@RequestMapping(value = "/storelist_ajax.li", produces = "application/json; charset=utf-8")
-	@ResponseBody
-	public List<StoreVO> getStoreListAjax(@RequestBody Map<String, String[]> map) {
-
-		int min = 0;
-
-		String[] s_addr = map.get("s_addr");
-		for (String no : s_addr) {
-			System.out.println("컨트롤러 addr : " + no);
-		}
-
-		String[] meat = map.get("meat");
-		for (String no : meat) {
-			System.out.println("컨트롤러 meat : " + no);
-		}
-
-		String[] star = map.get("star");
-		System.out.println(star[0]);
-		int starInt = Integer.parseInt(star[0]);
-
-		Map<String, String[]> mapp = new HashMap<String, String[]>();
-
-		if (s_addr.length > 0 && meat.length > 0) {
-			mapp.put("s_addr", s_addr);
-			mapp.put("meat", meat);
-			List<StoreVO> list = storeService.getStoreListAjax(mapp);
-			System.out.println("리스트 size : " + list.size());
-
-			for (int i = 0; i < list.size(); i++) {
-				StoreVO svo = list.get(i);
-				int s_num = svo.getS_num();
-				Double avgStar = storeService.getAvgStar(s_num);
-				System.out.println("avgStar : " + avgStar);
-
-				if ((avgStar + 0.1) < starInt) {
-					list.remove(i);
-					i = -1;
-				} else {
-					svo.setAvgStar(avgStar);
-				}
-			}
-
-			return list;
-
-		} else if (s_addr.length == 0 && meat.length > 0) {
-			mapp.put("meat", meat);
-			List<StoreVO> list = storeService.getStoreListAjax(mapp);
-
-			for (int i = 0; i < list.size(); i++) {
-				StoreVO svo = list.get(i);
-				int s_num = svo.getS_num();
-				Double avgStar = storeService.getAvgStar(s_num);
-				System.out.println("avgStar : " + avgStar);
-
-				if (avgStar < starInt) {
-					list.remove(i);
-				} else {
-					svo.setAvgStar(avgStar);
-				}
-			}
-
-			return list;
-		} else if (s_addr.length > 0 && meat.length == 0) {
-			mapp.put("s_addr", s_addr);
-			List<StoreVO> list = storeService.getStoreListAjax(mapp);
-
-			for (int i = 0; i < list.size(); i++) {
-				StoreVO svo = list.get(i);
-				int s_num = svo.getS_num();
-				Double avgStar = storeService.getAvgStar(s_num);
-				System.out.println("avgStar : " + avgStar);
-
-				if (avgStar < starInt) {
-					list.remove(i);
-				} else {
-					svo.setAvgStar(avgStar);
-				}
-			}
-
-			return list;
-		} else {
-
-			return null;
-		}
-	}
+	
 	// dogyeong end
 
 	@RequestMapping(value = "/store_info_Design.st")

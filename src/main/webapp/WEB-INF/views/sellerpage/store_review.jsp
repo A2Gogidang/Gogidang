@@ -7,52 +7,17 @@
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%@include file="../includes/header_simple.jsp"%>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-<style>
-/* The Modal 스타일 시작 --------------------------------> */
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 10% auto; /* 10% from the top and centered */
-    padding: 0px;
-    border: 10px solid #585858;
-    width: 440px; /* Could be more or less, depending on screen size */                          
-}
-/* The Close Button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-/* The Modal 스타일 끝 <---------------------------------- */
-</style>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/modal.css"
+	type="text/css">
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/store_reviewStyle.css"
 	type="text/css">
-	
+
 <%
 	ArrayList<SRReviewVO> srReviewList = (ArrayList<SRReviewVO>) request.getAttribute("srReviewList");
 	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
@@ -95,7 +60,7 @@
 							</tr>
 						</thead>
 						<tbody id="review_content" class="text-center">
-							
+
 						</tbody>
 					</table>
 				</div>
@@ -106,82 +71,75 @@
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
-	 
+
 	<!-- Modal content -->
 	<div class="modal-content">
-		<span class="close">&times;</span>                                                               
+		<span class="close">&times;</span>
 		<form>
 			<fieldset>
-			<legend>리뷰 내용</legend>
-			<ol>
-			  <li>
-			    <label for="review_num">리뷰번호</label>
-			    <input type="text" id="review_num" name="review_num">
-			  </li>
-			  <li>
-				<li>
-			    <label for="title">리뷰제목</label>
-			    <input type="text" id="title" name="title">
-			  </li>
-			    <label for="u_id">회원아이디</label>
-			    <input type="text" id="u_id" name="u_id">
-			  </li>
-			  <li>
-			    <label for="nickname">회원닉네임</label>
-			    <input type="text" id="nickname" name="nickname">
-			  </li> 
-				
-				<li>
-				<label for="content">리뷰내용</label>
-			    <input id="content" name="content" type="text">
-			  </li> 
-				<li>
-					<label for="star">별점</label>
-			    <input id="star" name="star" type="text">
-			  </li> 
-				<li>
-					<label for="re_review">답글</label>
-			   <input type="text" id="re_review" name="re_review"/>
-			  </li> 
-			</ol>
+				<legend>리뷰 내용</legend>
+				<ol>
+					<li><label for="review_num">리뷰번호</label> <input type="text"
+						id="review_num" name="review_num"></li>
+					<li>
+					<li><label for="title">리뷰제목</label> <input type="text"
+						id="title" name="title"></li>
+					<label for="u_id">회원아이디</label>
+					<input type="text" id="u_id" name="u_id">
+					</li>
+					<li><label for="nickname">회원닉네임</label> <input type="text"
+						id="nickname" name="nickname"></li>
+
+					<li><label for="content">리뷰내용</label> <input id="content"
+						name="content" type="text"></li>
+					<li><label for="star">별점</label> <input id="star" name="star"
+						type="text"></li>
+					<li><label for="re_review">답글</label> <input type="text"
+						id="re_review" name="re_review" /></li>
+				</ol>
 			</fieldset>
-			
-			
-			
+
+
+
 			<fieldset>
-			  	<input type="button" id="confirmBtn" value="댓글달기"/>
-			  	<input type="button" id="confirmBtn" value="닫기"/>
+				<input type="button" id="confirmBtn" value="댓글달기" /> <input
+					type="button" id="confirmBtn" value="닫기" />
 			</fieldset>
 		</form>
 	</div>
 </div>
 <!-- modal END -->
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <script>
-var u_id = <%=id %>;
+	var u_id =
+<%=id%>
+	;
 
-$(document).ready(function() {
-	
-	commentList();
-});
-	
+	$(document).ready(function() {
+
+		commentList();
+	});
+
 	// Get the modal
 	var modal = document.getElementById('myModal');
 
 	// Get the button that opens the modal
 	var btn = document.getElementById('myBtn1');
-	
+
 	// Get the <span> element that closes the modal
-	var span = document.getElementsByClassName("close")[0];   
+	var span = document.getElementsByClassName("close")[0];
 
 	// When the user clicks on the button, open the modal 
 	function callModal(event) {
 		$.ajax({
 			url : 'reviewInfoAjax.re',
 			type : 'POST',
-			data : {'review_num' : event},
+			data : {
+				'review_num' : event
+			},
 			contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 			dataType : 'json',
 			success : function(retVal) {
@@ -203,48 +161,59 @@ $(document).ready(function() {
 				}
 			}
 		});
-		
-	    modal.style.display = "block";
+
+		modal.style.display = "block";
 	}
 
 	// When the user clicks on <span> (x), close the modal
 	span.onclick = function(event) {
-	    modal.style.display = "none";
+		modal.style.display = "none";
 	}
 
 	// When the user clicks anywhere outside of the modal, close it
 	window.onclick = function(event) {
-	    if (event.target == modal) {
-	        modal.style.display = "none";
-	    }
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
 	}
 
-//리뷰 목록
-function commentList(){
-  $.ajax({
-     url : 'storeReviewList.re',
-     data : {'u_id' : u_id}, //u_id의 가게의 리뷰를 다 가져온다.
-     dataType : 'json',
-     contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-     success : function(data){ 
-        var a ='';
-        $.each(data, function(key,value){ //data는 list객체를 받음(controller return 부분)list는 commentVO를 여려개 가지고 있음
-      		a += '<tr align=center><td>'+ value.review_num + '</td>';
-      		a += '<td>' + value.title + '</td>';
-      		a += '<td>' + value.u_id + '</td>';
-      		a += '<td>' + value.star + '</td>';
-      		a += '<td>' + value.review_date + '</td>';
-      		a += '<td><button onclick="callModal(' + value.review_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right">리뷰댓글</button></td></tr>';
-        });
-        
-        $("#review_content").html(a); //a내용을 html에 형식으로 .commentList로 넣음
-     },
-     error:function(){
-        alert("ajax통신 실패(list)!!!");
-     }
-  });
-}
+	//리뷰 목록
+	function commentList() {
+		$
+				.ajax({
+					url : 'storeReviewList.re',
+					data : {
+						'u_id' : u_id
+					}, //u_id의 가게의 리뷰를 다 가져온다.
+					dataType : 'json',
+					contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+					success : function(data) {
+						var a = '';
+						$
+								.each(
+										data,
+										function(key, value) { //data는 list객체를 받음(controller return 부분)list는 commentVO를 여려개 가지고 있음
+											a += '<tr align=center><td>'
+													+ value.review_num
+													+ '</td>';
+											a += '<td>' + value.title + '</td>';
+											a += '<td>' + value.u_id + '</td>';
+											a += '<td>' + value.star + '</td>';
+											a += '<td>' + value.review_date
+													+ '</td>';
+											a += '<td><button onclick="callModal('
+													+ value.review_num
+													+ ');" id="myBtn" class="btn btn-primary btn-xs pull-right">리뷰댓글</button></td></tr>';
+										});
+
+						$("#review_content").html(a); //a내용을 html에 형식으로 .commentList로 넣음
+					},
+					error : function() {
+						alert("ajax통신 실패(list)!!!");
+					}
+				});
+	}
 </script>
 
 
-<%@include file="../includes/footer.jsp" %>
+<%@include file="../includes/footer.jsp"%>
