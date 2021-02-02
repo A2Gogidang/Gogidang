@@ -76,22 +76,7 @@ public class ReviewController {
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		
 		return "review/review_list_grid";
-//		return "review/review_list";
 	}
-	
-	/*
-	 * @RequestMapping("/reviewListByIdWithPaging.re") public String
-	 * reviewListByIdWithPaging(@RequestParam("u_id") String u_id, Criteria cri,
-	 * Model model) {
-	 * 
-	 * model.addAttribute("reviewList", reviewService.getListByIdWithPaing(cri,
-	 * u_id));
-	 * 
-	 * int total = reviewService.getTotal(cri); model.addAttribute("pageMaker", new
-	 * PageDTO(cri, total));
-	 * 
-	 * return "mypage/member_review"; }
-	 */
 	
 	@RequestMapping("/reviewListByIdWithPaging.re") 
 	public String reviewListByIdWithPaging(@RequestParam("u_id") String u_id,Criteria cri,Model model , HttpSession session) {
@@ -132,6 +117,11 @@ public class ReviewController {
 		try {
 			ReviewVO rvo = reviewService.getReview(review_num);
 			retVal.put("review_num", rvo.getReview_num());
+			retVal.put("u_id", rvo.getU_id());
+			retVal.put("nickname", rvo.getNickname());
+			retVal.put("title", rvo.getTitle());
+			retVal.put("content", rvo.getContent());
+			retVal.put("star", rvo.getStar());
 			retVal.put("res", "OK");
 		} catch (Exception e) {
 			retVal.put("res", "FAIL");

@@ -44,7 +44,6 @@
 		
 		if($('input[name=f_Mcheck]').is(":checked") == true){
 			$('input[name=f_Mcheck]:checked').each(function() {
-				checkMeat($(this).val());
 				meat.push($(this).val());
 			});
 		}
