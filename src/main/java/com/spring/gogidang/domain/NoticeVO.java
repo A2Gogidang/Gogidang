@@ -13,7 +13,6 @@ public class NoticeVO {
 	private String u_id;
 	private String title;
 	private String content;
-	private String notice_password;
 	private String re_date;
 	private int re_ref;
 }

@@ -59,6 +59,12 @@ public class QnaController {
 		return "qna/qna_board_list";
 	}
 	
+	@RequestMapping("/qnaAdmin.qn")
+	public String qnaAdmin() {
+		
+		return "admin/admin_qna";
+	}
+	
 	@RequestMapping("qnawriteform.qn")
 	public String qnaInsertForm()  {
 		return "qna/qna_board_write";

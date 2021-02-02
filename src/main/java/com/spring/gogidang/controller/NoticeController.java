@@ -65,7 +65,8 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("/noticewrite.no")
-	public String noticeInsert(NoticeVO notice,HttpSession session,HttpServletResponse response) throws Exception {
+	public String noticeInsert(NoticeVO notice, HttpSession session, HttpServletResponse response) throws Exception {
+		notice.setU_id((String) session.getAttribute("memberVO"));
 		int res = noticeService.noticeInsert(notice);
 		
 		response.setCharacterEncoding("utf-8");
@@ -139,6 +140,12 @@ public class NoticeController {
 		model.addAttribute("notice", notice);
 		
 		return "notice/notice_board_reply";
+	}
+	
+	@RequestMapping("/noticeAdmin.no")
+	public String noticeAdmin() {
+		
+		return "admin/admin_notice";
 	}
 	
 
