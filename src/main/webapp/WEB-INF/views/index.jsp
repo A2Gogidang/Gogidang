@@ -38,40 +38,9 @@
 
 
 			<div class="col-lg-9">
-				<!-- 기존위치에잇던 검색창자리
-                    <div class="hero__search">
-                        <div class="hero__search__form">
-                            <form action="#">
-                                <div class="hero__search__categories">
-                                       가게검색하기
-                                   <span class="arrow_carrot-down"></span> 
-                                    
-                                </div>
-                                <input type="text" placeholder="What do yo u need?">
-                                <button type="submit" class="site-btn">SEARCH</button>
-                            </form>
-                        </div>
-                           헤더쪽 전화아이콘, 전화번호 시작
-                        <div class="hero__search__phone">
-                            <div class="hero__search__phone__icon">
-                                <i class="fa fa-phone"></i>
-                            </div>
-                            <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
-                                <span>support 24/7 time</span>
-                            </div>
-                        </div>
-                           
-                    </div>
-                    -->
 				<div class="hero__item set-bg"
 					data-setbg="./resources/img/hero/top-banner-test3.jpg">
-					<div class="hero__text">
-						<!-- 
-                            <span>FRUIT FRESH</span>
-                            <h2>Vegetable <br />100% Organic</h2>
-                            <p>Free Pickup and Delivery Available</p>
-                             -->
+					<div class="hero__text">	
 					</div>
 				</div>
 			</div>
@@ -86,7 +55,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="section-title">
-					<h2><a href="./storeList.st">추천가게</a></h2>
+					<h2 class="index_h"><a href="./storeList.st">추천가게</a></h2>
 				</div>
 				<div class="featured__controls">
 					
@@ -109,29 +78,7 @@
 				<%
 					}
 				%>
-				<!-- 
-                       <div class="col-lg-3">
-                           <div class="categories__item set-bg" data-setbg="./resources/img/categories/cat-2.jpg">
-                               <h5><a href="#">Dried Fruit</a></h5>
-                           </div>
-                       </div>
-                       <div class="col-lg-3">
-                           <div class="categories__item set-bg" data-setbg="./resources/img/categories/cat-3.jpg">
-                               <h5><a href="#">Vegetables</a></h5>
-                           </div>
-                       </div>
-                       <div class="col-lg-3">
-                           <div class="categories__item set-bg" data-setbg="./resources/img/categories/cat-4.jpg">
-                               <h5><a href="#">drink fruits</a></h5>
-                           </div>
-                       </div>
-                       <div class="col-lg-3">
-                           <div class="categories__item set-bg" data-setbg="./resources/img/categories/cat-5.jpg">
-                               <h5><a href="#">drink fruits</a></h5>
-                           </div>
-                       </div>
-                   </div>
-                    -->
+
             </div>
             <!-- row -->
          </div>
