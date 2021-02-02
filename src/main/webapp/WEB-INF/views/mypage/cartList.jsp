@@ -95,7 +95,7 @@
 %>
 
 	<form id = "cartDelet<%=i %>" action="./cartdelete.ct">
-		<input type="hidden" id ="cartNum" name="cartNum" value="<%=cvo_list.getCartNum() %>">
+		<input type="hidden" id ="cartNum" name="cartNum" value="<%=cvo_list.getCartNum() %>"/>
 		<tr>
 			<td><%=i+1 %></td>
 			<td><%=cvo_list.getMenu_name() %></td>
