@@ -51,29 +51,8 @@ public class ManageSocketHandler extends TextWebSocketHandler {
 	// 어떤 메시지를 보냈을 때,
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-//		super.handleMessage(session, message);
-//		
-//		Map<String, Object> map = session.getAttributes();
-//		
-//		String userId = (String) map.get("userId");
-//		
-//		for(WebSocketSession client_session : this.sessionSet) {
-//			if (client_session.isOpen()) {
-//				try {
-//					client_session.sendMessage(message);
-//				} catch (Exception ignored) {
-//					System.out.println("fail to send message!" + ignored);
-//				}
-//			}
-//		}
 		
-//		System.out.println("handleTextMessage : " + session + " : " + message);
-//		String senderId = getId(session);
-//		for (WebSocketSession sess : sessions) {
-//			sess.sendMessage(new TextMessage(senderId + ":" + message.getPayload()));
-//		}
-		
-//		// protocol : cmd,댓글작성자, 게시글작성자, bno (ex: reply, user2, user1, 123)
+		// protocol : cmd,댓글작성자, 게시글작성자, bno (ex: reply, user2, user1, 123)
 		String msg = message.getPayload();
 		if (!(StringUtils.isEmpty(msg))) {
 			String[] strs = message.getPayload().split(",");
@@ -87,11 +66,12 @@ public class ManageSocketHandler extends TextWebSocketHandler {
 				WebSocketSession boardWriterSession = userSessions.get(boardWriter);
 				System.out.println("boardWriterSession = " + boardWriterSession);
 				if ("confirm".equals(cmd) && boardWriterSession != null) {
-					TextMessage tmpMsg = new TextMessage(replyWriter + "님의" + bno +"가게가 승인되었습니다.");
+					TextMessage tmpMsg = new TextMessage(replyWriter + "님의" +
+											"<a href='/storeInfo.st?s_num='" + bno + "'>" + bno + "</a> 가게가 승인되었습니다.");
 					System.out.println("tmpMsg = " + tmpMsg);
 					boardWriterSession.sendMessage(tmpMsg);
 				} else if ("refuse".equals(cmd) && boardWriterSession != null) {
-					TextMessage tmpMsg = new TextMessage(replyWriter + "님의" + bno +"가게가 거절되었습니다.");
+					TextMessage tmpMsg = new TextMessage(boardWriter + "님의" + bno +"가게가 거절되었습니다.");
 					System.out.println("tmpMsg = " + tmpMsg);
 					boardWriterSession.sendMessage(tmpMsg);
 				}

@@ -5,48 +5,25 @@
 
 <%
 	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
+	StoreVO storeVO = (StoreVO) session.getAttribute("StoreVO");
 %>
-<%@include file="../includes/header.jsp"%>
+
+<%@include file="../includes/header_simple.jsp"%>
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/new_mypage.css"
+	type="text/css">
+
 
 <style>
 /* The Modal 스타일 시작 --------------------------------> */
 /* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
 
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 10% auto; /* 10% from the top and centered */
-    padding: 0px;
-    border: 10px solid #585858;
-    width: 440px; /* Could be more or less, depending on screen size */                          
-}
-/* The Close Button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
 /* The Modal 스타일 끝 <---------------------------------- */
 </style>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/storewait.css"
+	type="text/css">
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -114,6 +91,7 @@ $(document).ready(function() {
 <section class="product spad">
 	<div class="container">
 		<div class="row">
+		<div class="qnaListn">
 			<div class="col-lg-3 col-md-5">
 				<div class="sidebar">
 					<div class="sidebar__item">
@@ -128,25 +106,24 @@ $(document).ready(function() {
 				</div>
 			</div>
 			<!-- content Start -->
-			<div>
-				<h3>대기중인 가게 승인</h3>
-				<br>
-				<center>
-					<table border=1 width=850>
-						<tr align=center>
-							<td colspan=3>가게 대기 리스트</td>
-						</tr>
+			<div class="qnaList">
+				<div class="section-title">
+					<h2>가게 승인 대기 리스트</h2>
+				</div>
+					<table class="table table-striped">
+						<thead>
 						<tr align=center>
 							<td>가게 번호</td>
 							<td>가게 이름</td>
 							<td>상세보기</td>
 						</tr>
+						</thead>
 						<%
 							if (storeList.size() > 0) {
 								for (int i = 0; i < storeList.size(); i++) {
 									StoreVO vo = (StoreVO) storeList.get(i);
 						%>
-						<tr align=center>
+						<tr>
 							<td><%=vo.getS_num()%></td>
 							<td><%=vo.getS_name()%></td>
 							<td><button id="myBtn">Open Modal</button></td>
@@ -159,11 +136,10 @@ $(document).ready(function() {
 							}
 							}
 						%>
-						</tr>
 					</table>
-				</center>
 			</div>
 			<!-- content End -->
+			</div>
 		</div>
 	</div>
 </section>
@@ -177,48 +153,87 @@ $(document).ready(function() {
 		<span class="close">&times;</span>                                                               
 		<form>
 			<fieldset>
-			<legend>회원 기본 정보</legend>
+			<h3>대기 중인 판매자</h3>
 			<ol>
-			  <li>
-			    <label for="s_num">사업자등록번호</label>
-			    <input type="text" id="s_num" name="s_num">
-			  </li>
-			  <li>
-			    <label for="u_id">회원아이디</label>
-			    <input type="text" id="u_id" name="u_id">
-			  </li>
-			  <li>
-			    <label for="thumbnail">가게메인사진</label>
-			    <input type="text" id="thumbnail" name="thumbnail">
-			  </li> 
+			<!-- 
+			  <div class="modal-textbox">
+			  	<div class="modal-textbox-s">
+			    	<ts for="s_num">사업자등록번호</ts>
+			    	<td><input type="text" id="s_num" name="s_num"></td>
+			  	</div>
+			  	<div class="modal-textbox-s">
+			    	<ts for="u_id">회원아이디</ts>
+			    	<td><input type="text" id="u_id" name="u_id"></td>
+			  	</div>
+			  	<div class="modal-textbox-s">
+			    	<ts for="thumbnail">가게메인사진</ts>
+			    	<td><input type="text" id="thumbnail" name="thumbnail"></td>
+			   </div>
+			  </div>
+			   -->
+			  <div class="modal-textbox">
+			  	<div class="modal-textbox-s">
+			    	<ts for="s_name">가게이름</ts>
+				    <td><input type="text" id="s_name" name="s_name"></td>
+			  	</div>
+			  	<div class="modal-textbox-s">
+			    	<ts for="s_num">사업자등록번호</ts>
+			    	<td><input type="text" id="s_num" name="s_num"></td>
+			  	</div>
+			  	<div class="modal-textbox-s">
+			    	<ts for="s_phone">가게번호</ts>
+			    	<td><input id="s_phone" name="s_phone" type="text"></td>
+			   	</div>
+			  </div>
+			  
+			  <div class="modal-textbox">
+			  	<div class="modal-textbox-s">
+			    	<ts for="u_id">회원아이디</ts>
+			    	<td><input type="text" id="u_id" name="u_id"></td>
+			  	</div>
+			  	<div class="modal-textbox-ad">
+			    	<ts for="s_addr">가게주소</ts>
+				    <td><input id="s_addr" name="s_addr" type="text"></td>
+			   	</div>
+			  	<div class="modal-textbox-ti">
+			    	<ts for="s_hour">운영시간</ts>
+			    	<td><input id="s_hour" name="s_hour" type="text"></td>
+			  	</div>
+			  	
+			  </div>
+			 </ol>
+			  
+			   <div class="modal-imgbox">
+			   	 <div class="modal-imgbox-ss">
+			    	<ts>가게메인사진</ts>
+			    	<!-- <td><input type="text" id="thumbnail" name="thumbnail"></td> -->
+			    			    	
+		    		<td><img src="resources/img/store/" id="thumbnail" name="thumbnail" width="550px" height="350px" /></td>
+			     </div>
+			     <div class="modal-imgbox-ss">
+			    	<ts for="s_img">사업자등록사진</ts>
+			    	<td><img src="resources/img/store/" id="s_img" name="s_img" width="550px" height="350px" /></td>
+			    	<!-- <td><input id="s_img" name="s_img" type="text" ></td> -->
+			     </div>
+			   </div>
 				
-				<li>
-			    <label for="s_name">가게이름</label>
-			    <input type="text" id="s_name" name="s_name">
-			  </li>
-				<li>
-				<label for="s_addr">가게주소</label>
-			    <input id="s_addr" name="s_addr" type="text">
-			  </li> 
-				<li>
-					<label for="s_phone">가게번호</label>
-			    <input id="s_phone" name="s_phone" type="text">
-			  </li> 
-			  <li>
-			    <label for="s_img">사업자등록사진</label>
-			    <input id="s_img" name="s_img" type="text" >
-			  </li>
-			  <li>
-			    <label for="s_hour">운영시간</label>
-			    <input id="s_hour" name="s_hour" type="text">
-			  </li>
-			</ol>
+			  	
+			   	
+			
 			</fieldset>
-
+		
+			<div class="form-checkkkk">
+                 <button type="button"  id="confirmBtn" class="btn btn-lg btn-block btn-success" >승인</button>
+                 <button type="button" id="refuseBtn" class="btn-j btn-lg btn-block btn-success" >거절</button>
+                   <br>
+            </div>
+             
+            <!--      	
 			<fieldset>
 			  	<input type="button" id="confirmBtn" value="승인"/>
 				<input type="button" id="refuseBtn" value="거절"/>
 			</fieldset>
+			 --> 
 		</form>
 	</div>
 </div>

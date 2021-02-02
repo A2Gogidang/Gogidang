@@ -173,7 +173,7 @@ readonly
 
 .store_reg_form form .add_input {
 	height:37px;
-	width:270px;
+	width:275px;
 	margin :0 2px 0 0;
 	border: 1px solid  rgb(173, 173, 173);
 	border-radius: 3px;
@@ -245,6 +245,7 @@ readonly
     border-radius: 3px;
     text-transform: uppercase;
     letter-spacing: 2px;
+    color:white;
 }
 
 .store_reg_form .btn-j {
@@ -273,6 +274,9 @@ readonly
 
 .product__discount__title {
     margin-left: 60px;
+}
+.current{
+	font-size: 13px;
 }
 
 

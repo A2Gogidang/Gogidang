@@ -4,7 +4,7 @@
 <%@ page import="javax.sql.*"%>
 <%@ page import="javax.naming.*"%>
 <%@ page import="java.util.*"%>
-<%@include file="../includes/header.jsp"%>
+<%@include file="../includes/header_simple.jsp"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%
 	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");

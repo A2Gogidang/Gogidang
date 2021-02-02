@@ -125,6 +125,13 @@
 	
 			ws.onmessage = function (event) {
 				console.log("ReceiveMessage:", event.data + '\n');
+				let $socketAlert = $('div#socketAlert');
+				$socketAlert.html(event.data);
+				$socketAlert.css('display', 'block');
+				
+				setTimeout( function() {
+					$socketAlert.css('display', 'none');
+				}, 3000);
 			};
 	
 			ws.onclose = function (event) { 

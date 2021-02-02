@@ -306,6 +306,13 @@ font {
 .table{
 	width: 720px;
 }
-    
-
+.nice-select{
+	width:350px;
+	height:45px;
+}    
+.current{
+	font-size: 13px;
+	width: 350px;
+	height: 35px;
+}
 
