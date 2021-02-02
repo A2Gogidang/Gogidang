@@ -11,16 +11,9 @@
 <%@include file="../includes/header_simple.jsp"%>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/new_mypage.css"
+	href="${pageContext.request.contextPath}/resources/css/modal.css"
 	type="text/css">
 
-
-<style>
-/* The Modal 스타일 시작 --------------------------------> */
-/* The Modal (background) */
-
-/* The Modal 스타일 끝 <---------------------------------- */
-</style>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/storewait.css"
 	type="text/css">
@@ -98,8 +91,8 @@ $(document).ready(function() {
 						<h4>관리자 페이지</h4>
 						<ul>
 							<li><a href="storeWait.st">대기중인 가게 승인</a></li>
-							<li><a href="noticelist.no">공지사항 관리</a></li>
-							<li><a href="qnalist.qn">문의 관리</a></li>
+							<li><a href="noticeAdmin.no">공지사항 관리</a></li>
+							<li><a href="qnaAdmin.qn">문의 관리</a></li>
 							<li><a href="eventList.ev">이벤트 관리</a></li>
 						</ul>
 					</div>
@@ -147,7 +140,6 @@ $(document).ready(function() {
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
-	 
 	<!-- Modal content -->
 	<div class="modal-content">
 		<span class="close">&times;</span>                                                               

@@ -55,16 +55,6 @@ public class ReviewController {
 		model.addAttribute("reviewList", reviewService.getList());
 		
 		return "review/review_list_grid";
-//		return "review/review_list";
-	}
-	
-	@RequestMapping(value = "/reviewListAjax.re", produces="application/json; charset=UTF-8")
-	@ResponseBody
-	public List<ReviewVO> reviewListAjax() {
-		
-		List<ReviewVO> reviewList = reviewService.getList();
-		System.out.println(reviewList.size());
-		return reviewList;
 	}
 	
 	@RequestMapping("/reviewListWithPaging.re")
@@ -107,28 +97,6 @@ public class ReviewController {
 		model.addAttribute("review", reviewService.getReview(review_num));
 		
 		return "review/review_info";
-	}
-	
-	@RequestMapping(value = "/reviewInfoAjax.re", method =RequestMethod.POST, produces="application/json; charset=UTF-8")
-	@ResponseBody
-	public Map<String, Object> reviewInfoAjax(@RequestParam("review_num") int review_num) {
-		Map<String, Object> retVal = new HashMap<String, Object>();
-		
-		try {
-			ReviewVO rvo = reviewService.getReview(review_num);
-			retVal.put("review_num", rvo.getReview_num());
-			retVal.put("u_id", rvo.getU_id());
-			retVal.put("nickname", rvo.getNickname());
-			retVal.put("title", rvo.getTitle());
-			retVal.put("content", rvo.getContent());
-			retVal.put("star", rvo.getStar());
-			retVal.put("res", "OK");
-		} catch (Exception e) {
-			retVal.put("res", "FAIL");
-			retVal.put("message", "Failure");
-		}
-	
-		return retVal;
 	}
 	
 	// file upload
@@ -218,85 +186,7 @@ public class ReviewController {
 		
 		return "redirect:main.me";
 	}
-	
-	@RequestMapping(value="/reviewlist_ajax.re", produces="application/json; charset=utf-8")
-	@ResponseBody 
-	public List<ReviewVO> getReviewListAjax( @RequestBody Map<String, String[]> map) {
-		
-		String[] s_addr = map.get("s_addr");
-		for(String no : s_addr) {
-			System.out.println("review 컨트롤러 addr : " + no);
-		}
-		  
-		String[] meat = map.get("meat");
-		for(String no : meat) {
-			System.out.println("review 컨트롤러 meat : " + no);
-		}
-		
-		String[] star = map.get("star");
-		System.out.println(star[0]);
-		int starInt = Integer.parseInt(star[0]);
-		
-		Map<String, String[]> mapp = new HashMap<String, String[]>();
-		
-		if(s_addr.length > 0 && meat.length > 0) {
-			mapp.put("s_addr",s_addr);
-			mapp.put("meat", meat);
-			
-			List<ReviewVO> list = reviewService.getReviewListAjax(mapp);
-			
-			System.out.println("리스트 size : " + list.size());
-			
-			for (int i=0; i<list.size(); i++) {
-				ReviewVO rvo = list.get(i);
-				int getStar = rvo.getStar();
-				System.out.println(getStar);
-				
-				if (getStar < starInt) {
-					list.remove(i);
-				}
-			}
-			
-			return list;
-			
-		} else if(s_addr.length == 0 && meat.length>0) {
-			mapp.put("meat", meat);		
-			List<ReviewVO> list = reviewService.getReviewListAjax(mapp);
-			
-			for (int i=0; i<list.size(); i++) {
-				ReviewVO rvo = list.get(i);
-				int getStar = rvo.getStar();
-				System.out.println(getStar);
-				
-				if (getStar < starInt) {
-					list.remove(i);
-				}
-			}
-			
-			return list;
-		} else if (s_addr.length > 0 && meat.length==0) {
-			mapp.put("s_addr",s_addr);
-			List<ReviewVO> list = reviewService.getReviewListAjax(mapp);
-			
-			for (int i=0; i<list.size(); i++) {
-				ReviewVO rvo = list.get(i);
-				int getStar = rvo.getStar();
-				System.out.println(getStar);
-				
-				if (getStar < starInt) {
-					list.remove(i);
-				}
-			}
-			
-			return list;
-		} else {
-			
-			return null;
-		}
-	  }
-	 
-	
-	
+
 }
 
 

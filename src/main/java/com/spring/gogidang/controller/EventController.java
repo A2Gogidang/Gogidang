@@ -86,4 +86,10 @@ public class EventController {
 		
 		return "event/notice";
 	}
+	
+	@RequestMapping("/eventAdmin.ev")
+	public String eventAdmin() {
+		
+		return "admin/admin_event";
+	}
 }

@@ -14,4 +14,6 @@ public interface NoticeMapper {
 	public int noticeModify(NoticeVO notice);
 	public int noticeDelete(int notice_num);
 	public int isBoardWriter(HashMap<String, String> hashmap);
+	
+	public List<NoticeVO> getList();
 }
