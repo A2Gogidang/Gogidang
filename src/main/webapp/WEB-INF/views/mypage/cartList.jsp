@@ -132,7 +132,7 @@
 		
 		totalPrice = price + totalPrice;
 		
-		java.sql.Date sqlDate = new java.sql.Date(cvo_list.getAddDate().getTime());
+		/* java.sql.Date sqlDate = new java.sql.Date(cvo_list.getAddDate().getTime()); */
 %>	
 				<form id = "cartDelet<%=i %>" action="./cartdelete.ct">
 					<input type="hidden" id ="cartNum" name="cartNum" value="<%=cvo_list.getCartNum() %>">

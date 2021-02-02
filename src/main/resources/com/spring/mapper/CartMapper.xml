@@ -13,7 +13,7 @@
               ,cartStock
               ,price
               ,s_num)
-   values (cart_seq.nextval
+   values (seq_cart.nextval
          ,#{u_id}
          ,#{menu_num}
          ,#{cartStock}
