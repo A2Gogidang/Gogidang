@@ -103,8 +103,10 @@
 						</tbody>
 					</table>
 					<div class="qnabutton">
-						<a href="./qnawriteform.qn"><button type="button"
-								class="btn">글쓰기</button> </a>
+					<% if (u_id != "admin") { %>
+							<a href="./qnawriteform.qn"><button type="button"
+									class="btn">글쓰기</button> </a>
+					<%}%>
 					</div>
 					<div class="product__pagination">
 						<a href="#"><i class="fa fa-long-arrow-left"></i></a>

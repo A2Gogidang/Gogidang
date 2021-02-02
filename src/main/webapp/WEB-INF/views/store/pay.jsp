@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "com.spring.gogidang.domain.*" %>
 <%@ page import = "com.spring.gogidang.domain.*" %>
 <%
-	MemberVO mvo = (MemberVO)request.getAttribute("MemberVO");
+	MemberVO mvo = (MemberVO)request.getAttribute("memberVO");
 	PayVO pvo =(PayVO)request.getAttribute("payVO");
 	BookingVO bvo = (BookingVO)request.getAttribute("bookingVO");
 	StoreVO svo=(StoreVO)request.getAttribute("storeVO");
@@ -98,4 +98,4 @@
 	<a href="#" onclick="pay()">결제하기</a><br><br>
 	<a href="#" onclick="cancelPay()">결제취소</a>
 </body>
-</html>
+</html> --%>

@@ -36,7 +36,7 @@
 									<i class="fa fa-search" aria-hidden="true"></i>
 								</div>
 								<div class="shoplistones">
-									<h3>S E R C H</h3>
+									<h3>S E A R C H</h3>
 								</div>
 							</div>
 							<div class="shoplisttwo">
@@ -114,32 +114,8 @@
 					</div>
 				</div>
 				<div class="reviewlistm">
-					<div class="row">
-						<%
-							for (int i = 0; i < reviewList.size(); i++) {
-								ReviewVO rvo = (ReviewVO) reviewList.get(i);
-						%>
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="product-item">
-								<div>
-									<img src="resources/img/store/store_gogi.png">
-								</div>
-								<!-- <div><img src="resources/img/store/%=svo.getThumbnail()% "></div> -->
-							</div>
-
-							<div class="card_store_name">
-								<div class="text_right">
-									<h5>
-										<a href="#" style="display: inline"><%=rvo.getTitle()%></a> <input
-											type="hidden" id="avgStar" class="avgStar" name="avgStar"
-											value="<%=rvo.getStar()%>" style="border: none" /><%=rvo.getStar()%>
-									</h5>
-								</div>
-							</div>
-						</div>
-						<%
-							}
-						%>
+					<div class="row" id="review_content">
+						
 					</div>
 				</div>
 			</div>

@@ -15,10 +15,11 @@ public class PayServiceImpl implements PayService{
 	
 	@Override
 	public int insertPay(PayVO payVO) {
+		
 		PayMapper paymapper = sqlSession.getMapper(PayMapper.class);
-		
+
 		int res= paymapper.insertPay(payVO);
-		
+	
 		return res;
 	}
 	

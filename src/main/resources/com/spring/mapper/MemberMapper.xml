@@ -43,4 +43,8 @@
 	<select id="getId" resultType="MemberVO">
 		select * from member where u_id=#{u_id}
 	</select>
+	
+	<select id="getSnumByUid" parameterType="String" resultType="int">
+		select s_num from shop_reg where u_id=#{u_id}
+	</select>
 </mapper>

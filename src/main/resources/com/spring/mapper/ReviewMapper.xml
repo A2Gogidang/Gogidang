@@ -22,10 +22,10 @@
 	
 	<select id="getListByIdWithPaging" resultType="ReviewVO">
 		<![CDATA[
-		select review_num, title, nickname, s_name, star, review_date
+		select review_num, title, u_id, content, nickname, s_name, star, review_date
 		from
 			( 	select /*+ INDEX_DESC(review pk_review) */ 
-					rownum rn, review_num, title, nickname, s_name, star, review_date
+					rownum rn, review_num, title, u_id,content, nickname, s_name, star, review_date
 				from (	select * 
 						from review 
 						where u_id = #{u_id} )
@@ -36,10 +36,10 @@
 	
 	<select id="getListBySnWithPaging" resultType="ReviewVO">
 		<![CDATA[
-		select review_num, title, nickname, s_name, star, review_date
+		select review_num, title, u_id, content, nickname, s_name, star, review_date
 		from
 			( 	select /*+ INDEX_DESC(review pk_review) */ 
-					rownum rn, review_num, title, nickname, s_name, star, review_date
+					rownum rn, review_num, title, u_id,content, nickname, s_name, star, review_date
 				from (	select * 
 						from review 
 						where s_num = #{s_num} )
