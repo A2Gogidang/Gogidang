@@ -18,6 +18,7 @@ public class PayVO {
 	public int totalPrice;
 	public Date paydate;
 	public String imp_uid;
+	public String s_name;
 	
 	
 }

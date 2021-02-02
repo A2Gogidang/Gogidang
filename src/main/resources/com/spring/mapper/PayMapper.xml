@@ -5,14 +5,28 @@
 <mapper namespace="com.spring.mapper.PayMapper">
 
 	<insert id="insertPay" parameterType="PayVO">
-	INSERT INTO pay values(#{u_id},#{s_num},#{pay_code},#{totalPrice},sysdate,#{imp_uid})
+	INSERT INTO pay values(#{u_id},#{s_num},#{pay_code},#{totalPrice},sysdate,#{imp_uid},#{s_name})
 	</insert>
 	
-	<select id="selectPay" parameterType="PayVO" resultType="PayVO">
-	select rv_num,u_id,s_name,price,status from pay where u_id=#{u_id}
+	<select id="purchaseList" parameterType="PayVO" resultType="PayVO">
+	SELECT  *
+  	  FROM  shop_reg s, pay p
+     WHERE  s.s_num = p.s_num 
+       AND  p.u_id = #{u_id}
 	</select>
 	
-	<delete id="deletePay" parameterType="int">
+	<select id="storeName" parameterType="PayVO" resultType="String">
+	SELECT  s_name
+  	  FROM  shop_reg
+     WHERE  s_num =  #{s_num}
+	</select>
+	
+	
+	
+	<!-- <delete id="deletePay" parameterType="int">
 	delete from pay where u_id=#{u_id}
-	</delete>
+	</delete> -->
+	
+	
+	
 </mapper>

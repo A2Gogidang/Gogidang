@@ -125,45 +125,46 @@
 
 											MenuVO mv = (MenuVO) menu_List.get(i);
 									%>
-									<div class="col-lg-3 col-md-4 col-sm-6" id="Menucontents">
+									<form id="cartbutton<%=i%>" action="./addCart.ct" method="post">
+                           <input type="hidden" id ="s_num" name="s_num" value="<%=mv.getS_num()%>">
+                           <div class="col-lg-3 col-md-4 col-sm-6" id="Menucontents">                            
+                              <div class="featured__item">
 
+                                 <input type="hidden" id="menu_num" name="menu_num"
+                                    value="<%=mv.getMenu_num()%>">
+                                 <div class="featured__item__pic set-bg"
+                                    data-setbg="resources/img/menu/<%=mv.getImg()%>"></div>
 
-										<div class="featured__item">
-
-											<input type="hidden" id="menu_num" name="menu_num"
-												value="<%=mv.getMenu_num()%>">
-											<div class="featured__item__pic set-bg"
-												data-setbg="resources/img/menu/<%=mv.getImg()%>"></div>
-
-											<div class="container-fluid">
-												<div class="row">
-													<div class="menu_info" id="menu_info">
-														<table class="table">
-															<tbody>
-																<tr>
-																	<td><%=mv.getMenu_name()%></td>
-																	<td><%=mv.getGrade()%>등급</td>
-																</tr>
-																<tr class="table">
-																	<td><%=mv.getGram()%>g</td>
-																	<td>Price</td>
-																</tr>
-																<tr class="table">
-																	<td><input type="number" id="cartStock"
-																		name="cartStock" min="1" max="100" value="1" /></td>
-																	<td><input type="submit" value="장바구니에 담기"
-																		id="cartbutton" /></td>
-																</tr>
-															</tbody>
-														</table>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<%
-										}
-									%>
+                                 <div class="container-fluid">
+                                    <div class="row">
+                                       <div class="menu_info" id = "menu_info">
+                                          <table class="table">
+                                             <tbody>
+                                                <tr>
+                                                   <td><%=mv.getMenu_name()%></td>
+                                                   <td><%=mv.getGrade()%>등급</td>
+                                                </tr>
+                                                <tr class="table">
+                                                   <td><%=mv.getGram()%>g</td>
+                                                   <td><input type="hidden" id ="price" name="price" value="<%=mv.getPrice()%>"><%=mv.getPrice() %></td>
+                                                </tr>
+                                                <tr class="table">
+                                                   <td><input type="number" id="cartStock"
+                                                      name="cartStock" min="1" max="100" value="1" /></td>
+                                                   <td><input type="submit" value="장바구니에 담기" id="cartbutton<%=i%>"/>
+                                                   </td>
+                                                </tr>
+                                             </tbody>
+                                          </table>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           </form>
+                           <%
+                              }
+                           %>
 								</div>
 							</div>
 						</div>
