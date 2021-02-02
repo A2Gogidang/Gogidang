@@ -41,7 +41,7 @@
 	<table border="1">
 	<tr>
 	<td><a href="./memberInfo.me?u_id=<%=memberVO.getU_id()%>">내정보</a></td>
-	<td><a href="./bookingList.bo?u_id=<%=memberVO.getU_id()%>">내예약확인</a></td>
+	<td><a href="./purchase_list.py?u_id=<%=memberVO.getU_id()%>">구매내역</a></td>
 	<td><a href="./likeStoreList.li?u_id=<%=memberVO.getU_id()%>">찜목록</a></td>
 	<td><a href="./reviewList.re?u_id=<%=memberVO.getU_id()%>">내가 작성한 후기</a></td>
 	<td><a href="./cartList.ct">장바구니</a></td>

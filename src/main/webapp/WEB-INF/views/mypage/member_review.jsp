@@ -24,7 +24,7 @@
 							<h4>마이페이지</h4>
 							<ul>
 								<li><a href="./updateList.me">내정보</a></li>
-								<li><a href="./bookingList.bo?u_id=<%=mvo.getU_id()%>">내예약확인</a></li>
+								<td><a href="./purchase_list.py?u_id=<%=mvo.getU_id()%>">구매내역</a></td>
 								<li><a
 									href="./likeStoreList.li?u_id=<%=mvo.getU_id()%>">찜목록</a></li>
 								<li><a

@@ -70,6 +70,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
     
+    <!-- 추천가게 스크립트코드 -->
 	<script>
   		$(function(){
 			$('#slider-div').slick({
@@ -108,10 +109,13 @@
 
 			});
   		});
-  		
+  		 <!-- 추천가게 스크립트코드  끝-->
+   		
+  		 <!-- ??-->
   		$(function(){
   			$('.single-item').slick();
   		});
+  		
 	</script>
 </head>
 <body>
@@ -193,9 +197,23 @@
                             <div class="sidebar__item">
                                 <h4><ul><a href="./reviewList.re">후기 검색</a></ul></h4>
                             </div>
+                            <%
+                           if(mvo == null|| mvo.getU_id() == null || mvo.getU_id()==""){
+                            %>
                             <div class="sidebar__item">
                                 <h4><ul><a href="./updateList.me">마이 페이지</a></ul></h4>
                             </div>
+                            <%
+                            }else{
+                            %>	
+                            <div class="sidebar__item">
+                                <h4><ul><a href="./loginForm.me">마이 페이지</a></ul></h4>
+                            </div>
+                            <% 
+                            }
+                            %>
+                           
+                            
                             <div class="sidebar__item">
                                 <h4><ul><a href="#">예약 현황</a></ul></h4>
                             </div>
@@ -365,8 +383,7 @@
     </section>
     <!--Featured Section End -->
 
- <%@include file="../includes/footer.jsp"%>
- 
+ <%@include file="./includes/footer.jsp"%>
 <script type="text/javascript" src="resources/js/slick.js"></script>
 </body>
 </html> --%>
