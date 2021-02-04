@@ -35,7 +35,6 @@
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
-		<url-pattern>*.bo</url-pattern>
 		<url-pattern>*.ev</url-pattern>
 		<url-pattern>*.li</url-pattern>
 		<url-pattern>*.me</url-pattern>

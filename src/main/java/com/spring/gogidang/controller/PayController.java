@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.spring.gogidang.domain.BookingVO;
 import com.spring.gogidang.domain.MemberVO;
 import com.spring.gogidang.domain.PayVO;
 import com.spring.gogidang.domain.PaymentCheck;

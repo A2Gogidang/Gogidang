@@ -74,8 +74,8 @@ public class QnaServiceImpl implements QnaService {
 	   public int qnaReply(QnaVO qna) {
 		  QnaMapper qnaMapper = sqlSession.getMapper(QnaMapper.class);
 	      qnaMapper.qnaReplyupdate(qna);
-	      qna.setRe_seq(qna.getRe_seq()+1);
-	      qna.setRe_lev(qna.getRe_lev()+1);
+//	      qna.setRe_seq(qna.getRe_seq()+1);
+//	      qna.setRe_lev(qna.getRe_lev()+1);
 	      int res = qnaMapper.qnaReply(qna);
 	      return res;
 	   }
@@ -84,6 +84,14 @@ public class QnaServiceImpl implements QnaService {
 	public List<QnaVO> getList() {
 		QnaMapper qnaMapper = sqlSession.getMapper(QnaMapper.class);
 		return qnaMapper.getList();
+	}
+
+	@Override
+	public int reQna(QnaVO qna) {
+		QnaMapper qnaMapper = sqlSession.getMapper(QnaMapper.class);
+		
+		int res = qnaMapper.reQna(qna);
+		return res;
 	}
 	
 }

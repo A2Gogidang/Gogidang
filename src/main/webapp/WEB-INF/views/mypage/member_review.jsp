@@ -5,7 +5,7 @@
 <%@ page import="com.spring.gogidang.domain.*"%>
 
 <%	
-	ArrayList<SRReviewVO> srReviewList = (ArrayList<SRReviewVO>) request.getAttribute("srReviewList");
+	ArrayList<ReviewVO> reviewList = (ArrayList<ReviewVO>) request.getAttribute("reviewList");
 	PageDTO pageMaker = (PageDTO) request.getAttribute("pageMaker");
 %>
 
@@ -24,11 +24,9 @@
 							<h4>마이페이지</h4>
 							<ul>
 								<li><a href="./updateList.me">내정보</a></li>
-								<td><a href="./purchase_list.py?u_id=<%=mvo.getU_id()%>">구매내역</a></td>
-								<li><a
-									href="./likeStoreList.li?u_id=<%=mvo.getU_id()%>">찜목록</a></li>
-								<li><a
-									href="./reviewListByIdWithPaging.re?u_id=<%=mvo.getU_id()%>">내가
+								<li><a href="./purchase_list.py?u_id=<%=mvo.getU_id()%>">구매내역</a></li>
+								<li><a href="./likeStoreList.li?u_id=<%=mvo.getU_id()%>">찜목록</a></li>
+								<li><a href="./reviewListByIdWithPaging.re?u_id=<%=mvo.getU_id()%>">내가
 										작성한 후기</a></li>
 								<li><a href="./cartList.ct">장바구니</a></li>
 							</ul>
@@ -54,30 +52,18 @@
 							</thead>
 							<tbody class="text-center">
 								<%
-									for (int i = 0; i < srReviewList.size(); i++) {
+									for (int i = 0; i < reviewList.size(); i++) {
 	
-										SRReviewVO srReviewvo = (SRReviewVO) srReviewList.get(i);
+										ReviewVO reviewVO = (ReviewVO) reviewList.get(i);
 								%>
 								<tr align=center>
 									<td><%=i + 1%></td>
 									<td><a
-										href="storereviewInfo.bo?review_num=<%=srReviewvo.getReview_num()%>"><%=srReviewvo.getTitle()%></a>
+										href="storereviewInfo.bo?review_num=<%=reviewVO.getReview_num()%>"><%=reviewVO.getTitle()%></a>
 									</td>
-									<td><%=srReviewvo.getU_id()%></td>
-									<td><%=srReviewvo.getStar()%></td>
-									<td><%=srReviewvo.getReview_date()%></td>
-	
-									<%
-										if (srReviewvo.getRe_content() == null || srReviewvo.getRe_content() == "") {
-									%>
-										<td>답변 대기</td>
-									<%
-										} else {
-									%>
-										<td>답변 완료</td>
-									<%
-										}
-									%>
+									<td><%=reviewVO.getU_id()%></td>
+									<td><%=reviewVO.getStar()%></td>
+									<td><%=reviewVO.getReview_date()%></td>
 	
 									<%
 										}

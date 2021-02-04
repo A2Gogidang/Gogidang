@@ -56,12 +56,6 @@ public class QnaStoreServiceImpl implements QnaStoreService {
 		return qna;
 	}
 	
-	@Override
-	public int qnaModify(QnaStoreVO qna) {
-		QnaStoreMapper qnastoreMapper = sqlSession.getMapper(QnaStoreMapper.class);
-		int res = qnastoreMapper.qnaModify(qna);
-		return res;
-	}
 	
 	  @Override
 	   public int qnaDelete(HashMap<String, String> hashmap) {
@@ -78,11 +72,24 @@ public class QnaStoreServiceImpl implements QnaStoreService {
 	   public int qnaReply(QnaStoreVO qna) {
 		  QnaStoreMapper qnastoreMapper = sqlSession.getMapper(QnaStoreMapper.class);
 		  qnastoreMapper.qnaReplyupdate(qna);
-		   qna.setRe_seq(qna.getRe_seq()+1);
-		   qna.setRe_lev(qna.getRe_lev()+1);
+//		   qna.setRe_seq(qna.getRe_seq()+1);
+//		   qna.setRe_lev(qna.getRe_lev()+1);
 	      int res = qnastoreMapper.qnaReply(qna);
 	      return res;
 	   }
+
+	@Override
+	public List<QnaStoreVO> getList(int s_num) {
+		QnaStoreMapper qnastoreMapper = sqlSession.getMapper(QnaStoreMapper.class);
+		
+		return qnastoreMapper.getList(s_num);
+	}
 	
+	@Override
+	public int qnaModify(QnaStoreVO qna) {
+		QnaStoreMapper qnastoreMapper = sqlSession.getMapper(QnaStoreMapper.class);
+		int res = qnastoreMapper.qnaModify(qna);
+		return res;
+	}
 }
 
