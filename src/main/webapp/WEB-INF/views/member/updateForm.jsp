@@ -58,13 +58,15 @@
  <section class="product spad">
         <div class="container">
             <div class="row">
- <div class="col-lg-3 col-md-5">
-				<div class="sidebar">
-					<div class="sidebar__item">
-						<%
-				if (u_id.equals("admin")) {
-			%>
-			<h4>관리자 페이지</h4>
+ 				<div class="col-lg-3" id="nav-bar">
+		            <div class="hero__categories">
+		                  <%
+		                  if (u_id.equals("admin")) {
+		                  %>
+		                 <div class="hero__categories__all">
+		                  	<span>관리자 페이지</span>
+		                 </div>
+
 			<ul>
 				<li><a href="storeWait.st">대기중인 가게 승인</a></li>
 				<li><a href="noticelist.no">공지사항 관리</a></li>
@@ -75,10 +77,12 @@
 				} else {
 					if (memberVO.getSeller_key() == 0) {
 			%>
-			<h4>마이페이지</h4>
+			<div class="hero__categories__all">
+		       	<span>마이 페이지</span>
+		    </div>
 			<ul>
 				<li><a href="./updateList.me">내정보</a></li>
-				<li><a href="./bookingList.bo?u_id=<%=memberVO.getU_id()%>">내예약확인</a></li>
+				<li><a href="./purchase_list.py?u_id=<%=memberVO.getU_id()%>">구매내역</a></li>
 				<li><a href="./likeStoreList.li?u_id=<%=memberVO.getU_id()%>">찜목록</a></li>
 				<li><a
 					href="./reviewListByIdWithPaging.re?u_id=<%=memberVO.getU_id()%>">내가
@@ -89,7 +93,9 @@
 				} else {
 						if (storevo == null || storevo.getConfirm() == 0 || storevo.getS_num() == 0) {
 			%>
-			<h4>판매자 마이페이지</h4>
+			<div class="hero__categories__all">
+		       	<span>마이 페이지</span>
+		    </div>
 			<ul>
 				<li><a href="./updateList.me">내정보</a></li>
 				<li><a href="./storeRegForm.st">가게 정보</a>
@@ -97,7 +103,9 @@
 			<%
 				} else {
 			%>
-			<h4>판매자 마이페이지</h4>
+			<div class="hero__categories__all">
+		       	<span>마이 페이지</span>
+		    </div>
 			<ul>
 				<li><a href="./updateList.me">내정보</a></li>
 				<li><a href="./storeRegForm.st">가게 정보</a></li>
@@ -112,9 +120,8 @@
 			%>
 					</div>
 				</div>
-			</div>
     
-        <div class="reviewboard">
+        <div class="col-lg-9">
 <!-- ---------------------------------------------------시작----------------------------------------------------- -->      
   
 
@@ -124,124 +131,125 @@
 	
         		<div class="section-title product__discount__title">
 	          		<h2>내정보 수정</h2>
-	    		</div>
-	<div class="container" id="update">
-		<div class="row justify-content-center">
-        <div class="col-lg-8">
-        	<div class="update">
-        		
-        		<!-- join form -->
-         		<form name="updateform" action="./updateProcess.me" method="post">
-         			<div class="id_input_box">
-										<ts>아이디</ts>
-										<td> <input type="text" name="u_id"
-											value="<%=memberVO.getU_id()%>" readonly
-											style="font-size: 13px;" /></td>
-									</div>
-
-									<div class="id_input_box">
-										<ts>비밀번호</ts>
-										<td> <input type="password" name="u_pw"
-											value="<%=memberVO.getU_pw()%>" 
-											style="font-size: 13px;" /></td>
-									</div>
-
-									<div class="id_input_box">
-										<ts>이름</ts>
-										<td> <input type="text" name="u_name"
-											value="<%=memberVO.getU_name()%>" readonly
-											style="font-size: 13px;" /></td>
-									</div>
-
-									<div class="id_input_box">
-										<ts>닉네임</ts>
-										<td> <input type="text" name="u_nick"
-											value="<%=memberVO.getU_nick()%>" 
-											style="font-size: 13px;" /></td>
-									</div>
-
-									<div class="id_input_box">
-										<ts>생년월일</ts>
-										<td> <input type="text" name="u_birth"
-											value="<%=memberVO.getU_birth()%>" 
-											style="font-size: 13px;" /></td>
-									</div>
-
-									<div class="id_input_box_s">
-									<div class="id_input_box_p">
-										<div class="id_input_box_d">
-											<ts>주소</ts>
-											</div>
-											<div class="id_input_box_ps">
-												<td><input class="add_input" type="text" 
-												id="u_post" name="u_post" placeholder="우편번호" 
-												style="font-size:13px;"/>
-		         	 							<input class="add_btn" type="button" 
-		         	 							onclick="execDaumPostcode()" value="우편번호찾기" 
-		         	 							style="font-size:10px;"/></td>
-		         	 					</div>
-		         	 					</div>
-		         	 					<div class="id_input_box_a">
-		         	 					<ts></ts>
-												<td><input type="text" id="u_addr" name="u_addr"
-												value="<%=memberVO.getU_addr()%>" 
-												style="font-size: 13px;" /></td>
-										</div>
-										<div class="id_input_box_at">
-										<ts></ts>
-												<td><input type="text" name="u_addr"
-												value="<%=memberVO.getU_addr()%>" 
-												style="font-size: 13px;" /></td>
-										</div>				
-									</div>
-
-									<div class="id_input_box">
-										<div class="id_input_box_es">
-										<div class="id_input_box_e">
-										<ts>이메일 주소</ts>
-										</div>
-										<td>
-											<div class="input_emails">
-												<input type="text" class="add_input_email" name="u_email"
-												value="<%=memberVO.getU_email()%>" 
-												style="font-size: 13px;" /><span class="ico_email" style="font-size:13px;">@</span>
-									         	 <select class="add_input_email_se" name="u_email" > 
-									         	 		<option value="">메일주소선택</option>
-														<option value="@naver.com">naver.com</option>
-														<option value="@hanmail.net">hanmail.net</option>
-														<option value="@daum.net">daum.net</option>
-														<option value="@gmail.com">gmail.com</option>
-														<option value="@nate.net">nate.net</option>
-												</select>
-											</div>
-										</td>
-										</div>
-									</div>
-									<div class="id_input_box_pn">
-									<div class="id_input_box">
-										<ts>핸드폰 번호</ts>
-										<td> <input type="text" name="u_phone"
-											value="<%=memberVO.getU_phone()%>" readonly
-											style="font-size: 13px;" /></td>
-									</div>
-									</div>
-         		
-         			<!-- <tr align=center>
-					<td colspan=2><a href="./updateForm.me">수정</a></td>
-					</tr> -->
-         			
-					
-					<div class="update_btn">
-	         	 	<button type="submit" class="btn-jj btn-lg btn-block btn-success" > 수정하기</button>
-	         	 	</div>
-         			
-         		</form>
-       		   </div><!--join -->
-			</div><!-- col-lg-8 -->.
-		</div><!-- row justify-content-center -->
-	</div><!-- container id="join" -->
- <!-- ----------------------------------------------------끝---------------------------------------------------- --> 
-	</div>
+				    		</div>
+				<div class="container" id="update">
+				<div class="linez"></div>
+					<div class="row justify-content-center">
+			        <div class="col-lg-8">
+			        	<div class="update">
+			        		
+			        		<!-- join form -->
+			         		<form name="updateform" action="./updateProcess.me" method="post">
+			         			<div class="id_input_box">
+													<ts>아이디</ts>
+													<td> <input type="text" name="u_id"
+														value="<%=memberVO.getU_id()%>" readonly
+														style="font-size: 13px;" /></td>
+												</div>
+			
+												<div class="id_input_box">
+													<ts>비밀번호</ts>
+													<td> <input type="password" name="u_pw"
+														value="<%=memberVO.getU_pw()%>" 
+														style="font-size: 13px;" /></td>
+												</div>
+			
+												<div class="id_input_box">
+													<ts>이름</ts>
+													<td> <input type="text" name="u_name"
+														value="<%=memberVO.getU_name()%>" readonly
+														style="font-size: 13px;" /></td>
+												</div>
+			
+												<div class="id_input_box">
+													<ts>닉네임</ts>
+													<td> <input type="text" name="u_nick"
+														value="<%=memberVO.getU_nick()%>" 
+														style="font-size: 13px;" /></td>
+												</div>
+			
+												<div class="id_input_box">
+													<ts>생년월일</ts>
+													<td> <input type="text" name="u_birth"
+														value="<%=memberVO.getU_birth()%>" 
+														style="font-size: 13px;" /></td>
+												</div>
+			
+												<div class="id_input_box_s">
+												<div class="id_input_box_p">
+													<div class="id_input_box_d">
+														<ts>주소</ts>
+														</div>
+														<div class="id_input_box_ps">
+															<td><input class="add_input" type="text" 
+															id="u_post" name="u_post" placeholder="우편번호" 
+															style="font-size:13px;"/>
+					         	 							<input class="add_btn" type="button" 
+					         	 							onclick="execDaumPostcode()" value="우편번호찾기" 
+					         	 							style="font-size:10px;"/></td>
+					         	 					</div>
+					         	 					</div>
+					         	 					<div class="id_input_box_a">
+					         	 					<ts></ts>
+															<td><input type="text" id="u_addr" name="u_addr"
+															value="<%=memberVO.getU_addr()%>" 
+															style="font-size: 13px;" /></td>
+													</div>
+													<div class="id_input_box_at">
+													<ts></ts>
+															<td><input type="text" name="u_addr"
+															value="<%=memberVO.getU_addr()%>" 
+															style="font-size: 13px;" /></td>
+													</div>				
+												</div>
+			
+												<div class="id_input_box">
+													<div class="id_input_box_es">
+													<div class="id_input_box_e">
+													<ts>이메일 주소</ts>
+													</div>
+													<td>
+														<div class="input_emails">
+															<input type="text" class="add_input_email" name="u_email"
+															value="<%=memberVO.getU_email()%>" 
+															style="font-size: 13px;" /><span class="ico_email" style="font-size:13px;">@</span>
+												         	 <select class="add_input_email_se" name="u_email" > 
+												         	 		<option value="">메일주소선택</option>
+																	<option value="@naver.com">naver.com</option>
+																	<option value="@hanmail.net">hanmail.net</option>
+																	<option value="@daum.net">daum.net</option>
+																	<option value="@gmail.com">gmail.com</option>
+																	<option value="@nate.net">nate.net</option>
+															</select>
+														</div>
+													</td>
+													</div>
+												</div>
+												<div class="id_input_box_pn">
+												<div class="id_input_box">
+													<ts>핸드폰 번호</ts>
+													<td> <input type="text" name="u_phone"
+														value="<%=memberVO.getU_phone()%>" readonly
+														style="font-size: 13px;" /></td>
+												</div>
+												</div>
+			         		
+			         			<!-- <tr align=center>
+								<td colspan=2><a href="./updateForm.me">수정</a></td>
+								</tr> -->
+			         			
+								
+								<div class="update_btn">
+				         	 	<button type="submit" class="btn-jj btn-lg btn-block btn-success" > 수정하기</button>
+				         	 	</div>
+			         			
+			         		</form>
+			       		   </div><!--join -->
+						</div><!-- col-lg-8 -->.
+					</div><!-- row justify-content-center -->
+				</div><!-- container id="join" -->
+			 <!-- ----------------------------------------------------끝---------------------------------------------------- --> 
+				</div>
             </div>
         </div>
     </section>       		

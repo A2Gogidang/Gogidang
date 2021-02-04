@@ -40,11 +40,6 @@
 							<li><a href="noticelist.no">공지사항 관리</a></li>
 							<li><a href="qnalist.qn">문의 관리</a></li>
 							<li><a href="eventList.ev">이벤트 관리</a></li>
-							<!--<li><a href="#">Fastfood</a></li>
-	                            <li><a href="#">Fresh Onion</a></li>
-	                            <li><a href="#">Papayaya & Crisps</a></li>
-	                             <li><a href="#">Oatmeal</a></li>
-	                            <li><a href="#">Fresh Bananas</a></li> -->
 						</ul>
 						<%
 							} else {

@@ -20,30 +20,30 @@
 <section class="product spad">
 	<div class="container">
 			<div class="row">
-			<div class="qnaListn">
-			<div class="col-lg-3 col-md-5">
-				<div class="sidebar">
-					<div class="sidebar__item">
-						<h4>문의</h4>
-					<ul>
-						<li><a href="eventList.ev">이벤트</a></li>
-						<li><a href="noticelist.no">공지사항</a></li>
-						<li><a href="qnalist.qn">문의</a></li>
-						<!--<li><a href="#">Fastfood</a></li>
-                            <li><a href="#">Fresh Onion</a></li>
-                            <li><a href="#">Papayaya & Crisps</a></li>
-                             <li><a href="#">Oatmeal</a></li>
-                            <li><a href="#">Fresh Bananas</a></li> -->
-					</ul>
+
+			<div class="col-lg-3" id="nav-bar">
+		            <div class="hero__categories">
+		                  <div class="hero__categories__all">
+		                  	<span>문의</span>
+		              	 </div>
+								<ul>
+									<li><a href="eventList.ev">이벤트</a></li>
+									<li><a href="noticelist.no">공지사항</a></li>
+									<li><a href="qnalist.qn">문의</a></li>
+									<!--<li><a href="#">Fastfood</a></li>
+			                            <li><a href="#">Fresh Onion</a></li>
+			                            <li><a href="#">Papayaya & Crisps</a></li>
+			                             <li><a href="#">Oatmeal</a></li>
+			                            <li><a href="#">Fresh Bananas</a></li> -->
+								</ul>
+						</div>
 					</div>
-				</div>
-			</div>
-			<div class="rowNotice">
+			<div class="col-lg-9">
 				<div class="section-title product__discount__title">
 					<h2>문의 게시판</h2>
 				</div>
 				
-				<div class="qnaList">
+				<div class="container">
 					<table class="table table-striped">
 						<thead>
 							<tr>
@@ -66,7 +66,7 @@
 
 							<td style="font-family: Tahoma; font-size: 10pt;">
 								
-									<%
+									<%-- <%
 										if (ql.getRe_lev() != 0) {
 									%>
 									<%
@@ -83,7 +83,7 @@
 
 									<%
 										}
-									%>
+									%> --%>
 									<a href="./qnadetail.qn?qna_num=<%=ql.getQna_num()%>"> <%=ql.getTitle()%>
 									</a>
 							</td>
@@ -109,17 +109,33 @@
 					<%}%>
 					</div>
 					<div class="product__pagination">
+						<div class="paging">
+						<% if(nowpage <= 1) { %>
 						<a href="#"><i class="fa fa-long-arrow-left"></i></a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
+						<%}else{%>
+						<a href="./qnalist.qn?page=<%=nowpage - 1%>"><i class="fa fa-long-arrow-left"></i></a>
+						<%} %>
+						<% 
+							for(int a =startpage; a<=endpage; a++){
+								if(a== nowpage){
+						%>
+						<a href="./qnalist.qn?page=<%=a%>"><%=a %></a>
+						<%}else{ %>
+                        <a href="./qnalist.qn?page=<%=a%>"><%=a %></a>
+                        <%} 
+                        	}%>
+						<%if(nowpage >= maxpage) {%>
                         <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                        <%}else{ %>
+                        <a href="./qnalist.qn?page=<%=nowpage + 1%>"><i class="fa fa-long-arrow-right"></i></a>
+                        <%} %>
+                    </div>
                     </div>
 				</div>
 				</div>
 			</div>
 			</div>
-	</div>
+
 </section>
 
 <%@ include file="../includes/footer.jsp"%>

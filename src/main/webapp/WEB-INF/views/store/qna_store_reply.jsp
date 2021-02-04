@@ -22,9 +22,6 @@
 <form action="./qnareply.qn" method="post" name="boardform">
 <!-- 원글에 대한 정보 -->
 <input type="hidden" name="qna_num" value="<%=qna.getQnastore_num() %>">
-<input type="hidden" name="re_ref" value="<%=qna.getRe_ref() %>"> <!-- 원글의 글그룹번호 -->
-<input type="hidden" name="re_lev" value="<%=qna.getRe_lev() %>">
-<input type="hidden" name="re_seq" value="<%=qna.getRe_seq() %>">
 <input type="hidden" name="u_id" value="<%=memberVO.getU_id() %>">
 
 <table cellpadding="0" cellspacing="0">

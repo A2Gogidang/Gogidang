@@ -129,7 +129,7 @@
                      if (storeVO == null || storeVO.getConfirm() == 0 || storeVO.getS_num() == 0) {
                %>
                <div class="hero__categories__all">
-                  <span>판매자페이지</span>
+                  <span>마이페이지</span>
                </div>
                   <ul>
                      <li><a href="./updateList.me">내정보</a></li>
@@ -139,14 +139,14 @@
                   } else {
                %>
                <div class="hero__categories__all">
-                  <span>판매자 마이페이지</span>
+                  <span>마이페이지</span>
                </div>
                   <ul>
                      <li><a href="./updateList.me">내정보</a></li>
                      <li><a href="./storeRegForm.st">가게 정보</a></li>
                      <li><a href="./menuRegForm.mn">메뉴 등록</a></li>
                      <li><a href="./storeNoticeList.no">문의 관리</a></li>
-                     <li><a href="./storereviewList.bo">리뷰 관리</a></li>
+                     <li><a href="./storereviewList.re">리뷰 관리</a></li>
                   </ul>
                <%
                   }
@@ -159,15 +159,15 @@
          <!--네비게이션바 사용 end-->
          <!-- Hero Section End -->
          <!-- ---------------------------------------------------시작----------------------------------------------------- -->
-         <div class="reviewboard">
+         <div class="col-lg-9">
             <div class="section-title product__discount__title">
                <h2>가게 정보</h2>
             </div>
+            <div class="linez"></div>
             <div class="container" id="store_reg_form">
                <div class="row justify-content-center">
                   <div class="col-lg-8">
                      <div class="store_reg_form">
-
 
                         <!-- store_form -->
                         <form action="./storeInsert.st" method="post"
@@ -347,22 +347,32 @@
 
                            <div class="join_btn_box">
                               <div class="join_btn">
-                                 <%
-                                    if (storeVO == null || storeVO.getS_num() == 0) {
-                                 %>
 
                                     <%
-                                       if (storeVO == null || storeVO.getS_phone() == null || storeVO.getS_phone() == "") {
+                                       if (storeVO == null || storeVO.getS_num() == 0 || storeVO.getS_phone()== ""|| storeVO.getS_phone()== null ) {
                                     %>
-                                    <button type="submit"
-                                       class="btn-jj btn-lg btn-block btn-success"
-                                       multiple / >작성하기</button>
-                                    <%
+                                       <button type="submit"  class="btn-jj btn-lg btn-block btn-success" multiple / >작성하기</button>
+                                    <%                                                                   			
+                                      	
                                        } else {
                                     %>
+                                    
+                                      <%
+                                      		if (storeVO.getConfirm() == 0) {
+                                      %>
+                                      			 <p></p><p class="pmes">승인 대기중입니다.<p>
+                                       
+                                       <%
+                                      		}else{
+                                       %>
+                              <div class="join_btn">
+                     
                                     <button type="button"
-                                    class="btn-jj btn-lg btn-block btn-successb" onClick="location.href='./storeUpdateForm.st'">수정하러 가기</button>
-                                    <!-- 
+                                    class="btn-jj btn-lg btn-block btn-success" onClick="location.href='./storeUpdateForm.st'">수정하기</button>
+                              </div>
+                                   <!--  <button type="button"
+                                    class="btn-jj btn-lg btn-block btn-success" onClick="location.href='./main.me'">메인으로</button>
+                                    
                                     <button type="submit"
                                        class="btn-jj btn-lg btn-block btn-success"
                                        multiple / >작성하기</button>
@@ -371,31 +381,12 @@
                                     <button type="button"
                                        class="btn-jj btn-lg btn-block btn-success" >수정하러 가기</button>
                                      -->
-                                    <%
+                                    <% 
+                                      		}
                                        }
-                                    }
                                  %>
                               </div>
 
-                              <div class="join_btn">
-                                 <%
-                                    if (storeVO == null || storeVO.getS_num() == 0) {
-                                 %>
-                                 <!-- <button type="reset"
-                                    class="btn-j btn-lg btn-block btn-success">다시 작성</button> -->
-                                 <button type="button"
-                                    class="btn-jj btn-lg btn-block btn-success" onClick="location.href='./storeUpdateForm.st'">수정하러 가기</button>
-                                 
-                                 <%
-                                    } else {
-                                 %>
-                                 <button type="button"
-                                    class="btn-jj btn-lg btn-block btn-successb" onClick="location.href='./storeUpdateForm.st'">수정하러 가기</button>
-                                 <!-- <a href="./storeUpdateForm.st">수정</a> -->
-                                 <%
-                                    }
-                                 %>
-                              </div>
                            </div>
 
                         </form>

@@ -38,23 +38,76 @@ public class StoreController {
 
 	@Autowired
 	private ReviewService reviewService;
-	
-	@Autowired
-	private StoreReviewService storeReviewService;
 
 	@Autowired
 	private QnaStoreService qnastoreService;
 
-	/*
-	 * 승인대기중인 가게 리스트 보기
-	 */
 	@RequestMapping(value = "/storeWait.st")
 	public String getStoreWait(Model model) {
 		ArrayList<StoreVO> storeList = storeService.getWaitList();
 		System.out.println("list size : " + storeList.size());
 		model.addAttribute("storeList", storeList);
 
-		return "mypage/new_mypage";
+		return "admin/admin_waitStore";
+	}
+	
+	// store info ajax - modal
+	@RequestMapping(value = "/storeWaitInfo.re", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public Map<String, Object> storeWaitInfo(@RequestParam("s_num") int s_num) {
+		Map<String, Object> retVal = new HashMap<String, Object>();
+		
+		try {
+			StoreVO svo = storeService.storeInfo(s_num);
+			retVal.put("svo", svo);
+			retVal.put("s_num", svo.getS_num());
+			retVal.put("u_id", svo.getU_id());
+			retVal.put("thumbnail", svo.getThumbnail());
+			retVal.put("s_name", svo.getS_name());
+			retVal.put("s_addr", svo.getS_addr());
+			retVal.put("s_phone", svo.getS_phone());
+			retVal.put("s_img", svo.getS_img());
+			retVal.put("s_hour", svo.getS_hour());
+			retVal.put("res", "OK");
+		} catch (Exception e) {
+			retVal.put("res", "FAIL");
+			retVal.put("message", "Failure");
+		}
+		
+		return retVal;
+	}
+		
+	// store ajax confirm - modal
+	@RequestMapping(value = "/confirmStore.re", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public Map<String, Object> confirmStore(@RequestParam("s_num") int s_num) {
+		Map<String, Object> retVal = new HashMap<String, Object>();
+		System.out.println("s_num = " + s_num);
+		try {
+			storeService.confirmStore(s_num);
+			retVal.put("res", "confirm");
+		} catch (Exception e) {
+			retVal.put("res", "FAIL");
+			retVal.put("message", "Failure");
+		} 
+		
+		return retVal;
+	}
+	
+	// store ajax refuse - modal
+	@RequestMapping(value = "/refuseStore.re", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public Map<String, Object> refuseStore(@RequestParam("s_num") int s_num) {
+		Map<String, Object> retVal = new HashMap<String, Object>();
+		try {
+			storeService.refuseStore(s_num);
+			retVal.put("res", "refuse");
+		} catch (Exception e) {
+			retVal.put("res", "FAIL");
+			retVal.put("message", "Failure");
+		} 
+
+		return retVal;
 	}
 
 	@GetMapping("/storeWaitListWithPaging.st")
@@ -68,19 +121,13 @@ public class StoreController {
 		return "store/store_wait";
 	}
 
-	/*
-	 * 가게 상세 정보 보기
-	 */
 	@RequestMapping(value = "/storeInfo.st")
 	public String storeInfo(@RequestParam("s_num") int s_num, Criteria cri, Model model, HttpSession session,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 		StoreVO vo = storeService.storeInfo(s_num);
-		SRReviewVO srReviewVO = new SRReviewVO();
-		srReviewVO.setS_num(s_num);
 
 		ArrayList<MenuVO> menuList = menuService.menuList(s_num);
 		List<ReviewVO> reviewList = reviewService.getListBySnWithPaing(cri, s_num);
-		ArrayList<SRReviewVO> srReviewList = storeReviewService.srReviewSelect(srReviewVO);
 
 		int total = reviewService.getTotal(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
@@ -88,7 +135,7 @@ public class StoreController {
 		model.addAttribute("storeVO", vo);
 		model.addAttribute("menuList", menuList);
 		// model.addAttribute("reviewList", reviewList);
-		model.addAttribute("srReviewList", srReviewList);
+		model.addAttribute("reviewList", reviewList);
 
 		int limit = 10;
 
@@ -119,7 +166,6 @@ public class StoreController {
 		model.addAttribute("startpage", startpage);
 		model.addAttribute("endpage", endpage);
 
-		// return "store/store_info";
 		return "store/shop-details";
 	}
 	
@@ -241,9 +287,7 @@ public class StoreController {
 		session.setAttribute("StoreVO", vo);
 		return "sellerpage/store_reg_form";
 	}
-	// soobin end
 
-	// dohyeong start
 	@RequestMapping(value = "/storeList.st")
 	public String getStoreList(Model model) {
 		ArrayList<StoreVO> storeList = storeService.getList();
@@ -277,122 +321,4 @@ public class StoreController {
 		
 		return storeList;
 	}
-
-	
-	// dogyeong end
-
-	@RequestMapping(value = "/store_info_Design.st")
-	public String design1(Model model) {
-		return "store/store_info_Design";
-
-	}
-
-	@RequestMapping(value = "/store_info_scroll.st")
-	public String store_info_scroll(Model model) {
-		return "store/store_info_scroll";
-
-	}
-
-	@RequestMapping(value = "/store_info_Design2.st")
-	public String design2(Model model) {
-		return "store/store_info_design/store_info_Design2";
-	}
-
-	@RequestMapping(value = "/shopgrid.st")
-	public String shopgrid(Model model) {
-		return "store/shopgrid";
-
-	}
-	
-
-	@RequestMapping("qnawriteform.st")
-	public String qnaInsertForm() {
-		return "store/qna_store_write";
-	}
-
-	@RequestMapping("/qnawrite.st")
-	public String qnaInsert(QnaStoreVO qna, HttpSession session, HttpServletResponse response) throws Exception {
-		int res = qnastoreService.qnaInsert(qna);
-
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter writer = response.getWriter();
-
-		if (res == 1) {
-			writer.write("<script>alert('작성 완료!!');location.href='./storeInfo.st';</script>");
-		} else {
-			writer.write("<script>alert('작성 실패!!');location.href='./qnawriteform.st';</script>");
-		}
-
-		return null;
-	}
-
-	@RequestMapping("/qnadetail.st")
-	public String getDetail(@RequestParam(value = "qnastore_num", required = true) int qnastore_num, Model model) {
-		QnaStoreVO qna = qnastoreService.getDetail(qnastore_num);
-
-		model.addAttribute("qna", qna);
-
-		return "store/qna_store_view";
-	}
-
-	@RequestMapping("/qnamodifyform.st")
-	public String getModifyForm(@RequestParam(value = "qnastore_num", required = true) int qnastore_num, Model model) {
-		QnaStoreVO qna = qnastoreService.getDetail(qnastore_num);
-
-		model.addAttribute("qna", qna);
-
-		return "store/qna_store_modify";
-	}
-
-	@RequestMapping("/qnamodify.st")
-	public String qnaModify(QnaStoreVO qna) throws Exception {
-		int res = qnastoreService.qnaModify(qna);
-		return "redirect:/qnadetail.st?qnastore_num=" + qna.getQnastore_num();
-	}
-
-	@RequestMapping("/qnadelete.st")
-	public String noticeDelete(@RequestParam(value = "qnastore_num", required = true) int qnastore_num,
-			HttpSession session, HttpServletResponse response) throws Exception {
-		String u_id = (String) session.getAttribute("u_id");
-
-		HashMap<String, String> hashmap = new HashMap<String, String>();
-		hashmap.put("qnastore_num", Integer.toString(qnastore_num));
-		hashmap.put("u_id", u_id);
-		int res = qnastoreService.qnaDelete(hashmap);
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter writer = response.getWriter();
-		if (res == 1) {
-			writer.write("<script>alert('삭제 성공!!');" + "location.href='./storeInfo.st';</script>");
-		} else {
-			writer.write("<script>alert('삭제 실패!!');" + "location.href='./storeInfo.st';</script>");
-		}
-		return null;
-	}
-
-	@RequestMapping("/qnareplyform.st")
-	public String qnaReplyForm(@RequestParam(value = "qnastore_num", required = true) int qnastore_num, Model model) {
-		QnaStoreVO qna = qnastoreService.getDetail(qnastore_num);
-
-		model.addAttribute("qna", qna);
-
-		return "store/qna_store_reply";
-	}
-
-	@RequestMapping("/qnareply.st")
-	public String qnaReply(QnaStoreVO qna, HttpServletResponse response) throws Exception {
-		int res = qnastoreService.qnaReply(qna);
-		PrintWriter writer = response.getWriter();
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		if (res == 1) {
-			writer.write("<script>alert('답글 성공!!');" + "location.href='./storeInfo.st';</script>");
-		} else {
-			writer.write("<script>alert('답글 실패!!');" + "location.href='./qnareplyform.st';</script>");
-		}
-		return null;
-
-	}
-
 }

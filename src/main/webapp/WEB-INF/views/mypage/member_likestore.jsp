@@ -21,25 +21,27 @@
 	<div class="container">
 		<div class="row">
 			<div class="likestore">
-				<div class="col-lg-3 col-md-5">
-					<div class="sidebar">
-						<div class="sidebar__item">
-							<h4>마이페이지</h4>
+				<div class="col-lg-3" id="nav-bar">
+		            <div class="hero__categories">
+		                  <div class="hero__categories__all">
+		                  	<span>마이페이지</span>
+		              	  </div>
 								<ul>
 									<li><a href="./updateList.me">내정보</a></li>
-									<li><a href="./bookingList.bo?u_id=<%=memberVO.getU_id()%>">내예약확인</a></li>
+									<li><a href="./purchase_list.py?u_id=<%=memberVO.getU_id()%>">구매내역</a></li>
 									<li><a href="./likeStoreList.li?u_id=<%=memberVO.getU_id()%>">찜목록</a></li>
 									<li><a href="./reviewListByIdWithPaging.re?u_id=<%=memberVO.getU_id()%>">내가작성한 후기</a></li>
 									<li><a href="./cartList.ct">장바구니</a></li>
 								</ul>
 							</div>
 						</div>
-					</div>
+
 			<!-- ---------------------------------------------------시작----------------------------------------------------- -->
-					<div class="reviewboard">
+					<div class="col-lg-9">
 						<div class="section-title product__discount__title">
 							<h2>찜 목록</h2>
 						</div>
+						<div class="linez"></div>
 						<div class="row">
 							<%
 								//for(int i=0;i<likestore_list.size();i++){

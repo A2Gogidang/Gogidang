@@ -18,5 +18,7 @@ public interface QnaService {
 	public QnaVO qnaModifyForm(int qna_num);
 	public int qnaDelete(HashMap<String, String> hashmap);
 	public int qnaReply(QnaVO qna);
+	
 	public List<QnaVO> getList();
+	public int reQna(QnaVO qna);
 }
