@@ -9,6 +9,7 @@ import com.spring.gogidang.domain.ReviewVO;
 public interface ReviewService {
 	
 	public List<ReviewVO> getList();
+	public List<ReviewVO> getListSn(int s_num);
 	public List<ReviewVO> getListWithPaging(Criteria cri);
 	public List<ReviewVO> getListByIdWithPaing(Criteria cri, String u_id);
 	public List<ReviewVO> getListBySnWithPaing(Criteria cri, int s_num);
