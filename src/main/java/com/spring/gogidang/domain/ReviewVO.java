@@ -1,7 +1,8 @@
 package com.spring.gogidang.domain;
 
-import java.util.Date;
-import java.util.List;
+
+
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,5 +34,9 @@ public class ReviewVO {
 	private String price;
 	private String img;
 	private int grade;
+	
+	/* review sub */
+	public int review_sub_num;
+	public String review_sub_content;
 
 }

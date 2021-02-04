@@ -13,38 +13,37 @@
 	int startpage=((Integer)request.getAttribute("startpage")).intValue();
 	int endpage=((Integer)request.getAttribute("endpage")).intValue();
 %>
-
-<style>
-.th, td {
-	font-size: 16px;
-}
-
-.pagination-lg {
-	font-size: 16px;
-}
-
-.page-item {
-	color: rgb(51, 131, 51);
-}
-
-.page-link {
-	color: rgb(51, 131, 51);
-}
-
-.pagination {
-	color: rgb(51, 131, 51);
-}
-</style>
-
-<div class="section-title" style="margin-top: 70px;">
-	<h2 style="margin-top: 30px;">문의 게시판</h2>
-</div>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/qna.css"
+	type="text/css">
 
 <section class="product spad">
 	<div class="container">
-		<div class="container-fluid">
 			<div class="row">
-				<div class="qnaList" style="width: 960px; margin-left: 50px;">
+
+			<div class="col-lg-3" id="nav-bar">
+		            <div class="hero__categories">
+		                  <div class="hero__categories__all">
+		                  	<span>문의</span>
+		              	 </div>
+								<ul>
+									<li><a href="eventList.ev">이벤트</a></li>
+									<li><a href="noticelist.no">공지사항</a></li>
+									<li><a href="qnalist.qn">문의</a></li>
+									<!--<li><a href="#">Fastfood</a></li>
+			                            <li><a href="#">Fresh Onion</a></li>
+			                            <li><a href="#">Papayaya & Crisps</a></li>
+			                             <li><a href="#">Oatmeal</a></li>
+			                            <li><a href="#">Fresh Bananas</a></li> -->
+								</ul>
+						</div>
+					</div>
+			<div class="col-lg-9">
+				<div class="section-title product__discount__title">
+					<h2>문의 게시판</h2>
+				</div>
+				
+				<div class="container">
 					<table class="table table-striped">
 						<thead>
 							<tr>
@@ -66,8 +65,8 @@
 							<td><%=qna_num%></td>
 
 							<td style="font-family: Tahoma; font-size: 10pt;">
-								<div align="left">
-									<%
+								
+									<%-- <%
 										if (ql.getRe_lev() != 0) {
 									%>
 									<%
@@ -84,17 +83,16 @@
 
 									<%
 										}
-									%>
+									%> --%>
 									<a href="./qnadetail.qn?qna_num=<%=ql.getQna_num()%>"> <%=ql.getTitle()%>
 									</a>
-								</div>
 							</td>
 
 							<td style="font-family: Tahoma; font-size: 10pt;">
-								<div align="center"><%=ql.getU_id()%></div>
+								<%=ql.getU_id()%>
 							</td>
 							<td style="font-family: Tahoma; font-size: 10pt;">
-								<div align="center"><%=ql.getRe_date()%></div>
+								<%=ql.getRe_date()%>
 							</td>
 
 						</tr>
@@ -104,73 +102,40 @@
 						%>
 						</tbody>
 					</table>
-					<div class="qna_insert" style="text-align: right;">
-						<a href="./qnawriteform.qn"><button type="button"
-								class="btn btn-lg btn-outline-secondary"
-								style="background-color: #076507; color: white;">글쓰기</button> </a>
+					<div class="qnabutton">
+					<% if (u_id != "admin") { %>
+							<a href="./qnawriteform.qn"><button type="button"
+									class="btn">글쓰기</button> </a>
+					<%}%>
 					</div>
-					<%-- <div class="container-fluid">
-						<div class="row">
-							<div class="col-md-2"></div>
-
-							<div class="col-md-8">
-								<class class="pagination-lg">
-								<ul class="pagination"
-									style="margin-bottom: 30px; display: flex; justify-content: center; align-items: center;">
-									<%
-										if (nowpage <= 1) {
-									%>
-									<li class="page-item"><a class="page-link" href="#"
-										style="color: rgb(51, 131, 51);">Previous</a></li>
-									<%
-										} else {
-									%>
-									<li class="page-item"><a class="page-link"
-										href="./qnalist.qn?page=<%=nowpage - 1%>"
-										style="color: rgb(51, 131, 51);">Previous</a></li>
-									<%
-										}
-									%>
-									<%
-										for (int a = startpage; a <= endpage; a++) {
-											if (a == nowpage) {
-									%>
-									<%=a%>
-									<%
-										} else {
-									%>
-									<li class="page-item"><a class="page-link"
-										href="./noticelist.no?page=<%=a%>"
-										style="color: rgb(51, 131, 51);"><%=a%></a></li>
-									<%
-										}
-									%>
-									<%
-										}
-									%>
-									<%
-										if (nowpage >= maxpage) {
-									%>
-									<li class="page-item"><a class="page-link" href="#"
-										style="color: rgb(51, 131, 51);">Next</a></li>
-									<%
-										} else {
-									%>
-									<li class="page-item"><a class="page-link"
-										href="./qnalist.qn?page=<%=nowpage + 1%>"
-										style="color: rgb(51, 131, 51);">Next</a></li>
-									<%
-										}
-									%>
-								</ul>
-							</div>
-							<div class="col-md-2"></div>
-						</div>
-					</div> --%>
+					<div class="product__pagination">
+						<div class="paging">
+						<% if(nowpage <= 1) { %>
+						<a href="#"><i class="fa fa-long-arrow-left"></i></a>
+						<%}else{%>
+						<a href="./qnalist.qn?page=<%=nowpage - 1%>"><i class="fa fa-long-arrow-left"></i></a>
+						<%} %>
+						<% 
+							for(int a =startpage; a<=endpage; a++){
+								if(a== nowpage){
+						%>
+						<a href="./qnalist.qn?page=<%=a%>"><%=a %></a>
+						<%}else{ %>
+                        <a href="./qnalist.qn?page=<%=a%>"><%=a %></a>
+                        <%} 
+                        	}%>
+						<%if(nowpage >= maxpage) {%>
+                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                        <%}else{ %>
+                        <a href="./qnalist.qn?page=<%=nowpage + 1%>"><i class="fa fa-long-arrow-right"></i></a>
+                        <%} %>
+                    </div>
+                    </div>
+				</div>
 				</div>
 			</div>
-		</div>
-	</div>
+			</div>
+
 </section>
 
 <%@ include file="../includes/footer.jsp"%>

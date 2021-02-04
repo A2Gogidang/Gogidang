@@ -33,11 +33,19 @@ readonly
 }
 
 .store_updateform h3 {
-   	text-align: center;
-    margin: 0 auto 30px auto;
+   	text-align: left;
+    margin-left:60px;
+    margin-bottom:65px;
     font-weight: bold;
     font-size: 40px;
     letter-spacing: 3px;
+    width: 100%;
+}
+.sidebar h5{
+	width: 100%;
+	font-size: 20px;
+	margin-bottom: 20px;
+	margin-right: 230px;
 }
 
 .store_updateform ts{
@@ -62,7 +70,7 @@ readonly
 /* 2. 내용크기
 /*----------------------------------------*/
 .store_updateform {
-	width: 700px;
+	width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -87,7 +95,6 @@ readonly
 	flex-direction: column;
 	padding-top: 20px;
 	width: 500px;
-	border-top: 2px solid #333;
 }
 
 .store_updateform .radio_input {
@@ -99,13 +106,13 @@ readonly
 /*----------------------------------------*/
 /* 2. 박스크기
 /*----------------------------------------*/
-.row {
-    margin: 0 50px;
+.storecon{
+	width: 100%;
+    height: 100%;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    
+    flex-direction: row;
 }
+
 
 .id_input_box {
 	width: 100%;
@@ -224,14 +231,7 @@ readonly
 }
 
 
-.store_updateform .join_btn {
-	width :80%;
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	margin :15px 5px;
-	margin
-}
+
 
 .store_updateform form .add_btn {
 	height:37px;
@@ -243,8 +243,8 @@ readonly
 .store_updateform .btn-jj { 
     width: 180px;
     height: 50px;
-    background: rgba(0, 100, 0,0.7);
-    border: 1px solid rgba(0, 100, 0,0.6);
+    background: #7fad39;
+    border: 1px solid #7fad39;
     font-family: "Cairo", sans-serif;
     font-size: 15px;
     font-weight: bold;
@@ -273,11 +273,92 @@ readonly
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 70px;
    
 }
 
+.storeup{
+	width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 
+.store_reg_form{
+	width: 700px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
+.shop_uddp{
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+}
+.hero__categories__all{
+	background: #7fad39;
+    position: relative;
+    padding: 10px 25px 10px 40px;
+    cursor: pointer;
+}
+.hero__categories__all:after{
+	position: absolute;
+    right: 14px;
+    top: 9px;
+    content: "3";
+    font-family: "ElegantIcons";
+    font-size: 18px;
+    color: #ffffff;
+    }
 
+.hero__categories__all ul{
+	background-color: white;
+	
+}
+.hero__categories__all h2{
+	background-color:#7fad39; ;
+	
+}
 
+.shop_udp{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+.current{
+	font-size: 13px;
+}
+.hero__categories__all span{
+	font-size: 18px;
+    font-weight: 700;
+    color: #ffffff; 
+}
+
+.section-title .product__discount__title{
+    position: absolute;
+    left: 0;
+    bottom: -15px;
+    right: 0;
+    height: 4px;
+    width: 80px;
+    background: #7fad39;
+    content: "";
+    text-align: left;
+    margin-bottom: 65px;
+}
+
+.storecon{
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: row;
+	width: 100%;
+	height: 100%;
+}
+.linez{
+	border-bottom: 2px solid #dee2e6;
+}

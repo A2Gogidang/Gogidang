@@ -1,119 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
 <mapper namespace="com.spring.mapper.StoreMapper">
-   <!-- taehyun start -->
-    <select id="getList" resultType="StoreVO">
-       select * from shop_reg where confirm=1
-    </select>
-    
-    <select id="getWaitList" resultType="StoreVO">
-       select * from shop_reg where confirm=0
-    </select>
-    
-   <update id="confirmStore" parameterType="int">
-      UPDATE shop_reg SET confirm=1 WHERE s_num=#{s_num}
-   </update>
-   
-   <delete id="refuseStore" parameterType="int">
-      DELETE FROM shop_reg WHERE s_num=#{s_num}
-   </delete>
-   
-     
-   <select id="storeInfo" parameterType="int" resultType="StoreVO">
-      SELECT * FROM shop_reg WHERE s_num=#{s_num}
-   </select>
-   
-   <select id="checkStore" parameterType="StoreVO" resultType="int">
-      SELECT count(*) FROM shop_reg WHERE u_id=#{u_id}
-   </select>
-   
-   <select id="getWaitListWithPage" resultType="StoreVO">
-      <![CDATA[
-      select s_name, thumbnail
-      from
-         (    select rownum rn, s_name, thumbnail
-            from (   select *
-                  from shop_reg
-                  where confirm=0 )
-            where rownum <= #{pageNum} * #{amount}  )
-      where rn > (#{pageNum}-1) * #{amount}
-      ]]>
-   </select>
-   
-   <select id="getTotalCount" resultType="int">
-      select count(*) from shop_reg
-   </select>
-   
-   <select id="getAvgStar" parameterType="int" resultType="Double">
-      select avg(re.star) avgStar
-      from shop_reg sr, review re
-      where sr.s_num = re.s_num
-      and sr.s_num = #{s_num}
-   </select>
-   <!-- taehyun End -->
+	<!-- taehyun start -->
+ 	<select id="getList" resultType="StoreVO">
+ 		select * from shop_reg where confirm=1
+ 	</select>
+ 	
+ 	<select id="getWaitList" resultType="StoreVO">
+ 		select * from shop_reg where confirm=0
+ 	</select>
+	 
+	<update id="confirmStore" parameterType="int">
+		UPDATE shop_reg SET confirm=1 WHERE s_num=#{s_num}
+	</update>
+	
+	<delete id="refuseStore" parameterType="int">
+		DELETE FROM shop_reg WHERE s_num=#{s_num}
+	</delete>
+	
+	  
+	<select id="storeInfo" parameterType="int" resultType="StoreVO">
+		SELECT * FROM shop_reg WHERE s_num=#{s_num}
+	</select>
+	
+	<select id="checkStore" parameterType="StoreVO" resultType="int">
+		SELECT count(*) FROM shop_reg WHERE u_id=#{u_id}
+	</select>
+	
+	<select id="getWaitListWithPage" resultType="StoreVO">
+		<![CDATA[
+		select s_name, thumbnail
+		from
+			( 	select rownum rn, s_name, thumbnail
+				from (	select *
+						from shop_reg
+						where confirm=0 )
+				where rownum <= #{pageNum} * #{amount}  )
+		where rn > (#{pageNum}-1) * #{amount}
+		]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from shop_reg
+	</select>
+	
+	<select id="getAvgStar" parameterType="int" resultType="Double">
+		select avg(re.star) avgStar
+		from shop_reg sr, review re
+		where sr.s_num = re.s_num
+		and sr.s_num = #{s_num}
+	</select>
+	<!-- taehyun End -->
 
-   <!-- soobin start -->
-   <insert id="insertStore" parameterType="StoreVO" >
-         INSERT INTO shop_reg 
-        VALUES ( #{s_num}
-             ,#{u_id}
-            ,#{thumbnail}
-             ,#{s_name}
-            ,#{s_addr}
-             ,#{s_phone}
-             ,#{s_img}
-             ,#{s_hour}
-             ,#{delibery}
-             ,#{confirm}
-             )
-   </insert>    
-    
-   <select id="selectStore" parameterType="StoreVO" resultType="StoreVO">
-         SELECT * 
-         FROM shop_reg 
-         where u_id=#{u_id}
-   </select> 
-   
-   <update id="updateStore" parameterType="StoreVO" >
-         UPDATE shop_reg 
-         SET  s_name=#{s_name}
-            ,s_addr=#{s_addr}
-             ,s_phone=#{s_phone}
-             ,s_hour=#{s_hour}
-         where u_id=#{u_id}
-    </update>
-    <!-- soobin end -->
-    
-   <!-- dohyeong start -->
-   <select id="getStoreList"  resultType="StoreVO">
-      SELECT sr.s_name, sr.thumbnail , mr.meat , mr.price, substr(sr.s_addr,1,2) s_addr 
-      FROM menu_reg mr INNER JOIN shop_reg sr ON mr.s_num=sr.s_num 
-    </select>
-    
-    
-<!--    <select id="getStoreListAjax" parameterType="java.util.HashMap" resultType="StoreVO">
-      select distinct mr.meat, sr.s_num, sr.s_name, substr(sr.s_addr,1,2) s_addr, sr.thumbnail, avg(re.star) avgStar
-      from menu_reg mr INNER JOIN shop_reg sr ON mr.s_num=sr.s_num INNER JOIN review re ON sr.s_num=re.s_num
-      where substr(sr.s_addr,1,2) IN <foreach collection="s_addr" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
-      AND mr.meat IN<foreach collection="meat" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
-      <if test=" != null">
-         AND 
-      </if>
-   </select>  -->
-   
-    <select id="getStoreListAjax" parameterType="java.util.HashMap" resultType="StoreVO">
-      select distinct mr.meat, sr.s_num, sr.s_name, substr(sr.s_addr,1,2) s_addr, sr.thumbnail
-      from menu_reg mr INNER JOIN shop_reg sr ON mr.s_num=sr.s_num
-      where sr.s_num > 0
-      <if test="s_addr != null">
-         AND substr(sr.s_addr,1,2) IN <foreach collection="s_addr" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
-      </if>
-      <if test="meat != null">
-         AND mr.meat IN<foreach collection="meat" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
-      </if>
-   </select>
+	<!-- soobin start -->
+	<insert id="insertStore" parameterType="StoreVO" >
+      	INSERT INTO shop_reg 
+     	VALUES ( #{s_num}
+			 	,#{u_id}
+				,#{thumbnail}
+			 	,#{s_name}
+				,#{s_addr}
+			 	,#{s_phone}
+			 	,#{s_img}
+			 	,#{s_hour}
+			 	,#{delibery}
+			 	,#{confirm}
+			 	)
+	</insert>	 
+	 
+	<select id="selectStore" parameterType="StoreVO" resultType="StoreVO">
+      	SELECT * 
+      	FROM shop_reg 
+      	where u_id=#{u_id}
+	</select> 
+	
+	<update id="updateStore" parameterType="StoreVO" >
+ 	  	UPDATE shop_reg 
+ 	  	SET  s_name=#{s_name}
+ 	 	 	,s_addr=#{s_addr}
+ 	  	 	,s_phone=#{s_phone}
+ 	  	 	,s_hour=#{s_hour}
+ 	  	where u_id=#{u_id}
+ 	</update>
+ 	<!-- soobin end -->
+ 	
+	<!-- dohyeong start -->
+	<select id="getStoreList"  resultType="StoreVO">
+		SELECT sr.s_name, sr.thumbnail , mr.meat , mr.price, substr(sr.s_addr,1,2) s_addr 
+		FROM menu_reg mr INNER JOIN shop_reg sr ON mr.s_num=sr.s_num 
+ 	</select>
+ 	
+ 	
+<!-- 	<select id="getStoreListAjax" parameterType="java.util.HashMap" resultType="StoreVO">
+		select distinct mr.meat, sr.s_num, sr.s_name, substr(sr.s_addr,1,2) s_addr, sr.thumbnail, avg(re.star) avgStar
+		from menu_reg mr INNER JOIN shop_reg sr ON mr.s_num=sr.s_num INNER JOIN review re ON sr.s_num=re.s_num
+		where substr(sr.s_addr,1,2) IN <foreach collection="s_addr" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
+		AND mr.meat IN<foreach collection="meat" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
+		<if test=" != null">
+			AND 
+		</if>
+	</select>  -->
+	
+ 	<select id="getStoreListAjax" parameterType="java.util.HashMap" resultType="StoreVO">
+		select distinct mr.meat, sr.s_num, sr.s_name, substr(sr.s_addr,1,2) s_addr, sr.thumbnail
+		from menu_reg mr INNER JOIN shop_reg sr ON mr.s_num=sr.s_num
+		where sr.s_num > 0
+		<if test="s_addr != null">
+			AND substr(sr.s_addr,1,2) IN <foreach collection="s_addr" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
+		</if>
+		<if test="meat != null">
+			AND mr.meat IN<foreach collection="meat" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
+		</if>
+	</select>
 
-   <!-- dohyeong end -->
+	<!-- dohyeong end -->
 </mapper>

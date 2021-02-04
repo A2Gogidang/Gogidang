@@ -4,64 +4,62 @@
 <%@ page import="javax.sql.*" %>
 <%@ page import="javax.naming.*" %>   
 <%@ page import = "com.spring.gogidang.domain.*" %>
+<%@ include file="../includes/header_simple.jsp"%>
 <%
-	EventVO eventVO = (EventVO)request.getAttribute("EventVO");
+	EventVO eventVO = (EventVO)request.getAttribute("eventVO");
 %>
-
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/event.css"
+	type="text/css">
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<style>
-.col-md-12{
-margin-top: 30px;
-}
-</style>
 
 <body>
  <!--네비게이션바 사용 시작-->
-<%@include file="../includes/header.jsp"%>
-        <div class="container">
-            <div class="hero__item__box2"></div>
-                    <div class="EventNav">
-                        <ul>
-                            <li><a href="eventList.ev">이벤트</a></li>
-                            <li><a href="qnalist.qn">문의</a>
-                            <li><a href="noticelist.no">공지사항</a></li>
-                        </ul>
-                    </div>   
-            </div>   
-            
-             
-            <div class="section-title" style="margin-top : 70px;">
-								<h2 style="margin-top: 30px;">이벤트 내용</h2>
-							</div>
-            
-<div class="container-fluid" style= "display:flex; justify-content: center; align-items: center;" >
-	<div class="row">
-		<div class="col-md-12">
-			<img alt="Bootstrap Image Preview" src="resources/img/event/eventPicex.jpg" />
-			<dlv style="margin-top: 30px;">
-		
-				</div>
-				<div>
-					<h3>${eventVO.getContent()}</h3>
-				</div>
-				
-				
-			</dlv>
-			<br>
-			<br>
-			<br>
-			<br>
-			<div>
-			<!-- <a href="eventList.ev">이벤트 페이지로 돌아가기</a></td> -->
-		</div>
-	</div>
-</div>
 
-<%@include file="../includes/footer.jsp"%>
+	  <section class="product spad">
+			<div class="container">
+					<div class="row">
+						<div class="rowNotice">
+							<div class="col-lg-3 col-md-5">
+								<div class="sidebar">
+									<div class="sidebar__item">
+										<h4>이벤트</h4>
+										<ul>
+											<li><a href="eventList.ev">이벤트</a></li>
+											<li><a href="noticelist.no">공지사항</a></li>
+											<li><a href="qnalist.qn">문의</a></li>
+											<!--<li><a href="#">Fastfood</a></li>
+					                            <li><a href="#">Fresh Onion</a></li>
+					                            <li><a href="#">Papayaya & Crisps</a></li>
+					                             <li><a href="#">Oatmeal</a></li>
+					                            <li><a href="#">Fresh Bananas</a></li> -->
+										</ul>
+									</div>
+								</div>
+							</div>
+	            			<div class="eventList">
+	            				<div class="section-title product__discount__title">
+	          						<h2>이벤트 상세정보</h2>
+	    						</div>
+								<div class="row">
+										<div class="col-md-12">
+											<%-- <img src="<%=eventVO.getPhoto()%>" /> --%>
+											<h5><%=eventVO.getThumbnail() %></h5>
+												<div class="eventd">
+													<h5>${eventVO.getContent()}</h5>
+												</div>
+										</div>
+	            				</div>
+	           				</div>
+	           		</div>
+	           </div>
+	      </div>
+	</section>
+	<%@include file="../includes/footer.jsp"%>
 </body>
 </html>

@@ -12,6 +12,7 @@
    } else {
       seller_key = 0;
    }
+
 %>
 <!DOCTYPE html>
 <html>
@@ -37,27 +38,10 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">
-
-  <!-- Bootstrap Core CSS -->
-    <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- DataTables CSS -->
-    <link href="resources/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-
-    <!-- DataTables Responsive CSS -->
-    <link href="resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="resources/dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
+<div id="socketAlert" class="alert alert-success" role="alert" style="display:none;"></div>
    <!-- Page Preloder -->
    <div id="preloder">
       <div class="loader"></div>
@@ -89,8 +73,8 @@
                         <a href="./joinForm.me"><i class="fa fa-user-o"></i> JOIN</a>
                      </div>
                      <div class="header__top__right__auth">
-                        <a href="#"><i class="fa fa-shopping-cart"></i> CART</a>
-                     </div>
+						<a href="./cartList.ct"><i class="fa fa-shopping-cart"></i> CART</a>
+					</div>
                   </div>
                </div>
                      <%
@@ -99,33 +83,51 @@
                <div class="col-lg-6 col-md-6">
                   <div class="header__top__right">
                      <div class="header__top__right__auth">
-                        <a href="./updateList.me" style="display: inline;"><i class="fa fa-user"></i><%=u_id %> 사장님 !</a>
-                        <a href="./logout.me" style="display: inline;">logout</a>
+                        <a href="./updateList.me"><i class="fa fa-user"></i><%=u_id %> 사장님 !</a>
                      </div>
+                     <div class="header__top__right__auth">
+						<a href="#"><i class="fa fa-bell"></i>BELL</a>
+					 </div>
+					 <div class="header__top__right__auth">
+						<a href="./logout.me">LOGOUT</a>
+					 </div>
                   </div>
                </div>
                   <%
                     } else if (seller_key == 2) {
                   %>
                <div class="col-lg-6 col-md-6">
-                  <div class="header__top__right">
-                     <div class="header__top__right__auth">
-                        <a href="./updateList.me" style="display: inline;"><i class="fa fa-user"></i>관리자 입니다.</a>
-                        <a href="./logout.me" style="display: inline;">logout</a>
-                     </div>
-                  </div>
-               </div>
+						<div class="header__top__right">
+							<div class="header__top__right__auth">
+								<a href="./updateList.me"><i class="fa fa-user"></i>관리자 입니다.</a>
+							</div>
+							<div class="header__top__right__auth">
+								<a href="#"><i class="fa fa-bell"></i>BELL</a>
+							</div>
+							<div class="header__top__right__auth">
+								<a href="./logout.me">LOGOUT</a>
+							</div>
+						</div>
+					</div>
                   <%
                      } else {
                   %>
-                  <div class="col-lg-6 col-md-6">
-                  <div class="header__top__right">
-                     <div class="header__top__right__auth">
-                        <a href="./updateList.me" style="display: inline;"><i class="fa fa-user"></i><%=u_id %>님!</a>
-                        <a href="./logout.me" style="display: inline;">logout</a>
-                     </div>
-                  </div>
-               </div>
+                 <div class="col-lg-6 col-md-6">
+						<div class="header__top__right">
+							<div class="header__top__right__auth">
+								<a href="./updateList.me"><i class="fa fa-user"></i><%=u_id %>님!</a>
+							</div>
+							<div class="header__top__right__auth">
+								<a href="#"><i class="fa fa-bell"></i>BELL</a>
+							</div>
+							<div class="header__top__right__auth">
+								<a href="./cartList.ct"><i class="fa fa-shopping-cart"></i> CART</a>
+							</div>
+							<div class="header__top__right__auth">
+								<a href="./logout.me">LOGOUT</a>
+							</div>
+						</div>
+					</div>
                   <%
                      } 
                   %>   
@@ -170,7 +172,6 @@
             </div>
         </div>
     </header>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <!-- Humberger End -->
 
    <!-- Header Section Begin -->

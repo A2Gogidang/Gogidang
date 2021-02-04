@@ -35,7 +35,6 @@
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
-		<url-pattern>*.bo</url-pattern>
 		<url-pattern>*.ev</url-pattern>
 		<url-pattern>*.li</url-pattern>
 		<url-pattern>*.me</url-pattern>
@@ -47,6 +46,7 @@
 		<url-pattern>*.up</url-pattern>
 		<url-pattern>*.mn</url-pattern>
 		<url-pattern>*.ct</url-pattern>
+		<url-pattern>*.py</url-pattern>
 	</servlet-mapping>
 	
 	<welcome-file-list>

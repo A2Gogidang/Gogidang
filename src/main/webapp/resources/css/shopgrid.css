@@ -4,16 +4,20 @@
    .shoplistt{
    display: flex;
    justify-content: center;
+   width: 100%;
    }
    .shoplis{
-   width:930px;
+   padding-top: auto;
+   padding-right: 15px;
+   padding-left: 15px; 
    }
    .shoplist {
-   padding-top: 20px;
-   padding-right: 30px;
-   padding-left: 30px; 
+   padding-top: 15px;
+   padding-right: 15px;
+   padding-left: 15px;
+   padding-bottom: 15px; 
     background-color: #f5faff;
-    padding-bottom: 20px;
+    width: 100%;
    }
    .shoplistone{
    display: flex;
@@ -71,15 +75,15 @@
    }
    .shoplisttho{
    padding-left:15px;
-   width:10%;
    display: flex;
+   width:10%;
    justify-content: flex-start;
    }
    .shoplisttho p{
    font-family: "Cairo", sans-serif;
    }
    .shoplisttht{
-   width:22.5%;
+   width:21%;
    display: flex;
    justify-content: space-between;
    list-style:none;
@@ -176,5 +180,31 @@
    align-items: center;
    }
    .reviewlistt{
-   width: 930px;
+   width: 1140px;
+   justify-content: center;
+   }
+   
+   /*간단한 가게정보*/
+   .shoptext{
+   
+   }
+   .shoptexto{
+   text-align: right;
+   width: 306px;
+   }
+   .shoptextt{
+   display: flex;
+   justify-content: flex-end;
+   text-align: right;
+   width: 306px;
+   }
+   .shoplistm .row .col-lg-4{
+   padding-top: 20px;
+   width: 100%;
+   }
+   .shoplistn {
+   display:flex;
+   flex-wrap: wrap;
+   padding-left: 20px;
+
    }

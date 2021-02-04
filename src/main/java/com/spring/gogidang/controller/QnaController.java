@@ -3,6 +3,7 @@ package com.spring.gogidang.controller;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,16 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.spring.gogidang.domain.QnaVO;
-import com.spring.gogidang.service.QnaService;
-
-
-
-
+import com.spring.gogidang.domain.*;
+import com.spring.gogidang.service.*;
 
 @Controller
 public class QnaController {
+	
 	@Autowired
 	private QnaService qnaService;
 	
@@ -92,22 +91,7 @@ public class QnaController {
 		
 		return "qna/qna_board_view";
 	}
-	
-	@RequestMapping("/qnamodifyform.qn") 
-	public String getModifyForm(@RequestParam(value="qna_num", required=true) int qna_num, Model model) {
-		QnaVO qna = qnaService.getDetail(qna_num);
-		
-		model.addAttribute("qna", qna);
-		
-		return "qna/qna_board_modify";
-	}
 
-	@RequestMapping("/qnamodify.qn") 
-	public String qnaModify(QnaVO qna) throws Exception {
-		int res = qnaService.qnaModify(qna);
-		return "redirect:/qnadetail.qn?qna_num=" + qna.getQna_num();
-	}
-	
 	@RequestMapping("/qnadelete.qn") 
 	public String noticeDelete(@RequestParam(value="qna_num", required=true) int qna_num, HttpSession session, HttpServletResponse response) throws Exception {
 		String u_id = (String)session.getAttribute("u_id");
@@ -132,34 +116,47 @@ public class QnaController {
 		return null;
 	}
 	
-	@RequestMapping("/qnareplyform.qn") 
-	public String qnaReplyForm(@RequestParam(value="qna_num", required=true) int qna_num, Model model) {
-		QnaVO qna = qnaService.getDetail(qna_num);
+	@RequestMapping("/qnaAdmin.qn")
+	public String qnaAdmin() {
 		
-		model.addAttribute("qna", qna);
-		
-		return "qna/qna_board_reply";
+		return "admin/admin_qna";
 	}
 	
-	@RequestMapping("/qnareply.qn") 
-	public String qnaReply(QnaVO qna,HttpServletResponse response) throws Exception {
-		int res = qnaService.qnaReply(qna);
-		PrintWriter writer = response.getWriter();
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		if (res == 1)
-		{
-			writer.write("<script>alert('답글 성공!!');"
-					+ "location.href='./qnalist.qn';</script>");
-		}
-		else
-		{
-			writer.write("<script>alert('답글 실패!!');"
-					+ "location.href='./qnareplyform.qn';</script>");
-		}
-		return null;
+	// qna ajax list - admin
+	@RequestMapping(value = "/qnaListAjax.re", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public List<QnaVO> qnaListAjax() {
+		List<QnaVO> qnaList = qnaService.getList();
 		
+		return qnaList;
+	}
+		
+	@RequestMapping(value = "/qnaInfoAjax.re", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public Map<String, Object> qnaInfoAjax(@RequestParam("qna_num") int qna_num) {
+		Map<String, Object> retVal = new HashMap<String, Object>();
+		
+		try {
+			QnaVO qvo = qnaService.getDetail(qna_num);
+			retVal.put("qna_num", qvo.getQna_num());
+			retVal.put("u_id", qvo.getU_id());
+			retVal.put("title", qvo.getTitle());
+			retVal.put("content", qvo.getContent());
+			retVal.put("re_content", qvo.getRe_content());
+			retVal.put("res", "OK");
+		} catch (Exception e) {
+			retVal.put("res", "FAIL");
+			retVal.put("message", "Failure");
+		}
+		
+		return retVal;
 	}
 	
+	@RequestMapping("/reQna.qn")
+	public int reQna(QnaVO qna) throws Exception {
+		int res = qnaService.reQna(qna);
+		
+		return res;
+	}
 	
 }

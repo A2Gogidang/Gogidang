@@ -87,7 +87,6 @@ readonly
 	flex-direction: column;
 	padding-top: 20px;
 	width: 500px;
-	border-top: 2px solid #333;
 }
 
 .store_reg_form .radio_input {
@@ -173,7 +172,7 @@ readonly
 
 .store_reg_form form .add_input {
 	height:37px;
-	width:270px;
+	width:275px;
 	margin :0 2px 0 0;
 	border: 1px solid  rgb(173, 173, 173);
 	border-radius: 3px;
@@ -217,7 +216,6 @@ readonly
 	
 }
 
-
 .store_reg_form .join_btn {
 	width :80%;
 	display: flex;
@@ -237,14 +235,15 @@ readonly
 .store_reg_form .btn-jj { 
     width: 180px;
     height: 50px;
-    background: rgba(0, 100, 0,0.7);
-    border: 1px solid rgba(0, 100, 0,0.6);
+    background: #7fad39;
+    border: 1px solid #7fad39;
     font-family: "Cairo", sans-serif;
     font-size: 15px;
     font-weight: bold;
     border-radius: 3px;
     text-transform: uppercase;
     letter-spacing: 2px;
+    color:white;
 }
 
 .store_reg_form .btn-j {
@@ -271,8 +270,23 @@ readonly
    
 }
 
-.product__discount__title {
-    margin-left: 60px;
+.current{
+	font-size: 13px;
 }
 
+.store_reg_form .join_btn_box p{
+	width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 23px;
+    flex-direction: row;
+    padding-left: 0px; 
+}
+
+.linez{
+	border-bottom: 2px solid #dee2e6;
+}
 

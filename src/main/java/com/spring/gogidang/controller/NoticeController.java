@@ -3,6 +3,7 @@ package com.spring.gogidang.controller;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,24 +13,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.spring.gogidang.domain.NoticeVO;
-import com.spring.gogidang.service.NoticeService;
+import com.spring.gogidang.domain.*;
+import com.spring.gogidang.service.*;
 
-/*
- * 
- */
 
 @Controller
 public class NoticeController {
+	
 	@Autowired
 	private NoticeService noticeService;
 	
-	@RequestMapping("/noticelist.no") 
+	@RequestMapping("/noticelist.no")
 	public String getnoticelist(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) { 
 		int limit=10;
-		
-		
 		int listcount = noticeService.getListCount();
 		
 		int startrow = (page-1)*10+1;
@@ -59,31 +57,6 @@ public class NoticeController {
 		return "notice/notice_board_list";
 	}
 	
-	@RequestMapping("noticewriteform.no")
-	public String noticeInsertForm()  {
-		return "notice/notice_board_write";
-	}
-	
-	@RequestMapping("/noticewrite.no")
-	public String noticeInsert(NoticeVO notice,HttpSession session,HttpServletResponse response) throws Exception {
-		int res = noticeService.noticeInsert(notice);
-		
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter writer = response.getWriter();
-		
-		if(res == 1)
-		{
-			writer.write("<script>alert('작성 완료!!');location.href='./noticelist.no';</script>");
-		}
-		else
-		{
-			writer.write("<script>alert('작성 실패!!');location.href='./noticewriteform.no';</script>");
-		}
-		
-		return null;
-	}
-	
 	@RequestMapping("/noticedetail.no") 
 	public String getDetail(@RequestParam(value="notice_num", required=true) int notice_num, Model model) {
 		NoticeVO notice = noticeService.getDetail(notice_num); 
@@ -92,56 +65,63 @@ public class NoticeController {
 		
 		return "notice/notice_board_view";
 	}
+
+	@RequestMapping("/noticeAdmin.no")
+	public String noticeAdmin() {
+		
+		return "admin/admin_notice";
+	}
 	
-	@RequestMapping("/noticemodifyform.no") 
-	public String getModifyForm(@RequestParam(value="notice_num", required=true) int notice_num, Model model) {
-		NoticeVO notice = noticeService.getDetail(notice_num);
+	// notice ajax list - admin (list)
+	@RequestMapping(value = "/noticeListAjax.re", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public List<NoticeVO> noticeListAjax() {
+		List<NoticeVO> noticeList = noticeService.getList();
+		System.out.println("list size = " + noticeList.size());
 		
-		model.addAttribute("notice", notice);
+		return noticeList;
+	}
+	
+	// notice ajax insert - admin (reg)
+	@RequestMapping("/noticewriteAjax.re")
+	public int noticeInsert(NoticeVO notice, HttpSession session) throws Exception {
+		MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
+		notice.setU_id(mvo.getU_id());
+		System.out.println("u_id = " + notice.getU_id());
+		System.out.println("title = " + notice.getTitle());
+		System.out.println("content = " + notice.getContent());
 		
-		return "notice/notice_board_modify";
+		int res = noticeService.noticeInsert(notice);
+		System.out.println(res);
+		return res;
+	}
+	
+	// notice ajax info - admin (get)
+	@RequestMapping(value = "/noticeInfoAjax.re", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public Map<String, Object> noticeInfoAjax(@RequestParam("notice_num") int notice_num) {
+		Map<String, Object> retVal = new HashMap<String, Object>();
+		
+		try {
+			NoticeVO nvo = noticeService.getDetail(notice_num);
+			System.out.println("controller = " + nvo.getNotice_num());
+			retVal.put("notice_num", nvo.getNotice_num());
+			retVal.put("u_id", nvo.getU_id());
+			retVal.put("title", nvo.getTitle());
+			retVal.put("content", nvo.getContent());
+			retVal.put("res", "OK");
+		} catch (Exception e) {
+			retVal.put("res", "FAIL");
+			retVal.put("message", "Failure");
+		}
+		
+		return retVal;
 	}
 
-	@RequestMapping("/noticemodify.no") 
-	public String noticeModify(NoticeVO notice) throws Exception {
-		int res = noticeService.noticeModify(notice);
-		return "redirect:/noticedetail.no?notice_num=" + notice.getNotice_num();
-	}
-	
-	@RequestMapping("/noticedelete.no") 
-	public String noticeDelete(@RequestParam(value="notice_num", required=true) int notice_num, HttpSession session, HttpServletResponse response) throws Exception {
-		String u_id = (String)session.getAttribute("u_id");
+	@RequestMapping("/storeNoticeList.no")
+	public String storeNoticeList() {
 		
-		HashMap<String, String> hashmap = new HashMap<String, String>();
-		hashmap.put("notice_num", Integer.toString(notice_num));
-		hashmap.put("u_id", u_id);
-		int res =noticeService.noticeDelete(hashmap);
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter writer = response.getWriter();
-		if (res == 1)
-		{
-			writer.write("<script>alert('삭제 성공!!');"
-					+ "location.href='./noticelist.no';</script>");
-		}
-		else
-		{
-			writer.write("<script>alert('삭제 실패!!');"
-					+ "location.href='./noticelist.no';</script>");
-		}
-		return null;
+		return "sellerpage/store_notice";
 	}
-	
-	@RequestMapping("/noticereplyform.no") 
-	public String noticeReplyForm(@RequestParam(value="notice_num", required=true) int notice_num, Model model) {
-		NoticeVO notice = noticeService.getDetail(notice_num);
-		
-		model.addAttribute("notice", notice);
-		
-		return "notice/notice_board_reply";
-	}
-	
-
-	
 	
 }

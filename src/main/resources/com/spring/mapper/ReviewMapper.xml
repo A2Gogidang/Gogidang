@@ -7,6 +7,12 @@
 	<select id="getList" resultType="ReviewVO">
 		select * from review
 	</select>
+	
+	<select id="getListSn" parameterType="int" resultType="ReviewVO">
+		select re.review_num, re.title, re.u_id, re.star, re.review_date, rs.review_sub_content 
+		from review re inner join review_sub rs on re.review_num = rs.review_num
+		where re.s_num=#{s_num}
+	</select>
 
 	<select id="getListWithPaging" resultType="ReviewVO">
 		<![CDATA[
@@ -22,10 +28,10 @@
 	
 	<select id="getListByIdWithPaging" resultType="ReviewVO">
 		<![CDATA[
-		select review_num, title, nickname, s_name, star, review_date
+		select review_num, title, u_id, content, nickname, s_name, star, review_date
 		from
 			( 	select /*+ INDEX_DESC(review pk_review) */ 
-					rownum rn, review_num, title, nickname, s_name, star, review_date
+					rownum rn, review_num, title, u_id,content, nickname, s_name, star, review_date
 				from (	select * 
 						from review 
 						where u_id = #{u_id} )
@@ -36,10 +42,10 @@
 	
 	<select id="getListBySnWithPaging" resultType="ReviewVO">
 		<![CDATA[
-		select review_num, title, nickname, s_name, star, review_date
+		select review_num, title, u_id, content, nickname, s_name, star, review_date
 		from
 			( 	select /*+ INDEX_DESC(review pk_review) */ 
-					rownum rn, review_num, title, nickname, s_name, star, review_date
+					rownum rn, review_num, title, u_id,content, nickname, s_name, star, review_date
 				from (	select * 
 						from review 
 						where s_num = #{s_num} )
