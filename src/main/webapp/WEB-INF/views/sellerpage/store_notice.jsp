@@ -102,7 +102,6 @@
 		</form>
 	</div>
 </div>
-<<<<<<< HEAD
 <!-- modal END -->
 
 <script type="text/javascript"
@@ -214,14 +213,3 @@
 
 
 <%@include file="../includes/footer.jsp"%>
-=======
-<!-- ----------------------------------------------------끝---------------------------------------------------- --> 
-            </div>
-            </div>
-    </section>
-<%@include file="../includes/footer.jsp"%>
-
-</body>
-
-</html>
->>>>>>> 5422913cfc447949c107caabea42c5b9345f8933

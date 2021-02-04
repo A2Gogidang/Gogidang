@@ -89,7 +89,6 @@
 					%>
 				</div>
 			</div>
-			>>>>>>> 5422913cfc447949c107caabea42c5b9345f8933
 			<!-- content Start -->
 			<div class="col-lg-9">
 				<!-- Hero Section End -->

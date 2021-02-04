@@ -7,8 +7,6 @@
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%
 	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
-%>
-<%
 	QnaVO qna = (QnaVO)request.getAttribute("qna");
 %>
 

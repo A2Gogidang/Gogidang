@@ -28,25 +28,6 @@
 <section class="product spad">
 	<div class="container">
 		<div class="row">
-<<<<<<< HEAD
-			<div class="col-lg-3 col-md-5">
-				<div class="sidebar">
-					<div class="sidebar__item">
-						<h4>판매자 마이페이지</h4>
-						<ul>
-							<li><a href="./updateList.me">내정보</a></li>
-							<li><a href="./storeRegForm.st">가게 정보</a></li>
-							<li><a href="./menuRegForm.mn">메뉴 등록</a></li>
-							<li><a href="./storeNoticeList.no">문의 관리</a></li>
-							<li><a href="./storereviewList.re">리뷰 관리</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="reviewboard">
-				<div class="section-title product__discount__title">
-					<h2>리뷰 관리</h2>
-=======
 			<div class="col-lg-3" id="nav-bar">
 	            <div class="hero__categories">
 	                  <div class="hero__categories__all">
@@ -57,10 +38,9 @@
 		                     <li><a href="./storeRegForm.st">가게 정보</a></li>
 		                     <li><a href="./menuRegForm.mn">메뉴 등록</a></li>
 		                     <li><a href="./storeNoticeList.no">문의 관리</a></li>
-		                     <li><a href="./storereviewList.bo">리뷰 관리</a></li>
+		                     <li><a href="./storereviewList.re">리뷰 관리</a></li>
 		                  </ul>				
 	               </div>
->>>>>>> 5422913cfc447949c107caabea42c5b9345f8933
 				</div>
 				<div class="col-lg-9">
 					<div class="section-title product__discount__title">
