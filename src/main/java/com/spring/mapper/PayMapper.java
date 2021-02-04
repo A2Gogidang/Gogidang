@@ -10,4 +10,5 @@ public interface PayMapper {
 	public int insertPay(PayVO payVO);
 	public ArrayList<PayVO> purchaseList(PayVO payVO);
 	public String storeName(PayVO payVO);
+	public void cartEmpty(PayVO payVO);
 }
