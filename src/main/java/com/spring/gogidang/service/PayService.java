@@ -11,5 +11,6 @@ public interface PayService {
 	public int deletePay(PayVO payVO);
 	public ArrayList<PayVO> purchaseList(PayVO payVO);
 	public String storeName(PayVO payVO);
+	public void cartEmpty(PayVO payVO);
 
 }

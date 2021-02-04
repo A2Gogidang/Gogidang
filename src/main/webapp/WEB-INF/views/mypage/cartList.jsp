@@ -248,7 +248,8 @@
                    }
                    
                 });
-              
+            	
+                location.href='<%=request.getContextPath()%>/purchase_list.py?u_id=<%=mvo.getU_id()%>';
                 
             }else {
             	var msg = '결제에 실패하였습니다.';
