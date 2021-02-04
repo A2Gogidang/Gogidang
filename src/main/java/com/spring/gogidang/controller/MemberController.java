@@ -70,8 +70,7 @@ public class MemberController {
       model.addAttribute("eventList", eventService.eventList());
       model.addAttribute("storeList", storeService.getList());
       model.addAttribute("reviewList", reviewService.getList());
-      
-      //return "main";
+
       return "index";
    }
    

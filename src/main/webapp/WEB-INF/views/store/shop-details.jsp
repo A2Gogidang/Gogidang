@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 
 <%@ page import="java.sql.*"%>
 <%@ page import="javax.sql.*"%>
@@ -10,12 +10,24 @@
 <%@include file="../includes/header_simple.jsp"%>
 
 <link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/shop-details.css"type="text/css">
+<link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/modal.css"
+	type="text/css">
 <%
-	StoreVO svo = (StoreVO) request.getAttribute("storeVO");
-	ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>) request.getAttribute("menuList");
-	ArrayList<SRReviewVO> srReviewList = (ArrayList<SRReviewVO>) request.getAttribute("srReviewList");
-	/* ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>) request.getAttribute("reviewList"); */
+   StoreVO svo = (StoreVO) request.getAttribute("storeVO");
+   ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>) request.getAttribute("menuList");
+   ArrayList<SRReviewVO> srReviewList = (ArrayList<SRReviewVO>) request.getAttribute("srReviewList");
+   /* ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>) request.getAttribute("reviewList"); */
 %>
+<%
+   List<QnaStoreVO> qnalist=(List<QnaStoreVO>)request.getAttribute("qnalist");
+   int listcount=((Integer)request.getAttribute("listcount")).intValue();
+   int nowpage=((Integer)request.getAttribute("page")).intValue();
+   int maxpage=((Integer)request.getAttribute("maxpage")).intValue();
+   int startpage=((Integer)request.getAttribute("startpage")).intValue();
+   int endpage=((Integer)request.getAttribute("endpage")).intValue();
+   
+%>
+
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Nanum+Gothic+Coding:wght@400;700&family=Poor+Story&display=swap" rel="stylesheet">
@@ -30,21 +42,12 @@ $(document).ready(function() {
         $target = $('#'+$input.attr('data-toggle'));
         $target.slideToggle();
     });
+    map.relayout();
 });
 </script>
 
-<!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 text-center">
-			</div>
-		</div>
-	</div>
-</section>
-<!-- Breadcrumb Section End -->
 
-<section class="product-details spad" style="padding-top: 0%;">
+<section class="product-details spad" id="cartCon">
 	<div class="container">
 		<div class="row">
 
@@ -66,7 +69,7 @@ $(document).ready(function() {
 			<!-- 사진옆정보 -->
 			<div class="col-lg-6 col-md-6">
 				<div class="product__details__text">
-					<h3 style="display: inline-flex; color: #7fad39;"><%=svo.getS_name()%></h3>
+					<h2 style="display: inline-flex; color: #7fad39;"><%=svo.getS_name()%></h2>
 
 					<a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
 
@@ -96,7 +99,8 @@ $(document).ready(function() {
 						<li class="nav-item"><a class="nav-link active"
 							data-toggle="tab" href="#tabs-1" role="tab" aria-selected="true">메뉴</a></li>
 						<li class="nav-item"><a class="nav-link" data-toggle="tab"
-							href="#tabs-2" role="tab" aria-selected="false">위치</a></li>
+							id="jongu" href="#tabs-2" role="tab" aria-selected="false">위치
+						</a></li>
 						<li class="nav-item"><a class="nav-link" data-toggle="tab"
 							href="#tabs-3" role="tab" aria-selected="false">후기 </a></li>
 						<li class="nav-item"><a class="nav-link" data-toggle="tab"
@@ -111,12 +115,12 @@ $(document).ready(function() {
 
 								<div class="row featured__filter">
 									<%
-										for (int i = 0; i < menu_List.size(); i++) {
+                              for (int i = 0; i < menu_List.size(); i++) {
 
-											MenuVO mv = (MenuVO) menu_List.get(i);
-									%>
+                                 MenuVO mv = (MenuVO) menu_List.get(i);
+                           %>
 									<div class="col-lg-3 col-md-4 col-sm-6" id="Menucontents">
-										
+
 
 										<div class="featured__item">
 
@@ -127,7 +131,7 @@ $(document).ready(function() {
 
 											<div class="container-fluid">
 												<div class="row">
-													<div class="menu_info" id = "menu_info">
+													<div class="menu_info" id="menu_info">
 														<table class="table">
 															<tbody>
 																<tr>
@@ -141,8 +145,8 @@ $(document).ready(function() {
 																<tr class="table">
 																	<td><input type="number" id="cartStock"
 																		name="cartStock" min="1" max="100" value="1" /></td>
-																	<td><input type="submit" value="장바구니에 담기" id="cartbutton"/>
-																	</td>
+																	<td><input type="submit" value="장바구니에 담기"
+																		id="cartbutton" /></td>
 																</tr>
 															</tbody>
 														</table>
@@ -152,440 +156,408 @@ $(document).ready(function() {
 										</div>
 									</div>
 									<%
-										}
-									%>
+                              }
+                           %>
 								</div>
 							</div>
 						</div>
 
 						<div class="tab-pane" id="tabs-2" role="tabpanel">
-							<div class="product__details__tab__desc">
-								<div class="container">
-									<!-- Portfolio Section Heading-->
-									<div class="row">
-										<div class="col-lg-12">
-											<div id="map" style="width: 100%; height: 350px;"></div>
-											<button onclick="resizeMap()">지도 크기 바꾸기</button>
-											<button onclick="relayout()">relayout 호출하기</button>
-											<script type="text/javascript"
-												src="//dapi.kakao.com/v2/maps/sdk.js?appkey=241b4077cebf45bee1ed06d47263650b&libraries=services"></script>
-											<script>
-												var mapContainer = document
-														.getElementById('map'), // 지도를 표시할 div 
-												mapOption = {
-													center : new kakao.maps.LatLng(
-															33.450701,
-															126.570667), // 지도의 중심좌표
-													level : 3
-												// 지도의 확대 레벨 
-												};
-
-												// 지도를 생성합니다    
-												var map = new kakao.maps.Map(
-														mapContainer, mapOption);
-												mapContainer.style.width = '100%';
-												mapContainer.style.height = '650px'; 
-
-												//지도를 표시하는 div 크기를 변경하는 함수입니다
-												function resizeMap() {
-													var mapContainer = document
-															.getElementById('map');
-													mapContainer.style.width = '650px';
-													mapContainer.style.height = '650px';
-												}
-
-												function relayout() {
-
-													// 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
-													// 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
-													// window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
-													map.relayout();
-												}
-
-												// 주소-좌표 변환 객체를 생성합니다
-												var geocoder = new kakao.maps.services.Geocoder();
-
-												// 주소로 좌표를 검색합니다
-												geocoder
-														.addressSearch(
-																'${storeVO.getS_addr()}',
-																function(
-																		result,
-																		status) {
-
-																	// 정상적으로 검색이 완료됐으면 
-																	if (status === kakao.maps.services.Status.OK) {
-
-																		var coords = new kakao.maps.LatLng(
-																				result[0].y,
-																				result[0].x);
-
-																		// 결과값으로 받은 위치를 마커로 표시합니다
-																		var marker = new kakao.maps.Marker(
-																				{
-																					map : map,
-																					position : coords
-																				});
-
-																		// 인포윈도우로 장소에 대한 설명을 표시합니다
-																		var infowindow = new kakao.maps.InfoWindow(
-																				{
-																					content : '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-																				});
-																		infowindow
-																				.open(
-																						map,
-																						marker);
-
-																		// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-																		map
-																				.setCenter(coords);
-																	}
-																});
-											</script>
-										</div>
-									</div>
-								</div>
+							<div class="kakaomap"
+								style="display: flex; justify-content: center; margin-top: 70px;">
+								<div id="map" style=""></div>
 							</div>
-						</div>
+							<script type="text/javascript"
+								src="//dapi.kakao.com/v2/maps/sdk.js?appkey=241b4077cebf45bee1ed06d47263650b&libraries=services"></script>
+							<script>
+ var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
 
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+mapContainer.style.width = '1140px';
+mapContainer.style.height = '450px';
+
+$("#jongu").click(function(){
+   map.relayout();
+   map.setCenter();
+});
+
+function relayout() {    
+    
+    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
+    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
+    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
+    map.relayout();
+}
+
+map.relayout();
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+          
+   
+        });
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">저희 가게</div><div style="width:150px;text-align:center;padding:6px 0;"><a href="https://map.kakao.com/link/to/${storeVO.getS_addr()}">길찾기</a></div>'
+                   
+        });
+        infowindow.open(map, marker);
+      
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+     
+       
+        map.setCenter(coords);
+        
+    } 
+    
+     $("#jongu").click(function(){
+          map.relayout();
+          map.setCenter(coords);
+       });
+
+     
+});  
+//map.relayout();
+setTimeout(function(){ map.relayout(); }, 0);
+relayout();
+
+</script>
+
+						</div>
 						<div class="tab-pane" id="tabs-3" role="tabpanel">
-							<div class="panel panel-default" id = "panel-default">
-								<div class="panel-heading" id = "panel-heading">
-									<h3 class="panel-title">후기</h3>
+							<div class="panel panel-default" id="panel-default">
+								<div class="panel-heading" id="panel-heading">
+									<span class="panel-title">후기</span>
 								</div>
 								<ul class="list-group">
-								<%for(int i=0; i<srReviewList.size(); i++) {
-									SRReviewVO srReviewvo = (SRReviewVO) srReviewList.get(i);
-								%>
+									<%for(int i=0; i<srReviewList.size(); i++) {
+                           SRReviewVO srReviewvo = (SRReviewVO) srReviewList.get(i);
+                        %>
 									<li class="list-group-item">
 										<div class="row toggle" id="dropdown-detail-<%= i %>"
 											data-toggle="detail-<%= i %>">
-											
+
 											<div class="col-xs-10" id="ReviewTitle">
 												<div><%=srReviewvo.getTitle() %></div>
 												<span id="ReviewId">작성자 : <%=srReviewvo.getU_id() %></span>
 											</div>
 											<div class="col-xs-10" id="ReviewTitle">
-												<span id="reviewStar">
+												<span id="reviewStar" style="color :#edbb0e;"> 
 												<%if(srReviewvo.getStar() == 5){ %>
-												<sapn class="fa fa-star"/><span class="fa fa-star"/><span class="fa fa-star"/><span class="fa fa-star"/><span class="fa fa-star"/>
-												<%}else if(srReviewvo.getStar() == 4){ %>
-												<span class="fa fa-star"/><span class="fa fa-star"/><span class="fa fa-star"/><span class="fa fa-star"/>
-												<%}else if(srReviewvo.getStar() == 3){ %>
-												<span class="fa fa-star"/><span class="fa fa-star"/><span class="fa fa-star"/>
-												<%}else if(srReviewvo.getStar() == 2){ %>
-												<span class="fa fa-star"/><span class="fa fa-star"/>
-												<%}else if(srReviewvo.getStar() == 1){ %>
-												<span class="fa fa-star"/>
-												<%} %>
-												</span>
-												<span id = "Insert_date">등록일: <%=srReviewvo.getReview_date() %></span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"> </span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+													<%}else if(srReviewvo.getStar() == 4){
+													%>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"> </span>
+													<%}else if(srReviewvo.getStar() == 3){ %>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+													 <%}else if(srReviewvo.getStar() == 2){ %>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+													<%}else if(srReviewvo.getStar() == 1){ %>
+													<span class="fa fa-star"></span> <%} %>
+									 		<span id="Insert_date">등록일: <%=srReviewvo.getReview_date() %></span>
 											</div>
-												
-											
+
+
 											<div class="col-xs-2">
 												<i class="fa fa-chevron-down pull-right"></i>
 											</div>
-										
-										<div id="detail-<%= i %>">
-											<hr>
-											<div class="review_Container">
-												<div class="fluid-row" id = "Review_user">
-													<div class = "review_Pic"><img src = "resources/img/DetailStoreImg/Review/BestReview3.png"></div>
-													<div>
-													<div id = "reviewTextContent">리뷰내용 :
-													<%=srReviewvo.getContent() %></div>
-												</div>
-												</div>
+
+											<div id="detail-<%= i %>">
 												<hr>
-													<!-- 사장댓글 --><div class = "Seller_answer">↳&nbsp;ex) <%=svo.getS_name()%>사장님 : 다음에 오실때는 더욱만족 하실수있도록 노력하겠습니다.</div>
+												<div class="review_Container">
+													<div class="fluid-row" id="Review_user">
+														<div class="review_Pic">
+															<img
+																src="resources/img/DetailStoreImg/Review/BestReview3.png">
+														</div>
+														<div>
+															<div id="reviewTextContent">
+																리뷰내용 :
+																<%=srReviewvo.getContent() %></div>
+														</div>
+													</div>
+													<hr>
+													<!-- 사장댓글 -->
+													<div class="Seller_answer">
+														↳&nbsp;ex)
+														<%=svo.getS_name()%>사장님 : 다음에 오실때는 더욱만족 하실수있도록 노력하겠습니다.
+													</div>
+												</div>
 											</div>
-										</div>
 										</div>
 									</li>
 								</ul>
 								<%} %>
 							</div>
 						</div>
-						
- <div class="tab-pane" id="tabs-4" role="tabpanel">
-            <div class="product__details__tab__desc">
-<div class='row'>
 
-  <div class="col-lg-12">
+						<div class="tab-pane" id="tabs-4" role="tabpanel">
+							<div class="container" id = "qnaCon">
+								<div class="container-fluid" >
+									<div class="row" style="display : flex; justify-content : center;">
+										<div class="qnaList" style="width :1136px; margin-top : 35px; margin-right : 40px;">
+											<div class="qna_insert" style="text-align: right;">
+												<button type="button"
+													class="btn btn-lg btn-outline-secondary" id="storeQnaWrite"
+													name="storeQnaWrite"
+													style="background-color: #98c653; color: white; margin-bottom: 20px; width: 80px; height: 35px; font-size: 14px; font-weight: bold;">글쓰기</button>
+												<input type="hidden" id="ms_num" name="ms_num"
+													value="<%=svo.getS_num()%>"> <input type="hidden"
+													id="mu_id" name="mu_id" value="<%=u_id%>">
+											</div>
+											<table class="table">
+												<thead id="qnaHead">
 
-    <!-- /.panel -->
-     <div class="panel panel-default">
-       <!-- <div class="panel-heading">
-        <i class="fa fa-comments fa-fw"></i> Reply
-      </div> -->  
-      
-     <div class="panel-heading">
-       <i class="fa fa-comments fa-fw"></i> 가게문의
-        <button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>가게 문의 등록</button>
-      </div>   
-      
-      
-      <!-- /.panel-heading -->
-      <div class="panel-body">        
-      
-        <ul class="chat">
-         <!-- start reply -->
-         <li class="left clearfix" data-qs_num='1'>
-            <div>
-               <div class="header">
-                  <strong class="primary-font">user00</strong>
-                  <small class="pull-right text-muted">2018-01-01 13:13</small>
-               </div>
-               <p>Good job!</p>
-            </div>
-         </li>
-         <!-- end reply -->
-        </ul>
-        <!-- ./ end ul -->
-      </div>
-      <!-- /.panel .chat-panel -->
-      
-      <div class="panel-footer">
-      
-      </div>
-      
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-        aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"
-                aria-hidden="true">&times;</button>
-              <h4 class="modal-title" id="myModalLabel">가게문의등록페이지</h4>
-            </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <label>제목</label> 
-                <input class="form-control" name='u_id' value='New Reply!!!!'>
-              </div>      
-              <div class="form-group">
-                <label>내용</label> 
-                <input class="form-control" name='content' value='replyer'>
-              </div>
-              <div class="form-group">
-                <label>등록일</label> 
-                <input class="form-control" name='qna_date' value=''>
-              </div>
-      
-            </div>
-<div class="modal-footer">
-        <button id='modalModBtn' type="button" class="btn btn-warning">수정</button>
-        <button id='modalRemoveBtn' type="button" class="btn btn-danger">제거</button>
-        <button id='modalRegisterBtn' type="button" class="btn btn-primary">등록</button>
-        <button id='modalCloseBtn' type="button" class="btn btn-default" data-dismiss='modal'>닫기</button>
-        <button id='modalClassBtn' type='button' class="btn btn-default" data-dismiss='modal'>닫기</button>
-      </div>          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      </div>
-      </div>
-      </div>
-      </div>
-      </div>
-      </section>
-      <%@include file="../includes/footer.jsp"%>
-      <!-- /.modal -->
+													<tr id="qnaHeadText">
+														<th>번호</th>
+														<th>제목</th>
+														<th>작성자</th>
+														<th>등록일</th>
+														<th>답변상태</th>
+													</tr>
+												</thead>
+												<tbody id="storeQna_content">
 
-   <script type="text/javascript" src="./resources/js/qnastore.js"></script>
-    <script src="./resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="./resources/vendor/metisMenu/metisMenu.min.js"></script>
-    <!-- DataTables JavaScript -->
-    <script src="./resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="./resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="./resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
+												</tbody>
+											</table>
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-md-2"></div>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="./resources/dist/js/sb-admin-2.js"></script>
+													<div class="col-md-8">
+														<class class="pagination-lg">
+														<ul class="pagination"
+															style="margin-bottom: 30px; display: flex; justify-content: center; align-items: center;">
+															<%
+																	if (nowpage <= 1) {
+																%>
+															<li class="page-item"><a class="page-link" href="#"
+																style="color: white;background-color: #98c653;">Previous</a></li>
+															<%
+																	} else {
+																%>
+															<li class="page-item"><a class="page-link"
+																href="./qnalist.qn?page=<%=nowpage - 1%>"
+																style="color: white;background-color: #98c653;">Previous</a></li>
+															<%
+																	}
+																%>
+															<%
+																	for (int a = startpage; a <= endpage; a++) {
+																		if (a == nowpage) {
+																%>
+															<%=a%>
+															<%
+																	} else {
+																%>
+															<li class="page-item"><a class="page-link"
+																href="./noticelist.no?page=<%=a%>"
+																style="color: rgb(51, 131, 51);"><%=a%></a></li>
+															<%
+																	}
+																%>
+															<%
+																	}
+																%>
+															<%
+																	if (nowpage >= maxpage) {
+																%>
+															<li class="page-item"><a class="page-link" href="#"
+																style="color: white;background-color: #98c653;">Next</a></li>
+															<%
+																	} else {
+																%>
+															<li class="page-item"><a class="page-link"
+																href="./qnalist.qn?page=<%=nowpage + 1%>"
+																style="color: white;background-color: #98c653;">Next</a></li>
+															<%
+																	}
+																%>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
+</section>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+<!-- The Modal -->
+<div id="myModal" class="modal">
+	<!-- Modal content -->
+	<div class="modal-content">
+		<span class="close">&times;</span>
+		<form name="storeQnaInsertForm">
+			<fieldset>
+				<legend>가게 문의 작성</legend>
+				<ol>
+					<li>
+						<label for="title">제목</label> 
+						<input type="text" id="title" name="title">
+					</li>
+					<li>
+						<label for="mu_id">유저아이디</label>
+						<input type="text" id="u_id" name="u_id" readonly>
+					</li>
+					<li>
+						<label for="ms_num">가게번호</label>
+						<input type="text" id="s_num" name="s_num" readonly>
+					</li>
+					<li>
+						<label for="content">문의내용</label>
+						<input type="text" id="content" name="content">
+					</li>
+				</ol>
+			</fieldset>
+
+			<fieldset>
+				<button type="button" id="storeQnaInsertBtn" name="storeQnaInsertBtn">작성</button>
+				<input type="button" id="closeBtn" value="닫기" />
+			</fieldset>
+		</form>
+	</div>
+</div>
+<!--modal END-->
+
+
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <script>
-$(document).ready(function (){
-   var s_numValue = '<c:out value="${storeVO.getS_num()}"/>';
-   var replyUL = $(".chat");
-      
-   showList(1);
-      
-      function showList(page) {
-         console.log("show List" +page);
-         qnaService.getList({s_num:s_numValue,page: page || 1}, function(qnastoreCnt,list){
-            console.log("qnastorCnt:"+ qnastoreCnt);
-            console.log("list:"+ list);
-            console.log(list);
-            
-            if(page == -1) {
-               pageNum = Math.ceil(qnastoreCnt/10.0);
-               showList(pageNum);
-               return;
-            }
-            
-            var str="";
-            
-            if(list == null || list.length == 0) {
-               return;
-               
-            }
-            for (var i=0,len = list.length || 0; i < len; i++) {
-               str +="<li class='left clearfix' data-qs_num='"+list[i].qs_num+"'>";
-               str +="      <div><div class='qnahead'><strong class='primary-font'>"+list[i].u_id+"</strong>";
-               str +="         <small class='pull-right text-muted'>"+qnaService.displayTime(list[i].qna_date)+"</small></div>";
-               str +="            <p>"+list[i].content+"</p></div></li>";
-            }
-               replyUL.html(str);
-               
-               showqnastorePage(qnastoreCnt);
-         });//end function
-      } //end showList
+	// Get the modal
+	var modal = document.getElementById('myModal');
 
-      var modal = $(".modal");
-      var modalInputContent = modal.find("input[name='content']");
-      var modalInputU_id = modal.find("input[name='u_id']");
-      var modalInputQna_date = modal.find("input[name='qna_date']");
-      
-      var modalModBtn = $("#modalModBtn");
-      var modalRemoveBtn = $("#modalRemoveBtn");
-      var modalRegisterBtn = $("#modalRegisterBtn");
-      
-      $("#addReplyBtn").on("click", function(e){
-         modal.find("input").val("");
-         modalInputQna_date.closest("div").hide();
-         modal.find("button[id !='modalCloseBtn']").hide();
-         
-         modalRegisterBtn.show();
-   
-         $(".modal").modal("show");
-     
-   });
-      var qnastore;
-      modalRegisterBtn.on("click",function(e){
-        
-       qnastore = {
-             content: modalInputContent.val(),
-             u_id: modalInputU_id.val(),
-             s_num: s_numValue
-          };
-     qnaService.add(qnastore, function(result) {
-          
-          alert("추가되었습니다"+result);
-          
-          modal.find("input").val("");
-          modal.modal("hide");
-          
-          //showList(1);
-          showList(-1);
-});
+	// Get the button that opens the modal
+	var btn = document.getElementById('storeQnaWrite');
 
-     });
-     
-     //댓글 조회 클릭 이벤트 처리
-     $(".chat").on("click","li",function(e){
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+	
+	var s_num = $('input[name=ms_num]').val();
+	var u_id = $('input[name=mu_id]').val();
 
-        var qs_num = $(this).data("qs_num");
-        alert("qs_num=" + qs_num);
-        
-        qnaService.get(qs_num,function(res) {
-           console.log(res);
-           alert("qnastore.qs_num=" + res.qs_num);
-           modalInputContent.val(res.content);
-           modalInputU_id.val(res.u_id);
-           modalInputQna_date.val(qnaService.displayTime(res.qna_date)).attr("readonly","readonly");
-           modal.data("qs_num",res.qs_num);
-           
-           console.log(qs_num);
-           
-           modal.find("button[id !='modalCloseBtn']").hide();
-           modalModBtn.show();
-           modalRemoveBtn.show();
-           
-           $(".modal").modal("show");
-        });
-     });
-     
-     modalModBtn.on("click",function(e) {
-        var content = {qs_num:modal.data("qs_num"), content:modalInputContent.val()};
-        
-        qnaService.update(content, function(result) {
-           alert(result);
-           modal.modal("hide");
-           showList(pageNum);
-        });
-        
-     });
-     
-     modalRemoveBtn.on("click",function(e) {
-        var qs_num = modal.data("qs_num");
-        
-        qnaService.remove(qs_num, function(result) {
-           alert(result);
-           modal.modal("hide");
-           showList(pageNum);
-        });
-     });
-     
-     var pageNum = 1;
-   var qnastorePageFooter = $(".panel-footer");
-   
-   function showqnastorePage(qnastoreCnt) { //페이징 처리
-      
-      var endNum = Math.ceil(pageNum / 10.0) * 10;
-      var startNum = endNum - 9;
-      
-      var prev = startNum != 1;
-      var next = false;
-      
-      if(endNum * 10 >= qnastoreCnt) {
-         endNum = Math.ceil(qnastoreCnt/10.0);
-      }
-      
-      if(endNum * 10 < qnastoreCnt) {
-         next = true;
-      }
-      
-      var str = "<ul class='pagination pull-right'>";
-      
-      if(prev) {
-         str += "<li class='page-item'><a class='page-link' href='"+(startNum -1)+"'>Previous</a></li>";
-      }
-      
-      for(var i = startNum ; i <=endNum; i++) {
-         
-         var active = pageNum == i? "active":"";
-         
-         str += "<li class='page-item "+active+" '><a class='page-link' href='"+i+"'>"+i+"</a></li>";
-      }
-      
-      if(next) {
-         str += "<li class='page-item'><a class='page-link' href='"+(endNum+1)+"'>Next</a></li>";
-      }
-      
-      str += "</ul></div>";
-      
-      qnastorePageFooter.html(str);
-   }
-   
-   qnastorePageFooter.on("click","li a", function(e){ //페이지 번호를 클릭했을때 새로운 댓글 가져옴
-      e.preventDefault();
-      
-      var targetPageNum = $(this).attr("href");
-      
-      console.log("targetPageNum:" + targetPageNum);
-      
-      pageNum = targetPageNum;
-      
-      showList(pageNum);
-   });
-     
-});   
+	$(document).ready(function() {
+		
+		btn.onclick = function(event) {
+			alert(s_num);
+			alert(u_id);
+			$('input#s_num').val(s_num);
+			$('input#u_id').val(u_id);
+		    modal.style.display = "block";
+		}
+		
+		storeQnaList();
+	});
 
+	$('[name=storeQnaInsertBtn]').click(function() { //댓글 등록 버튼 클릭시 속성이름 [] 으로 접근 가능
+		
+		var insertData = $('[name=storeQnaInsertForm]').serialize(); //noticeInsertForm의 내용을 가져옴
+		alert("insertData = " + insertData);
+		storeQnaInsert(insertData); //Insert 함수호출(아래)
+	});
+
+ 	function storeQnaInsert(insertData) {
+		$.ajax({
+			url : 'qnaStoreInsert.qs',
+			type : 'POST',
+			data : insertData,
+			success : function(data) {
+				if (data == "ok") {
+					alert("good");
+					modal.style.display = "none";
+					storeQnaList();
+				} else {
+					alert("notice insert Fail!!!!");
+				}
+			}
+		});
+	} 
+
+ 	function storeQnaList() {
+		$.ajax({
+			url : 'qnastoreListAjax.re',
+			type : 'POST',
+			data : {"s_num": s_num},
+			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+			success : function(data) {
+				var a = '';
+					$.each(data,function(key, value) {
+						a += '<tr><td>'+ value.qnastore_num + '</td>';
+						a += '<td>' + value.title + '</td>';
+						a += '<td>' + value.u_id + '</td>';
+						a += '<td>' + value.re_date + '</td>';
+						if (value.re_content != null) {
+							a += '<td><h6>답변완료</h6></td></tr>';
+						} else {
+							a += '<td><h6>답변대기</h6></td></tr>';
+						}
+					});
+						$("#storeQna_content").html(a); //a내용을 html에 형식으로 .commentList로 넣음
+				},error : function() {
+					alert("ajax통신 실패(list)!!!");
+				}
+			});
+	}
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function(event) {
+		modal.style.display = "none";
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+ 	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
 </script>
+
+
+
+
+<%@include file="../includes/footer.jsp"%>
+      <!-- /.modal -->
+
+
 

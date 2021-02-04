@@ -279,8 +279,15 @@ public class ReviewController {
 	  }
 	 
 	
+	@RequestMapping("/review_detail.me")
+	public String review_detail(Model model) {
+		return "review/review_detail"; 
+		
+	}
 	
 }
+
+
 
 
 //	@RequestMapping("/review_reg.re")

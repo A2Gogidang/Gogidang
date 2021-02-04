@@ -16,10 +16,10 @@ public interface QnaStoreService {
 	public List<QnaStoreVO> getQnaList(HashMap<String, Integer> hashmap); // 글 목록 보기
 	public int qnaInsert(QnaStoreVO qna);
 	public QnaStoreVO getDetail(int qnastore_num);
-	public int qnaModify(QnaStoreVO qna);
 	public QnaStoreVO qnaModifyForm(int qnastore_num);
 	public int qnaDelete(HashMap<String, String> hashmap);
 	public int qnaReply(QnaStoreVO qna);
 	
-
+	public List<QnaStoreVO> getList(int s_num);
+	public int qnaModify(QnaStoreVO qna);
 }
