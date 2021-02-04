@@ -71,6 +71,13 @@ public class NoticeServiceImpl implements NoticeService {
 	      }
 	      return res;
 	   }
+
+	@Override
+	public List<NoticeVO> getList() {
+		NoticeMapper noticeMapper = sqlSession.getMapper(NoticeMapper.class);
+		
+		return noticeMapper.getList();
+	}
 	  
 	 
 	

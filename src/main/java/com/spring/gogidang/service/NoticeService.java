@@ -19,7 +19,7 @@ public interface NoticeService {
 	public NoticeVO noticeModifyForm(int notice_num);
 	public int noticeDelete(HashMap<String, String> hashmap);
 	
-	
+	public List<NoticeVO> getList();
 
 
 }

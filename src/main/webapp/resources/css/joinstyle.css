@@ -10,8 +10,8 @@
 /* 1.body
 /*----------------------------------------*/
 body {
-	/*font-family: "Cairo", sans-serif;*/
-	font-family: 'Montserrat', sans-serif;
+	font-family: "Cairo", sans-serif;
+	/*font-family: 'Montserrat', sans-serif;*/
 	/*text-rendering : optimizeLegibility;*/
 	-webkit-font-smoothing : antialiased;
 }

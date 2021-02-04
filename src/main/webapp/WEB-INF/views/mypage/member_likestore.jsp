@@ -28,7 +28,7 @@
 		              	  </div>
 								<ul>
 									<li><a href="./updateList.me">내정보</a></li>
-									<li><a href="./bookingList.bo?u_id=<%=memberVO.getU_id()%>">내예약확인</a></li>
+									<li><a href="./purchase_list.py?u_id=<%=memberVO.getU_id()%>">구매내역</a></li>
 									<li><a href="./likeStoreList.li?u_id=<%=memberVO.getU_id()%>">찜목록</a></li>
 									<li><a href="./reviewListByIdWithPaging.re?u_id=<%=memberVO.getU_id()%>">내가작성한 후기</a></li>
 									<li><a href="./cartList.ct">장바구니</a></li>

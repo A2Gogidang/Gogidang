@@ -20,7 +20,7 @@ public class CartVO {
 	private Date addDate;
 	private int price;
 	private String img;
-	private String s_num;
+	private int s_num;
 	
 	
 	

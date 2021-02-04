@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../includes/header_simple.jsp"%>
+<%@ page import="java.sql.*"%>
+<%@ page import="javax.sql.*"%>
+<%@ page import="javax.naming.*"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.spring.gogidang.domain.*"%>
-
-<%	
-	ArrayList<SRReviewVO> srReviewList = (ArrayList<SRReviewVO>) request.getAttribute("srReviewList");
-	PageDTO pageMaker = (PageDTO) request.getAttribute("pageMaker");
+<%@ page import="com.spring.gogidang.domain.*" %>
+<%@include file="../includes/header_simple.jsp"%>
+<%
+	ArrayList<PayVO> purchase_list =  (ArrayList<PayVO>)request.getAttribute("purchase_list");
 %>
-
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/member_liststoreStyle.css"
 	type="text/css">
@@ -18,14 +18,13 @@
 	<div class="container">
 		<div class="row">
 			<div class="myreview">
-				<div class="col-lg-3" id="nav-bar">
-		            <div class="hero__categories">
-		                  <div class="hero__categories__all">
-		                  	<span>마이페이지</span>
-		              	  </div>
-		              	  	<ul>
+				<div class="col-lg-3 col-md-5">
+					<div class="sidebar">
+						<div class="sidebar__item">
+							<h4>마이페이지</h4>
+							<ul>
 								<li><a href="./updateList.me">내정보</a></li>
-								<td><a href="./purchase_list.py?u_id=<%=mvo.getU_id()%>">구매내역</a></td>
+								<li><a href="./purchase_list.py?u_id=<%=mvo.getU_id()%>">구매내역</a></li>
 								<li><a
 									href="./likeStoreList.li?u_id=<%=mvo.getU_id()%>">찜목록</a></li>
 								<li><a
@@ -35,51 +34,33 @@
 							</ul>
 						</div>
 					</div>
-
+				</div>
 		<!-- ---------------------------------------------------시작----------------------------------------------------- -->
-				<div class="col-lg-9">
+				<div class="reviewboard">
 					<div class="section-title product__discount__title">
-						<h2>리뷰 관리</h2>
+						<h2>구매내역</h2>
 					</div>
 					<div class="container">
 						<table class="table table-hover">
 							<thead>
 								<tr align=center>
 									<th>번호</th>
-									<th>제목</th>
-									<th>작성자</th>
-									<th>별점</th>
-									<th>등록일</th>
-									<th>답변 상태</th>
+									<th>가게명</th>
+									<th>구매 금액</th>
+									<th>구매 일자</th>
 								</tr>
 							</thead>
 							<tbody class="text-center">
 								<%
-									for (int i = 0; i < srReviewList.size(); i++) {
+									for (int i = 0; i < purchase_list.size(); i++) {
 	
-										SRReviewVO srReviewvo = (SRReviewVO) srReviewList.get(i);
+										PayVO pvo = (PayVO) purchase_list.get(i);
 								%>
 								<tr align=center>
 									<td><%=i + 1%></td>
-									<td><a
-										href="storereviewInfo.bo?review_num=<%=srReviewvo.getReview_num()%>"><%=srReviewvo.getTitle()%></a>
-									</td>
-									<td><%=srReviewvo.getU_id()%></td>
-									<td><%=srReviewvo.getStar()%></td>
-									<td><%=srReviewvo.getReview_date()%></td>
-	
-									<%
-										if (srReviewvo.getRe_content() == null || srReviewvo.getRe_content() == "") {
-									%>
-										<td>답변 대기</td>
-									<%
-										} else {
-									%>
-										<td>답변 완료</td>
-									<%
-										}
-									%>
-	
+									<td><%=pvo.getS_name()%></td>
+									<td><%=pvo.getTotalPrice()%></td>
+									<td><%=pvo.getPaydate()%></td>
 									<%
 										}
 									%>
@@ -95,4 +76,4 @@
 </section>
 <!-- Product Section End -->
 
-<%@include file="../includes/footer.jsp"%>
+<%@include file="../includes/footer.jsp" %>
