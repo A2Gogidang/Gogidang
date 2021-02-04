@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="java.util.*"%>
-<%@ page import="com.spring.gogidang.domain.*"%>
+    pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ page import = "com.spring.gogidang.domain.*" %>
 <%@ page import="java.util.ArrayList"%>
-
 <%
-	ArrayList<ReviewVO> reviewList = (ArrayList<ReviewVO>) request.getAttribute("reviewList");
+	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
 %>
 
 <%@include file="../includes/header_simple.jsp"%>
+
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/shopgrid.css"
@@ -27,7 +27,7 @@
 					<div class="shoplis">
 						<div class="shoplistt">
 							<div class="section-title product__discount__title">
-								<h2>리뷰리스트</h2>
+								<h2>가게리스트</h2>
 							</div>
 						</div>
 						<div class="shoplist">
@@ -113,11 +113,88 @@
 						</div>
 					</div>
 				</div>
+				</div>
+				</div>
+				</div>
+				</section>
 				
-<!— Product Section End —>
-<script src="https://code.jquery.com/jquery-latest.js"></script>
+			   <div class="container">
+            <div class="row">
+     				<%
+		for(int i=0; i<storeList.size(); i++) {
+			StoreVO svo = (StoreVO) storeList.get(i);
+					%>
+                <div class="col-lg-12">
+                    <div class="shoping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="shoping__product">가게명</th>
+                                    <th>지역</th>
+                                    <th>품목</th>
+                                    <th>별점</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="shoping__cart__item" >
+                                        <img src="resources/img/store/store_gogi.png" alt=""><br>
+                                        <h5 ><%= svo.getS_name() %></h5>
+                                    </td>
+                                    <td class="shoping__cart__price">
+                                        <%=svo.getS_addr()%>
+                                    </td>
+                                    <td class="shoping__cart__quantity">
+                                    
+											<%
+											if(svo.getMeat() == 0) {
+											%>
+												<h6>소고기 </h6>
+											<%
+											} else if (svo.getMeat() == 1) {
+											%>
+												<h6> 돼지고기 </h6>
+											<%
+											} else {
+											%>
+												<h6>식당</h6>
+											<%
+											}
+											%>
+                                    </td>
+                                    <td class="shoping__cart__total">
+                                     <input type="hidden" id="avgStar" class="avgStar" name="avgStar" value="<%=svo.getAvgStar() %>" style="border:none" /><%=svo.getAvgStar() %>
+                                    </td>
+                                    
+                                </tr>
+                               </tbody>
+                               </table>
+                               </div>
+                               </div>
+                               <%
+								}
+								%>
+                               </div>
+                               </div>
+                               
+  
+    <!-- Footer Section Begin -->
+   	<!-- Footer Section -->
+	<%@include file="../includes/footer.jsp"%>
 
-<script type="text/javascript" charset="utf-8"
-	src="${pageContext.request.contextPath}/resources/js/reviewlistAjaxx.js"></script>
+    <!-- Js Plugins -->
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.nice-select.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.slicknav.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/mixitup.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 
-<%@include file="../includes/footer.jsp"%>				
+
+	<script src="https://code.jquery.com/jquery-latest.js"></script> 
+	
+	<script type="text/javascript"  charset="utf-8" src="${pageContext.request.contextPath}/resources/js/storelistAjaxx.js"></script> 
+	

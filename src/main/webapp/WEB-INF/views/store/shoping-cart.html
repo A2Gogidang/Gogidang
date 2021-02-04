@@ -10,7 +10,7 @@
     <title>Ogani | Template</title>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?famfily=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -272,7 +272,17 @@
                                         </div>
                                     </td>
                                     <td class="shoping__cart__total">
-                                        $110.00
+                                        <%
+										if(svo.getMeat() == 0) {
+										%>
+											<h6>소고기 </h6>
+										<%
+										} else if (svo.getMeat() == 1) {
+										%>
+											<h6> 돼지고기 </h6>
+										<%
+										} else {
+										%>
                                     </td>
                                     <td class="shoping__cart__item__close">
                                         <span class="icon_close"></span>

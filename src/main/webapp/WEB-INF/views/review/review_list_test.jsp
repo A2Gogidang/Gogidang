@@ -113,11 +113,46 @@
 						</div>
 					</div>
 				</div>
-				
-<!— Product Section End —>
-<script src="https://code.jquery.com/jquery-latest.js"></script>
+				<div class="row" style="width: 960px; margin-top: 30px">
+					<%
+						for (int i = 0; i < reviewList.size(); i++) {
+							ReviewVO rvo = (ReviewVO) reviewList.get(i);
+					%>
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="product__item">
+							<div class="product__item__pic set-bg"
+								data-setbg="resources/img/store/store_gogi.png"></div>
+							<div class="product__item__text">
+								<h6>
+									<a href="#"><%=rvo.getTitle()%></a>
+								</h6>
+								<span id="reviewStar" style="color: #edbb0e;"> <%
+ 	if (rvo.getStar() == 5) {
+ %> <sapn class="fa fa-star" /><span class="fa fa-star" ></span><span
+									class="fa fa-star" ></span><span class="fa fa-star" ></span><span
+									class="fa fa-star" ></span> <%
+ 	} else if (rvo.getStar() == 4) {
+ %> <span class="fa fa-star" /><span class="fa fa-star" ></span><span
+									class="fa fa-star" ></span><span class="fa fa-star" /> <%
+ 	} else if (rvo.getStar() == 3) {
+ %> <span class="fa fa-star" /><span class="fa fa-star" ></span><span
+									class="fa fa-star" ></span> <%
+ 	} else if (rvo.getStar() == 2) {
+ %> <span class="fa fa-star" /><span class="fa fa-star" ></span> <%
+ 	} else if (rvo.getStar() == 1) {
+ %> <span class="fa fa-star" /> <%
+ 	}
+ %>
+							</div>
+						</div>
+					</div>
+					<%
+						}
+					%>
+				</div>
+				<script src="https://code.jquery.com/jquery-latest.js"></script>
 
-<script type="text/javascript" charset="utf-8"
-	src="${pageContext.request.contextPath}/resources/js/reviewlistAjaxx.js"></script>
+				<script type="text/javascript" charset="utf-8"
+					src="${pageContext.request.contextPath}/resources/js/reviewlistAjaxx.js"></script>
 
-<%@include file="../includes/footer.jsp"%>				
+				<%@include file="../includes/footer.jsp"%>

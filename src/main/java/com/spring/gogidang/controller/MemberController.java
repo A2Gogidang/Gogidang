@@ -65,7 +65,7 @@ public class MemberController {
    private ReviewService reviewService;
 
    @RequestMapping("/main.me")
-   public String mainPage(Model model, HttpSession seesion) throws Exception { 
+   public String mainPage(Model model,HttpSession seesion) throws Exception { 
 
       model.addAttribute("eventList", eventService.eventList());
       model.addAttribute("storeList", storeService.getList());

@@ -7,6 +7,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
 
+
 <%@include file="../includes/header_simple.jsp"%>
 
 <link rel="stylesheet"
@@ -91,6 +92,7 @@
 					<div class="product__details__price"
 						style="color: black; font-size: 20px;">가게소개</div>
 					<p>한줄 소개글 추가</p>
+
 					<ul id="seller_detail">
 						<li><b>운영시간</b> <span><%=svo.getS_hour()%></span></li>
 						<li><b>전화번호</b> <span><%=svo.getS_phone()%></span></li>
@@ -98,7 +100,7 @@
 					</ul>
 				</div>
 			</div>
-
+	
 			<!-- tab Start -->
 			<div class="col-lg-12">
 				<div class="product__details__tab">
@@ -106,7 +108,7 @@
 						<li class="nav-item"><a class="nav-link active"
 							data-toggle="tab" href="#tabs-1" role="tab" aria-selected="true">메뉴</a></li>
 						<li class="nav-item"><a class="nav-link" data-toggle="tab"
-							href="#tabs-2" role="tab" aria-selected="false">위치</a></li>
+							href="#tabs-2" role="tab" aria-selected="false" onclick="relayout()">위치</a></li>
 						<li class="nav-item"><a class="nav-link" data-toggle="tab"
 							href="#tabs-3" role="tab" aria-selected="false">후기 </a></li>
 						<li class="nav-item"><a class="nav-link" data-toggle="tab"
@@ -168,89 +170,14 @@
 							</div>
 						</div>
 
-						<div class="tab-pane" id="tabs-2" role="tabpanel">
+						<div class="tab-pane" id="tabs-2" role="tabpanel" >
 							<div class="product__details__tab__desc">
 								<div class="container">
 									<!-- Portfolio Section Heading-->
 									<div class="row">
 										<div class="col-lg-12">
-											<div id="map" style="width: 100%; height: 350px;"></div>
-											<button onclick="resizeMap()">지도 크기 바꾸기</button>
-											<button onclick="relayout()">relayout 호출하기</button>
-											<script type="text/javascript"
-												src="//dapi.kakao.com/v2/maps/sdk.js?appkey=241b4077cebf45bee1ed06d47263650b&libraries=services"></script>
-											<script>
-												var mapContainer = document
-														.getElementById('map'), // 지도를 표시할 div 
-												mapOption = {
-													center : new kakao.maps.LatLng(
-															33.450701,
-															126.570667), // 지도의 중심좌표
-													level : 3
-												// 지도의 확대 레벨 
-												};
 
-												// 지도를 생성합니다    
-												var map = new kakao.maps.Map(
-														mapContainer, mapOption);
 
-												//지도를 표시하는 div 크기를 변경하는 함수입니다
-												function resizeMap() {
-													var mapContainer = document
-															.getElementById('map');
-													mapContainer.style.width = '650px';
-													mapContainer.style.height = '650px';
-												}
-
-												function relayout() {
-
-													// 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
-													// 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
-													// window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
-													map.relayout();
-												}
-
-												// 주소-좌표 변환 객체를 생성합니다
-												var geocoder = new kakao.maps.services.Geocoder();
-
-												// 주소로 좌표를 검색합니다
-												geocoder
-														.addressSearch(
-																'${storeVO.getS_addr()}',
-																function(
-																		result,
-																		status) {
-
-																	// 정상적으로 검색이 완료됐으면 
-																	if (status === kakao.maps.services.Status.OK) {
-
-																		var coords = new kakao.maps.LatLng(
-																				result[0].y,
-																				result[0].x);
-
-																		// 결과값으로 받은 위치를 마커로 표시합니다
-																		var marker = new kakao.maps.Marker(
-																				{
-																					map : map,
-																					position : coords
-																				});
-
-																		// 인포윈도우로 장소에 대한 설명을 표시합니다
-																		var infowindow = new kakao.maps.InfoWindow(
-																				{
-																					content : '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-																				});
-																		infowindow
-																				.open(
-																						map,
-																						marker);
-
-																		// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-																		map
-																				.setCenter(coords);
-																	}
-																});
-											</script>
 										</div>
 									</div>
 								</div>
@@ -445,108 +372,73 @@
 </div>
 </div>
 </section>
+												<div id="map" style=""></div>
+											
+											<script type="text/javascript"
+												src="//dapi.kakao.com/v2/maps/sdk.js?appkey=241b4077cebf45bee1ed06d47263650b&libraries=services"></script>
+ <script>
+ var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+mapContainer.style.width = '1140px';
+mapContainer.style.height = '350px';
 
 
-<!-- Footer Section Begin -->
-<footer class="footer spad">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-3 col-md-6 col-sm-6">
-				<div class="footer__about">
-					<div class="footer__about__logo">
-						<a href="./index.html"><img src="./resources/img/logo.png"
-							alt=""></a>
-					</div>
-					<ul>
-						<li>addr : 서울특별시 종로구 종로 69 서울YMCA 7층</li>
-						<li>Phone : +82) 02.1234.4954</li>
-						<li>Email : gogidang@naver.com</li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-				<div class="footer__widget">
-					<h6>short cut</h6>
-					<ul>
-
-						<li><a href="#">로그인</a></li>
-						<li><a href="#">회원가입</a></li>
-						<li><a href="#"></a></li>
-						<li><a href="#">전체가게</a></li>
-						<li><a href="#">전체리뷰</a></li>
-						<li><a href="#"> </a></li>
-					</ul>
-					<ul>
-						<li><a href="#">추천가게</a></li>
-						<li><a href="#">베스트리뷰</a></li>
-						<li><a href="#"></a></li>
-						<li><a href="#">공지사항</a></li>
-						<li><a href="#">이벤트</a></li>
-						<li><a href="#"></a></li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-md-12">
-				<div class="footer__widget">
-					<h6>탁월한 사장님들을 모십니다 !</h6>
-					<p>고기당은 함께 성장하실 사장님들을 기다립니다.</p>
-
-					<form action="#">
-						<input type="text" placeholder="Enter your mail">
-						<button type="submit" class="site-btn">Subscribe</button>
-					</form>
-					<div class="footer__widget__social">
-						<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-							class="fa fa-instagram"></i></a> <a href="#"><i
-							class="fa fa-twitter"></i></a> <a href="#"><i
-							class="fa fa-pinterest"></i></a>
-					</div>
-				</div>
-			</div>
+function relayout() {    
+    
+    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
+    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
+    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
+    map.relayout();
+}
 
 
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
 
-		</div>
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="footer__copyright">
-					<div class="footer__copyright__text">
-						<p>
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							Copyright &copy;
-							<script>
-								document.write(new Date().getFullYear());
-							</script>
-							All rights reserved | This template is made with <i
-								class="fa fa-heart" aria-hidden="true"></i> by <a
-								href="https://colorlib.com" target="_blank">Colorlib</a>
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						</p>
-					</div>
-					<div class="footer__copyright__payment">
-						<img src="./resources/img/payment-item.png" alt="">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</footer>
-<!-- Footer Section End -->
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
 
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery.nice-select.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery.slicknav.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/mixitup.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
 
-</body>
-</html>
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+          
+            
+        });
+		
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">저희 가게</div><div style="width:150px;text-align:center;padding:6px 0;"><a href="https://map.kakao.com/link/to/${storeVO.getS_addr()}">길찾기</a></div>'
+            		 
+        });
+        infowindow.open(map, marker);
+		
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+     
+       
+        map.setCenter(coords);
+       
+        
+        
+    } 
+
+     
+});  
+//map.relayout();
+relayout();
+</script>
+
+<%@include file="../includes/footer.jsp"%>
 
