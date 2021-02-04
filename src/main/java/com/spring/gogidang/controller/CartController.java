@@ -31,7 +31,6 @@ public class CartController {
       response.setContentType("text/html; charset=utf-8");
       PrintWriter writer = response.getWriter();
       
-      System.out.println(cartVO.toString());
       
       //소비자인지 판매자인지도 구별해야됨
       if(((MemberVO)session.getAttribute("memberVO")) != null) {
@@ -63,35 +62,41 @@ public class CartController {
       response.setContentType("text/html; charset=utf-8");
       PrintWriter writer = response.getWriter();
      
-      cartVO.setU_id((((MemberVO)session.getAttribute("memberVO")).getU_id()));   
       
-      System.out.println(cartVO.getU_id());
-      
-      ArrayList<CartVO> cart_list = null;
-      
-      cart_list = cartService.cartList(cartVO);
-      
-      if(cart_list.isEmpty() || cart_list.get(0).getMenu_name() == null) {
-         //이전페이지로 되돌아가는 메소드 찾아서 넣기 
-         writer.write("<script>alert('장바구니가 비어있습니다.'); location.href='./storeList.st';</script>");
-         
+      if(((MemberVO)session.getAttribute("memberVO")) == null) {
+    	  
+    	  writer.write("<script>alert('로그인을 해주세요.'); location.href='./loginForm.me';</script>");
+    	  
       }else {
-         
-         session.setAttribute("cart_list", cart_list);
-         return "mypage/cartList";
-        
+    	  
+    	  cartVO.setU_id((((MemberVO)session.getAttribute("memberVO")).getU_id()));   
+    	  
+    	  ArrayList<CartVO> cart_list = null;
+    	  
+    	  cart_list = cartService.cartList(cartVO);
+    	  
+    	  if(cart_list.isEmpty() || cart_list.get(0).getMenu_name() == null) {
+    		  //이전페이지로 되돌아가는 메소드 찾아서 넣기 
+    		  writer.write("<script>alert('장바구니가 비어있습니다.'); location.href='./storeList.st';</script>");
+    		  
+    	  }else {
+    		  
+    		  session.setAttribute("cart_list", cart_list);
+    		  return "mypage/cartList";
+    		  
+    	  }
       }
 
       return null;      
    }
    
-   //장바구니 테스트용 페이지, 추후 삭제해야합니다
-   @RequestMapping("/cartTest.ct") 
-   public String cartForm() throws Exception {
-      
-      return "mypage/cart";
-   }
-   //장바구니 테스트용 페이지, 끝
+	/*
+	 * //장바구니 테스트용 페이지, 추후 삭제해야합니다
+	 * 
+	 * @RequestMapping("/cartTest.ct") public String cartForm() throws Exception {
+	 * 
+	 * return "mypage/cart"; } //장바구니 테스트용 페이지, 끝
+	 */   
    
    @RequestMapping("/cartdelete.ct")
    public String cartDelete(CartVO cartVO, HttpServletResponse response) throws Exception {

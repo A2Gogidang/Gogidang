@@ -21,7 +21,11 @@
  		DELETE FROM event WHERE event_num = #{event_num}
  	</delete>
  	
- 	<insert id="register">
- 		INSERT INTO event VALUES (seq_event.nextval, #{photo}, #{thumbnail}, #{title}, #{content}, sysdate)
+ 	<insert id="register" parameterType="EventVO">
+ 		INSERT INTO event VALUES (seq_event.nextval, #{photo}, #{thumbnail}, #{content}, sysdate)
  	</insert>
+ 	
+ 	<select id="getList" resultType="EventVO">
+ 		select * from event
+ 	</select>
  </mapper>

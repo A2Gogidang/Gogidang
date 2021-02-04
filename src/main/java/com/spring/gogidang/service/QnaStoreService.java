@@ -6,7 +6,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.spring.gogidang.domain.Criteria;
-import com.spring.gogidang.domain.QnaStorePageDTO;
 import com.spring.gogidang.domain.QnaStoreVO;
 import com.spring.gogidang.domain.QnaVO;
 

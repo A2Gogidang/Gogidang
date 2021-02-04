@@ -21,5 +21,7 @@ public interface QnaMapper {
 	public int qnaReplyupdate(QnaVO qna);
 	public int qnaReply(QnaVO qna);
 	
+	public List<QnaVO> getList();
+	public int reQna(QnaVO qna);
 	
 }

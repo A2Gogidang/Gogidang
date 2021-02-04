@@ -11,13 +11,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PayVO {
 	
-
+	public int pay_num;
 	public String u_id;
 	public int s_num;
 	public String pay_code;
 	public int totalPrice;
 	public Date paydate;
 	public String imp_uid;
+	public String s_name;
 	
 	
 }

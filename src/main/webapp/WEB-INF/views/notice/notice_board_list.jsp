@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*"%>
+<%@ page import="javax.sql.*"%>
+<%@ page import="javax.naming.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
@@ -20,18 +23,19 @@
 <title>공지사항</title>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/updateList.css"
+	href="${pageContext.request.contextPath}/resources/css/notice.css"
 	type="text/css">
 
 
 <section class="product spad">
 	<div class="container">
 		<div class="row">
-			<div class="rowNotice">
-				<div class="col-lg-3 col-md-5">
-					<div class="sidebar">
-						<div class="sidebar__item">
-							<h4>공지사항</h4>
+		
+				<div class="col-lg-3" id="nav-bar">
+		            <div class="hero__categories">
+		                  <div class="hero__categories__all">
+		                  	<span>공지사항</span>
+		              	 </div>
 								<ul>
 									<li><a href="eventList.ev">이벤트</a></li>
 									<li><a href="noticelist.no">공지사항</a></li>
@@ -44,9 +48,8 @@
 								</ul>
 						</div>
 					</div>
-				</div>
-				<div class="qnaList">
-					<div class="section-title">
+				<div class="col-lg-9">
+					<div class="section-title product__discount__title">
 						<h2>공지사항</h2>
 					</div>
 					<table class="table table-striped">
@@ -83,16 +86,36 @@
 							%>
 						</tbody>
 					</table>
+					<div class="noticebutton">
+					<% if (u_id == "admin" ) { %>
+							<a href="./qnawriteform.qn"><button type="button"
+									class="btn">글쓰기</button> </a>
+					<%}%>
+					</div>
 					<div class="product__pagination">
+						<div class="paging">
+						<% if(nowpage <= 1) { %>
 						<a href="#"><i class="fa fa-long-arrow-left"></i></a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
+						<%}else{%>
+						<a href="./noticelist.no?page=<%=nowpage - 1%>"><i class="fa fa-long-arrow-left"></i></a>
+						<%} %>
+						<% 
+							for(int a =startpage; a<=endpage; a++){
+								if(a== nowpage){
+						%>
+						<a href="./noticelist.no?page=<%=a%>"><%=a %></a>
+						<%}else{ %>
+                        <a href="./noticelist.no?page=<%=a%>"><%=a %></a>
+                        <%} 
+                        	}%>
+						<%if(nowpage >= maxpage) {%>
                         <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                    </div>
+                        <%}else{ %>
+                        <a href="./noticelist.no?page=<%=nowpage + 1%>"><i class="fa fa-long-arrow-right"></i></a>
+                        <%} %>
 				</div>
 			</div>
-
+			</div>
 		</div>
 	</div>
 </section>

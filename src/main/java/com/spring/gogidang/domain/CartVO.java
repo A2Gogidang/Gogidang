@@ -1,7 +1,6 @@
 package com.spring.gogidang.domain;
 
-
-import java.util.Date;
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +19,7 @@ public class CartVO {
 	private Date addDate;
 	private int price;
 	private String img;
-	private String s_num;
+	private int s_num;
 	
 	
 	

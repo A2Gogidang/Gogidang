@@ -10,8 +10,8 @@
 /* 1.body
 /*----------------------------------------*/
 body {
-	/*font-family: "Cairo", sans-serif;*/
-	font-family: 'Montserrat', sans-serif;
+	font-family: "Cairo", sans-serif;
+	/*font-family: 'Montserrat', sans-serif;*/
 	/*text-rendering : optimizeLegibility;*/
 	-webkit-font-smoothing : antialiased;
 }
@@ -105,9 +105,9 @@ body {
 	align-items: center;
 	flex-direction: column;
 	width:510px;
-	border-top: 2px solid #333;
 	padding-top: 16px;
 	font-family: "Cairo", sans-serif;
+	border-top: 2px solid #dee2e6;
 	
 }
 
@@ -233,7 +233,7 @@ body {
 	width: 220px;
 	height: 60px;
 	background: #7fad39;
-	border:1px solid #7fad39;;
+	border:1px solid #7fad39;
 	font-family: "Cairo", sans-serif;
 	font-size: 15px;
 	font-weight:bold;
@@ -255,6 +255,10 @@ body {
     letter-spacing: 2px;
     color:#7fad39;
     margin: 0;
+}
+
+.current{
+	font-size: 13px;	
 }
 
 
@@ -281,4 +285,7 @@ body {
 		padding-bottom: 30px;
 	}
 
+}
+.linez{
+	border-bottom: 2px solid #dee2e6;
 }

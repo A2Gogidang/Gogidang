@@ -1,6 +1,7 @@
 package com.spring.gogidang.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,9 +44,17 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public void register(EventVO eventVO) {
+	public int register(EventVO eventVO) {
 		EventMapper eventMapper = sqlSession.getMapper(EventMapper.class);
-		eventMapper.register(eventVO);
+		
+		return eventMapper.register(eventVO);
+	}
+
+	@Override
+	public List<EventVO> getList() {
+		EventMapper eventMapper = sqlSession.getMapper(EventMapper.class);
+		
+		return eventMapper.getList();
 	}
 
 }

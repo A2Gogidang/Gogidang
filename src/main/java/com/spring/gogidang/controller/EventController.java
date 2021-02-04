@@ -1,20 +1,17 @@
 package com.spring.gogidang.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.spring.gogidang.domain.EventVO;
-import com.spring.gogidang.service.EventService;
-
-/*
- * eventPage.ev
- * eventInfo.ev
- */
+import com.spring.gogidang.domain.*;
+import com.spring.gogidang.service.*;
 
 @Controller
 public class EventController {
@@ -51,39 +48,28 @@ public class EventController {
 		return "redirect:eventList.ev";
 	}
   
-    @RequestMapping("/eventDetail.ev") 
-    public String eventDetail(EventVO eventVO, Model model) throws Exception { 
-
-      return "event/eventDetail";
-
-
-
-    }
-	
-	@RequestMapping("/eventRegister.ev")
-	public String eventRegister(EventVO eventVO) {
-		eventService.register(eventVO);
+	@RequestMapping("/eventAdmin.ev")
+	public String eventAdmin() {
 		
-		return "redirect:eventList.ev";
+		return "admin/admin_event";
 	}
 	
-	@RequestMapping("/qna.ev") 
-	public String qna(EventVO eventVO, Model model) throws Exception { 
+	@RequestMapping("/eventwriteAjax.re")
+	public int eventInsert(EventVO eventVO) throws Exception {
+		System.out.println("content = " + eventVO.getContent());
 		
-		return "event/qna";
-		
+		int res = eventService.register(eventVO);
+		System.out.println(res);
+		return res;
 	}
 	
-	@RequestMapping("/qnainsert.ev") 
-	public String qnainsert(EventVO eventVO, Model model) throws Exception { 
+	@RequestMapping(value = "/eventListAjax.re", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public List<EventVO> eventListAjax() {
+		List<EventVO> eventList = eventService.getList();
+		System.out.println("list size = " + eventList.size());
 		
-		return "event/qnainsert";
-		
+		return eventList;
 	}
 	
-	@RequestMapping("/notice.ev") 
-	public String notice(EventVO eventVO, Model model) throws Exception { 
-		
-		return "event/notice";
-	}
 }

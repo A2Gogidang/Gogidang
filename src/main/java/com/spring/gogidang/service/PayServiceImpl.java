@@ -1,5 +1,7 @@
 package com.spring.gogidang.service;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,19 +26,49 @@ public class PayServiceImpl implements PayService{
 	}
 	
 	@Override
-	public PayVO selectPay(PayVO payVO) {
-		PayMapper paymapper = sqlSession.getMapper(PayMapper.class);
-		PayVO pay = paymapper.selectPay(payVO);
+	public String storeName(PayVO payVO) {
 		
-		return pay;
+		PayMapper paymapper = sqlSession.getMapper(PayMapper.class);
+
+		String s_name = paymapper.storeName(payVO);
+	
+		return s_name;
 	}
 	
-	@Override
-	public int deletePay(PayVO payVO) {
-		PayMapper paymapper = sqlSession.getMapper(PayMapper.class);
-		int res = paymapper.deletePay(payVO);
+	@Override 
+	public void cartEmpty(PayVO payVO) { 
 		
-		return res;
+		PayMapper paymapper = sqlSession.getMapper(PayMapper.class); 
+		
+		paymapper.cartEmpty(payVO);
+		
 	}
+	
+	
+	@Override
+	public ArrayList<PayVO> purchaseList(PayVO payVO) {
+		PayMapper paymapper = sqlSession.getMapper(PayMapper.class);
+		ArrayList<PayVO> purchase_list = paymapper.purchaseList(payVO);
+		
+		return purchase_list;
+	}
+	
+	//////////////////////////아직 사용안함//////////////
+	@Override 
+	public PayVO selectPay(PayVO payVO) { 
+		
+		PayMapper paymapper = sqlSession.getMapper(PayMapper.class); 
+		PayVO pay = paymapper.selectPay(payVO);
+		return pay; 
+	}
+
+	@Override 
+	public int deletePay(PayVO payVO) { 
+		
+		PayMapper paymapper = sqlSession.getMapper(PayMapper.class); 
+		int res = paymapper.deletePay(payVO);
+		return res; 
+	}
+
 
 }

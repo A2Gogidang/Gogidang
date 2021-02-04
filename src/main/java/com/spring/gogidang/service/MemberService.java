@@ -13,3 +13,4 @@ public interface MemberService {
 	public MemberVO getId(String u_id);
 	public int getSnumByUid (String u_id);
 }
+
