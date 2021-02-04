@@ -87,7 +87,6 @@ readonly
 	flex-direction: column;
 	padding-top: 20px;
 	width: 500px;
-	border-top: 2px solid #333;
 }
 
 .store_reg_form .radio_input {
@@ -217,7 +216,6 @@ readonly
 	
 }
 
-
 .store_reg_form .join_btn {
 	width :80%;
 	display: flex;
@@ -272,11 +270,23 @@ readonly
    
 }
 
-.product__discount__title {
-    margin-left: 60px;
-}
 .current{
 	font-size: 13px;
 }
 
+.store_reg_form .join_btn_box p{
+	width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 23px;
+    flex-direction: row;
+    padding-left: 0px; 
+}
+
+.linez{
+	border-bottom: 2px solid #dee2e6;
+}
 

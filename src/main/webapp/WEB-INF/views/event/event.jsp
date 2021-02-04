@@ -24,10 +24,11 @@
 	<div class="container">
 			<div class="row">
 				<div class="rowNotice">
-				<div class="col-lg-3 col-md-5">
-					<div class="sidebar">
-						<div class="sidebar__item">
-							<h4>이벤트</h4>
+					<div class="col-lg-3" id="nav-bar">
+			            <div class="hero__categories">
+			                  <div class="hero__categories__all">
+			                  	<span>이벤트</span>
+			              	 </div>
 						<ul>
 							<li><a href="eventList.ev">이벤트</a></li>
 							<li><a href="noticelist.no">공지사항</a></li>
@@ -40,8 +41,8 @@
 						</ul>
 						</div>
 					</div>
-				</div>
-					<div class="eventList">
+
+					<div class="col-lg-9">
 						<div class="section-title product__discount__title">
 							<h2>이벤트</h2>
 						</div>

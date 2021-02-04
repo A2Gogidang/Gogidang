@@ -381,13 +381,15 @@ align-item: center;
 
 .product__pagination {
 	margin-top: 50px;
+	display: flex;
+	justify-content: center;
 }
 
 .qnabutton{
 	display: flex;
 	justify-content: flex-end;
-	align-items:flex-end;
-	text-align: right;
+	align-items:center;
+	text-align: center;
 	height: 35px;
 	width: 100%
 }
@@ -398,6 +400,11 @@ align-item: center;
     text-align: left;
     margin-bottom: 65px;
 }
-
-
+.paging {
+	display: flex;
+	justify-content: center;
+}
+.table td, th {
+	text-align: center;
+}
 
