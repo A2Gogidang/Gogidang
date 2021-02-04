@@ -5,6 +5,7 @@
 
 <%@ page import="com.spring.gogidang.domain.*"%>
 <%@ page import="java.util.ArrayList"%>
+
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/resources/css/mainPage.css"
    type="text/css">
