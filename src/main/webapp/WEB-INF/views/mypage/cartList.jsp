@@ -40,11 +40,6 @@
 							<li><a href="noticelist.no">공지사항 관리</a></li>
 							<li><a href="qnalist.qn">문의 관리</a></li>
 							<li><a href="eventList.ev">이벤트 관리</a></li>
-							<!--<li><a href="#">Fastfood</a></li>
-	                            <li><a href="#">Fresh Onion</a></li>
-	                            <li><a href="#">Papayaya & Crisps</a></li>
-	                             <li><a href="#">Oatmeal</a></li>
-	                            <li><a href="#">Fresh Bananas</a></li> -->
 						</ul>
 						<%
 							} else {
@@ -132,7 +127,7 @@
 		
 		totalPrice = price + totalPrice;
 		
-		java.sql.Date sqlDate = new java.sql.Date(cvo_list.getAddDate().getTime());
+		/* java.sql.Date sqlDate = new java.sql.Date(cvo_list.getAddDate().getTime()); */
 %>	
 				<form id = "cartDelet<%=i %>" action="./cartdelete.ct">
 					<input type="hidden" id ="cartNum" name="cartNum" value="<%=cvo_list.getCartNum() %>">
@@ -156,10 +151,14 @@
                                        <%=NumberFormat.getInstance().format(price) %>
                                     </td>
                                     <td class="shoping__cart__item__close">
-                                   <input class="icon_close" type="submit" value="삭제" id="cartDelet<%=i%>"/>
+                                        <button class="icon_close" type="submit" id="cartDelet<%=i%>"></button>
+                                    </td>
+                                    <td class="shoping__cart__item__close">
+                                    	
+                                   		<!-- <input class="icon_close" type="submit" value="삭제" id="cartDelet"/> -->
                                     </td>
                                 </tr>
-				</form>
+						</form>
 <%
 	}
 %>	
@@ -189,16 +188,18 @@
                             <!-- <li>상차림비<span>3,000 원</span></li> -->
                             <li id="tot-li">Total <span><%=NumberFormat.getInstance().format(totalPrice) %>원</span></li>
                         </ul>
-                        <button onclick="pay()" class="primary-btn">결제하기</button>
-                    </div>
-                </div>
-            </div><!-- col-lg-6 -->
+                        <!-- <button onclick="pay()" class="primary-btn">결제하기</button> -->
+                        <div class="form-checkkk">
+                     	
+                   			<button class="primary-btn" nclick="pay()" >결 제 하 기</button>	
+                 		</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</section>
 
-        </div>
-    </section>
-    <!-- Shoping Cart Section End -->
 
-    <!-- Footer Section Begin -->
 <script>
 	
 	

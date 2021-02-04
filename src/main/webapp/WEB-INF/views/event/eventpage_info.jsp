@@ -6,8 +6,7 @@
 <%@ page import = "com.spring.gogidang.domain.*" %>
 <%@ include file="../includes/header_simple.jsp"%>
 <%
-	EventVO eventVO = (EventVO)request.getAttribute("EventVO");
-	
+	EventVO eventVO = (EventVO)request.getAttribute("eventVO");
 %>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/event.css"
@@ -49,7 +48,8 @@
 	    						</div>
 								<div class="row">
 										<div class="col-md-12">
-											<img src="<%=eventVO.getPhoto()%>" />
+											<%-- <img src="<%=eventVO.getPhoto()%>" /> --%>
+											<h5><%=eventVO.getThumbnail() %></h5>
 												<div class="eventd">
 													<h5>${eventVO.getContent()}</h5>
 												</div>

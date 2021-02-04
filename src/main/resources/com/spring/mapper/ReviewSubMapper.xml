@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+<mapper namespace="com.spring.mapper.ReviewSubMapper">
+	
+	<insert id="reviewsubReg" parameterType="ReviewSubVO">
+		INSERT INTO review_sub (review_sub_num, review_num, review_sub_content, review_date) 
+		VALUES (seq_sub_review.nextval, #{review_num}, #{review_sub_content}, sysdate )
+	</insert>
+	
+	<select id="getReviewSub" parameterType="int">
+		select count(*) where review_sub where review_num = #{review_num}
+	</select>
+</mapper>

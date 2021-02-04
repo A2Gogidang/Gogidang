@@ -19,25 +19,26 @@
     <section class="product spad">
 		<div class="container">
 				<div class="row">
-					<div class="shop_uddp">
-					<div class="col-lg-3 col-md-5">
-				<div class="sidebar">
-					<div class="sidebar__item">
-								<h5>내 가게 정보 수정</h5>
+					<div class="col-lg-3" id="nav-bar">
+			            <div class="hero__categories">
+			                  <div class="hero__categories__all">
+			                  	<span>마이페이지</span>
+			              	  </div>
 							<ul>
 								<li><a href="./updateList.me">내정보</a></li>
-		                        <li><a href="./storeRegForm.st">가게 정보</a>
-		                        <li><a href="./menuRegForm.mn">메뉴 정보</a></li>
-		                        <li><a href="./storeNoticeList.no">문의 관리</a></li>
-		                        <li><a href="./storereviewList.bo">리뷰 관리</a></li>
+								<li><a href="./storeRegForm.st">가게 정보</a></li>
+								<li><a href="./menuRegForm.mn">메뉴 등록</a></li>
+								<li><a href="./storeNoticeList.no">문의 관리</a></li>
+								<li><a href="./storereviewList.re">리뷰 관리</a></li>
 							</ul>
 							</div>
 						</div>
-					</div>
-				<div class="shop_udp">
+
+				<div class="col-lg-9">
 				<div class="section-title product__discount__title">
 			   	 		<h2>가게 정보 수정</h2>
 			   	 		</div>
+			   	 		<div class="linez"></div>
 			   	 <div class="container" id="store_updateform">
 					<div class="row justify-content-center">
 			        <div class="col-lg-8">
@@ -141,7 +142,6 @@
 			</div>
 			</div>
 			</div> 
-	</div>
 	</div>
   </section>   
 	

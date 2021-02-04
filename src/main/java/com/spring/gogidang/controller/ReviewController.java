@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,20 +23,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.gogidang.domain.Criteria;
-import com.spring.gogidang.domain.PageDTO;
-import com.spring.gogidang.domain.ReviewVO;
-import com.spring.gogidang.domain.SRReviewVO;
-import com.spring.gogidang.domain.StoreVO;
-import com.spring.gogidang.service.ReviewService;
-import com.spring.gogidang.service.StoreReviewService;
-import com.spring.gogidang.service.StoreService;
-
-import lombok.extern.slf4j.Slf4j;
-
+import com.spring.gogidang.domain.*;
+import com.spring.gogidang.service.*;
 
 @Controller
-@Slf4j
 public class ReviewController {
 	
 	@Autowired
@@ -47,7 +36,7 @@ public class ReviewController {
 	private StoreService storeService;
 	
 	@Autowired
-	private StoreReviewService storeReviewService;
+	private MemberService memberService;
 	
 	@RequestMapping("/reviewList.re")
 	public String reviewList(Model model) {
@@ -68,15 +57,12 @@ public class ReviewController {
 		return "review/review_list_grid";
 	}
 	
-	@RequestMapping("/reviewListByIdWithPaging.re") 
-	public String reviewListByIdWithPaging(@RequestParam("u_id") String u_id,Criteria cri,Model model , HttpSession session) {
+	@RequestMapping("/reviewListByIdWithPaging.re")
+	public String reviewListByIdWithPaging(@RequestParam("u_id") String u_id, Criteria cri, Model model , HttpSession session) {
+			
+		ArrayList<ReviewVO> reviewList = (ArrayList<ReviewVO>) reviewService.getListByIdWithPaing(cri, u_id);
 		
-		SRReviewVO srReviewVO = new SRReviewVO();		
-		System.out.println(u_id);
-		srReviewVO.setU_id(u_id);		
-		ArrayList<SRReviewVO> srReviewList = storeReviewService.srReviewSelect_m(srReviewVO);	
-		
-		model.addAttribute("srReviewList", srReviewList);
+		model.addAttribute("reviewList", reviewList);
 
 		return "mypage/member_review";
 	}
@@ -186,41 +172,58 @@ public class ReviewController {
 		
 		return "redirect:main.me";
 	}
+	
+	// reveiw ajax list - seller part
+	@RequestMapping(value = "/reviewListAjax.re", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public List<ReviewVO> reviewListAjax() {
+		
+		List<ReviewVO> reviewList = reviewService.getList();
+		return reviewList;
+	}
+	
+	// review info ajax - modal
+	@RequestMapping(value = "/reviewInfoAjax.re", method =RequestMethod.POST, produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public Map<String, Object> reviewInfoAjax(@RequestParam("review_num") int review_num) {
+		Map<String, Object> retVal = new HashMap<String, Object>();
+		
+		try {
+			ReviewVO rvo = reviewService.getReview(review_num);
+			retVal.put("review_num", rvo.getReview_num());
+			retVal.put("u_id", rvo.getU_id());
+			retVal.put("nickname", rvo.getNickname());
+			retVal.put("title", rvo.getTitle());
+			retVal.put("content", rvo.getContent());
+			retVal.put("star", rvo.getStar());
+			retVal.put("res", "OK");
+		} catch (Exception e) {
+			retVal.put("res", "FAIL");
+			retVal.put("message", "Failure");
+		}
+	
+		return retVal;
+	}
+	
+	@RequestMapping("/storereviewList.re")
+	public String storereviewList() {
+		
+		return "sellerpage/store_review";
+	}
+	
+	@RequestMapping(value = "/storeReviewListAjax.re", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public List<ReviewVO> storeReviewListAjax(@RequestParam String u_id) throws Exception {
+		System.out.println("u_id = " + u_id);
+		int s_num = memberService.getSnumByUid(u_id);
+		System.out.println("s_num = " + s_num);
+		ReviewVO reviewVO = new ReviewVO();
+		reviewVO.setS_num(s_num);
+		List<ReviewVO> reviewList = reviewService.getListSn(s_num);
+		System.out.println(reviewList.size());
+		System.out.println(reviewList.get(0).getReview_sub_content());
+		
+		return reviewList;
+	}
 
 }
-
-
-//	@RequestMapping("/review_reg.re")
-//	public String review_reg(StoreVO store, Model model, HttpSession session) {
-//		
-//		StoreVO svo = storeService.storeInfo(store);
-//		
-//		model.addAttribute("svo", svo);
-//		return "review/review_reg";
-//	}
-//
-//	@RequestMapping("/reviewModify.re")
-//	public String reviewModify(ReviewVO review, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-//		
-//		if (reviewService.reviewModify(review)) {
-//			rttr.addFlashAttribute("result", "success");
-//		}
-//		
-//		rttr.addAttribute("pageNum", cri.getPageNum());
-//		rttr.addAttribute("amount", cri.getAmount());
-//		
-//		return "redirect:/review/review_list";
-//	}
-//	
-//	@RequestMapping("/reviewRemove.re")
-//	public String reviewRemove(@RequestParam("review_num") int review_num, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-//		
-//		if (reviewService.reviewRemove(review_num)) {
-//			rttr.addFlashAttribute("result", "success");
-//		}
-//		
-//		rttr.addAttribute("pageNum", cri.getPageNum());
-//		rttr.addAttribute("amount", cri.getAmount());
-//		
-//		return "redirect:/review/review_list";
-//	}

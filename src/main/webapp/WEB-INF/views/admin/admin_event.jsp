@@ -32,7 +32,7 @@
 			</div>
 			<div class="eventboard">
 				<div class="section-title product__discount__title">
-					<h2>공지사항 관리</h2>
+					<h2>이벤트 관리</h2>
 				</div>
 				<div class="container">
 					<table class="table table-hover">

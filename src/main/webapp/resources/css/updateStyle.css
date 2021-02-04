@@ -103,8 +103,8 @@ body {
 	align-items: center;
 	flex-direction: column;
 	padding-top: 20px;
-	width: 510px;
-	border-top: 2px solid #333;
+	width: 100%;
+	
 }
 
 
@@ -179,7 +179,6 @@ body {
 	align-items: center;
 	flex-direction: column;
 	color: -internal-light-dark(black, white);
-	padding-left: 30px;
 }
 
 .update form input {
@@ -351,4 +350,7 @@ align-item: center;
 
 .current{
 	font-size: 13px;	
+}
+.linez{
+	border-bottom: 2px solid #dee2e6;
 }

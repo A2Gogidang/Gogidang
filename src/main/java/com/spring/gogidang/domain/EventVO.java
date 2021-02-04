@@ -1,5 +1,7 @@
 package com.spring.gogidang.domain;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,5 +15,5 @@ public class EventVO {
 	private String photo;
 	private String thumbnail;
 	private String content;
-	private String re_date;
+	private Date re_date;
 }
