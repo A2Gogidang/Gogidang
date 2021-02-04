@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 
 <%@ page import="java.sql.*"%>
 <%@ page import="javax.sql.*"%>
@@ -9,62 +9,45 @@
 
 <%@include file="../includes/header_simple.jsp"%>
 
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/shop-details.css"
-	type="text/css">
-	
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/modal.css"
+<link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/shop-details.css"type="text/css">
+<link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/modal.css"
 	type="text/css">
 <%
-	StoreVO svo = (StoreVO) request.getAttribute("storeVO");
-	ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>) request.getAttribute("menuList");
-	ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>) request.getAttribute("reviewList"); 
+   StoreVO svo = (StoreVO) request.getAttribute("storeVO");
+   ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>) request.getAttribute("menuList");
+   ArrayList<SRReviewVO> srReviewList = (ArrayList<SRReviewVO>) request.getAttribute("srReviewList");
+   /* ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>) request.getAttribute("reviewList"); */
 %>
 <%
-	List<QnaStoreVO> qnalist = (List<QnaStoreVO>) request.getAttribute("qnalist");
-	int listcount = ((Integer) request.getAttribute("listcount")).intValue();
-	int nowpage = ((Integer) request.getAttribute("page")).intValue();
-	int maxpage = ((Integer) request.getAttribute("maxpage")).intValue();
-	int startpage = ((Integer) request.getAttribute("startpage")).intValue();
-	int endpage = ((Integer) request.getAttribute("endpage")).intValue();
+   List<QnaStoreVO> qnalist=(List<QnaStoreVO>)request.getAttribute("qnalist");
+   int listcount=((Integer)request.getAttribute("listcount")).intValue();
+   int nowpage=((Integer)request.getAttribute("page")).intValue();
+   int maxpage=((Integer)request.getAttribute("maxpage")).intValue();
+   int startpage=((Integer)request.getAttribute("startpage")).intValue();
+   int endpage=((Integer)request.getAttribute("endpage")).intValue();
+   
 %>
 
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link
-	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Nanum+Gothic+Coding:wght@400;700&family=Poor+Story&display=swap"
-	rel="stylesheet">
-<link
-	href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Nanum+Gothic+Coding:wght@400;700&family=Poor+Story&display=swap" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
-	$(document).ready(function() {
-		$('[id^=detail-]').hide();
-		$('.toggle').click(function() {
-			$input = $(this);
-			$target = $('#' + $input.attr('data-toggle'));
-			$target.slideToggle();
-		});
-		map.relayout();
-	});
+$(document).ready(function() {
+    $('[id^=detail-]').hide();
+    $('.toggle').click(function() {
+        $input = $( this );
+        $target = $('#'+$input.attr('data-toggle'));
+        $target.slideToggle();
+    });
+    map.relayout();
+});
 </script>
 
-<!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 text-center"></div>
-		</div>
-	</div>
-</section>
-<!-- Breadcrumb Section End -->
 
-<section class="product-details spad" id="cartCon"
-	style="padding-top: 0%; padding-bottom: 10px;">
+<section class="product-details spad" id="cartCon">
 	<div class="container">
 		<div class="row">
 
@@ -86,7 +69,7 @@
 			<!-- 사진옆정보 -->
 			<div class="col-lg-6 col-md-6">
 				<div class="product__details__text">
-					<h3 style="display: inline-flex; color: #7fad39;"><%=svo.getS_name()%></h3>
+					<h2 style="display: inline-flex; color: #7fad39;"><%=svo.getS_name()%></h2>
 
 					<a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
 
@@ -116,10 +99,12 @@
 						<li class="nav-item"><a class="nav-link active"
 							data-toggle="tab" href="#tabs-1" role="tab" aria-selected="true">메뉴</a></li>
 						<li class="nav-item"><a class="nav-link" data-toggle="tab"
-							href="#tabs-2" role="tab" aria-selected="false">후기 </a></li>
-						<li class="nav-item"><a class="nav-link" data-toggle="tab"
-							id="jongu" href="#tabs-3" role="tab" aria-selected="false">문의
+							id="jongu" href="#tabs-2" role="tab" aria-selected="false">위치
 						</a></li>
+						<li class="nav-item"><a class="nav-link" data-toggle="tab"
+							href="#tabs-3" role="tab" aria-selected="false">후기 </a></li>
+						<li class="nav-item"><a class="nav-link" data-toggle="tab"
+							href="#tabs-4" role="tab" aria-selected="false">문의 </a></li>
 					</ul>
 
 					<div class="tab-content">
@@ -130,10 +115,10 @@
 
 								<div class="row featured__filter">
 									<%
-										for (int i = 0; i < menu_List.size(); i++) {
+                              for (int i = 0; i < menu_List.size(); i++) {
 
-											MenuVO mv = (MenuVO) menu_List.get(i);
-									%>
+                                 MenuVO mv = (MenuVO) menu_List.get(i);
+                           %>
 									<div class="col-lg-3 col-md-4 col-sm-6" id="Menucontents">
 
 
@@ -171,54 +156,133 @@
 										</div>
 									</div>
 									<%
-										}
-									%>
+                              }
+                           %>
 								</div>
 							</div>
 						</div>
 
 						<div class="tab-pane" id="tabs-2" role="tabpanel">
+							<div class="kakaomap"
+								style="display: flex; justify-content: center; margin-top: 70px;">
+								<div id="map" style=""></div>
+							</div>
+							<script type="text/javascript"
+								src="//dapi.kakao.com/v2/maps/sdk.js?appkey=241b4077cebf45bee1ed06d47263650b&libraries=services"></script>
+							<script>
+ var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+mapContainer.style.width = '1140px';
+mapContainer.style.height = '450px';
+
+$("#jongu").click(function(){
+   map.relayout();
+   map.setCenter();
+});
+
+function relayout() {    
+    
+    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
+    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
+    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
+    map.relayout();
+}
+
+map.relayout();
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+          
+   
+        });
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">저희 가게</div><div style="width:150px;text-align:center;padding:6px 0;"><a href="https://map.kakao.com/link/to/${storeVO.getS_addr()}">길찾기</a></div>'
+                   
+        });
+        infowindow.open(map, marker);
+      
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+     
+       
+        map.setCenter(coords);
+        
+    } 
+    
+     $("#jongu").click(function(){
+          map.relayout();
+          map.setCenter(coords);
+       });
+
+     
+});  
+//map.relayout();
+setTimeout(function(){ map.relayout(); }, 0);
+relayout();
+
+</script>
+
+						</div>
+						<div class="tab-pane" id="tabs-3" role="tabpanel">
 							<div class="panel panel-default" id="panel-default">
 								<div class="panel-heading" id="panel-heading">
-									<h3 class="panel-title">후기</h3>
+									<span class="panel-title">후기</span>
 								</div>
 								<ul class="list-group">
-									<%
-										for (int i = 0; i < review_List.size(); i++) {
-											ReviewVO reviewVO = (ReviewVO) review_List.get(i);
-									%>
+									<%for(int i=0; i<srReviewList.size(); i++) {
+                           SRReviewVO srReviewvo = (SRReviewVO) srReviewList.get(i);
+                        %>
 									<li class="list-group-item">
-										<div class="row toggle" id="dropdown-detail-<%=i%>"
-											data-toggle="detail-<%=i%>">
+										<div class="row toggle" id="dropdown-detail-<%= i %>"
+											data-toggle="detail-<%= i %>">
 
 											<div class="col-xs-10" id="ReviewTitle">
-												<div><%=reviewVO.getTitle()%></div>
-												<span id="ReviewId">작성자 : <%=reviewVO.getU_id()%></span>
+												<div><%=srReviewvo.getTitle() %></div>
+												<span id="ReviewId">작성자 : <%=srReviewvo.getU_id() %></span>
 											</div>
 											<div class="col-xs-10" id="ReviewTitle">
-												<span id="reviewStar"> <%
- 	if (reviewVO.getStar() == 5) {
- %>
-													<sapn class="fa fa-star" /><span class="fa fa-star" /><span
-													class="fa fa-star" /><span class="fa fa-star" /><span
-													class="fa fa-star" /> <%
- 	} else if (reviewVO.getStar() == 4) {
- %>
-													<span class="fa fa-star" /><span class="fa fa-star" /><span
-													class="fa fa-star" /><span class="fa fa-star" /> <%
- 	} else if (reviewVO.getStar() == 3) {
- %>
-													<span class="fa fa-star" /><span class="fa fa-star" /><span
-													class="fa fa-star" /> <%
- 	} else if (reviewVO.getStar() == 2) {
- %>
-													<span class="fa fa-star" /><span class="fa fa-star" /> <%
- 	} else if (reviewVO.getStar() == 1) {
- %>
-													<span class="fa fa-star" /> <%
- 	}
- %>
-												</span> <span id="Insert_date">등록일: <%=reviewVO.getReview_date()%></span>
+												<span id="reviewStar" style="color :#edbb0e;"> 
+												<%if(srReviewvo.getStar() == 5){ %>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"> </span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+													<%}else if(srReviewvo.getStar() == 4){
+													%>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"> </span>
+													<%}else if(srReviewvo.getStar() == 3){ %>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+													 <%}else if(srReviewvo.getStar() == 2){ %>
+													<span class="fa fa-star"></span>
+													<span class="fa fa-star"></span>
+													<%}else if(srReviewvo.getStar() == 1){ %>
+													<span class="fa fa-star"></span> <%} %>
+									 		<span id="Insert_date">등록일: <%=srReviewvo.getReview_date() %></span>
 											</div>
 
 
@@ -226,7 +290,7 @@
 												<i class="fa fa-chevron-down pull-right"></i>
 											</div>
 
-											<div id="detail-<%=i%>">
+											<div id="detail-<%= i %>">
 												<hr>
 												<div class="review_Container">
 													<div class="fluid-row" id="Review_user">
@@ -237,7 +301,7 @@
 														<div>
 															<div id="reviewTextContent">
 																리뷰내용 :
-																<%=reviewVO.getContent()%></div>
+																<%=srReviewvo.getContent() %></div>
 														</div>
 													</div>
 													<hr>
@@ -251,108 +315,114 @@
 										</div>
 									</li>
 								</ul>
-								<%
-									}
-								%>
+								<%} %>
 							</div>
 						</div>
 
-						<div class="tab-pane" id="tabs-3" role="tabpanel">
-							<section class="product spad">
-								<div class="container">
-									<div class="container-fluid">
-										<div class="row">
-											<div class="qnaList" style="width: 960px; margin-left: 50px;">
+						<div class="tab-pane" id="tabs-4" role="tabpanel">
+							<div class="container" id = "qnaCon">
+								<div class="container-fluid" >
+									<div class="row" style="display : flex; justify-content : center;">
+										<div class="qnaList" style="width :1136px; margin-top : 35px; margin-right : 40px;">
 											<div class="qna_insert" style="text-align: right;">
-												<button type="button" class="btn btn-lg btn-outline-secondary" id="storeQnaWrite" name="storeQnaWrite"
-														style="background-color: #076507; color: white;">글쓰기</button>
-														<input type="hidden" id="ms_num" name="ms_num" value="<%=svo.getS_num()%>">
-														<input type="hidden" id="mu_id" name="mu_id" value="<%=u_id%>">
+												<button type="button"
+													class="btn btn-lg btn-outline-secondary" id="storeQnaWrite"
+													name="storeQnaWrite"
+													style="background-color: #98c653; color: white; margin-bottom: 20px; width: 80px; height: 35px; font-size: 14px; font-weight: bold;">글쓰기</button>
+												<input type="hidden" id="ms_num" name="ms_num"
+													value="<%=svo.getS_num()%>"> <input type="hidden"
+													id="mu_id" name="mu_id" value="<%=u_id%>">
 											</div>
-												<table class="table table-striped">
-													<thead>
-														<tr>
-															<th>번호</th>
-															<th>제목</th>
-															<th>작성자</th>
-															<th>등록일</th>
-															<th>답변상태</th>
-														</tr>
-													</thead>
-													<tbody id="storeQna_content">
-														
-													</tbody>
-												</table>
-												<div class="container-fluid">
-													<div class="row">
-														<div class="col-md-2"></div>
+											<table class="table">
+												<thead id="qnaHead">
 
-														<div class="col-md-8">
-															<class class="pagination-lg">
-															<ul class="pagination"
-																style="margin-bottom: 30px; display: flex; justify-content: center; align-items: center;">
-																<%
+													<tr id="qnaHeadText">
+														<th>번호</th>
+														<th>제목</th>
+														<th>작성자</th>
+														<th>등록일</th>
+														<th>답변상태</th>
+													</tr>
+												</thead>
+												<tbody id="storeQna_content">
+
+												</tbody>
+											</table>
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-md-2"></div>
+
+													<div class="col-md-8">
+														<class class="pagination-lg">
+														<ul class="pagination"
+															style="margin-bottom: 30px; display: flex; justify-content: center; align-items: center;">
+															<%
 																	if (nowpage <= 1) {
 																%>
-																<li class="page-item"><a class="page-link" href="#"
-																	style="color: rgb(51, 131, 51);">Previous</a></li>
-																<%
+															<li class="page-item"><a class="page-link" href="#"
+																style="color: white;background-color: #98c653;">Previous</a></li>
+															<%
 																	} else {
 																%>
-																<li class="page-item"><a class="page-link"
-																	href="./qnalist.qn?page=<%=nowpage - 1%>"
-																	style="color: rgb(51, 131, 51);">Previous</a></li>
-																<%
+															<li class="page-item"><a class="page-link"
+																href="./qnalist.qn?page=<%=nowpage - 1%>"
+																style="color: white;background-color: #98c653;">Previous</a></li>
+															<%
 																	}
 																%>
-																<%
+															<%
 																	for (int a = startpage; a <= endpage; a++) {
 																		if (a == nowpage) {
 																%>
-																<%=a%>
-																<%
+															<%=a%>
+															<%
 																	} else {
 																%>
-																<li class="page-item"><a class="page-link"
-																	href="./noticelist.no?page=<%=a%>"
-																	style="color: rgb(51, 131, 51);"><%=a%></a></li>
-																<%
+															<li class="page-item"><a class="page-link"
+																href="./noticelist.no?page=<%=a%>"
+																style="color: rgb(51, 131, 51);"><%=a%></a></li>
+															<%
 																	}
 																%>
-																<%
+															<%
 																	}
 																%>
-																<%
+															<%
 																	if (nowpage >= maxpage) {
 																%>
-																<li class="page-item"><a class="page-link" href="#"
-																	style="color: rgb(51, 131, 51);">Next</a></li>
-																<%
+															<li class="page-item"><a class="page-link" href="#"
+																style="color: white;background-color: #98c653;">Next</a></li>
+															<%
 																	} else {
 																%>
-																<li class="page-item"><a class="page-link"
-																	href="./qnalist.qn?page=<%=nowpage + 1%>"
-																	style="color: rgb(51, 131, 51);">Next</a></li>
-																<%
+															<li class="page-item"><a class="page-link"
+																href="./qnalist.qn?page=<%=nowpage + 1%>"
+																style="color: white;background-color: #98c653;">Next</a></li>
+															<%
 																	}
 																%>
-															</ul>
-														</div>
+														</ul>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</section>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</section>
 
+</section>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 <!-- The Modal -->
 <div id="myModal" class="modal">
 	<!-- Modal content -->
@@ -388,7 +458,8 @@
 		</form>
 	</div>
 </div>
-<!-- modal END -->
+<!--modal END-->
+
 
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -483,4 +554,10 @@
 </script>
 
 
+
+
 <%@include file="../includes/footer.jsp"%>
+      <!-- /.modal -->
+
+
+
