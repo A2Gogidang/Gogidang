@@ -30,7 +30,7 @@
 			<div class="col-lg-3 col-md-5">
 				<div class="sidebar">
 					<div class="sidebar__item">
-						<h4>판매자 마이페이지</h4>
+						<h4>마이페이지</h4>
 						<ul>
 							<li><a href="./updateList.me">내정보</a></li>
 							<li><a href="./storeRegForm.st">가게 정보</a></li>
@@ -102,6 +102,7 @@
 		</form>
 	</div>
 </div>
+<<<<<<< HEAD
 <!-- modal END -->
 
 <script type="text/javascript"
@@ -213,3 +214,14 @@
 
 
 <%@include file="../includes/footer.jsp"%>
+=======
+<!-- ----------------------------------------------------끝---------------------------------------------------- --> 
+            </div>
+            </div>
+    </section>
+<%@include file="../includes/footer.jsp"%>
+
+</body>
+
+</html>
+>>>>>>> 5422913cfc447949c107caabea42c5b9345f8933

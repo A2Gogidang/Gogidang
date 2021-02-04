@@ -28,6 +28,7 @@
 <section class="product spad">
 	<div class="container">
 		<div class="row">
+<<<<<<< HEAD
 			<div class="col-lg-3 col-md-5">
 				<div class="sidebar">
 					<div class="sidebar__item">
@@ -45,23 +46,44 @@
 			<div class="reviewboard">
 				<div class="section-title product__discount__title">
 					<h2>리뷰 관리</h2>
+=======
+			<div class="col-lg-3" id="nav-bar">
+	            <div class="hero__categories">
+	                  <div class="hero__categories__all">
+	                  	<span>마이페이지</span>
+	              	  </div>
+		                  <ul>
+		                     <li><a href="./updateList.me">내정보</a></li>
+		                     <li><a href="./storeRegForm.st">가게 정보</a></li>
+		                     <li><a href="./menuRegForm.mn">메뉴 등록</a></li>
+		                     <li><a href="./storeNoticeList.no">문의 관리</a></li>
+		                     <li><a href="./storereviewList.bo">리뷰 관리</a></li>
+		                  </ul>				
+	               </div>
+>>>>>>> 5422913cfc447949c107caabea42c5b9345f8933
 				</div>
-				<div class="container">
-					<table class="table table-hover">
-						<thead>
-							<tr align=center>
-								<th>번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>별점</th>
-								<th>등록일</th>
-								<th>답변 상태</th>
-							</tr>
-						</thead>
-						<tbody id="review_content" class="text-center">
-
-						</tbody>
-					</table>
+				<div class="col-lg-9">
+					<div class="section-title product__discount__title">
+						<h2>리뷰 관리</h2>
+					</div>
+					<div class="reviewbor">
+					<div class="container">
+						<table class="table table-hover">
+							<thead>
+								<tr align=center>
+									<th>번호</th>
+									<th>제목</th>
+									<th>작성자</th>
+									<th>별점</th>
+									<th>등록일</th>
+									<th>답변 상태</th>
+								</tr>
+							</thead>
+							<tbody id="review_content" class="text-center">
+								
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -107,8 +129,16 @@
 						<input type="text" id="re_review" name="re_review" />
 					</li>
 				</ol>
+<<<<<<< HEAD
 				<input type="button" id="reReviewStoreInsertBtn" value="댓글달기" /> 
 				<input type="button" id="closeBtn" value="닫기" />
+=======
+			</fieldset>
+
+			<fieldset>
+				<input type="button" id="confirmBtn" value="댓글달기" /> <input
+					type="button" id="confirmBtn" value="닫기" />
+>>>>>>> 5422913cfc447949c107caabea42c5b9345f8933
 			</fieldset>
 		</form>
 	</div>
@@ -180,6 +210,7 @@
 		}
 	}
 
+<<<<<<< HEAD
 	//리뷰 목록
 	function commentList() {
 		$.ajax({
@@ -225,6 +256,33 @@
  			}
  		});
  	}
+=======
+//리뷰 목록
+function commentList(){
+  $.ajax({
+     url : 'storeReviewList.re',
+     data : {'u_id' : u_id}, //u_id의 가게의 리뷰를 다 가져온다.
+     dataType : 'json',
+     contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+     success : function(data){ 
+        var a ='';
+        $.each(data, function(key,value){ //data는 list객체를 받음(controller return 부분)list는 commentVO를 여려개 가지고 있음
+      		a += '<tr align=center><td>'+ value.review_num + '</td>';
+      		a += '<td>' + value.title + '</td>';
+      		a += '<td>' + value.u_id + '</td>';
+      		a += '<td>' + value.star + '</td>';
+      		a += '<td>' + value.review_date + '</td>';
+      		a += '<td><button onclick="callModal(' + value.review_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right" style="background: #7fad39;border: 1px solid #7fad39;color: white;">리뷰댓글</button></td></tr>';
+        });
+        
+        $("#review_content").html(a); //a내용을 html에 형식으로 .commentList로 넣음
+     },
+     error:function(){
+        alert("ajax통신 실패(list)!!!");
+     }
+  });
+}
+>>>>>>> 5422913cfc447949c107caabea42c5b9345f8933
 </script>
 
 

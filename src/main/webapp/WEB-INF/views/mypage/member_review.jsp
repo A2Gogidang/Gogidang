@@ -18,11 +18,12 @@
 	<div class="container">
 		<div class="row">
 			<div class="myreview">
-				<div class="col-lg-3 col-md-5">
-					<div class="sidebar">
-						<div class="sidebar__item">
-							<h4>마이페이지</h4>
-							<ul>
+				<div class="col-lg-3" id="nav-bar">
+		            <div class="hero__categories">
+		                  <div class="hero__categories__all">
+		                  	<span>마이페이지</span>
+		              	  </div>
+		              	  	<ul>
 								<li><a href="./updateList.me">내정보</a></li>
 								<li><a href="./purchase_list.py?u_id=<%=mvo.getU_id()%>">구매내역</a></li>
 								<li><a href="./likeStoreList.li?u_id=<%=mvo.getU_id()%>">찜목록</a></li>
@@ -32,9 +33,9 @@
 							</ul>
 						</div>
 					</div>
-				</div>
+
 		<!-- ---------------------------------------------------시작----------------------------------------------------- -->
-				<div class="reviewboard">
+				<div class="col-lg-9">
 					<div class="section-title product__discount__title">
 						<h2>리뷰 관리</h2>
 					</div>

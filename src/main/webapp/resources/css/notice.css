@@ -52,7 +52,7 @@ body {
     color: #333;
     line-height: 20px;
     vertical-align: top;
-    text-align: left;
+    text-align: center;
     font-weight:normal;
   	font-family: "Cairo", sans-serif;
 }
@@ -295,7 +295,7 @@ body {
 .id_id{
 	display: flex;
 	justify-content: center;
-align-item: center;
+	align-item: center;
 }
 
 /*아이콘*/
@@ -387,4 +387,17 @@ align-item: center;
 	align-items: center;
 	margin-top: 40px;
 }
-
+.noticebutton{
+	display: flex;
+	justify-content: flex-end;
+	align-items:flex-end;
+	text-align: right;
+	height: 35px;
+	width: 100%
+}
+.table td,th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    text-align: center;
+}
