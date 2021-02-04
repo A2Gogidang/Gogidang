@@ -6,13 +6,11 @@
 <%@ page import="java.util.*"%>
 <%@ include file="../includes/header_simple.jsp"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
-
 <%
    MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
    u_id = memberVO.getU_id();
    StoreVO storevo = (StoreVO) session.getAttribute("StoreVO");
 %>
-
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/resources/css/updateList.css"
    type="text/css">

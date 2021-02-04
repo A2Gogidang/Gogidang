@@ -60,23 +60,25 @@
 <!-- Hero Section End -->
 
 <!-- Categories Section Begin -->
+<!-- 추천가게 -->
 <section class="categories">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="section-title">
-					<h2 class="index_h"><a href="./storeList.st">추천가게</a></h2>
-				</div>
-				<div class="featured__controls">
-					
-				</div>
-			</div>
-			<div class="categories__slider owl-carousel">
-				<%
-					for (int i = 0; i < store_list.size(); i++) {
+   <div class="container">
+      <div class="row">
+          <!-- <div class="col-lg-12"> -->
+            <div class="section-title">
+               <!-- <h2 class="index_h"><a href="./storeList.st">추천가게</a></h2> -->
+               <a href="#"><img src="./resources/img/index-store8.png" alt="" ></a>
+            </div>
+            <div class="featured__controls">
+               
+            </div>
+         <!-- </div> --> 
+         <div class="categories__slider owl-carousel">
+            <%
+               for (int i = 0; i < store_list.size(); i++) {
 
-						StoreVO vo = (StoreVO) store_list.get(i);
-				%>
+                  StoreVO vo = (StoreVO) store_list.get(i);
+            %>
 				<div class="col-lg-3">
 					<div class="categories__item set-bg"
 						data-setbg="./resources/img/store/<%=vo.getThumbnail()%>">
@@ -96,17 +98,18 @@
    </section>
    <!-- Categories Section End -->
    
-   <!-- 베스트리뷰 디자인 수정추가 -->
-   <section class="categories">
-      <div class="container">
-         <div class="row">
-            <div class="col-lg-12">
-               <div class="section-title">
-                  <h2 class="index_h"><a href="./reviewList.re">베스트 리뷰</a></h2>
-               </div>
-               <div class="featured__controls">
-                  
-               </div>
+   <!-- Categories Section Begin -->
+   <!-- 베스트리뷰 -->
+ <section class="categories">
+   <div class="container">
+      <div class="row">
+          <!-- <div class="col-lg-12"> -->
+            <div class="section-title">
+               <!-- <h2 class="index_h"><a href="./storeList.st">추천가게</a></h2> -->
+               <a href="#"><img src="./resources/img/index-store10.png" alt="" ></a>
+            </div>
+            <div class="featured__controls">
+               
             </div>
             <div class="categories__slider owl-carousel">
                <%
@@ -130,9 +133,9 @@
         </div>
    </section>
    <!-- 베스트리뷰 디자인 수정추가 끝 -->
+   <!-- Categories Section End -->
 
    <!-- Featured Section Begin -->
-  
    <!-- Featured Section End -->
 
 
