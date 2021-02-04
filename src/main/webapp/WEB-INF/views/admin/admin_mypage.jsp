@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/updateStyle.css" type="text/css">
   
-<%@include file="../includes/header.jsp"%>
+<%@include file="../includes/header_simple.jsp"%>
 
     <!--네비게이션바 사용 시작-->
    <section class="hero">

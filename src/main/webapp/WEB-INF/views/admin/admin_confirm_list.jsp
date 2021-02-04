@@ -35,7 +35,7 @@
 </style>
 <body>
 	<!--네비게이션바 사용 시작-->
-	<%@include file="../includes/header.jsp"%>
+	<%@include file="../includes/header_simple.jsp"%>
 	<div class="container">
 		<div class="hero__item__box2"></div>
 		<div class="EventNav">
@@ -92,43 +92,37 @@
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid">
+	<!--  가게대기 페이지  페이징 코드
+	<%-- <div class="container-fluid">
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<class class="pagination-lg">
-				<ul class="pagination"
-					style="margin-bottom: 30px; display: flex; justify-content: center; align-items: center;">
-					<li class="page-item"><a class="page-link" href="#"
-						style="color: rgb(51, 131, 51);">Previous</a></li>
-					<li class="page-item"><a class="page-link" href="#"
-						style="color: rgb(51, 131, 51);">1</a></li>
-					<li class="page-item"><a class="page-link" href="#"
-						style="color: rgb(51, 131, 51);">2</a></li>
-					<li class="page-item"><a class="page-link" href="#"
-						style="color: rgb(51, 131, 51);">3</a></li>
-					<li class="page-item"><a class="page-link" href="#"
-						style="color: rgb(51, 131, 51);">4</a></li>
-					<li class="page-item"><a class="page-link" href="#"
-						style="color: rgb(51, 131, 51);">5</a></li>
-					<li class="page-item"><a class="page-link" href="#"
-						style="color: rgb(51, 131, 51);">6</a></li>
-					<li class="page-item"><a class="page-link" href="#"
-						style="color: rgb(51, 131, 51);">7</a></li>
-					<li class="page-item"><a class="page-link" href="#"
-						style="color: rgb(51, 131, 51);">8</a></li>
-					<li class="page-item"><a class="page-link" href="#"
-						style="color: rgb(51, 131, 51);">9</a></li>
-					<li class="page-item"><a class="page-link" href="#"
-						style="color: rgb(51, 131, 51);">10</a>
-					<li class="page-item"><a class="page-link" href="#"
-						style="color: rgb(51, 131, 51);">Next</a></li>
-				</ul>
+				<div class="product__pagination">
+						<div class="paging">
+						<% if(nowpage <= 1) { %>
+						<a href="#"><i class="fa fa-long-arrow-left"></i></a>
+						<%}else{%>
+						<a href="./qnalist.qn?page=<%=nowpage - 1%>"><i class="fa fa-long-arrow-left"></i></a>
+						<%} %>
+						<% 
+							for(int a =startpage; a<=endpage; a++){
+								if(a== nowpage){
+						%>
+						<a href="./qnalist.qn?page=<%=a%>"><%=a %></a>
+						<%}else{ %>
+                        <a href="./qnalist.qn?page=<%=a%>"><%=a %></a>
+                        <%} 
+                        	}%>
+						<%if(nowpage >= maxpage) {%>
+                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                        <%}else{ %>
+                        <a href="./qnalist.qn?page=<%=nowpage + 1%>"><i class="fa fa-long-arrow-right"></i></a>
+                        <%} %>
+                    </div>
+                    </div> --%> -->
 			</div>
 			<div class="col-md-2"></div>
 		</div>
-	</div>
-
 	</div>
 
 	<%@include file="../includes/footer.jsp"%>

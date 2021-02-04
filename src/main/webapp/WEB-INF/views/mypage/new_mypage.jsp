@@ -92,10 +92,11 @@ $(document).ready(function() {
 	<div class="container">
 		<div class="row">
 		<div class="qnaListn">
-			<div class="col-lg-3 col-md-5">
-				<div class="sidebar">
-					<div class="sidebar__item">
-						<h4>관리자 페이지</h4>
+			<div class="col-lg-3" id="nav-bar">
+	            <div class="hero__categories">
+	                  <div class="hero__categories__all">
+	                  <span>마이페이지</span>
+	              	 </div>
 						<ul>
 							<li><a href="storeWait.st">대기중인 가게 승인</a></li>
 							<li><a href="noticelist.no">공지사항 관리</a></li>
@@ -104,10 +105,9 @@ $(document).ready(function() {
 						</ul>
 					</div>
 				</div>
-			</div>
 			<!-- content Start -->
-			<div class="qnaList">
-				<div class="section-title">
+			<div class="col-lg-9">
+				<div class="section-title product__discount__title">
 					<h2>가게 승인 대기 리스트</h2>
 				</div>
 					<table class="table table-striped">
@@ -123,7 +123,7 @@ $(document).ready(function() {
 								for (int i = 0; i < storeList.size(); i++) {
 									StoreVO vo = (StoreVO) storeList.get(i);
 						%>
-						<tr>
+						<tr align="center">
 							<td><%=vo.getS_num()%></td>
 							<td><%=vo.getS_name()%></td>
 							<td><button id="myBtn">Open Modal</button></td>

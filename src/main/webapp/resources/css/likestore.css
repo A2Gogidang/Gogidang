@@ -108,4 +108,7 @@ tr{
 .card-text a{
 	color:black;
 }
-
+.linez{
+	border-bottom: 2px solid #dee2e6;
+	margin-bottom: 30px;
+}

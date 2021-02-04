@@ -37,7 +37,6 @@
         <div class="col-lg-8">
         	<div class="join">
  				<h1>JOIN</h1>
- 				
             <!-- join form -->
          	<form name="joinform" action="./joinProcess.me" method="post">
          		<div class="id_input_box">
