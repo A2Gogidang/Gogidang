@@ -12,9 +12,11 @@ import com.spring.gogidang.domain.QnaVO;
 
 public interface QnaStoreMapper {
 	
+	public int qnaInsert(QnaStoreVO qna);
+	public List<QnaStoreVO> getList(int s_num);
+	
 	public int getListCounts(); 
 	public List<QnaStoreVO> getQnaList(HashMap<String, Integer> hashmap);
-	public int qnaInsert(QnaStoreVO qna);
 	public QnaStoreVO getDetail(int qnastore_num);
 	public int qnaModify(QnaStoreVO qna);
 	public int qnaDelete(int qnastore_num);
