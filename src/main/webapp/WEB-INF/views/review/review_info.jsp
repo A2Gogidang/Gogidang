@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -14,14 +14,11 @@
 	} else {
 		seller_key = 0;
 	}
-
-
-	SRReviewVO srrvo = (SRReviewVO)request.getAttribute("srReviewvo");
 %>
 
          <form name="review_info" action="./replyReviewInsert.bo" method="post">
             <table border=1>
-       <%--          <tr>
+                <tr>
                     <td colspan="2" align=center>
                         <b><font size=5>${review.title }</font></b>
                     </td>
@@ -46,7 +43,7 @@
                 	}
                 %>
                 </tr>
- 	               --%>
+ 	              
 				<tr>
                     <td>제목 : </td>
                     <td><%=srrvo.getTitle() %></td>
@@ -84,11 +81,11 @@
    
                 <tr>
                     <td align=center>
-                        <%-- <a href="./storeInfo.st?s_num=<%=rvo.getS_num() %>">해당가게로이동</a>&nbsp;&nbsp; --%>
+                        <a href="./storeInfo.st?s_num=<%=rvo.getS_num() %>">해당가게로이동</a>&nbsp;&nbsp;
                         <a href="./reviewListWithPaging.re">후기 목록보기</a>
                     </td>
                 </tr>
             </table>
         </form>
         
-<%@ include file="../includes/footer.jsp" %>
+<%@ include file="../includes/footer.jsp" %> --%>
