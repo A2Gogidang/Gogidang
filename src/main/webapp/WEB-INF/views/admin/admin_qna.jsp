@@ -61,36 +61,36 @@
 	<!-- Modal content -->
 	<div class="modal-content">
 		<span class="close">&times;</span>                                                               
-		<form>
+		<form name="qnaForm">
 			<fieldset>
-			<legend>리뷰 내용</legend>
+			<legend>문의 내용</legend>
 			<ol>
 			  <li>
 			    <label for="qna_num">문의번호</label>
-			    <input type="text" id="qna_num" name="qna_num">
+			    <input type="text" id="qna_num" name="qna_num" readonly>
 			  </li>
-			  <li>
 				<li>
 			    <label for="title">문의제목</label>
-			    <input type="text" id="title" name="title">
+			    <input type="text" id="title" name="title" readonly />
 			  </li>
+			  <li>
 			    <label for="u_id">회원아이디</label>
-			    <input type="text" id="u_id" name="u_id">
+			    <input type="text" id="u_id" name="u_id" readonly>
 			  </li>
 				<li>
 				<label for="content">리뷰내용</label>
-			    <input id="content" name="content" type="text">
+			    <input id="content" name="content" type="text" readonly>
 			  </li> 
 				<li>
-					<label for="re_review">답글</label>
-			   <input type="text" id="re_review" name="re_review"/>
+					<label for="re_content">답글</label>
+			   <input type="text" id="re_content" name="re_content"/>
 			  </li> 
 			</ol>
 			</fieldset>
 
 			<fieldset>
-			  	<input type="button" id="confirmBtn" value="댓글달기"/>
-			  	<input type="button" id="confirmBtn" value="닫기"/>
+			  	<input type="button" id="reQnaWrite" name="reQnaWrite" value="댓글달기"/>
+			  	<input type="button" id="" value="닫기"/>
 			</fieldset>
 		</form>
 	</div>
@@ -125,7 +125,11 @@ function qnaList(){
 	      		a += '<td>' + value.title + '</td>';
 	      		a += '<td>' + value.u_id + '</td>';
 	      		a += '<td>' + value.re_date + '</td>';
-	      		a += '<td><button onclick="callModal(' + value.qna_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right">문의댓글</button></td></tr>';
+	      		if (value.re_content != null) {
+	      			a += '<td><h6>답변완료</h6></td>';
+	      		} else {
+		      		a += '<td><button onclick="callModal(' + value.qna_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right">문의댓글</button></td></tr>';
+	      		}
 	        });
 	        
 	        $("#qna_content").html(a); //a내용을 html에 형식으로 .commentList로 넣음
@@ -161,6 +165,28 @@ function callModal(event) {
 	
     modal.style.display = "block";
 }
+
+$('[name=reQnaWrite]').click(function () {
+	var insertData = $('[name=qnaForm]').serialize();
+	alert(insertData);
+	reQnaInsert(insertData);
+});
+
+function reQnaInsert(insertData) {
+	$.ajax({
+		url : 'reQna.qn',
+		type : 'POST',
+		data : insertData,
+		success : function(data) {
+			if (data == 1) {
+				noticeList();
+			} else {
+				alert("qnaRe insert Fail!!!!");
+			}
+		}
+	});
+}
+
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function(event) {
