@@ -6,7 +6,7 @@
 <%@ page import = "com.spring.gogidang.domain.*" %>
 <%@ include file="../includes/header_simple.jsp"%>
 <%
-	EventVO eventVO = (EventVO)request.getAttribute("EventVO");
+	EventVO eventVO = (EventVO)request.getAttribute("eventVO");
 	
 %>
 <link rel="stylesheet"
