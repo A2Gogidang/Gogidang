@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -13,14 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.spring.gogidang.domain.BookingVO;
 import com.spring.gogidang.domain.MemberVO;
 import com.spring.gogidang.domain.PayVO;
-import com.spring.gogidang.domain.PaymentCheck;
 import com.spring.gogidang.service.PayService;
 
 @Controller
@@ -63,7 +58,8 @@ public class PayController {
 		
 		if(res == 1){
 			 map.put("res", "success");
-			 //결제후 삭제 코딩
+			 //결제후 장바구니 비우기
+			 payService.cartEmpty(payVO); 			
 			 return map;
 		} else {
 			 map.put("res", "fail");
@@ -80,7 +76,7 @@ public class PayController {
 		   PrintWriter writer = response.getWriter();
 		   
 		   payVO.setU_id(((MemberVO)session.getAttribute("memberVO")).getU_id());
-		   System.out.println(payVO.toString());
+
 		   ArrayList<PayVO> purchase_list = payService.purchaseList(payVO);
 		   
 		   System.out.println(purchase_list.get(0).toString());
