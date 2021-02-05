@@ -337,14 +337,7 @@
                               %>
                            </div>
 
-                           <div class="id_input_box">
-                              <ts>배달 가능여부</ts>
-                              <td><input class="radio_input" type="radio"
-                                 name="delibery" value="0" checked />불가능</td>
-                              <td><input class="radio_input" type="radio"
-                                 name="delibery" value="1" />가능</td>
-                           </div>
-
+                           
                            <div class="join_btn_box">
                               <div class="join_btn">
 

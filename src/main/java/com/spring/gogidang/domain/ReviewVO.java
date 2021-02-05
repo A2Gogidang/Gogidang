@@ -22,6 +22,7 @@ public class ReviewVO {
 	private int star;
 	private Date review_date;
 	private String s_name;
+	private int pay_num;
 	
 	private String review_img1;
 	private String review_img2;

@@ -105,20 +105,13 @@
 						<input id="star" name="star" type="text" readonly>
 					</li>
 					<li>
-						<label for="re_review">답글</label> 
-						<input type="text" id="re_review" name="re_review" />
+						<label for="review_sub_content">답글</label> 
+						<input type="text" id="review_sub_content" name="review_sub_content" />
 					</li>
 				</ol>
-<<<<<<< HEAD
-				<input type="button" id="reReviewStoreInsertBtn" value="댓글달기" /> 
-				<input type="button" id="closeBtn" value="닫기" />
-=======
-			</fieldset>
 
-			<fieldset>
-				<input type="button" id="confirmBtn" value="댓글달기" /> <input
-					type="button" id="confirmBtn" value="닫기" />
->>>>>>> 5422913cfc447949c107caabea42c5b9345f8933
+				<input type="button" id="reReviewStoreInsertBtn" name="reReviewStoreInsertBtn" value="댓글달기" /> 
+				<input type="button" id="closeBtn" value="닫기" />
 			</fieldset>
 		</form>
 	</div>
@@ -130,6 +123,10 @@
 
 <script>
 	var u_id = <%=id%>;
+	
+	var wu_id = '';
+	
+	var review_num = '';
 
 	$(document).ready(function() {
 
@@ -157,8 +154,9 @@
 			dataType : 'json',
 			success : function(retVal) {
 				if (retVal.res == "OK") {
-					var review_num = retVal.review_num;
+					review_num = retVal.review_num;
 					var u_id = retVal.u_id;
+					wu_id = retVal.u_id;
 					var nickname = retVal.nickname;
 					var title = retVal.title;
 					var content = retVal.content;
@@ -190,7 +188,6 @@
 		}
 	}
 
-<<<<<<< HEAD
 	//리뷰 목록
 	function commentList() {
 		$.ajax({
@@ -205,8 +202,13 @@
 					a += '<td>' + value.title + '</td>';
 					a += '<td>' + value.u_id + '</td>';
 					a += '<td>' + value.star + '</td>';
-					a += '<td>' + value.review_date+ '</td>';
-					a += '<td><button onclick="callModal('+ value.review_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right">리뷰댓글</button></td></tr>';
+					a += '<td>' + value.review_date + '</td>';
+					if (value.review_sub_content != null) {
+						a += '<td><h5>답변완료</h5></td></tr>';
+					} else {
+						a += '<td><button onclick="callModal('+ value.review_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right">리뷰댓글</button></td></tr>';
+						
+					}
 				});
 				$("#review_content").html(a); //a내용을 html에 형식으로 .commentList로 넣음
 			},error : function() {
@@ -216,7 +218,7 @@
 	}
 	
  	$('[name="reReviewStoreInsertBtn"]').click(function () {
- 		var insertData = $('[name="reReviewStoreInsertForm]').serialize();
+ 		var insertData = $('[name=reReviewStoreInsertForm]').serialize();
  		alert(insertData);
  		reReviewStoreInsert(insertData);
  	});
@@ -226,43 +228,26 @@
  			url : 'reReviewStoreInsert.re',
  			type : 'POST',
  			data : insertData,
- 			success : function(data) {
- 				if (data == "ok") {
+ 			contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+ 			dataType : 'json',
+ 			success : function(retVal) {
+ 				if (retVal.res == "reviewsub") {
+ 					// webSocket에 보내기 (rqQna, 댓글작성자(u_id), 게시글작성자(wu_id), 글번호(review_num))
+ 					let socketMsg = ("reviewsub," + u_id + "," + wu_id + "," + review_num);
+ 					console.debug("ssssssmsg>> ", socketMsg);
+ 					socket.send(socketMsg);
+ 					
  					modal.style.display = "none";
- 					storeQnaList();
+ 					commentList();
  				} else {
- 					alert("qnaRe insert Fail!!!!");
+ 					alert("reviewsub insert Fail!!!!");
  				}
+ 			}, 
+ 			error:function() {
+ 				alert("reviewsub ajax 통신 실패!!")
  			}
  		});
  	}
-=======
-//리뷰 목록
-function commentList(){
-  $.ajax({
-     url : 'storeReviewList.re',
-     data : {'u_id' : u_id}, //u_id의 가게의 리뷰를 다 가져온다.
-     dataType : 'json',
-     contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-     success : function(data){ 
-        var a ='';
-        $.each(data, function(key,value){ //data는 list객체를 받음(controller return 부분)list는 commentVO를 여려개 가지고 있음
-      		a += '<tr align=center><td>'+ value.review_num + '</td>';
-      		a += '<td>' + value.title + '</td>';
-      		a += '<td>' + value.u_id + '</td>';
-      		a += '<td>' + value.star + '</td>';
-      		a += '<td>' + value.review_date + '</td>';
-      		a += '<td><button onclick="callModal(' + value.review_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right" style="background: #7fad39;border: 1px solid #7fad39;color: white;">리뷰댓글</button></td></tr>';
-        });
-        
-        $("#review_content").html(a); //a내용을 html에 형식으로 .commentList로 넣음
-     },
-     error:function(){
-        alert("ajax통신 실패(list)!!!");
-     }
-  });
-}
->>>>>>> 5422913cfc447949c107caabea42c5b9345f8933
 </script>
 
 

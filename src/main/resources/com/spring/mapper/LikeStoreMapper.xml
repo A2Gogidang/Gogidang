@@ -4,7 +4,7 @@
     
 <mapper namespace="com.spring.mapper.LikeStoreMapper">
 
-	<select id="getLikeStores" parameterType="String" resultType="LikeStoreVO">
+ 	<select id="getLikeStores" parameterType="String" resultType="LikeStoreVO">
 		select  rg.thumbnail
 			   ,rg.s_name
 			   ,rg.s_addr
@@ -18,9 +18,10 @@
    </select>
 
 	<insert id="addLikeStore" parameterType="LikeStoreVO">
-		insert into like_store 
-		values (seq_likestore.nextval, #{u_id}, #{s_num})
+		insert into like_store (like_num, s_num, u_id)
+		values (seq_like_store.nextval, #{s_num},  #{u_id})
 	</insert>
+	
 	
 	<select id="getCountBySn" parameterType="int" resultType="int">
 		select count(*) from like_store where s_num=#{s_num}
@@ -28,6 +29,6 @@
 	
 	<select id="getListByUid" parameterType="String" resultType="LikeStoreVO">
 		select * from like_store where u_id=#{u_id}
-	</select>
+	</select> 
 	
 </mapper>

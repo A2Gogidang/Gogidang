@@ -125,18 +125,21 @@ public class StoreController {
 	public String storeInfo(@RequestParam("s_num") int s_num, Criteria cri, Model model, HttpSession session,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 		StoreVO vo = storeService.storeInfo(s_num);
-
+		
 		ArrayList<MenuVO> menuList = menuService.menuList(s_num);
-		List<ReviewVO> reviewList = reviewService.getListBySnWithPaing(cri, s_num);
+		List<ReviewVO> reviewList = reviewService.getListSn(s_num);
+		
+		int totalReview = reviewService.getCount(s_num);
+		model.addAttribute("totalReview", totalReview);
 
 		int total = reviewService.getTotal(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
-
+		
 		model.addAttribute("storeVO", vo);
 		model.addAttribute("menuList", menuList);
 		// model.addAttribute("reviewList", reviewList);
 		model.addAttribute("reviewList", reviewList);
-
+		
 		int limit = 10;
 
 		int listcount = qnastoreService.getListCounts();
@@ -173,7 +176,7 @@ public class StoreController {
 	@RequestMapping(value = "/storeInsert.st", method = RequestMethod.POST)
 	public String storeInsert(StoreVO store, HttpSession session, HttpServletResponse response,
 			MultipartHttpServletRequest request) throws Exception {
-
+		System.out.println("1111111111111");
 		List<MultipartFile> fileList = request.getFiles("file");
 
 //		String uploadPath = "/Users/taehyun/Documents/Spring_Source/Gogidang/src/main/webapp/resources/img/store/";
@@ -188,7 +191,7 @@ public class StoreController {
 
 		store.setThumbnail("null");
 		store.setS_img("null");
-
+		System.out.println("2222222222222222");
 		for (MultipartFile mf : fileList) {
 			if (mf.getSize() >= 1) {
 				String originFileName = mf.getOriginalFilename(); // 원본 파일 명
@@ -221,17 +224,19 @@ public class StoreController {
 				filesize_list.add(fileSize);
 			}
 		}
-
-		System.out.println(store.getS_hour());
+		System.out.println("333333333333333");
+		
 		store.setConfirm(0); // 처음 등록할때 미승인 상태로 띄워야하기때문에 insert전 데이터 넣어줌
 		int res = storeService.insertStore(store);
-
+		
+		System.out.println(store.toString());
+		
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter writer = response.getWriter();
 
 		if (res == 1) {
-
+			
 			session.setAttribute("StoreVO", store);
 			writer.write("<script>alert('가게등록 성공!!'); location.href='./storeRegForm.st';</script>");
 		} else {
@@ -304,7 +309,7 @@ public class StoreController {
 		model.addAttribute("storeList", storeList);
 		
 		//return "store/shopgrid";
-		return "store/store_List_test";
+		return "store/shopgrid";
 	}
 	
 	@RequestMapping(value = "/storeListAjax.st")

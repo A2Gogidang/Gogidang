@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -152,11 +153,20 @@ public class QnaController {
 		return retVal;
 	}
 	
-	@RequestMapping("/reQna.qn")
-	public int reQna(QnaVO qna) throws Exception {
-		int res = qnaService.reQna(qna);
+	@RequestMapping(value = "/reQna.qn", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public Map<String, Object> reQna(QnaVO qna) throws Exception {
+		Map<String, Object> retVal = new HashMap<String, Object>();
 		
-		return res;
+		try {
+			qnaService.reQna(qna);
+			retVal.put("res", "reQna");
+		} catch (Exception e) {
+			retVal.put("res", "FAIL");
+			retVal.put("message", "Failure");
+		} 
+		
+		return retVal;
 	}
 	
 }
