@@ -43,7 +43,7 @@ public class ReviewController {
 		
 		model.addAttribute("reviewList", reviewService.getList());
 		
-		return "review/review_list_grid";
+		return "review/review_list_test";
 	}
 	
 	@RequestMapping("/reviewListWithPaging.re")
