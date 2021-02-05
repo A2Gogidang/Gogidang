@@ -150,10 +150,16 @@
 						}
 					%>
 				</div>
-				</div></div></div></section>
+				</div>
+				</div>
+				</div>
+				</section>
 				<script src="https://code.jquery.com/jquery-latest.js"></script>
 
 				<script type="text/javascript" charset="utf-8"
 					src="${pageContext.request.contextPath}/resources/js/reviewlistAjaxx.js"></script>
 
 				<%@include file="../includes/footer.jsp"%>
+				
+			
+				
