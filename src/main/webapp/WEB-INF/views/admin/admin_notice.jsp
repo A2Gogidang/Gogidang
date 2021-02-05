@@ -6,7 +6,7 @@
 <%@include file="../includes/header_simple.jsp"%>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/modal.css"
+	href="${pageContext.request.contextPath}/resources/css/modal_small.css"
 	type="text/css">
 	
 <link rel="stylesheet"
@@ -17,10 +17,11 @@
 <section class="product spad">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-3 col-md-5">
-				<div class="sidebar">
-					<div class="sidebar__item">
-						<h4>관리자 페이지</h4>
+			<div class="col-lg-3" id="nav-bar">
+	            <div class="hero__categories">
+	                  <div class="hero__categories__all">
+	                  <span>마이페이지</span>
+	              	 </div>
 						<ul>
 							<li><a href="storeWait.st">대기중인 가게 승인</a></li>
 							<li><a href="noticeAdmin.no">공지사항 관리</a></li>
@@ -29,8 +30,7 @@
 						</ul>
 					</div>
 				</div>
-			</div>
-			<div class="noticeboard">
+			<div class="col-lg-9">
 				<div class="section-title product__discount__title">
 					<h2>공지사항 관리</h2>
 				</div>
@@ -42,7 +42,7 @@
 								<th>제목</th>
 								<th>작성자</th>
 								<th>등록일</th>
-								<th><button id="write" class="btn btn-primary btn-xs pull-right">작성</button></th>
+								<th align="center"><button id="write" class="btn btn-primary btn-xs pull-right" style="background: #7fad39; color:white; border: 1px solid #7fad39;">작성</button></th>
 							</tr>
 						</thead>
 						<tbody id="notice_content" class="text-center">
@@ -62,24 +62,33 @@
 	<div class="modal-content">
 		<span class="close">&times;</span>                                                               
 		<form name="noticeInsertForm">
-			<fieldset>
-			<legend>공지사항 작성</legend>
+			
+			<h3>공지사항 작성</h3>
 			<ol>
-				<li>
-			    <label for="title">제목</label>
-			    <input type="text" id="title" name="title">
-			    </li>
-				<li>
-				<label for="content">공지내용</label>
-			    <input id="content" name="content" type="text">
-			  	</li> 
+				<div class="modal-textbox">
+				  	<div class="modal-textbox-s">
+				    	<ts for="title">제목</ts>
+				    	<td><input type="text" id="title" name="title"></td>
+				    </div>
+			    </div>
+			    
+			    <div class="modal-textbox">
+				  	<div class="modal-textbox-ss"> 
+				    	<ts for="content">공지내용</ts>
+				    	<td><textarea type="text" id="content" name="content"></textarea></td>
+				    </div>
+			    </div>
 			</ol>
-			</fieldset>
+			
 
-			<fieldset>
-			  	<button type="button" id="noticeInsertBtn" name="noticeInsertBtn">작성</button>
-			  	<input type="button" id="closeBtn" value="닫기"/>
-			</fieldset>
+			<div class="form-checkkkk">
+				
+			  	<button type="button" id="noticeInsertBtn" name="noticeInsertBtn" class="btn btn-lg btn-block btn-success">작성</button>	  	
+			  	<!--<button type="button" id="closeBtn" class="btn-j btn-lg btn-block btn-success" >닫기</button>  -->
+			  	<!--<input type="button" id="closeBtn" value="닫기"/>  -->
+			  	<br>
+			</div>
+			
 		</form>
 	</div>
 </div>
@@ -105,6 +114,8 @@ $(document).ready(function() {
 	
 	noticeList();
 });
+
+
 
 $('[name=noticeInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시 속성이름 [] 으로 접근 가능
     var insertData = $('[name=noticeInsertForm]').serialize(); //noticeInsertForm의 내용을 가져옴

@@ -6,7 +6,7 @@
 <%@include file="../includes/header_simple.jsp"%>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/modal.css"
+	href="${pageContext.request.contextPath}/resources/css/modal_event.css"
 	type="text/css">
 	
 <link rel="stylesheet"
@@ -17,10 +17,11 @@
 <section class="product spad">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-3 col-md-5">
-				<div class="sidebar">
-					<div class="sidebar__item">
-						<h4>관리자 페이지</h4>
+			<div class="col-lg-3" id="nav-bar">
+	            <div class="hero__categories">
+	                  <div class="hero__categories__all">
+	                  <span>마이페이지</span>
+	              	 </div>
 						<ul>
 							<li><a href="storeWait.st">대기중인 가게 승인</a></li>
 							<li><a href="noticeAdmin.no">공지사항 관리</a></li>
@@ -29,8 +30,8 @@
 						</ul>
 					</div>
 				</div>
-			</div>
-			<div class="eventboard">
+
+			<div class="col-lg-9">
 				<div class="section-title product__discount__title">
 					<h2>이벤트 관리</h2>
 				</div>
@@ -39,11 +40,10 @@
 						<thead>
 							<tr align=center>
 								<th>번호</th>
-								<th>메인사진</th>
-								<th>썸내일</th>
+								<th>사진</th>
 								<th>내용</th>
 								<th>등록일</th>
-								<th><button id="write" class="btn btn-primary btn-xs pull-right">작성</button></th>
+								<th><button id="write" class="btn btn-primary btn-xs pull-right" style="background: #7fad39; color:white; border: 1px solid #7fad39; margin-top: 0px;">작성</button></th>
 							</tr>
 						</thead>
 						<tbody id="event_content" class="text-center">
@@ -63,32 +63,58 @@
 	<div class="modal-content">
 		<span class="close">&times;</span>                                                               
 		<form name="eventInsertForm">
-			<fieldset>
-			<legend>이벤트 작성</legend>
+			
+			<h3>이벤트 작성</h3>
 			<ol>
-				<li>
-			    <label for="title">제목</label>
-			    <input type="text" id="title" name="title">
-			    </li>
-				<li>
-				<label for="content">이벤트내용</label>
-			    <input id="content" name="content" type="text">
-			  	</li> 
-				<li>
+				<div class="modal-textbox-e">
+					
+				  	<div class="modal-textbox-ev-s">
+				    	<ts for="title">제목</ts>
+					    <td><input type="text" id="title" name="title"></td>
+				  	</div>
+				</div>
+				<div class="modal-textbox-ev">
+				  	<div class="modal-textbox-ev-s">
+				    	<ts for="content">이벤트내용</ts>
+				    	<td><textarea id="content" name="content" type="text"></textarea></td>
+				  	</div>	  	
+			  	</div>
+			  	
+				<div class="modal-imgbox">
+				   	 <div class="modal-imgbox-ss">
+				    	<ts for="photo">메인사진등록</ts>
+				    	<!-- <td><input type="text" id="thumbnail" name="thumbnail"></td> -->	    	
+			    		<td><img src="resources/img/store/" id="photo" name="photo" width="520px" height="300px" /></td>
+				     </div>
+			    
+			   	 	<div class="modal-imgbox-ss">
+			    		<ts for="thumbnail">썸네일등록</ts>
+			    	<!-- <td><input type="text" id="thumbnail" name="thumbnail"></td> -->
+				    	<td><img src="resources/img/store/" id="thumbnail" name="thumbnail" width="520px" height="300px" /></td>
+			     	</div>
+			     </div>
+			     <!--<li>
 				<label for="photo">메인사진등록</label>
 			    <input id="photo" name="photo" type="text">
 			  	</li> 
 				<li>
 				<label for="thumbnail">썸네일등록</label>
 			    <input id="thumbnail" name="thumbnail" type="text">
-			  	</li> 
+			  	</li>   -->
+				
 			</ol>
-			</fieldset>
-
-			<fieldset>
+			
+			<div class="form-checkkkk">
+                 <button type="button"   id="eventInsertBtn" name="eventInsertBtn" class="btn btn-lg btn-block btn-success" >등록</button>
+                 <!-- <button type="button" id="closeBtn"  class="btn-j btn-lg btn-block btn-success" >닫기</button> -->
+                   <br>
+            </div>
+			
+			<!-- <fieldset>
 			  	<button type="button" id="eventInsertBtn" name="eventInsertBtn">작성</button>
 			  	<input type="button" id="closeBtn" value="닫기"/>
-			</fieldset>
+			</fieldset> -->
+			
 		</form>
 	</div>
 </div>
@@ -145,10 +171,9 @@ function eventList(){
 	        $.each(data, function(key,value){
 	      		a += '<tr align=center><td>'+ value.event_num + '</td>';
 	      		a += '<td>' + value.photo + '</td>';
-	      		a += '<td>' + value.thumbnail + '</td>';
 	      		a += '<td>' + value.content + '</td>';
 	      		a += '<td>' + value.re_date + '</td>';
-	      		a += '<td><button onclick="deleteBtn(' + value.event_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right">삭제</button></td></tr>';
+	      		a += '<td><button onclick="deleteBtn(' + value.event_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right" style="background: #7fad39; color:white; border: 1px solid #7fad39;margin-top:0px;">삭제</button></td></tr>';
 	        });
 	        
 	        $("#event_content").html(a); //a내용을 html에 형식으로 .commentList로 넣음

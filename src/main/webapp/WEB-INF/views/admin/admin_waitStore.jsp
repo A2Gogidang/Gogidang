@@ -94,7 +94,7 @@ $(document).ready(function() {
 							<li><a href="storeWait.st">대기중인 가게 승인</a></li>
 							<li><a href="noticeAdmin.no">공지사항 관리</a></li>
 							<li><a href="qnaAdmin.qn">문의 관리</a></li>
-							<li><a href="eventList.ev">이벤트 관리</a></li>
+							<li><a href="eventAdmin.ev">이벤트 관리</a></li>
 						</ul>
 					</div>
 				</div>
