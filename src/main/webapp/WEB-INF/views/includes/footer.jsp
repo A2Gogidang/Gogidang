@@ -131,7 +131,7 @@
 				
 				setTimeout( function() {
 					$socketAlert.css('display', 'none');
-				}, 3000);
+				}, 13000);
 			};
 	
 			ws.onclose = function (event) { 

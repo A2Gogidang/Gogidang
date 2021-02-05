@@ -103,7 +103,7 @@
 			
 			<div class="form-check-f">
 				
-			  	<button type="button" id="noticeInsertBtn" name="noticeInsertBtn" class="btn btn-lg btn-block btn-success">작성</button>
+			  	<button type="button" id="reQnaWrite" name="reQnaWrite" class="btn btn-lg btn-block btn-success">작성</button>
 			  	<!-- <button type="button" id="closeBtn" class="btn-j btn-lg btn-block btn-success" >닫기</button> -->
 			  	<!--<input type="button" id="closeBtn" value="닫기"/>  -->
 			  	<br>
@@ -122,6 +122,10 @@
 
 <script>
 
+var u_id= '';
+
+var qna_num= '';
+
 // Get the modal
 var modal = document.getElementById('myModal');
 
@@ -136,6 +140,38 @@ $(document).ready(function() {
 	qnaList();
 });
 
+$('[name=reQnaWrite]').click(function () {
+	var insertData = $('[name=qnaForm]').serialize();
+	alert(insertData);
+	reQnaInsert(insertData);
+});
+
+function reQnaInsert(insertData) {
+	$.ajax({
+		url : 'reQna.qn',
+		type : 'POST',
+		data : insertData,
+		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+		dataType : 'json',
+		success : function(retVal) {
+			if (retVal.res == "reQna") {
+				// webSocket에 보내기 (rqQna, 댓글작성자(admin), 게시글작성자(u_id), 글번호(qna_num))
+				let socketMsg = ("reQna," + "admin," + u_id + "," + qna_num);
+				console.debug("ssssssmsg>> ", socketMsg);
+				socket.send(socketMsg);
+				
+				modal.style.display = "none";
+				qnaList();
+			} else {
+				alert("reQna insert Fail!!!!");
+			}
+		}, 
+		error:function() {
+			alert("reQna ajax 통신 실패!!")
+		}
+	});
+}
+
 function qnaList(){
 	  $.ajax({
 	     url : 'qnaListAjax.re',
@@ -146,7 +182,7 @@ function qnaList(){
 	      		a += '<tr align=center><td>'+ value.qna_num + '</td>';
 	      		a += '<td>' + value.title + '</td>';
 	      		a += '<td>' + value.u_id + '</td>';
-	      		a += '<td>' + value.re_date + '</td>';
+	      		a += '<td>' + value.content + '</td>';
 	      		if (value.re_content != null) {
 	      			a += '<td><h6>답변완료</h6></td>';
 	      		} else {
@@ -171,14 +207,14 @@ function callModal(event) {
 		dataType : 'json',
 		success : function(retVal) {
 			if (retVal.res == "OK") {
-				var qna_num = retVal.qna_num;
-				var u_id = retVal.u_id;
+				qna_num = retVal.qna_num;
+				u_id = retVal.u_id;
 				var title = retVal.title;
 				var content = retVal.content;
 				$('input#qna_num').val(qna_num);
 				$('input#u_id').val(u_id);
 				$('input#title').val(title);
-				$('input#content').val(content);
+				$('textarea#content').val(content);
 			} else {
 				alert("qna modal Fail!!!!");
 			}
@@ -186,27 +222,6 @@ function callModal(event) {
 	});
 	
     modal.style.display = "block";
-}
-
-$('[name=reQnaWrite]').click(function () {
-	var insertData = $('[name=qnaForm]').serialize();
-	alert(insertData);
-	reQnaInsert(insertData);
-});
-
-function reQnaInsert(insertData) {
-	$.ajax({
-		url : 'reQna.qn',
-		type : 'POST',
-		data : insertData,
-		success : function(data) {
-			if (data == 1) {
-				noticeList();
-			} else {
-				alert("qnaRe insert Fail!!!!");
-			}
-		}
-	});
 }
 
 

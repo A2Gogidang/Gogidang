@@ -12,4 +12,5 @@
 	<select id="getReviewSub" parameterType="int">
 		select count(*) where review_sub where review_num = #{review_num}
 	</select>
+	
 </mapper>

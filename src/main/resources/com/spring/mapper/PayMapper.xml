@@ -8,11 +8,8 @@
 	INSERT INTO pay values(seq_pay.nextval, #{u_id},#{s_num},#{pay_code},#{totalPrice},sysdate,#{imp_uid},#{s_name})
 	</insert>
 	
-	<select id="purchaseList" parameterType="PayVO" resultType="PayVO">
-	SELECT  *
-  	  FROM  shop_reg s, pay p
-     WHERE  s.s_num = p.s_num 
-       AND  p.u_id = #{u_id}
+	<select id="purchaseList" parameterType="String" resultType="PayVO">
+		select * from pay where u_id = #{u_id}
 	</select>
 	
 	<select id="storeName" parameterType="PayVO" resultType="String">
@@ -25,6 +22,14 @@
 	delete from cart where u_id=#{u_id}
 	</delete>
 	
+	<select id="getList" parameterType="String" resultType="PayVO">
+		select * 
+		from pay p left outer join review re on p.u_id = re.u_id 
+		where p.u_id = #{u_id}
+	</select>
 	
+	<select id="getInfo" parameterType="int" resultType="PayVO">
+		select * from pay where pay_num = #{pay_num}
+	</select>
 	
 </mapper>
