@@ -204,7 +204,7 @@
                               %>
                               <td><img
                                  src="resources/img/store/<%=storeVO.getS_img()%>"
-                                 name="s_img" width="350px" height="200px" /></td>
+                                 name="s_num" width="350px" height="200px" /></td>
                               <%
                                  }
                               %>
@@ -336,7 +336,6 @@
                                  }
                               %>
                            </div>
-
                            <div class="join_btn_box">
                               <div class="join_btn">
 

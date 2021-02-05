@@ -178,7 +178,7 @@
 		</div>
 	</div>
 </section>
-<!— Product Section End —>
+<!-- Product Section End-->
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 
 <script type="text/javascript" charset="utf-8"
