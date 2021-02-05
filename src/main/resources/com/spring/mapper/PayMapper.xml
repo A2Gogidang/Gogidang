@@ -13,9 +13,9 @@
 	</select>
 	
 	<select id="storeName" parameterType="PayVO" resultType="String">
-	SELECT  s_name
-  	  FROM  shop_reg
-     WHERE  s_num =  #{s_num}
+		SELECT  s_name
+	  	  FROM  shop_reg
+	     WHERE  s_num =  #{s_num}
 	</select>
 	
 	<delete id="cartEmpty" parameterType="PayVO">
@@ -24,7 +24,7 @@
 	
 	<select id="getList" parameterType="String" resultType="PayVO">
 		select * 
-		from pay p left outer join review re on p.u_id = re.u_id 
+		from pay p left outer join review re on p.pay_num = re.pay_num 
 		where p.u_id = #{u_id}
 	</select>
 	

@@ -82,6 +82,7 @@
 				  	<div class="modal-textbox-s">
 				    	<ts for="title">제목</ts>
 				    	<td><input type="text" id="title" name="title"></td>
+				    	<td><input type="hidden" id="pay_num" name="pay_num"></td>
 				    	<td><input type="hidden" id="s_num" name="s_num"></td>
 				    	<td><input type="hidden" id="s_name" name="s_name"></td>
 				    	<td><input type="hidden" id="u_id" name="u_id"></td>
@@ -129,6 +130,7 @@
 
 <script>
 var u_id = '';
+var tu_id = '';
 var nickname = '';
 var s_num = '';
 var s_name = '';
@@ -144,11 +146,12 @@ var span = document.getElementsByClassName("close")[0];
 
 $(document).ready(function() {
 	u_id = $('[name=tu_id]').val();
+	tu_id = $('[name=tu_id]').val();
 	nickname = $('[name=tnickname]').val();
 	
 	$('input#u_id').val(u_id);
 	$('input#nickname').val(nickname);
-	payList(u_id);
+	payList(tu_id);
 });
 
 $('[name=reviewBtn]').click(function () {
@@ -172,13 +175,13 @@ function reviewInsert(insertData) {
 				// socket.send(socketMsg);
 				
 				modal.style.display = "none";
-				qnaList();
+				payList(tu_id);
 			} else {
-				alert("reQna insert Fail!!!!");
+				alert("review insert Fail!!!!");
 			}
 		}, 
 		error:function() {
-			alert("reQna ajax 통신 실패!!")
+			alert("review ajax 통신 실패!!")
 		}
 	});
 }
@@ -227,11 +230,10 @@ function callModal(event) {
 				$('input#s_num').val(s_num);
 				$('input#s_name').val(s_name);
 			} else {
-				alert("qna modal Fail!!!!");
+				alert("review modal Fail!!!!");
 			}
 		}
 	});
-	
     modal.style.display = "block";
 }
 
