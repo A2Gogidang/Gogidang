@@ -15,7 +15,7 @@
 <%
    StoreVO svo = (StoreVO) request.getAttribute("storeVO");
    ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>) request.getAttribute("menuList");
-   ArrayList<SRReviewVO> srReviewList = (ArrayList<SRReviewVO>) request.getAttribute("srReviewList");
+   ArrayList<ReviewVO> reviewList = (ArrayList<ReviewVO>) request.getAttribute("reviewList");
    /* ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>) request.getAttribute("reviewList"); */
 %>
 <%
@@ -253,8 +253,8 @@ relayout();
 									<span class="panel-title">후기</span>
 								</div>
 								<ul class="list-group">
-									<%for(int i=0; i<srReviewList.size(); i++) {
-                           SRReviewVO srReviewvo = (SRReviewVO) srReviewList.get(i);
+									<%for(int i=0; i<reviewList.size(); i++) {
+                           ReviewVO srReviewvo = (ReviewVO) reviewList.get(i);
                         %>
 									<li class="list-group-item">
 										<div class="row toggle" id="dropdown-detail-<%= i %>"
