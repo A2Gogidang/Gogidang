@@ -121,11 +121,16 @@ $(document).ready(function() {
                            %>
 									<div class="col-lg-3 col-md-4 col-sm-6" id="Menucontents">
 
-
+									 <form id="addCart<%=i%>" action="./addCart.ct" method="post">
+									 
 										<div class="featured__item">
 
 											<input type="hidden" id="menu_num" name="menu_num"
 												value="<%=mv.getMenu_num()%>">
+											<input type="hidden" id="price" name="price"
+												value="<%=mv.getPrice()%>">
+											<input type="hidden" id=s_num name="s_num"
+												value="<%=mv.getS_num()%>">
 											<div class="featured__item__pic set-bg"
 												data-setbg="resources/img/menu/<%=mv.getImg()%>"></div>
 
@@ -140,13 +145,12 @@ $(document).ready(function() {
 																</tr>
 																<tr class="table">
 																	<td><%=mv.getGram()%>g</td>
-																	<td>Price</td>
+																	<td><%=mv.getPrice()%> 원</td>
 																</tr>
 																<tr class="table">
 																	<td><input type="number" id="cartStock"
 																		name="cartStock" min="1" max="100" value="1" /></td>
-																	<td><input type="submit" value="장바구니에 담기"
-																		id="cartbutton" /></td>
+																	<td><input type="submit" value="장바구니에 담기" id="addCart<%=i%>"/></td>
 																</tr>
 															</tbody>
 														</table>
@@ -155,6 +159,7 @@ $(document).ready(function() {
 											</div>
 										</div>
 									</div>
+									</form>
 									<%
                               }
                            %>
