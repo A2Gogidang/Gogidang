@@ -140,7 +140,7 @@
                                 <tr>
                                     <td class="shoping__cart__item" >
                                         <img src="resources/img/store/store_gogi.png" alt=""><br>
-                                        <h5 ><%= svo.getS_name() %></h5>
+                                        <a href="./storeInfo.st?s_num=<%=svo.getS_num()%>"><h5 ><%= svo.getS_name() %></h5>
                                     </td>
                                     <td class="shoping__cart__price">
                                         <%=svo.getS_addr()%>
