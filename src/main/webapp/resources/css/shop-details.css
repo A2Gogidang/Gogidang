@@ -1,7 +1,6 @@
 @charset "UTF-8";
 #Menucontents{
-padding-top: 30px; padding-bottom: 30px; padding-left: 25px;
- padding-right: 0;
+ padding-left: 25px;
  }
  #cartbutton{
 	background-color: #7fad39; color: white; border: 0; outline: 0;  border-radius: 3px; height : 30px;
@@ -115,34 +114,40 @@ element.style {
 .panel-title {
     margin-top: 0;
     margin-bottom: 0;
-    font-size: 16px;
+    font-size: 14px;
     color: inherit;
 }
 
 #ReviewTitle{
-	font-size : 20px;
+	font-size : 14px;
 	    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 .panel-heading .panel-title{
-	font-size : 30px;
+	font-size : 16px;
 	    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	color : white;
+	font-weight : bold;
+	
 }	
 
 #panel-default{
 margin-top : 70px;
 }
 #panel-heading{
-	background-color : rgb(127,173,57 ,0.9);
+	background-color : #98c653;
+	padding: 5px 5px;
+    border-bottom: 1px solid transparent;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
 }
 #reviewTextContent{
 	margin-top : 20px;
-	font-size : 20px;
+	font-size : 14px;
 	text-aligin : left;
 	    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 .Seller_answer{
-	font-size: 20px;
+	font-size: 14px;
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	margin-bottom : 10px;
 }
@@ -156,4 +161,70 @@ margin-top : 70px;
 .review_Pic{
 	width : 923px;
 	height : 197px;
+}
+#cartCon{
+	margin-bottom : 10px;
+}
+.kakaomap{
+	
+}
+.location_title {
+    font-size: 16px;
+    color: #999999;
+    font-weight: 700;
+    border: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 0;           
+}
+
+.product__details__tab .product__details__tab__desc {
+	margin-top : 0px;
+}
+a{
+    text-decoration: none;
+    background-color: transparent;
+}
+
+element.style {
+    display: inline-flex;
+    color: #7fad39;
+}
+.product__details__text h2{ 
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+.product__details__text .product__details__rating span{
+	color: #dd2222;
+    margin-left: 4px;
+    font-size : 16px;
+}
+.shoping__checkout #tot-li, span {
+	font-size : 14px;
+}
+.product__details__text ul {
+    border-top: 1px solid #ebebeb;
+    padding-top: 35px;
+}
+.product__details__tap{
+	margin-bottom : 300000px;
+}
+.product-details {
+    padding-top: 20px;
+}
+.spad {
+    padding-top: 100px; 
+    padding-bottom: 100px;
+}
+.table{
+
+}
+#qnaHead{
+	background-color : #98c653;
+}
+#qnaHeadText{
+	color : white;
+}
+#Insert_date{
+	color : black;
 }
