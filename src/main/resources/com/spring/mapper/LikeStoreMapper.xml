@@ -5,7 +5,8 @@
 <mapper namespace="com.spring.mapper.LikeStoreMapper">
 
 	<select id="getLikeStores" parameterType="String" resultType="LikeStoreVO">
-		select  rg.thumbnail
+		select ls.Like_num 
+			   ,rg.thumbnail
 			   ,rg.s_name
 			   ,rg.s_addr
 			   ,rg.s_hour

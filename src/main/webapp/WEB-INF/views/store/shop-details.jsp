@@ -70,9 +70,11 @@ $(document).ready(function() {
 			<div class="col-lg-6 col-md-6">
 				<div class="product__details__text">
 					<h2 style="display: inline-flex; color: #7fad39;"><%=svo.getS_name()%></h2>
-
-					<a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
-
+					
+					<form>
+					
+					<a href="#" class="heart-icon" ><button type="button" class="icon_heart_alt"></button></a>
+					</form>
 					<div class="product__details__rating" style="margin-bottom: 45px;">
 						<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 							class="fa fa-star"></i> <i class="fa fa-star"></i> <i
@@ -150,7 +152,7 @@ $(document).ready(function() {
 																<tr class="table">
 																	<td><input type="number" id="cartStock"
 																		name="cartStock" min="1" max="100" value="1" /></td>
-																	<td><input type="submit" value="장바구니에 담기" id="addCart<%=i%>"/></td>
+																	<td><input type="submit" value="장바구니에 담기" id="addCart<%=i%>"/style="background-color: #98c653; color: white; border : 0px;"></td>
 																</tr>
 															</tbody>
 														</table>
@@ -187,7 +189,7 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 mapContainer.style.width = '1140px';
 mapContainer.style.height = '450px';
 
-$("#jongu").click(function(){
+$(".map").click(function(){
    map.relayout();
    map.setCenter();
 });
@@ -221,7 +223,7 @@ geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
         });
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         var infowindow = new kakao.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">저희 가게</div><div style="width:150px;text-align:center;padding:6px 0;"><a href="https://map.kakao.com/link/to/${storeVO.getS_addr()}">길찾기</a></div>'
+            content: '<div style="width:150px;text-align:center;padding:0px 0;"><a href="https://map.kakao.com/" target="_blink">${storeVO.getS_name()}</a></div>'
                    
         });
         infowindow.open(map, marker);
@@ -464,7 +466,11 @@ relayout();
 	</div>
 </div>
 <!--modal END-->
-
+<script>
+function like_click() {
+	alert("찜목록 완료!");
+}
+</script>
 
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
