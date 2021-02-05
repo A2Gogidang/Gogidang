@@ -55,20 +55,20 @@
 	<!-- taehyun End -->
 
 	<!-- soobin start -->
-	<insert id="insertStore" parameterType="StoreVO" >
-      	INSERT INTO shop_reg 
-     	VALUES ( #{s_num}
-			 	,#{u_id}
-				,#{thumbnail}
-			 	,#{s_name}
-				,#{s_addr}
-			 	,#{s_phone}
-			 	,#{s_img}
-			 	,#{s_hour}
-			 	,#{delibery}
-			 	,#{confirm}
-			 	)
-	</insert>	 
+   <insert id="insertStore" parameterType="StoreVO" >
+      INSERT INTO shop_reg 
+      VALUES    ( #{s_num}
+            	 ,#{u_id}
+                 ,#{thumbnail}
+             	 ,#{s_name}
+            	 ,#{s_addr}
+             	 ,#{s_phone}
+             	 ,#{s_img}
+             	 ,#{s_hour}
+             	 ,#{confirm}
+             	)
+   </insert>    
+ 
 	 
 	<select id="selectStore" parameterType="StoreVO" resultType="StoreVO">
       	SELECT * 
