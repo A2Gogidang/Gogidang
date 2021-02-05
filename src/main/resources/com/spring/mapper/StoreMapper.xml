@@ -65,7 +65,6 @@
 			 	,#{s_phone}
 			 	,#{s_img}
 			 	,#{s_hour}
-			 	,#{delibery}
 			 	,#{confirm}
 			 	)
 	</insert>	 

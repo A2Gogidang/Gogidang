@@ -232,7 +232,7 @@ public class ReviewController {
 		
 		return reviewList;
 	}
-	
+
 	@RequestMapping(value = "/reviewRegAjax.re", produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public Map<String, Object> reviewRegAjax(ReviewVO review, HttpSession session) {
@@ -248,6 +248,12 @@ public class ReviewController {
 		}
 		
 		return retVal;
+	}
+
+	@RequestMapping("/review_detail.re")
+	public String review_detail() {
+		
+		return "review/review_detail";
 	}
 
 }

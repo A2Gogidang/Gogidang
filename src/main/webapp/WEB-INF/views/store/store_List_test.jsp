@@ -111,6 +111,7 @@
 								</div>
 							</div>
 						</div>
+						
 					</div>
 				</div>
 				</div>
@@ -124,12 +125,12 @@
 		for(int i=0; i<storeList.size(); i++) {
 			StoreVO svo = (StoreVO) storeList.get(i);
 					%>
-                <div class="col-lg-12">
+                <div class="col-lg-10">
                     <div class="shoping__cart__table">
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="shoping__product">가게명</th>
+                                    <th class="shoping__product"><%= svo.getS_name() %></th>
                                     <th>지역</th>
                                     <th>품목</th>
                                     <th>별점</th>
@@ -138,10 +139,10 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="shoping__cart__item" >
-                                        <img src="resources/img/store/store_gogi.png" alt="" style="width : 101px; heigh : 100px;]"><br>
+                                    <td class="shoping__cart__item" style="display:inline-flex;">
+                                        <img src="resources/img/store/store_gogi.png" alt="" style="width : 400px; height : 250px;"><br>
                                         
-                                        <h5 style="font-weight : bold;"><%= svo.getS_name() %></h5>
+                                        <h5 style="display : flex; margin-left : 140px; margin-top : 82px;"></h5>
                                     </td>
                                     <td class="shoping__cart__price">
                                         <%=svo.getS_addr()%>
@@ -151,7 +152,7 @@
 											<%
 											if(svo.getMeat() == 0) {
 											%>
-												<h6 style="font-weight : bold;">소고기 </h6>
+												<h6>소고기 </h6>
 											<%
 											} else if (svo.getMeat() == 1) {
 											%>

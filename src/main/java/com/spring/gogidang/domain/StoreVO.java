@@ -16,7 +16,7 @@ public class StoreVO {
 	private String s_phone;
 	private String s_img;
 	private String s_hour;
-	private int delibery;
+	private String delivery;
 	private int confirm;
 	
 	private Double avgStar;

@@ -5,9 +5,11 @@
 <%
 	MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
 	String u_id = "";
+	String u_nick = "";
 	int seller_key;
 	if(mvo != null) {
 		u_id = mvo.getU_id();
+		u_nick = mvo.getU_nick();
 		seller_key = mvo.getSeller_key();
 	} else {
 		seller_key = 0;
@@ -90,7 +92,7 @@
 					<div class="col-lg-6 col-md-6">
 						<div class="header__top__right">
 							<div class="header__top__right__auth">
-								<a href="./updateList.me"><i class="fa fa-user"></i><%=u_id %> 사장님 !</a>
+								<a href="./updateList.me"><i class="fa fa-user"></i><%=u_nick %> 사장님 !</a>
 							</div>
 							<div class="header__top__right__auth">
 								<a href="#"><i class="fa fa-bell"></i>BELL</a>
@@ -122,7 +124,7 @@
 						<div class="col-lg-6 col-md-6">
 						<div class="header__top__right">
 							<div class="header__top__right__auth">
-								<a href="./updateList.me"><i class="fa fa-user"></i><%=u_id %>님!</a>
+								<a href="./updateList.me"><i class="fa fa-user"></i><%=u_nick %>님!</a>
 							</div>
 							<div class="header__top__right__auth">
 								<a href="#"><i class="fa fa-bell"></i>BELL</a>

@@ -60,7 +60,7 @@
                            if (storevo == null || storevo.getConfirm() == 0 || storevo.getS_num() == 0) {
                   %>
                   <div class="hero__categories__all">
-                  <span>판매자 마이페이지</span>
+                  <span>마이페이지</span>
                   </div>
                   <ul>
                      <li><a href="./updateList.me">내정보</a></li>
