@@ -139,8 +139,9 @@
                             <tbody>
                                 <tr>
                                     <td class="shoping__cart__item" >
-                                        <img src="resources/img/store/store_gogi.png" alt=""><br>
-                                        <h5 ><%= svo.getS_name() %></h5>
+                                        <img src="resources/img/store/store_gogi.png" alt="" style="width : 101px; heigh : 100px;]"><br>
+                                        
+                                        <h5 style="font-weight : bold;"><%= svo.getS_name() %></h5>
                                     </td>
                                     <td class="shoping__cart__price">
                                         <%=svo.getS_addr()%>
@@ -150,7 +151,7 @@
 											<%
 											if(svo.getMeat() == 0) {
 											%>
-												<h6>소고기 </h6>
+												<h6 style="font-weight : bold;">소고기 </h6>
 											<%
 											} else if (svo.getMeat() == 1) {
 											%>
