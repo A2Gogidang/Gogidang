@@ -36,7 +36,7 @@
 									<i class="fa fa-search" aria-hidden="true"></i>
 								</div>
 								<div class="shoplistones">
-									<h3>S E R C H</h3>
+									<h3>S E A R C H</h3>
 								</div>
 							</div>
 							<div class="shoplisttwo">

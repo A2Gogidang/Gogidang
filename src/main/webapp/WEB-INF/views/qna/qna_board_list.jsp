@@ -65,8 +65,8 @@
 							<td><%=qna_num%></td>
 
 							<td style="font-family: Tahoma; font-size: 10pt;">
-								
-									<%-- <%
+								<%-- 
+									 <%
 										if (ql.getRe_lev() != 0) {
 									%>
 									<%
@@ -83,7 +83,7 @@
 
 									<%
 										}
-									%> --%>
+									%>  --%>
 									<a href="./qnadetail.qn?qna_num=<%=ql.getQna_num()%>"> <%=ql.getTitle()%>
 									</a>
 							</td>
