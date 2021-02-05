@@ -1,5 +1,8 @@
 package com.spring.gogidang.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,12 +20,18 @@ public class ReviewSubController {
 	
 	@RequestMapping(value="/reReviewStoreInsert.re")
 	@ResponseBody
-	public String reReviewStoreInsert(ReviewSubVO reviewSub) {
-		int res = reviewsubService.reviewsubReg(reviewSub);
-		String result = "";
-		if(res == 1) {
-			result = "ok";
-		}
-		return result;
+	public Map<String, Object> reReviewStoreInsert(ReviewSubVO reviewSub) {
+		Map<String, Object> retVal = new HashMap<String, Object>();
+		
+		try {
+			reviewsubService.reviewsubReg(reviewSub);
+			retVal.put("res", "reviewsub");
+		} catch (Exception e) {
+			retVal.put("res", "FAIL");
+			retVal.put("message", "Failure");
+		} 
+		
+		return retVal;
 	}
+
 }

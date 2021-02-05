@@ -191,7 +191,7 @@
                         <!-- <button onclick="pay()" class="primary-btn">결제하기</button> -->
                         <div class="form-checkkk">
                      	
-                   			<button class="primary-btn" nclick="pay()" >결 제 하 기</button>	
+                   			<button class="primary-btn" onclick="pay()" >결 제 하 기</button>	
                  		</div>
 	</div>
 	</div>

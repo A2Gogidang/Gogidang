@@ -16,6 +16,7 @@
    StoreVO svo = (StoreVO) request.getAttribute("storeVO");
    ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>) request.getAttribute("menuList");
    ArrayList<ReviewVO> reviewList = (ArrayList<ReviewVO>) request.getAttribute("reviewList");
+   int totalReview = (int) request.getAttribute("totalReview");
    /* ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>) request.getAttribute("reviewList"); */
 %>
 <%
@@ -70,15 +71,13 @@ $(document).ready(function() {
 			<div class="col-lg-6 col-md-6">
 				<div class="product__details__text">
 					<h2 style="display: inline-flex; color: #7fad39;"><%=svo.getS_name()%></h2>
-					
-					<form>
-					
-					<a href="#" class="heart-icon" ><button type="button" class="icon_heart_alt"></button></a>
-					</form>
+
+					<a class="heart-icon"><button type="button" class="icon_heart_alt" id="likeBtn" name ="likeBtn"></button></a>
+
 					<div class="product__details__rating" style="margin-bottom: 45px;">
 						<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 							class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-							class="fa fa-star-half-o"></i> <span>(18 reviews)</span>
+							class="fa fa-star-half-o"></i> <span>(<%=totalReview %> reviews)</span>
 					</div>
 					<div class="product__details__price"
 						style="color: black; font-size: 20px;">주소</div>
@@ -152,7 +151,7 @@ $(document).ready(function() {
 																<tr class="table">
 																	<td><input type="number" id="cartStock"
 																		name="cartStock" min="1" max="100" value="1" /></td>
-																	<td><input type="submit" value="장바구니에 담기" id="addCart<%=i%>"/style="background-color: #98c653; color: white; border : 0px;"></td>
+																	<td><input type="submit" value="장바구니에 담기" id="addCart<%=i%>"/></td>
 																</tr>
 															</tbody>
 														</table>
@@ -189,7 +188,7 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 mapContainer.style.width = '1140px';
 mapContainer.style.height = '450px';
 
-$(".map").click(function(){
+$("#jongu").click(function(){
    map.relayout();
    map.setCenter();
 });
@@ -223,7 +222,7 @@ geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
         });
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         var infowindow = new kakao.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:0px 0;"><a href="https://map.kakao.com/" target="_blink">${storeVO.getS_name()}</a></div>'
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">저희 가게</div><div style="width:150px;text-align:center;padding:6px 0;"><a href="https://map.kakao.com/link/to/${storeVO.getS_addr()}">길찾기</a></div>'
                    
         });
         infowindow.open(map, marker);
@@ -256,40 +255,40 @@ relayout();
 								</div>
 								<ul class="list-group">
 									<%for(int i=0; i<reviewList.size(); i++) {
-                           ReviewVO srReviewvo = (ReviewVO) reviewList.get(i);
+                           ReviewVO reviewvo = (ReviewVO) reviewList.get(i);
                         %>
 									<li class="list-group-item">
 										<div class="row toggle" id="dropdown-detail-<%= i %>"
 											data-toggle="detail-<%= i %>">
 
 											<div class="col-xs-10" id="ReviewTitle">
-												<div><%=srReviewvo.getTitle() %></div>
-												<span id="ReviewId">작성자 : <%=srReviewvo.getU_id() %></span>
+												<div><%=reviewvo.getTitle() %></div>
+												<span id="ReviewId">작성자 : <%=reviewvo.getU_id() %></span>
 											</div>
 											<div class="col-xs-10" id="ReviewTitle">
 												<span id="reviewStar" style="color :#edbb0e;"> 
-												<%if(srReviewvo.getStar() == 5){ %>
+												<%if(reviewvo.getStar() == 5){ %>
 													<span class="fa fa-star"></span>
 													<span class="fa fa-star"></span>
 													<span class="fa fa-star"> </span>
 													<span class="fa fa-star"></span>
 													<span class="fa fa-star"></span>
-													<%}else if(srReviewvo.getStar() == 4){
+													<%}else if(reviewvo.getStar() == 4){
 													%>
 													<span class="fa fa-star"></span>
 													<span class="fa fa-star"></span>
 													<span class="fa fa-star"></span>
 													<span class="fa fa-star"> </span>
-													<%}else if(srReviewvo.getStar() == 3){ %>
+													<%}else if(reviewvo.getStar() == 3){ %>
 													<span class="fa fa-star"></span>
 													<span class="fa fa-star"></span>
 													<span class="fa fa-star"></span>
-													 <%}else if(srReviewvo.getStar() == 2){ %>
+													 <%}else if(reviewvo.getStar() == 2){ %>
 													<span class="fa fa-star"></span>
 													<span class="fa fa-star"></span>
-													<%}else if(srReviewvo.getStar() == 1){ %>
+													<%}else if(reviewvo.getStar() == 1){ %>
 													<span class="fa fa-star"></span> <%} %>
-									 		<span id="Insert_date">등록일: <%=srReviewvo.getReview_date() %></span>
+									 		<span id="Insert_date">등록일: <%=reviewvo.getReview_date() %></span>
 											</div>
 
 
@@ -308,15 +307,21 @@ relayout();
 														<div>
 															<div id="reviewTextContent">
 																리뷰내용 :
-																<%=srReviewvo.getContent() %></div>
+																<%=reviewvo.getContent() %></div>
 														</div>
 													</div>
 													<hr>
 													<!-- 사장댓글 -->
+													<%if(reviewvo.getReview_sub_content() != null) { %>
 													<div class="Seller_answer">
 														↳&nbsp;ex)
-														<%=svo.getS_name()%>사장님 : 다음에 오실때는 더욱만족 하실수있도록 노력하겠습니다.
+														<%=svo.getS_name()%>사장님 : <%=reviewvo.getReview_sub_content()%>
 													</div>
+													<%} else { %>
+													<div class="Seller_answer">
+														↳&nbsp;답변대기중
+													</div>
+													<%} %>
 												</div>
 											</div>
 										</div>
@@ -424,11 +429,6 @@ relayout();
 	</div>
 
 </section>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -466,11 +466,7 @@ relayout();
 	</div>
 </div>
 <!--modal END-->
-<script>
-function like_click() {
-	alert("찜목록 완료!");
-}
-</script>
+
 
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -498,7 +494,28 @@ function like_click() {
 		    modal.style.display = "block";
 		}
 		
+		
 		storeQnaList();
+	});
+	
+	$('[name=likeBtn]').click(function () {
+		$.ajax({
+			url : 'addLikeStore.re',
+			type : 'POST',
+			data : {"s_num": s_num},
+			contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+			dataType : 'json',
+			success : function(retVal) {
+				if (retVal.res == "OK") {
+					alert("찜 완료!");
+				} else {
+					alert("likestore insert Fail!!!!");
+				}
+			}, 
+			error:function() {
+				alert("likestore ajax 통신 실패!!")
+			}
+		});
 	});
 
 	$('[name=storeQnaInsertBtn]').click(function() { //댓글 등록 버튼 클릭시 속성이름 [] 으로 접근 가능

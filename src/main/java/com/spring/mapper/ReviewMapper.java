@@ -12,6 +12,7 @@ public interface ReviewMapper {
 
 	public List<ReviewVO> getList();
 	public List<ReviewVO> getListSn(int s_num);
+	public List<ReviewVO> getListUid(String u_id);
 	public List<ReviewVO> getListWithPaging(Criteria cri);
 	public List<ReviewVO> getListByIdWithPaging(@Param("pageNum") int pageNum, @Param("amount") int amount, @Param("u_id") String u_id);
 	public List<ReviewVO> getListBySnWithPaging(@Param("pageNum") int pageNum, @Param("amount") int amount, @Param("s_num") int s_num);
@@ -21,6 +22,8 @@ public interface ReviewMapper {
 	public int getTotal(Criteria cri);
 	
 	public List<ReviewVO> getReviewListAjax(Map<String, String[]> mapp);
+	public int getCount(int s_num);
+	public int getCountPay(int pay_num);
 }
 
 //public int update(ReviewVO review);

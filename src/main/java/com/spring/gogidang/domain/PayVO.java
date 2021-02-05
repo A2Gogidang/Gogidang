@@ -20,5 +20,7 @@ public class PayVO {
 	public String imp_uid;
 	public String s_name;
 	
+	public int review_num;
+	public String content;
 	
 }
