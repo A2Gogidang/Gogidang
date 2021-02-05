@@ -85,13 +85,12 @@ public class LikeStoreController {
 	   ArrayList<LikeStoreVO> likeStoreList = new ArrayList<LikeStoreVO>();
 	   likeStoreList = (ArrayList<LikeStoreVO>) likeStoreService.getListByUid(u_id);
 	   
-	   for (int i=0; i<likeStoreList.size(); i++) {
-		   LikeStoreVO lsvo = likeStoreList.get(i);
-		   int s_num = lsvo.getS_num();
-		   StoreVO svo = storeService.storeInfo(s_num);
-		   lsvo.setS_name(svo.getS_name());
-		   lsvo.setThumbnail(svo.getThumbnail());
-	   }
+		/*
+		 * for (int i=0; i<likeStoreList.size(); i++) { LikeStoreVO lsvo =
+		 * likeStoreList.get(i); int s_num = lsvo.getS_num(); StoreVO svo =
+		 * storeService.storeInfo(s_num); lsvo.setS_name(svo.getS_name());
+		 * lsvo.setThumbnail(svo.getThumbnail()); }
+		 */
 	   
 	   model.addAttribute("likeStoreList", likeStoreList);
 	   
