@@ -138,6 +138,8 @@
    .shopliststartwo li{
    list-style:none;
    font-family: "Cairo", sans-serif;
+   /*soobin */
+   margin-right: 42px;
    }
    .shoplistb{
    padding-top: 10px;

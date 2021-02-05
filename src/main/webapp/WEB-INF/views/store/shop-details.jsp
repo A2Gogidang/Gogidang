@@ -15,7 +15,7 @@
 <%
    StoreVO svo = (StoreVO) request.getAttribute("storeVO");
    ArrayList<MenuVO> menu_List = (ArrayList<MenuVO>) request.getAttribute("menuList");
-   List<ReviewVO> reviewList = (List<ReviewVO>) request.getAttribute("reviewList");
+   ArrayList<ReviewVO> reviewList = (ArrayList<ReviewVO>) request.getAttribute("reviewList");
    /* ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>) request.getAttribute("reviewList"); */
 %>
 <%
@@ -121,11 +121,16 @@ $(document).ready(function() {
                            %>
 									<div class="col-lg-3 col-md-4 col-sm-6" id="Menucontents">
 
-
+									 <form id="addCart<%=i%>" action="./addCart.ct" method="post">
+									 
 										<div class="featured__item">
 
 											<input type="hidden" id="menu_num" name="menu_num"
 												value="<%=mv.getMenu_num()%>">
+											<input type="hidden" id="price" name="price"
+												value="<%=mv.getPrice()%>">
+											<input type="hidden" id=s_num name="s_num"
+												value="<%=mv.getS_num()%>">
 											<div class="featured__item__pic set-bg"
 												data-setbg="resources/img/menu/<%=mv.getImg()%>"></div>
 
@@ -140,13 +145,12 @@ $(document).ready(function() {
 																</tr>
 																<tr class="table">
 																	<td><%=mv.getGram()%>g</td>
-																	<td>Price</td>
+																	<td><%=mv.getPrice()%> 원</td>
 																</tr>
 																<tr class="table">
 																	<td><input type="number" id="cartStock"
 																		name="cartStock" min="1" max="100" value="1" /></td>
-																	<td><input type="submit" value="장바구니에 담기"
-																		id="cartbutton" /></td>
+																	<td><input type="submit" value="장바구니에 담기" id="addCart<%=i%>"/></td>
 																</tr>
 															</tbody>
 														</table>
@@ -155,6 +159,7 @@ $(document).ready(function() {
 											</div>
 										</div>
 									</div>
+									</form>
 									<%
                               }
                            %>
@@ -249,40 +254,40 @@ relayout();
 								</div>
 								<ul class="list-group">
 									<%for(int i=0; i<reviewList.size(); i++) {
-                           				ReviewVO reviewVO = (ReviewVO) reviewList.get(i);
-                      				  %>
+                           ReviewVO srReviewvo = (ReviewVO) reviewList.get(i);
+                        %>
 									<li class="list-group-item">
 										<div class="row toggle" id="dropdown-detail-<%= i %>"
 											data-toggle="detail-<%= i %>">
 
 											<div class="col-xs-10" id="ReviewTitle">
-												<div><%=reviewVO.getTitle() %></div>
-												<span id="ReviewId">작성자 : <%=reviewVO.getU_id() %></span>
+												<div><%=srReviewvo.getTitle() %></div>
+												<span id="ReviewId">작성자 : <%=srReviewvo.getU_id() %></span>
 											</div>
 											<div class="col-xs-10" id="ReviewTitle">
 												<span id="reviewStar" style="color :#edbb0e;"> 
-												<%if(reviewVO.getStar() == 5){ %>
+												<%if(srReviewvo.getStar() == 5){ %>
 													<span class="fa fa-star"></span>
 													<span class="fa fa-star"></span>
 													<span class="fa fa-star"> </span>
 													<span class="fa fa-star"></span>
 													<span class="fa fa-star"></span>
-													<%}else if(reviewVO.getStar() == 4){
+													<%}else if(srReviewvo.getStar() == 4){
 													%>
 													<span class="fa fa-star"></span>
 													<span class="fa fa-star"></span>
 													<span class="fa fa-star"></span>
 													<span class="fa fa-star"> </span>
-													<%}else if(reviewVO.getStar() == 3){ %>
+													<%}else if(srReviewvo.getStar() == 3){ %>
 													<span class="fa fa-star"></span>
 													<span class="fa fa-star"></span>
 													<span class="fa fa-star"></span>
-													 <%}else if(reviewVO.getStar() == 2){ %>
+													 <%}else if(srReviewvo.getStar() == 2){ %>
 													<span class="fa fa-star"></span>
 													<span class="fa fa-star"></span>
-													<%}else if(reviewVO.getStar() == 1){ %>
+													<%}else if(srReviewvo.getStar() == 1){ %>
 													<span class="fa fa-star"></span> <%} %>
-									 		<span id="Insert_date">등록일: <%=reviewVO.getReview_date() %></span>
+									 		<span id="Insert_date">등록일: <%=srReviewvo.getReview_date() %></span>
 											</div>
 
 
@@ -301,7 +306,7 @@ relayout();
 														<div>
 															<div id="reviewTextContent">
 																리뷰내용 :
-																<%=reviewVO.getContent() %></div>
+																<%=srReviewvo.getContent() %></div>
 														</div>
 													</div>
 													<hr>
@@ -417,7 +422,11 @@ relayout();
 	</div>
 
 </section>
-
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	
 <!-- The Modal -->
 <div id="myModal" class="modal">

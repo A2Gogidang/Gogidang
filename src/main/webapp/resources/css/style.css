@@ -120,9 +120,8 @@ ol {
 -----------------------*/
 
 .section-title {
-	margin-top: 30px;
+	margin-bottom: 30px;
 	text-align: center;
-	width: 100%;
 }
 
 .section-title h2 a {
@@ -168,21 +167,12 @@ ol {
 	padding-bottom: 100px;
 }
 
-.row {
-	/*margin: 0 50px;*/
+/*.row {
+	margin: 0 50px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	flex-direction: row;
-	
-}
-
-.categories .container {
-	margin: 20px auto;
-}
-
-/*.categories .container .row {
-	background-color: rgba(127, 173, 57, 0.2);
 }*/
 
 .row_main {
@@ -338,10 +328,6 @@ ol {
 
 .footer__widget {
 	margin-left: 40px;
-}
-
-#nav-bar {
-	
 }
 
 
@@ -520,7 +506,7 @@ ol {
 .header__top__right__auth {
 	display: inline-block;
 	margin: auto 0;
-	
+	font
 }
 
 .header__top__right__auth a {
@@ -696,7 +682,7 @@ ol {
 -----------------------*/
 
 .hero {
-	padding-bottom: 0;
+	padding-bottom: 100px;
 }
 
 .hero.hero-normal {
@@ -911,12 +897,6 @@ ol {
   Categories
 -----------------------*/
 
-.categories {
-	/*background-color: rgb(245, 245, 245, 0.7);*/
-	/*background-color: rgba(127, 173, 57,0.2);*/
-	/*background-color:rgb(138, 230, 0, 0.03);*/
-}
-
 .categories__item {
 	height: 270px;
 	position: relative;
@@ -939,9 +919,8 @@ ol {
 	letter-spacing: 2px;
 	padding: 5px 0 5px;
 	/*background: #ffffff;*/
-	background: rgb(255, 255, 255, 0.9);
+	background: rgb(255, 255, 255, 0.7);
 	display: block;
-	font-family: "Cairo", sans-serif;
 }
 
 .categories__slider .col-lg-3 {
@@ -2044,12 +2023,6 @@ ol {
   Shop Cart
 -----------------------*/
 
-.icon_close {
-	/*width: 18px;
-	height:18px;*/
-	background-color: #ffffff;
-	border: none;
-}
 .shoping-cart {
 	padding-top: 80px;
 	padding-bottom: 80px;
@@ -2207,7 +2180,7 @@ ol {
 }
 
 .shoping__checkout ul {
-	margin-bottom: 20px;
+	margin-bottom: 28px;
 }
 
 .shoping__checkout ul li {
@@ -2232,17 +2205,6 @@ ol {
 	margin-bottom: 18px;
 }
 
-.shoping__checkout #tot-li {
-	font-size: 16px;
-    color: #1c1c1c;
-    font-weight: 700;
-    list-style: none;
-    overflow: hidden;
-    border-top: 1px solid #ebebeb;
-    padding: 13px 0 10px 0;
-    /*margin-bottom: 18px;*/
-}
-
 .shoping__checkout #tot-li, span {
 	font-size: 24px;
 	
@@ -2262,19 +2224,8 @@ ol {
 }
 
 .shoping__checkout .primary-btn {
-	 border-radius: 3px;
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 2px;
-    font-size: 20px;
-    width: 100%;
-    height: 60px;
-    /* padding: 14px; */
-    /* background-color: rgba(0, 100, 0,0.7); */
-    color: #ffffff;
-    background-color: #7fad39;
-    border: 1px solid #7fad39;
-}
+	display: block;
+	text-align: center;
 }
 
 /*---------------------
