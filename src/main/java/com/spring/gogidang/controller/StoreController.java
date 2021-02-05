@@ -127,7 +127,10 @@ public class StoreController {
 		StoreVO vo = storeService.storeInfo(s_num);
 		
 		ArrayList<MenuVO> menuList = menuService.menuList(s_num);
-		List<ReviewVO> reviewList = reviewService.getListBySnWithPaing(cri, s_num);
+		List<ReviewVO> reviewList = reviewService.getListSn(s_num);
+		
+		int totalReview = reviewService.getCount(s_num);
+		model.addAttribute("totalReview", totalReview);
 
 		int total = reviewService.getTotal(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));

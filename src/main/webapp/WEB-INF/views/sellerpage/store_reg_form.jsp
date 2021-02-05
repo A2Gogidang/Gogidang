@@ -336,6 +336,7 @@
                                  }
                               %>
                            </div>
+
                            <div class="join_btn_box">
                               <div class="join_btn">
 
