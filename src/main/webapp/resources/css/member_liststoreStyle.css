@@ -97,3 +97,8 @@ tr{
 	display: flex;
 	width: 100%;
 }
+a {
+    color: #7fad39;
+    text-decoration: none;
+    background-color: transparent;
+}

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.ReviewVO;
+import com.spring.gogidang.domain.StoreVO;
 
 public interface ReviewService {
 	
@@ -13,6 +14,8 @@ public interface ReviewService {
 	public List<ReviewVO> getListWithPaging(Criteria cri);
 	public List<ReviewVO> getListByIdWithPaing(Criteria cri, String u_id);
 	public List<ReviewVO> getListBySnWithPaing(Criteria cri, int s_num);
+	
+	public ReviewVO getReviewInfo(int review_num);
 	
 	public ReviewVO getReview(int review_num);
 	public void regReview(ReviewVO review);

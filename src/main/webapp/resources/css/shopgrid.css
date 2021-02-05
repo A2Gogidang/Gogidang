@@ -7,9 +7,11 @@
    width: 100%;
    }
    .shoplis{
-   padding-top: auto;
-   padding-right: 15px;
-   padding-left: 15px; 
+    padding-top: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    
+}
    }
    .shoplist {
    padding-top: 15px;
@@ -144,7 +146,7 @@
    list-style:none;
    font-family: "Cairo", sans-serif;
    /*soobin */
-   margin-right: 42px;
+   margin-right: 3px;
    }
    .shoplistb{
    padding-top: 10px;
@@ -214,10 +216,13 @@
    .shoplistn {
    display:flex;
    flex-wrap: wrap;
-   padding-left: 20px;
+   padding-left: 5px;
 
    }
  .shoping__cart__table table tbody tr td.shoping__cart__item{
     width: 600px;
    text-align: left;
+ }
+ #pig_li{
+ margin-left : 15px;
  }

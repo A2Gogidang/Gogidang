@@ -27,6 +27,14 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return reviewMapper.getList();
 	}
+	
+	@Override
+	public ReviewVO getReviewInfo(int review_num) {
+		
+		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
+		
+		return reviewMapper.reviewInfo(review_num);
+	}
 
 	@Override
 	public List<ReviewVO> getListWithPaging(Criteria cri) {

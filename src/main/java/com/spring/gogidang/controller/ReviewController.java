@@ -38,8 +38,20 @@ public class ReviewController {
 	@Autowired
 	private MemberService memberService;
 	
+	
+	@RequestMapping("/reviewDetail.re")
+	public String getReviewInfo(@RequestParam("review_num") int review_num,Model model) {
+		ReviewVO vo = reviewService.getReviewInfo(review_num);
+		
+		model.addAttribute("ReviewVO", vo);
+		
+		return "review/review_detail";
+	}
+	
 	@RequestMapping("/reviewList.re")
 	public String reviewList(Model model) {
+		
+		
 		
 		model.addAttribute("reviewList", reviewService.getList());
 		

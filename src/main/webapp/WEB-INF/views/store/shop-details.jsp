@@ -150,7 +150,7 @@ $(document).ready(function() {
 																<tr class="table">
 																	<td><input type="number" id="cartStock"
 																		name="cartStock" min="1" max="100" value="1" /></td>
-																	<td><input type="submit" value="장바구니에 담기" id="addCart<%=i%>"/></td>
+																	<td><input type="submit" value="장바구니에 담기" id="addCart<%=i%>"/ style=""></td>
 																</tr>
 															</tbody>
 														</table>
@@ -333,7 +333,7 @@ relayout();
 												<button type="button"
 													class="btn btn-lg btn-outline-secondary" id="storeQnaWrite"
 													name="storeQnaWrite"
-													style="background-color: #98c653; color: white; margin-bottom: 20px; width: 80px; height: 35px; font-size: 14px; font-weight: bold;">글쓰기</button>
+													style="background-color: rgb(191,191,191); color: white; margin-bottom: 20px; width: 80px; height: 35px; font-size: 14px; font-weight: bold;">글쓰기</button>
 												<input type="hidden" id="ms_num" name="ms_num"
 													value="<%=svo.getS_num()%>"> <input type="hidden"
 													id="mu_id" name="mu_id" value="<%=u_id%>">
@@ -365,13 +365,13 @@ relayout();
 																	if (nowpage <= 1) {
 																%>
 															<li class="page-item"><a class="page-link" href="#"
-																style="color: white;background-color: #98c653;">Previous</a></li>
+																style="color: white;background-color: rgb(191,191,191);;">Previous</a></li>
 															<%
 																	} else {
 																%>
 															<li class="page-item"><a class="page-link"
 																href="./qnalist.qn?page=<%=nowpage - 1%>"
-																style="color: white;background-color: #98c653;">Previous</a></li>
+																style="color: white;background-color: rgb(191,191,191);;">Previous</a></li>
 															<%
 																	}
 																%>
@@ -396,13 +396,13 @@ relayout();
 																	if (nowpage >= maxpage) {
 																%>
 															<li class="page-item"><a class="page-link" href="#"
-																style="color: white;background-color: #98c653;">Next</a></li>
+																style="color: white;background-color: rgb(191,191,191);;">Next</a></li>
 															<%
 																	} else {
 																%>
 															<li class="page-item"><a class="page-link"
 																href="./qnalist.qn?page=<%=nowpage + 1%>"
-																style="color: white;background-color: #98c653;">Next</a></li>
+																style="color: white;background-color: rgb(191,191,191);;">Next</a></li>
 															<%
 																	}
 																%>
