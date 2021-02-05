@@ -1,15 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/review_detail.css"type="text/css">
-</head>
-<style>
-</style>
-<body>
+<link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/review_detail2.css"type="text/css">
+
+<%
+   ReviewVO vo = (ReviewVO) request.getAttribute("ReviewVO");
+%>
  <!--네비게이션바 사용 시작-->
 <%@include file="../includes/header.jsp"%>
              
@@ -17,31 +13,38 @@
 								<h2 style="margin-top: 50px;">리뷰</h2>
 							</div>
             
-  <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12 cc_cursor"id="review_detail_con" style = " display : flex; aligin-items : center;justify-content : center; width : 1140px;">
-			<form role="form" id = "review_detail">
-				<div class="form-group">
-					 
-					<div class="review_title">
-					<input type="review_title" class="form-control" id="review_title1" value = "너무맛있어요~"/>
-				</div>
-				<div class = "review_member_data" style="display : flex;">
-				<input type="review_member_nick" class="form-control" id="review_member_nick" value = "종구"/>
-				<input type="review_member_date" class="form-control" id="review_member_date" value = "star"/>
-				<input type="review_member_date" class="form-control" id="review_member_date" value = "date"/></div>
-				</div>
-				<div class="form-group">
-					 
-					<textarea type="notice_insert_content" class="form-control" id="notice_insert_content1"/  placeholder="내용"style="height: 500px;font-size:15px;"></textarea>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-    
+   <!-- Product Details Section Begin -->
+    <section class="product-details spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__pic">
+                        <div class="product__details__pic__item">
+                            <img class="product__details__pic__item--large"
+                                src="resources/img/store/store_gogi.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__text">
+                        <h3><%=vo.getTitle()%></h3>
+                        <div class="product__details__rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                           
+                        </div>
+                        <div class="product__details__Nickname"style="font-size: 30px;color: #7fad39;font-weight: 600;margin-bottom: 15px;"><%=vo.getNickname() %></div>
+                        <p><%=vo.getContent()%></p>
+                        <a href="#" class="primary-btn">가게 보러가기</a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </section>
+            
 
 <%@include file="../includes/footer.jsp"%>
 
-</body>
-</html>
