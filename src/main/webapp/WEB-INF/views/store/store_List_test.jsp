@@ -152,7 +152,7 @@
 											<%
 											if(svo.getMeat() == 0) {
 											%>
-												<h6 style="font-weight : bold;">소고기 </h6>
+												<h6>소고기 </h6>
 											<%
 											} else if (svo.getMeat() == 1) {
 											%>

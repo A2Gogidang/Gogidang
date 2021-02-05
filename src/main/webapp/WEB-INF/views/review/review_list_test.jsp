@@ -36,7 +36,7 @@
 									<i class="fa fa-search" aria-hidden="true"></i>
 								</div>
 								<div class="shoplistones">
-									<h3>S E R C H</h3>
+									<h3>S E A R C H</h3>
 								</div>
 							</div>
 							<div class="shoplisttwo">
@@ -66,7 +66,7 @@
 									<li><input type="checkbox" id="cow" class="f_check"
 										name="f_Mcheck" value="0">소고기</li>
 									<li><input type="checkbox" id="pig" class="f_check"
-										name="f_Mcheck" value="1">돼지고기</li>
+										name="f_Mcheck" value="1" >돼지고기</li>
 								</div>
 							</div>
 							<!-- <div class="shoplistfo">
@@ -106,14 +106,14 @@
 								<div class="shoplistbu">
 									<div class="shoplist_but">
 										<button class="site-btn" type="button" name="button"
-											id="checkBtn">검색</button>
+											id="checkBtn" style="">검색</button>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="row" style="width: 960px; margin-top: 30px">
+				<div class="row" style="width: 960px; margin-top: 30px;" >
 					<%
 						for (int i = 0; i < reviewList.size(); i++) {
 							ReviewVO rvo = (ReviewVO) reviewList.get(i);
@@ -124,7 +124,7 @@
 								data-setbg="resources/img/store/store_gogi.png"></div>
 							<div class="product__item__text">
 								<h6>
-									<a href="#"><%=rvo.getTitle()%></a>
+									<a href="./storeInfo.st?s_num=<%=rvo.getS_num()%>"><%=rvo.getTitle()%></a>
 								</h6>
 								<span id="reviewStar" style="color: #edbb0e;"> <%
  	if (rvo.getStar() == 5) {
