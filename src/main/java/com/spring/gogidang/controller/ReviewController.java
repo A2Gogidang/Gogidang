@@ -225,5 +225,10 @@ public class ReviewController {
 		
 		return reviewList;
 	}
+	@RequestMapping("/review_detail.re")
+	public String review_detail() {
+		
+		return "review/review_detail";
+	}
 
 }
