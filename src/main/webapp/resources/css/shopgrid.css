@@ -16,8 +16,8 @@
    padding-right: 15px;
    padding-left: 15px;
    padding-bottom: 15px; 
-    background-color: #f5faff;
-    width: 100%;
+   background-color: #e0f6d2;
+   width: 100%;
    }
    .shoplistone{
    display: flex;
@@ -46,6 +46,7 @@
    padding-bottom: 10px;
    display: flex;
    justify-content: flex-start;
+   margin-left:100px;
    }
    .shoplisttwoo{
    padding-left:15px;
@@ -72,6 +73,7 @@
    padding-bottom: 10px;
    display: flex;
    justify-content: flex-start;
+   margin-left:100px;
    }
    .shoplisttho{
    padding-left:15px;
@@ -91,6 +93,7 @@
    }
    .shoplisttht li{
    font-family: "Cairo", sans-serif;
+   
    }
    .shoplistfo{
    padding-top: 10px;
@@ -123,7 +126,9 @@
    padding-bottom: 15px;
    display:flex;
    justify-content: flex-start;
+   margin-left:100px;
    }
+   
    .shopliststarone{
    padding-left:15px;
    width:10%;
@@ -151,9 +156,11 @@
    justify-content: space-around;
    padding-bottom: 15px;
    width: 40%;
+   
    }
    .shoplist_but{
    display: flex;
+   border-radius:3px;
    }
    .shoplistm{
    margin-top: 50px;

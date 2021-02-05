@@ -130,6 +130,7 @@ function noticeInsert(insertData) {
 		data : insertData,
 		success : function(data) {
 			if (data == 1) {
+				modal.style.display = "none";
 				noticeList();
 			} else {
 				alert("notice insert Fail!!!!");
