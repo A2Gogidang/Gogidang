@@ -10,17 +10,18 @@
 	type="text/css">
 	
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/store_reviewStyle.css"
+	href="${pageContext.request.contextPath}/resources/css/admin_qnaw.css"
 	type="text/css">
 
 <!-- Product Section Begin -->
 <section class="product spad">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-3 col-md-5">
-				<div class="sidebar">
-					<div class="sidebar__item">
-						<h4>관리자 페이지</h4>
+			<div class="col-lg-3" id="nav-bar">
+		            <div class="hero__categories">
+		                  <div class="hero__categories__all">
+		                  	<span>공지사항</span>
+		                  	</div>
 						<ul>
 							<li><a href="storeWait.st">대기중인 가게 승인</a></li>
 							<li><a href="noticeAdmin.no">공지사항 관리</a></li>
@@ -29,8 +30,8 @@
 						</ul>
 					</div>
 				</div>
-			</div>
-			<div class="qnaboard">
+
+			<div class="col-lg-9">
 				<div class="section-title product__discount__title">
 					<h2>문의 관리</h2>
 				</div>

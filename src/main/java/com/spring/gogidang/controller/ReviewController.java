@@ -43,6 +43,7 @@ public class ReviewController {
 		
 		model.addAttribute("reviewList", reviewService.getList());
 		
+		//return "review/review_list_grid";
 		return "review/review_list_test";
 	}
 	
@@ -221,7 +222,6 @@ public class ReviewController {
 		reviewVO.setS_num(s_num);
 		List<ReviewVO> reviewList = reviewService.getListSn(s_num);
 		System.out.println(reviewList.size());
-		System.out.println(reviewList.get(0).getReview_sub_content());
 		
 		return reviewList;
 	}

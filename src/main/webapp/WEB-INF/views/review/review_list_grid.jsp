@@ -45,17 +45,17 @@
 								</div>
 								<div class="shoplisttwot">
 									<li><input type="checkbox" id="s_seoul" class="f_check"
-										name="f_Acheck" value="서울">서울</li>
+										name="f_Acheck" value="서울"> 서울</li>
 									<li><input type="checkbox" id="s_gyeong" class="f_check"
-										name="f_Acheck" value="경기">경기</li>
+										name="f_Acheck" value="경기"> 경기</li>
 									<li><input type="checkbox" id="s_gang" class="f_check"
-										name="f_Acheck" value="강원">강원</li>
+										name="f_Acheck" value="강원"> 강원</li>
 									<li><input type="checkbox" id="s_jeon" class="f_check"
-										name="f_Acheck" value="전라">전라</li>
+										name="f_Acheck" value="전라"> 전라</li>
 									<li><input type="checkbox" id="s_gyeong" class="f_check"
-										name="f_Acheck" value="경상">경상</li>
+										name="f_Acheck" value="경상"> 경상</li>
 									<li><input type="checkbox" id="s_chung" class="f_check"
-										name="f_Acheck" value="충청">충청</li>
+										name="f_Acheck" value="충청"> 충청</li>
 								</div>
 							</div>
 							<div class="shoplistth">
@@ -64,9 +64,9 @@
 								</div>
 								<div class="shoplisttht">
 									<li><input type="checkbox" id="cow" class="f_check"
-										name="f_Mcheck" value="0">소고기</li>
+										name="f_Mcheck" value="0"> 소고기</li>
 									<li><input type="checkbox" id="pig" class="f_check"
-										name="f_Mcheck" value="1">돼지고기</li>
+										name="f_Mcheck" value="1"> 돼지고기</li>
 								</div>
 							</div>
 							<!-- <div class="shoplistfo">
@@ -89,17 +89,17 @@
 								</div>
 								<div class="shopliststartwo">
 									<li><input type="radio" id="one" class="f_check"
-										name="f_Scheck" value="0" checked />모든별점</li>
+										name="f_Scheck" value="0" checked /> 모든별점</li>
 									<li><input type="radio" id="one" class="f_check"
-										name="f_Scheck" value="1" />1점 이상</li>
+										name="f_Scheck" value="1" /> 1점 이상</li>
 									<li><input type="radio" id="two" class="f_check"
-										name="f_Scheck" value="2" />2점 이상</li>
+										name="f_Scheck" value="2" /> 2점 이상</li>
 									<li><input type="radio" id="three" class="f_check"
-										name="f_Scheck" value="3" />3점 이상</li>
+										name="f_Scheck" value="3" /> 3점 이상</li>
 									<li><input type="radio" id="four" class="f_check"
-										name="f_Scheck" value="4" />4점 이상</li>
+										name="f_Scheck" value="4" /> 4점 이상</li>
 									<li><input type="radio" id="five" class="f_check"
-										name="f_Scheck" value="5" />5점 이상</li>
+										name="f_Scheck" value="5" /> 5점 이상</li>
 								</div>
 							</div>
 							<div class="shoplistb">
