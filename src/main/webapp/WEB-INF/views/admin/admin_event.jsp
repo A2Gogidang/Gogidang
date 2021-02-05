@@ -6,7 +6,7 @@
 <%@include file="../includes/header_simple.jsp"%>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/modal.css"
+	href="${pageContext.request.contextPath}/resources/css/modal_event.css"
 	type="text/css">
 	
 <link rel="stylesheet"
@@ -63,32 +63,58 @@
 	<div class="modal-content">
 		<span class="close">&times;</span>                                                               
 		<form name="eventInsertForm">
-			<fieldset>
-			<legend>이벤트 작성</legend>
+			
+			<h3>이벤트 작성</h3>
 			<ol>
-				<li>
-			    <label for="title">제목</label>
-			    <input type="text" id="title" name="title">
-			    </li>
-				<li>
-				<label for="content">이벤트내용</label>
-			    <input id="content" name="content" type="text">
-			  	</li> 
-				<li>
+				<div class="modal-textbox-e">
+					
+				  	<div class="modal-textbox-ev-s">
+				    	<ts for="title">제목</ts>
+					    <td><input type="text" id="title" name="title"></td>
+				  	</div>
+				</div>
+				<div class="modal-textbox-ev">
+				  	<div class="modal-textbox-ev-s">
+				    	<ts for="content">이벤트내용</ts>
+				    	<td><textarea id="content" name="content" type="text"></textarea></td>
+				  	</div>	  	
+			  	</div>
+			  	
+				<div class="modal-imgbox">
+				   	 <div class="modal-imgbox-ss">
+				    	<ts for="photo">메인사진등록</ts>
+				    	<!-- <td><input type="text" id="thumbnail" name="thumbnail"></td> -->	    	
+			    		<td><img src="resources/img/store/" id="photo" name="photo" width="520px" height="300px" /></td>
+				     </div>
+			    
+			   	 	<div class="modal-imgbox-ss">
+			    		<ts for="thumbnail">썸네일등록</ts>
+			    	<!-- <td><input type="text" id="thumbnail" name="thumbnail"></td> -->
+				    	<td><img src="resources/img/store/" id="thumbnail" name="thumbnail" width="520px" height="300px" /></td>
+			     	</div>
+			     </div>
+			     <!--<li>
 				<label for="photo">메인사진등록</label>
 			    <input id="photo" name="photo" type="text">
 			  	</li> 
 				<li>
 				<label for="thumbnail">썸네일등록</label>
 			    <input id="thumbnail" name="thumbnail" type="text">
-			  	</li> 
+			  	</li>   -->
+				
 			</ol>
-			</fieldset>
-
-			<fieldset>
+			
+			<div class="form-checkkkk">
+                 <button type="button"   id="eventInsertBtn" name="eventInsertBtn" class="btn btn-lg btn-block btn-success" >등록</button>
+                 <!-- <button type="button" id="closeBtn"  class="btn-j btn-lg btn-block btn-success" >닫기</button> -->
+                   <br>
+            </div>
+			
+			<!-- <fieldset>
 			  	<button type="button" id="eventInsertBtn" name="eventInsertBtn">작성</button>
 			  	<input type="button" id="closeBtn" value="닫기"/>
-			</fieldset>
+			</fieldset> -->
+			
 		</form>
 	</div>
 </div>
