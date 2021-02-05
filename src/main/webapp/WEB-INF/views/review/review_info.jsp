@@ -14,9 +14,6 @@
 	} else {
 		seller_key = 0;
 	}
-
-
-	SRReviewVO srrvo = (SRReviewVO)request.getAttribute("srReviewvo");
 %>
 
          <form name="review_info" action="./replyReviewInsert.bo" method="post">

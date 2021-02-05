@@ -34,5 +34,9 @@ public class ReviewVO {
 	private String price;
 	private String img;
 	private int grade;
+	
+	/* review sub */
+	public int review_sub_num;
+	public String review_sub_content;
 
 }

@@ -35,6 +35,15 @@ public class PayServiceImpl implements PayService{
 		return s_name;
 	}
 	
+	@Override 
+	public void cartEmpty(PayVO payVO) { 
+		
+		PayMapper paymapper = sqlSession.getMapper(PayMapper.class); 
+		
+		paymapper.cartEmpty(payVO);
+		
+	}
+	
 	
 	@Override
 	public ArrayList<PayVO> purchaseList(PayVO payVO) {

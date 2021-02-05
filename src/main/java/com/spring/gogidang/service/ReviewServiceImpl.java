@@ -83,6 +83,13 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewListAjax;
 	}
 
+	@Override
+	public List<ReviewVO> getListSn(int s_num) {
+		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
+		
+		return reviewMapper.getListSn(s_num);
+	}
+
 	
 } 
 

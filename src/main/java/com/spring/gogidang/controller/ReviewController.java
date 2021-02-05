@@ -43,7 +43,8 @@ public class ReviewController {
 		
 		model.addAttribute("reviewList", reviewService.getList());
 		
-		return "review/review_list_grid";
+		//return "review/review_list_grid";
+		return "review/review_list_test";
 	}
 	
 	@RequestMapping("/reviewListWithPaging.re")
@@ -219,7 +220,7 @@ public class ReviewController {
 		System.out.println("s_num = " + s_num);
 		ReviewVO reviewVO = new ReviewVO();
 		reviewVO.setS_num(s_num);
-		List<ReviewVO> reviewList = reviewService.getList();
+		List<ReviewVO> reviewList = reviewService.getListSn(s_num);
 		System.out.println(reviewList.size());
 		
 		return reviewList;

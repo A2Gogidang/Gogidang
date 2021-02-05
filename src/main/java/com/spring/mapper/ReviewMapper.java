@@ -11,6 +11,7 @@ import com.spring.gogidang.domain.ReviewVO;
 public interface ReviewMapper {
 
 	public List<ReviewVO> getList();
+	public List<ReviewVO> getListSn(int s_num);
 	public List<ReviewVO> getListWithPaging(Criteria cri);
 	public List<ReviewVO> getListByIdWithPaging(@Param("pageNum") int pageNum, @Param("amount") int amount, @Param("u_id") String u_id);
 	public List<ReviewVO> getListBySnWithPaging(@Param("pageNum") int pageNum, @Param("amount") int amount, @Param("s_num") int s_num);
