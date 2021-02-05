@@ -89,6 +89,8 @@ public class LikeStoreController {
 		   LikeStoreVO lsvo = likeStoreList.get(i);
 		   int s_num = lsvo.getS_num();
 		   StoreVO svo = storeService.storeInfo(s_num);
+		   lsvo.setS_name(svo.getS_name());
+		   lsvo.setThumbnail(svo.getThumbnail());
 	   }
 	   
 	   model.addAttribute("likeStoreList", likeStoreList);

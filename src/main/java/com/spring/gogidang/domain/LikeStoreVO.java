@@ -11,5 +11,7 @@ public class LikeStoreVO {
 	private int like_num;
 	private int s_num;
 	private String u_id;
+	private String s_name;
+	private String thumbnail;
 	
 }
