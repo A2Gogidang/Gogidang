@@ -27,21 +27,21 @@
 <section class="product spad">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-3 col-md-5">
-				<div class="sidebar">
-					<div class="sidebar__item">
-						<h4>마이페이지</h4>
-						<ul>
-							<li><a href="./updateList.me">내정보</a></li>
-							<li><a href="./storeRegForm.st">가게 정보</a></li>
-							<li><a href="./menuRegForm.mn">메뉴 등록</a></li>
-							<li><a href="./storeNoticeList.no">문의 관리</a></li>
-							<li><a href="./storereviewList.re">리뷰 관리</a></li>
-						</ul>
-					</div>
+			<div class="col-lg-3" id="nav-bar">
+	            <div class="hero__categories">
+	                  <div class="hero__categories__all">
+	                  <span>마이페이지</span>
+	              	 </div>
+	                  <ul>
+	                     <li><a href="./updateList.me">내정보</a></li>
+	                     <li><a href="./storeRegForm.st">가게 정보</a></li>
+	                     <li><a href="./menuRegForm.mn">메뉴 등록</a></li>
+	                     <li><a href="./storeNoticeList.no">문의 관리</a></li>
+	                     <li><a href="./storereviewList.re">리뷰 관리</a></li>
+	                  </ul>				
+	               </div>
 				</div>
-			</div>
-			<div class="reviewboard">
+			<div class="col-lg-9">
 				<div class="section-title product__discount__title">
 					<h2>문의 관리</h2>
 				</div>

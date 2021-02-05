@@ -17,10 +17,11 @@
 <section class="product spad">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-3 col-md-5">
-				<div class="sidebar">
-					<div class="sidebar__item">
-						<h4>관리자 페이지</h4>
+			<div class="col-lg-3" id="nav-bar">
+	            <div class="hero__categories">
+	                  <div class="hero__categories__all">
+	                  <span>마이페이지</span>
+	              	 </div>
 						<ul>
 							<li><a href="storeWait.st">대기중인 가게 승인</a></li>
 							<li><a href="noticeAdmin.no">공지사항 관리</a></li>
@@ -29,8 +30,7 @@
 						</ul>
 					</div>
 				</div>
-			</div>
-			<div class="noticeboard">
+			<div class="col-lg-9">
 				<div class="section-title product__discount__title">
 					<h2>공지사항 관리</h2>
 				</div>
@@ -42,7 +42,7 @@
 								<th>제목</th>
 								<th>작성자</th>
 								<th>등록일</th>
-								<th><button id="write" class="btn btn-primary btn-xs pull-right">작성</button></th>
+								<th align="center"><button id="write" class="btn btn-primary btn-xs pull-right" style="background: #7fad39; color:white; border: 1px solid #7fad39;">작성</button></th>
 							</tr>
 						</thead>
 						<tbody id="notice_content" class="text-center">

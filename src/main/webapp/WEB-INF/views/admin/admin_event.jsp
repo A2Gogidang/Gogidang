@@ -17,10 +17,11 @@
 <section class="product spad">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-3 col-md-5">
-				<div class="sidebar">
-					<div class="sidebar__item">
-						<h4>관리자 페이지</h4>
+			<div class="col-lg-3" id="nav-bar">
+	            <div class="hero__categories">
+	                  <div class="hero__categories__all">
+	                  <span>마이페이지</span>
+	              	 </div>
 						<ul>
 							<li><a href="storeWait.st">대기중인 가게 승인</a></li>
 							<li><a href="noticeAdmin.no">공지사항 관리</a></li>
@@ -29,21 +30,20 @@
 						</ul>
 					</div>
 				</div>
-			</div>
-			<div class="eventboard">
+
+			<div class="col-lg-9">
 				<div class="section-title product__discount__title">
-					<h2>공지사항 관리</h2>
+					<h2>이벤트 관리</h2>
 				</div>
 				<div class="container">
 					<table class="table table-hover">
 						<thead>
 							<tr align=center>
 								<th>번호</th>
-								<th>메인사진</th>
-								<th>썸내일</th>
+								<th>사진</th>
 								<th>내용</th>
 								<th>등록일</th>
-								<th><button id="write" class="btn btn-primary btn-xs pull-right">작성</button></th>
+								<th><button id="write" class="btn btn-primary btn-xs pull-right" style="background: #7fad39; color:white; border: 1px solid #7fad39; margin-top: 0px;">작성</button></th>
 							</tr>
 						</thead>
 						<tbody id="event_content" class="text-center">
@@ -171,10 +171,9 @@ function eventList(){
 	        $.each(data, function(key,value){
 	      		a += '<tr align=center><td>'+ value.event_num + '</td>';
 	      		a += '<td>' + value.photo + '</td>';
-	      		a += '<td>' + value.thumbnail + '</td>';
 	      		a += '<td>' + value.content + '</td>';
 	      		a += '<td>' + value.re_date + '</td>';
-	      		a += '<td><button onclick="deleteBtn(' + value.event_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right">삭제</button></td></tr>';
+	      		a += '<td><button onclick="deleteBtn(' + value.event_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right" style="background: #7fad39; color:white; border: 1px solid #7fad39;margin-top:0px;">삭제</button></td></tr>';
 	        });
 	        
 	        $("#event_content").html(a); //a내용을 html에 형식으로 .commentList로 넣음

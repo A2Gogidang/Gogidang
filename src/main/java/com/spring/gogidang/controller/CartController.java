@@ -31,7 +31,6 @@ public class CartController {
       response.setContentType("text/html; charset=utf-8");
       PrintWriter writer = response.getWriter();
       
-      System.out.println(cartVO.toString());
       
       //소비자인지 판매자인지도 구별해야됨
       if(((MemberVO)session.getAttribute("memberVO")) != null) {
@@ -71,7 +70,6 @@ public class CartController {
       }else {
     	  
     	  cartVO.setU_id((((MemberVO)session.getAttribute("memberVO")).getU_id()));   
-    	  System.out.println(cartVO.getU_id());
     	  
     	  ArrayList<CartVO> cart_list = null;
     	  
