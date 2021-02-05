@@ -210,3 +210,7 @@
    padding-left: 20px;
 
    }
+ .shoping__cart__table table tbody tr td.shoping__cart__item{
+    width: 600px;
+   text-align: left;
+ }
