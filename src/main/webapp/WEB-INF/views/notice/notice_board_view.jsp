@@ -54,7 +54,7 @@
 											제 목
 										</ts>
 										<td>
-											<%=notice.getTitle()%>
+										<input name="title" type="text" size="50" value="<%=notice.getTitle()%>" readonly/>
 										</td>
 									</div>	
 									<div class="id_input_box">
@@ -66,17 +66,7 @@
 										</td>
 										</div>
 									</div>
-									<div class="join_btns">
-										<%if(memberVO.getU_id()!=null && memberVO.getU_id().equals("admin")){%>
-									<div class="join_btn">
-                     				<button type="submit"  class="btn-jj btn-lg btn-block btn-success" onclick="location.href='./noticemodifyform.no?notice_num=<%=notice.getNotice_num() %>'" multiple>수정</button>
-                     				</div>
-                     				<%}else{ %>
-								<div class="join_btn">
-                                    <button type="button" class="btn-jj btn-lg btn-block btn-success" onClick="history.go(-1)">목록</button>
-                              </div>
-                              <%} %>
-                              </div>	
+							
 								</form>
 								</div>
 								

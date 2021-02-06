@@ -150,7 +150,7 @@ function qnaList(){
 	      		if (value.re_content != null) {
 	      			a += '<td><h6>답변완료</h6></td>';
 	      		} else {
-		      		a += '<td><button onclick="callModal(' + value.qna_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right">문의댓글</button></td></tr>';
+		      		a += '<td><button onclick="callModal(' + value.qna_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right" style="background: #7fad39; color:white; border: 1px solid #7fad39; margin-top: 0px; padding-top: 0px;padding-bottom: 0px">문의댓글</button></td></tr>';
 	      		}
 	        });
 	        

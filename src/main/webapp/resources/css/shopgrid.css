@@ -59,11 +59,14 @@
    }
    .shoplisttwot{
    padding-right:15px;
-   width:75.5%;
+   width:100%;
    display: flex;
-   justify-content: space-between;
+   justify-content: flex-start;
    list-style:none;
-     padding-left:0px;
+   }
+   .shoplisttwot p{
+   margin-right: 82px;
+   margin-top: -5px;
    }
    .shoplisttwot li{
      font-family: "Cairo", sans-serif;
@@ -85,12 +88,16 @@
    font-family: "Cairo", sans-serif;
    }
    .shoplisttht{
-   width:21%;
+   width:100%;
    display: flex;
-   justify-content: space-between;
+   justify-content: flex-start;
    list-style:none;
-    padding-left:0px;
    }
+   .shoplisttht p{
+   margin-right: 73px;
+   margin-top: -5px;
+   }
+   
    .shoplisttht li{
    font-family: "Cairo", sans-serif;
    
@@ -136,9 +143,13 @@
    justify-content: flex-start;
    }
    .shopliststartwo{
-   width:77.5%;
+   width:100%;
    display: flex;
-   justify-content: space-between;
+   justify-content: flex-start;
+   }
+   .shopliststartwo p{
+   margin-right: 57px;
+   margin-top: -5px;
    }
    .shopliststartwo li{
    list-style:none;
