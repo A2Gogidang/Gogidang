@@ -131,6 +131,7 @@
 <script>
 var u_id = '';
 var tu_id = '';
+var fu_id = '';
 var nickname = '';
 var s_num = '';
 var s_name = '';
@@ -169,10 +170,10 @@ function reviewInsert(insertData) {
 		dataType : 'json',
 		success : function(retVal) {
 			if (retVal.res == "OK") {
-				// webSocket에 보내기 (rqQna, 댓글작성자(admin), 게시글작성자(u_id), 글번호(qna_num))
-				// let socketMsg = ("reQna," + "admin," + u_id + "," + qna_num);
-				// console.debug("ssssssmsg>> ", socketMsg);
-				// socket.send(socketMsg);
+				// webSocket에 보내기 (review, 리뷰작성자(tu_id), 가게주인(fu_id), pay_num)
+				let socketMsg = ("review," + tu_id +"," + fu_id + "," + pay_num);
+				console.debug("ssssssmsg>> ", socketMsg);
+				socket.send(socketMsg);
 				
 				modal.style.display = "none";
 				payList(tu_id);
@@ -226,6 +227,7 @@ function callModal(event) {
 				pay_num = retVal.pay_num;
 				s_num = retVal.s_num;
 				s_name = retVal.s_name;
+				fu_id = retVal.fu_id;
 				$('input#pay_num').val(pay_num);
 				$('input#s_num').val(s_num);
 				$('input#s_name').val(s_name);
