@@ -8,6 +8,10 @@
 		select * from review
 	</select>
 	
+	<select id="reviewInfo" parameterType="int" resultType="ReviewVO">
+		SELECT * FROM review WHERE review_num=#{review_num}
+	</select>
+	
 	<select id="getListSn" parameterType="int" resultType="ReviewVO">
 		select re.review_num, re.title, re.u_id, re.star, re.review_date, rs.review_sub_content 
 		from review re left outer join review_sub rs on re.review_num = rs.review_num

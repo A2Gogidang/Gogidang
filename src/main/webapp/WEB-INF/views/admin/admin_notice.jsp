@@ -42,7 +42,7 @@
 								<th>제목</th>
 								<th>작성자</th>
 								<th>등록일</th>
-								<th align="center"><button id="write" class="btn btn-primary btn-xs pull-right" style="background: #7fad39; color:white; border: 1px solid #7fad39; margin-top: 0px;">작성</button></th>
+								<th align="center"><button id="write" class="btn btn-primary btn-xs pull-right" style="background: #7fad39; color:white; border: 1px solid #7fad39; margin-top: 0px; padding-top: 0px;padding-bottom: 0px">작성</button></th>
 							</tr>
 						</thead>
 						<tbody id="notice_content" class="text-center">
@@ -150,7 +150,7 @@ function noticeList(){
 	      		a += '<td>' + value.title + '</td>';
 	      		a += '<td>' + value.u_id + '</td>';
 	      		a += '<td>' + value.re_date + '</td>';
-	      		a += '<td><button onclick="deleteBtn(' + value.notice_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right" style="background: white; color:red; border: 1px solid red;margin-top:0px;">삭제</button></td></tr>';
+	      		a += '<td><button onclick="deleteBtn(' + value.notice_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right" style="background: white; color:red; border: 1px solid red;margin-top:0px; padding-top:0px; padding-bottom:0px;">삭제</button></td></tr>';
 	        });
 	        
 	        $("#notice_content").html(a); //a내용을 html에 형식으로 .commentList로 넣음

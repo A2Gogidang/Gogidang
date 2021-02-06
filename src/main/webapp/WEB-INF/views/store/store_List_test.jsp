@@ -65,7 +65,7 @@
 								<div class="shoplisttht">
 									<li><input type="checkbox" id="cow" class="f_check"
 										name="f_Mcheck" value="0">소고기</li>
-									<li><input type="checkbox" id="pig" class="f_check"
+									<li id="pig_li"><input type="checkbox" id="pig" class="f_check"
 										name="f_Mcheck" value="1">돼지고기</li>
 								</div>
 							</div>
@@ -125,7 +125,7 @@
 		for(int i=0; i<storeList.size(); i++) {
 			StoreVO svo = (StoreVO) storeList.get(i);
 					%>
-                <div class="col-lg-10">
+                <div class="col-lg-8">
                     <div class="shoping__cart__table">
                         <table>
                             <thead>

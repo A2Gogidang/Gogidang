@@ -59,7 +59,7 @@
 								%>
 								<tr align=center>
 									<td><%=i + 1%></td>
-									<td><a
+									<td id = "a_color"><a
 										href="storereviewInfo.bo?review_num=<%=reviewVO.getReview_num()%>"><%=reviewVO.getTitle()%></a>
 									</td>
 									<td><%=reviewVO.getS_name()%></td>

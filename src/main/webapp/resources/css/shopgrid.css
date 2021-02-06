@@ -7,9 +7,11 @@
    width: 100%;
    }
    .shoplis{
-   padding-top: auto;
-   padding-right: 15px;
-   padding-left: 15px; 
+    padding-top: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    
+}
    }
    .shoplist {
    padding-top: 15px;
@@ -59,11 +61,14 @@
    }
    .shoplisttwot{
    padding-right:15px;
-   width:75.5%;
+   width:100%;
    display: flex;
-   justify-content: space-between;
+   justify-content: flex-start;
    list-style:none;
-     padding-left:0px;
+   }
+   .shoplisttwot p{
+   margin-right: 82px;
+   margin-top: -5px;
    }
    .shoplisttwot li{
      font-family: "Cairo", sans-serif;
@@ -85,12 +90,16 @@
    font-family: "Cairo", sans-serif;
    }
    .shoplisttht{
-   width:21%;
+   width:100%;
    display: flex;
-   justify-content: space-between;
+   justify-content: flex-start;
    list-style:none;
-    padding-left:0px;
    }
+   .shoplisttht p{
+   margin-right: 73px;
+   margin-top: -5px;
+   }
+   
    .shoplisttht li{
    font-family: "Cairo", sans-serif;
    
@@ -136,15 +145,19 @@
    justify-content: flex-start;
    }
    .shopliststartwo{
-   width:77.5%;
+   width:100%;
    display: flex;
-   justify-content: space-between;
+   justify-content: flex-start;
+   }
+   .shopliststartwo p{
+   margin-right: 57px;
+   margin-top: -5px;
    }
    .shopliststartwo li{
    list-style:none;
    font-family: "Cairo", sans-serif;
    /*soobin */
-   margin-right: 42px;
+   margin-right: 3px;
    }
    .shoplistb{
    padding-top: 10px;
@@ -214,10 +227,13 @@
    .shoplistn {
    display:flex;
    flex-wrap: wrap;
-   padding-left: 20px;
+   padding-left: 5px;
 
    }
  .shoping__cart__table table tbody tr td.shoping__cart__item{
     width: 600px;
    text-align: left;
+ }
+ #pig_li{
+ margin-left : 15px;
  }
