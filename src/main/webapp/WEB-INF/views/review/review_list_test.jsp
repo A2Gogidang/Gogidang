@@ -124,7 +124,7 @@
 								data-setbg="resources/img/store/store_gogi.png"></div>
 							<div class="product__item__text">
 								<h6>
-									<a href="./storeInfo.st?s_num=<%=rvo.getS_num()%>"><%=rvo.getTitle()%></a>
+									<a href="./reviewDetail.re?review_num=<%=rvo.getReview_num()%>"><%=rvo.getTitle()%></a>
 								</h6>
 								<span id="reviewStar" style="color: #edbb0e;"> <%
  	if (rvo.getStar() == 5) {

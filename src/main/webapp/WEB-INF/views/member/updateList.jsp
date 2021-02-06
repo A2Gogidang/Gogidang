@@ -50,7 +50,7 @@
                      <li><a href="./purchase_list.py?u_id=<%=memberVO.getU_id()%>">구매내역</a></li>
                      <li><a href="./likeStoreList.li?u_id=<%=memberVO.getU_id()%>">찜목록</a></li>
                      <li><a
-                        href="./reviewListByIdWithPaging.re?u_id=<%=memberVO.getU_id()%>">내가
+                        href="./getListUid.re?u_id=<%=memberVO.getU_id()%>">내가
                            작성한 후기</a></li>
                      <li><a href="./cartList.ct">장바구니</a></li>
                   </ul>

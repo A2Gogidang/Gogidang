@@ -59,15 +59,19 @@
 								%>
 								<tr align=center>
 									<td><%=i + 1%></td>
-									<td><a
+									<td id = "a_color"><a
 										href="storereviewInfo.bo?review_num=<%=reviewVO.getReview_num()%>"><%=reviewVO.getTitle()%></a>
 									</td>
 									<td><%=reviewVO.getU_id()%></td>
 									<td><%=reviewVO.getStar()%></td>
 									<td><%=reviewVO.getReview_date()%></td>
-	
+									<% if (reviewVO.getReview_sub_content() != null) {%>
+										<td><h5>답변완료</h5></td>
+									<%}else { %>
+										<td><h5>답변대기</h5></td>
 									<%
 										}
+									}
 									%>
 								</tr>
 							</tbody>

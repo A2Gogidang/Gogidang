@@ -275,13 +275,13 @@ $(document).ready( function() {
 			contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 			dataType : 'json',
 			success : function(retVal) {
-				// webSocket에 보내기 (confirm, 댓글작성자(admin), 게시글작성자(u_id), 글번호(s_num))
+				// webSocket에 보내기 (refuse, 댓글작성자(admin), 게시글작성자(u_id), 글번호(s_num))
 				if (retVal.res == "refuse") {
 					let socketMsg = ("refuse," + "admin," + u_id + "," + s_num);
 					console.debug("ssssssmsg>> ", socketMsg);
 					socket.send(socketMsg);	
 				} else {
-					alert("confirm Fail!!!!");
+					alert("refuse Fail!!!!");
 				}
 			}, 
 			error:function() {
