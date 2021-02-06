@@ -148,6 +148,14 @@ public class StoreServiceImpl implements StoreService {
    }
    //dohyeong end
 
+	@Override
+	public String getStoreId(int s_num) {
+		StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
+		String u_id = storeMapper.getStoreId(s_num);
+		System.out.println("u_id = " + u_id);
+		return u_id;
+	}
+
 
 
 
