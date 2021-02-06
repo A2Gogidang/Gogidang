@@ -63,6 +63,8 @@ form #store_not{
     text-transform: uppercase;
     letter-spacing: 2px;
     color: white;
+    padding-bottom: 0px;
+    padding-top: 0px;
 }
 
 .btn{

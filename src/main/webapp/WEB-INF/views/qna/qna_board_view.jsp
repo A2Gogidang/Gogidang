@@ -68,7 +68,7 @@
 											제 목
 										</ts>
 										<td>
-											<%=qna.getTitle()%>
+										<input name="title" type="text" size="50" value="<%=qna.getTitle()%>" readonly/>
 										</td>
 									</div>	
 									<div class="id_input_box">
