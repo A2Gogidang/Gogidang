@@ -19,7 +19,7 @@
 
 <!-- Product Section Begin -->
 <section class="product spad">
-	<div class="container">
+	<div class="container" >
 		<div class="row">
 			<div class="myreview">
 				<div class="col-lg-3" id="nav-bar">
@@ -105,22 +105,21 @@
 			    </div>
 			    
 			    <div class="modal-textbox">
-				  	<div class="modal-textbox-ss"> 
-				    	<ts for="content">내용</ts>
-				    	<td><textarea type="text" id="content" name="content" style="height: 200px;"></textarea></td>
-				    </div>
-			    </div>
-			</ol>
-			
+                 <div class="modal-textbox-ss"> 
+                   <ts for="content">내용</ts>
+                   <td><textarea type="text" id="content" name="content" style="height: 200px;"></textarea></td>
+                </div>
+             </div>
+         </ol>
+         
 
-			<div class="form-checkkkk" style="margin-top: 0px;">
-				
-			  	<button type="button" id="reviewBtn" name="reviewBtn" class="btn btn-lg btn-block btn-success">작성</button>	  	
-			  	<!--<button type="button" id="closeBtn" class="btn-j btn-lg btn-block btn-success" >닫기</button>  -->
-			  	<!--<input type="button" id="closeBtn" value="닫기"/>  -->
-			  	<br>
-			</div>
-			
+         <div class="form-checkkkk" style="margin-top: 0px;">
+            
+              <button type="button" id="reviewBtn" name="reviewBtn" class="btn btn-lg btn-block btn-success">작성</button>        
+              <!--<button type="button" id="closeBtn" class="btn-j btn-lg btn-block btn-success" >닫기</button>  -->
+              <!--<input type="button" id="closeBtn" value="닫기"/>  -->
+              <br>
+         </div>
 		</form>
 	</div>
 </div>

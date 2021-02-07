@@ -110,6 +110,9 @@
 <script>
 
 	var u_id = <%=id%>;
+	var store_u_id = <%=id%>;
+	var user_u_id = '';
+	var sqnastore_num = '';
 	
 	// Get the modal
 	var modal = document.getElementById('myModal');
@@ -134,19 +137,22 @@
 			success : function(retVal) {
 				if (retVal.res == "OK") {
 					var qnastore_num = retVal.qnastore_num;
+					sqnastore_num = retVal.qnastore_num;
 					var u_id = retVal.u_id;
+					user_u_id = retVal.u_id;
 					var title = retVal.title;
 					var content = retVal.content;
+					var re_content = '';
 					$('input#qnastore_num').val(qnastore_num);
 					$('input#u_id').val(u_id);
 					$('input#title').val(title);
 					$('input#content').val(content);
+					$('input#re_content').val(re_content);
 				} else {
 					alert("confirm Fail!!!!");
 				}
 			}
 		});
-
 		modal.style.display = "block";
 	}
 
@@ -189,10 +195,17 @@
  			data : insertData,
  			success : function(data) {
  				if (data == "ok") {
+ 					// webSocket에 보내기 (reStoreQna, 댓글작성자-가게주인(store_u_id), 원글주인(user_u_id), 글번호(sqnastore_num))
+ 					let socketMsg = ("reStoreQna," + store_u_id + "," + user_u_id + "," + sqnastore_num);
+ 					console.debug("ssssssmsg>> ", socketMsg);
+ 					socket.send(socketMsg);
+					alert("good");
  					modal.style.display = "none";
  					storeQnaList();
+ 					user_u_id = '';
+ 					qnastore_num = '';
  				} else {
- 					alert("qnaRe insert Fail!!!!");
+ 					alert("reStoreQna insert Fail!!!!");
  				}
  			}
  		});
