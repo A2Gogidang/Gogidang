@@ -66,13 +66,13 @@
 			
 			<h3>이벤트 작성</h3>
 			<ol>
-				<div class="modal-textbox-e">
-					
+				<!-- <div class="modal-textbox-e">
 				  	<div class="modal-textbox-ev-s">
 				    	<ts for="title">제목</ts>
 					    <td><input type="text" id="title" name="title"></td>
 				  	</div>
-				</div>
+				</div> -->
+				
 				<div class="modal-textbox-ev">
 				  	<div class="modal-textbox-ev-s">
 				    	<ts for="content">이벤트내용</ts>
@@ -87,11 +87,11 @@
 			    		<td><img src="resources/img/store/" id="photo" name="photo" width="520px" height="300px" /></td>
 				     </div>
 			    
-			   	 	<div class="modal-imgbox-ss">
+			    	<!--<div class="modal-imgbox-ss">
 			    		<ts for="thumbnail">썸네일등록</ts>
-			    	<!-- <td><input type="text" id="thumbnail" name="thumbnail"></td> -->
 				    	<td><img src="resources/img/store/" id="thumbnail" name="thumbnail" width="520px" height="300px" /></td>
-			     	</div>
+			     	</div>  -->
+			   	 	
 			     </div>
 			     <!--<li>
 				<label for="photo">메인사진등록</label>
