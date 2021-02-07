@@ -237,7 +237,7 @@ function menuList(s_num){
 	     success : function(data){ 
 	        var a ='';
 	        $.each(data, function(key,value){ //data는 list객체를 받음(controller return 부분)list는 commentVO를 여려개 가지고 있음
-	      		a += '<tr><td><img src="resources/img/store/store_gogi.png"></td>';
+	      		a += '<tr><td><img src="resources/img/menu/'+ value.img +'"></td>';
 	      		a += '<td>' + value.menu_name + '</td>';
 	      		a += '<td>' + value.price + '</td>';
 	      		a += '<td>' + value.grade + '</td>';
