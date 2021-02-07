@@ -77,7 +77,7 @@
 				    	<ts for="content">공지내용</ts>
 				    	<td><textarea id="content" name="content"></textarea>
 				    	<script>CKEDITOR.replace('content',{
-				    		height: 100
+				    		height:30
 				    	});</script></td>
 				    </div>
 			    </div>

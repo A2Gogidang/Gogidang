@@ -119,7 +119,7 @@ $(document).ready(function() {
 						<tr align="center">
 							<td><%=vo.getS_num()%></td>
 							<td><%=vo.getS_name()%></td>
-							<td><button id="myBtn" style="background: #7fad39; color:white; border: 1px solid #7fad39; margin-top: 0px; padding-top: 0px;padding-bottom: 0px">Open Modal</button></td>
+							<td><button id="myBtn" style="background: #7fad39; color:white; border: 1px solid #7fad39; margin-top: 0px; padding-top: 0px;padding-bottom: 0px">상세보기</button></td>
 							<input type="hidden" id="vo_u_id" value=<%=vo.getU_id() %> />
 							<input type="hidden" id="vo_s_num" value=<%=vo.getS_num() %> />	
 							<!-- <td><input type="button" id="modalOpen" value="상세보기"></td> -->
