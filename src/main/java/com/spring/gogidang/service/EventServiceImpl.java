@@ -38,9 +38,10 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public void deleteByNum(int event_num) {
+	public int deleteByNum(int event_num) {
 		EventMapper eventMapper = sqlSession.getMapper(EventMapper.class);
-		eventMapper.deleteByNum(event_num);
+		
+		return eventMapper.deleteByNum(event_num);
 	}
 
 	@Override

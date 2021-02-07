@@ -11,7 +11,7 @@ public interface StoreService {
    
    // taehyun
    public ArrayList<StoreVO> getList();
-   public ArrayList<StoreVO> getWaitList();
+   public List<StoreVO> getWaitList();
    public int confirmStore(int s_num);
    public int refuseStore(int s_num);
    public StoreVO storeInfo(int s_num);
@@ -21,6 +21,8 @@ public interface StoreService {
    public int getTotal(Criteria cri);
    
    public Double getAvgStar(int s_num);
+   
+   public String getStoreId(int s_num);
    
    // soobin
    public int insertStore(StoreVO storeVO); 

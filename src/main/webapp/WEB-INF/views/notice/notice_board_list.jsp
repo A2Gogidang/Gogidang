@@ -86,12 +86,7 @@
 							%>
 						</tbody>
 					</table>
-					<div class="noticebutton">
-					<% if (u_id == "admin" ) { %>
-							<a href="./qnawriteform.qn"><button type="button"
-									class="btn">글쓰기</button> </a>
-					<%}%>
-					</div>
+					
 					<div class="product__pagination">
 						<div class="paging">
 						<% if(nowpage <= 1) { %>

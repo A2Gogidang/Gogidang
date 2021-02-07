@@ -12,6 +12,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/admin_qnaw.css"
 	type="text/css">
+<script src = "${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>	
 
 <!-- Product Section Begin -->
 <section class="product spad">
@@ -96,14 +97,19 @@
 			 	<div class="modal-textbox-ff">
 				  	<div class="modal-textbox-sf">
 				  		<ts for="re_content">답글</ts>
-				    	<td><textarea type="text" id="re_content" name="re_content"/></textarea></td>
+				    	<td><textarea id="re_content" name="re_content"/></textarea>
+				    	<script>CKEDITOR.replace('re_content',{
+				    		height:'95px',
+				    		width:'100%'
+				    	});</script>
+				    	</td>
 				    </div>
 			    </div>			
 			</ol>
 			
 			<div class="form-check-f">
 				
-			  	<button type="button" id="noticeInsertBtn" name="noticeInsertBtn" class="btn btn-lg btn-block btn-success">작성</button>
+			  	<button type="button" id="reQnaWrite" name="reQnaWrite" class="btn btn-lg btn-block btn-success">작성</button>
 			  	<!-- <button type="button" id="closeBtn" class="btn-j btn-lg btn-block btn-success" >닫기</button> -->
 			  	<!--<input type="button" id="closeBtn" value="닫기"/>  -->
 			  	<br>
@@ -122,6 +128,10 @@
 
 <script>
 
+var u_id= '';
+
+var qna_num= '';
+
 // Get the modal
 var modal = document.getElementById('myModal');
 
@@ -135,6 +145,38 @@ $(document).ready(function() {
 	
 	qnaList();
 });
+
+$('[name=reQnaWrite]').click(function () {
+	var insertData = $('[name=qnaForm]').serialize();
+	alert(insertData);
+	reQnaInsert(insertData);
+});
+
+function reQnaInsert(insertData) {
+	$.ajax({
+		url : 'reQna.qn',
+		type : 'POST',
+		data : insertData,
+		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+		dataType : 'json',
+		success : function(retVal) {
+			if (retVal.res == "reQna") {
+				// webSocket에 보내기 (rqQna, admin, 게시글작성자(u_id), 글번호(qna_num))
+				let socketMsg = ("reQna," + "admin," + u_id + "," + qna_num);
+				console.debug("ssssssmsg>> ", socketMsg);
+				socket.send(socketMsg);
+				
+				modal.style.display = "none";
+				qnaList();
+			} else {
+				alert("reQna insert Fail!!!!");
+			}
+		}, 
+		error:function() {
+			alert("reQna ajax 통신 실패!!")
+		}
+	});
+}
 
 function qnaList(){
 	  $.ajax({
@@ -150,7 +192,7 @@ function qnaList(){
 	      		if (value.re_content != null) {
 	      			a += '<td><h6>답변완료</h6></td>';
 	      		} else {
-		      		a += '<td><button onclick="callModal(' + value.qna_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right">문의댓글</button></td></tr>';
+		      		a += '<td><button onclick="callModal(' + value.qna_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right" style="background: #7fad39; color:white; border: 1px solid #7fad39; margin-top: 0px; padding-top: 0px;padding-bottom: 0px">문의댓글</button></td></tr>';
 	      		}
 	        });
 	        
@@ -171,14 +213,14 @@ function callModal(event) {
 		dataType : 'json',
 		success : function(retVal) {
 			if (retVal.res == "OK") {
-				var qna_num = retVal.qna_num;
-				var u_id = retVal.u_id;
+				qna_num = retVal.qna_num;
+				u_id = retVal.u_id;
 				var title = retVal.title;
 				var content = retVal.content;
 				$('input#qna_num').val(qna_num);
 				$('input#u_id').val(u_id);
 				$('input#title').val(title);
-				$('input#content').val(content);
+				$('textarea#content').val(content);
 			} else {
 				alert("qna modal Fail!!!!");
 			}
@@ -186,27 +228,6 @@ function callModal(event) {
 	});
 	
     modal.style.display = "block";
-}
-
-$('[name=reQnaWrite]').click(function () {
-	var insertData = $('[name=qnaForm]').serialize();
-	alert(insertData);
-	reQnaInsert(insertData);
-});
-
-function reQnaInsert(insertData) {
-	$.ajax({
-		url : 'reQna.qn',
-		type : 'POST',
-		data : insertData,
-		success : function(data) {
-			if (data == 1) {
-				noticeList();
-			} else {
-				alert("qnaRe insert Fail!!!!");
-			}
-		}
-	});
 }
 
 

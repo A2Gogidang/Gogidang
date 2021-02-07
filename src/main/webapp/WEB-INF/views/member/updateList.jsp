@@ -25,7 +25,7 @@
                   if (u_id.equals("admin")) {
                   %>
                   <div class="hero__categories__all">
-                  <span>관리자 페이지</span>
+                  <span>마이페이지</span>
                   </div>
                   <ul>
                      <li><a href="storeWait.st">대기중인 가게 승인</a></li>
@@ -50,7 +50,7 @@
                      <li><a href="./purchase_list.py?u_id=<%=memberVO.getU_id()%>">구매내역</a></li>
                      <li><a href="./likeStoreList.li?u_id=<%=memberVO.getU_id()%>">찜목록</a></li>
                      <li><a
-                        href="./reviewListByIdWithPaging.re?u_id=<%=memberVO.getU_id()%>">내가
+                        href="./getListUid.re?u_id=<%=memberVO.getU_id()%>">내가
                            작성한 후기</a></li>
                      <li><a href="./cartList.ct">장바구니</a></li>
                   </ul>
@@ -60,7 +60,7 @@
                            if (storevo == null || storevo.getConfirm() == 0 || storevo.getS_num() == 0) {
                   %>
                   <div class="hero__categories__all">
-                  <span>판매자 마이페이지</span>
+                  <span>마이페이지</span>
                   </div>
                   <ul>
                      <li><a href="./updateList.me">내정보</a></li>

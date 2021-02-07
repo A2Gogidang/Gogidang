@@ -65,7 +65,6 @@
 			 	,#{s_phone}
 			 	,#{s_img}
 			 	,#{s_hour}
-			 	,#{delibery}
 			 	,#{confirm}
 			 	)
 	</insert>	 
@@ -113,6 +112,10 @@
 		<if test="meat != null">
 			AND mr.meat IN<foreach collection="meat" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
 		</if>
+	</select>
+	
+	<select id="getStoreId" parameterType="int" resultType="String">
+		select u_id from shop_reg where s_num = #{s_num}
 	</select>
 
 	<!-- dohyeong end -->

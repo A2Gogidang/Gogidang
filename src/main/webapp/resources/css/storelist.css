@@ -38,7 +38,8 @@ table {
 }
 .row {
 	display: flex;
-   justify-content : center;
+	flex-wrap: wrap;
+   /* justify-content : center; */
 }
 
 #card_row {
@@ -259,6 +260,21 @@ table {
    border-radius: 5px;
 }*/
 
+  .shoping__cart__table table tbody tr td.shoping__cart__item {
+    text-align: left;
+     width: 315px;
+}
+
+.shoplist {
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    background-color: #e0f6d2;
+    width: 931px;
+    margin-left : 89px;
+    
+}
 article {padding: 52px 3% 0;}
 article .block {padding: 20px; min-height: 200px;}
 article .block p {line-height: 22px; color: #fff; font-size: 16px; font-weight: 600;}

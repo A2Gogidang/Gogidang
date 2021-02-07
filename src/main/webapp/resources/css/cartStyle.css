@@ -9,3 +9,7 @@
 .shoping__checkout {
 	
 }
+button, input {
+    overflow: visible;
+    border : 0px;
+}

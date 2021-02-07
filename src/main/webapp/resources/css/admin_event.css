@@ -63,6 +63,8 @@ form #store_not{
     text-transform: uppercase;
     letter-spacing: 2px;
     color: white;
+    padding-bottom: 0px;
+    padding-top: 0px;
 }
 
 .btn{
@@ -107,5 +109,6 @@ form #store_not{
 	font-size: 16px;
 	
 }
-.table .table-hover tr,th{
+.table thead ,th{
 	padding: 0px;
+}

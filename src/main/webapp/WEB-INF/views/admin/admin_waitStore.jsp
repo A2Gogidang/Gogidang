@@ -18,68 +18,6 @@
 	href="${pageContext.request.contextPath}/resources/css/storewait.css"
 	type="text/css">
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
-<script>
-$(document).ready(function() {
-	//Get the modal
-	var modal = document.getElementById('myModal');
-
-	// Get the button that opens the modal
-	var btn = document.getElementById("myBtn");
-	
-	// Get the <span> element that closes the modal
-	var span = document.getElementsByClassName("close")[0];   
-
-	// When the user clicks on the button, open the modal 
-	btn.onclick = function(event) {
-		$.ajax({
-			url : 'storeWaitInfo.re',
-			type : 'POST',
-			data : {'s_num' : $('input#vo_s_num').val()},
-			contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-			dataType : 'json',
-			success : function(retVal) {
-				if (retVal.res == "OK") {
-					var s_num = retVal.s_num;
-					var u_id = retVal.u_id;
-					var thumbnail = retVal.thumbnail;
-					var s_name = retVal.s_name;
-					var s_addr = retVal.s_addr;
-					var s_phone = retVal.s_phone;
-					var s_img = retVal.s_img;
-					var s_hour = retVal.s_hour;
-					$('input#s_num').val(s_num);
-					$('input#u_id').val(u_id);
-					$('input#thumbnail').val(thumbnail);
-					$('input#s_name').val(s_name);
-					$('input#s_addr').val(s_addr);
-					$('input#s_phone').val(s_phone);
-					$('input#s_img').val(s_img);
-					$('input#s_hour').val(s_hour);
-				} else {
-					alert("confirm Fail!!!!");
-				}
-			}
-		});
-		
-	    modal.style.display = "block";
-	}
-
-	// When the user clicks on <span> (x), close the modal
-	span.onclick = function(event) {
-	    modal.style.display = "none";
-	}
-
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-	    if (event.target == modal) {
-	        modal.style.display = "none";
-	    }
-	}
-});
-</script>
-
 <!-- Product Section Begin -->
 <section class="product spad">
 	<div class="container">
@@ -111,24 +49,9 @@ $(document).ready(function() {
 							<td>상세보기</td>
 						</tr>
 						</thead>
-						<%
-							if (storeList.size() > 0) {
-								for (int i = 0; i < storeList.size(); i++) {
-									StoreVO vo = (StoreVO) storeList.get(i);
-						%>
-						<tr align="center">
-							<td><%=vo.getS_num()%></td>
-							<td><%=vo.getS_name()%></td>
-							<td><button id="myBtn">Open Modal</button></td>
-							<input type="hidden" id="vo_u_id" value=<%=vo.getU_id() %> />
-							<input type="hidden" id="vo_s_num" value=<%=vo.getS_num() %> />	
-							<!-- <td><input type="button" id="modalOpen" value="상세보기"></td> -->
-							<!-- data-toggle="modal" data-target="#myModal" -->
-						</tr>
-						<%
-							}
-							}
-						%>
+						<tbody id="storewait_center">
+						
+						</tbody>
 					</table>
 			</div>
 			<!-- content End -->
@@ -198,14 +121,11 @@ $(document).ready(function() {
 			   <div class="modal-imgbox">
 			   	 <div class="modal-imgbox-ss">
 			    	<ts>가게메인사진</ts>
-			    	<!-- <td><input type="text" id="thumbnail" name="thumbnail"></td> -->
-			    			    	
-		    		<td><img src="resources/img/store/" id="thumbnail" name="thumbnail" width="550px" height="350px" /></td>
+		    		<div id="thumbnail_IMG"></div>
 			     </div>
 			     <div class="modal-imgbox-ss">
 			    	<ts for="s_img">사업자등록사진</ts>
-			    	<td><img src="resources/img/store/" id="s_img" name="s_img" width="550px" height="350px" /></td>
-			    	<!-- <td><input id="s_img" name="s_img" type="text" ></td> -->
+			    	<div id="s_img_IMG"></div>
 			     </div>
 			   </div>
 				
@@ -231,65 +151,148 @@ $(document).ready(function() {
 </div>
 <!-- modal END -->
 
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 <script>
+$(document).ready(function() {
+	storeWaitList();
+});
+	
+//Get the modal
+var modal = document.getElementById('myModal');
 
-var u_id = $('input#vo_u_id').val();
-var s_num = $('input#vo_s_num').val();
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
 
-$(document).ready( function() {
-	$('#confirmBtn').on('click', function(evt) {
-		$.ajax({
-			url: 'confirmStore.re',
-			type : 'POST',
-			data : {'s_num' : $('input#s_num').val()},
-			contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-			dataType : 'json',
-			success : function(retVal) {
-				// webSocket에 보내기 (confirm, 댓글작성자(admin), 게시글작성자(u_id), 글번호(s_num))
-				if (retVal.res == "confirm") {
-					let socketMsg = ("confirm," + "admin," + u_id + "," + s_num);
-					console.debug("ssssssmsg>> ", socketMsg);
-					socket.send(socketMsg);	
-				} else {
-					alert("confirm Fail!!!!");
-				}
-			}, 
-			error:function() {
-				alert("confirm ajax 통신 실패!!")
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];   
+
+function storeWaitList(){
+	  $.ajax({
+	     url : 'storeWaitListAjax.re',
+	     contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+	     success : function(data){ 
+	        var a ='';
+	        $.each(data, function(key,value){
+	      		a += '<tr align=center><td>'+ value.s_num + '</td>';
+	      		a += '<td>' + value.s_name + '</td>';
+	      		a += '<td><button onclick="callModal(' + value.s_num + ');" id="myBtn" class="btn btn-primary btn-xs" style="background: #7fad39; color:white; border: 1px solid #7fad39; margin-top: 0px; padding-top: 0px;padding-bottom: 0px">상세보기</button></td></tr>';
+	        });
+	        
+	        $("#storewait_center").html(a); //a내용을 html에 형식으로 .commentList로 넣음
+	     },
+	     error:function(){
+	        alert("ajax통신 실패(list)!!!");
+	     }
+	  });
+	}
+
+// When the user clicks on the button, open the modal 
+function callModal(event){
+	$.ajax({
+		url : 'storeWaitInfo.re',
+		type : 'POST',
+		data : {'s_num' : event},
+		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+		dataType : 'json',
+		success : function(retVal) {
+			if (retVal.res == "OK") {
+				var s_num = retVal.s_num;
+				var u_id = retVal.u_id;
+				var thumbnail = retVal.thumbnail;
+				var s_name = retVal.s_name;
+				var s_addr = retVal.s_addr;
+				var s_phone = retVal.s_phone;
+				var s_img = retVal.s_img;
+				var s_hour = retVal.s_hour;
+				$('input#s_num').val(s_num);
+				$('input#u_id').val(u_id);
+				$('input#thumbnail').val(thumbnail);
+				$('input#s_name').val(s_name);
+				$('input#s_addr').val(s_addr);
+				$('input#s_phone').val(s_phone);
+				$('input#s_img').val(s_img);
+				$('input#s_hour').val(s_hour);
+				
+				var dataURI1 = 'resources/img/store/'+retVal.thumbnail;		            
+				var imgTag1 = "<img id='thumbnail_IMG' style='width: 550px; height:350px;' src='"+dataURI1+"'/>";
+	            $("#thumbnail_IMG").append(imgTag1);
+	            var dataURI2 = 'resources/img/store/'+retVal.s_img;	            
+				var imgTag2 = "<img id='s_img_IMG' style='width: 550px; height:350px;' src='"+dataURI2+"'/>";
+	            $("#s_img_IMG").append(imgTag2);
+			} else {
+				alert("confirm Fail!!!!");
 			}
-		});
-		
-		evt.preventDefault();
-		if (socket.readyState !== 1) return;
-		
-/* 		let msg = $('input#msg').val();
-		socket.send(msg);
- */
+		}
 	});
 	
-	$('#refuseBtn').on('click', function(evt) {
-		$.ajax({
-			url: 'refuseStore.re',
-			type : 'POST',
-			data : {'s_num' : $('input#s_num').val()},
-			contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-			dataType : 'json',
-			success : function(retVal) {
-				// webSocket에 보내기 (confirm, 댓글작성자(admin), 게시글작성자(u_id), 글번호(s_num))
-				if (retVal.res == "refuse") {
-					let socketMsg = ("refuse," + "admin," + u_id + "," + s_num);
-					console.debug("ssssssmsg>> ", socketMsg);
-					socket.send(socketMsg);	
-				} else {
-					alert("confirm Fail!!!!");
-				}
-			}, 
-			error:function() {
-				alert("confirm ajax 통신 실패!!")
-			}
-		});
-	});
+    modal.style.display = "block";
+}
+
+$('#confirmBtn').on('click', function(evt) {
+    $.ajax({
+       url: 'confirmStore.re',
+       type : 'POST',
+       data : {'s_num' : $('input#s_num').val()},
+       contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+       dataType : 'json',
+       success : function(retVal) {
+          // webSocket에 보내기 (confirm, 댓글작성자(admin), 게시글작성자(u_id), 글번호(s_num))
+          if (retVal.res == "confirm") {
+             let socketMsg = ("confirm," + "admin," + u_id + "," + s_num);
+             console.debug("ssssssmsg>> ", socketMsg);
+             socket.send(socketMsg); 
+             modal.style.display = "none";
+             alert("승인하였습니다.")
+             storeWaitList();
+          } else {
+             alert("confirm Fail!!!!");
+          }
+       }, 
+       error:function() {
+          alert("confirm ajax 통신 실패!!")
+       }
+    });
 });
+ 
+$('#refuseBtn').on('click', function(evt) {
+    $.ajax({
+       url: 'refuseStore.re',
+       type : 'POST',
+       data : {'s_num' : $('input#s_num').val()},
+       contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+       dataType : 'json',
+       success : function(retVal) {
+          // webSocket에 보내기 (refuse, 댓글작성자(admin), 게시글작성자(u_id), 글번호(s_num))
+          if (retVal.res == "refuse") {
+             let socketMsg = ("refuse," + "admin," + u_id + "," + s_num);
+             console.debug("ssssssmsg>> ", socketMsg);
+             socket.send(socketMsg); 
+             modal.style.display = "none";
+             alert("거절하였습니다.");
+             storeWaitList();
+          } else {
+             alert("refuse Fail!!!!");
+          }
+       }, 
+       error:function() {
+          alert("confirm ajax 통신 실패!!")
+       }
+    });
+});
+
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function(event) {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 </script>
 
 <%@include file="../includes/footer.jsp"%>

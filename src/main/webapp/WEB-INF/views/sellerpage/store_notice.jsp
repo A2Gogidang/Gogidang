@@ -159,14 +159,14 @@
 			success : function(data) {
 				var a = '';
 					$.each(data,function(key, value) {
-						a += '<tr><td>'+ value.qnastore_num + '</td>';
+						a += '<tr style="text-align: center;"><td>'+ value.qnastore_num + '</td>';
 						a += '<td>' + value.title + '</td>';
 						a += '<td>' + value.u_id + '</td>';
 						a += '<td>' + value.re_date + '</td>';
 						if (value.re_content != null) {
-							a += '<td><h6>답변완료</h6></td></tr>';
+							a += '<td><a href="./qnaStoreInfo.qs?qnastore_num='+ value.qnastore_num + '"><h6><button class="btn btn-primary btn-xs pull-right" style="margin-top: 0px;">답변확인</button></a></td></tr>';
 						} else {
-							a += '<td><button onclick="callModal('+ value.qnastore_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right">문의댓글</button></td></tr>';
+							a += '<td><button onclick="callModal('+ value.qnastore_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right" style="margin-top: 0px;">문의댓글</button></td></tr>';
 						}
 					});
 						$("#storeQna_content").html(a); //a내용을 html에 형식으로 .commentList로 넣음

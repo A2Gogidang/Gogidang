@@ -21,7 +21,12 @@
 	function addboard(){
 		qnaform.submit();
 	}
+	
+	
 	</script>
+	
+	<script src = "${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
+
 </head>
 <body><section class="product spad">
 	<div class="container">
@@ -72,7 +77,8 @@
 											내 용
 										</ts>
 										<td>
-											<textarea name="content"></textarea>
+											<textarea name="content" id="editor4"></textarea>
+											<script>CKEDITOR.replace('editor4');</script>
 										</td>
 										</div>
 								</form>
@@ -97,5 +103,5 @@
 			</section>
 			
 
-<!-- 게시판 등록 -->
+<!--게시판 등록-->
 <%@include file="../includes/footer.jsp"%>
