@@ -43,7 +43,7 @@
 								<th>사진</th>
 								<th>내용</th>
 								<th>등록일</th>
-								<th><button id="write" class="btn btn-primary btn-xs pull-right" style="background: #7fad39; color:white; border: 1px solid #7fad39; margin-top: 0px; padding-top: 0px;padding-bottom: 0px">작성</button></th>
+								<th><button id="write" class="btn btn-primary btn-xs pull-right" style="background: #7fad39; color:white; border: 1px solid #7fad39; margin-top: 0px;">작성</button></th>
 							</tr>
 						</thead>
 						<tbody id="event_content" class="text-center">
@@ -66,18 +66,17 @@
 			
 			<h3>이벤트 작성</h3>
 			<ol>
-				<div class="modal-textbox-e">
-					
+				<!-- <div class="modal-textbox-e">
 				  	<div class="modal-textbox-ev-s">
 				    	<ts for="title">제목</ts>
 					    <td><input type="text" id="title" name="title"></td>
 				  	</div>
-				</div>
+				</div> -->
+				
 				<div class="modal-textbox-ev">
 				  	<div class="modal-textbox-ev-s">
 				    	<ts for="content">이벤트내용</ts>
-				    	<td><textarea id="content" name="content" type="text"></textarea>
-				    	</td>
+				    	<td><textarea id="content" name="content" type="text"></textarea></td>
 				  	</div>	  	
 			  	</div>
 			  	
@@ -88,11 +87,11 @@
 			    		<td><img src="resources/img/store/" id="photo" name="photo" width="520px" height="300px" /></td>
 				     </div>
 			    
-			   	 	<div class="modal-imgbox-ss">
+			    	<!--<div class="modal-imgbox-ss">
 			    		<ts for="thumbnail">썸네일등록</ts>
-			    	<!-- <td><input type="text" id="thumbnail" name="thumbnail"></td> -->
 				    	<td><img src="resources/img/store/" id="thumbnail" name="thumbnail" width="520px" height="300px" /></td>
-			     	</div>
+			     	</div>  -->
+			   	 	
 			     </div>
 			     <!--<li>
 				<label for="photo">메인사진등록</label>
@@ -174,7 +173,7 @@ function eventList(){
 	      		a += '<td>' + value.photo + '</td>';
 	      		a += '<td>' + value.content + '</td>';
 	      		a += '<td>' + value.re_date + '</td>';
-	      		a += '<td><button onclick="deleteBtn(' + value.event_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right" style="background: white; color:red; border: 1px solid red;margin-top:0px; padding-bottom:0px;padding-top:0px;">삭제</button></td></tr>';
+	      		a += '<td><button onclick="deleteBtn(' + value.event_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right" style="background: #7fad39; color:white; border: 1px solid #7fad39;margin-top:0px;">삭제</button></td></tr>';
 	        });
 	        
 	        $("#event_content").html(a); //a내용을 html에 형식으로 .commentList로 넣음

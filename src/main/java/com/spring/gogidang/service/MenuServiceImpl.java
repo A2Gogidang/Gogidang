@@ -1,6 +1,7 @@
 package com.spring.gogidang.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,9 @@ public class MenuServiceImpl implements MenuService {
 	private SqlSession sqlSession;
 
 	@Override
-	public ArrayList<MenuVO> menuList(int s_num) {
+	public List<MenuVO> menuList(int s_num) {
 		MenuMapper menuMapper = sqlSession.getMapper(MenuMapper.class);
-		ArrayList<MenuVO> menuList = new ArrayList<MenuVO>();
-		menuList = menuMapper.listByNum(s_num);
+		List<MenuVO> menuList = menuMapper.listByNum(s_num);
 		
 		return menuList;
 	}
@@ -32,9 +32,9 @@ public class MenuServiceImpl implements MenuService {
 	}
 	
 	@Override
-	public void menuDelete(int menu_num) {
+	public int menuDelete(int menu_num) {
 		MenuMapper menuMapper = sqlSession.getMapper(MenuMapper.class);
-		menuMapper.deleteByNum(menu_num);
+		return menuMapper.deleteByNum(menu_num);
 	}
 	
 	@Override

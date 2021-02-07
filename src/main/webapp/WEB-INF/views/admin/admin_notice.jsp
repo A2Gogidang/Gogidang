@@ -126,8 +126,10 @@ function noticeInsert(insertData) {
 		url : 'noticewriteAjax.re',
 		type : 'POST',
 		data : insertData,
+		contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 		success : function(data) {
-			if (data == 1) {
+			if (data == "OK") {
+				alert("등록!");
 				modal.style.display = "none";
 				noticeList();
 			} else {
@@ -165,10 +167,12 @@ function deleteBtn(event) {
 		type : 'POST',
 		data : {'notice_num' : event},
 		contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-		success : function(retVal) {
-			if (retVal.res == "OK") {
-				alert("삭제되었습니다.");
+		success : function(data) {
+			if (data == "OK") {
+				alert("삭제!");
 				noticeList();
+			} else {
+				alert("notice insert Fail!!!!");
 			}
 		}
 	})
