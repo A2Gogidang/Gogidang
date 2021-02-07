@@ -16,17 +16,16 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
-	<script language="javascript">
+
+	<script type="text/javascript">
 	
-	function addboard(){
-		qnaform.submit();
-	}
-	
-	
+		
+		function addboard(){
+			qnaform.submit();
+		}
+		
 	</script>
 	
-	<script src = "${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
-
 </head>
 <body><section class="product spad">
 	<div class="container">
@@ -78,7 +77,6 @@
 										</ts>
 										<td>
 											<textarea name="content" id="editor4"></textarea>
-											<script>CKEDITOR.replace('editor4');</script>
 										</td>
 										</div>
 								</form>
