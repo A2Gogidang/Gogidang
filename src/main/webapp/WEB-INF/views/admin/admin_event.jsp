@@ -12,7 +12,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/store_reviewStyle.css"
 	type="text/css">
-
+<script src = "${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
 <!-- Product Section Begin -->
 <section class="product spad">
 	<div class="container">
@@ -76,7 +76,9 @@
 				<div class="modal-textbox-ev">
 				  	<div class="modal-textbox-ev-s">
 				    	<ts for="content">이벤트내용</ts>
-				    	<td><textarea id="content" name="content" type="text"></textarea></td>
+				    	<td><textarea id="content" name="content" type="text"></textarea>
+				    	<script>CKEDITOR.replace('content');</script>
+				    	</td>
 				  	</div>	  	
 			  	</div>
 			  	
