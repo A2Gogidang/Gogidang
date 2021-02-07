@@ -103,5 +103,5 @@
 			</section>
 			
 
-<!-- 게시판 등록 -->
+<!--게시판 등록-->
 <%@include file="../includes/footer.jsp"%>
