@@ -12,7 +12,7 @@ import com.spring.gogidang.domain.Criteria;
 import com.spring.gogidang.domain.StoreVO;
 import com.spring.mapper.StoreMapper;
 
-@Service("storeService") // ("storeService")soobin code
+@Service("storeService")
 public class StoreServiceImpl implements StoreService {
    
    @Autowired
@@ -30,12 +30,10 @@ public class StoreServiceImpl implements StoreService {
    }
    
    @Override
-   public ArrayList<StoreVO> getWaitList() {
+   public List<StoreVO> getWaitList() {
       StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
-      ArrayList<StoreVO> storeList = new ArrayList<StoreVO>();
-      storeList = storeMapper.getWaitList();
       
-      return storeList;
+      return storeMapper.getWaitList();
    }
     
    @Override
@@ -147,6 +145,14 @@ public class StoreServiceImpl implements StoreService {
       return storelistAjax;
    }
    //dohyeong end
+
+	@Override
+	public String getStoreId(int s_num) {
+		StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
+		String u_id = storeMapper.getStoreId(s_num);
+		System.out.println("u_id = " + u_id);
+		return u_id;
+	}
 
 
 

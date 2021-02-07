@@ -12,7 +12,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/store_reviewStyle.css"
 	type="text/css">
-
+<script src = "${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
 <!-- Product Section Begin -->
 <section class="product spad">
 	<div class="container">
@@ -43,7 +43,7 @@
 								<th>사진</th>
 								<th>내용</th>
 								<th>등록일</th>
-								<th><button id="write" class="btn btn-primary btn-xs pull-right" style="background: #7fad39; color:white; border: 1px solid #7fad39; margin-top: 0px;">작성</button></th>
+								<th><button id="write" class="btn btn-primary btn-xs pull-right" style="background: #7fad39; color:white; border: 1px solid #7fad39; margin-top: 0px; padding-top: 0px;padding-bottom: 0px">작성</button></th>
 							</tr>
 						</thead>
 						<tbody id="event_content" class="text-center">
@@ -76,7 +76,8 @@
 				<div class="modal-textbox-ev">
 				  	<div class="modal-textbox-ev-s">
 				    	<ts for="content">이벤트내용</ts>
-				    	<td><textarea id="content" name="content" type="text"></textarea></td>
+				    	<td><textarea id="content" name="content" type="text"></textarea>
+				    	</td>
 				  	</div>	  	
 			  	</div>
 			  	
@@ -89,18 +90,13 @@
 			    
 			   	 	<div class="modal-imgbox-ss">
 			    		<ts for="thumbnail">썸네일등록</ts>
-			    	<!-- <td><input type="text" id="thumbnail" name="thumbnail"></td> -->
-				    	<td><img src="resources/img/store/" id="thumbnail" name="thumbnail" width="520px" height="300px" /></td>
+				    	<td><img src="" id="thumbnail1" name="thumbnail1" width="520px" height="300px" /></td>
+				    	<td><input id="thumbnail" name="file" type="file" multiple="multiple"/></td>
 			     	</div>
+
 			     </div>
-			     <!--<li>
-				<label for="photo">메인사진등록</label>
-			    <input id="photo" name="photo" type="text">
-			  	</li> 
-				<li>
-				<label for="thumbnail">썸네일등록</label>
-			    <input id="thumbnail" name="thumbnail" type="text">
-			  	</li>   -->
+			     
+				
 				
 			</ol>
 			
@@ -109,11 +105,6 @@
                  <!-- <button type="button" id="closeBtn"  class="btn-j btn-lg btn-block btn-success" >닫기</button> -->
                    <br>
             </div>
-			
-			<!-- <fieldset>
-			  	<button type="button" id="eventInsertBtn" name="eventInsertBtn">작성</button>
-			  	<input type="button" id="closeBtn" value="닫기"/>
-			</fieldset> -->
 			
 		</form>
 	</div>
@@ -153,10 +144,12 @@ function eventInsert(insertData) {
 		type : 'POST',
 		data : insertData,
 		success : function(data) {
-			if (data == 1) {
+			if (data == "OK") {
+				alert("등록!");
+				modal.style.display = "none";
 				eventList();
 			} else {
-				alert("event insert Fail!!!!");
+				alert("event delete Fail!!!!");
 			}
 		}
 	});
@@ -173,7 +166,7 @@ function eventList(){
 	      		a += '<td>' + value.photo + '</td>';
 	      		a += '<td>' + value.content + '</td>';
 	      		a += '<td>' + value.re_date + '</td>';
-	      		a += '<td><button onclick="deleteBtn(' + value.event_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right" style="background: white; color:red; border: 1px solid red;margin-top:0px;">삭제</button></td></tr>';
+	      		a += '<td><button onclick="deleteBtn(' + value.event_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right" style="background: white; color:red; border: 1px solid red;margin-top:0px; padding-bottom:0px;padding-top:0px;">삭제</button></td></tr>';
 	        });
 	        
 	        $("#event_content").html(a); //a내용을 html에 형식으로 .commentList로 넣음
@@ -188,14 +181,26 @@ function deleteBtn(event) {
 	$.ajax({
 		url : 'eventDelete.re',
 		type : 'POST',
-		data : {'notice_num' : event},
+		data : {'event_num' : event},
 		contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-		success : function(retVal) {
-			
+		success : function(data) {
+			if (data == "OK") {
+				alert("삭제!");
+				eventList();
+			} else {
+				alert("event delete Fail!!!!");
+			}
 		}
-	})
+	});
 }
 	
+$("#thumbnail").change(function() {
+	var reader = new FileReader;
+	reader.onload = function(data) {
+		$("#thumbnail1").attr("src", data.target.result).width(500);
+	}
+	reader.readAsDataURL(this.files[0]);
+});
 
 
 // When the user clicks on <span> (x), close the modal

@@ -8,6 +8,8 @@
 #menu_info{
 margin-top : 15px;
 }
+
+
 .section-title h5:after {
    position: absolute;
    left: 0;
@@ -181,6 +183,23 @@ margin-top : 70px;
 .product__details__tab .product__details__tab__desc {
 	margin-top : 0px;
 }
+
+.header__menu ul li a {
+    font-size: 17px;
+    color: #252525;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+    -webkit-transition: all, 0.3s;
+    -moz-transition: all, 0.3s;
+    -ms-transition: all, 0.3s;
+    -o-transition: all, 0.3s;
+    transition: all, 0.3s;
+    padding: 5px 0;
+    display: block;
+    text-decoration: none;
+}
+
 a{
     text-decoration: none;
     background-color: transparent;

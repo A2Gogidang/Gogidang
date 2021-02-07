@@ -33,13 +33,22 @@ public class ReviewController {
 	private ReviewService reviewService;
 	
 	@Autowired
-	private StoreService storeService;
-	
-	@Autowired
 	private MemberService memberService;
+	
+	
+	@RequestMapping("/reviewDetail.re")
+	public String getReviewInfo(@RequestParam("review_num") int review_num,Model model) {
+		ReviewVO vo = reviewService.getReviewInfo(review_num);
+		
+		model.addAttribute("ReviewVO", vo);
+		
+		return "review/review_detail";
+	}
 	
 	@RequestMapping("/reviewList.re")
 	public String reviewList(Model model) {
+		
+		
 		
 		model.addAttribute("reviewList", reviewService.getList());
 		
@@ -65,6 +74,16 @@ public class ReviewController {
 		
 		model.addAttribute("reviewList", reviewList);
 
+		return "mypage/member_review";
+	}
+
+	@RequestMapping("/getListUid.re")
+	public String getListUid(@RequestParam("u_id") String u_id, Model model , HttpSession session) {
+		
+		ArrayList<ReviewVO> reviewList = (ArrayList<ReviewVO>) reviewService.getListUid(u_id);
+		
+		model.addAttribute("reviewList", reviewList);
+		
 		return "mypage/member_review";
 	}
 	
@@ -225,6 +244,24 @@ public class ReviewController {
 		
 		return reviewList;
 	}
+
+	@RequestMapping(value = "/reviewRegAjax.re", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public Map<String, Object> reviewRegAjax(ReviewVO review, HttpSession session) {
+		Map<String, Object> retVal = new HashMap<String, Object>();
+
+		try {
+			reviewService.regReview(review);
+			
+			retVal.put("res", "OK");
+		} catch (Exception e) {
+			retVal.put("res", "FAIL");
+			retVal.put("message", "Failure");
+		}
+		
+		return retVal;
+	}
+
 	@RequestMapping("/review_detail.re")
 	public String review_detail() {
 		

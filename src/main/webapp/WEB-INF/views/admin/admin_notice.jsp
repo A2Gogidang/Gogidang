@@ -12,7 +12,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/store_reviewStyle.css"
 	type="text/css">
-
+<script src = "${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
 <!-- Product Section Begin -->
 <section class="product spad">
 	<div class="container">
@@ -42,7 +42,7 @@
 								<th>제목</th>
 								<th>작성자</th>
 								<th>등록일</th>
-								<th align="center"><button id="write" class="btn btn-primary btn-xs pull-right" style="background: #7fad39; color:white; border: 1px solid #7fad39; margin-top: 0px;">작성</button></th>
+								<th align="center"><button id="write" class="btn btn-primary btn-xs pull-right" style="background: #7fad39; color:white; border: 1px solid #7fad39; margin-top: 0px; padding-top: 0px;padding-bottom: 0px">작성</button></th>
 							</tr>
 						</thead>
 						<tbody id="notice_content" class="text-center">
@@ -75,7 +75,8 @@
 			    <div class="modal-textbox">
 				  	<div class="modal-textbox-ss"> 
 				    	<ts for="content">공지내용</ts>
-				    	<td><textarea type="text" id="content" name="content"></textarea></td>
+				    	<td><textarea id="content" name="content"></textarea>
+				    	<script>CKEDITOR.replace('editor4');</script></td>
 				    </div>
 			    </div>
 			</ol>
@@ -84,8 +85,6 @@
 			<div class="form-checkkkk">
 				
 			  	<button type="button" id="noticeInsertBtn" name="noticeInsertBtn" class="btn btn-lg btn-block btn-success">작성</button>	  	
-			  	<!--<button type="button" id="closeBtn" class="btn-j btn-lg btn-block btn-success" >닫기</button>  -->
-			  	<!--<input type="button" id="closeBtn" value="닫기"/>  -->
 			  	<br>
 			</div>
 			
@@ -128,8 +127,10 @@ function noticeInsert(insertData) {
 		url : 'noticewriteAjax.re',
 		type : 'POST',
 		data : insertData,
+		contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 		success : function(data) {
-			if (data == 1) {
+			if (data == "OK") {
+				alert("등록!");
 				modal.style.display = "none";
 				noticeList();
 			} else {
@@ -150,7 +151,7 @@ function noticeList(){
 	      		a += '<td>' + value.title + '</td>';
 	      		a += '<td>' + value.u_id + '</td>';
 	      		a += '<td>' + value.re_date + '</td>';
-	      		a += '<td><button onclick="deleteBtn(' + value.notice_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right" style="background: white; color:red; border: 1px solid red;margin-top:0px;">삭제</button></td></tr>';
+	      		a += '<td><button onclick="deleteBtn(' + value.notice_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right" style="background: white; color:red; border: 1px solid red;margin-top:0px; padding-top:0px; padding-bottom:0px;">삭제</button></td></tr>';
 	        });
 	        
 	        $("#notice_content").html(a); //a내용을 html에 형식으로 .commentList로 넣음
@@ -167,8 +168,13 @@ function deleteBtn(event) {
 		type : 'POST',
 		data : {'notice_num' : event},
 		contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-		success : function(retVal) {
-			
+		success : function(data) {
+			if (data == "OK") {
+				alert("삭제!");
+				noticeList();
+			} else {
+				alert("notice insert Fail!!!!");
+			}
 		}
 	})
 }

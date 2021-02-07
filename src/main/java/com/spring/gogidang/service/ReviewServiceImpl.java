@@ -27,6 +27,14 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return reviewMapper.getList();
 	}
+	
+	@Override
+	public ReviewVO getReviewInfo(int review_num) {
+		
+		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
+		
+		return reviewMapper.reviewInfo(review_num);
+	}
 
 	@Override
 	public List<ReviewVO> getListWithPaging(Criteria cri) {
@@ -88,6 +96,27 @@ public class ReviewServiceImpl implements ReviewService {
 		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
 		
 		return reviewMapper.getListSn(s_num);
+	}
+
+	@Override
+	public List<ReviewVO> getListUid(String u_id) {
+		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
+		
+		return reviewMapper.getListUid(u_id);
+	}
+
+	@Override
+	public int getCount(int s_num) {
+		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
+		
+		return reviewMapper.getCount(s_num);
+	}
+
+	@Override
+	public int getCountPay(int pay_num) {
+		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
+		
+		return reviewMapper.getCountPay(pay_num);
 	}
 
 	

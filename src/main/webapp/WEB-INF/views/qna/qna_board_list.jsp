@@ -64,7 +64,7 @@
 						<tr>
 							<td><%=qna_num%></td>
 
-							<td style="font-family: Tahoma; font-size: 10pt;">
+							<td style="font-family: Cairo, sans-serif; font-size: 16px;">
 								<%-- 
 									 <%
 										if (ql.getRe_lev() != 0) {
@@ -88,10 +88,10 @@
 									</a>
 							</td>
 
-							<td style="font-family: Tahoma; font-size: 10pt;">
+							<td style="font-family:Cairo, sans-serif; font-size: 16px;">
 								<%=ql.getU_id()%>
 							</td>
-							<td style="font-family: Tahoma; font-size: 10pt;">
+							<td style="font-family: Cairo, sans-serif; font-size: 16px;">
 								<%=ql.getRe_date()%>
 							</td>
 

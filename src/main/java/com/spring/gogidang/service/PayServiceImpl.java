@@ -1,6 +1,7 @@
 package com.spring.gogidang.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,9 +47,9 @@ public class PayServiceImpl implements PayService{
 	
 	
 	@Override
-	public ArrayList<PayVO> purchaseList(PayVO payVO) {
+	public ArrayList<PayVO> purchaseList(String u_id) {
 		PayMapper paymapper = sqlSession.getMapper(PayMapper.class);
-		ArrayList<PayVO> purchase_list = paymapper.purchaseList(payVO);
+		ArrayList<PayVO> purchase_list = paymapper.purchaseList(u_id);
 		
 		return purchase_list;
 	}
@@ -68,6 +69,20 @@ public class PayServiceImpl implements PayService{
 		PayMapper paymapper = sqlSession.getMapper(PayMapper.class); 
 		int res = paymapper.deletePay(payVO);
 		return res; 
+	}
+
+	@Override
+	public List<PayVO> getList(String u_id) {
+		PayMapper paymapper = sqlSession.getMapper(PayMapper.class);
+		
+		return paymapper.getList(u_id);
+	}
+
+	@Override
+	public PayVO getInfo(int pay_num) {
+		PayMapper paymapper = sqlSession.getMapper(PayMapper.class);
+		
+		return paymapper.getInfo(pay_num);
 	}
 
 
