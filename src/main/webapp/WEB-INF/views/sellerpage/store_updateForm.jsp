@@ -48,7 +48,7 @@
 				        	     <input type="hidden" name="u_id" value=<%=memberVO.getU_id()%>>
 				        	     
 				        	    	 <div class="id_input_box_ss">
-				         				<ts>가게 메인 사진 </ts>
+				         				<ts style="vertical-align: middle;margin-right: 25px;">가게 메인 사진 </ts>
 				         				<td><img src="resources/img/store/<%=vo.getThumbnail() %>" width="350px" height="200px" /></td>      			         				
 			         	 			</div>
 			         	 			 <div class="id_input_box">
@@ -56,17 +56,17 @@
 				         				<td><input type="file" id="thumbnail" name="thumbnail"  value="<%=vo.getThumbnail()%>" /></td>	      			         				
 			         	 			</div>
 			         	 			
-			         	 			<div class="id_input_box_ss">
-				         				<ts>사업자등록증</ts>	         		
+			         	 			<div class="id_input_box_sss" style="margin-top: 10px">
+				         				<ts style="vertical-align: middle;margin-right: 33px;">사업자등록증</ts>	         		
 				         				<td><img src="resources/img/store/<%=vo.getS_img() %>"  name="s_num" width="350px" height="200px" /></td>							
 			         	 			</div>
 			         	 			<div class="id_input_box">
 				         				<ts> </ts>        				
 				         				<td><input type="file" id="s_img" name="file" value="<%=vo.getS_img()%>" multiple="multiple"/></td>	      			         			         				
 			         	 			</div>
-			         	 			
+			         	 			<br><br>
 			         	 			<div class="id_input_box">
-				         				<ts>사업자등록번호</ts>	         		
+				         				<ts style="vertical-align: middle;">사업자등록번호</ts>	         		
 				         				<td><input type="text" name="s_num" readonly value="<%=vo.getS_num() %>" /></td>	      			         				
 			         	 			</div>
 			         	 			
@@ -123,13 +123,6 @@
 											</select>
 			         	 					
 			         	 			</div>
-											
-									<div class="id_input_box">
-						         		<ts>배달 가능여부</ts>
-						         			<td><input class="radio_input" type="radio" name="delibery"  value="0" checked/>불가능</td>
-											<td><input class="radio_input" type="radio" name="delibery"  value="1"/>가능</td>
-					         	 	</div>
-					         	 	
 					         	 	<div class="join_btn">
 					         	 		<button type="submit" class="btn-jj btn-lg btn-block btn-success"  multiple / >저장</button>		
 										<button type="reset" class="btn-j btn-lg btn-block btn-success" >다시 작성</button>
