@@ -13,12 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.gogidang.domain.MemberVO;
 import com.spring.gogidang.domain.MenuVO;
+import com.spring.gogidang.domain.QnaVO;
 import com.spring.gogidang.domain.StoreVO;
 import com.spring.gogidang.service.MenuService;
 import com.spring.gogidang.service.StoreService;
@@ -55,7 +58,7 @@ public class MenuController {
 			ArrayList<MenuVO> menuList  = new ArrayList<MenuVO>();
 			
 			
-			menuList = menuService.menuList(s_num);
+			menuList = (ArrayList<MenuVO>) menuService.menuList(s_num);
 
 			model.addAttribute("menuList",menuList);
 			model.addAttribute("StoreVO",vo);
@@ -132,4 +135,25 @@ public class MenuController {
 
 		return null;
 	}
+	
+	@RequestMapping(value = "/menuListAjax.re", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public List<MenuVO> menuListAjax(@RequestParam("s_num") int s_num) {
+		List<MenuVO> menuList = menuService.menuList(s_num);
+		
+		return menuList;
+	}
+	
+	@RequestMapping("/menuDelete.re")
+	@ResponseBody
+	public String menuDelete(@RequestParam("menu_num") int menu_num) {
+		int res = menuService.menuDelete(menu_num);
+		
+		if (res == 1) {
+			return "OK";
+		} else {
+			return "NO";
+		}
+	}
+
 }
