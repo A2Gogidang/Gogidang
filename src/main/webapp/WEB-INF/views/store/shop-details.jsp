@@ -556,7 +556,7 @@ relayout();
 				var a = '';
 					$.each(data,function(key, value) {
 						a += '<tr><td>'+ value.qnastore_num + '</td>';
-						a += '<td>' + value.title + '</td>';
+						a += '<td><a href="./qnaStoreInfo.qs?qnastore_num='+ value.qnastore_num + '">' + value.title + '</a></td>';
 						a += '<td>' + value.u_id + '</td>';
 						a += '<td>' + value.re_date + '</td>';
 						if (value.re_content != null) {

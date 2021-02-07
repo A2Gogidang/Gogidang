@@ -17,7 +17,7 @@ public interface NoticeService {
 	public NoticeVO getDetail(int notice_num);
 	public int noticeModify(NoticeVO notice);
 	public NoticeVO noticeModifyForm(int notice_num);
-	public int noticeDelete(HashMap<String, String> hashmap);
+	public int noticeDelete(int notice_num);
 	
 	public List<NoticeVO> getList();
 

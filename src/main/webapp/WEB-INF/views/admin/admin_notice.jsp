@@ -76,9 +76,7 @@
 				  	<div class="modal-textbox-ss"> 
 				    	<ts for="content">공지내용</ts>
 				    	<td><textarea id="content" name="content"></textarea>
-				    	<script>CKEDITOR.replace('content',{
-				    		height: 100
-				    	});</script></td>
+				    	<script>CKEDITOR.replace('editor4');</script></td>
 				    </div>
 			    </div>
 			</ol>
@@ -87,8 +85,6 @@
 			<div class="form-checkkkk">
 				
 			  	<button type="button" id="noticeInsertBtn" name="noticeInsertBtn" class="btn btn-lg btn-block btn-success">작성</button>	  	
-			  	<!--<button type="button" id="closeBtn" class="btn-j btn-lg btn-block btn-success" >닫기</button>  -->
-			  	<!--<input type="button" id="closeBtn" value="닫기"/>  -->
 			  	<br>
 			</div>
 			
@@ -171,7 +167,10 @@ function deleteBtn(event) {
 		data : {'notice_num' : event},
 		contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 		success : function(retVal) {
-			
+			if (retVal.res == "OK") {
+				alert("삭제되었습니다.");
+				noticeList();
+			}
 		}
 	})
 }
