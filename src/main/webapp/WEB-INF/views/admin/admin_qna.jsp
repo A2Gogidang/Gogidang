@@ -99,7 +99,7 @@
 				  		<ts for="re_content">답글</ts>
 				    	<td><textarea id="re_content" name="re_content"/></textarea>
 				    	<script>CKEDITOR.replace('re_content',{
-				    		height:'100%',
+				    		height:'95px',
 				    		width:'100%'
 				    	});</script>
 				    	</td>
@@ -161,7 +161,7 @@ function reQnaInsert(insertData) {
 		dataType : 'json',
 		success : function(retVal) {
 			if (retVal.res == "reQna") {
-				// webSocket에 보내기 (rqQna, 댓글작성자(admin), 게시글작성자(u_id), 글번호(qna_num))
+				// webSocket에 보내기 (rqQna, admin, 게시글작성자(u_id), 글번호(qna_num))
 				let socketMsg = ("reQna," + "admin," + u_id + "," + qna_num);
 				console.debug("ssssssmsg>> ", socketMsg);
 				socket.send(socketMsg);
@@ -188,7 +188,7 @@ function qnaList(){
 	      		a += '<tr align=center><td>'+ value.qna_num + '</td>';
 	      		a += '<td>' + value.title + '</td>';
 	      		a += '<td>' + value.u_id + '</td>';
-	      		a += '<td>' + value.content + '</td>';
+	      		a += '<td>' + value.re_date + '</td>';
 	      		if (value.re_content != null) {
 	      			a += '<td><h6>답변완료</h6></td>';
 	      		} else {

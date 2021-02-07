@@ -539,6 +539,10 @@ relayout();
 			data : insertData,
 			success : function(data) {
 				if (data == "ok") {
+					// webSocket에 보내기 (storeQna, 게시글작성자(mu_id), 가게주인(wu_id), 글번호(review_num))
+ 					let socketMsg = ("storeQna," + mu_id + "," + wu_id + "," + review_num);
+ 					console.debug("ssssssmsg>> ", socketMsg);
+ 					socket.send(socketMsg);
 					alert("good");
 					modal.style.display = "none";
 					storeQnaList();
@@ -559,7 +563,7 @@ relayout();
 				var a = '';
 					$.each(data,function(key, value) {
 						a += '<tr><td>'+ value.qnastore_num + '</td>';
-						a += '<td>' + value.title + '</td>';
+						a += '<td><a href="./qnaStoreInfo.qs?qnastore_num='+ value.qnastore_num + '">' + value.title + '</a></td>';
 						a += '<td>' + value.u_id + '</td>';
 						a += '<td>' + value.re_date + '</td>';
 						if (value.re_content != null) {

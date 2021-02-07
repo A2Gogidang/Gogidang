@@ -124,4 +124,24 @@ public class NoticeController {
 		return "sellerpage/store_notice";
 	}
 	
+	@RequestMapping("/noticeDelete.re")
+	@ResponseBody
+	public Map<String, Object> noticeDelete(@RequestParam("notice_num") int notice_num) {
+		Map<String, Object> retVal = new HashMap<String, Object>();
+		
+		try {
+			int res = noticeService.noticeDelete(notice_num);
+			if (res == 1) {
+				retVal.put("res", "OK");
+			} else {
+				retVal.put("res", "FAIL");
+			}
+		} catch (Exception e) {
+			retVal.put("res", "FAIL");
+			retVal.put("message", "Failure");
+		}
+		
+		return retVal;
+	}
+	
 }
