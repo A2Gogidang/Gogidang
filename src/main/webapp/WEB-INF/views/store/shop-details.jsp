@@ -532,6 +532,10 @@ relayout();
 			data : insertData,
 			success : function(data) {
 				if (data == "ok") {
+					// webSocket에 보내기 (storeQna, 게시글작성자(mu_id), 가게주인(wu_id), 글번호(review_num))
+ 					let socketMsg = ("storeQna," + mu_id + "," + wu_id + "," + review_num);
+ 					console.debug("ssssssmsg>> ", socketMsg);
+ 					socket.send(socketMsg);
 					alert("good");
 					modal.style.display = "none";
 					storeQnaList();
