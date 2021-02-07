@@ -135,7 +135,7 @@ public class StoreController {
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 		StoreVO vo = storeService.storeInfo(s_num);
 		
-		ArrayList<MenuVO> menuList = menuService.menuList(s_num);
+		ArrayList<MenuVO> menuList = (ArrayList<MenuVO>) menuService.menuList(s_num);
 		List<ReviewVO> reviewList = reviewService.getListSn(s_num);
 		
 		int totalReview = reviewService.getCount(s_num);

@@ -77,7 +77,6 @@
 				  	<div class="modal-textbox-ev-s">
 				    	<ts for="content">이벤트내용</ts>
 				    	<td><textarea id="content" name="content" type="text"></textarea>
-				    	<script>CKEDITOR.replace('content');</script>
 				    	</td>
 				  	</div>	  	
 			  	</div>
@@ -91,18 +90,13 @@
 			    
 			   	 	<div class="modal-imgbox-ss">
 			    		<ts for="thumbnail">썸네일등록</ts>
-			    	<!-- <td><input type="text" id="thumbnail" name="thumbnail"></td> -->
-				    	<td><img src="resources/img/store/" id="thumbnail" name="thumbnail" width="520px" height="300px" /></td>
+				    	<td><img src="" id="thumbnail1" name="thumbnail1" width="520px" height="300px" /></td>
+				    	<td><input id="thumbnail" name="file" type="file" multiple="multiple"/></td>
 			     	</div>
+
 			     </div>
-			     <!--<li>
-				<label for="photo">메인사진등록</label>
-			    <input id="photo" name="photo" type="text">
-			  	</li> 
-				<li>
-				<label for="thumbnail">썸네일등록</label>
-			    <input id="thumbnail" name="thumbnail" type="text">
-			  	</li>   -->
+			     
+				
 				
 			</ol>
 			
@@ -111,11 +105,6 @@
                  <!-- <button type="button" id="closeBtn"  class="btn-j btn-lg btn-block btn-success" >닫기</button> -->
                    <br>
             </div>
-			
-			<!-- <fieldset>
-			  	<button type="button" id="eventInsertBtn" name="eventInsertBtn">작성</button>
-			  	<input type="button" id="closeBtn" value="닫기"/>
-			</fieldset> -->
 			
 		</form>
 	</div>
@@ -155,10 +144,12 @@ function eventInsert(insertData) {
 		type : 'POST',
 		data : insertData,
 		success : function(data) {
-			if (data == 1) {
+			if (data == "OK") {
+				alert("등록!");
+				modal.style.display = "none";
 				eventList();
 			} else {
-				alert("event insert Fail!!!!");
+				alert("event delete Fail!!!!");
 			}
 		}
 	});
@@ -190,14 +181,26 @@ function deleteBtn(event) {
 	$.ajax({
 		url : 'eventDelete.re',
 		type : 'POST',
-		data : {'notice_num' : event},
+		data : {'event_num' : event},
 		contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-		success : function(retVal) {
-			
+		success : function(data) {
+			if (data == "OK") {
+				alert("삭제!");
+				eventList();
+			} else {
+				alert("event delete Fail!!!!");
+			}
 		}
-	})
+	});
 }
 	
+$("#thumbnail").change(function() {
+	var reader = new FileReader;
+	reader.onload = function(data) {
+		$("#thumbnail1").attr("src", data.target.result).width(500);
+	}
+	reader.readAsDataURL(this.files[0]);
+});
 
 
 // When the user clicks on <span> (x), close the modal
