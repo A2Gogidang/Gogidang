@@ -6,6 +6,8 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.spring.gogidang.domain.*" %>
 <%@include file="../includes/header_simple.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
+
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/member_liststoreStyle.css"
@@ -76,7 +78,7 @@
 		<span class="close">&times;</span>                                                               
 		<form name="reviewForm">
 			
-			<h3>공지사항 작성</h3>
+			<h3>리뷰 작성</h3>
 			<ol>
 				<div class="modal-textbox">
 				  	<div class="modal-textbox-s">
@@ -200,7 +202,7 @@ function payList(data){
 	      		a += '<td>' + value.totalPrice + '</td>';
 	      		a += '<td>' + value.paydate + '</td>';
 	      		if (value.content != null) {
-	      			a += '<td><h6>답변완료</h6></td>';
+	      			a += '<td><h6>작성완료</h6></td>';
 	      		} else {
 		      		a += '<td><button onclick="callModal(' + value.pay_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right">리뷰작성</button></td></tr>';
 	      		}
@@ -228,9 +230,12 @@ function callModal(event) {
 				s_num = retVal.s_num;
 				s_name = retVal.s_name;
 				fu_id = retVal.fu_id;
-				$('input#pay_num').val(pay_num);
-				$('input#s_num').val(s_num);
-				$('input#s_name').val(s_name);
+				var mpay_num = retVal.pay_num;
+				var ms_num = retVal.s_num;
+				var ms_num =  retVal.s_name;
+				$('input#pay_num').val(mpay_num);
+				$('input#s_num').val(ms_num);
+				$('input#s_name').val(ms_num);
 			} else {
 				alert("review modal Fail!!!!");
 			}

@@ -155,7 +155,7 @@ function reQnaInsert(insertData) {
 		dataType : 'json',
 		success : function(retVal) {
 			if (retVal.res == "reQna") {
-				// webSocket에 보내기 (rqQna, 댓글작성자(admin), 게시글작성자(u_id), 글번호(qna_num))
+				// webSocket에 보내기 (rqQna, admin, 게시글작성자(u_id), 글번호(qna_num))
 				let socketMsg = ("reQna," + "admin," + u_id + "," + qna_num);
 				console.debug("ssssssmsg>> ", socketMsg);
 				socket.send(socketMsg);
