@@ -12,6 +12,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/admin_qnaw.css"
 	type="text/css">
+<script src = "${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>	
 
 <!-- Product Section Begin -->
 <section class="product spad">
@@ -96,7 +97,12 @@
 			 	<div class="modal-textbox-ff">
 				  	<div class="modal-textbox-sf">
 				  		<ts for="re_content">답글</ts>
-				    	<td><textarea type="text" id="re_content" name="re_content"/></textarea></td>
+				    	<td><textarea id="re_content" name="re_content"/></textarea>
+				    	<script>CKEDITOR.replace('re_content',{
+				    		height:'100%',
+				    		width:'100%'
+				    	});</script>
+				    	</td>
 				    </div>
 			    </div>			
 			</ol>
