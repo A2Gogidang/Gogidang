@@ -436,27 +436,34 @@ relayout();
 	<div class="modal-content">
 		<span class="close">&times;</span>
 		<form name="storeQnaInsertForm">
-			<fieldset>
-				<legend>가게 문의 작성</legend>
+				<h3>가게 문의 작성</h3>
 				<ol>
-					<li>
-						<label for="title">제목</label> 
-						<input type="text" id="title" name="title">
-					</li>
-					<li>
-						<label for="mu_id">유저아이디</label>
-						<input type="text" id="u_id" name="u_id" readonly>
-					</li>
-					<li>
-						<label for="ms_num">가게번호</label>
-						<input type="text" id="s_num" name="s_num" readonly>
-					</li>
-					<li>
-						<label for="content">문의내용</label>
-						<input type="text" id="content" name="content">
-					</li>
+					<div class="modal-textbox">
+					  	<div class="modal-textbox-s">
+					    	<ts for="title">제목</ts>
+					    	<td><input type="text" id="title" name="title"></td>
+					    </div>
+				    </div>
+					<div class="modal-textbox">
+					  	<div class="modal-textbox-s">
+						<ts for="mu_id">유저아이디</ts>
+						<td><input type="text" id="u_id" name="u_id" readonly></td>
+						</div>
+					</div>
+					<div class="modal-textbox">
+					  	<div class="modal-textbox-s">
+						<ts for="ms_num">가게번호</ts>
+						<td><input type="text" id="s_num" name="s_num" readonly></td>
+						</div>
+					</div>	
+					<div class="modal-textbox">
+					  	<div class="modal-textbox-s" style="align:center;">
+						<ts for="content">문의내용</ts>
+						<td><input type="text" id="content" name="content" style=:width:100%;height:100%;min-height:100p;></td>
+						</div>
+					</div>
 				</ol>
-			</fieldset>
+
 
 			<fieldset>
 				<button type="button" id="storeQnaInsertBtn" name="storeQnaInsertBtn">작성</button>
