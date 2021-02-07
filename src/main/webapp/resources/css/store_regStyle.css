@@ -150,9 +150,19 @@ readonly
 	margin: 4px auto;
 }
 
-.id_input_box_ss {
+.id_input_box_ssS {
 	width: 100%;
 	height: 50px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	
+	
+}
+
+.id_input_box_ssS {
+	width: 100%;
+	height: 250px;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;

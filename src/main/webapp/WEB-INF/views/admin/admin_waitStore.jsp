@@ -57,6 +57,14 @@ $(document).ready(function() {
 					$('input#s_phone').val(s_phone);
 					$('input#s_img').val(s_img);
 					$('input#s_hour').val(s_hour);
+					
+		            var dataURI1 = 'resources/img/store/'+retVal.thumbnail;		            
+					var imgTag1 = "<img id='thumbnail_IMG' style='width: 550px; height:350px;' src='"+dataURI1+"'/>";
+		            $("#thumbnail_IMG").append(imgTag1);
+		            var dataURI2 = 'resources/img/store/'+retVal.s_img;	            
+					var imgTag2 = "<img id='s_img_IMG' style='width: 550px; height:350px;' src='"+dataURI2+"'/>";
+		            $("#s_img_IMG").append(imgTag2);
+		         
 				} else {
 					alert("confirm Fail!!!!");
 				}
@@ -78,6 +86,8 @@ $(document).ready(function() {
 	    }
 	}
 });
+
+
 </script>
 
 <!-- Product Section Begin -->
@@ -119,7 +129,7 @@ $(document).ready(function() {
 						<tr align="center">
 							<td><%=vo.getS_num()%></td>
 							<td><%=vo.getS_name()%></td>
-							<td><button id="myBtn">Open Modal</button></td>
+							<td><button id="myBtn">승인관리</button></td>
 							<input type="hidden" id="vo_u_id" value=<%=vo.getU_id() %> />
 							<input type="hidden" id="vo_s_num" value=<%=vo.getS_num() %> />	
 							<!-- <td><input type="button" id="modalOpen" value="상세보기"></td> -->
@@ -198,14 +208,15 @@ $(document).ready(function() {
 			   <div class="modal-imgbox">
 			   	 <div class="modal-imgbox-ss">
 			    	<ts>가게메인사진</ts>
-			    	<!-- <td><input type="text" id="thumbnail" name="thumbnail"></td> -->
-			    			    	
-		    		<td><img src="resources/img/store/" id="thumbnail" name="thumbnail" width="550px" height="350px" /></td>
+			    	<!-- <td><input type="text" id="thumbnail" name="thumbnail"></td> -->			    			    	
+		    		<!-- <td><img src="&{thumbnail};" id="thumbnail" name="thumbnail" width="550px" height="350px" /></td> -->
+			     	<div id="thumbnail_IMG"></div>
 			     </div>
 			     <div class="modal-imgbox-ss">
-			    	<ts for="s_img">사업자등록사진</ts>
-			    	<td><img src="resources/img/store/" id="s_img" name="s_img" width="550px" height="350px" /></td>
+			    	<ts>사업자등록사진</ts>
+			    	<!-- <td><img src="&{s_img};" id="s_img" name="s_img" width="550px" height="350px" /></td> -->
 			    	<!-- <td><input id="s_img" name="s_img" type="text" ></td> -->
+			    	<div id="s_img_IMG"></div>
 			     </div>
 			   </div>
 				
