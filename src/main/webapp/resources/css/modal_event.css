@@ -165,9 +165,11 @@
 
 .modal-imgbox{
 	display: flex;
-	justify-content:space-between;
-	flex-direction: row;
+	justify-content:center;
+	/*flex-direction: row;*/
+    align-items: stretch;
 	margin-top :20px;
+	width:100%
 }
 
 
@@ -176,9 +178,18 @@
 	display: flex;
 	/*justify-content: space-around;*/
 	align-items: center;
-	flex-direction: column;
-	width:570px;
-	height: 100%;
+	/*flex-direction: column;*/
+	width:95%;
+	/*height: 34px;*/
+}
+
+.modal-imgbox-ss img{
+	width:957.06px;
+	
+}
+
+.modal-imgbox-ss ts {
+	width: 110px;
 }
 
 .modal-textbox input {
