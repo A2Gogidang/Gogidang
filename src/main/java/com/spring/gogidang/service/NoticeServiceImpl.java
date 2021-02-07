@@ -62,13 +62,10 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 	
 	  @Override
-	   public int noticeDelete(HashMap<String, String> hashmap) {
+	   public int noticeDelete(int notice_num) {
 		  NoticeMapper noticeMapper = sqlSession.getMapper(NoticeMapper.class);
-	      int res= noticeMapper.isBoardWriter(hashmap);
-	      int notice_num= Integer.parseInt(hashmap.get("notice_num"));
-	      if(res==1) {
-	         res=noticeMapper.noticeDelete(notice_num);
-	      }
+	      int res=noticeMapper.noticeDelete(notice_num);
+	      
 	      return res;
 	   }
 

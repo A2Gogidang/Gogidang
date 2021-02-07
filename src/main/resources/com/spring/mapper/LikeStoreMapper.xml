@@ -28,7 +28,9 @@
 	</select>
 	
 	<select id="getListByUid" parameterType="String" resultType="LikeStoreVO">
-		select * from like_store where u_id=#{u_id}
+		select *
+		from like_store ls inner join shop_reg sr on ls.s_num = sr.s_num 
+		where ls.u_id = #{u_id}
 	</select> 
 	
 </mapper>

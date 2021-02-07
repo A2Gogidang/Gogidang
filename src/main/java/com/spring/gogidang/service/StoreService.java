@@ -11,7 +11,7 @@ public interface StoreService {
    
    // taehyun
    public ArrayList<StoreVO> getList();
-   public ArrayList<StoreVO> getWaitList();
+   public List<StoreVO> getWaitList();
    public int confirmStore(int s_num);
    public int refuseStore(int s_num);
    public StoreVO storeInfo(int s_num);

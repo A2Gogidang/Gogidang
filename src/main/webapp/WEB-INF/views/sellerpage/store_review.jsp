@@ -206,7 +206,7 @@
 					if (value.review_sub_content != null) {
 						a += '<td><h5>답변완료</h5></td></tr>';
 					} else {
-						a += '<td><button onclick="callModal('+ value.review_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right">리뷰댓글</button></td></tr>';
+						a += '<td><button onclick="callModal('+ value.review_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right" style="margin-top: 0px;">리뷰댓글</button></td></tr>';
 						
 					}
 				});
