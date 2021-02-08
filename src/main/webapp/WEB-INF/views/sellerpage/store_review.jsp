@@ -198,6 +198,7 @@
 			success : function(data) {
 				var a = '';
 				$.each(data,function(key, value) { //data는 list객체를 받음(controller return 부분)list는 commentVO를 여려개 가지고 있음
+				
 					a += '<tr align=center><td>'+ value.review_num+ '</td>';
 					a += '<td>' + value.title + '</td>';
 					a += '<td>' + value.u_id + '</td>';

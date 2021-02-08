@@ -133,7 +133,7 @@ $(document).ready(function() {
 											<input type="hidden" id=s_num name="s_num"
 												value="<%=mv.getS_num()%>">
 											<div class="featured__item__pic set-bg"
-												data-setbg="resources/img/menu/<%=mv.getImg()%>"></div>
+												data-setbg="resources/img/store/<%=mv.getImg()%>"></div>
 
 											<div class="container-fluid">
 												<div class="row">
@@ -288,6 +288,7 @@ relayout();
 													<span class="fa fa-star"></span>
 													<%}else if(reviewvo.getStar() == 1){ %>
 													<span class="fa fa-star"></span> <%} %>
+												</span>
 									 		<span id="Insert_date">등록일: <%=reviewvo.getReview_date() %></span>
 											</div>
 
@@ -301,8 +302,8 @@ relayout();
 												<div class="review_Container">
 													<div class="fluid-row" id="Review_user">
 														<div class="review_Pic">
-															<img
-																src="resources/img/DetailStoreImg/Review/BestReview3.png">
+															<img src="resources/img/store/<%=reviewvo.getReview_img1()%>" style="width: 350px;height: 200px;
+">
 														</div>
 														<div>
 															<div id="reviewTextContent">
