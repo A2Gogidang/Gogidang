@@ -55,6 +55,7 @@
 									<input type="hidden" id="tnickname" name="tnickname" value="<%=mvo.getU_nick()%>" />
 								</tr>
 							</thead>
+							
 							<tbody id="pay_content" class="text-center">
 								
 							</tbody>
@@ -68,89 +69,10 @@
 </section>
 <!-- Product Section End -->
 
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-	<!-- Modal content -->
-	<div class="modal-content">
-		<span class="close">&times;</span>                                                               
-		<form name="reviewForm">
-			
-			<h3>리뷰 작성</h3>
-			<ol>
-				<div class="modal-textbox">
-				  	<div class="modal-textbox-s">
-				    	<ts for="title">제목</ts>
-				    	<td><input type="text" id="title" name="title"></td>
-				    	<td><input type="hidden" id="pay_num" name="pay_num"></td>
-				    	<td><input type="hidden" id="s_num" name="s_num"></td>
-				    	<td><input type="hidden" id="s_name" name="s_name"></td>
-				    	<td><input type="hidden" id="u_id" name="u_id"></td>
-				    	<td><input type="hidden" id="nickname" name="nickname"></td>
-				    </div>
-			    </div>
-			    
-				<div class="modal-textbox">
-				  	<div class="modal-textbox-s">
-				    	<ts for="star">별점</ts>
-				    	<td>
-				    		<input type="radio" id="star" name="star" value="1" style="width:40px;">1
-				    		<input type="radio" id="star" name="star" value="2" style="width:40px;">2
-				    		<input type="radio" id="star" name="star" value="3" style="width:40px;">3
-				    		<input type="radio" id="star" name="star" value="4" style="width:40px;">4
-				    		<input type="radio" id="star" name="star" value="5" style="width:40px;">5
-			    		</td>
-				    </div>
-			    </div>
-			    
-			    <div class="id_input_box_ss">
-					<ts>상품사진</ts>
-					<td><img id="review_view" src="" width="350px;" height="200px;" /></td>
-				</div>
-				<div class="id_input_box">
-					<ts> </ts>
-					<td><input id="review_img1" name="file" type="file" width="350px;" height="200px;" multiple="multiple" /></td>
-				</div>
-			    
-			    
-				<!-- <div class="modal-textbox">
-				  	<div class="modal-textbox-s">
-				    	<ts for="title">사진</ts>
-				    	<td><input type="text" id="review_img1" name="review_img1"></td>
-				    </div>
-			    </div> -->
-			    
-			    <div class="modal-textbox">
-                 <div class="modal-textbox-ss"> 
-                   <ts for="content">내용</ts>
-                   <td><textarea type="text" id="content" name="content" style="height: 200px;"></textarea></td>
-                </div>
-             </div>
-         </ol>
-         
-
-         <div class="form-checkkkk" style="margin-top: 0px;">
-            
-              <button type="button" id="reviewBtn" name="reviewBtn" class="btn btn-lg btn-block btn-success">작성</button>        
-              <!--<button type="button" id="closeBtn" class="btn-j btn-lg btn-block btn-success" >닫기</button>  -->
-              <!--<input type="button" id="closeBtn" value="닫기"/>  -->
-              <br>
-         </div>
-		</form>
-	</div>
-</div>
-<!-- modal END -->
-
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <script>
-var u_id = '';
-var tu_id = '';
-var fu_id = '';
-var nickname = '';
-var s_num = '';
-var s_name = '';
-var pay_num = '';
+var u_id = $('[name=tu_id]').val();
 // Get the modal
 var modal = document.getElementById('myModal');
 
@@ -161,46 +83,9 @@ var btn = document.getElementById('myBtn');
 var span = document.getElementsByClassName("close")[0];  
 
 $(document).ready(function() {
-	u_id = $('[name=tu_id]').val();
-	tu_id = $('[name=tu_id]').val();
-	nickname = $('[name=tnickname]').val();
-	
-	$('input#u_id').val(u_id);
-	$('input#nickname').val(nickname);
-	payList(tu_id);
-});
 
-$('[name=reviewBtn]').click(function () {
-	var insertData = $('[name=reviewForm]').serialize();
-	alert(insertData);
-	reviewInsert(insertData);
+	payList(u_id);
 });
-
-function reviewInsert(insertData) {
-	$.ajax({
-		url : 'regReview.re',
-		type : 'POST',
-		data : insertData,
-		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-		dataType : 'json',
-		success : function(data) {
-			if (data == "OK") {
-				// webSocket에 보내기 (review, 리뷰작성자(tu_id), 가게주인(fu_id), pay_num)
-				let socketMsg = ("review," + tu_id +"," + fu_id + "," + pay_num);
-				console.debug("ssssssmsg>> ", socketMsg);
-				socket.send(socketMsg);
-				
-				modal.style.display = "none";
-				payList(tu_id);
-			} else {
-				alert("review insert Fail!!!!");
-			}
-		}, 
-		error:function() {
-			alert("review ajax 통신 실패!!")
-		}
-	});
-}
 
 function payList(data){
 	  $.ajax({
@@ -217,7 +102,7 @@ function payList(data){
 	      		if (value.content != null) {
 	      			a += '<td><h6>작성완료</h6></td>';
 	      		} else {
-		      		a += '<td><button onclick="callModal(' + value.pay_num + ');" id="myBtn" class="btn btn-primary btn-xs" style="background: #7fad39; color:white; border: 1px solid #7fad39;margin-top:0px; padding-top:0px; padding-bottom:0px;">리뷰작성</button></td></tr>';
+		      		a += '<td><button id="myBtn" name="myBtn" onclick="location=\'./review_write.re?pay_num=' + value.pay_num + '\'" class="btn btn-primary btn-xs" style="background: #7fad39; color:white; border: 1px solid #7fad39;margin-top:0px; padding-top:0px; padding-bottom:0px;">리뷰작성</button></td></tr>';
 	      		}
 	      		
 	        });
@@ -229,42 +114,6 @@ function payList(data){
 	     }
 	  });
 	}
-
-function callModal(event) {
-	$.ajax({
-		url : 'payInfoAjax.re',
-		type : 'POST',
-		data : {'pay_num' : event},
-		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-		dataType : 'json',
-		success : function(retVal) {
-			if (retVal.res == "OK") {
-				pay_num = retVal.pay_num;
-				s_num = retVal.s_num;
-				s_name = retVal.s_name;
-				fu_id = retVal.fu_id;
-				var mpay_num = retVal.pay_num;
-				var ms_num = retVal.s_num;
-				var ms_name =  retVal.s_name;
-				$('input#pay_num').val(mpay_num);
-				$('input#s_num').val(ms_num);
-				$('input#s_name').val(ms_name);
-			} else {
-				alert("review modal Fail!!!!");
-			}
-		}
-	});
-    modal.style.display = "block";
-}
-
-$("#review_img1").change(function() {
-	var reader = new FileReader;
-	reader.onload = function(data) {
-		$("#review_view").attr("src", data.target.result).width(500);
-	}
-	reader.readAsDataURL(this.files[0]);
-});
-
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function(event) {
