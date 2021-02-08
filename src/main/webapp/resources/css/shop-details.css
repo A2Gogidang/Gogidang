@@ -164,9 +164,6 @@ margin-top : 70px;
 	width : 923px;
 	height : 197px;
 }
-#cartCon{
-	margin-bottom : 10px;
-}
 .kakaomap{
 	
 }
@@ -199,15 +196,12 @@ margin-top : 70px;
     display: block;
     text-decoration: none;
 }
-
-a{
+.header__top__right__auth a a:hover, a:focus {
+    display: inline-block;
+    font-size: 14px;
+    color: #1c1c1c;
+    margin: 0px 10px;
     text-decoration: none;
-    background-color: transparent;
-}
-
-element.style {
-    display: inline-flex;
-    color: #7fad39;
 }
 .product__details__text h2{ 
     font-weight: 700;
@@ -232,7 +226,6 @@ element.style {
     padding-top: 20px;
 }
 .spad {
-    padding-top: 100px; 
     padding-bottom: 100px;
 }
 .table{
@@ -247,3 +240,21 @@ element.style {
 #Insert_date{
 	color : black;
 }
+a:hover { text-decoration:none !important }
+
+
+.col-lg-6 a:hover{
+	color : black !important
+}
+.header__top__right__auth a{
+    display: inline-block;
+    font-size: 14px;
+    color: #1c1c1c;
+    margin: 0px 10px;
+
+
+
+
+
+
+
