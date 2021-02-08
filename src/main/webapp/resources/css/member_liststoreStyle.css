@@ -102,3 +102,10 @@ a {
     text-decoration: none;
     background-color: transparent;
 }
+
+
+/*btn*/
+#myBtn {
+	background: #7fad39;
+	border-color: #7fad39;
+}
