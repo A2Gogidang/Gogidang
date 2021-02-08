@@ -120,17 +120,18 @@
 				</section>
 				
 			   <div class="container">
-            <div class="row">
+            <div class="row" style="display : flex; aligin-items : center; justify-content : center;">
      				<%
 		for(int i=0; i<storeList.size(); i++) {
 			StoreVO svo = (StoreVO) storeList.get(i);
 					%>
-                <div class="col-lg-8">
+                <div class="col-lg-9">
                     <div class="shoping__cart__table">
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="shoping__product"><%= svo.getS_name() %></th>
+                                    <th class="shoping__product"><span style="margin-left : 130px;"><%= svo.getS_name() %></span></th>
+                                    
                                     <th>지역</th>
                                     <th>품목</th>
                                     <th>별점</th>
@@ -152,15 +153,15 @@
 											<%
 											if(svo.getMeat() == 0) {
 											%>
-												<h6>소고기 </h6>
+												<h6 style = "font-weight : bold;">소고기 </h6>
 											<%
 											} else if (svo.getMeat() == 1) {
 											%>
-												<h6> 돼지고기 </h6>
+												<h6 style = "font-weight : bold;"> 돼지고기 </h6>
 											<%
 											} else {
 											%>
-												<h6>식당</h6>
+												<h6 style = "font-weight : bold;">식당</h6>
 											<%
 											}
 											%>

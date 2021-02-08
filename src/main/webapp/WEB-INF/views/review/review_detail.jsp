@@ -7,7 +7,7 @@
    ReviewVO vo = (ReviewVO) request.getAttribute("ReviewVO");
 %>
  <!--네비게이션바 사용 시작-->
-<%@include file="../includes/header.jsp"%>
+<%@include file="../includes/header_simple.jsp"%>
              
             <div class="section-title" style="margin-top : 70px;">
 								<h2 style="margin-top: 50px;">리뷰</h2>

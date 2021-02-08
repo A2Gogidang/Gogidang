@@ -314,7 +314,7 @@ public class StoreController {
 		model.addAttribute("storeList", storeList);
 		
 		//return "store/shopgrid";
-		return "store/shopgrid";
+		return "store/store_List_test";
 	}
 	
 	@RequestMapping(value = "/storeListAjax.st")
