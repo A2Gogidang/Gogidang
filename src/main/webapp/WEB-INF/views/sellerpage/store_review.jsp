@@ -11,12 +11,13 @@
 	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/modal.css"
+	href="${pageContext.request.contextPath}/resources/css/modal_middle.css"
 	type="text/css">
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/store_reviewStyle.css"
 	type="text/css">
+<script src = "${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>	
 
 <%
 	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
@@ -77,42 +78,64 @@
 	<div class="modal-content">
 		<span class="close">&times;</span>
 		<form name="reReviewStoreInsertForm">
-			<fieldset>
-				<legend>리뷰 내용</legend>
+				
+				<h3>고객 리뷰</h3>
 				<ol>
-					<li>
-						<label for="review_num">리뷰번호</label> 
-						<input type="text" id="review_num" name="review_num" readonly>
-					</li>
-					<li>
-						<label for="title">리뷰제목</label> 
-						<input type="text" id="title" name="title" readonly >
-					</li>
-					<li>
-						<label for="u_id">회원아이디</label>
-						<input type="text" id="u_id" name="u_id" readonly>
-					</li>
-					<li>
-						<label for="nickname">회원닉네임</label> 
-						<input type="text" id="nickname" name="nickname" readonly>
-					</li>
-					<li>
-						<label for="content">리뷰내용</label> 
-						<input id="content" name="content" type="text" readonly>
-					</li>
-					<li>
-						<label for="star">별점</label> 
-						<input id="star" name="star" type="text" readonly>
-					</li>
-					<li>
-						<label for="review_sub_content">답글</label> 
-						<input type="text" id="review_sub_content" name="review_sub_content" />
-					</li>
+					<div class="modal-textbox">
+					  	<div class="modal-textbox-star-num">
+					  		<ts for="review_num" id="qna_num_f">리뷰번호</ts>
+					    	<td><input type="text"  id="review_num" name="review_num" readonly></td>
+					    </div>
+					    <div class="modal-textbox-star">
+					  		<ts for="u_id" id="u_id_re">아이디</ts> <!-- 여기서 아이디는css용 -->
+					    	<td><input type="text" id="u_id" name="u_id" readonly></td>
+					    </div>
+					    <div class="modal-textbox-star">
+					  		<ts for="nickname" id="u_id_re">닉네임</ts>
+					    	<td><input type="text" id="nickname" name="nickname" readonly></td>
+					    </div>
+					    <div class="modal-textbox-starr">
+					  		<ts for="star" id="u_id_star">별점</ts>
+					    	<td><input type="text" id="nickname" name="nickname" readonly></td>
+					    </div>
+			    	</div>
+					
+					<div class="modal-textbox">
+					  	<div class="modal-textbox-s">
+					  		<ts for="title">리뷰제목</ts>
+					    	<td><input type="text" id="title" name="title" readonly></td>
+					    </div>
+			    	</div>
+			    	
+					<div class="modal-textbox-ff">
+					  	<div class="modal-textbox-sf">
+					  		<ts for="content">리뷰내용</ts>
+					    	<td><textarea id="content" name="content" type="text" readonly></textarea></td>
+					    </div>
+			    	</div>
+					
+					<div class="modal-textbox-ff">
+					  	<div class="modal-textbox-sf">
+					  		<ts for="review_sub_content">답글</ts>
+					    	<td><textarea id="review_sub_content" name="review_sub_content"/></textarea>
+					    	<script>CKEDITOR.replace('review_sub_content',{
+					    		height:'95px',
+					    		width:'100%'
+					    	});</script>
+					    	</td>
+					    </div>
+			    	</div>		
+					
 				</ol>
-
-				<input type="button" id="reReviewStoreInsertBtn" name="reReviewStoreInsertBtn" value="댓글달기" /> 
-				<input type="button" id="closeBtn" value="닫기" />
-			</fieldset>
+				
+				<div class="form-check-f">
+			  		<button type="button" id="reReviewStoreInsertBtn" name="reReviewStoreInsertBtn" class="btn btn-lg btn-block btn-success">작성</button>
+			  		<br>
+				</div>
+				<!-- <input type="button" id="reReviewStoreInsertBtn" name="reReviewStoreInsertBtn" value="댓글달기" /> 
+				<input type="button" id="closeBtn" value="닫기" /> -->
+				
+			
 		</form>
 	</div>
 </div>

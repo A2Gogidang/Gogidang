@@ -19,7 +19,7 @@
 
 <!-- Product Section Begin -->
 <section class="product spad">
-	<div class="container">
+	<div class="container" >
 		<div class="row">
 			<div class="myreview">
 				<div class="col-lg-3" id="nav-bar">
@@ -105,22 +105,21 @@
 			    </div>
 			    
 			    <div class="modal-textbox">
-				  	<div class="modal-textbox-ss"> 
-				    	<ts for="content">내용</ts>
-				    	<td><textarea type="text" id="content" name="content"></textarea></td>
-				    </div>
-			    </div>
-			</ol>
-			
+                 <div class="modal-textbox-ss"> 
+                   <ts for="content">내용</ts>
+                   <td><textarea type="text" id="content" name="content" style="height: 200px;"></textarea></td>
+                </div>
+             </div>
+         </ol>
+         
 
-			<div class="form-checkkkk">
-				
-			  	<button type="button" id="reviewBtn" name="reviewBtn" class="btn btn-lg btn-block btn-success">작성</button>	  	
-			  	<!--<button type="button" id="closeBtn" class="btn-j btn-lg btn-block btn-success" >닫기</button>  -->
-			  	<!--<input type="button" id="closeBtn" value="닫기"/>  -->
-			  	<br>
-			</div>
-			
+         <div class="form-checkkkk" style="margin-top: 0px;">
+            
+              <button type="button" id="reviewBtn" name="reviewBtn" class="btn btn-lg btn-block btn-success">작성</button>        
+              <!--<button type="button" id="closeBtn" class="btn-j btn-lg btn-block btn-success" >닫기</button>  -->
+              <!--<input type="button" id="closeBtn" value="닫기"/>  -->
+              <br>
+         </div>
 		</form>
 	</div>
 </div>
@@ -202,7 +201,7 @@ function payList(data){
 	      		if (value.content != null) {
 	      			a += '<td><h6>작성완료</h6></td>';
 	      		} else {
-		      		a += '<td><button onclick="callModal(' + value.pay_num + ');" id="myBtn" class="btn btn-primary btn-xs">리뷰작성</button></td></tr>';
+		      		a += '<td><button onclick="callModal(' + value.pay_num + ');" id="myBtn" class="btn btn-primary btn-xs" style="background: #7fad39; color:white; border: 1px solid #7fad39;margin-top:0px; padding-top:0px; padding-bottom:0px;">리뷰작성</button></td></tr>';
 	      		}
 	      		
 	        });
@@ -230,10 +229,10 @@ function callModal(event) {
 				fu_id = retVal.fu_id;
 				var mpay_num = retVal.pay_num;
 				var ms_num = retVal.s_num;
-				var ms_num =  retVal.s_name;
+				var ms_name =  retVal.s_name;
 				$('input#pay_num').val(mpay_num);
 				$('input#s_num').val(ms_num);
-				$('input#s_name').val(ms_num);
+				$('input#s_name').val(ms_name);
 			} else {
 				alert("review modal Fail!!!!");
 			}

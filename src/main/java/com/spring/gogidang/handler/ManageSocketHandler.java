@@ -91,12 +91,12 @@ public class ManageSocketHandler extends TextWebSocketHandler {
 					boardWriterSession.sendMessage(tmpMsg);
 				} else if ("storeQna".equals(cmd) && boardWriterSession != null) {
 					TextMessage tmpMsg = new TextMessage(replyWriter + "님의" +
-							"<a href='./qnadetail.qn?qna_num=" + bno + "'>" + bno + "</a> 문의를 작성하였습니다.");
+							"<a href='./storeNoticeList.no'>문의</a>를 작성하였습니다.");
 					System.out.println("tmpMsg = " + tmpMsg);
 					boardWriterSession.sendMessage(tmpMsg);
 				} else if ("reStoreQna".equals(cmd) && boardWriterSession != null) {
 					TextMessage tmpMsg = new TextMessage(replyWriter + "님의" +
-							"<a href='./qnadetail.qn?qna_num=" + bno + "'>" + bno + "</a> 문의 답변완료.");
+							"<a href='./qnaStoreInfo.qs?qnastore_num=" + bno + "'>" + bno + "</a> 문의 답변완료.");
 					System.out.println("tmpMsg = " + tmpMsg);
 					boardWriterSession.sendMessage(tmpMsg);
 				}

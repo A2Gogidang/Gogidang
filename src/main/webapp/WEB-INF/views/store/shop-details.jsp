@@ -10,7 +10,7 @@
 <%@include file="../includes/header_simple.jsp"%>
 
 <link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/shop-details.css"type="text/css">
-<link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/modal.css"
+<link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/modal_middle.css"
 	type="text/css">
 <%
    StoreVO svo = (StoreVO) request.getAttribute("storeVO");
@@ -73,7 +73,8 @@ $(document).ready(function() {
 					<h2 style="display: inline-flex; color: #7fad39;"><%=svo.getS_name()%></h2>
 
 					<a class="heart-icon"><button type="button" class="icon_heart_alt" id="likeBtn" name ="likeBtn"></button></a>
-
+					<input type="hidden" id="store_uid" name="store_uid" value="<%=svo.getU_id() %>" />
+					
 					<div class="product__details__rating" style="margin-bottom: 45px;">
 						<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 							class="fa fa-star"></i> <i class="fa fa-star"></i> <i
@@ -437,39 +438,53 @@ relayout();
 	<div class="modal-content">
 		<span class="close">&times;</span>
 		<form name="storeQnaInsertForm">
-				<h3>가게 문의 작성</h3>
+				<h3>가게 문의 하기</h3>
 				<ol>
-					<div class="modal-textbox">
-					  	<div class="modal-textbox-s">
-					    	<ts for="title">제목</ts>
-					    	<td><input type="text" id="title" name="title"></td>
+					<div class="modal-textbox-detail">
+					  	<div class="modal-textbox-f">
+					  		<ts for="ms_num" id="qna_num_details">가게번호</ts>
+					    	<td><input type="text"  id="s_num" name="s_num" readonly></td>
 					    </div>
-				    </div>
-					<div class="modal-textbox">
+					    <div class="modal-textbox-f">
+					  		<ts for="u_id" id="u_id_f">회원아이디</ts>
+					    	<td><input type="text" id="u_id" name="u_id" readonly></td>
+					    </div>
+			    	</div>
+			    
+			    	<div class="modal-textbox">
 					  	<div class="modal-textbox-s">
-						<ts for="mu_id">유저아이디</ts>
-						<td><input type="text" id="u_id" name="u_id" readonly></td>
-						</div>
-					</div>
-					<div class="modal-textbox">
-					  	<div class="modal-textbox-s">
-						<ts for="ms_num">가게번호</ts>
-						<td><input type="text" id="s_num" name="s_num" readonly></td>
-						</div>
-					</div>	
+					  		<ts for="title">문의제목</ts>
+					    	<td><input type="text" id="title" name="title" ></td>
+					    </div>
+			    	</div>
+					
+					<div class="modal-textbox-ff">
+					  	<div class="modal-textbox-sf">
+					  		<ts for="content">문의내용</ts>
+					    	<td><textarea id="content" name="content" type="text" ></textarea></td>
+					    </div>
+			    	</div>
+			    
+			    	<!--
 					<div class="modal-textbox">
 					  	<div class="modal-textbox-s" style="align:center;">
 						<ts for="content">문의내용</ts>
 						<td><input type="text" id="content" name="content" style=:width:100%;height:100%;min-height:100p;></td>
 						</div>
 					</div>
+					  -->
 				</ol>
-
-
+				
+				<div class="form-check-details">
+				  	<button type="button" id="storeQnaInsertBtn" name="storeQnaInsertBtn" class="btn btn-lg btn-block btn-success">작성</button>
+				  	<br>
+				</div>
+			<!-- 
 			<fieldset>
 				<button type="button" id="storeQnaInsertBtn" name="storeQnaInsertBtn">작성</button>
 				<input type="button" id="closeBtn" value="닫기" />
 			</fieldset>
+			 -->
 		</form>
 	</div>
 </div>
@@ -491,7 +506,10 @@ relayout();
 	
 	var s_num = $('input[name=ms_num]').val();
 	var u_id = $('input[name=mu_id]').val();
-
+	
+	var user_u_id = $('input[name=mu_id]').val();
+	var store_u_id = $('input[name=store_uid]').val();
+	
 	$(document).ready(function() {
 		
 		btn.onclick = function(event) {
@@ -540,8 +558,8 @@ relayout();
 			data : insertData,
 			success : function(data) {
 				if (data == "ok") {
-					// webSocket에 보내기 (storeQna, 게시글작성자(mu_id), 가게주인(wu_id), 글번호(review_num))
- 					let socketMsg = ("storeQna," + mu_id + "," + wu_id + "," + review_num);
+					// webSocket에 보내기 (storeQna, 게시글작성자(user_u_id), 가게주인(store_u_id), 글번호(null))
+ 					let socketMsg = ("storeQna," + user_u_id + "," + store_u_id + ", 0");
  					console.debug("ssssssmsg>> ", socketMsg);
  					socket.send(socketMsg);
 					alert("good");
@@ -597,7 +615,3 @@ relayout();
 
 
 <%@include file="../includes/footer.jsp"%>
-      <!-- /.modal -->
-
-
-
