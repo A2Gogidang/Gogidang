@@ -48,8 +48,6 @@ public class ReviewController {
 	@RequestMapping("/reviewList.re")
 	public String reviewList(Model model) {
 		
-		
-		
 		model.addAttribute("reviewList", reviewService.getList());
 		
 		//return "review/review_list_grid";
@@ -133,16 +131,14 @@ public class ReviewController {
 	}
 
 	@RequestMapping("/regReview.re")
+	@ResponseBody
 	public String regReview(ReviewVO review, MultipartHttpServletRequest request) {
 		
 		List<MultipartFile> fileList = request.getFiles("file");
 		System.out.println(fileList.size());
 		
-//		String uploadPath = "/Users/taehyun/Documents/Spring_Source/Gogidang/src/main/webapp/resources/img/up/";
-		String uploadPath = request.getServletContext().getRealPath("/resources/img/review/");
-		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("review/review_list");
+		String uploadPath = "/Users/taehyun/Documents/Spring_Source/Gogidang/src/main/webapp/resources/img/review/";
+//		String uploadPath = request.getServletContext().getRealPath("/resources/img/review/");
 		
 		ArrayList<String> orgfile_list = new ArrayList<String>();
 		ArrayList<String> storedfile_list = new ArrayList<String>();
@@ -190,7 +186,7 @@ public class ReviewController {
 		
 		reviewService.regReview(review);
 		
-		return "redirect:main.me";
+		return "OK";
 	}
 	
 	// reveiw ajax list - seller part
