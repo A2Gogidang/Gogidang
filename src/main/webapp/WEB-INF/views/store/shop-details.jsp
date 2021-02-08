@@ -6,11 +6,10 @@
 <%@ page import="javax.naming.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
-
 <%@include file="../includes/header_simple.jsp"%>
 
 <link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/shop-details.css"type="text/css">
-<link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/modal_middle.css"
+<link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/modal.css"
 	type="text/css">
 <%
    StoreVO svo = (StoreVO) request.getAttribute("storeVO");
@@ -56,7 +55,7 @@ $(document).ready(function() {
 				<div class="product__details__pic">
 					<div class="product__details__pic__item">
 						<img class="product__details__pic__item--large"
-							src="resources/img/store/<%=svo.getThumbnail()%>" alt="">
+							src="resources/img/store/<%=svo.getThumbnail()%>" alt="" style="width : 556px; height : 416px;">
 					</div>
 					<div class="product__details__pic__slider owl-carousel">
 						<img src="resources/img/product/details/thumb-1.jpg" alt="">
@@ -73,8 +72,7 @@ $(document).ready(function() {
 					<h2 style="display: inline-flex; color: #7fad39;"><%=svo.getS_name()%></h2>
 
 					<a class="heart-icon"><button type="button" class="icon_heart_alt" id="likeBtn" name ="likeBtn"></button></a>
-					<input type="hidden" id="store_uid" name="store_uid" value="<%=svo.getU_id() %>" />
-					
+
 					<div class="product__details__rating" style="margin-bottom: 45px;">
 						<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 							class="fa fa-star"></i> <i class="fa fa-star"></i> <i
@@ -152,7 +150,7 @@ $(document).ready(function() {
 																<tr class="table">
 																	<td><input type="number" id="cartStock"
 																		name="cartStock" min="1" max="100" value="1" /></td>
-																	<td><input type="submit" value="장바구니에 담기" id="addCart<%=i%>"/ style=""></td>
+																	<td><input type="submit" value="장바구니에 담기" id="addCart<%=i%>"/ style="background-color : #7fad39; border : 0px; color : white; height : 27px; border-radius : 2px; font-weight : bold;"></td>
 																</tr>
 															</tbody>
 														</table>
@@ -169,7 +167,7 @@ $(document).ready(function() {
 							</div>
 						</div>
 
-						<div class="tab-pane" id="tabs-2" role="tabpanel">
+						  <div class="tab-pane" id="tabs-2" role="tabpanel">
 							<div class="kakaomap"
 								style="display: flex; justify-content: center; margin-top: 70px;">
 								<div id="map" style=""></div>
@@ -223,7 +221,7 @@ geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
         });
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         var infowindow = new kakao.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">저희 가게</div><div style="width:150px;text-align:center;padding:6px 0;"><a href="https://map.kakao.com/link/to/${storeVO.getS_addr()}">길찾기</a></div>'
+            content: '<div style="width:150px; margin-top : 3px;text-align:center;"><a href = "https://map.kakao.com/"target="_blank" ><%=svo.getS_name()%></div>'
                    
         });
         infowindow.open(map, marker);
@@ -248,8 +246,7 @@ relayout();
 
 </script>
 
-						</div>
-						<div class="tab-pane" id="tabs-3" role="tabpanel">
+						</div>					<div class="tab-pane" id="tabs-3" role="tabpanel">
 							<div class="panel panel-default" id="panel-default">
 								<div class="panel-heading" id="panel-heading">
 									<span class="panel-title">후기</span>
@@ -361,63 +358,6 @@ relayout();
 
 												</tbody>
 											</table>
-											<div class="container-fluid">
-												<div class="row">
-													<div class="col-md-2"></div>
-
-													<div class="col-md-8">
-														<class class="pagination-lg">
-														<ul class="pagination"
-															style="margin-bottom: 30px; display: flex; justify-content: center; align-items: center;">
-															<%
-																	if (nowpage <= 1) {
-																%>
-															<li class="page-item"><a class="page-link" href="#"
-																style="color: white;background-color: rgb(191,191,191);;">Previous</a></li>
-															<%
-																	} else {
-																%>
-															<li class="page-item"><a class="page-link"
-																href="./qnalist.qn?page=<%=nowpage - 1%>"
-																style="color: white;background-color: rgb(191,191,191);;">Previous</a></li>
-															<%
-																	}
-																%>
-															<%
-																	for (int a = startpage; a <= endpage; a++) {
-																		if (a == nowpage) {
-																%>
-															<%=a%>
-															<%
-																	} else {
-																%>
-															<li class="page-item"><a class="page-link"
-																href="./noticelist.no?page=<%=a%>"
-																style="color: rgb(51, 131, 51);"><%=a%></a></li>
-															<%
-																	}
-																%>
-															<%
-																	}
-																%>
-															<%
-																	if (nowpage >= maxpage) {
-																%>
-															<li class="page-item"><a class="page-link" href="#"
-																style="color: white;background-color: rgb(191,191,191);;">Next</a></li>
-															<%
-																	} else {
-																%>
-															<li class="page-item"><a class="page-link"
-																href="./qnalist.qn?page=<%=nowpage + 1%>"
-																style="color: white;background-color: rgb(191,191,191);;">Next</a></li>
-															<%
-																	}
-																%>
-														</ul>
-													</div>
-												</div>
-											</div>
 										</div>
 									</div>
 								</div>
@@ -432,62 +372,80 @@ relayout();
 </section>
 	
 <!-- The Modal -->
+
 <div id="myModal" class="modal">
 	<!-- Modal content -->
 	<div class="modal-content">
 		<span class="close">&times;</span>
 		<form name="storeQnaInsertForm">
-				<h3>가게 문의 하기</h3>
+			<fieldset>
+				<h3>가게 문의 작성</h3>
 				<ol>
-					<div class="modal-textbox-detail">
-					  	<div class="modal-textbox-f">
-					  		<ts for="ms_num" id="qna_num_details">가게번호</ts>
-					    	<td><input type="text"  id="s_num" name="s_num" readonly></td>
-					    </div>
-					    <div class="modal-textbox-f">
-					  		<ts for="u_id" id="u_id_f">회원아이디</ts>
-					    	<td><input type="text" id="u_id" name="u_id" readonly></td>
-					    </div>
-			    	</div>
-			    
-			    	<div class="modal-textbox">
-					  	<div class="modal-textbox-s">
-					  		<ts for="title">문의제목</ts>
-					    	<td><input type="text" id="title" name="title" ></td>
-					    </div>
-			    	</div>
-					
-					<div class="modal-textbox-ff">
-					  	<div class="modal-textbox-sf">
-					  		<ts for="content">문의내용</ts>
-					    	<td><textarea id="content" name="content" type="text" ></textarea></td>
-					    </div>
-			    	</div>
-			    
-			    	<!--
-					<div class="modal-textbox">
-					  	<div class="modal-textbox-s" style="align:center;">
-						<ts for="content">문의내용</ts>
-						<td><input type="text" id="content" name="content" style=:width:100%;height:100%;min-height:100p;></td>
-						</div>
-					</div>
-					  -->
+					<li>
+						<label for="title">제목</label> 
+						<input type="text" id="title" name="title">
+					</li>
+					<li>
+						<label for="mu_id">유저아이디</label>
+						<input type="text" id="u_id" name="u_id" readonly>
+					</li>
+					<li>
+						<label for="ms_num">가게번호</label>
+						<input type="text" id="s_num" name="s_num" readonly>
+					</li>
+					<li>
+						<label for="content">문의내용</label>
+						<textarea type="text" id="content" name="content"></textarea>
+					</li>
 				</ol>
-				
-				<div class="form-check-details">
-				  	<button type="button" id="storeQnaInsertBtn" name="storeQnaInsertBtn" class="btn btn-lg btn-block btn-success">작성</button>
-				  	<br>
-				</div>
-			<!-- 
+			</fieldset>
+
 			<fieldset>
 				<button type="button" id="storeQnaInsertBtn" name="storeQnaInsertBtn">작성</button>
 				<input type="button" id="closeBtn" value="닫기" />
 			</fieldset>
-			 -->
 		</form>
 	</div>
 </div>
 <!--modal END-->
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+	<!-- Modal content -->
+	<div class="modal-content">
+		<span class="close">&times;</span>                                                               
+		<form name="QnaInsertForm">
+			
+			<h3>가게문의 작성</h3>
+			<ol>
+				<div class="modal-textbox">
+				  	<div class="modal-textbox-s">
+				    	<ts for="title">제목</ts>
+				    	<td><input type="text" id="title" name="title"></td>
+				    </div>
+			    </div>
+			    
+			    <div class="modal-textbox">
+				  	<div class="modal-textbox-ss"> 
+				    	<ts for="content">공지내용</ts>
+				    	<td><textarea type="text" id="content" name="content"></textarea></td>
+				    </div>
+			    </div>
+			</ol>
+			
+
+			<div class="form-checkkkk">
+				
+			  	<button type="button" id="noticeInsertBtn" name="noticeInsertBtn" class="btn btn-lg btn-block btn-success">작성</button>	  	
+			  	<!--<button type="button" id="closeBtn" class="btn-j btn-lg btn-block btn-success" >닫기</button>  -->
+			  	<!--<input type="button" id="closeBtn" value="닫기"/>  -->
+			  	<br>
+			</div>
+			
+		</form>
+	</div>
+</div>
+<!-- modal END -->
 
 
 <script type="text/javascript"
@@ -505,10 +463,7 @@ relayout();
 	
 	var s_num = $('input[name=ms_num]').val();
 	var u_id = $('input[name=mu_id]').val();
-	
-	var user_u_id = $('input[name=mu_id]').val();
-	var store_u_id = $('input[name=store_uid]').val();
-	
+
 	$(document).ready(function() {
 		
 		btn.onclick = function(event) {
@@ -557,10 +512,6 @@ relayout();
 			data : insertData,
 			success : function(data) {
 				if (data == "ok") {
-					// webSocket에 보내기 (storeQna, 게시글작성자(user_u_id), 가게주인(store_u_id), 글번호(null))
- 					let socketMsg = ("storeQna," + user_u_id + "," + store_u_id + ", 0");
- 					console.debug("ssssssmsg>> ", socketMsg);
- 					socket.send(socketMsg);
 					alert("good");
 					modal.style.display = "none";
 					storeQnaList();
@@ -581,7 +532,7 @@ relayout();
 				var a = '';
 					$.each(data,function(key, value) {
 						a += '<tr><td>'+ value.qnastore_num + '</td>';
-						a += '<td><a href="./qnaStoreInfo.qs?qnastore_num='+ value.qnastore_num + '">' + value.title + '</a></td>';
+						a += '<td>' + value.title + '</td>';
 						a += '<td>' + value.u_id + '</td>';
 						a += '<td>' + value.re_date + '</td>';
 						if (value.re_content != null) {
@@ -614,3 +565,7 @@ relayout();
 
 
 <%@include file="../includes/footer.jsp"%>
+      <!-- /.modal -->
+
+
+

@@ -58,6 +58,7 @@
 												<option value="등심">등심</option>
 												<option value="채끝살">채끝살</option>
 												<option value="살치살">살치살</option>
+												<option value="부채살">부채살</option>
 												<option value="항정살">항정살</option>
 												<option value="목살">목살</option>
 												<option value="사태">사태</option>
@@ -237,7 +238,7 @@ function menuList(s_num){
 	     success : function(data){ 
 	        var a ='';
 	        $.each(data, function(key,value){ //data는 list객체를 받음(controller return 부분)list는 commentVO를 여려개 가지고 있음
-	      		a += '<tr><td><img src="resources/img/menu/'+ value.img +'"></td>';
+	      		a += '<tr><td><img src="resources/img/store/'+ value.img+'"></td>';
 	      		a += '<td>' + value.menu_name + '</td>';
 	      		a += '<td>' + value.price + '</td>';
 	      		a += '<td>' + value.grade + '</td>';
