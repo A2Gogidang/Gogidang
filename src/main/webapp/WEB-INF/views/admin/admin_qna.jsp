@@ -98,10 +98,6 @@
 				  	<div class="modal-textbox-sf">
 				  		<ts for="re_content">답글</ts>
 				    	<td><textarea id="re_content" name="re_content"/></textarea>
-				    	<script>CKEDITOR.replace('re_content',{
-				    		height:'95px',
-				    		width:'100%'
-				    	});</script>
 				    	</td>
 				    </div>
 			    </div>			

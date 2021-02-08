@@ -73,7 +73,8 @@ $(document).ready(function() {
 					<h2 style="display: inline-flex; color: #7fad39;"><%=svo.getS_name()%></h2>
 
 					<a class="heart-icon"><button type="button" class="icon_heart_alt" id="likeBtn" name ="likeBtn"></button></a>
-
+					<input type="hidden" id="store_uid" name="store_uid" value="<%=svo.getU_id() %>" />
+					
 					<div class="product__details__rating" style="margin-bottom: 45px;">
 						<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 							class="fa fa-star"></i> <i class="fa fa-star"></i> <i
@@ -504,7 +505,10 @@ relayout();
 	
 	var s_num = $('input[name=ms_num]').val();
 	var u_id = $('input[name=mu_id]').val();
-
+	
+	var user_u_id = $('input[name=mu_id]').val();
+	var store_u_id = $('input[name=store_uid]').val();
+	
 	$(document).ready(function() {
 		
 		btn.onclick = function(event) {
@@ -553,8 +557,8 @@ relayout();
 			data : insertData,
 			success : function(data) {
 				if (data == "ok") {
-					// webSocket에 보내기 (storeQna, 게시글작성자(mu_id), 가게주인(wu_id), 글번호(review_num))
- 					let socketMsg = ("storeQna," + mu_id + "," + wu_id + "," + review_num);
+					// webSocket에 보내기 (storeQna, 게시글작성자(user_u_id), 가게주인(store_u_id), 글번호(null))
+ 					let socketMsg = ("storeQna," + user_u_id + "," + store_u_id + ", 0");
  					console.debug("ssssssmsg>> ", socketMsg);
  					socket.send(socketMsg);
 					alert("good");
@@ -610,7 +614,3 @@ relayout();
 
 
 <%@include file="../includes/footer.jsp"%>
-      <!-- /.modal -->
-
-
-

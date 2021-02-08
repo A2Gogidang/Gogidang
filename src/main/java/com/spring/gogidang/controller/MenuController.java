@@ -73,8 +73,9 @@ public class MenuController {
 		
 		List<MultipartFile> fileList = request.getFiles("file");
 		
-//		String uploadPath = "/Users/taehyun/Documents/Spring_Source/Gogidang/src/main/webapp/resources/img/menu/";
-		String uploadPath = request.getServletContext().getRealPath("/resources/img/menu/");
+		String uploadPath = "/Users/taehyun/Documents/Spring_Source/Gogidang/src/main/webapp/resources/img/menu/";
+//		String uploadPath = request.getServletContext().getRealPath("/resources/img/menu/");
+		System.out.println(uploadPath);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("main");
@@ -115,9 +116,7 @@ public class MenuController {
 			} 
 		}
 		
-		int i = 0;
-		System.out.println(menuVO.getS_num());	
-		menuVO.setMenu_num(i++);
+		System.out.println("img : " + menuVO.getImg());
 
 		int res = menuService.menuRegister(menuVO);
 
@@ -130,7 +129,7 @@ public class MenuController {
 			writer.write("<script>alert('메뉴등록 성공!!'); location.href='./menuRegForm.mn';</script>");
 		}
 		else {
-			writer.write("<script>alert('가게등록 실패!!'); location.href='./menuRegForm.mn';</script>");
+			writer.write("<script>alert('메뉴등록 실패!!'); location.href='./menuRegForm.mn';</script>");
 		}
 
 		return null;
