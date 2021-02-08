@@ -112,7 +112,7 @@
                   <div class="categories__item set-bg"
                      data-setbg="./resources/img/store/<%=vo.getReview_img1()%>">
                      <h5>
-                        <a href="./storeInfo.st?s_num=<%=vo.getS_num()%>"><%=vo.getS_name()%></a>
+                        <a href="./reviewDetail.re?review_num=<%=vo.getReview_num()%>"><%=vo.getS_name()%></a>
                      </h5>
                   </div>
                </div>

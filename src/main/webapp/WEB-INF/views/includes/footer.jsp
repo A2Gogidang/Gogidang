@@ -88,7 +88,7 @@
 		</div>
 	</footer>
 	<!-- Footer Section End -->
-
+	
 	<!-- Js Plugins -->
 	<script
 		src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>

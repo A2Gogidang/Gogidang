@@ -79,6 +79,7 @@ public class AjaxController {
 			}
 			
 			return list;
+			
 		} else if (s_addr.length > 0 && meat.length==0) {
 			mapp.put("s_addr",s_addr);
 			List<ReviewVO> list = reviewService.getReviewListAjax(mapp);

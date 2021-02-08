@@ -93,16 +93,32 @@
 				<div class="modal-textbox">
 				  	<div class="modal-textbox-s">
 				    	<ts for="star">별점</ts>
-				    	<td><input type="text" id="star" name="star"></td>
+				    	<td>
+				    		<input type="radio" id="star" name="star" value="1" style="width:40px;">1
+				    		<input type="radio" id="star" name="star" value="2" style="width:40px;">2
+				    		<input type="radio" id="star" name="star" value="3" style="width:40px;">3
+				    		<input type="radio" id="star" name="star" value="4" style="width:40px;">4
+				    		<input type="radio" id="star" name="star" value="5" style="width:40px;">5
+			    		</td>
 				    </div>
 			    </div>
 			    
-				<div class="modal-textbox">
+			    <div class="id_input_box_ss">
+					<ts>상품사진</ts>
+					<td><img id="review_view" src="" width="350px;" height="200px;" /></td>
+				</div>
+				<div class="id_input_box">
+					<ts> </ts>
+					<td><input id="review_img1" name="file" type="file" width="350px;" height="200px;" multiple="multiple" /></td>
+				</div>
+			    
+			    
+				<!-- <div class="modal-textbox">
 				  	<div class="modal-textbox-s">
 				    	<ts for="title">사진</ts>
 				    	<td><input type="text" id="review_img1" name="review_img1"></td>
 				    </div>
-			    </div>
+			    </div> -->
 			    
 			    <div class="modal-textbox">
                  <div class="modal-textbox-ss"> 
@@ -162,13 +178,13 @@ $('[name=reviewBtn]').click(function () {
 
 function reviewInsert(insertData) {
 	$.ajax({
-		url : 'reviewRegAjax.re',
+		url : 'regReview.re',
 		type : 'POST',
 		data : insertData,
 		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 		dataType : 'json',
-		success : function(retVal) {
-			if (retVal.res == "OK") {
+		success : function(data) {
+			if (data == "OK") {
 				// webSocket에 보내기 (review, 리뷰작성자(tu_id), 가게주인(fu_id), pay_num)
 				let socketMsg = ("review," + tu_id +"," + fu_id + "," + pay_num);
 				console.debug("ssssssmsg>> ", socketMsg);
@@ -240,6 +256,14 @@ function callModal(event) {
 	});
     modal.style.display = "block";
 }
+
+$("#review_img1").change(function() {
+	var reader = new FileReader;
+	reader.onload = function(data) {
+		$("#review_view").attr("src", data.target.result).width(500);
+	}
+	reader.readAsDataURL(this.files[0]);
+});
 
 
 // When the user clicks on <span> (x), close the modal

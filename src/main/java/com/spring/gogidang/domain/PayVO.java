@@ -16,7 +16,7 @@ public class PayVO {
 	public int s_num;
 	public String pay_code;
 	public int totalPrice;
-	public Date paydate;
+	public String paydate;
 	public String imp_uid;
 	public String s_name;
 	
