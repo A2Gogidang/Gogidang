@@ -37,7 +37,7 @@
 		<!-- ---------------------------------------------------시작----------------------------------------------------- -->
 				<div class="col-lg-9">
 					<div class="section-title product__discount__title">
-						<h2>리뷰 관리</h2>
+						<h2>내가 작성한 후기</h2>
 					</div>
 					<div class="container">
 						<table class="table table-hover">
