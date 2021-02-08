@@ -54,7 +54,7 @@
 
 									<div class="col-md-12">
 										<a href="eventGet.ev?event_num=<%=vo.getEvent_num()%>">
-										<img src="resources/img/event/<%=vo.getPhoto() %>" /> </a>
+										<img src="resources/img/event/<%=vo.getPhoto() %>" style="width: 817px; height: 143px;"/> </a>
 									</div>
 
 							<%

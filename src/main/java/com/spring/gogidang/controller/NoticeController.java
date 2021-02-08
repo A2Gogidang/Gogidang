@@ -84,7 +84,8 @@ public class NoticeController {
 	
 	// notice ajax insert - admin (reg)
 	@RequestMapping("/noticewriteAjax.re")
-	public int noticeInsert(NoticeVO notice, HttpSession session) throws Exception {
+	@ResponseBody
+	public String noticeInsert(NoticeVO notice, HttpSession session) throws Exception {
 		MemberVO mvo = (MemberVO) session.getAttribute("memberVO");
 		notice.setU_id(mvo.getU_id());
 		System.out.println("u_id = " + notice.getU_id());
@@ -92,8 +93,12 @@ public class NoticeController {
 		System.out.println("content = " + notice.getContent());
 		
 		int res = noticeService.noticeInsert(notice);
-		System.out.println(res);
-		return res;
+		
+		if (res == 1) {
+			return "OK";
+		} else {
+			return "NO";
+		}
 	}
 	
 	// notice ajax info - admin (get)
@@ -122,6 +127,19 @@ public class NoticeController {
 	public String storeNoticeList() {
 		
 		return "sellerpage/store_notice";
+	}
+	
+	@RequestMapping("/noticeDelete.re")
+	@ResponseBody
+	public String noticeDelete(@RequestParam("notice_num") int notice_num) {
+		
+		int res = noticeService.noticeDelete(notice_num);
+
+		if (res == 1) {
+			return "OK";
+		} else {
+			return "NO";
+		}		
 	}
 	
 }

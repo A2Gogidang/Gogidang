@@ -6,6 +6,8 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.spring.gogidang.domain.*" %>
 <%@include file="../includes/header_simple.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
+
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/member_liststoreStyle.css"
@@ -17,26 +19,24 @@
 
 <!-- Product Section Begin -->
 <section class="product spad">
-	<div class="container">
+	<div class="container" >
 		<div class="row">
 			<div class="myreview">
-				<div class="col-lg-3 col-md-5">
-					<div class="sidebar">
-						<div class="sidebar__item">
-							<h4>마이페이지</h4>
-							<ul>
+				<div class="col-lg-3" id="nav-bar">
+		            <div class="hero__categories">
+		                  <div class="hero__categories__all">
+		                  	<span>마이페이지</span>
+		              	  </div>
+		              	  	<ul>
 								<li><a href="./updateList.me">내정보</a></li>
 								<li><a href="./purchase_list.py?u_id=<%=mvo.getU_id()%>">구매내역</a></li>
-								<li><a
-									href="./likeStoreList.li?u_id=<%=mvo.getU_id()%>">찜목록</a></li>
-								<li><a
-									href="./reviewListByIdWithPaging.re?u_id=<%=mvo.getU_id()%>">내가
+								<li><a href="./likeStoreList.li?u_id=<%=mvo.getU_id()%>">찜목록</a></li>
+								<li><a href="./reviewListByIdWithPaging.re?u_id=<%=mvo.getU_id()%>">내가
 										작성한 후기</a></li>
 								<li><a href="./cartList.ct">장바구니</a></li>
 							</ul>
 						</div>
 					</div>
-				</div>
 		<!-- ---------------------------------------------------시작----------------------------------------------------- -->
 				<div class="reviewboard">
 					<div class="section-title product__discount__title">
@@ -76,7 +76,7 @@
 		<span class="close">&times;</span>                                                               
 		<form name="reviewForm">
 			
-			<h3>공지사항 작성</h3>
+			<h3>리뷰 작성</h3>
 			<ol>
 				<div class="modal-textbox">
 				  	<div class="modal-textbox-s">
@@ -105,22 +105,21 @@
 			    </div>
 			    
 			    <div class="modal-textbox">
-				  	<div class="modal-textbox-ss"> 
-				    	<ts for="content">내용</ts>
-				    	<td><textarea type="text" id="content" name="content"></textarea></td>
-				    </div>
-			    </div>
-			</ol>
-			
+                 <div class="modal-textbox-ss"> 
+                   <ts for="content">내용</ts>
+                   <td><textarea type="text" id="content" name="content" style="height: 200px;"></textarea></td>
+                </div>
+             </div>
+         </ol>
+         
 
-			<div class="form-checkkkk">
-				
-			  	<button type="button" id="reviewBtn" name="reviewBtn" class="btn btn-lg btn-block btn-success">작성</button>	  	
-			  	<!--<button type="button" id="closeBtn" class="btn-j btn-lg btn-block btn-success" >닫기</button>  -->
-			  	<!--<input type="button" id="closeBtn" value="닫기"/>  -->
-			  	<br>
-			</div>
-			
+         <div class="form-checkkkk" style="margin-top: 0px;">
+            
+              <button type="button" id="reviewBtn" name="reviewBtn" class="btn btn-lg btn-block btn-success">작성</button>        
+              <!--<button type="button" id="closeBtn" class="btn-j btn-lg btn-block btn-success" >닫기</button>  -->
+              <!--<input type="button" id="closeBtn" value="닫기"/>  -->
+              <br>
+         </div>
 		</form>
 	</div>
 </div>
@@ -131,6 +130,7 @@
 <script>
 var u_id = '';
 var tu_id = '';
+var fu_id = '';
 var nickname = '';
 var s_num = '';
 var s_name = '';
@@ -169,10 +169,10 @@ function reviewInsert(insertData) {
 		dataType : 'json',
 		success : function(retVal) {
 			if (retVal.res == "OK") {
-				// webSocket에 보내기 (rqQna, 댓글작성자(admin), 게시글작성자(u_id), 글번호(qna_num))
-				// let socketMsg = ("reQna," + "admin," + u_id + "," + qna_num);
-				// console.debug("ssssssmsg>> ", socketMsg);
-				// socket.send(socketMsg);
+				// webSocket에 보내기 (review, 리뷰작성자(tu_id), 가게주인(fu_id), pay_num)
+				let socketMsg = ("review," + tu_id +"," + fu_id + "," + pay_num);
+				console.debug("ssssssmsg>> ", socketMsg);
+				socket.send(socketMsg);
 				
 				modal.style.display = "none";
 				payList(tu_id);
@@ -199,9 +199,9 @@ function payList(data){
 	      		a += '<td>' + value.totalPrice + '</td>';
 	      		a += '<td>' + value.paydate + '</td>';
 	      		if (value.content != null) {
-	      			a += '<td><h6>답변완료</h6></td>';
+	      			a += '<td><h6>작성완료</h6></td>';
 	      		} else {
-		      		a += '<td><button onclick="callModal(' + value.pay_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right">리뷰작성</button></td></tr>';
+		      		a += '<td><button onclick="callModal(' + value.pay_num + ');" id="myBtn" class="btn btn-primary btn-xs" style="background: #7fad39; color:white; border: 1px solid #7fad39;margin-top:0px; padding-top:0px; padding-bottom:0px;">리뷰작성</button></td></tr>';
 	      		}
 	      		
 	        });
@@ -226,9 +226,13 @@ function callModal(event) {
 				pay_num = retVal.pay_num;
 				s_num = retVal.s_num;
 				s_name = retVal.s_name;
-				$('input#pay_num').val(pay_num);
-				$('input#s_num').val(s_num);
-				$('input#s_name').val(s_name);
+				fu_id = retVal.fu_id;
+				var mpay_num = retVal.pay_num;
+				var ms_num = retVal.s_num;
+				var ms_name =  retVal.s_name;
+				$('input#pay_num').val(mpay_num);
+				$('input#s_num').val(ms_num);
+				$('input#s_name').val(ms_name);
 			} else {
 				alert("review modal Fail!!!!");
 			}

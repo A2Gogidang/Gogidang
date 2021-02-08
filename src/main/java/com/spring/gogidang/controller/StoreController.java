@@ -44,11 +44,20 @@ public class StoreController {
 
 	@RequestMapping(value = "/storeWait.st")
 	public String getStoreWait(Model model) {
-		ArrayList<StoreVO> storeList = storeService.getWaitList();
-		System.out.println("list size : " + storeList.size());
-		model.addAttribute("storeList", storeList);
+//		ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) storeService.getWaitList();
+//		System.out.println("list size : " + storeList.size());
+//		model.addAttribute("storeList", storeList);
 
 		return "admin/admin_waitStore";
+	}
+	
+	@RequestMapping(value = "/storeWaitListAjax.re", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public List<StoreVO> storeWaitListAjax() {
+		List<StoreVO> storeList = storeService.getWaitList();
+		System.out.println("new list size : " + storeList.size());
+		
+		return storeList;
 	}
 	
 	// store info ajax - modal
@@ -126,7 +135,7 @@ public class StoreController {
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 		StoreVO vo = storeService.storeInfo(s_num);
 		
-		ArrayList<MenuVO> menuList = menuService.menuList(s_num);
+		ArrayList<MenuVO> menuList = (ArrayList<MenuVO>) menuService.menuList(s_num);
 		List<ReviewVO> reviewList = reviewService.getListSn(s_num);
 		
 		int totalReview = reviewService.getCount(s_num);
@@ -176,7 +185,7 @@ public class StoreController {
 	@RequestMapping(value = "/storeInsert.st", method = RequestMethod.POST)
 	public String storeInsert(StoreVO store, HttpSession session, HttpServletResponse response,
 			MultipartHttpServletRequest request) throws Exception {
-		System.out.println("1111111111111");
+
 		List<MultipartFile> fileList = request.getFiles("file");
 
 //		String uploadPath = "/Users/taehyun/Documents/Spring_Source/Gogidang/src/main/webapp/resources/img/store/";
@@ -191,7 +200,6 @@ public class StoreController {
 
 		store.setThumbnail("null");
 		store.setS_img("null");
-		System.out.println("2222222222222222");
 		for (MultipartFile mf : fileList) {
 			if (mf.getSize() >= 1) {
 				String originFileName = mf.getOriginalFilename(); // 원본 파일 명
@@ -224,12 +232,9 @@ public class StoreController {
 				filesize_list.add(fileSize);
 			}
 		}
-		System.out.println("333333333333333");
 		
 		store.setConfirm(0); // 처음 등록할때 미승인 상태로 띄워야하기때문에 insert전 데이터 넣어줌
 		int res = storeService.insertStore(store);
-		
-		System.out.println(store.toString());
 		
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");

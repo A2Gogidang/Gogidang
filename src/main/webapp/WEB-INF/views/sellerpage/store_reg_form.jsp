@@ -17,7 +17,6 @@
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <script>
-
    function execDaumPostcode() {
       new daum.Postcode({
          oncomplete : function(data) {
@@ -175,7 +174,7 @@
                            <input type="hidden" name="u_id" value=<%=memberVO.getU_id()%>>
 
                            <div class="id_input_box_ss">
-                              <ts>가게 메인 사진 </ts>
+                              <ts style="vertical-align: middle;margin-right: 25px;">가게 메인 사진 </ts>
                               <%
                                  if (storeVO == null || storeVO.getThumbnail() == null || storeVO.getThumbnail() == "") {
                               %>
@@ -192,8 +191,8 @@
                               %>
                            </div>
 
-                           <div class="id_input_box_ss">
-                              <ts>사업자등록증 </ts>
+                           <div class="id_input_box_ss" style="margin-top: 10px">
+                              <ts style="vertical-align: middle;margin-right: 33px;">사업자등록증 </ts>
                               <%
                                  if (storeVO == null || storeVO.getS_num() == 0) {
                               %>
@@ -315,7 +314,8 @@
                                  <option value="13:00">13:00</option>
                                  <option value="14:00">14:00</option>
                                  <option value="15:00">15:00</option>
-                              </select> <select name="s_hour">
+                              </select> 
+                              <select name="s_hour">
                                  <option value="">마감시간</option>
                                  <option value="15:00">15:00</option>
                                  <option value="16:00">16:00</option>
@@ -344,7 +344,7 @@
                                     <%
                                        if (storeVO == null || storeVO.getS_num() == 0 || storeVO.getS_phone()== ""|| storeVO.getS_phone()== null ) {
                                     %>
-                                       <button type="submit"  class="btn-jj btn-lg btn-block btn-success" multiple / >작성하기</button>
+                                       <button type="submit"  class="btn-jj btn-lg btn-block btn-success" >작성하기</button>
                                     <%                                                                   			
                                       	
                                        } else {

@@ -22,6 +22,8 @@ public interface StoreMapper {
    
    public Double getAvgStar(int s_num);
    
+   public String getStoreId(int s_num);
+   
    // soobin
    public int insertStore(StoreVO storeVO);
    public StoreVO selectStore(StoreVO storeVO);

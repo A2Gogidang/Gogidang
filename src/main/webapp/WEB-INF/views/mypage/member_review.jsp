@@ -37,7 +37,7 @@
 		<!-- ---------------------------------------------------시작----------------------------------------------------- -->
 				<div class="col-lg-9">
 					<div class="section-title product__discount__title">
-						<h2>리뷰 관리</h2>
+						<h2>내가 작성한 후기</h2>
 					</div>
 					<div class="container">
 						<table class="table table-hover">
@@ -45,7 +45,7 @@
 								<tr align=center>
 									<th>번호</th>
 									<th>제목</th>
-									<th>작성자</th>
+									<th>가게이름</th>
 									<th>별점</th>
 									<th>등록일</th>
 									<th>답변 상태</th>
@@ -62,7 +62,7 @@
 									<td id = "a_color"><a
 										href="storereviewInfo.bo?review_num=<%=reviewVO.getReview_num()%>"><%=reviewVO.getTitle()%></a>
 									</td>
-									<td><%=reviewVO.getU_id()%></td>
+									<td><%=reviewVO.getS_name()%></td>
 									<td><%=reviewVO.getStar()%></td>
 									<td><%=reviewVO.getReview_date()%></td>
 									<% if (reviewVO.getReview_sub_content() != null) {%>

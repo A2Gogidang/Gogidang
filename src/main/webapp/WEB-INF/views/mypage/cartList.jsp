@@ -189,8 +189,7 @@
                             <li id="tot-li">Total <span><%=NumberFormat.getInstance().format(totalPrice) %>원</span></li>
                         </ul>
                         <!-- <button onclick="pay()" class="primary-btn">결제하기</button> -->
-                        <div class="form-checkkk">
-                     	
+                        <div class="form-check-cart">
                    			<button class="primary-btn" onclick="pay()" >결 제 하 기</button>	
                  		</div>
 	</div>

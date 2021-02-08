@@ -79,9 +79,24 @@ public class ManageSocketHandler extends TextWebSocketHandler {
 							"<a href='./qnadetail.qn?qna_num=" + bno + "'>" + bno + "</a> 문의 답변완료.");
 					System.out.println("tmpMsg = " + tmpMsg);
 					boardWriterSession.sendMessage(tmpMsg);
+				} else if ("review".equals(cmd) && boardWriterSession != null) {
+					TextMessage tmpMsg = new TextMessage(replyWriter + "님이 주문번호 " + bno + "의 리뷰를 남기셨습니다." + 
+							"<a href='./storereviewList.re'>확인하러가기</a>");
+					System.out.println("tmpMsg = " + tmpMsg);
+					boardWriterSession.sendMessage(tmpMsg);
 				} else if ("reviewsub".equals(cmd) && boardWriterSession != null) {
 					TextMessage tmpMsg = new TextMessage(replyWriter + "님의" +
 							"<a href='./qnadetail.qn?qna_num=" + bno + "'>" + bno + "</a> 리뷰 답변완료.");
+					System.out.println("tmpMsg = " + tmpMsg);
+					boardWriterSession.sendMessage(tmpMsg);
+				} else if ("storeQna".equals(cmd) && boardWriterSession != null) {
+					TextMessage tmpMsg = new TextMessage(replyWriter + "님의" +
+							"<a href='./storeNoticeList.no'>문의</a>를 작성하였습니다.");
+					System.out.println("tmpMsg = " + tmpMsg);
+					boardWriterSession.sendMessage(tmpMsg);
+				} else if ("reStoreQna".equals(cmd) && boardWriterSession != null) {
+					TextMessage tmpMsg = new TextMessage(replyWriter + "님의" +
+							"<a href='./qnaStoreInfo.qs?qnastore_num=" + bno + "'>" + bno + "</a> 문의 답변완료.");
 					System.out.println("tmpMsg = " + tmpMsg);
 					boardWriterSession.sendMessage(tmpMsg);
 				}

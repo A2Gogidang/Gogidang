@@ -48,10 +48,11 @@
 	    						</div>
 								<div class="row">
 										<div class="col-md-12">
-											<%-- <img src="<%=eventVO.getPhoto()%>" /> --%>
-											<h5><%=eventVO.getThumbnail() %></h5>
+											<img src="resources/img/event/<%=eventVO.getPhoto() %>" /> </a>
+											<%-- <h5><%=eventVO.getThumbnail() %></h5> --%>
+											<br><br><br><br>
 												<div class="eventd">
-													<h5>${eventVO.getContent()}</h5>
+													<h4>${eventVO.getContent()}</h4>
 												</div>
 										</div>
 	            				</div>

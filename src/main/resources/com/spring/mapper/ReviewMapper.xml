@@ -5,7 +5,7 @@
 <mapper namespace="com.spring.mapper.ReviewMapper">
 
 	<select id="getList" resultType="ReviewVO">
-		select * from review
+		select * from review ORDER BY review_num
 	</select>
 	
 	<select id="reviewInfo" parameterType="int" resultType="ReviewVO">
@@ -13,15 +13,17 @@
 	</select>
 	
 	<select id="getListSn" parameterType="int" resultType="ReviewVO">
-		select re.review_num, re.title, re.u_id, re.star, re.review_date, rs.review_sub_content 
+		select re.review_num, re.title, re.u_id, re.star, re.review_date, re.content, re.review_img1, rs.review_sub_content 
 		from review re left outer join review_sub rs on re.review_num = rs.review_num
 		where re.s_num=#{s_num}
+		ORDER BY re.review_num
 	</select>
 	
 	<select id="getListUid" parameterType="String" resultType="ReviewVO">
-		select re.review_num, re.title, re.u_id, re.star, re.review_date, rs.review_sub_content 
+		select re.review_num, re.title, re.u_id, re.s_name, re.star, re.review_date, rs.review_sub_content 
 		from review re left outer join review_sub rs on re.review_num = rs.review_num
 		where re.u_id=#{u_id}
+		ORDER BY re.review_num
 	</select>
 
 	<select id="getListWithPaging" resultType="ReviewVO">

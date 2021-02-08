@@ -11,13 +11,14 @@
 	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/modal.css"
+	href="${pageContext.request.contextPath}/resources/css/modal_middle.css"
 	type="text/css">
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/store_reviewStyle.css"
 	type="text/css">
 
+<script src = "${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>	
 <%
 	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
 	String id = "'" + memberVO.getU_id() + "'";
@@ -72,33 +73,56 @@
 	<div class="modal-content">
 		<span class="close">&times;</span>
 		<form name="storeQnaInsertForm">
-			<fieldset>
-				<legend>가게 문의</legend>
+				
+				<h3>고객 문의</h3>
 				<ol>
-					<li>
-						<label for="title">제목</label> 
-						<input type="text" id="title" name="title" readonly>
-						<input type="hidden" id="qnastore_num" name="qnastore_num">
-					</li>
-					<li>
-						<label for="u_id">유저아이디</label>
-						<input type="text" id="u_id" name="u_id" readonly>
-					</li>
-					<li>
-						<label for="content">문의내용</label>
-						<input type="text" id="content" name="content" readonly>
-					</li>
-					<li>
-						<label for="re_content">답글</label> 
-						<input type="text" id="re_content" name="re_content" />
-					</li>
-				</ol>
-			</fieldset>
-
-			<fieldset>
+					<!-- 문의번호 -->
+					<div class="modal-textbox-detail">
+					  	<div class="modal-textbox-f">
+					  		<ts for="qna_num" id="qna_num_f">문의번호</ts>
+					    	<td><input type="text"  id="qnastore_num" name="qnastore_num" readonly></td>
+					    </div>
+					    <div class="modal-textbox-f">
+					  		<ts for="u_id" id="u_id_f">회원아이디</ts>
+					    	<td><input type="text" id="u_id" name="u_id" readonly></td>
+					    </div>
+			    	</div>
+			    	
+			    	 <div class="modal-textbox">
+					  	<div class="modal-textbox-s">
+					  		<ts for="title">문의제목</ts>
+					    	<td><input type="text" id="title" name="title" readonly></td>
+					    </div>
+			    	</div>
+			    	
+			    	<div class="modal-textbox-ff">
+					  	<div class="modal-textbox-sf">
+					  		<ts for="content">문의내용</ts>
+					    	<td><textarea id="content" name="content" type="text" readonly></textarea></td>
+					    </div>
+			    	</div>
+			    	<div class="modal-textbox-ff">
+				  	<div class="modal-textbox-sf">
+				  		<ts for="re_content">답글</ts>
+				    	<td><textarea id="re_content" name="re_content"/></textarea>
+				    	<script>CKEDITOR.replace('re_content',{
+				    		height:'95px',
+				    		width:'100%'
+				    	});</script>
+				    	</td>
+				    </div>
+			    </div>			
+			</ol>
+			
+			<div class="form-check-f">
+			  	<button type="button" id="storeQnaInsertBtn" name="storeQnaInsertBtn" class="btn btn-lg btn-block btn-success">작성</button>
+			  	<br>
+			</div>
+			<!-- <fieldset>
 				<button type="button" id="storeQnaInsertBtn" name="storeQnaInsertBtn">작성</button>
 				<input type="button" id="closeBtn" value="닫기" />
-			</fieldset>
+			</fieldset> -->
+			
 		</form>
 	</div>
 </div>
@@ -140,7 +164,7 @@
 					$('input#qnastore_num').val(qnastore_num);
 					$('input#u_id').val(u_id);
 					$('input#title').val(title);
-					$('input#content').val(content);
+					$('textarea#content').val(content);
 				} else {
 					alert("confirm Fail!!!!");
 				}
@@ -159,14 +183,14 @@
 			success : function(data) {
 				var a = '';
 					$.each(data,function(key, value) {
-						a += '<tr><td>'+ value.qnastore_num + '</td>';
+						a += '<tr style="text-align: center;"><td>'+ value.qnastore_num + '</td>';
 						a += '<td>' + value.title + '</td>';
 						a += '<td>' + value.u_id + '</td>';
 						a += '<td>' + value.re_date + '</td>';
 						if (value.re_content != null) {
-							a += '<td><h6>답변완료</h6></td></tr>';
+							a += '<td><a href="./qnaStoreInfo.qs?qnastore_num='+ value.qnastore_num + '"><h6><button class="btn btn-primary btn-xs pull-right" style="margin-top: 0px;">답변확인</button></a></td></tr>';
 						} else {
-							a += '<td><button onclick="callModal('+ value.qnastore_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right">문의댓글</button></td></tr>';
+							a += '<td><button onclick="callModal('+ value.qnastore_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right" style="margin-top: 0px;">문의댓글</button></td></tr>';
 						}
 					});
 						$("#storeQna_content").html(a); //a내용을 html에 형식으로 .commentList로 넣음

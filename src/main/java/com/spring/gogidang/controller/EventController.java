@@ -41,11 +41,16 @@ public class EventController {
 		return "redirect:eventList.ev";
 	}
 	
-	@RequestMapping("/eventDelete.ev")
+	@RequestMapping("/eventDelete.re")
+	@ResponseBody
 	public String eventDelete(@RequestParam("event_num") int event_num) {
-		eventService.deleteByNum(event_num);
+		int res = eventService.deleteByNum(event_num);
 		
-		return "redirect:eventList.ev";
+		if (res == 1) {
+			return "OK";
+		} else {
+			return "NO";
+		}
 	}
   
 	@RequestMapping("/eventAdmin.ev")
@@ -55,12 +60,16 @@ public class EventController {
 	}
 	
 	@RequestMapping("/eventwriteAjax.re")
-	public int eventInsert(EventVO eventVO) throws Exception {
-		System.out.println("content = " + eventVO.getContent());
+	@ResponseBody
+	public String eventInsert(EventVO eventVO) throws Exception {
 		
 		int res = eventService.register(eventVO);
-		System.out.println(res);
-		return res;
+		
+		if(res == 1) {
+			return "OK";
+		} else {
+			return "NO";
+		}
 	}
 	
 	@RequestMapping(value = "/eventListAjax.re", produces="application/json; charset=UTF-8")
