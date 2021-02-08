@@ -10,7 +10,7 @@
 <%@include file="../includes/header_simple.jsp"%>
 
 <link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/shop-details.css"type="text/css">
-<link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/modal.css"
+<link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/modal_middle.css"
 	type="text/css">
 <%
    StoreVO svo = (StoreVO) request.getAttribute("storeVO");
@@ -437,39 +437,53 @@ relayout();
 	<div class="modal-content">
 		<span class="close">&times;</span>
 		<form name="storeQnaInsertForm">
-				<h3>가게 문의 작성</h3>
+				<h3>가게 문의 하기</h3>
 				<ol>
-					<div class="modal-textbox">
-					  	<div class="modal-textbox-s">
-					    	<ts for="title">제목</ts>
-					    	<td><input type="text" id="title" name="title"></td>
+					<div class="modal-textbox-detail">
+					  	<div class="modal-textbox-f">
+					  		<ts for="ms_num" id="qna_num_details">가게번호</ts>
+					    	<td><input type="text"  id="s_num" name="s_num" readonly></td>
 					    </div>
-				    </div>
-					<div class="modal-textbox">
+					    <div class="modal-textbox-f">
+					  		<ts for="u_id" id="u_id_f">회원아이디</ts>
+					    	<td><input type="text" id="u_id" name="u_id" readonly></td>
+					    </div>
+			    	</div>
+			    
+			    	<div class="modal-textbox">
 					  	<div class="modal-textbox-s">
-						<ts for="mu_id">유저아이디</ts>
-						<td><input type="text" id="u_id" name="u_id" readonly></td>
-						</div>
-					</div>
-					<div class="modal-textbox">
-					  	<div class="modal-textbox-s">
-						<ts for="ms_num">가게번호</ts>
-						<td><input type="text" id="s_num" name="s_num" readonly></td>
-						</div>
-					</div>	
+					  		<ts for="title">문의제목</ts>
+					    	<td><input type="text" id="title" name="title" ></td>
+					    </div>
+			    	</div>
+					
+					<div class="modal-textbox-ff">
+					  	<div class="modal-textbox-sf">
+					  		<ts for="content">문의내용</ts>
+					    	<td><textarea id="content" name="content" type="text" ></textarea></td>
+					    </div>
+			    	</div>
+			    
+			    	<!--
 					<div class="modal-textbox">
 					  	<div class="modal-textbox-s" style="align:center;">
 						<ts for="content">문의내용</ts>
 						<td><input type="text" id="content" name="content" style=:width:100%;height:100%;min-height:100p;></td>
 						</div>
 					</div>
+					  -->
 				</ol>
-
-
+				
+				<div class="form-check-details">
+				  	<button type="button" id="storeQnaInsertBtn" name="storeQnaInsertBtn" class="btn btn-lg btn-block btn-success">작성</button>
+				  	<br>
+				</div>
+			<!-- 
 			<fieldset>
 				<button type="button" id="storeQnaInsertBtn" name="storeQnaInsertBtn">작성</button>
 				<input type="button" id="closeBtn" value="닫기" />
 			</fieldset>
+			 -->
 		</form>
 	</div>
 </div>

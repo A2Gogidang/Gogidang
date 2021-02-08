@@ -6,7 +6,7 @@
 <%@include file="../includes/header_simple.jsp"%>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/modal_small.css"
+	href="${pageContext.request.contextPath}/resources/css/modal_middle.css"
 	type="text/css">
 	
 <link rel="stylesheet"
@@ -69,11 +69,11 @@
 			<ol>
 			  
 			  	<div class="modal-textbox">
-				  	<div class="modal-textbox-f">
+				  	<div class="modal-textbox-qna">
 				  		<ts for="qna_num" id="qna_num_f">문의번호</ts>
 				    	<td><input type="text"  id="qna_num" name="qna_num" readonly></td>
 				    </div>
-				    <div class="modal-textbox-f">
+				    <div class="modal-textbox-qna">
 				  		<ts for="u_id" id="u_id_f">회원아이디</ts>
 				    	<td><input type="text" id="u_id" name="u_id" readonly></td>
 				    </div>
@@ -106,9 +106,7 @@
 			<div class="form-check-f">
 				
 			  	<button type="button" id="reQnaWrite" name="reQnaWrite" class="btn btn-lg btn-block btn-success">작성</button>
-			  	<!-- <button type="button" id="closeBtn" class="btn-j btn-lg btn-block btn-success" >닫기</button> -->
-			  	<!--<input type="button" id="closeBtn" value="닫기"/>  -->
-			  	<br>
+			<br>
 			</div>
 			
 			<!--<fieldset>

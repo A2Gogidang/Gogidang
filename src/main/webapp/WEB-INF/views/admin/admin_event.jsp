@@ -173,7 +173,7 @@ function eventList(){
 	      		a += '<td>' + value.photo + '</td>';
 	      		a += '<td>' + value.content + '</td>';
 	      		a += '<td>' + value.re_date + '</td>';
-	      		a += '<td><button onclick="deleteBtn(' + value.event_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right" style="background: white; color:red; border: 1px solid red;margin-top:0px;">삭제</button></td></tr>';
+	      		a += '<td><button onclick="deleteBtn(' + value.event_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right" style="background: #ffffff; color:red; border: 1px solid red;margin-top:0px;">삭제</button></td></tr>';
 	        });
 	        
 	        $("#event_content").html(a); //a내용을 html에 형식으로 .commentList로 넣음
