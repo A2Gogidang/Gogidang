@@ -6,7 +6,6 @@
 <%@ page import="javax.naming.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.spring.gogidang.domain.*"%>
-
 <%@include file="../includes/header_simple.jsp"%>
 
 <link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/shop-details.css"type="text/css">
@@ -56,7 +55,7 @@ $(document).ready(function() {
 				<div class="product__details__pic">
 					<div class="product__details__pic__item">
 						<img class="product__details__pic__item--large"
-							src="resources/img/store/<%=svo.getThumbnail()%>" alt="">
+							src="resources/img/store/<%=svo.getThumbnail()%>" alt="" style="width : 556px; height : 416px;">
 					</div>
 					<div class="product__details__pic__slider owl-carousel">
 						<img src="resources/img/product/details/thumb-1.jpg" alt="">
@@ -151,7 +150,7 @@ $(document).ready(function() {
 																<tr class="table">
 																	<td><input type="number" id="cartStock"
 																		name="cartStock" min="1" max="100" value="1" /></td>
-																	<td><input type="submit" value="장바구니에 담기" id="addCart<%=i%>"/ style=""></td>
+																	<td><input type="submit" value="장바구니에 담기" id="addCart<%=i%>"/ style="background-color : #7fad39; border : 0px; color : white; height : 27px; border-radius : 2px; font-weight : bold;"></td>
 																</tr>
 															</tbody>
 														</table>
@@ -168,7 +167,7 @@ $(document).ready(function() {
 							</div>
 						</div>
 
-						<div class="tab-pane" id="tabs-2" role="tabpanel">
+						  <div class="tab-pane" id="tabs-2" role="tabpanel">
 							<div class="kakaomap"
 								style="display: flex; justify-content: center; margin-top: 70px;">
 								<div id="map" style=""></div>
@@ -222,7 +221,7 @@ geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
         });
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         var infowindow = new kakao.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">저희 가게</div><div style="width:150px;text-align:center;padding:6px 0;"><a href="https://map.kakao.com/link/to/${storeVO.getS_addr()}">길찾기</a></div>'
+            content: '<div style="width:150px; margin-top : 3px;text-align:center;"><a href = "https://map.kakao.com/"target="_blank" ><%=svo.getS_name()%></div>'
                    
         });
         infowindow.open(map, marker);
@@ -247,8 +246,7 @@ relayout();
 
 </script>
 
-						</div>
-						<div class="tab-pane" id="tabs-3" role="tabpanel">
+						</div>					<div class="tab-pane" id="tabs-3" role="tabpanel">
 							<div class="panel panel-default" id="panel-default">
 								<div class="panel-heading" id="panel-heading">
 									<span class="panel-title">후기</span>
@@ -360,63 +358,6 @@ relayout();
 
 												</tbody>
 											</table>
-											<div class="container-fluid">
-												<div class="row">
-													<div class="col-md-2"></div>
-
-													<div class="col-md-8">
-														<class class="pagination-lg">
-														<ul class="pagination"
-															style="margin-bottom: 30px; display: flex; justify-content: center; align-items: center;">
-															<%
-																	if (nowpage <= 1) {
-																%>
-															<li class="page-item"><a class="page-link" href="#"
-																style="color: white;background-color: rgb(191,191,191);;">Previous</a></li>
-															<%
-																	} else {
-																%>
-															<li class="page-item"><a class="page-link"
-																href="./qnalist.qn?page=<%=nowpage - 1%>"
-																style="color: white;background-color: rgb(191,191,191);;">Previous</a></li>
-															<%
-																	}
-																%>
-															<%
-																	for (int a = startpage; a <= endpage; a++) {
-																		if (a == nowpage) {
-																%>
-															<%=a%>
-															<%
-																	} else {
-																%>
-															<li class="page-item"><a class="page-link"
-																href="./noticelist.no?page=<%=a%>"
-																style="color: rgb(51, 131, 51);"><%=a%></a></li>
-															<%
-																	}
-																%>
-															<%
-																	}
-																%>
-															<%
-																	if (nowpage >= maxpage) {
-																%>
-															<li class="page-item"><a class="page-link" href="#"
-																style="color: white;background-color: rgb(191,191,191);;">Next</a></li>
-															<%
-																	} else {
-																%>
-															<li class="page-item"><a class="page-link"
-																href="./qnalist.qn?page=<%=nowpage + 1%>"
-																style="color: white;background-color: rgb(191,191,191);;">Next</a></li>
-															<%
-																	}
-																%>
-														</ul>
-													</div>
-												</div>
-											</div>
 										</div>
 									</div>
 								</div>
@@ -431,13 +372,14 @@ relayout();
 </section>
 	
 <!-- The Modal -->
+
 <div id="myModal" class="modal">
 	<!-- Modal content -->
 	<div class="modal-content">
 		<span class="close">&times;</span>
 		<form name="storeQnaInsertForm">
 			<fieldset>
-				<legend>가게 문의 작성</legend>
+				<h3>가게 문의 작성</h3>
 				<ol>
 					<li>
 						<label for="title">제목</label> 
@@ -453,7 +395,7 @@ relayout();
 					</li>
 					<li>
 						<label for="content">문의내용</label>
-						<input type="text" id="content" name="content">
+						<textarea type="text" id="content" name="content"></textarea>
 					</li>
 				</ol>
 			</fieldset>
@@ -466,6 +408,44 @@ relayout();
 	</div>
 </div>
 <!--modal END-->
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+	<!-- Modal content -->
+	<div class="modal-content">
+		<span class="close">&times;</span>                                                               
+		<form name="QnaInsertForm">
+			
+			<h3>가게문의 작성</h3>
+			<ol>
+				<div class="modal-textbox">
+				  	<div class="modal-textbox-s">
+				    	<ts for="title">제목</ts>
+				    	<td><input type="text" id="title" name="title"></td>
+				    </div>
+			    </div>
+			    
+			    <div class="modal-textbox">
+				  	<div class="modal-textbox-ss"> 
+				    	<ts for="content">공지내용</ts>
+				    	<td><textarea type="text" id="content" name="content"></textarea></td>
+				    </div>
+			    </div>
+			</ol>
+			
+
+			<div class="form-checkkkk">
+				
+			  	<button type="button" id="noticeInsertBtn" name="noticeInsertBtn" class="btn btn-lg btn-block btn-success">작성</button>	  	
+			  	<!--<button type="button" id="closeBtn" class="btn-j btn-lg btn-block btn-success" >닫기</button>  -->
+			  	<!--<input type="button" id="closeBtn" value="닫기"/>  -->
+			  	<br>
+			</div>
+			
+		</form>
+	</div>
+</div>
+<!-- modal END -->
 
 
 <script type="text/javascript"
