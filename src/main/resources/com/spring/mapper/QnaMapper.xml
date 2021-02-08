@@ -59,7 +59,7 @@
 	</insert> -->
 	
 	<select id="getList" resultType="QnaVO">
-		select * from qna
+		select * from qna ORDER BY qna_num
 	</select>
  
  </mapper>

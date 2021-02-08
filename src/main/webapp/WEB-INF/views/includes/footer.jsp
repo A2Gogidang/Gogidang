@@ -128,6 +128,7 @@
 				let $socketAlert = $('div#socketAlert');
 				$socketAlert.html(event.data);
 				$socketAlert.css('display', 'block');
+				toastr.success(event.data);
 				
 				setTimeout( function() {
 					$socketAlert.css('display', 'none');
