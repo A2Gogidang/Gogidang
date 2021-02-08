@@ -40,10 +40,16 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">
+
+<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
 </head>
 
 <body>
 <div id="socketAlert" class="alert alert-success" role="alert" style="display:none;"></div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
    <!-- Page Preloder -->
    <div id="preloder">
       <div class="loader"></div>

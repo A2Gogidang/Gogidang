@@ -26,6 +26,7 @@
 		select * 
 		from pay p left outer join review re on p.pay_num = re.pay_num 
 		where p.u_id = #{u_id}
+		ORDER BY p.pay_num
 	</select>
 	
 	<select id="getInfo" parameterType="int" resultType="PayVO">
