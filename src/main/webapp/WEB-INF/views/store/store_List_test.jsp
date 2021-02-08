@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" %>
-<%@ page import = "com.spring.gogidang.domain.*" %>
+	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.spring.gogidang.domain.*"%>
 <%@ page import="java.util.ArrayList"%>
 <%
 	ArrayList<StoreVO> storeList = (ArrayList<StoreVO>) request.getAttribute("storeList");
@@ -65,24 +65,11 @@
 								<div class="shoplisttht">
 									<li><input type="checkbox" id="cow" class="f_check"
 										name="f_Mcheck" value="0">소고기</li>
-									<li id="pig_li"><input type="checkbox" id="pig" class="f_check"
-										name="f_Mcheck" value="1">돼지고기</li>
+									<li id="pig_li"><input type="checkbox" id="pig"
+										class="f_check" name="f_Mcheck" value="1">돼지고기</li>
 								</div>
 							</div>
-							<!-- <div class="shoplistfo">
-                                <div class="shoplistfoo">
-                                   <h5>부위</h5>
-                                </div>
-                                <div class="shoplistfot">
-                                   <li><input type="checkbox" id="deung" class="f_check" name="f_Acheck" value="등심" >등심</li>
-                                   <li><input type="checkbox" id="an" class="f_check" name="f_Acheck" value="안심" >안심</li>
-                                   <li><input type="checkbox" id="chae" class="f_check" name="f_Acheck" value="채끝" >채끝</li>
-                                   <li><input type="checkbox" id="gal" class="f_check" name="f_Acheck" value="갈비" >갈비</li>
-                                   <li><input type="checkbox" id="sam" class="f_check" name="f_Acheck" value="삼겹" >삼겹</li>
-                                   <li><input type="checkbox" id="mok" class="f_check" name="f_Acheck" value="목살" >목살</li>
-                                   <li><input type="checkbox" id="etc" class="f_check" name="f_Acheck" value="특수부위" >특수</li>
-                                </div>
-                             </div> -->
+
 							<div class="shopliststar">
 								<div class="shopliststarone">
 									<h5>별점</h5>
@@ -111,92 +98,77 @@
 								</div>
 							</div>
 						</div>
-						
+
 					</div>
 				</div>
-				</div>
-				</div>
-				</div>
-				</section>
-				
-			   <div class="container">
-            <div class="row">
-     				<%
-		for(int i=0; i<storeList.size(); i++) {
-			StoreVO svo = (StoreVO) storeList.get(i);
-					%>
-                <div class="col-lg-8">
-                    <div class="shoping__cart__table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th class="shoping__product"><%= svo.getS_name() %></th>
-                                    <th>지역</th>
-                                    <th>품목</th>
-                                    <th>별점</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="shoping__cart__item" style="display:inline-flex;">
-                                        <img src="resources/img/store/store_gogi.png" alt="" style="width : 400px; height : 250px;"><br>
-                                        
-                                        <h5 style="display : flex; margin-left : 140px; margin-top : 82px;"></h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        <%=svo.getS_addr()%>
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                    
-											<%
-											if(svo.getMeat() == 0) {
-											%>
-												<h6>소고기 </h6>
-											<%
-											} else if (svo.getMeat() == 1) {
-											%>
-												<h6> 돼지고기 </h6>
-											<%
-											} else {
-											%>
-												<h6>식당</h6>
-											<%
-											}
-											%>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                     <input type="hidden" id="avgStar" class="avgStar" name="avgStar" value="<%=svo.getAvgStar() %>" style="border:none" /><%=svo.getAvgStar() %>
-                                    </td>
-                                    
-                                </tr>
-                               </tbody>
-                               </table>
-                               </div>
-                               </div>
-                               <%
-								}
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class="container">
+	<div class="row" id="store_list" name="store_list"
+		style="display: flex; aligin-items: center; justify-content: center;">
+		<%
+			for (int i = 0; i < storeList.size(); i++) {
+				StoreVO svo = (StoreVO) storeList.get(i);
+		%>
+		<div class="col-lg-9">
+			<div class="shoping__cart__table">
+				<table>
+					<thead>
+						<tr>
+							<th class="shoping__product"><span
+								style="margin-left: 130px;"><a href="./storeInfo.st?s_num=<%=svo.getS_num()%>"><%=svo.getS_name()%></a></span></th>
+
+							<th>지역</th>
+							<th>품목</th>
+							<th>별점</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="shoping__cart__item" style="display: inline-flex;">
+								<img src="resources/img/store/store_gogi.png" alt=""
+								style="width: 400px; height: 250px;"><br>
+
+								<h5 style="display: flex; margin-left: 140px; margin-top: 82px;"></h5>
+							</td>
+							<td class="shoping__cart__price"><%=svo.getS_addr()%></td>
+							<td class="shoping__cart__quantity">
+								<%
+									if (svo.getMeat() == 0) {
 								%>
-                               </div>
-                               </div>
-                               
-  
-    <!-- Footer Section Begin -->
-   	<!-- Footer Section -->
-	<%@include file="../includes/footer.jsp"%>
+								<h6 style="font-weight: bold;">소고기</h6> 
+								<%
+ 								} else if (svo.getMeat() == 1) {
+ 								%>
+								<h6 style="font-weight: bold;">돼지고기</h6> 
+								<%
+ 								} else {
+ 								%>
+								<h6 style="font-weight: bold;">식당</h6> 
+								<%
+ 								}
+ 								%>
+							</td>
+							<td class="shoping__cart__total"><input type="hidden"
+								id="avgStar" class="avgStar" name="avgStar"
+								value="<%=svo.getAvgStar()%>" style="border: none" /><%=svo.getAvgStar()%>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<%
+			}
+		%>
+	</div>
+</div>
 
-    <!-- Js Plugins -->
-    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/jquery.nice-select.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/jquery.slicknav.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/mixitup.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+<%@include file="../includes/footer.jsp"%>
 
-
-	<script src="https://code.jquery.com/jquery-latest.js"></script> 
-	
-	<script type="text/javascript"  charset="utf-8" src="${pageContext.request.contextPath}/resources/js/storelistAjaxx.js"></script> 
-	
+<script type="text/javascript" charset="utf-8"
+	src="${pageContext.request.contextPath}/resources/js/storelistAjaxx.js"></script>
