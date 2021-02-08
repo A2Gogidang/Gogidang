@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-
 <%@include file="./includes/header.jsp"%>
-
 <%@ page import="com.spring.gogidang.domain.*"%>
-<%@ page import="java.util.ArrayList"%>
 
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/resources/css/mainPage.css"
@@ -106,13 +103,13 @@
                <%
                   for (int i = 0; i < review_list.size(); i++) {
 
-                     ReviewVO vo = (ReviewVO)review_list.get(i);
+                     ReviewVO vo1 = (ReviewVO)review_list.get(i);
                %>
                <div class="col-lg-3">
                   <div class="categories__item set-bg"
-                     data-setbg="./resources/img/store/<%=vo.getReview_img1()%>">
+                     data-setbg="./resources/img/store/<%=vo1.getReview_img1()%>">
                      <h5>
-                        <a href="./reviewDetail.re?review_num=<%=vo.getReview_num()%>"><%=vo.getS_name()%></a>
+                        <a href="./storeInfo.st?s_num=<%=vo1.getS_num()%>"><%=vo1.getS_name()%></a>
                      </h5>
                   </div>
                </div>
