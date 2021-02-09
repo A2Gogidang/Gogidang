@@ -13,11 +13,11 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/shopgrid.css"
 	type="text/css">
-
+<%-- 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/storelist.css"
 	type="text/css">
-
+ --%>
 <!-- Product Section Begin -->
 <section class="product spad">
 	<div class="container">
@@ -65,7 +65,7 @@
 								<div class="shoplisttht">
 									<li><input type="checkbox" id="cow" class="f_check"
 										name="f_Mcheck" value="0">소고기</li>
-									<li><input type="checkbox" id="pig" class="f_check"
+									<li id="pig_li"><input type="checkbox" id="pig" class="f_check"
 										name="f_Mcheck" value="1">돼지고기</li>
 								</div>
 							</div>
@@ -110,7 +110,7 @@
 					<div class="col-lg-4 col-md-6 col-sm-6">
 						<div class="product__item">
 							<div class="product__item__pic set-bg"
-								data-setbg="resources/img/review/<%=rvo.getImg() %>"></div>
+								data-setbg="./resources/img/store/<%=rvo.getReview_img1() %>"></div>
 							<div class="product__item__text">
 								<h6>
 									<a href="./reviewDetail.re?review_num=<%=rvo.getReview_num()%>"><%=rvo.getTitle()%></a>

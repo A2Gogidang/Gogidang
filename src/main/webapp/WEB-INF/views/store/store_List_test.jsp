@@ -14,9 +14,9 @@
 	href="${pageContext.request.contextPath}/resources/css/shopgrid.css"
 	type="text/css">
 
-<link rel="stylesheet"
+<%-- <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/storelist.css"
-	type="text/css">
+	type="text/css"> --%>
 
 <!-- Product Section Begin -->
 <section class="product spad">
@@ -130,7 +130,7 @@
 					<tbody>
 						<tr>
 							<td class="shoping__cart__item" style="display: inline-flex;">
-								<img src="resources/img/store/store_gogi.png" alt=""
+								<img src="resources/img/store/<%=svo.getThumbnail() %>" alt=""
 								style="width: 400px; height: 250px;"><br>
 
 								<h5 style="display: flex; margin-left: 140px; margin-top: 82px;"></h5>
