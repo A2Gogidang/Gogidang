@@ -269,12 +269,6 @@ function deleteBtn(event) {
 		}
 	});
 }
-
-$('[name=menuInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시 속성이름 [] 으로 접근 가능
-    var insertData = $('[name=menuInsertForm]').serialize(); //noticeInsertForm의 내용을 가져옴
-    alert("insertData = " + insertData);
-    menuInsert(insertData); //Insert 함수호출(아래)
-});
 	
 </script>
 
