@@ -80,33 +80,26 @@
 						}
 						
 						output += 
-						'<div class="col-lg-9">' +
-						'<div class="shoping__cart__table">' +
-							'<table>' +
-								'<thead>' +
-									'<tr>' +
-										'<th class="shoping__product"><span style="margin-left: 130px;"><a href="./storeInfo.st?s_num='+ item.s_num +'">'+item.s_name+'</a></span></th>' +
-										'<th>지역</th>' +
-										'<th>품목</th>' +
-										'<th>별점</th>' +
-									'</tr>' +
-								'</thead>' +
-								'<tbody>' +
-									'<tr>' +
-										'<td class="shoping__cart__item" style="display: inline-flex;">' +
-											'<img src="resources/img/store/'+ item.thumbnail  +'" alt="" style="width: 400px; height: 250px;"><br>' +
-											'<h5 style="display: flex; margin-left: 140px; margin-top: 82px;"></h5>' +
-										'</td>' +
-										'<td class="shoping__cart__price">'+ item.s_addr +'</td>' +
-										'<td class="shoping__cart__quantity">' + meat + '</td>' +
-										'<td class="shoping__cart__total"><input type="hidden" id="avgStar" class="avgStar" name="avgStar" value="'+item.avgStar+'" style="border: none" />'+ item.avgStar +
-										'</td>' +
-									'</tr>' +
-								'</tbody>' +
-							'</table>' +
-						'</div>' +
-					'</div>';
-		
+							'<div class="col-lg-box">' +
+								'<div class="table">' +
+									'<div class="table-ri">' +
+										'<img src="resources/img/store/' + item.thumbnail + '" style="width: 200px; height: 180px;">' +
+									'</div>' +
+									'<div class="table-le">' +
+										'<div class="table-le-topbox">' + 
+											'<div class="table-le-name">' +
+												'<a href="./storeInfo.st?s_num='+ item.s_num +'">'+ item.s_name +'</a>' +
+											'</div>' +
+											'<div class="avgStar" id="avgStar" name="avgStar"> ★ '+ item.avgStar +'</div>' +
+										'</div>' +
+										'<div class="table-le-text"> TEL : ' + item.s_phone + '</div>' +
+										'<div class="table-le-text"> 지역 : ' + item.s_addr + '</div>' +
+										'<div class="table-le-text"> 품목 : ' + meat + '</div>' +
+										'<div class="table-le-text">운영시간 : ' + item.s_hour +'</div>' +
+									'</div>' +
+								'</div>' +
+							'</div>';
+						
 						$('#store_list').append(output);
 						
 					});//each 끝			

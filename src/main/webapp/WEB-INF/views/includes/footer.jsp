@@ -125,9 +125,9 @@
 	
 			ws.onmessage = function (event) {
 				console.log("ReceiveMessage:", event.data + '\n');
-				let $socketAlert = $('div#socketAlert');
+				/* let $socketAlert = $('div#socketAlert');
 				$socketAlert.html(event.data);
-				$socketAlert.css('display', 'block');
+				$socketAlert.css('display', 'block'); */
 				toastr.success(event.data);
 				
 				setTimeout( function() {
