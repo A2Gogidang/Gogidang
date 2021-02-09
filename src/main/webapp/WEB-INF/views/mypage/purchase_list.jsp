@@ -209,11 +209,28 @@ function payList(data){
 	     contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 	     success : function(data){ 
 	        var a ='';
+	        var i = 0;
+        
 	        $.each(data, function(key,value){
-	      		a += '<tr align=center><td>'+ value.pay_num + '</td>';
+	        	
+	        /* function getFormatDate(pydate){
+	            var year = pydate.getFullYear();              //yyyy
+	            var month = (1 + pydate.getMonth());          //M
+	            month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
+	            var day = pydate.getDate();                   //d
+	            day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
+	            return  year + '' + month + '' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
+	        }
+	        
+	        var pydate = new Date();
+	        pydate = getFormatDate(value.paydate); */
+	        
+	        	i = i + 1;
+	      		a += '<tr align=center><td>'+ i + '</td>';
 	      		a += '<td>' + value.s_name + '</td>';
 	      		a += '<td>' + value.totalPrice + '</td>';
 	      		a += '<td>' + value.paydate + '</td>';
+	      		
 	      		if (value.content != null) {
 	      			a += '<td><h6>작성완료</h6></td>';
 	      		} else {

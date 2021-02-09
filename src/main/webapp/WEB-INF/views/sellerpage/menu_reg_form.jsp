@@ -46,8 +46,8 @@
 										<input type="hidden" name="s_num" value="<%=vo.getS_num() %>">
 										<td><select name="meat">
 												<option value="">종류를 선택하세요</option>
-												<option value="1">소</option>
-												<option value="0">돼지</option>
+												<option value="0">소</option>
+												<option value="1">돼지</option>
 										</select></td>
 									</div>
 									<div class="id_input_box">
