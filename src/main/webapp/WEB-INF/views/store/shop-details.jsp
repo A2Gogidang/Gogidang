@@ -132,7 +132,7 @@ $(document).ready(function() {
                                  <input type="hidden" id=s_num name="s_num"
                                     value="<%=mv.getS_num()%>">
                                  <div class="featured__item__pic set-bg"
-                                    data-setbg="resources/img/menu/<%=mv.getImg()%>"></div>
+                                    data-setbg="resources/img/store/<%=mv.getImg()%>"></div>
 
                                  <div class="container-fluid">
                                     <div class="row">
