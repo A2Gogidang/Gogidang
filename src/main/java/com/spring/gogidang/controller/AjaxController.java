@@ -73,34 +73,40 @@ public class AjaxController {
 		} else if(s_addr.length == 0 && meat.length>0) {
 			mapp.put("meat", meat);		
 			List<ReviewVO> list = reviewService.getReviewListAjax(mapp);
+			List<ReviewVO> nlist = new ArrayList<ReviewVO>();
 			
 			for (int i=0; i<list.size(); i++) {
 				ReviewVO rvo = list.get(i);
 				int getStar = rvo.getStar();
 				System.out.println(getStar);
 				
-				if (getStar < starInt) {
-					list.remove(i);
+				if (getStar >= starInt) {
+					int j = 0;
+					nlist.add(j, rvo);
+					j++;
 				}
 			}
 			
-			return list;
+			return nlist;
 			
 		} else if (s_addr.length > 0 && meat.length==0) {
 			mapp.put("s_addr",s_addr);
 			List<ReviewVO> list = reviewService.getReviewListAjax(mapp);
+			List<ReviewVO> nlist = new ArrayList<ReviewVO>();
 			
 			for (int i=0; i<list.size(); i++) {
 				ReviewVO rvo = list.get(i);
 				int getStar = rvo.getStar();
 				System.out.println(getStar);
 				
-				if (getStar < starInt) {
-					list.remove(i);
+				if (getStar >= starInt) {
+					int j = 0;
+					nlist.add(j, rvo);
+					j++;
 				}
 			}
 			
-			return list;
+			return nlist;
 		} else {
 			
 			return null;
