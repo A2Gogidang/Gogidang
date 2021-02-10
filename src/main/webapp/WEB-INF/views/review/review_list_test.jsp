@@ -13,11 +13,11 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/shopgrid.css"
 	type="text/css">
-
+<!-- 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/storelist.css"
 	type="text/css">
-
+ -->
 <!-- Product Section Begin -->
 <section class="product spad">
 	<div class="container">
@@ -65,7 +65,7 @@
 								<div class="shoplisttht">
 									<li><input type="checkbox" id="cow" class="f_check"
 										name="f_Mcheck" value="0">소고기</li>
-									<li><input type="checkbox" id="pig" class="f_check"
+									<li id="pig_li"><input type="checkbox" id="pig" class="f_check"
 										name="f_Mcheck" value="1" >돼지고기</li>
 								</div>
 							</div>
