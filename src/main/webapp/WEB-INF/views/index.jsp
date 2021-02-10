@@ -68,8 +68,7 @@
                   StoreVO vo = (StoreVO) store_list.get(i);
             %>
             <div class="col-lg-3">
-               <div class="categories__item set-bg"
-                  data-setbg="./resources/img/store/<%=vo.getThumbnail()%>">
+               <div class="categories__item set-bg" data-setbg="./resources/img/store/<%=vo.getThumbnail()%>">
                   <h5>
                      <a href="./storeInfo.st?s_num=<%=vo.getS_num()%>"><%=vo.getS_name()%></a>
                   </h5>
