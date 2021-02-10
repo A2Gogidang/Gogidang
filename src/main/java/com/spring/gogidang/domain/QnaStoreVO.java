@@ -16,7 +16,7 @@ public class QnaStoreVO {
 	private int s_num;
 	private String title;
 	private String content;
-	private Date re_date;
+	private String re_date;
 	private String re_content;
 
 }

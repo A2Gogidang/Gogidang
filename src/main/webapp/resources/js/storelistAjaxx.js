@@ -1,31 +1,31 @@
-	$(document).ready(function() {
-		
-		$('input[name=f_Mcheck]').change(function() {
-			$('input[name=f_Mcheck]:checked').each(function() {
-				var mk = "";
-				if($(this).val() == 0) {
-					alert("cow1");
-					mk += '<div class="shoplistfoo"><h5>부위</h5></div>';
-					mk += '<div class="shoplistfot">';
-					mk += '<li><input type="checkbox" id="cow_1" class="f_check" name="f_MKcheck" value="등심">등심</li>';
-					mk += '<li><input type="checkbox" id="cow_2" class="f_check" name="f_MKcheck" value="안심">안심</li>';
-					mk += '<li><input type="checkbox" id="cow_3" class="f_check" name="f_MKcheck" value="채끝살">채끝살</li>';
-					mk += '<li><input type="checkbox" id="cow_4" class="f_check" name="f_MKcheck" value="살치살">살치살</li>';
-					mk += '</div>';
-				} else {
-					alert("pig1");
-					mk += '<div class="shoplistfoo"><h5>부위</h5></div>';
-					mk += '<div class="shoplistfot">';
-					mk += '<li><input type="checkbox" id="pig_1" class="f_check" name="f_MKcheck" value="삼겹살">삼겹살</li>';
-					mk += '<li><input type="checkbox" id="pig_1" class="f_check" name="f_MKcheck" value="항정살">항정살</li>';
-					mk += '<li><input type="checkbox" id="pig_1" class="f_check" name="f_MKcheck" value="목살">목살</li>';
-					mk += '<li><input type="checkbox" id="pig_1" class="f_check" name="f_MKcheck" value="부속고기">부속고기</li>';
-					mk += '</div>';
-				}
-				$('.shoplistfo').append(mk);
-			});
-		})
-	});
+//	$(document).ready(function() {
+//		
+//		$('input[name=f_Mcheck]').change(function() {
+//			$('input[name=f_Mcheck]:checked').each(function() {
+//				var mk = "";
+//				if($(this).val() == 0) {
+//					alert("cow1");
+//					mk += '<div class="shoplistfoo"><h5>부위</h5></div>';
+//					mk += '<div class="shoplistfot">';
+//					mk += '<li><input type="checkbox" id="cow_1" class="f_check" name="f_MKcheck" value="등심">등심</li>';
+//					mk += '<li><input type="checkbox" id="cow_2" class="f_check" name="f_MKcheck" value="안심">안심</li>';
+//					mk += '<li><input type="checkbox" id="cow_3" class="f_check" name="f_MKcheck" value="채끝살">채끝살</li>';
+//					mk += '<li><input type="checkbox" id="cow_4" class="f_check" name="f_MKcheck" value="살치살">살치살</li>';
+//					mk += '</div>';
+//				} else {
+//					alert("pig1");
+//					mk += '<div class="shoplistfoo"><h5>부위</h5></div>';
+//					mk += '<div class="shoplistfot">';
+//					mk += '<li><input type="checkbox" id="pig_1" class="f_check" name="f_MKcheck" value="삼겹살">삼겹살</li>';
+//					mk += '<li><input type="checkbox" id="pig_1" class="f_check" name="f_MKcheck" value="항정살">항정살</li>';
+//					mk += '<li><input type="checkbox" id="pig_1" class="f_check" name="f_MKcheck" value="목살">목살</li>';
+//					mk += '<li><input type="checkbox" id="pig_1" class="f_check" name="f_MKcheck" value="부속고기">부속고기</li>';
+//					mk += '</div>';
+//				}
+//				$('.shoplistfo').append(mk);
+//			});
+//		})
+//	});
 	
  	var s_addr = [];
 	var meat =[];  
@@ -66,7 +66,7 @@
 				
 				success : function(data)
 				{
-					$('#card_row').empty();
+					$('#store_list').empty();
 					$.each(data, function(index, item){
 						console.log(item)
 						var output= '';
@@ -79,38 +79,28 @@
 							meat = '가게'
 						}
 						
-						output += '<div class="shoplistn">' +
-									'<div class="col-lg-4 col-md-6 col-sm-6">'+
-										'<div class="card_store_addr" >'+
-											'<div class="text_left">'+
-												'<h5>'+ item.s_addr + '</h5>'+
-											'</div>'+
-										'</div>';
-						
-						output += 		'<div class="product-item">' + 
-											'<img src=resources/img/store/'+ item.thumbnail +'>' +
-										'</div>';
-						
-						output += 		'<div class="shoptext">'+
-											'<div class="card_store_name" >'+
-												'<div class="shoptexto">' +
-													'<h5>' +
-														'<a href="./storeInfo.st?s_num='+item.s_num +'" style="display:inline">' + item.s_name + '</a>'+
-														'<input type="hidden" id="avgStar" class="avgStar" name="avgStar" value="' + item.avgStar + '" style="border:none" />' + item.avgStar +
-													'</h5>' +
-												'</div>' +
-											'</div>';
-						
-						output += 			'<div class="shoptextt">' +
-												'<div class="card_store_tag">' +
-													'<h6>' + meat + '</h6>' +
-												'</div>' +
-											'</div>' +
-										'</div>' +
+						output += 
+							'<div class="col-lg-box">' +
+								'<div class="table">' +
+									'<div class="table-ri">' +
+										'<img src="resources/img/store/' + item.thumbnail + '" style="width: 200px; height: 180px;">' +
 									'</div>' +
-								'</div>';
-		
-						$('#card_row').append(output);
+									'<div class="table-le">' +
+										'<div class="table-le-topbox">' + 
+											'<div class="table-le-name">' +
+												'<a href="./storeInfo.st?s_num='+ item.s_num +'">'+ item.s_name +'</a>' +
+											'</div>' +
+											'<div class="avgStar" id="avgStar" name="avgStar"> ★ '+ item.avgStar +'</div>' +
+										'</div>' +
+										'<div class="table-le-text"> TEL : ' + item.s_phone + '</div>' +
+										'<div class="table-le-text"> 지역 : ' + item.s_addr + '</div>' +
+										'<div class="table-le-text"> 품목 : ' + meat + '</div>' +
+										'<div class="table-le-text">운영시간 : ' + item.s_hour +'</div>' +
+									'</div>' +
+								'</div>' +
+							'</div>';
+						
+						$('#store_list').append(output);
 						
 					});//each 끝			
 				}, //success 끝  

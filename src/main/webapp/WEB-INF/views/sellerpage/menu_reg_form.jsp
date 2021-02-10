@@ -46,8 +46,8 @@
 										<input type="hidden" name="s_num" value="<%=vo.getS_num() %>">
 										<td><select name="meat">
 												<option value="">종류를 선택하세요</option>
-												<option value="1">소</option>
-												<option value="0">돼지</option>
+												<option value="0">소</option>
+												<option value="1">돼지</option>
 										</select></td>
 									</div>
 									<div class="id_input_box">
@@ -56,12 +56,12 @@
 												<option value="">상품을 선택하세요</option>
 												<option value="안심">안심</option>
 												<option value="등심">등심</option>
-												<option value="채끝살">채끝살</option>
-												<option value="살치살">살치살</option>
-												<option value="부채살">부채살</option>
-												<option value="항정살">항정살</option>
+												<option value="갈비">갈비</option>
+												<option value="채끝">채끝</option>
+												<option value="삼겹">삼겹</option>
 												<option value="목살">목살</option>
-												<option value="사태">사태</option>
+												<option value="항정">항정</option>
+												<option value="기타">기타</option>
 										</select></td>
 									</div>
 
@@ -269,12 +269,6 @@ function deleteBtn(event) {
 		}
 	});
 }
-
-$('[name=menuInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시 속성이름 [] 으로 접근 가능
-    var insertData = $('[name=menuInsertForm]').serialize(); //noticeInsertForm의 내용을 가져옴
-    alert("insertData = " + insertData);
-    menuInsert(insertData); //Insert 함수호출(아래)
-});
 	
 </script>
 
