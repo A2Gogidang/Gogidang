@@ -332,4 +332,10 @@ public class StoreController {
 		
 		return storeList;
 	}
+	
+	@RequestMapping(value = "/newstorelist.st")
+	public String storelist(Model model) {
+//		
+		return "store/new_store_list";
+	}
 }
