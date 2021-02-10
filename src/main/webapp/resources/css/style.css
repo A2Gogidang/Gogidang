@@ -403,6 +403,7 @@ ol {
 	text-align: right;
 	padding: 10px 0 13px;
 	font-family: "Cairo", sans-serif;
+	
 }
 
 .header__top__right__social {
@@ -3328,6 +3329,7 @@ ol {
 	}
 	.header__top {
 		display: none;
+		
 	}
 	.header__menu {
 		display: none;

@@ -50,7 +50,7 @@
    </div>
 
    <!-- Humberger Begin -->
-    <header class="header">
+    <header class="header" >
         <div class="header__top">
          <div class="container">
             <div class="row">
@@ -68,8 +68,8 @@
                   <div class="header__top__right">
 
 
-                     <div class="header__top__right__auth">
-                        <a href="./loginForm.me"><i class="fa fa-user"></i>LOGIN</a>
+                     <div class="header__top__right__auth" >
+                        <a href="./loginForm.me"><i class="fa fa-user" ></i>LOGIN</a>
                      </div>
                      <div class="header__top__right__auth">
                         <a href="./joinForm.me"><i class="fa fa-user-o"></i> JOIN</a>

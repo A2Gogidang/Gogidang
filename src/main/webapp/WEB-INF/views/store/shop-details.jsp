@@ -222,8 +222,8 @@ geocoder.addressSearch('${storeVO.getS_addr()}', function(result, status) {
         });
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         var infowindow = new kakao.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">저희 가게</div><div style="width:150px;text-align:center;padding:6px 0;"><a href="https://map.kakao.com/link/to/${storeVO.getS_addr()}">길찾기</a></div>'
-                   
+            content: '<div style="width:150px;text-align:center;padding:6px 0;"><a href="https://map.kakao.com/link/to/${storeVO.getS_addr()}">${storeVO.getS_name()}</a></div><div style="width:150px;text-align:center;padding:6px 0;"></div>'
+            
         });
         infowindow.open(map, marker);
       
