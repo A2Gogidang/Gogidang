@@ -18,7 +18,7 @@ public class ReviewSubController {
 	private ReviewSubService reviewsubService;
 	
 	
-	@RequestMapping(value="/reReviewStoreInsert.re")
+	@RequestMapping(value="/reReviewStoreInsert.re", produces="application/json; charset=utf-8")
 	@ResponseBody
 	public Map<String, Object> reReviewStoreInsert(ReviewSubVO reviewSub) {
 		Map<String, Object> retVal = new HashMap<String, Object>();

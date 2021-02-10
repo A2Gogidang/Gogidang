@@ -95,8 +95,8 @@
 					    	<td><input type="text" id="nickname" name="nickname" readonly></td>
 					    </div>
 					    <div class="modal-textbox-starr">
-					  		<ts for="star" id="u_id_star">별점</ts>
-					    	<td><input type="text" id="nickname" name="nickname" readonly></td>
+					  		<ts for="star" id="star">별점</ts>
+					    	<td><input type="text" id="star" name="star" readonly></td>
 					    </div>
 			    	</div>
 					
@@ -118,10 +118,6 @@
 					  	<div class="modal-textbox-sf">
 					  		<ts for="review_sub_content">답글</ts>
 					    	<td><textarea id="review_sub_content" name="review_sub_content"/></textarea>
-					    	<script>CKEDITOR.replace('review_sub_content',{
-					    		height:'95px',
-					    		width:'100%'
-					    	});</script>
 					    	</td>
 					    </div>
 			    	</div>		
@@ -255,6 +251,7 @@
  			contentType : 'application/x-www-form-urlencoded;charset=utf-8',
  			dataType : 'json',
  			success : function(retVal) {
+ 				alert(retVal.res);
  				if (retVal.res == "reviewsub") {
  					// webSocket에 보내기 (rqQna, 댓글작성자(u_id), 게시글작성자(wu_id), 글번호(review_num))
  					let socketMsg = ("reviewsub," + u_id + "," + wu_id + "," + review_num);
