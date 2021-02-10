@@ -72,7 +72,7 @@
 
 									<div class="id_input_box_ss">
 										<ts>상품사진</ts>
-										<td><img id="menu_img2" src="" width="350px;"
+										<td><img id="menu_img2" src="./resources/img/store/<%=vo.getImg()%>" width="350px;"
 											height="200px;" /></td>
 									</div>
 									<div class="id_input_box">
