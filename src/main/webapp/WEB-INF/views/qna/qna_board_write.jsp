@@ -16,12 +16,16 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
-	<script language="javascript">
+
+	<script type="text/javascript">
 	
-	function addboard(){
-		qnaform.submit();
-	}
+		
+		function addboard(){
+			qnaform.submit();
+		}
+		
 	</script>
+	
 </head>
 <body><section class="product spad">
 	<div class="container">
@@ -72,7 +76,7 @@
 											내 용
 										</ts>
 										<td>
-											<textarea name="content"></textarea>
+											<textarea name="content" id="editor4"></textarea>
 										</td>
 										</div>
 								</form>
@@ -97,5 +101,5 @@
 			</section>
 			
 
-<!-- 게시판 등록 -->
+<!--게시판 등록-->
 <%@include file="../includes/footer.jsp"%>

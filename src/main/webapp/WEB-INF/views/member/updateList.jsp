@@ -25,7 +25,7 @@
                   if (u_id.equals("admin")) {
                   %>
                   <div class="hero__categories__all">
-                  <span>관리자 페이지</span>
+                  <span>마이페이지</span>
                   </div>
                   <ul>
                      <li><a href="storeWait.st">대기중인 가게 승인</a></li>

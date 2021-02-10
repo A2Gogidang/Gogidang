@@ -262,10 +262,33 @@ table {
 
   .shoping__cart__table table tbody tr td.shoping__cart__item {
     text-align: left;
+     width: 315px;
 }
 
+.shoplist {
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    background-color: #e0f6d2;
+    width: 931px;
+    margin-left : 89px;
+    
+}
 article {padding: 52px 3% 0;}
 article .block {padding: 20px; min-height: 200px;}
 article .block p {line-height: 22px; color: #fff; font-size: 16px; font-weight: 600;}
 article .block:nth-child(2n+1) {background: #999;}
 article .block:nth-child(2n) {background: #222;}
+
+.shoping__cart__table table tbody tr td {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-bottom: 1px solid #ebebeb;
+}
+.shoping__cart__table table tbody tr td.shoping__cart__price {
+    font-size: 18px;
+    color: #1c1c1c;
+    font-weight: 700;
+    /* width: 100px;
+}

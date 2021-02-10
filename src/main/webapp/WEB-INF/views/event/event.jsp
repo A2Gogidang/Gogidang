@@ -30,9 +30,9 @@
 			                  	<span>이벤트</span>
 			              	 </div>
 						<ul>
-							<li><a href="eventList.ev">이벤트</a></li>
 							<li><a href="noticelist.no">공지사항</a></li>
 							<li><a href="qnalist.qn">문의</a></li>
+							<li><a href="eventList.ev">이벤트</a></li>
 							<!--<li><a href="#">Fastfood</a></li>
 	                            <li><a href="#">Fresh Onion</a></li>
 	                            <li><a href="#">Papayaya & Crisps</a></li>
@@ -54,7 +54,7 @@
 
 									<div class="col-md-12">
 										<a href="eventGet.ev?event_num=<%=vo.getEvent_num()%>">
-										<img src="resources/img/event/<%=vo.getPhoto() %>" /> </a>
+										<img src="resources/img/event/<%=vo.getPhoto() %>" style="width: 817px; height: 143px;"/> </a>
 									</div>
 
 							<%

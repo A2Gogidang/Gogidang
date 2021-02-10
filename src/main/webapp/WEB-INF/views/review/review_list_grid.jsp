@@ -14,10 +14,12 @@
 	href="${pageContext.request.contextPath}/resources/css/shopgrid.css"
 	type="text/css">
 
-<link rel="stylesheet"
+<!-- 
+<link rel="stylesheet"s
 	href="${pageContext.request.contextPath}/resources/css/storelist.css"
 	type="text/css">
-
+ -->
+ 
 <!-- Product Section Begin -->
 <section class="product spad">
 	<div class="container">
@@ -45,17 +47,17 @@
 								</div>
 								<div class="shoplisttwot">
 									<li><input type="checkbox" id="s_seoul" class="f_check"
-										name="f_Acheck" value="서울"> 서울</li>
-									<li><input type="checkbox" id="s_gyeong" class="f_check"
-										name="f_Acheck" value="경기"> 경기</li>
-									<li><input type="checkbox" id="s_gang" class="f_check"
-										name="f_Acheck" value="강원"> 강원</li>
-									<li><input type="checkbox" id="s_jeon" class="f_check"
-										name="f_Acheck" value="전라"> 전라</li>
-									<li><input type="checkbox" id="s_gyeong" class="f_check"
-										name="f_Acheck" value="경상"> 경상</li>
-									<li><input type="checkbox" id="s_chung" class="f_check"
-										name="f_Acheck" value="충청"> 충청</li>
+										name="f_Acheck" value="서울">서울</li>
+									<li style="margin-left: 10px;"><input type="checkbox" id="s_gyeong" class="f_check"
+										name="f_Acheck" value="경기" > 경기</li>
+									<li style="margin-left: 10px;"><input type="checkbox" id="s_gang" class="f_check"
+										name="f_Acheck" value="강원" > 강원</li>
+									<li style="margin-left: 10px;"><input type="checkbox" id="s_jeon" class="f_check"
+										name="f_Acheck" value="전라" > 전라</li>
+									<li style="margin-left: 10px;"><input type="checkbox" id="s_gyeong" class="f_check"
+										name="f_Acheck" value="경상" > 경상</li>
+									<li style="margin-left: 10px;"><input type="checkbox" id="s_chung" class="f_check"
+										name="f_Acheck" value="충청" > 충청</li>
 								</div>
 							</div>
 							<div class="shoplistth">

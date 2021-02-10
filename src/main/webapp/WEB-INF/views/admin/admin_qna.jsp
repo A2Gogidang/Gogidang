@@ -6,12 +6,13 @@
 <%@include file="../includes/header_simple.jsp"%>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/modal_small.css"
+	href="${pageContext.request.contextPath}/resources/css/modal_middle.css"
 	type="text/css">
 	
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/admin_qnaw.css"
 	type="text/css">
+<script src = "${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>	
 
 <!-- Product Section Begin -->
 <section class="product spad">
@@ -68,11 +69,11 @@
 			<ol>
 			  
 			  	<div class="modal-textbox">
-				  	<div class="modal-textbox-f">
+				  	<div class="modal-textbox-qna">
 				  		<ts for="qna_num" id="qna_num_f">문의번호</ts>
 				    	<td><input type="text"  id="qna_num" name="qna_num" readonly></td>
 				    </div>
-				    <div class="modal-textbox-f">
+				    <div class="modal-textbox-qna">
 				  		<ts for="u_id" id="u_id_f">회원아이디</ts>
 				    	<td><input type="text" id="u_id" name="u_id" readonly></td>
 				    </div>
@@ -96,7 +97,8 @@
 			 	<div class="modal-textbox-ff">
 				  	<div class="modal-textbox-sf">
 				  		<ts for="re_content">답글</ts>
-				    	<td><textarea type="text" id="re_content" name="re_content"/></textarea></td>
+				    	<td><textarea id="re_content" name="re_content"/></textarea>
+				    	</td>
 				    </div>
 			    </div>			
 			</ol>
@@ -104,9 +106,7 @@
 			<div class="form-check-f">
 				
 			  	<button type="button" id="reQnaWrite" name="reQnaWrite" class="btn btn-lg btn-block btn-success">작성</button>
-			  	<!-- <button type="button" id="closeBtn" class="btn-j btn-lg btn-block btn-success" >닫기</button> -->
-			  	<!--<input type="button" id="closeBtn" value="닫기"/>  -->
-			  	<br>
+			<br>
 			</div>
 			
 			<!--<fieldset>
@@ -155,7 +155,7 @@ function reQnaInsert(insertData) {
 		dataType : 'json',
 		success : function(retVal) {
 			if (retVal.res == "reQna") {
-				// webSocket에 보내기 (rqQna, 댓글작성자(admin), 게시글작성자(u_id), 글번호(qna_num))
+				// webSocket에 보내기 (rqQna, admin, 게시글작성자(u_id), 글번호(qna_num))
 				let socketMsg = ("reQna," + "admin," + u_id + "," + qna_num);
 				console.debug("ssssssmsg>> ", socketMsg);
 				socket.send(socketMsg);
@@ -182,11 +182,11 @@ function qnaList(){
 	      		a += '<tr align=center><td>'+ value.qna_num + '</td>';
 	      		a += '<td>' + value.title + '</td>';
 	      		a += '<td>' + value.u_id + '</td>';
-	      		a += '<td>' + value.content + '</td>';
+	      		a += '<td>' + value.re_date + '</td>';
 	      		if (value.re_content != null) {
 	      			a += '<td><h6>답변완료</h6></td>';
 	      		} else {
-		      		a += '<td><button onclick="callModal(' + value.qna_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right">문의댓글</button></td></tr>';
+		      		a += '<td><button onclick="callModal(' + value.qna_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right" style="background: #7fad39; color:white; border: 1px solid #7fad39; margin-top: 0px; padding-top: 0px;padding-bottom: 0px">문의댓글</button></td></tr>';
 	      		}
 	        });
 	        

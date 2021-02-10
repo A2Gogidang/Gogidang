@@ -18,15 +18,13 @@
 	
 	<insert id="register" parameterType="MenuVO">
 		INSERT  
-		INTO menu_reg (menu_num, s_num, meat, menu_name, price, grade, origin)
+		INTO menu_reg (menu_num, s_num, meat, menu_name, price, img, grade, origin)
 		values(seq_menu_reg.nextval
-			  <!-- ,#{u_id,jdbcType=VARCHAR} -->
 			  ,#{s_num,jdbcType=INTEGER}
 			  ,#{meat,jdbcType=INTEGER}
 			  ,#{menu_name,jdbcType=VARCHAR}
-			  <!-- ,#{menu_Stock} -->
 			  ,#{price,jdbcType=VARCHAR}
-			  <!-- ,#{img,jdbcType=VARCHAR} -->
+			  ,#{img,jdbcType=VARCHAR}
 			  ,#{grade,jdbcType=INTEGER}
 			  ,#{origin,jdbcType=VARCHAR}
 			  )

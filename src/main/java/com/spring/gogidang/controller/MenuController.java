@@ -13,12 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.gogidang.domain.MemberVO;
 import com.spring.gogidang.domain.MenuVO;
+import com.spring.gogidang.domain.QnaVO;
 import com.spring.gogidang.domain.StoreVO;
 import com.spring.gogidang.service.MenuService;
 import com.spring.gogidang.service.StoreService;
@@ -55,7 +58,7 @@ public class MenuController {
 			ArrayList<MenuVO> menuList  = new ArrayList<MenuVO>();
 			
 			
-			menuList = menuService.menuList(s_num);
+			menuList = (ArrayList<MenuVO>) menuService.menuList(s_num);
 
 			model.addAttribute("menuList",menuList);
 			model.addAttribute("StoreVO",vo);
@@ -70,8 +73,9 @@ public class MenuController {
 		
 		List<MultipartFile> fileList = request.getFiles("file");
 		
-//		String uploadPath = "/Users/taehyun/Documents/Spring_Source/Gogidang/src/main/webapp/resources/img/menu/";
-		String uploadPath = request.getServletContext().getRealPath("/resources/img/menu/");
+		String uploadPath = "/Users/taehyun/Documents/Spring_Source/Gogidang/src/main/webapp/resources/img/menu/";
+//		String uploadPath = request.getServletContext().getRealPath("/resources/img/menu/");
+		System.out.println(uploadPath);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("main");
@@ -112,9 +116,7 @@ public class MenuController {
 			} 
 		}
 		
-		int i = 0;
-		System.out.println(menuVO.getS_num());	
-		menuVO.setMenu_num(i++);
+		System.out.println("img : " + menuVO.getImg());
 
 		int res = menuService.menuRegister(menuVO);
 
@@ -127,9 +129,30 @@ public class MenuController {
 			writer.write("<script>alert('메뉴등록 성공!!'); location.href='./menuRegForm.mn';</script>");
 		}
 		else {
-			writer.write("<script>alert('가게등록 실패!!'); location.href='./menuRegForm.mn';</script>");
+			writer.write("<script>alert('메뉴등록 실패!!'); location.href='./menuRegForm.mn';</script>");
 		}
 
 		return null;
 	}
+	
+	@RequestMapping(value = "/menuListAjax.re", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public List<MenuVO> menuListAjax(@RequestParam("s_num") int s_num) {
+		List<MenuVO> menuList = menuService.menuList(s_num);
+		
+		return menuList;
+	}
+	
+	@RequestMapping("/menuDelete.re")
+	@ResponseBody
+	public String menuDelete(@RequestParam("menu_num") int menu_num) {
+		int res = menuService.menuDelete(menu_num);
+		
+		if (res == 1) {
+			return "OK";
+		} else {
+			return "NO";
+		}
+	}
+
 }

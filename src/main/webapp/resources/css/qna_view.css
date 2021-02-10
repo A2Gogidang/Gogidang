@@ -95,6 +95,11 @@ body {
 	margin-bottom: 10px;
 	
 }
+
+.qnaboardsl .id_input_box_t #text{
+	border:1px solid black;
+}
+
 .id_input_box_b {
 	width: 80%;
     display: flex;
@@ -275,7 +280,7 @@ body {
 }
 
 #contents{
-		border:0px solid black;
+		border:1px solid black;
 		width:80%;
 		height: 100%;
 		word-wrap: break-word;
@@ -283,6 +288,5 @@ body {
 }
 
 .id_input_box textarea{
-	overflow:hidden;
-	border: 0px;
+	border:1px solid black;
 }

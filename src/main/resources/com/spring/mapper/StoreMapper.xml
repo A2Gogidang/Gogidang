@@ -103,7 +103,7 @@
 	</select>  -->
 	
  	<select id="getStoreListAjax" parameterType="java.util.HashMap" resultType="StoreVO">
-		select distinct mr.meat, sr.s_num, sr.s_name, substr(sr.s_addr,1,2) s_addr, sr.thumbnail
+		select distinct mr.meat, sr.s_num, sr.s_name, substr(sr.s_addr,1,2) s_addr, sr.thumbnail, sr.s_phone, sr.s_addr, sr.s_hour
 		from menu_reg mr INNER JOIN shop_reg sr ON mr.s_num=sr.s_num
 		where sr.s_num > 0
 		<if test="s_addr != null">
@@ -113,6 +113,8 @@
 			AND mr.meat IN<foreach collection="meat" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
 		</if>
 	</select>
-
-	<!-- dohyeong end -->
+	
+	<select id="getStoreId" parameterType="int" resultType="String">
+		select u_id from shop_reg where s_num = #{s_num}
+	</select>
 </mapper>

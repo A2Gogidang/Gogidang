@@ -44,18 +44,18 @@
 									<h5>지역</h5>
 								</div>
 								<div class="shoplisttwot">
-									<li><input type="checkbox" id="s_seoul" class="f_check"
-										name="f_Acheck" value="서울">서울</li>
-									<li><input type="checkbox" id="s_gyeong" class="f_check"
-										name="f_Acheck" value="경기">경기</li>
-									<li><input type="checkbox" id="s_gang" class="f_check"
-										name="f_Acheck" value="강원">강원</li>
-									<li><input type="checkbox" id="s_jeon" class="f_check"
-										name="f_Acheck" value="전라">전라</li>
-									<li><input type="checkbox" id="s_gyeong" class="f_check"
-										name="f_Acheck" value="경상">경상</li>
-									<li><input type="checkbox" id="s_chung" class="f_check"
-										name="f_Acheck" value="충청">충청</li>
+									<td><input type="checkbox" id="s_seoul" class="f_check"
+										name="f_Acheck" value="서울"><p>서울&nbsp;&nbsp;</p></td>
+									<td><input type="checkbox" id="s_gyeong" class="f_check"
+										name="f_Acheck" value="경기"><p>경기&nbsp;</p></td>
+									<td><input type="checkbox" id="s_gang" class="f_check"
+										name="f_Acheck" value="강원"><p>강원&nbsp;</p></td>
+									<td><input type="checkbox" id="s_jeon" class="f_check"
+										name="f_Acheck" value="전라"><p>전라&nbsp;</p></td>
+									<td><input type="checkbox" id="s_gyeong" class="f_check"
+										name="f_Acheck" value="경상"><p>경상</p></td>
+									<td><input type="checkbox" id="s_chung" class="f_check"
+										name="f_Acheck" value="충청"><p>충청&nbsp;&nbsp;</p></td>
 								</div>
 							</div>
 							<div class="shoplistth">
@@ -63,10 +63,10 @@
 									<h5>품목</h5>
 								</div>
 								<div class="shoplisttht">
-									<li><input type="checkbox" id="cow" class="f_check"
-										name="f_Mcheck" value="0">소고기</li>
-									<li><input type="checkbox" id="pig" class="f_check"
-										name="f_Mcheck" value="1">돼지고기</li>
+									<td><input type="checkbox" id="cow" class="f_check"
+										name="f_Mcheck" value="0"><p>소고기</p></td>
+									<td><input type="checkbox" id="pig" class="f_check"
+										name="f_Mcheck" value="1"><p>돼지고기</p></td>
 								</div>
 							</div>
 							
@@ -90,18 +90,18 @@
 									<h5>별점</h5>
 								</div>
 								<div class="shopliststartwo">
-									<li><input type="radio" id="one" class="f_check"
-										name="f_Scheck" value="0" checked />모든별점</li>
-									<li><input type="radio" id="one" class="f_check"
-										name="f_Scheck" value="1" />1점 이상</li>
-									<li><input type="radio" id="two" class="f_check"
-										name="f_Scheck" value="2" />2점 이상</li>
-									<li><input type="radio" id="three" class="f_check"
-										name="f_Scheck" value="3" />3점 이상</li>
-									<li><input type="radio" id="four" class="f_check"
-										name="f_Scheck" value="4" />4점 이상</li>
-									<li><input type="radio" id="five" class="f_check"
-										name="f_Scheck" value="5" />5점 이상</li>
+									<td><input type="radio" id="one" class="f_check"
+										name="f_Scheck" value="0" checked /><p>모든별점</p></td>
+									<td><input type="radio" id="one" class="f_check"
+										name="f_Scheck" value="1" /><p>1점 이상</p></td>
+									<td><input type="radio" id="two" class="f_check"
+										name="f_Scheck" value="2" /><p>2점 이상</p></td>
+									<td><input type="radio" id="three" class="f_check"
+										name="f_Scheck" value="3" /><p>3점 이상</p></td>
+									<td><input type="radio" id="four" class="f_check"
+										name="f_Scheck" value="4" /><p>4점 이상</p></td>
+									<td><input type="radio" id="five" class="f_check"
+										name="f_Scheck" value="5" /><p>5점 이상</p></td>
 								</div>
 							</div>
 							<div class="shoplistb">
@@ -133,7 +133,7 @@
 								</div>
 		
 								<div class="product-item">
-										<img src="resources/img/store/store_gogi.png">
+										<img src="resources/img/store/<%=svo.getS_img() %>">
 									<!-- <div><img src="resources/img/store/%=svo.getThumbnail()% "></div> -->
 								</div>
 		

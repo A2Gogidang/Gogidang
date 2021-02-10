@@ -28,6 +28,8 @@ public class PayController {
 	@Autowired
 	private ReviewService reviewService;
 	
+	@Autowired
+	private StoreService storeService;
 	/*
 	 * @RequestMapping(value="/cancel.py",method=RequestMethod.POST)
 	 * 
@@ -107,24 +109,39 @@ public class PayController {
 		   return payList;
 	   }
 	   
+//	   @RequestMapping(value="payInfoAjax.re", produces="application/json; charset=UTF-8")
+//	   @ResponseBody
+//	   public Map<String, Object> payListAjax(@RequestParam("pay_num") int pay_num) {
+//		   Map<String, Object> retVal = new HashMap<String, Object>();
+//		   System.out.println("paylist u_id = " + pay_num);
+//		   
+//		   try {
+//			    PayVO pvo = payService.getInfo(pay_num);
+//			    int s_num = pvo.getS_num();
+//			    String fu_id = storeService.getStoreId(s_num);
+//				retVal.put("pay_num", pvo.getPay_num());
+//				retVal.put("s_num", s_num);
+//				retVal.put("s_name", pvo.getS_name());
+//				retVal.put("fu_id", fu_id);
+//				retVal.put("res", "OK");
+//			} catch (Exception e) {
+//				retVal.put("res", "FAIL");
+//				retVal.put("message", "Failure");
+//			}
+//		   
+//		   return retVal;
+//	   }
+	   
 	   @RequestMapping(value="payInfoAjax.re", produces="application/json; charset=UTF-8")
-	   @ResponseBody
-	   public Map<String, Object> payListAjax(@RequestParam("pay_num") int pay_num) {
-		   Map<String, Object> retVal = new HashMap<String, Object>();
-		   System.out.println("paylist u_id" + pay_num);
+	   public String payListAjax(@RequestParam("pay_num") int pay_num, Model model) {
 		   
-		   try {
-			    PayVO pvo = payService.getInfo(pay_num);
-				retVal.put("pay_num", pvo.getPay_num());
-				retVal.put("s_num", pvo.getS_num());
-				retVal.put("s_name", pvo.getS_name());
-				retVal.put("res", "OK");
-			} catch (Exception e) {
-				retVal.put("res", "FAIL");
-				retVal.put("message", "Failure");
-			}
+		   System.out.println("paylist u_id = " + pay_num);
 		   
-		   return retVal;
+		   PayVO pvo = payService.getInfo(pay_num);
+		   
+		   model.addAttribute("pvo", pvo);
+		   
+		   return "review/review_write";
 	   }
 	   
 	

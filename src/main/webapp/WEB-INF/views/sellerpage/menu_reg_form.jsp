@@ -39,15 +39,15 @@
 					<div class="row justify-content-center">
 						<div class="col-lg-9">
 							<div class="menu_reg">
-								<form name="menuForm" id="menuForm" action="./menuProcess.mn"
+								<form name="menuInsertForm" id="menuInsertForm" action="./menuProcess.mn"
 									method="post" enctype="multipart/form-data">
 									<div class="id_input_box">
 										<ts>품목</ts>
 										<input type="hidden" name="s_num" value="<%=vo.getS_num() %>">
 										<td><select name="meat">
 												<option value="">종류를 선택하세요</option>
-												<option value="1">소</option>
-												<option value="0">돼지</option>
+												<option value="0">소</option>
+												<option value="1">돼지</option>
 										</select></td>
 									</div>
 									<div class="id_input_box">
@@ -56,11 +56,12 @@
 												<option value="">상품을 선택하세요</option>
 												<option value="안심">안심</option>
 												<option value="등심">등심</option>
-												<option value="채끝살">채끝살</option>
-												<option value="살치살">살치살</option>
-												<option value="항정살">항정살</option>
+												<option value="갈비">갈비</option>
+												<option value="채끝">채끝</option>
+												<option value="삼겹">삼겹</option>
 												<option value="목살">목살</option>
-												<option value="사태">사태</option>
+												<option value="항정">항정</option>
+												<option value="기타">기타</option>
 										</select></td>
 									</div>
 
@@ -71,7 +72,7 @@
 
 									<div class="id_input_box_ss">
 										<ts>상품사진</ts>
-										<td><img id="menu_img2" src="" width="350px;"
+										<td><img id="menu_img2" src="./resources/img/store/<%=vo.getImg()%>" width="350px;"
 											height="200px;" /></td>
 									</div>
 									<div class="id_input_box">
@@ -116,10 +117,10 @@
 										<button type="submit"
 											class="btn-jj btn-lg btn-block btn-success"
 											onclick="fnAction('menuProcess.mn')" multiple>저장</button>
+										<!-- <button type="button" id="menuInsertBtn" name="menuInsertBtn" class="btn-jj btn-lg btn-block btn-success" >등록</button> -->
 										<button type="reset"
 											class="btn-j btn-lg btn-block btn-success">다시 작성</button>
 
-										<!-- <a href="./storeUpdateForm.st">수정</a> -->
 									</div>
 								</form>
 
@@ -143,37 +144,17 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>번호</th>
 							<th>상품 사진</th>
 							<th>상품 명</th>
 							<th>상품 금액</th>
-							<th>그램</th>
 							<th>등급</th>
+							<th>&nbsp;</th>
 						</tr>
 					</thead>
-					<%
-						if (menuList != null || menuList.size() > 0) {
-							for (int i = 0; i < menuList.size(); i++) {
-
-								MenuVO menuVO = (MenuVO) menuList.get(i);
-					%>
-					<tbody>
-						<td><%=i + 1%></td>
-						<td><img src="resources/img/store/store_gogi.png"></td>
-						<td><%=menuVO.getMenu_name()%></td>
-						<td><%=menuVO.getPrice()%> 원</td>
-						<td><%=menuVO.getGram()%> g</td>
-						<td><%=menuVO.getGrade()%></td>
+					<tbody id="menu_content">
+						
 					</tbody>
-					<%
-						}
-					%>
-					<%
-						} else {
-					%>
-					<h1>상품을 추가해주세요.</h1>
-					
-				<%} %>
+
 
 				</table>
 				<!-- ----------------------------------------------------끝---------------------------------------------------- -->
@@ -189,63 +170,107 @@
 
 
 
-<script type="text/javascript">
-	function fnAction(url1) {
-		alert(url1);
-		var frm = document.getElementById("menuForm");
-		frm.action = url1;
-		alert(frm.action);
-		frm.submit();
+<script>
+
+var s_num = $('[name=s_num]').val();
+
+$(document).ready(function() {
+	menuList(s_num);
+});
+
+function fnAction(url1) {
+	alert(url1);
+	var frm = document.getElementById("menuInsertForm");
+	frm.action = url1;
+	alert(frm.action);
+	frm.submit();
+}
+
+$("#menu_img1").change(function() {
+	var reader = new FileReader;
+	reader.onload = function(data) {
+		$("#menu_img2").attr("src", data.target.result).width(500);
 	}
+	reader.readAsDataURL(this.files[0]);
+});
 
-	$("#menu_img1").change(function() {
-		var reader = new FileReader;
-		reader.onload = function(data) {
-			$("#menu_img2").attr("src", data.target.result).width(500);
-		}
-		reader.readAsDataURL(this.files[0]);
-	});
-</script>
+var str, i, ch = "";
 
-<script type="text/javascript">
-	var str, i, ch = "";
-	function check_input() {
+function check_input() {
 
-		if (document.menuForm.price.value == "") {
-			alert("금액을 입력하세요!!!");
-			document.menuForm.price.focus();
-			return false;
-		} else {
-			str = document.menuForm.price.value;
-			for (i = 0; i < str.length; i++) {
-				ch = str.substring(i, i + 1);
-				if (!((ch >= "0" && ch <= "9") || (ch >= "a" && ch <= "z") || (ch >= "A" && ch <= "z"))) {
-					alert("특수문자가 포함되어있습니다, 다시입력해주세요!!");
-					document.menuForm.price.focus();
-					return false;
-				}
+	if (document.menuForm.price.value == "") {
+		alert("금액을 입력하세요!!!");
+		document.menuForm.price.focus();
+		return false;
+	} else {
+		str = document.menuForm.price.value;
+		for (i = 0; i < str.length; i++) {
+			ch = str.substring(i, i + 1);
+			if (!((ch >= "0" && ch <= "9") || (ch >= "a" && ch <= "z") || (ch >= "A" && ch <= "z"))) {
+				alert("특수문자가 포함되어있습니다, 다시입력해주세요!!");
+				document.menuForm.price.focus();
+				return false;
 			}
 		}
-
-		if (document.menuForm.gram.value == "") {
-			alert("금액을 입력하세요!!!");
-			document.menuForm.gram.focus();
-			return false;
-		}
-
-		str = document.menuForm.menu_name.value;
-		var regExp = /,/gi;
-		var str2 = str.match(regExp);
-		if (str2.length > 0) {
-			alert("한가지 종류만 선택해 주세요!!!");
-			document.menuForm.menu_name.focus();
-			return false;
-		}
-
 	}
+
+	if (document.menuForm.gram.value == "") {
+		alert("금액을 입력하세요!!!");
+		document.menuForm.gram.focus();
+		return false;
+	}
+
+	str = document.menuForm.menu_name.value;
+	var regExp = /,/gi;
+	var str2 = str.match(regExp);
+	if (str2.length > 0) {
+		alert("한가지 종류만 선택해 주세요!!!");
+		document.menuForm.menu_name.focus();
+		return false;
+	}
+}
+	
+function menuList(s_num){
+	  $.ajax({
+	     url : 'menuListAjax.re',
+	     data : {'s_num' : s_num},
+		 contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+	     success : function(data){ 
+	        var a ='';
+	        $.each(data, function(key,value){ //data는 list객체를 받음(controller return 부분)list는 commentVO를 여려개 가지고 있음
+	      		a += '<tr><td><img src="resources/img/store/'+ value.img+'"></td>';
+	      		a += '<td>' + value.menu_name + '</td>';
+	      		a += '<td>' + value.price + '</td>';
+	      		a += '<td>' + value.grade + '</td>';
+	      		a += '<td><button onclick="deleteBtn(' + value.menu_num + ');" id="myBtn" class="btn btn-primary btn-xs pull-right" style="background: white; color:red; border: 1px solid red;margin-top:0px; padding-bottom:0px;padding-top:0px;">삭제</button></td></tr>';
+	        });
+	        
+	        $("#menu_content").html(a); //a내용을 html에 형식으로 .commentList로 넣음
+	     },
+	     error:function(){
+	        alert("ajax통신 실패(list)!!!");
+	     }
+	  });
+	}
+	
+function deleteBtn(event) {
+	$.ajax({
+		url : 'menuDelete.re',
+		type : 'POST',
+		data : {'menu_num' : event},
+		contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+		success : function(data) {
+			if (data == "OK") {
+				alert("삭제!");
+				menuList(s_num);
+			} else {
+				alert("event delete Fail!!!!");
+			}
+		}
+	});
+}
+	
 </script>
-
-
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
