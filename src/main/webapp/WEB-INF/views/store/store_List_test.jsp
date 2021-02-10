@@ -15,8 +15,8 @@
 	type="text/css">
 
 <%-- <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/storelist.css"
-	type="text/css"> --%>
+   href="${pageContext.request.contextPath}/resources/css/storelist.css"
+   type="text/css"> --%>
 
 <!-- Product Section Begin -->
 <section class="product spad">
@@ -105,60 +105,53 @@
 		</div>
 	</div>
 </section>
- <div class="container">
-     <div class="row" style="display : flex; padding: 0 30px; flex-wrap: wrap; aligin-items : center; justify-content: flex-start;">
-                 <%
-      for(int i=0; i<storeList.size(); i++) 
-         {
-            StoreVO svo = (StoreVO) storeList.get(i);
-               %>
-      <!--  --><div class="col-lg-box">
-         <!--<div class="col-lg-6">  -->
-             <div class="table">
-             
-                <div class="table-ri">
-                    <img src="resources/img/store/<%=svo.getThumbnail()%>" alt="" style="width : 200px; height : 180px;">
-                </div>
-                <div class="table-le">
-                   
-                   <div class="table-le-topbox">
-                      <div class="table-le-name">
-                         <a href="./storeInfo.st?s_num=<%=svo.getS_num()%>"><%=svo.getS_name() %></a>
-                      </div>
-                      <div class="avgStar" id="avgStar"  name="avgStar" value="<%=svo.getAvgStar() %>">
-                         ★ <%=svo.getAvgStar() %>
-                      </div>
-                   </div><!-- table-le-topbox -->
-                   
-                   <div class="table-le-text">TEL : <%=svo.getS_phone() %></div>
-                   <div class="table-le-text">지역 : <%=svo.getS_addr() %></div>
-                   <div class="table-le-text">품목 : <%
-                     if(svo.getMeat() == 0) {
-                     %>
-                     소고기
-                     <%
-                     } else if (svo.getMeat() == 1) {
-                     %>
-                      돼지고기
-                     <%
-                     } else {
-                     %>
-                     식당
-                     <%
-                     }
-                     %>
-               </div>
-               <div class="table-le-text">운영시간 : <%=svo.getS_hour() %></div>
-               
-                </div>
-                
-             </div><!-- table -->      
-         <!--</div>  -->
-        </div><!--col-lg-box -->
-             <%
-            }
-         %>
-    </div>
+<div class="container">
+	<div class="row" id="store_list" name="store_list"
+		style="display: flex; padding: 0 30px; flex-wrap: wrap; aligin-items: center; justify-content: flex-start;">
+		<%
+			for (int i = 0; i < storeList.size(); i++) {
+				StoreVO svo = (StoreVO) storeList.get(i);
+		%>
+		<div class="col-lg-box">
+			<div class="table">
+				<div class="table-ri">
+					<img src="resources/img/store/<%=svo.getThumbnail()%>" alt="" style="width: 200px; height: 180px;">
+				</div>
+				<div class="table-le">
+					<div class="table-le-topbox">
+						<div class="table-le-name">
+							<a href="./storeInfo.st?s_num=<%=svo.getS_num()%>"><%=svo.getS_name()%></a>
+						</div>
+						<div class="avgStar" id="avgStar" name="avgStar"> ★ <%=svo.getAvgStar()%></div>
+					</div>
+					<div class="table-le-text"> TEL : <%=svo.getS_phone()%></div>
+					<div class="table-le-text"> 지역 : <%=svo.getS_addr()%></div>
+					<div class="table-le-text">
+						품목 :
+						<%
+						if (svo.getMeat() == 0) {
+					%>
+						소고기
+						<%
+						} else if (svo.getMeat() == 1) {
+					%>
+						돼지고기
+						<%
+						} else {
+					%>
+						식당
+						<%
+						}
+					%>
+					</div>
+					<div class="table-le-text">운영시간 : <%=svo.getS_hour()%></div>
+				</div>
+			</div>
+		</div>
+		<%
+			}
+		%>
+	</div>
 </div>
 
 
