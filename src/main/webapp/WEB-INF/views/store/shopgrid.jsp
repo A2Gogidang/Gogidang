@@ -133,7 +133,7 @@
 								</div>
 		
 								<div class="product-item">
-										<img src="resources/img/store/store_gogi.png">
+										<img src="resources/img/store/<%=svo.getS_img() %>">
 									<!-- <div><img src="resources/img/store/%=svo.getThumbnail()% "></div> -->
 								</div>
 		

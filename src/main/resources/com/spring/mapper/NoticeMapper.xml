@@ -11,8 +11,8 @@
 	  	<select id="getNoticeList" parameterType="HashMap" resultType="NoticeVO">	
 	<![CDATA[
 	SELECT * 
-	FROM (SELECT rownum rnum,notice_num,u_id,title,content,re_date,re_ref 
-	FROM (SELECT * FROM notice ORDER BY re_ref desc)) 
+	FROM (SELECT rownum rnum,notice_num,u_id,title,content,re_date
+	FROM (SELECT * FROM notice)) 
 	WHERE rnum>=#{startrow} AND rnum<=#{endrow}
 	 ]]>
 	</select>

@@ -29,16 +29,14 @@
                     <div class="product__details__text">
                         <h3><%=vo.getTitle()%></h3>
                         <div class="product__details__rating">
+                        <% for(int i=0; i<vo.getStar(); i++) { %>
                             <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>
-                           
+                        <%} %>
                         </div>
+                        <div class="product__details__Nickname"style="font-size: 30px;color: #7fad39;font-weight: 600;margin-bottom: 15px;"><%=vo.getS_name() %></div>
                         <div class="product__details__Nickname"style="font-size: 30px;color: #7fad39;font-weight: 600;margin-bottom: 15px;"><%=vo.getNickname() %></div>
                         <p><%=vo.getContent()%></p>
-                        <a href="#" class="primary-btn">가게 보러가기</a>
+                        <a href="./storeInfo.st?s_num=<%=vo.getS_num()%>" class="primary-btn">가게 보러가기</a>
                     </div>
                 </div>
             </div>

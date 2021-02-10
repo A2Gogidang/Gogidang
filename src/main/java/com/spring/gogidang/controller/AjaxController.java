@@ -1,5 +1,6 @@
 package com.spring.gogidang.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,51 +50,63 @@ public class AjaxController {
 			mapp.put("meat", meat);
 			
 			List<ReviewVO> list = reviewService.getReviewListAjax(mapp);
-			
+			List<ReviewVO> nlist = new ArrayList<ReviewVO>();
 			System.out.println("리스트 size : " + list.size());
 			
 			for (int i=0; i<list.size(); i++) {
 				ReviewVO rvo = list.get(i);
 				int getStar = rvo.getStar();
-				System.out.println(getStar);
+				String img = rvo.getReview_img1();
+				System.out.println("getstar=" + getStar);
+				System.out.println("getReview_img1=" + img);
 				
-				if (getStar < starInt) {
-					list.remove(i);
+				if (getStar >= starInt) {
+					int j = 0;
+					nlist.add(j, rvo);
+					j++;
 				}
+				
 			}
-			
-			return list;
+			System.out.println("리스트 size : " + nlist.size());
+			return nlist;
 			
 		} else if(s_addr.length == 0 && meat.length>0) {
 			mapp.put("meat", meat);		
 			List<ReviewVO> list = reviewService.getReviewListAjax(mapp);
+			List<ReviewVO> nlist = new ArrayList<ReviewVO>();
 			
 			for (int i=0; i<list.size(); i++) {
 				ReviewVO rvo = list.get(i);
 				int getStar = rvo.getStar();
 				System.out.println(getStar);
 				
-				if (getStar < starInt) {
-					list.remove(i);
+				if (getStar >= starInt) {
+					int j = 0;
+					nlist.add(j, rvo);
+					j++;
 				}
 			}
 			
-			return list;
+			return nlist;
+			
 		} else if (s_addr.length > 0 && meat.length==0) {
 			mapp.put("s_addr",s_addr);
 			List<ReviewVO> list = reviewService.getReviewListAjax(mapp);
+			List<ReviewVO> nlist = new ArrayList<ReviewVO>();
 			
 			for (int i=0; i<list.size(); i++) {
 				ReviewVO rvo = list.get(i);
 				int getStar = rvo.getStar();
 				System.out.println(getStar);
 				
-				if (getStar < starInt) {
-					list.remove(i);
+				if (getStar >= starInt) {
+					int j = 0;
+					nlist.add(j, rvo);
+					j++;
 				}
 			}
 			
-			return list;
+			return nlist;
 		} else {
 			
 			return null;
