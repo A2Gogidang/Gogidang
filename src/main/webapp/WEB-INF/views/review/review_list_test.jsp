@@ -121,7 +121,7 @@
 					<div class="col-lg-4 col-md-6 col-sm-6">
 						<div class="product__item">
 							<div class="product__item__pic set-bg"
-								data-setbg="resources/img/store/store_gogi.png"></div>
+								data-setbg="resources/img/store/<%=rvo.getReview_img1() %>"></div>
 							<div class="product__item__text">
 								<h6>
 									<a href="./reviewDetail.re?review_num=<%=rvo.getReview_num()%>"><%=rvo.getTitle()%></a>

@@ -17,8 +17,7 @@
    ArrayList<ReviewVO> reviewList = (ArrayList<ReviewVO>) request.getAttribute("reviewList");
    int totalReview = (int) request.getAttribute("totalReview");
    /* ArrayList<ReviewVO> review_List = (ArrayList<ReviewVO>) request.getAttribute("reviewList"); */
-%>
-<%
+
    List<QnaStoreVO> qnalist=(List<QnaStoreVO>)request.getAttribute("qnalist");
    int listcount=((Integer)request.getAttribute("listcount")).intValue();
    int nowpage=((Integer)request.getAttribute("page")).intValue();
@@ -58,10 +57,15 @@ $(document).ready(function() {
                      src="resources/img/store/<%=svo.getThumbnail()%>" alt="" style="width : 556px; height : 416px;">
                </div>
                <div class="product__details__pic__slider owl-carousel">
-                  <img src="resources/img/product/details/thumb-1.jpg" alt="">
-                  <img src="resources/img/product/details/thumb-2.jpg" alt="">
-                  <img src="resources/img/product/details/thumb-3.jpg" alt="">
-                  <img src="resources/img/product/details/thumb-4.jpg" alt="">
+               		<%
+                     for (int i = 0; i < menu_List.size(); i++) {
+
+                     MenuVO mv = (MenuVO) menu_List.get(i);
+               		%>
+                  <img src="resources/img/store/<%=mv.getImg()%>" alt="">
+                  <%
+                     }
+                  %>
                </div>
             </div>
          </div>
