@@ -157,6 +157,8 @@
 $(document).ready(function() {
 	storeWaitList();
 });
+
+var s_num, u_id = '';
 	
 //Get the modal
 var modal = document.getElementById('myModal');
@@ -197,8 +199,8 @@ function callModal(event){
 		dataType : 'json',
 		success : function(retVal) {
 			if (retVal.res == "OK") {
-				var s_num = retVal.s_num;
-				var u_id = retVal.u_id;
+				s_num = retVal.s_num;
+				u_id = retVal.u_id;
 				var thumbnail = retVal.thumbnail;
 				var s_name = retVal.s_name;
 				var s_addr = retVal.s_addr;
