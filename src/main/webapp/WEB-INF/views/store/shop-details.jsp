@@ -269,27 +269,14 @@ relayout();
                                  </div>
                                  <div class="col-xs-10" id="ReviewTitle">
                                     <span id="reviewStar" style="color :#edbb0e;"> 
-                                    <%if(reviewvo.getStar() == 5){ %>
-                                       <span class="fa fa-star"></span>
-                                       <span class="fa fa-star"></span>
-                                       <span class="fa fa-star"> </span>
-                                       <span class="fa fa-star"></span>
-                                       <span class="fa fa-star"></span>
-                                       <%}else if(reviewvo.getStar() == 4){
-                                       %>
-                                       <span class="fa fa-star"></span>
-                                       <span class="fa fa-star"></span>
-                                       <span class="fa fa-star"></span>
-                                       <span class="fa fa-star"> </span>
-                                       <%}else if(reviewvo.getStar() == 3){ %>
-                                       <span class="fa fa-star"></span>
-                                       <span class="fa fa-star"></span>
-                                       <span class="fa fa-star"></span>
-                                        <%}else if(reviewvo.getStar() == 2){ %>
-                                       <span class="fa fa-star"></span>
-                                       <span class="fa fa-star"></span>
-                                       <%}else if(reviewvo.getStar() == 1){ %>
-                                       <span class="fa fa-star"></span> <%} %>
+                                    <%
+                                    	for(int j=0; j<reviewvo.getStar(); j++) {
+                                    %>
+                                    	<span class="fa fa-star" />
+                                    <%
+                                    	}
+                                    %>
+                                    
                                   <span id="Insert_date">등록일: <%=reviewvo.getReview_date() %></span>
                                  </div>
 
@@ -304,7 +291,7 @@ relayout();
                                        <div class="fluid-row" id="Review_user">
                                           <div class="review_Pic">
                                              <img
-                                                src="resources/img/DetailStoreImg/Review/BestReview3.png">
+                                                src="resources/img/store/<%=reviewvo.getReview_img1() %>">
                                           </div>
                                           <div>
                                              <div id="reviewTextContent">

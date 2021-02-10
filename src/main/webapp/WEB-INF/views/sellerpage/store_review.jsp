@@ -188,7 +188,7 @@
 					$('input#u_id').val(u_id);
 					$('input#nickname').val(nickname);
 					$('input#title').val(title);
-					$('input#content').val(content);
+					$('textarea#content').val(content);
 					$('input#star').val(star);
 				} else {
 					alert("confirm Fail!!!!");
