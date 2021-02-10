@@ -14,10 +14,12 @@
 	href="${pageContext.request.contextPath}/resources/css/shopgrid.css"
 	type="text/css">
 
-<link rel="stylesheet"
+<!-- 
+<link rel="stylesheet"s
 	href="${pageContext.request.contextPath}/resources/css/storelist.css"
 	type="text/css">
-
+ -->
+ 
 <!-- Product Section Begin -->
 <section class="product spad">
 	<div class="container">
