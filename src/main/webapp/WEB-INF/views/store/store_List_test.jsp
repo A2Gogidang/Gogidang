@@ -128,24 +128,15 @@
                 <div class="col-lg-9">
                     <div class="shoping__cart__table">
                         <table>
-                            <thead>
-                                <tr>
-                                    <th class="shoping__product"><span style="margin-left : 130px;"><%= svo.getS_name() %></span></th>
-                                    
-                                    <th>지역</th>
-                                    <th>품목</th>
-                                    <th>별점</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
                             <tbody>
                                 <tr>
                                     <td class="shoping__cart__item" style="display:inline-flex;">
                                         <img src="resources/img/store/store_gogi.png" alt="" style="width : 400px; height : 250px;"><br>
                                         
-                                        <h5 style="display : flex; margin-left : 140px; margin-top : 82px;"></h5>
+                                        <h5 style="display :flex; margin-left : 140px; margin-top : 82px;"></h5>
                                     </td>
-                                    <td class="shoping__cart__price">
+                                    <td class="shoping__cart__price" style="padding : 0px;">
+                                    <%= svo.getS_name() %>
                                         <%=svo.getS_addr()%>
                                     </td>
                                     <td class="shoping__cart__quantity">

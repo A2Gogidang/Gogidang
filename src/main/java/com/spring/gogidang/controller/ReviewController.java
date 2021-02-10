@@ -267,5 +267,10 @@ public class ReviewController {
 		
 		return "review/review_detail";
 	}
+	@RequestMapping("/review_detail2.re")
+	public String review_detail2() {
+		
+		return "review/review_detail2";
+	}
 
 }
