@@ -6,7 +6,7 @@
 	
 	<insert id="reviewsubReg" parameterType="ReviewSubVO">
 		INSERT INTO review_sub (review_sub_num, review_num, review_sub_content, review_date) 
-		VALUES (seq_sub_review.nextval, #{review_num}, #{review_sub_content}, sysdate )
+		VALUES (seq_review_sub.nextval, #{review_num}, #{review_sub_content}, sysdate )
 	</insert>
 	
 	<select id="getReviewSub" parameterType="int">
