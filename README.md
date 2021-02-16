@@ -14,7 +14,7 @@
 #### `Languages`
 - Java 8
 - JavaScript ES 6
-- BootStrap4
+- Bootstrap4
 #### `Development Environment`
 - Spring Tool Suite 4
 - Apache Tomcat 9
